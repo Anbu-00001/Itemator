@@ -1,0 +1,11 @@
+[project]
+name = "itemator"
+version = "0.0.1"
+description = "One click for what was asked. A name for anything more."
+license = "MIT"
+requires-python = ">=3.12"
+dependencies = []
+
+[project.optional-dependencies]
+eval = ["duckdb"]
+dev = ["pytest"]
