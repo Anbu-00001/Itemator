@@ -1,0 +1,1622 @@
+{
+ "prs": [
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "ci_or_config": 0,
+    "file_outside_ask": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 4,
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/qax-os/excelize/issues/2169"
+   ],
+   "license": "BSD-3-Clause",
+   "pr_url": "https://github.com/qax-os/excelize/pull/2171",
+   "repo": "qax-os/excelize",
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "ci_or_config": 0,
+    "file_outside_ask": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 5,
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/primer/react/issues/6212"
+   ],
+   "license": "MIT",
+   "pr_url": "https://github.com/primer/react/pull/6293",
+   "repo": "primer/react",
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": false,
+   "counts": {
+    "ci_or_config": 0,
+    "file_outside_ask": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 5,
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/microsoft/vscode/issues/250579"
+   ],
+   "license": "MIT",
+   "pr_url": "https://github.com/microsoft/vscode/pull/251252",
+   "repo": "microsoft/vscode",
+   "unplaced": [
+    "build/gulpfile.reh.js",
+    "src/vs/base/node/nls.ts",
+    "src/vs/platform/extensionManagement/common/extensionManagement.ts",
+    "src/vs/platform/extensionManagement/common/extensionManagementIpc.ts",
+    "src/vs/platform/extensionManagement/node/extensionManagementService.ts"
+   ]
+  },
+  {
+   "agent": "OpenAI_Codex",
+   "anchored": true,
+   "counts": {
+    "ci_or_config": 0,
+    "file_outside_ask": 4,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [
+    {
+     "kind": "file_outside_ask",
+     "name": "packages/backend/.env.example",
+     "path": "packages/backend/.env.example",
+     "why": "the issue names no file in this directory"
+    },
+    {
+     "kind": "file_outside_ask",
+     "name": "packages/backend/src/__tests__/backend.test.init.js",
+     "path": "packages/backend/src/__tests__/backend.test.init.js",
+     "why": "the issue names no file in this directory"
+    },
+    {
+     "kind": "file_outside_ask",
+     "name": "packages/backend/src/common/constants/env.constants.ts",
+     "path": "packages/backend/src/common/constants/env.constants.ts",
+     "why": "the issue names no file in this directory"
+    },
+    {
+     "kind": "file_outside_ask",
+     "name": "packages/backend/src/common/constants/env.util.ts",
+     "path": "packages/backend/src/common/constants/env.util.ts",
+     "why": "the issue names no file in this directory"
+    }
+   ],
+   "files_changed": 12,
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/SwitchbackTech/compass/issues/452"
+   ],
+   "license": "MIT",
+   "pr_url": "https://github.com/SwitchbackTech/compass/pull/484",
+   "repo": "SwitchbackTech/compass",
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "ci_or_config": 0,
+    "file_outside_ask": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 5,
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/microsoft/playwright-dotnet/issues/3163"
+   ],
+   "license": "MIT",
+   "pr_url": "https://github.com/microsoft/playwright-dotnet/pull/3171",
+   "repo": "microsoft/playwright-dotnet",
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": false,
+   "counts": {
+    "ci_or_config": 0,
+    "file_outside_ask": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 1,
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/christianhelle/httpgenerator/issues/205"
+   ],
+   "license": "MIT",
+   "pr_url": "https://github.com/christianhelle/httpgenerator/pull/206",
+   "repo": "christianhelle/httpgenerator",
+   "unplaced": [
+    "CONTRIBUTING.md"
+   ]
+  },
+  {
+   "agent": "Copilot",
+   "anchored": false,
+   "counts": {
+    "ci_or_config": 0,
+    "file_outside_ask": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 4,
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/microsoft/typespec/issues/6465"
+   ],
+   "license": "MIT",
+   "pr_url": "https://github.com/microsoft/typespec/pull/7425",
+   "repo": "microsoft/typespec",
+   "unplaced": [
+    "packages/http-client-csharp/global.json"
+   ]
+  },
+  {
+   "agent": "Copilot",
+   "anchored": false,
+   "counts": {
+    "ci_or_config": 0,
+    "file_outside_ask": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 2,
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/dotnet/msbuild/issues/316"
+   ],
+   "license": "MIT",
+   "pr_url": "https://github.com/dotnet/msbuild/pull/11992",
+   "repo": "dotnet/msbuild",
+   "unplaced": [
+    "src/Build.UnitTests/BackEnd/TaskRegistry_Tests.cs",
+    "src/Build/Instance/TaskRegistry.cs"
+   ]
+  },
+  {
+   "agent": "Devin",
+   "anchored": true,
+   "counts": {
+    "ci_or_config": 0,
+    "file_outside_ask": 1,
+    "new_dependency": 0,
+    "public_api_removed": 4,
+    "tests_removed": 0
+   },
+   "extras": [
+    {
+     "kind": "public_api_removed",
+     "name": "json",
+     "path": "src/crewai/crews/crew_output.py",
+     "why": "removes public def/class json"
+    },
+    {
+     "kind": "public_api_removed",
+     "name": "json",
+     "path": "src/crewai/tasks/task_output.py",
+     "why": "removes public def/class json"
+    },
+    {
+     "kind": "public_api_removed",
+     "name": "from_langchain",
+     "path": "src/crewai/tools/base_tool.py",
+     "why": "removes public def/class from_langchain"
+    },
+    {
+     "kind": "public_api_removed",
+     "name": "to_langchain",
+     "path": "src/crewai/tools/base_tool.py",
+     "why": "removes public def/class to_langchain"
+    },
+    {
+     "kind": "file_outside_ask",
+     "name": "tests/conftest.py",
+     "path": "tests/conftest.py",
+     "why": "the issue names no file in this directory"
+    }
+   ],
+   "files_changed": 18,
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/crewAIInc/crewAI/issues/2023"
+   ],
+   "license": "MIT",
+   "pr_url": "https://github.com/crewAIInc/crewAI/pull/2034",
+   "repo": "crewAIInc/crewAI",
+   "unplaced": []
+  },
+  {
+   "agent": "Devin",
+   "anchored": true,
+   "counts": {
+    "ci_or_config": 0,
+    "file_outside_ask": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 2,
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/appsmithorg/appsmith/issues/37831"
+   ],
+   "license": "Apache-2.0",
+   "pr_url": "https://github.com/appsmithorg/appsmith/pull/38578",
+   "repo": "appsmithorg/appsmith",
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "ci_or_config": 0,
+    "file_outside_ask": 2,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 2
+   },
+   "extras": [
+    {
+     "kind": "tests_removed",
+     "name": "internal/elasticsearch/enrich/policy_data_source_test.go",
+     "path": "internal/elasticsearch/enrich/policy_data_source_test.go",
+     "why": "deletes this test file"
+    },
+    {
+     "kind": "tests_removed",
+     "name": "internal/elasticsearch/enrich/policy_test.go",
+     "path": "internal/elasticsearch/enrich/policy_test.go",
+     "why": "deletes this test file"
+    },
+    {
+     "kind": "file_outside_ask",
+     "name": "internal/utils/tfsdk.go",
+     "path": "internal/utils/tfsdk.go",
+     "why": "the issue names no file in this directory"
+    },
+    {
+     "kind": "file_outside_ask",
+     "name": "internal/utils/tfsdk_test.go",
+     "path": "internal/utils/tfsdk_test.go",
+     "why": "the issue names no file in this directory"
+    }
+   ],
+   "files_changed": 18,
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/elastic/terraform-provider-elasticstack/issues/1219"
+   ],
+   "license": "Apache-2.0",
+   "pr_url": "https://github.com/elastic/terraform-provider-elasticstack/pull/1220",
+   "repo": "elastic/terraform-provider-elasticstack",
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": false,
+   "counts": {
+    "ci_or_config": 0,
+    "file_outside_ask": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 1,
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/pulumi/docs/issues/15134"
+   ],
+   "license": "Apache-2.0",
+   "pr_url": "https://github.com/pulumi/docs/pull/15163",
+   "repo": "pulumi/docs",
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "ci_or_config": 0,
+    "file_outside_ask": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 7,
+   "files_without_patch": 1,
+   "issue_urls": [
+    "https://github.com/microsoft/Microsoft365DSC/issues/6227"
+   ],
+   "license": "MIT",
+   "pr_url": "https://github.com/microsoft/Microsoft365DSC/pull/6228",
+   "repo": "microsoft/Microsoft365DSC",
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": false,
+   "counts": {
+    "ci_or_config": 0,
+    "file_outside_ask": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 5,
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/aztfmod/terraform-provider-azurecaf/issues/291"
+   ],
+   "license": "MIT",
+   "pr_url": "https://github.com/aztfmod/terraform-provider-azurecaf/pull/301",
+   "repo": "aztfmod/terraform-provider-azurecaf",
+   "unplaced": [
+    "azurecaf/models_generated.go",
+    "resourceDefinition.json"
+   ]
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "ci_or_config": 0,
+    "file_outside_ask": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 2,
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/tokens-studio/figma-plugin/issues/3358"
+   ],
+   "license": "MIT",
+   "pr_url": "https://github.com/tokens-studio/figma-plugin/pull/3359",
+   "repo": "tokens-studio/figma-plugin",
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "ci_or_config": 0,
+    "file_outside_ask": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 4,
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/celestiaorg/celestia-core/issues/1663"
+   ],
+   "license": "Apache-2.0",
+   "pr_url": "https://github.com/celestiaorg/celestia-core/pull/1907",
+   "repo": "celestiaorg/celestia-core",
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": false,
+   "counts": {
+    "ci_or_config": 0,
+    "file_outside_ask": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 23,
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/dotnet/aspire/issues/9596"
+   ],
+   "license": "MIT",
+   "pr_url": "https://github.com/dotnet/aspire/pull/9597",
+   "repo": "dotnet/aspire",
+   "unplaced": [
+    "src/Aspire.Hosting.Docker/DockerComposeAspireDashboardResource.cs",
+    "src/Aspire.Hosting.Docker/DockerComposeAspireDashboardResourceBuilderExtensions.cs",
+    "src/Aspire.Hosting.Docker/DockerComposeEnvironmentContext.cs",
+    "src/Aspire.Hosting.Docker/DockerComposeEnvironmentExtensions.cs",
+    "src/Aspire.Hosting.Docker/DockerComposeEnvironmentResource.cs",
+    "src/Aspire.Hosting.Docker/DockerComposeInfrastructure.cs",
+    "src/Aspire.Hosting.Docker/DockerComposePublishingContext.cs",
+    "src/Aspire.Hosting.Docker/DockerComposeServiceExtensions.cs",
+    "src/Aspire.Hosting.Docker/DockerComposeServiceResource.cs",
+    "src/Aspire.Hosting.Docker/DockerComposeServiceResourceExtensions.cs",
+    "src/Aspire.Hosting/ApplicationModel/OtlpExporterAnnotation.cs",
+    "src/Aspire.Hosting/OtlpConfigurationExtensions.cs",
+    "tests/Aspire.Hosting.Docker.Tests/DockerComposePublisherTests.cs",
+    "tests/Aspire.Hosting.Docker.Tests/Snapshots/DockerComposePublisherTests.DockerComposeAppliesServiceCustomizations.verified.yaml",
+    "tests/Aspire.Hosting.Docker.Tests/Snapshots/DockerComposePublisherTests.DockerComposeCorrectlyEmitsPortMappings.verified.yaml",
+    "tests/Aspire.Hosting.Docker.Tests/Snapshots/DockerComposePublisherTests.DockerComposeWithProjectResources.verified.env",
+    "tests/Aspire.Hosting.Docker.Tests/Snapshots/DockerComposePublisherTests.DockerComposeWithProjectResources.verified.yaml",
+    "tests/Aspire.Hosting.Docker.Tests/Snapshots/DockerComposePublisherTests.PublishAsync_GeneratesValidDockerComposeFile.verified.yaml",
+    "tests/Aspire.Hosting.Docker.Tests/Snapshots/DockerComposePublisherTests.PublishAsync_MultipleResourcesWithOtlp_ConfiguresAllForDashboard.verified.yaml",
+    "tests/Aspire.Hosting.Docker.Tests/Snapshots/DockerComposePublisherTests.PublishAsync_WithDashboardDisabled_DoesNotIncludeDashboardService.verified.yaml",
+    "tests/Aspire.Hosting.Docker.Tests/Snapshots/DockerComposePublisherTests.PublishAsync_WithDashboardEnabled_IncludesDashboardService.verified.yaml",
+    "tests/Aspire.Hosting.Docker.Tests/Snapshots/DockerComposePublisherTests.PublishAsync_WithDashboard_UsesCustomConfiguration.verified.yaml",
+    "tests/Aspire.Hosting.Docker.Tests/Snapshots/DockerComposeTests.DockerComposeOnlyExposesExternalEndpoints.verified.yaml"
+   ]
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "ci_or_config": 0,
+    "file_outside_ask": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 2,
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/Lightning-AI/lightning-thunder/issues/2115"
+   ],
+   "license": "Apache-2.0",
+   "pr_url": "https://github.com/Lightning-AI/lightning-thunder/pull/2298",
+   "repo": "Lightning-AI/lightning-thunder",
+   "unplaced": []
+  },
+  {
+   "agent": "OpenAI_Codex",
+   "anchored": true,
+   "counts": {
+    "ci_or_config": 0,
+    "file_outside_ask": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 2,
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/defog-ai/introspect/issues/496"
+   ],
+   "license": "MIT",
+   "pr_url": "https://github.com/defog-ai/introspect/pull/501",
+   "repo": "defog-ai/introspect",
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "ci_or_config": 0,
+    "file_outside_ask": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 7,
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/microsoft/magentic-ui/issues/39"
+   ],
+   "license": "MIT",
+   "pr_url": "https://github.com/microsoft/magentic-ui/pull/59",
+   "repo": "microsoft/magentic-ui",
+   "unplaced": []
+  },
+  {
+   "agent": "Devin",
+   "anchored": true,
+   "counts": {
+    "ci_or_config": 0,
+    "file_outside_ask": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 2,
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/marimo-team/marimo/issues/3971"
+   ],
+   "license": "Apache-2.0",
+   "pr_url": "https://github.com/marimo-team/marimo/pull/3978",
+   "repo": "marimo-team/marimo",
+   "unplaced": []
+  },
+  {
+   "agent": "Devin",
+   "anchored": false,
+   "counts": {
+    "ci_or_config": 0,
+    "file_outside_ask": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 1,
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/liam-hq/liam/issues/776"
+   ],
+   "license": "Apache-2.0",
+   "pr_url": "https://github.com/liam-hq/liam/pull/1861",
+   "repo": "liam-hq/liam",
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "ci_or_config": 0,
+    "file_outside_ask": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 2,
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/embeddings-benchmark/mteb/issues/1996"
+   ],
+   "license": "Apache-2.0",
+   "pr_url": "https://github.com/embeddings-benchmark/mteb/pull/2876",
+   "repo": "embeddings-benchmark/mteb",
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "ci_or_config": 0,
+    "file_outside_ask": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 1,
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/microsoft/vscode/issues/252333"
+   ],
+   "license": "MIT",
+   "pr_url": "https://github.com/microsoft/vscode/pull/252334",
+   "repo": "microsoft/vscode",
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "ci_or_config": 0,
+    "file_outside_ask": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 504,
+   "files_without_patch": 153,
+   "issue_urls": [
+    "https://github.com/microsoft/typespec/issues/7610"
+   ],
+   "license": "MIT",
+   "pr_url": "https://github.com/microsoft/typespec/pull/7662",
+   "repo": "microsoft/typespec",
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "ci_or_config": 0,
+    "file_outside_ask": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 2,
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/microsoft/typespec/issues/7778"
+   ],
+   "license": "MIT",
+   "pr_url": "https://github.com/microsoft/typespec/pull/7779",
+   "repo": "microsoft/typespec",
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": false,
+   "counts": {
+    "ci_or_config": 0,
+    "file_outside_ask": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 1,
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/primer/react/issues/6084"
+   ],
+   "license": "MIT",
+   "pr_url": "https://github.com/primer/react/pull/6085",
+   "repo": "primer/react",
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": false,
+   "counts": {
+    "ci_or_config": 2,
+    "file_outside_ask": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [
+    {
+     "kind": "ci_or_config",
+     "name": ".github/dependabot.yml",
+     "path": ".github/dependabot.yml",
+     "why": "changes CI config; the issue does not mention it"
+    },
+    {
+     "kind": "ci_or_config",
+     "name": ".github/workflows/check-aspire-versions.yml",
+     "path": ".github/workflows/check-aspire-versions.yml",
+     "why": "changes CI config; the issue does not mention it"
+    }
+   ],
+   "files_changed": 5,
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/collinbarrett/FilterLists/issues/5035"
+   ],
+   "license": "MIT",
+   "pr_url": "https://github.com/collinbarrett/FilterLists/pull/5036",
+   "repo": "collinbarrett/FilterLists",
+   "unplaced": [
+    "services/Directory.Build.props",
+    "services/FilterLists.AppHost/FilterLists.AppHost.csproj"
+   ]
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "ci_or_config": 0,
+    "file_outside_ask": 1,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [
+    {
+     "kind": "file_outside_ask",
+     "name": "test/Microsoft.DotNet.PackageInstall.Tests/NuGetPackageInstallerTests.cs",
+     "path": "test/Microsoft.DotNet.PackageInstall.Tests/NuGetPackageInstallerTests.cs",
+     "why": "the issue names no file in this directory"
+    }
+   ],
+   "files_changed": 2,
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/dotnet/sdk/issues/49211"
+   ],
+   "license": "MIT",
+   "pr_url": "https://github.com/dotnet/sdk/pull/49315",
+   "repo": "dotnet/sdk",
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "ci_or_config": 0,
+    "file_outside_ask": 1,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [
+    {
+     "kind": "file_outside_ask",
+     "name": "test-summary",
+     "path": "test-summary",
+     "why": "the issue names no file in this directory"
+    }
+   ],
+   "files_changed": 2,
+   "files_without_patch": 1,
+   "issue_urls": [
+    "https://github.com/microsoft/retina/issues/1680"
+   ],
+   "license": "MIT",
+   "pr_url": "https://github.com/microsoft/retina/pull/1704",
+   "repo": "microsoft/retina",
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": false,
+   "counts": {
+    "ci_or_config": 0,
+    "file_outside_ask": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 14,
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/NewFuture/DDNS/issues/306"
+   ],
+   "license": "MIT",
+   "pr_url": "https://github.com/NewFuture/DDNS/pull/501",
+   "repo": "NewFuture/DDNS",
+   "unplaced": [
+    "ddns/__main__.py",
+    "ddns/util/config.py",
+    "schema/v4.0.json",
+    "tests/test_provider_alidns.py",
+    "tests/test_provider_dnspod.py",
+    "tests/test_provider_huaweidns.py",
+    "tests/test_provider_tencentcloud.py"
+   ]
+  },
+  {
+   "agent": "Cursor",
+   "anchored": true,
+   "counts": {
+    "ci_or_config": 0,
+    "file_outside_ask": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 8,
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/iterative/datachain/issues/1211"
+   ],
+   "license": "Apache-2.0",
+   "pr_url": "https://github.com/iterative/datachain/pull/1215",
+   "repo": "iterative/datachain",
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": false,
+   "counts": {
+    "ci_or_config": 0,
+    "file_outside_ask": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 8,
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/andrea9293/mcp-documentation-server/issues/1"
+   ],
+   "license": "MIT",
+   "pr_url": "https://github.com/andrea9293/mcp-documentation-server/pull/2",
+   "repo": "andrea9293/mcp-documentation-server",
+   "unplaced": [
+    ".github/copilot-instructions.md",
+    ".gitignore",
+    "src/embedding-provider.ts",
+    "src/intelligent-chunker.ts",
+    "src/server.ts",
+    "src/types.ts"
+   ]
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "ci_or_config": 0,
+    "file_outside_ask": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 2,
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/dotnet/android/issues/10263"
+   ],
+   "license": "MIT",
+   "pr_url": "https://github.com/dotnet/android/pull/10264",
+   "repo": "dotnet/android",
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "ci_or_config": 0,
+    "file_outside_ask": 2,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [
+    {
+     "kind": "file_outside_ask",
+     "name": "src/Core/src/Handlers/Border/BorderHandler.Android.cs",
+     "path": "src/Core/src/Handlers/Border/BorderHandler.Android.cs",
+     "why": "the issue names no file in this directory"
+    },
+    {
+     "kind": "file_outside_ask",
+     "name": "src/Core/tests/DeviceTests/Handlers/Border/BorderHandlerTests.Android.cs",
+     "path": "src/Core/tests/DeviceTests/Handlers/Border/BorderHandlerTests.Android.cs",
+     "why": "the issue names no file in this directory"
+    }
+   ],
+   "files_changed": 4,
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/dotnet/maui/issues/28902"
+   ],
+   "license": "MIT",
+   "pr_url": "https://github.com/dotnet/maui/pull/30178",
+   "repo": "dotnet/maui",
+   "unplaced": []
+  },
+  {
+   "agent": "Devin",
+   "anchored": false,
+   "counts": {
+    "ci_or_config": 0,
+    "file_outside_ask": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 2,
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/marimo-team/marimo/issues/3330"
+   ],
+   "license": "Apache-2.0",
+   "pr_url": "https://github.com/marimo-team/marimo/pull/3335",
+   "repo": "marimo-team/marimo",
+   "unplaced": [
+    "frontend/src/plugins/impl/vega/__tests__/loader.test.ts",
+    "frontend/src/plugins/impl/vega/loader.ts"
+   ]
+  },
+  {
+   "agent": "Devin",
+   "anchored": true,
+   "counts": {
+    "ci_or_config": 0,
+    "file_outside_ask": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 3,
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/crewAIInc/crewAI/issues/2744"
+   ],
+   "license": "MIT",
+   "pr_url": "https://github.com/crewAIInc/crewAI/pull/2745",
+   "repo": "crewAIInc/crewAI",
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": false,
+   "counts": {
+    "ci_or_config": 1,
+    "file_outside_ask": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [
+    {
+     "kind": "ci_or_config",
+     "name": "apps/docs/tsconfig.json",
+     "path": "apps/docs/tsconfig.json",
+     "why": "changes build config; the issue does not mention it"
+    }
+   ],
+   "files_changed": 5,
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/haydenbleasel/kibo/issues/175"
+   ],
+   "license": "MIT",
+   "pr_url": "https://github.com/haydenbleasel/kibo/pull/180",
+   "repo": "haydenbleasel/kibo",
+   "unplaced": []
+  },
+  {
+   "agent": "Devin",
+   "anchored": false,
+   "counts": {
+    "ci_or_config": 0,
+    "file_outside_ask": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 3,
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/lingodotdev/lingo.dev/issues/929"
+   ],
+   "license": "Apache-2.0",
+   "pr_url": "https://github.com/lingodotdev/lingo.dev/pull/931",
+   "repo": "lingodotdev/lingo.dev",
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "ci_or_config": 0,
+    "file_outside_ask": 2,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [
+    {
+     "kind": "file_outside_ask",
+     "name": "src/Compiler/Checking/infos.fs",
+     "path": "src/Compiler/Checking/infos.fs",
+     "why": "the issue names no file in this directory"
+    },
+    {
+     "kind": "file_outside_ask",
+     "name": "src/Compiler/TypedTree/TypedTreeOps.fs",
+     "path": "src/Compiler/TypedTree/TypedTreeOps.fs",
+     "why": "the issue names no file in this directory"
+    }
+   ],
+   "files_changed": 7,
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/dotnet/fsharp/issues/10273"
+   ],
+   "license": "MIT",
+   "pr_url": "https://github.com/dotnet/fsharp/pull/18584",
+   "repo": "dotnet/fsharp",
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "ci_or_config": 0,
+    "file_outside_ask": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 3,
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/dotnet/maui/issues/30144"
+   ],
+   "license": "MIT",
+   "pr_url": "https://github.com/dotnet/maui/pull/30302",
+   "repo": "dotnet/maui",
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "ci_or_config": 0,
+    "file_outside_ask": 1,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [
+    {
+     "kind": "file_outside_ask",
+     "name": "packages/typespec-ts/test/commands/cadl-ranch-list.js",
+     "path": "packages/typespec-ts/test/commands/cadl-ranch-list.js",
+     "why": "the issue names no file in this directory"
+    }
+   ],
+   "files_changed": 9,
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/Azure/autorest.typescript/issues/3327"
+   ],
+   "license": "MIT",
+   "pr_url": "https://github.com/Azure/autorest.typescript/pull/3328",
+   "repo": "Azure/autorest.typescript",
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "ci_or_config": 0,
+    "file_outside_ask": 2,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [
+    {
+     "kind": "file_outside_ask",
+     "name": ".github/copilot-instructions.md",
+     "path": ".github/copilot-instructions.md",
+     "why": "the issue names no file in this directory"
+    },
+    {
+     "kind": "file_outside_ask",
+     "name": "src/PSRule.Tool/Program.cs",
+     "path": "src/PSRule.Tool/Program.cs",
+     "why": "the issue names no file in this directory"
+    }
+   ],
+   "files_changed": 9,
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/microsoft/PSRule/issues/2825"
+   ],
+   "license": "MIT",
+   "pr_url": "https://github.com/microsoft/PSRule/pull/2973",
+   "repo": "microsoft/PSRule",
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "ci_or_config": 0,
+    "file_outside_ask": 1,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [
+    {
+     "kind": "file_outside_ask",
+     "name": "global.json",
+     "path": "global.json",
+     "why": "the issue names no file in this directory"
+    }
+   ],
+   "files_changed": 2,
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/PowerShell/AIShell/issues/376"
+   ],
+   "license": "MIT",
+   "pr_url": "https://github.com/PowerShell/AIShell/pull/385",
+   "repo": "PowerShell/AIShell",
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "ci_or_config": 0,
+    "file_outside_ask": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 3,
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/serilog-contrib/serilog-enrichers-clientinfo/issues/33"
+   ],
+   "license": "MIT",
+   "pr_url": "https://github.com/serilog-contrib/serilog-enrichers-clientinfo/pull/57",
+   "repo": "serilog-contrib/serilog-enrichers-clientinfo",
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "ci_or_config": 0,
+    "file_outside_ask": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 2,
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/ant-design/ant-design/issues/53869"
+   ],
+   "license": "MIT",
+   "pr_url": "https://github.com/ant-design/ant-design/pull/54317",
+   "repo": "ant-design/ant-design",
+   "unplaced": []
+  },
+  {
+   "agent": "OpenAI_Codex",
+   "anchored": true,
+   "counts": {
+    "ci_or_config": 0,
+    "file_outside_ask": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 1,
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/katspaugh/wavesurfer.js/issues/4173"
+   ],
+   "license": "BSD-3-Clause",
+   "pr_url": "https://github.com/katspaugh/wavesurfer.js/pull/4174",
+   "repo": "katspaugh/wavesurfer.js",
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": false,
+   "counts": {
+    "ci_or_config": 0,
+    "file_outside_ask": 0,
+    "new_dependency": 1,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [
+    {
+     "kind": "new_dependency",
+     "name": "normalize-path",
+     "path": "package.json",
+     "why": "adds package normalize-path; the issue does not name it"
+    }
+   ],
+   "files_changed": 1,
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/orangewise/s3-zip/issues/112"
+   ],
+   "license": "MIT",
+   "pr_url": "https://github.com/orangewise/s3-zip/pull/113",
+   "repo": "orangewise/s3-zip",
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "ci_or_config": 0,
+    "file_outside_ask": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 5,
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/dotnet/runtime/issues/113468"
+   ],
+   "license": "MIT",
+   "pr_url": "https://github.com/dotnet/runtime/pull/115761",
+   "repo": "dotnet/runtime",
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "ci_or_config": 0,
+    "file_outside_ask": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 1,
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/valkey-io/valkey-glide/issues/2642"
+   ],
+   "license": "Apache-2.0",
+   "pr_url": "https://github.com/valkey-io/valkey-glide/pull/4387",
+   "repo": "valkey-io/valkey-glide",
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": false,
+   "counts": {
+    "ci_or_config": 0,
+    "file_outside_ask": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 1,
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/microsoft/Generative-AI-for-beginners-dotnet/issues/141"
+   ],
+   "license": "MIT",
+   "pr_url": "https://github.com/microsoft/Generative-AI-for-beginners-dotnet/pull/142",
+   "repo": "microsoft/Generative-AI-for-beginners-dotnet",
+   "unplaced": [
+    "03-CoreGenerativeAITechniques/01-lm-completions-functions.md"
+   ]
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "ci_or_config": 0,
+    "file_outside_ask": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 1,
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/microsoft/vscode/issues/191973"
+   ],
+   "license": "MIT",
+   "pr_url": "https://github.com/microsoft/vscode/pull/252342",
+   "repo": "microsoft/vscode",
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "ci_or_config": 0,
+    "file_outside_ask": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 1,
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/dotnet/aspire/issues/9718"
+   ],
+   "license": "MIT",
+   "pr_url": "https://github.com/dotnet/aspire/pull/9721",
+   "repo": "dotnet/aspire",
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "ci_or_config": 1,
+    "file_outside_ask": 2,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [
+    {
+     "kind": "ci_or_config",
+     "name": ".rubocop.yml",
+     "path": ".rubocop.yml",
+     "why": "changes lint config; the issue does not mention it"
+    },
+    {
+     "kind": "file_outside_ask",
+     "name": "spec/fixtures/excerpt-in-frontmatter/another-page.md",
+     "path": "spec/fixtures/excerpt-in-frontmatter/another-page.md",
+     "why": "the issue names no file in this directory"
+    },
+    {
+     "kind": "file_outside_ask",
+     "name": "spec/fixtures/excerpt-in-frontmatter/page-with-excerpt.md",
+     "path": "spec/fixtures/excerpt-in-frontmatter/page-with-excerpt.md",
+     "why": "the issue names no file in this directory"
+    }
+   ],
+   "files_changed": 6,
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/benbalter/jekyll-relative-links/issues/91"
+   ],
+   "license": "MIT",
+   "pr_url": "https://github.com/benbalter/jekyll-relative-links/pull/97",
+   "repo": "benbalter/jekyll-relative-links",
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "ci_or_config": 0,
+    "file_outside_ask": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 1,
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/Voxelum/x-minecraft-launcher/issues/1028"
+   ],
+   "license": "MIT",
+   "pr_url": "https://github.com/Voxelum/x-minecraft-launcher/pull/1029",
+   "repo": "Voxelum/x-minecraft-launcher",
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "ci_or_config": 0,
+    "file_outside_ask": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 9,
+   "files_without_patch": 1,
+   "issue_urls": [
+    "https://github.com/microsoft/typespec/issues/7283"
+   ],
+   "license": "MIT",
+   "pr_url": "https://github.com/microsoft/typespec/pull/7423",
+   "repo": "microsoft/typespec",
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "ci_or_config": 0,
+    "file_outside_ask": 0,
+    "new_dependency": 0,
+    "public_api_removed": 4,
+    "tests_removed": 0
+   },
+   "extras": [
+    {
+     "kind": "public_api_removed",
+     "name": "after_multiapi_combiner",
+     "path": "scripts/auto_release/main.py",
+     "why": "removes public def/class after_multiapi_combiner"
+    },
+    {
+     "kind": "public_api_removed",
+     "name": "check_package_size",
+     "path": "scripts/auto_release/main.py",
+     "why": "removes public def/class check_package_size"
+    },
+    {
+     "kind": "public_api_removed",
+     "name": "get_private_package",
+     "path": "scripts/auto_release/main.py",
+     "why": "removes public def/class get_private_package"
+    },
+    {
+     "kind": "public_api_removed",
+     "name": "generate_main",
+     "path": "tools/azure-sdk-tools/packaging_tools/sdk_package.py",
+     "why": "removes public def/class generate_main"
+    }
+   ],
+   "files_changed": 6,
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/Azure/azure-sdk-for-python/issues/41692"
+   ],
+   "license": "MIT",
+   "pr_url": "https://github.com/Azure/azure-sdk-for-python/pull/41693",
+   "repo": "Azure/azure-sdk-for-python",
+   "unplaced": []
+  },
+  {
+   "agent": "OpenAI_Codex",
+   "anchored": true,
+   "counts": {
+    "ci_or_config": 0,
+    "file_outside_ask": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 2,
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/cloudfoundry/cloud_controller_ng/issues/3698"
+   ],
+   "license": "Apache-2.0",
+   "pr_url": "https://github.com/cloudfoundry/cloud_controller_ng/pull/4460",
+   "repo": "cloudfoundry/cloud_controller_ng",
+   "unplaced": []
+  },
+  {
+   "agent": "Devin",
+   "anchored": true,
+   "counts": {
+    "ci_or_config": 0,
+    "file_outside_ask": 1,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [
+    {
+     "kind": "file_outside_ask",
+     "name": ".changeset/few-boxes-sniff.md",
+     "path": ".changeset/few-boxes-sniff.md",
+     "why": "the issue names no file in this directory"
+    }
+   ],
+   "files_changed": 3,
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/lingodotdev/lingo.dev/issues/863"
+   ],
+   "license": "Apache-2.0",
+   "pr_url": "https://github.com/lingodotdev/lingo.dev/pull/867",
+   "repo": "lingodotdev/lingo.dev",
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": false,
+   "counts": {
+    "ci_or_config": 0,
+    "file_outside_ask": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 1,
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/linux-do/cdk/issues/28"
+   ],
+   "license": "MIT",
+   "pr_url": "https://github.com/linux-do/cdk/pull/29",
+   "repo": "linux-do/cdk",
+   "unplaced": [
+    ".github/pull_request_template.md"
+   ]
+  }
+ ],
+ "summary": {
+  "dataset": "hao-li/AIDev@v3",
+  "flagged_if_rule5_never_abstained": 27,
+  "funnel": {
+   "linked_issues_that_are_prs": 0,
+   "linked_prs_in_permissive_repos": 3757,
+   "linked_prs_whose_repo_is_missing": 0,
+   "pool": 3703,
+   "pool_by_agent": {
+    "Claude_Code": 63,
+    "Copilot": 3152,
+    "Cursor": 38,
+    "Devin": 340,
+    "OpenAI_Codex": 110
+   },
+   "prs_linked_to_an_issue": 4905,
+   "pull_request_rows": 33596
+  },
+  "github_api_calls_this_run": 67,
+  "kill_test_1a": {
+   "pass": true,
+   "pool": 3703,
+   "threshold": ">= 150"
+  },
+  "kill_test_1b": {
+   "flagged": 16,
+   "of": 60,
+   "pass": true,
+   "threshold": "6..30"
+  },
+  "per_kind": {
+   "ci_or_config": {
+    "extras": 4,
+    "prs": 3
+   },
+   "file_outside_ask": {
+    "extras": 20,
+    "prs": 12
+   },
+   "new_dependency": {
+    "extras": 1,
+    "prs": 1
+   },
+   "public_api_removed": {
+    "extras": 8,
+    "prs": 2
+   },
+   "tests_removed": {
+    "extras": 2,
+    "prs": 1
+   }
+  },
+  "prs_with_a_file_missing_its_patch": 4,
+  "sample_size": 60,
+  "seed": 20261010,
+  "skipped_fetch_failed": [
+   {
+    "error": "no files",
+    "pr_url": "https://github.com/W1LDN16H7/JPL/pull/3"
+   },
+   {
+    "error": "no files",
+    "pr_url": "https://github.com/MicrosoftLearning/AZ400-DesigningandImplementingMicrosoftDevOpsSolutions/pull/679"
+   }
+  ],
+  "unanchored": 18
+ }
+}

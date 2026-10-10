@@ -1,0 +1,712 @@
+"""Fixed rules: what a merge request changed beyond its linked issue.
+
+No model, no network, no randomness: the same issue text and the same changed
+files always give the same extras, in the same order.
+
+INPUT
+  issue_text: the linked issue's title and body (several issues: joined).
+  files: the changed files, each a dict with `filename`, `status`
+  (GitHub's: added | removed | modified | renamed | copied | changed),
+  `patch` (unified diff text, or None when the forge omits it) and, for a
+  rename, `previous_filename`. A file without a patch is skipped by every rule
+  that reads lines (rules 1, 3b, 4).
+
+"THE ISSUE MENTIONS X" means: X occurs in the issue text, case-insensitively,
+not glued to another letter or digit on either side; a second try ignores
+'-' and '_' on both sides (`my-pkg` matches "my_pkg").
+
+RULES (an extra is kind + path + name + why; `name` is what a human types)
+1. new_dependency. In a manifest (requirements*.txt, requirements/*.txt|.in,
+   pyproject.toml, package.json, go.mod, Cargo.toml, Gemfile, pom.xml,
+   build.gradle, build.gradle.kts), a package name on an added line that is
+   not also on a removed line of the same file (a version bump or a move
+   between sections is not new), and that the issue does not mention. Only
+   lines the parser can place in a dependency list count; when a diff hunk
+   starts inside an unknown section, a line counts only if it carries a version
+   (see the _deps_* functions). go.mod `// indirect` lines do not count.
+   name = the package name (npm: the full `@scope/pkg`; Maven/Gradle: the
+   artifact id; go.mod: the module path).
+2. ci_or_config. A changed CI, build, container or lint config file (the list
+   is _CONFIG_RULES), when the issue mentions neither its file name nor any
+   keyword of its kind. name = the path.
+3. tests_removed. In a test file (a code file whose name looks like a test,
+   or with a directory test/, tests/, __tests__/, spec/, specs/, testing/,
+   e2e/), either
+   a. the file was deleted, unless a test file with the same file name was
+      added elsewhere in the change (a move); or
+   b. its removed lines hold more test definitions, or more assertion lines,
+      than its added lines, and the change as a whole also lost that measure
+      (tests moved between files are not removals).
+   Skipped when the issue mentions the file's name. name = the path.
+4. public_api_removed. On a removed line of a non-test file: a Python `def`
+   or `class` indented 0 or 4 spaces (or one tab) whose name does not start
+   with '_', or a JS/TS `export` (declaration or `export { a, b as c }`).
+   It counts when no added line anywhere in the change defines or exports the
+   same name again (signature changes and moves are not removals), and the
+   issue does not mention the name. name = the symbol.
+5. file_outside_ask. Every changed file is first checked against the issue:
+   a. a path in the issue (a token with '/' or a file extension) equals the
+      file's path, ends with it, is a trailing part of it, or is a directory
+      that contains it; or
+   b. the file's stem (its name up to the first '.', with test affixes such as
+      test_, _test, Test, _spec removed) equals an issue token; or
+   c. one of its directory names equals an issue token; or
+   d. it is a test file whose stem equals the stem of a file matched by a-c.
+   Issue tokens: every word in the issue (and each part of a word joined by
+   '-' or '_'), two or three adjacent words written together, each part of a path,
+   text in backticks, and each part of a dotted name (`pkg.module`). Tokens
+   and names compare lowercased with '-' and '_' removed, singular or plural.
+   A forge link (github.com, gitlab.com) counts as a path only through
+   /blob/<ref>/<path> or /tree/<ref>/<path>. Generic stems and directory
+   names (_GENERIC_STEMS, _GENERIC_DIRS: index, utils, src, ...) and names
+   under 3 characters match only through a path (a), never through a token.
+   An extra is then a changed file that is not matched and is not in the same
+   directory as a matched file. Never extras on their own: docs (README*,
+   CHANGELOG*, CHANGES*, HISTORY*, NEWS*, anything under docs/ or doc/),
+   lockfiles, files under __snapshots__/, and files that rules 1-3 cover
+   (manifests, config files, deleted test files).
+   If no changed file is matched, the rule abstains: the issue gives no
+   anchor, and the result records `anchored = False` instead of flagging
+   every file. name = the path.
+"""
+from __future__ import annotations
+
+import posixpath
+import re
+from dataclasses import asdict, dataclass, field
+
+KINDS = ("new_dependency", "ci_or_config", "tests_removed",
+         "public_api_removed", "file_outside_ask")
+
+
+@dataclass(frozen=True)
+class Extra:
+    kind: str
+    path: str
+    name: str
+    why: str
+
+    def to_dict(self) -> dict:
+        return asdict(self)
+
+
+@dataclass
+class Analysis:
+    extras: list[Extra]
+    named_paths: list[str] = field(default_factory=list)
+    anchored: bool = False
+    unplaced: list[str] = field(default_factory=list)   # rule 5 abstained over these
+
+
+# ---------------------------------------------------------------- helpers
+
+def _squash(s: str) -> str:
+    return s.lower().replace("-", "").replace("_", "")
+
+
+def _mentions(issue_text: str, name: str) -> bool:
+    """Rule text: 'the issue mentions X' (see module docstring)."""
+    if not name:
+        return False
+    for text, needle in ((issue_text.lower(), name.lower()),
+                         (_squash(issue_text), _squash(name))):
+        if needle and re.search(r"(?<![a-z0-9])" + re.escape(needle) + r"(?![a-z0-9])", text):
+            return True
+    return False
+
+
+def _lines(patch: str | None):
+    """Yield (sign, text) for each diff line; sign is '+', '-', ' ' or '@'."""
+    if not patch:
+        return
+    for raw in patch.splitlines():
+        if raw.startswith("@@"):
+            yield "@", raw
+        elif raw[:1] in ("+", "-", " "):
+            yield raw[0], raw[1:]
+        # '\ No newline at end of file' and anything else: ignored
+
+
+def _base(path: str) -> str:
+    return posixpath.basename(path)
+
+
+def _dirs(path: str) -> list[str]:
+    d = posixpath.dirname(path)
+    return d.split("/") if d else []
+
+
+# ------------------------------------------------- rule 1: new_dependency
+
+_REQ_LINE = re.compile(r"^\s*([A-Za-z0-9][A-Za-z0-9._\-]*)")
+_QUOTED_REQ = re.compile(r"""["']([A-Za-z0-9][A-Za-z0-9._\-]*)\s*(\[[^\]]*\])?\s*([<>=!~^;@][^"']*)?["']""")
+_HAS_VERSION = re.compile(r"[<>=~^!]|@\s|\d")
+_TOML_HEADER = re.compile(r"^\s*\[\[?([^\]]+)\]\]?\s*(#.*)?$")
+_TOML_KEY = re.compile(r"""^\s*(?:"([^"]+)"|'([^']+)'|([A-Za-z0-9][\w.\-]*))\s*=(?!=)\s*(.*)$""")
+
+
+def _toml_kv(text):
+    m = _TOML_KEY.match(text)
+    if not m:
+        return None
+    return (m.group(1) or m.group(2) or m.group(3)), m.group(4).strip()
+_JSON_OPEN = re.compile(r'^\s*"([^"]+)"\s*:\s*\{')
+_JSON_PAIR = re.compile(r'^\s*"([^"]+)"\s*:\s*"([^"]*)"')
+_NPM_DEP_KEYS = {"dependencies", "devDependencies", "peerDependencies", "optionalDependencies"}
+_NPM_VERSION = re.compile(r"^(\^|~|>=?|<=?|=|\*|x$|latest|next|canary|beta|workspace:|file:|link:|npm:|git|github:|https?:|catalog:|\d)")
+_NPM_NOT_DEPS = {"name", "version", "main", "module", "types", "typings", "node", "npm", "yarn",
+                 "pnpm", "bun", "vscode", "packageManager", "license", "description", "homepage",
+                 "author", "type", "browser", "bin", "private", "engines", "electron"}
+_CARGO_NOT_DEPS = {"name", "version", "edition", "rust-version", "authors", "description", "license",
+                   "repository", "homepage", "readme", "keywords", "categories", "documentation",
+                   "publish", "build", "resolver", "members", "exclude", "include", "default-run",
+                   "opt-level", "lto", "debug", "codegen-units", "panic", "strip"}
+_GO_REQ = re.compile(r"^\s*(?:require\s+)?([A-Za-z0-9][\w.\-~/]*\.[\w.\-~/]+)\s+v\d\S*\s*(//.*)?$")
+_GEM = re.compile(r"""^\s*gem\s+['"]([^'"]+)['"]""")
+_GRADLE = re.compile(
+    r"""^\s*(?:implementation|api|compileOnly|runtimeOnly|testImplementation|testRuntimeOnly|"""
+    r"""testCompileOnly|androidTestImplementation|debugImplementation|releaseImplementation|kapt|ksp|"""
+    r"""annotationProcessor|classpath|compile|testCompile)\s*\(?\s*(?:platform\s*\(\s*)?"""
+    r"""(?:['"]([^'"]+)['"]|(libs\.[\w.]+))""")
+_POM_TAG = re.compile(r"<(dependency|plugin|parent|exclusion|project|extension)>")
+_POM_ARTIFACT = re.compile(r"<artifactId>\s*([^<\s]+)\s*</artifactId>")
+
+
+def _manifest_kind(path: str) -> str | None:
+    b = _base(path)
+    if re.fullmatch(r"requirements[\w.\-]*\.(txt|in)", b) or (
+            "requirements" in _dirs(path) and b.endswith((".txt", ".in"))):
+        return "requirements"
+    return {"pyproject.toml": "pyproject", "package.json": "npm", "go.mod": "go",
+            "Cargo.toml": "cargo", "Gemfile": "gem", "pom.xml": "pom",
+            "build.gradle": "gradle", "build.gradle.kts": "gradle"}.get(b)
+
+
+def _deps_requirements(patch):
+    for sign, text in _lines(patch):
+        s = text.strip()
+        if sign not in "+-" or not s or s.startswith(("#", "-")):
+            continue
+        if "://" in s and " @ " not in s:
+            continue
+        m = _REQ_LINE.match(s)
+        if m:
+            yield sign, m.group(1)
+
+
+def _deps_pyproject(patch):
+    section = None      # None = unknown (hunk starts mid-file)
+    array_key = None
+    for sign, text in _lines(patch):
+        if sign == "@":
+            section, array_key = None, None
+            continue
+        h = _TOML_HEADER.match(text)
+        if h and "=" not in text:
+            section, array_key = h.group(1).strip().strip('"'), None
+            continue
+        kv = _toml_kv(text)
+        if kv:
+            key, value = kv
+            if value.startswith("["):
+                array_key = key if "]" not in value else None
+            dep_array = _pyproject_dep_array(section, key)
+            if section is not None and re.search(r"(^|\.)(dev-)?dependencies$", section) \
+                    and section.startswith("tool.") and not value.startswith("["):
+                if sign in "+-" and key.lower() != "python":
+                    yield sign, key           # poetry style: name = "^1.0"
+                continue
+            if dep_array and sign in "+-":
+                for q in _QUOTED_REQ.finditer(value):
+                    yield sign, q.group(1)
+            continue
+        if text.strip().startswith("]"):
+            array_key = None
+            continue
+        if sign not in "+-":
+            continue
+        q = _QUOTED_REQ.search(text)
+        if not q:
+            continue
+        known = section is not None and array_key is not None
+        if known and _pyproject_dep_array(section, array_key):
+            yield sign, q.group(1)
+        elif not known and q.group(3) and _HAS_VERSION.search(q.group(3)):
+            yield sign, q.group(1)            # unknown place: needs a version
+
+
+def _pyproject_dep_array(section, key) -> bool:
+    if section is None or key is None:
+        return False
+    if section == "project":
+        return key == "dependencies"
+    if section in ("project.optional-dependencies", "dependency-groups"):
+        return True
+    if section == "build-system":
+        return key == "requires"
+    return key in ("dependencies", "dev-dependencies") or section.endswith("dependencies")
+
+
+def _deps_npm(patch):
+    stack: list[str | None] = []
+    for sign, text in _lines(patch):
+        if sign == "@":
+            stack = []
+            continue
+        o = _JSON_OPEN.match(text)
+        if o:
+            if text.count("{") > text.count("}"):
+                stack.append(o.group(1))
+            continue
+        if re.match(r"^\s*\}", text):
+            if stack:
+                stack.pop()
+            else:
+                stack = ["<top>"]             # left an unknown block
+            continue
+        p = _JSON_PAIR.match(text)
+        if not p or sign not in "+-":
+            continue
+        key, value = p.group(1), p.group(2)
+        block = stack[-1] if stack else None
+        if block in _NPM_DEP_KEYS:
+            yield sign, key
+        elif block is None and key not in _NPM_NOT_DEPS and _NPM_VERSION.match(value):
+            yield sign, key                   # unknown block: needs a version
+
+
+def _deps_go(patch):
+    for sign, text in _lines(patch):
+        if sign not in "+-" or "=>" in text:
+            continue
+        m = _GO_REQ.match(text)
+        if m and not (m.group(2) or "").replace(" ", "").startswith("//indirect"):
+            yield sign, m.group(1)
+
+
+def _deps_cargo(patch):
+    section = None
+    for sign, text in _lines(patch):
+        if sign == "@":
+            section = None
+            continue
+        h = _TOML_HEADER.match(text)
+        if h and "=" not in text:
+            section = h.group(1).strip()
+            m = re.fullmatch(r"(?:.*\.)?(?:dev-|build-)?dependencies\.([\w\-]+)", section)
+            if m and sign in "+-":
+                yield sign, m.group(1)
+            continue
+        kv = _toml_kv(text)
+        if not kv or sign not in "+-":
+            continue
+        full_key, value = kv
+        key = full_key.split(".")[0]
+        if section is not None:
+            if re.search(r"(^|\.)(dev-|build-)?dependencies$", section):
+                yield sign, key
+        elif key not in _CARGO_NOT_DEPS and (
+                re.match(r"""["'][\^~=<>*]?\d""", value) or
+                re.match(r"\{.*\b(version|path|git|workspace)\b", value) or
+                full_key.endswith(".workspace")):
+            yield sign, key                   # unknown section: needs a version
+
+
+def _deps_gem(patch):
+    for sign, text in _lines(patch):
+        m = _GEM.match(text)
+        if m and sign in "+-":
+            yield sign, m.group(1)
+
+
+def _deps_pom(patch):
+    context = None
+    for sign, text in _lines(patch):
+        if sign == "@":
+            context = None
+            continue
+        t = _POM_TAG.search(text)
+        if t:
+            context = t.group(1)
+        a = _POM_ARTIFACT.search(text)
+        if a and context == "dependency" and sign in "+-":
+            yield sign, a.group(1)
+
+
+def _deps_gradle(patch):
+    for sign, text in _lines(patch):
+        m = _GRADLE.match(text)
+        if not m or sign not in "+-":
+            continue
+        if m.group(1):
+            parts = m.group(1).split(":")
+            if len(parts) >= 2:
+                yield sign, parts[1]
+        else:
+            yield sign, m.group(2)
+
+
+_DEP_PARSERS = {"requirements": _deps_requirements, "pyproject": _deps_pyproject,
+                "npm": _deps_npm, "go": _deps_go, "cargo": _deps_cargo, "gem": _deps_gem,
+                "pom": _deps_pom, "gradle": _deps_gradle}
+
+
+def _side(patch: str, keep: str) -> str:
+    """One side of the diff: '+' keeps the new file's lines, '-' the old file's."""
+    return "\n".join(raw for raw in patch.splitlines()
+                     if raw.startswith(("@@", " ", keep)) and not raw.startswith(("+++", "---")))
+
+
+def _new_dependencies(issue_text, files):
+    out = []
+    for f in files:
+        kind = _manifest_kind(f["filename"])
+        if not kind or not f.get("patch"):
+            continue
+        parse = _DEP_PARSERS[kind]
+        added = [n for sign, n in parse(_side(f["patch"], "+")) if sign == "+"]
+        removed = {n.lower() for sign, n in parse(_side(f["patch"], "-")) if sign == "-"}
+        seen = set()
+        for name in added:
+            low = name.lower()
+            if low in removed or low in seen:
+                continue
+            seen.add(low)
+            short = name.rsplit("/", 1)[-1] if kind in ("npm", "go") else name
+            if _mentions(issue_text, name) or (short != name and _mentions(issue_text, short)):
+                continue
+            out.append(Extra("new_dependency", f["filename"], name,
+                             f"adds package {name}; the issue does not name it"))
+    return out
+
+
+# --------------------------------------------------- rule 2: ci_or_config
+
+_CI_WORDS = ("ci", "workflow", "workflows", "pipeline", "pipelines", "github actions", "gitlab-ci")
+_DOCKER_WORDS = ("docker", "dockerfile", "container", "containers", "compose")
+_LINT_WORDS = ("lint", "linter", "linting", "eslint", "prettier", "ruff", "flake8", "pylint",
+               "mypy", "formatter", "stylelint", "biome", "golangci", "rubocop", "editorconfig",
+               "markdownlint")
+
+# (description, test on (path, basename), keywords that count as a mention)
+_CONFIG_RULES = [
+    ("CI config", lambda p, b: b in (".gitlab-ci.yml", ".gitlab-ci.yaml", ".travis.yml",
+                                     "azure-pipelines.yml", "Jenkinsfile", "bitbucket-pipelines.yml")
+     or p.startswith((".github/workflows/", ".gitlab/ci/", ".circleci/", ".buildkite/"))
+     or p == ".github/dependabot.yml", _CI_WORDS),
+    ("container config", lambda p, b: b.startswith("Dockerfile") or b.endswith(".dockerfile")
+     or b == ".dockerignore" or re.fullmatch(r"(docker-)?compose[\w.\-]*\.ya?ml", b) is not None,
+     _DOCKER_WORDS),
+    ("build config", lambda p, b: b in ("Makefile", "GNUmakefile", "makefile", "tox.ini", "setup.cfg",
+                                        "noxfile.py", "justfile", "Justfile")
+     or re.fullmatch(r"tsconfig[\w.\-]*\.json", b) is not None,
+     ("makefile", "build", "tox", "nox", "setup.cfg", "tsconfig", "compile", "compiler")),
+    ("lint config", lambda p, b: b in (".pre-commit-config.yaml", ".flake8", ".pylintrc", "pylintrc",
+                                       "ruff.toml", ".ruff.toml", "mypy.ini", ".mypy.ini",
+                                       ".golangci.yml", ".golangci.yaml", ".rubocop.yml", "biome.json",
+                                       "biome.jsonc", ".editorconfig", ".prettierignore",
+                                       ".eslintignore")
+     or re.fullmatch(r"\.(eslintrc|prettierrc|stylelintrc|markdownlint)[\w.\-]*", b) is not None
+     or re.fullmatch(r"(eslint|prettier|stylelint)\.config\.\w+", b) is not None,
+     _LINT_WORDS + ("pre-commit",)),
+]
+
+
+def _config_kind(path: str):
+    b = _base(path)
+    for desc, test, words in _CONFIG_RULES:
+        if test(path, b):
+            return desc, words
+    return None
+
+
+def _ci_or_config(issue_text, files):
+    out = []
+    for f in files:
+        ck = _config_kind(f["filename"])
+        if not ck:
+            continue
+        desc, words = ck
+        if _mentions(issue_text, _base(f["filename"])) or any(_mentions(issue_text, w) for w in words):
+            continue
+        out.append(Extra("ci_or_config", f["filename"], f["filename"],
+                         f"changes {desc}; the issue does not mention it"))
+    return out
+
+
+# -------------------------------------------------- rule 3: tests_removed
+
+_CODE_EXT = {"py", "pyi", "js", "jsx", "ts", "tsx", "mjs", "cjs", "mts", "cts", "go", "java", "kt",
+             "kts", "rb", "rs", "cs", "php", "swift", "scala", "c", "cc", "cpp", "h", "hpp", "m",
+             "ex", "exs", "dart", "vue", "svelte", "lua", "r", "jl", "clj", "groovy"}
+_TEST_DIRS = {"test", "tests", "__tests__", "spec", "specs", "testing", "e2e", "__test__"}
+_TEST_NAME = re.compile(r"(test_.+|.+_test|.+\.test|.+\.spec|.+_spec|.+Tests?|.+Spec|test|tests)\.[A-Za-z0-9]+")
+_TEST_DEF = re.compile(
+    r"^\s*(async\s+)?def\s+test\w*\s*\("                                # Python, Ruby minitest
+    r"|^\s*(it|test|describe|context|specify)(\.(only|skip|each|concurrent|todo|failing))?\s*[(`]"  # JS
+    r"|^\s*(it|test|describe|context|specify)\s+['\"]"                  # RSpec, minitest
+    r"|^\s*func\s+(Test|Benchmark|Fuzz|Example)\w*\s*\("               # Go
+    r"|@Test\b|@ParameterizedTest\b"                                    # JUnit
+    r"|#\[(\w+::)?test\]"                                               # Rust
+    r"|\[(Fact|Theory|Test|TestMethod|TestCase)\b")                     # C#
+_ASSERT = re.compile(
+    r"\bassert|\bexpect\s*\(|\.should\b|\bt\.(Error|Errorf|Fatal|Fatalf|Fail|FailNow)\b"
+    r"|\brequire\.[A-Z]\w*\(|\bXCTAssert|\bEXPECT_[A-Z]|\bASSERT_[A-Z]|\bself\.fail\(|\bpytest\.raises\b")
+
+
+def _ext(path: str) -> str:
+    b = _base(path)
+    return b.rsplit(".", 1)[-1].lower() if "." in b else ""
+
+
+def is_test_file(path: str) -> bool:
+    if _ext(path) not in _CODE_EXT:
+        return False
+    return _TEST_NAME.fullmatch(_base(path)) is not None or any(d in _TEST_DIRS for d in _dirs(path))
+
+
+def _count(patch, sign, pattern):
+    return sum(1 for s, t in _lines(patch) if s == sign and pattern.search(t))
+
+
+def _tests_removed(issue_text, files):
+    out = []
+    tests = [f for f in files if is_test_file(f["filename"])]
+    added_names = {_base(f["filename"]) for f in tests if f.get("status") == "added"}
+    net = {}
+    for label, pat in (("test definitions", _TEST_DEF), ("assertion lines", _ASSERT)):
+        net[label] = sum(_count(f.get("patch"), "+", pat) - _count(f.get("patch"), "-", pat) for f in tests)
+    for f in tests:
+        path = f["filename"]
+        b = _base(path)
+        if _mentions(issue_text, b) or _mentions(issue_text, b.split(".")[0]):
+            continue
+        if f.get("status") == "removed":
+            if b not in added_names:
+                out.append(Extra("tests_removed", path, path, "deletes this test file"))
+            continue
+        for label, pat in (("test definitions", _TEST_DEF), ("assertion lines", _ASSERT)):
+            minus, plus = _count(f.get("patch"), "-", pat), _count(f.get("patch"), "+", pat)
+            if minus > plus and net[label] < 0:
+                out.append(Extra("tests_removed", path, path,
+                                 f"removes {minus - plus} more {label} than it adds"))
+                break
+    return out
+
+
+# --------------------------------------------- rule 4: public_api_removed
+
+_PY_DEF = re.compile(r"^(?: {0,4}|\t)(?:async\s+def|def|class)\s+([A-Za-z]\w*)")
+_JS_EXPORT = re.compile(
+    r"^\s*export\s+(?:default\s+)?(?:declare\s+)?(?:abstract\s+)?(?:async\s+)?"
+    r"(?:function\s*\*?|class|const|let|var|interface|type|enum|namespace)\s+([A-Za-z_$][\w$]*)")
+_JS_EXPORT_LIST = re.compile(r"^\s*export\s+(?:type\s+)?\{([^}]*)\}")
+_PY_EXT = {"py", "pyi"}
+_JS_EXT = {"js", "jsx", "ts", "tsx", "mjs", "cjs", "mts", "cts"}
+
+
+def _symbols(text: str, ext: str) -> list[str]:
+    if ext in _PY_EXT:
+        m = _PY_DEF.match(text)
+        return [m.group(1)] if m else []
+    if ext in _JS_EXT:
+        m = _JS_EXPORT.match(text)
+        if m:
+            return [m.group(1)]
+        m = _JS_EXPORT_LIST.match(text)
+        if m:
+            names = []
+            for part in m.group(1).split(","):
+                part = part.strip()
+                if part:
+                    names.append(part.split(" as ")[-1].strip().removeprefix("type ").strip())
+            return [n for n in names if n and n != "default"]
+    return []
+
+
+def _public_api_removed(issue_text, files):
+    defined_again = set()
+    for f in files:
+        for s, t in _lines(f.get("patch")):
+            if s == "+":
+                defined_again.update(_symbols(t, _ext(f["filename"])))
+    out = []
+    for f in files:
+        path, ext = f["filename"], _ext(f["filename"])
+        if ext not in _PY_EXT | _JS_EXT or is_test_file(path):
+            continue
+        seen = set()
+        for s, t in _lines(f.get("patch")):
+            if s != "-":
+                continue
+            for name in _symbols(t, ext):
+                if name in seen or name in defined_again or _mentions(issue_text, name):
+                    continue
+                seen.add(name)
+                out.append(Extra("public_api_removed", path, name,
+                                 f"removes public {'export' if ext in _JS_EXT else 'def/class'} {name}"))
+    return out
+
+
+# ----------------------------------------------- rule 5: file_outside_ask
+
+_LOCKFILES = {"package-lock.json", "yarn.lock", "pnpm-lock.yaml", "poetry.lock", "Cargo.lock",
+              "go.sum", "Gemfile.lock", "uv.lock", "composer.lock", "Pipfile.lock", "bun.lockb",
+              "bun.lock", "pdm.lock", "npm-shrinkwrap.json", "flake.lock", "mix.lock",
+              "pubspec.lock", "Podfile.lock", "gradle.lockfile", "packages.lock.json"}
+_DOC_NAME = re.compile(r"(README|CHANGELOG|CHANGES|HISTORY|NEWS)([.\-_].*)?", re.IGNORECASE)
+_GENERIC_STEMS = {
+    "index", "main", "mod", "lib", "app", "init", "__init__", "__main__", "utils", "util", "helpers",
+    "helper", "common", "core", "types", "type", "config", "constants", "const", "setup", "base",
+    "test", "tests", "spec", "api", "server", "client", "page", "layout", "style", "styles",
+    "global", "globals", "default", "defaults", "model", "models", "schema", "schemas", "data",
+    "run", "build", "update", "get", "set", "new", "add", "list", "create", "delete", "remove",
+    "fix", "change", "use", "make", "start", "check", "error", "errors", "file", "files", "service",
+    "services", "handler", "handlers", "routes", "router", "views", "view", "settings", "options",
+    "interface", "interfaces", "default", "version", "readme", "license", "package", "conftest",
+}
+_GENERIC_DIRS = {
+    "src", "lib", "libs", "app", "apps", "packages", "pkg", "internal", "cmd", "components", "utils",
+    "util", "common", "core", "test", "tests", "__tests__", "spec", "public", "static", "assets",
+    "scripts", "server", "client", "web", "frontend", "backend", "main", "java", "kotlin", "resources",
+    "python", "js", "ts", "go", "source", "sources", "include", "crates", "modules", "api", "services",
+    "service", "routes", "models", "views", "hooks", "types", "config", "page", "pages", "com", "org",
+    "tools", "bin", "build", "dist", "examples", "example", "shared", "features", "feature", "ui",
+    "data", "helpers", "github", "gitlab", "workflows", "docs", "doc", "test-utils", "fixtures",
+}
+_PATH_TOKEN = re.compile(r"[\w.@\-]+(?:/[\w.@\-]+)+/?|[\w@\-]+(?:\.[\w\-]+)*\.[A-Za-z][A-Za-z0-9]{0,5}\b")
+_FORGE_URL = re.compile(r"^(?:www\.)?(?:github\.com|gitlab\.com)/(.*)$")
+_BACKTICK = re.compile(r"`([^`\n]+)`")
+_DOTTED = re.compile(r"\b[A-Za-z_]\w*(?:\.[A-Za-z_]\w*)+\b")
+_WORD = re.compile(r"[A-Za-z][A-Za-z0-9]*(?:[_\-][A-Za-z0-9]+)*")
+
+
+def _forms(s: str) -> set[str]:
+    n = _squash(s)
+    forms = {n} if n else set()
+    if len(n) > 3 and n.endswith("s"):
+        forms.add(n[:-1])
+    return forms
+
+
+@dataclass
+class _IssueTokens:
+    paths: set[str]
+    words: set[str]
+
+
+def issue_tokens(issue_text: str) -> _IssueTokens:
+    """Paths (rule 5a) and tokens (rules 5b, 5c) of the issue text."""
+    paths, words = set(), set()
+    for m in _PATH_TOKEN.finditer(issue_text):
+        t = m.group(0).strip(".").lower().removeprefix("./").rstrip("/")
+        forge = _FORGE_URL.match(t)
+        if forge:   # a forge link names a file only through /blob/<ref>/<path>
+            parts = forge.group(1).split("/")
+            if len(parts) > 4 and parts[2] in ("blob", "tree"):
+                t = "/".join(parts[4:])
+            else:
+                continue
+        if not t:
+            continue
+        paths.add(t)
+        for part in t.split("/"):
+            words |= _forms(part.split(".")[0])
+    for m in _BACKTICK.finditer(issue_text):
+        for part in re.split(r"[^A-Za-z0-9_\-]+", m.group(1)):
+            if len(part) >= 2:
+                words |= _forms(part)
+    for m in _DOTTED.finditer(issue_text):
+        for part in m.group(0).split("."):
+            if len(part) >= 3:
+                words |= _forms(part)
+    seq = []
+    for m in _WORD.finditer(issue_text):
+        w = m.group(0)
+        words |= _forms(w)
+        for piece in re.split(r"[_\-]", w):
+            if len(piece) >= 3:
+                words |= _forms(piece)
+        seq.append(w)
+    for i in range(len(seq)):
+        words |= _forms("".join(seq[i:i + 2])) | _forms("".join(seq[i:i + 3]))
+    return _IssueTokens(paths, {w for w in words if len(w) >= 2})
+
+
+def _stem(path: str) -> str:
+    s = _base(path).split(".")[0]
+    s = re.sub(r"^(test_|tests_)", "", s)
+    s = re.sub(r"(_test|_tests|_spec|Tests|Test|Spec)$", "", s)
+    return s
+
+
+def _path_named(path: str, toks: _IssueTokens) -> bool:
+    p = path.lower()
+    for t in toks.paths:
+        if p == t or p.endswith("/" + t) or t.endswith("/" + p) or ("/" + p).find("/" + t + "/") >= 0:
+            return True
+    return False
+
+
+def _token_named(name: str, toks: _IssueTokens, generic: set[str]) -> bool:
+    if name.lower() in generic or len(_squash(name)) < 3:
+        return False   # generic or tiny names match only through a path (5a)
+    return bool(_forms(name) & toks.words)
+
+
+def _exempt(path: str) -> bool:
+    b = _base(path)
+    return (b in _LOCKFILES or _DOC_NAME.fullmatch(b) is not None
+            or any(d.lower() in ("docs", "doc", "__snapshots__") for d in _dirs(path)))
+
+
+def _named_files(issue_text, files) -> set[str]:
+    toks = issue_tokens(issue_text)
+    named = set()
+    for f in files:
+        for path in filter(None, (f["filename"], f.get("previous_filename"))):
+            if (_path_named(path, toks)
+                    or _token_named(_stem(path), toks, _GENERIC_STEMS)
+                    or any(_token_named(d, toks, _GENERIC_DIRS) for d in _dirs(path))):
+                named.add(f["filename"])
+    named_stems = {_squash(_stem(p)) for p in named if not is_test_file(p)}
+    for f in files:
+        if is_test_file(f["filename"]) and _squash(_stem(f["filename"])) in named_stems:
+            named.add(f["filename"])
+    return named
+
+
+def _file_outside_ask(issue_text, files, covered: set[str]):
+    candidates = [f["filename"] for f in files
+                  if not _exempt(f["filename"]) and f["filename"] not in covered]
+    keep = set(candidates)
+    named = _named_files(issue_text, [f for f in files if f["filename"] in keep])
+    if not named:
+        return [], sorted(candidates), False
+    named_dirs = {posixpath.dirname(p) for p in named}
+    out = [Extra("file_outside_ask", p, p, "the issue names no file in this directory")
+           for p in candidates if p not in named and posixpath.dirname(p) not in named_dirs]
+    return out, sorted(named), True
+
+
+# ------------------------------------------------------------------- entry
+
+def analyse(issue_text: str, files: list[dict]) -> Analysis:
+    issue_text = issue_text or ""
+    files = [f for f in files if f.get("filename")]
+    found = (_new_dependencies(issue_text, files) + _ci_or_config(issue_text, files)
+             + _tests_removed(issue_text, files) + _public_api_removed(issue_text, files))
+    covered = {f["filename"] for f in files
+               if _manifest_kind(f["filename"]) or _config_kind(f["filename"])
+               or (is_test_file(f["filename"]) and f.get("status") == "removed")}
+    outside, listed, anchored = _file_outside_ask(issue_text, files, covered)
+    found += outside
+    unique = sorted(set(found), key=lambda e: (KINDS.index(e.kind), e.path, e.name))
+    if anchored:
+        return Analysis(extras=unique, named_paths=listed, anchored=True)
+    return Analysis(extras=unique, anchored=False, unplaced=listed)
+
+
+def extras(issue_text: str, files: list[dict]) -> list[Extra]:
+    """The extras of a change, in a fixed order (kind, path, name)."""
+    return analyse(issue_text, files).extras

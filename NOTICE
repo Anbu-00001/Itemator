@@ -1,0 +1,18 @@
+Itemator is MIT-licensed: see LICENSE.
+
+Evaluation data (not included in this repository)
+
+eval/replay_aidev.py measures Itemator's rules on the AIDev dataset:
+  Hao Li, Haoxiang Zhang, Ahmed E. Hassan, "AIDev" dataset, version v3,
+  https://huggingface.co/datasets/hao-li/AIDev
+  Licence: CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/)
+  Paper: arXiv 2507.15003
+
+The script fetches the data at run time into data/, which is gitignored.
+The dataset is not redistributed here. results/replay_predictions.json holds
+values derived from it (pull request and issue URLs, file paths, package and
+symbol names, counts); this notice is its attribution.
+
+The changed files of each sampled pull request come from the GitHub REST API
+at run time and are cached in eval/cache/, which is also gitignored. Each
+source repository keeps its own copyright and licence.
