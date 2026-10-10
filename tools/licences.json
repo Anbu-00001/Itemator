@@ -1,0 +1,15 @@
+{
+  "_note": "Allow-list for tools/hardcode_audit.py check 6: package -> SPDX id. Non-MIT entries fail unless dev_only is true with a reason.",
+  "duckdb": {
+    "spdx": "MIT",
+    "source": "gh api repos/duckdb/duckdb --jq .license.spdx_id, read-only GET, 2026-10-10"
+  },
+  "pytest": {
+    "spdx": "MIT",
+    "source": "gh api repos/pytest-dev/pytest --jq .license.spdx_id, read-only GET, 2026-10-10"
+  },
+  "unidiff": {
+    "spdx": "MIT",
+    "source": "gh api repos/matiasb/python-unidiff --jq .license.spdx_id, read-only GET, 2026-10-10"
+  }
+}

@@ -1,0 +1,6 @@
+hardcode-audit:
+  image: python:3.12
+  variables:
+    GIT_DEPTH: "0"
+  script:
+    - python tools/hardcode_audit.py
