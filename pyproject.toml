@@ -7,5 +7,5 @@ requires-python = ">=3.12"
 dependencies = []
 
 [project.optional-dependencies]
-eval = ["duckdb"]
+eval = ["duckdb==1.5.6"]   # pinned with eval/inputs.lock.json
 dev = ["pytest"]

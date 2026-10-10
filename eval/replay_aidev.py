@@ -5,8 +5,17 @@ arXiv 2507.15003). This script downloads four tables into data/ (gitignored);
 the data is never committed or redistributed. Changed files come from the
 GitHub REST API (GET only), cached under eval/cache/ (gitignored).
 
-Run from the repository root:
-    .venv/bin/python -I eval/replay_aidev.py
+Run from the repository root (each run refuses to overwrite its output file):
+    # v1 on sample A, again, from the cache (the committed file is never overwritten)
+    .venv/bin/python -I eval/replay_aidev.py --rules 1 --seed 20261010 --offline
+    # v2 on sample A: the development-set score
+    .venv/bin/python -I eval/replay_aidev.py --rules 2 --seed 20261010 --offline
+    # v2 on sample B: run once, after the rules and SEED_B are committed
+    .venv/bin/python -I eval/replay_aidev.py --rules 2 --seed 20261011 --exclude-sample-a
+
+Inputs are pinned in eval/inputs.lock.json: the dataset commit (downloads use
+it, not the movable ref v3), the parquet sha256 values and the duckdb version.
+A mismatch stops the run before any sampling.
 
 Pool: agent PRs in AIDev v3 `pull_request` (repos with > 100 stars), linked to
 an issue in `related_issue` (AIDev: a hyperlink in the PR body; not GitHub's
@@ -19,14 +28,17 @@ the first SAMPLE PRs whose changed files can be fetched (fetch failures are
 listed, not replaced by choice). Kill test 1b passes when 6 to 30 of the
 SAMPLE have at least one extra.
 
-Writes results/replay_predictions.json. Upstream outcomes (merged, reverted,
+v1 wrote results/replay_predictions.json (sample A). Upstream outcomes (merged, reverted,
 objected to) are deliberately not read here: they are looked up only after
 the predictions are committed.
 """
 from __future__ import annotations
 
+import argparse
+import hashlib
 import json
 import pathlib
+import platform
 import random
 import subprocess
 import sys
@@ -36,16 +48,45 @@ REPO = pathlib.Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(REPO))
 from itemator.extras import KINDS, analyse  # noqa: E402
 
-SEED = 20261010          # fixed on 2026-10-10, before the first run
+SEED = 20261010          # sample A, fixed on 2026-10-10 before the first run; the v2 development set
+SEED_B = 20261011        # sample B, fixed on 2026-10-11 before rules v2 meet it
 SAMPLE = 60
 MAX_FETCHES = 120        # GitHub API calls this run may make (pages count)
 DATASET = "hao-li/AIDev@v3"
-BASE_URL = "https://huggingface.co/datasets/hao-li/AIDev/resolve/v3/"
+LOCK_FILE = REPO / "eval" / "inputs.lock.json"
+LOCK = json.loads(LOCK_FILE.read_text())
+BASE_URL = f"https://huggingface.co/datasets/hao-li/AIDev/resolve/{LOCK['dataset_revision']}/"
 TABLES = ("related_issue", "issue", "pull_request", "repository")
 PERMISSIVE = ("MIT", "Apache-2.0", "BSD-2-Clause", "BSD-3-Clause", "ISC", "0BSD", "Unlicense")
 DATA = REPO / "data"
 CACHE = REPO / "eval" / "cache"
-OUT = REPO / "results" / "replay_predictions.json"
+SAMPLE_A = REPO / LOCK["sample_a_predictions"]
+DEFAULT_OUT = {(1, SEED, False): "replay_v1_sampleA_rerun.json", (2, SEED, False): "replay_v2_sampleA.json",
+               (2, SEED_B, True): "replay_v2_sampleB.json"}
+
+
+def sha256(path: pathlib.Path) -> str:
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def check_inputs() -> None:
+    """Stop unless the parquet files and duckdb match eval/inputs.lock.json."""
+    import duckdb
+    bad = [f"duckdb {duckdb.__version__} != {LOCK['duckdb']}"] if duckdb.__version__ != LOCK["duckdb"] else []
+    for name, want in LOCK["parquet"].items():
+        got = sha256(DATA / name)
+        if got != want["sha256"]:
+            bad.append(f"{name} sha256 {got} != {want['sha256']}")
+    if bad:
+        sys.exit("inputs do not match eval/inputs.lock.json: " + "; ".join(bad))
+
+
+def sample_a_urls() -> set[str]:
+    """The 62 PRs walked for sample A (60 scored + 2 without files), from the committed file."""
+    if sha256(SAMPLE_A) != LOCK["sample_a_predictions_sha256"]:
+        sys.exit(f"{SAMPLE_A.name} does not match its pinned sha256")
+    d = json.loads(SAMPLE_A.read_text())
+    return {p["pr_url"] for p in d["prs"]} | {s["pr_url"] for s in d["summary"]["skipped_fetch_failed"]}
 
 
 def download() -> None:
@@ -54,7 +95,7 @@ def download() -> None:
         dest = DATA / f"{t}.parquet"
         if not dest.exists():
             print(f"downloading {t}.parquet", file=sys.stderr)
-            urllib.request.urlretrieve(BASE_URL + f"{t}.parquet", dest)
+            urllib.request.urlretrieve(BASE_URL + f"{t}.parquet", dest)   # pinned commit, then sha256-checked
 
 
 def build_pool() -> tuple[list[dict], dict]:
@@ -116,14 +157,17 @@ def _json_stream(text: str) -> list:
 
 
 class Fetcher:
-    def __init__(self):
+    def __init__(self, offline: bool = False):
         self.calls = 0
+        self.offline = offline
 
     def files(self, pr: dict) -> dict:
         CACHE.mkdir(parents=True, exist_ok=True)
         cached = CACHE / f"{pr['pr_id']}.json"
         if cached.exists():
             return json.loads(cached.read_text())
+        if self.offline:
+            raise RuntimeError(f"--offline and {cached.name} is not cached")
         if self.calls >= MAX_FETCHES:
             raise RuntimeError(f"MAX_FETCHES ({MAX_FETCHES}) reached")
         parts = pr["pr_url"].split("/")          # https://github.com/<owner>/<repo>/pull/<n>
@@ -144,15 +188,35 @@ class Fetcher:
 
 
 def main() -> int:
+    ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
+    ap.add_argument("--rules", type=int, choices=(1, 2), required=True)
+    ap.add_argument("--seed", type=int, required=True)
+    ap.add_argument("--exclude-sample-a", action="store_true", help="skip the 62 PRs walked for sample A")
+    ap.add_argument("--offline", action="store_true", help="read the GitHub cache only; never fetch")
+    ap.add_argument("--out", help="output path (default: from rules, seed and exclusion)")
+    args = ap.parse_args()
+    if args.seed == SEED_B and not args.exclude_sample_a:
+        sys.exit("sample B must exclude sample A: add --exclude-sample-a")
+    name = args.out or DEFAULT_OUT.get((args.rules, args.seed, args.exclude_sample_a))
+    if not name:
+        sys.exit("give --out for this combination")
+    out = pathlib.Path(name) if args.out else REPO / "results" / name
+    if out.exists():
+        sys.exit(f"{out} exists; this run happens once (move the file away to repeat it)")
     download()
+    check_inputs()
+    excluded = sample_a_urls() if args.exclude_sample_a else set()
     pool, funnel = build_pool()
     print(f"pool (kill test 1a, passes at >= 150): {len(pool)} -> {'PASS' if len(pool) >= 150 else 'FAIL'}")
     order = sorted(pool, key=lambda p: p["pr_id"])
-    random.Random(SEED).shuffle(order)
-    fetcher, sample, skipped = Fetcher(), [], []
+    random.Random(args.seed).shuffle(order)
+    fetcher, sample, skipped, passed_over = Fetcher(args.offline), [], [], 0
     for pr in order:
         if len(sample) == SAMPLE:
             break
+        if pr["pr_url"] in excluded:
+            passed_over += 1
+            continue
         got = fetcher.files(pr)
         if "error" in got or not got.get("files"):
             skipped.append({"pr_url": pr["pr_url"], "error": got.get("error", "no files")})
@@ -160,12 +224,13 @@ def main() -> int:
         sample.append((pr, got["files"]))
     records = []
     for pr, files in sample:
-        a = analyse(pr["issue_text"], files)
+        a = analyse(pr["issue_text"], files, repo=pr["repo"], version=args.rules)
         records.append({
             "pr_url": pr["pr_url"], "issue_urls": pr["issue_urls"], "agent": pr["agent"],
             "repo": pr["repo"], "license": pr["license"],
             "files_changed": len(files),
             "files_without_patch": sum(1 for f in files if not f.get("patch")),
+            "files_sha256": hashlib.sha256(json.dumps(files, sort_keys=True).encode()).hexdigest(),
             "anchored": a.anchored, "unplaced": a.unplaced,
             "extras": [e.to_dict() for e in a.extras],
             "counts": {k: sum(1 for e in a.extras if e.kind == k) for k in KINDS},
@@ -174,8 +239,15 @@ def main() -> int:
     strict = sum(1 for r in records if r["extras"] or r["unplaced"])
     per_kind = {k: {"extras": sum(r["counts"][k] for r in records),
                     "prs": sum(1 for r in records if r["counts"][k])} for k in KINDS}
+    rules_file = REPO / "itemator" / ("extras_v1.py" if args.rules == 1 else "extras.py")
+    label = {SEED: "sample A" + (" (development set for rules v2)" if args.rules == 2 else ""),
+             SEED_B: "sample B (held out: rules v2 frozen before this run)"}.get(args.seed, "other seed")
     summary = {
-        "dataset": DATASET, "seed": SEED, "sample_size": len(records), "funnel": funnel,
+        "dataset": DATASET, "seed": args.seed, "sample": label, "sample_size": len(records),
+        "rules_version": args.rules, "rules_file": rules_file.name, "rules_sha256": sha256(rules_file),
+        "inputs_lock_sha256": sha256(LOCK_FILE), "dataset_revision": LOCK["dataset_revision"],
+        "python": platform.python_version(), "excluded_sample_a_prs_passed_over": passed_over,
+        "funnel": funnel,
         "kill_test_1a": {"pool": len(pool), "threshold": ">= 150", "pass": len(pool) >= 150},
         "kill_test_1b": {"flagged": flagged, "of": len(records), "threshold": "6..30",
                          "pass": 6 <= flagged <= 30},
@@ -185,9 +257,10 @@ def main() -> int:
         "prs_with_a_file_missing_its_patch": sum(1 for r in records if r["files_without_patch"]),
         "skipped_fetch_failed": skipped, "github_api_calls_this_run": fetcher.calls,
     }
-    OUT.parent.mkdir(exist_ok=True)
-    OUT.write_text(json.dumps({"summary": summary, "prs": records}, indent=1, sort_keys=True) + "\n")
-    print(f"sample: {len(records)} of {len(pool)}, seed {SEED}; skipped (fetch failed): {len(skipped)}; "
+    out.parent.mkdir(exist_ok=True)
+    out.write_text(json.dumps({"summary": summary, "prs": records}, indent=1, sort_keys=True) + "\n")
+    print(f"{label}, rules v{args.rules}: {len(records)} of {len(pool)}, seed {args.seed}; "
+          f"sample A PRs passed over: {passed_over}; skipped (fetch failed): {len(skipped)}; "
           f"API calls this run: {fetcher.calls}")
     print(f"flagged (kill test 1b, passes at 6..30): {flagged} of {len(records)} -> "
           f"{'PASS' if 6 <= flagged <= 30 else 'FAIL'}")
@@ -195,7 +268,7 @@ def main() -> int:
         print(f"  {k}: {per_kind[k]['prs']} PRs, {per_kind[k]['extras']} extras")
     print(f"unanchored (rule 5 abstained): {summary['unanchored']}; "
           f"flagged if rule 5 never abstained: {strict}")
-    print(f"wrote {OUT.relative_to(REPO)}")
+    print(f"wrote {out}")
     return 0
 
 
