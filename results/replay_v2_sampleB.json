@@ -1,0 +1,2534 @@
+{
+ "prs": [
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "ci_or_config": 0,
+    "file_outside_ask": 4,
+    "new_dependency": 1,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [
+    {
+     "kind": "new_dependency",
+     "name": "fnv",
+     "path": "Cargo.toml",
+     "why": "adds package fnv; the issue does not name it"
+    },
+    {
+     "kind": "file_outside_ask",
+     "name": "src/chunk.rs",
+     "path": "src/chunk.rs",
+     "why": "no file the issue names is near this one"
+    },
+    {
+     "kind": "file_outside_ask",
+     "name": "src/vm/vm_basics.rs",
+     "path": "src/vm/vm_basics.rs",
+     "why": "no file the issue names is near this one"
+    },
+    {
+     "kind": "file_outside_ask",
+     "name": "src/vm/vm_env.rs",
+     "path": "src/vm/vm_env.rs",
+     "why": "no file the issue names is near this one"
+    },
+    {
+     "kind": "file_outside_ask",
+     "name": "src/vm/vm_list.rs",
+     "path": "src/vm/vm_list.rs",
+     "why": "no file the issue names is near this one"
+    }
+   ],
+   "files_changed": 7,
+   "files_sha256": "c121cddf15c0cb2ef01ef2e17bcea83d865a1f3ec94a212bfcf2d0f16c41c9e6",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/tomhrr/cosh/issues/121"
+   ],
+   "license": "BSD-3-Clause",
+   "pr_url": "https://github.com/tomhrr/cosh/pull/182",
+   "repo": "tomhrr/cosh",
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": false,
+   "counts": {
+    "ci_or_config": 0,
+    "file_outside_ask": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 1,
+   "files_sha256": "aa3bf972daea6967dc15ad648b1d5a774431de7d85b7f9fe89f5e68582e29706",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/tomhrr/cosh/issues/165"
+   ],
+   "license": "BSD-3-Clause",
+   "pr_url": "https://github.com/tomhrr/cosh/pull/167",
+   "repo": "tomhrr/cosh",
+   "unplaced": [
+    "src/bin/cosh.rs"
+   ]
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "ci_or_config": 0,
+    "file_outside_ask": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 8,
+   "files_sha256": "c8646cb6b7d55ec01e8f265497122f53d43fc3da18c21d77229c8b02c6921854",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/microsoft/windows-drivers-rs/issues/300"
+   ],
+   "license": "Apache-2.0",
+   "pr_url": "https://github.com/microsoft/windows-drivers-rs/pull/394",
+   "repo": "microsoft/windows-drivers-rs",
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "ci_or_config": 0,
+    "file_outside_ask": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 2,
+   "files_sha256": "1b4b8e06299da2f64a6dc476b13a542c431a8cc03c62add587c0e8900430aac2",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/Azure/azure-sdk-for-python/issues/41680"
+   ],
+   "license": "MIT",
+   "pr_url": "https://github.com/Azure/azure-sdk-for-python/pull/41790",
+   "repo": "Azure/azure-sdk-for-python",
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "ci_or_config": 0,
+    "file_outside_ask": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 2,
+   "files_sha256": "9bb476b84212b72b55e0eb605d9da9d6fc1816a90f22c3f251af43b6ff81b57f",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/microsoft/Spartan2/issues/28"
+   ],
+   "license": "MIT",
+   "pr_url": "https://github.com/microsoft/Spartan2/pull/29",
+   "repo": "microsoft/Spartan2",
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "ci_or_config": 0,
+    "file_outside_ask": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 24,
+   "files_sha256": "50ea784639e92abcd671f847c332c0b4ec0e0e39d6fd46dae338079cea419788",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/Azure/azure-rest-api-specs/issues/34998"
+   ],
+   "license": "MIT",
+   "pr_url": "https://github.com/Azure/azure-rest-api-specs/pull/34999",
+   "repo": "Azure/azure-rest-api-specs",
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "ci_or_config": 0,
+    "file_outside_ask": 1,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [
+    {
+     "kind": "file_outside_ask",
+     "name": "7-bank-project/api/server.js",
+     "path": "7-bank-project/api/server.js",
+     "why": "no file the issue names is near this one"
+    }
+   ],
+   "files_changed": 12,
+   "files_sha256": "0f962a2171eba23d1de71948e974a8844a556439b7a014f060fa1601175037d0",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/microsoft/Web-Dev-For-Beginners/issues/1408"
+   ],
+   "license": "MIT",
+   "pr_url": "https://github.com/microsoft/Web-Dev-For-Beginners/pull/1409",
+   "repo": "microsoft/Web-Dev-For-Beginners",
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "ci_or_config": 0,
+    "file_outside_ask": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 1,
+   "files_sha256": "1d708808a1a7dcf3ad32cf81f25268738a0e217375ae7244cbce3f7e84ad5bc9",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/dotnet/maui/issues/30303"
+   ],
+   "license": "MIT",
+   "pr_url": "https://github.com/dotnet/maui/pull/30304",
+   "repo": "dotnet/maui",
+   "unplaced": []
+  },
+  {
+   "agent": "OpenAI_Codex",
+   "anchored": false,
+   "counts": {
+    "ci_or_config": 0,
+    "file_outside_ask": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 4,
+   "files_sha256": "0e1c70eca355b578fc3d0be57ed5f2c9930ae319ec649fc225bb21971c344961",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/astral-sh/uv/issues/14724"
+   ],
+   "license": "Apache-2.0",
+   "pr_url": "https://github.com/astral-sh/uv/pull/14731",
+   "repo": "astral-sh/uv",
+   "unplaced": [
+    "crates/uv-build-backend/src/lib.rs",
+    "crates/uv-build-backend/src/metadata.rs",
+    "crates/uv/src/commands/project/init.rs"
+   ]
+  },
+  {
+   "agent": "OpenAI_Codex",
+   "anchored": false,
+   "counts": {
+    "ci_or_config": 0,
+    "file_outside_ask": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 1,
+   "files_sha256": "3020b47245de18d9362293f1e939531471bbeb25788504107636bd665ed051d7",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/giselles-ai/giselle/issues/876"
+   ],
+   "license": "Apache-2.0",
+   "pr_url": "https://github.com/giselles-ai/giselle/pull/879",
+   "repo": "giselles-ai/giselle",
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "ci_or_config": 0,
+    "file_outside_ask": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 1,
+   "files_sha256": "55dfb30453e4887b1268c7229f9cd5ac26b4f230c07046a0fed9851738b67aff",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/dotnet/arcade/issues/15884"
+   ],
+   "license": "MIT",
+   "pr_url": "https://github.com/dotnet/arcade/pull/15885",
+   "repo": "dotnet/arcade",
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "ci_or_config": 0,
+    "file_outside_ask": 0,
+    "new_dependency": 1,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [
+    {
+     "kind": "new_dependency",
+     "name": "github.com/prometheus/client_model",
+     "path": "go.mod",
+     "why": "adds package github.com/prometheus/client_model; the issue does not name it"
+    }
+   ],
+   "files_changed": 5,
+   "files_sha256": "fbc1fd00a7bceb7f9c9f64d610393506be4a4997001fa1c55ff9766ac0050b67",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/openfga/openfga/issues/2541"
+   ],
+   "license": "Apache-2.0",
+   "pr_url": "https://github.com/openfga/openfga/pull/2563",
+   "repo": "openfga/openfga",
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": false,
+   "counts": {
+    "ci_or_config": 0,
+    "file_outside_ask": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 3,
+   "files_sha256": "363df55f417c89efc9535ebe90e3cb28a177e2dd99a0184afd5c07e89fa5fd16",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/backstage/backstage/issues/30584"
+   ],
+   "license": "Apache-2.0",
+   "pr_url": "https://github.com/backstage/backstage/pull/30586",
+   "repo": "backstage/backstage",
+   "unplaced": [
+    "plugins/catalog-backend/src/schema/openapi.yaml",
+    "plugins/catalog-backend/src/service/createRouter.test.ts",
+    "plugins/catalog-backend/src/service/createRouter.ts"
+   ]
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "ci_or_config": 0,
+    "file_outside_ask": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 2,
+   "files_sha256": "e65c05381802238530d081380cecac7e05bceed3ec1eb54ee67dd8551a421688",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/dotnet/maui/issues/30144"
+   ],
+   "license": "MIT",
+   "pr_url": "https://github.com/dotnet/maui/pull/30330",
+   "repo": "dotnet/maui",
+   "unplaced": []
+  },
+  {
+   "agent": "Devin",
+   "anchored": false,
+   "counts": {
+    "ci_or_config": 0,
+    "file_outside_ask": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 5,
+   "files_sha256": "89aade948dade600bc12e44e53f28f21831e259b1fe8624a0598d4988c69b8c2",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/tumf/mcp-text-editor/issues/4"
+   ],
+   "license": "MIT",
+   "pr_url": "https://github.com/tumf/mcp-text-editor/pull/9",
+   "repo": "tumf/mcp-text-editor",
+   "unplaced": [
+    "src/mcp_text_editor/__init__.py",
+    "src/mcp_text_editor/server.py",
+    "src/mcp_text_editor/text_editor.py",
+    "tests/test_validator.py"
+   ]
+  },
+  {
+   "agent": "Copilot",
+   "anchored": false,
+   "counts": {
+    "ci_or_config": 0,
+    "file_outside_ask": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 4,
+   "files_sha256": "3b87b7c826a778c9e8741292e175e0ea8645e305c5d1e33aa17c8fa382f52327",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/microsoft/react-native-gallery/issues/600"
+   ],
+   "license": "MIT",
+   "pr_url": "https://github.com/microsoft/react-native-gallery/pull/601",
+   "repo": "microsoft/react-native-gallery",
+   "unplaced": [
+    "FONT_SCALE_ACCESSIBILITY.md",
+    "NewArch/src/examples/ExpanderExamplePage.tsx",
+    "NewArch/src/examples/ScrollViewExample.tsx",
+    "NewArch/src/examples/TouchableOpacityExamplePage.tsx"
+   ]
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "ci_or_config": 0,
+    "file_outside_ask": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 3,
+   "files_sha256": "767a1f93ca4e7496fef411446846ee3db4efe77d25cb870ab509c095b1ec77f4",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/rqlite/rqlite/issues/2100"
+   ],
+   "license": "MIT",
+   "pr_url": "https://github.com/rqlite/rqlite/pull/2101",
+   "repo": "rqlite/rqlite",
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "ci_or_config": 0,
+    "file_outside_ask": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 28,
+   "files_sha256": "10fa29b012fe3d91f074d16ebea5951d7a82b0028b63f5249d611eddf0a5214f",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/Azure/azure-sdk-for-net/issues/51412"
+   ],
+   "license": "MIT",
+   "pr_url": "https://github.com/Azure/azure-sdk-for-net/pull/51439",
+   "repo": "Azure/azure-sdk-for-net",
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "ci_or_config": 0,
+    "file_outside_ask": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 1,
+   "files_sha256": "89ae643e03cfb41408c2e6d62f09077f5584afcaeb4b80bae359cf711aaa5c5e",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/Azure/Azure-Sentinel/issues/12464"
+   ],
+   "license": "MIT",
+   "pr_url": "https://github.com/Azure/Azure-Sentinel/pull/12466",
+   "repo": "Azure/Azure-Sentinel",
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "ci_or_config": 0,
+    "file_outside_ask": 0,
+    "new_dependency": 1,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [
+    {
+     "kind": "new_dependency",
+     "name": "slixmpp",
+     "path": "pyproject.toml",
+     "why": "adds package slixmpp; the issue does not name it"
+    }
+   ],
+   "files_changed": 4,
+   "files_sha256": "d4fecd26f3bc2b1766768317f81af20532a52650a06503695c46043fd7d08bd0",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/navig-me/telert/issues/12"
+   ],
+   "license": "MIT",
+   "pr_url": "https://github.com/navig-me/telert/pull/13",
+   "repo": "navig-me/telert",
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": false,
+   "counts": {
+    "ci_or_config": 0,
+    "file_outside_ask": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 3,
+   "files_sha256": "a9af9a84ef2cf0cc4fe12b496b9c2092eac5d0e44a702c5b2b14e96ed73d1968",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/rqlite/sql/issues/47"
+   ],
+   "license": "MIT",
+   "pr_url": "https://github.com/rqlite/sql/pull/51",
+   "repo": "rqlite/sql",
+   "unplaced": [
+    "ast.go",
+    "ast_test.go",
+    "parser_test.go"
+   ]
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "ci_or_config": 0,
+    "file_outside_ask": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 13,
+   "files_sha256": "712b2116ec7fb7d2ace75adba34214120e4ec1f57232efe144a71c6bb8efedee",
+   "files_without_patch": 5,
+   "issue_urls": [
+    "https://github.com/v0l/snort/issues/602"
+   ],
+   "license": "MIT",
+   "pr_url": "https://github.com/v0l/snort/pull/603",
+   "repo": "v0l/snort",
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "ci_or_config": 0,
+    "file_outside_ask": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 1,
+   "files_sha256": "e3146d75062d626de746aebfd6b70ccfedefad4dded56c2b436c9c1d3c1d8f56",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/microsoft/vscode-pull-request-github/issues/7034"
+   ],
+   "license": "MIT",
+   "pr_url": "https://github.com/microsoft/vscode-pull-request-github/pull/7046",
+   "repo": "microsoft/vscode-pull-request-github",
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": false,
+   "counts": {
+    "ci_or_config": 0,
+    "file_outside_ask": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 2,
+   "files_sha256": "ee1d7c481c91e724734be7f39af582992492941e5ba1e54ffb43b4dc52c4f405",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/vapourismo/knx-go/issues/107"
+   ],
+   "license": "MIT",
+   "pr_url": "https://github.com/vapourismo/knx-go/pull/108",
+   "repo": "vapourismo/knx-go",
+   "unplaced": []
+  },
+  {
+   "agent": "Devin",
+   "anchored": false,
+   "counts": {
+    "ci_or_config": 0,
+    "file_outside_ask": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 8,
+   "files_sha256": "9f892d6aa6847a39886b9474c8c29c9a636bf4a61a16927303dd8658d288d7dc",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/liam-hq/liam/issues/2183"
+   ],
+   "license": "Apache-2.0",
+   "pr_url": "https://github.com/liam-hq/liam/pull/2195",
+   "repo": "liam-hq/liam",
+   "unplaced": [
+    "frontend/internal-packages/e2e/default_test_url.ts",
+    "frontend/internal-packages/e2e/global-setup.ts",
+    "frontend/internal-packages/e2e/playwright.config.ts",
+    "frontend/internal-packages/e2e/tests/e2e/commandPalette.test.ts",
+    "frontend/internal-packages/e2e/tests/e2e/navigation.test.ts",
+    "frontend/internal-packages/e2e/tests/e2e/page.test.ts",
+    "frontend/internal-packages/e2e/tests/e2e/toolbar.test.ts",
+    "frontend/internal-packages/e2e/tests/vrt/vrt.test.ts"
+   ]
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "ci_or_config": 0,
+    "file_outside_ask": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 1,
+   "files_sha256": "06c65365f7593ddefe18b3047758ff4dd70e90feb2f825df15718a0711f9c1cf",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/lutzroeder/netron/issues/1457"
+   ],
+   "license": "MIT",
+   "pr_url": "https://github.com/lutzroeder/netron/pull/1458",
+   "repo": "lutzroeder/netron",
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": false,
+   "counts": {
+    "ci_or_config": 0,
+    "file_outside_ask": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 106
+   },
+   "extras": [
+    {
+     "kind": "tests_removed",
+     "name": "packages/typespec-test/test/hierarchy_generic/generated/typespec-ts/eslint.config.mjs",
+     "path": "packages/typespec-test/test/hierarchy_generic/generated/typespec-ts/eslint.config.mjs",
+     "why": "deletes this test file"
+    },
+    {
+     "kind": "tests_removed",
+     "name": "packages/typespec-test/test/hierarchy_generic/generated/typespec-ts/rollup.config.js",
+     "path": "packages/typespec-test/test/hierarchy_generic/generated/typespec-ts/rollup.config.js",
+     "why": "deletes this test file"
+    },
+    {
+     "kind": "tests_removed",
+     "name": "packages/typespec-test/test/hierarchy_generic/generated/typespec-ts/src/api/b/c/index.ts",
+     "path": "packages/typespec-test/test/hierarchy_generic/generated/typespec-ts/src/api/b/c/index.ts",
+     "why": "deletes this test file"
+    },
+    {
+     "kind": "tests_removed",
+     "name": "packages/typespec-test/test/hierarchy_generic/generated/typespec-ts/src/api/b/c/operations.ts",
+     "path": "packages/typespec-test/test/hierarchy_generic/generated/typespec-ts/src/api/b/c/operations.ts",
+     "why": "deletes this test file"
+    },
+    {
+     "kind": "tests_removed",
+     "name": "packages/typespec-test/test/hierarchy_generic/generated/typespec-ts/src/api/b/c/options.ts",
+     "path": "packages/typespec-test/test/hierarchy_generic/generated/typespec-ts/src/api/b/c/options.ts",
+     "why": "deletes this test file"
+    },
+    {
+     "kind": "tests_removed",
+     "name": "packages/typespec-test/test/hierarchy_generic/generated/typespec-ts/src/api/b/e/c/index.ts",
+     "path": "packages/typespec-test/test/hierarchy_generic/generated/typespec-ts/src/api/b/e/c/index.ts",
+     "why": "deletes this test file"
+    },
+    {
+     "kind": "tests_removed",
+     "name": "packages/typespec-test/test/hierarchy_generic/generated/typespec-ts/src/api/b/e/c/operations.ts",
+     "path": "packages/typespec-test/test/hierarchy_generic/generated/typespec-ts/src/api/b/e/c/operations.ts",
+     "why": "deletes this test file"
+    },
+    {
+     "kind": "tests_removed",
+     "name": "packages/typespec-test/test/hierarchy_generic/generated/typespec-ts/src/api/b/e/c/options.ts",
+     "path": "packages/typespec-test/test/hierarchy_generic/generated/typespec-ts/src/api/b/e/c/options.ts",
+     "why": "deletes this test file"
+    },
+    {
+     "kind": "tests_removed",
+     "name": "packages/typespec-test/test/hierarchy_generic/generated/typespec-ts/src/api/b/index.ts",
+     "path": "packages/typespec-test/test/hierarchy_generic/generated/typespec-ts/src/api/b/index.ts",
+     "why": "deletes this test file"
+    },
+    {
+     "kind": "tests_removed",
+     "name": "packages/typespec-test/test/hierarchy_generic/generated/typespec-ts/src/api/b/operations.ts",
+     "path": "packages/typespec-test/test/hierarchy_generic/generated/typespec-ts/src/api/b/operations.ts",
+     "why": "deletes this test file"
+    },
+    {
+     "kind": "tests_removed",
+     "name": "packages/typespec-test/test/hierarchy_generic/generated/typespec-ts/src/api/b/options.ts",
+     "path": "packages/typespec-test/test/hierarchy_generic/generated/typespec-ts/src/api/b/options.ts",
+     "why": "deletes this test file"
+    },
+    {
+     "kind": "tests_removed",
+     "name": "packages/typespec-test/test/hierarchy_generic/generated/typespec-ts/src/api/d/index.ts",
+     "path": "packages/typespec-test/test/hierarchy_generic/generated/typespec-ts/src/api/d/index.ts",
+     "why": "deletes this test file"
+    },
+    {
+     "kind": "tests_removed",
+     "name": "packages/typespec-test/test/hierarchy_generic/generated/typespec-ts/src/api/d/operations.ts",
+     "path": "packages/typespec-test/test/hierarchy_generic/generated/typespec-ts/src/api/d/operations.ts",
+     "why": "deletes this test file"
+    },
+    {
+     "kind": "tests_removed",
+     "name": "packages/typespec-test/test/hierarchy_generic/generated/typespec-ts/src/api/d/options.ts",
+     "path": "packages/typespec-test/test/hierarchy_generic/generated/typespec-ts/src/api/d/options.ts",
+     "why": "deletes this test file"
+    },
+    {
+     "kind": "tests_removed",
+     "name": "packages/typespec-test/test/hierarchy_generic/generated/typespec-ts/src/api/fooContext.ts",
+     "path": "packages/typespec-test/test/hierarchy_generic/generated/typespec-ts/src/api/fooContext.ts",
+     "why": "deletes this test file"
+    },
+    {
+     "kind": "tests_removed",
+     "name": "packages/typespec-test/test/hierarchy_generic/generated/typespec-ts/src/api/index.ts",
+     "path": "packages/typespec-test/test/hierarchy_generic/generated/typespec-ts/src/api/index.ts",
+     "why": "deletes this test file"
+    },
+    {
+     "kind": "tests_removed",
+     "name": "packages/typespec-test/test/hierarchy_generic/generated/typespec-ts/src/api/operations.ts",
+     "path": "packages/typespec-test/test/hierarchy_generic/generated/typespec-ts/src/api/operations.ts",
+     "why": "deletes this test file"
+    },
+    {
+     "kind": "tests_removed",
+     "name": "packages/typespec-test/test/hierarchy_generic/generated/typespec-ts/src/api/options.ts",
+     "path": "packages/typespec-test/test/hierarchy_generic/generated/typespec-ts/src/api/options.ts",
+     "why": "deletes this test file"
+    },
+    {
+     "kind": "tests_removed",
+     "name": "packages/typespec-test/test/hierarchy_generic/generated/typespec-ts/src/classic/b/c/index.ts",
+     "path": "packages/typespec-test/test/hierarchy_generic/generated/typespec-ts/src/classic/b/c/index.ts",
+     "why": "deletes this test file"
+    },
+    {
+     "kind": "tests_removed",
+     "name": "packages/typespec-test/test/hierarchy_generic/generated/typespec-ts/src/classic/b/e/c/index.ts",
+     "path": "packages/typespec-test/test/hierarchy_generic/generated/typespec-ts/src/classic/b/e/c/index.ts",
+     "why": "deletes this test file"
+    },
+    {
+     "kind": "tests_removed",
+     "name": "packages/typespec-test/test/hierarchy_generic/generated/typespec-ts/src/classic/b/e/index.ts",
+     "path": "packages/typespec-test/test/hierarchy_generic/generated/typespec-ts/src/classic/b/e/index.ts",
+     "why": "deletes this test file"
+    },
+    {
+     "kind": "tests_removed",
+     "name": "packages/typespec-test/test/hierarchy_generic/generated/typespec-ts/src/classic/b/index.ts",
+     "path": "packages/typespec-test/test/hierarchy_generic/generated/typespec-ts/src/classic/b/index.ts",
+     "why": "deletes this test file"
+    },
+    {
+     "kind": "tests_removed",
+     "name": "packages/typespec-test/test/hierarchy_generic/generated/typespec-ts/src/classic/d/index.ts",
+     "path": "packages/typespec-test/test/hierarchy_generic/generated/typespec-ts/src/classic/d/index.ts",
+     "why": "deletes this test file"
+    },
+    {
+     "kind": "tests_removed",
+     "name": "packages/typespec-test/test/hierarchy_generic/generated/typespec-ts/src/classic/index.ts",
+     "path": "packages/typespec-test/test/hierarchy_generic/generated/typespec-ts/src/classic/index.ts",
+     "why": "deletes this test file"
+    },
+    {
+     "kind": "tests_removed",
+     "name": "packages/typespec-test/test/hierarchy_generic/generated/typespec-ts/src/fooClient.ts",
+     "path": "packages/typespec-test/test/hierarchy_generic/generated/typespec-ts/src/fooClient.ts",
+     "why": "deletes this test file"
+    },
+    {
+     "kind": "tests_removed",
+     "name": "packages/typespec-test/test/hierarchy_generic/generated/typespec-ts/src/index.ts",
+     "path": "packages/typespec-test/test/hierarchy_generic/generated/typespec-ts/src/index.ts",
+     "why": "deletes this test file"
+    },
+    {
+     "kind": "tests_removed",
+     "name": "packages/typespec-test/test/hierarchy_generic/generated/typespec-ts/src/logger.ts",
+     "path": "packages/typespec-test/test/hierarchy_generic/generated/typespec-ts/src/logger.ts",
+     "why": "deletes this test file"
+    },
+    {
+     "kind": "tests_removed",
+     "name": "packages/typespec-test/test/hierarchy_generic/generated/typespec-ts/src/models/b/e/index.ts",
+     "path": "packages/typespec-test/test/hierarchy_generic/generated/typespec-ts/src/models/b/e/index.ts",
+     "why": "deletes this test file"
+    },
+    {
+     "kind": "tests_removed",
+     "name": "packages/typespec-test/test/hierarchy_generic/generated/typespec-ts/src/models/b/e/models.ts",
+     "path": "packages/typespec-test/test/hierarchy_generic/generated/typespec-ts/src/models/b/e/models.ts",
+     "why": "deletes this test file"
+    },
+    {
+     "kind": "tests_removed",
+     "name": "packages/typespec-test/test/hierarchy_generic/generated/typespec-ts/src/models/b/index.ts",
+     "path": "packages/typespec-test/test/hierarchy_generic/generated/typespec-ts/src/models/b/index.ts",
+     "why": "deletes this test file"
+    },
+    {
+     "kind": "tests_removed",
+     "name": "packages/typespec-test/test/hierarchy_generic/generated/typespec-ts/src/models/b/models.ts",
+     "path": "packages/typespec-test/test/hierarchy_generic/generated/typespec-ts/src/models/b/models.ts",
+     "why": "deletes this test file"
+    },
+    {
+     "kind": "tests_removed",
+     "name": "packages/typespec-test/test/hierarchy_generic/generated/typespec-ts/src/models/index.ts",
+     "path": "packages/typespec-test/test/hierarchy_generic/generated/typespec-ts/src/models/index.ts",
+     "why": "deletes this test file"
+    },
+    {
+     "kind": "tests_removed",
+     "name": "packages/typespec-test/test/hierarchy_generic/generated/typespec-ts/src/models/models.ts",
+     "path": "packages/typespec-test/test/hierarchy_generic/generated/typespec-ts/src/models/models.ts",
+     "why": "deletes this test file"
+    },
+    {
+     "kind": "tests_removed",
+     "name": "packages/typespec-test/test/loadTest/generated/typespec-ts/eslint.config.mjs",
+     "path": "packages/typespec-test/test/loadTest/generated/typespec-ts/eslint.config.mjs",
+     "why": "deletes this test file"
+    },
+    {
+     "kind": "tests_removed",
+     "name": "packages/typespec-test/test/loadTest/generated/typespec-ts/rollup.config.js",
+     "path": "packages/typespec-test/test/loadTest/generated/typespec-ts/rollup.config.js",
+     "why": "deletes this test file"
+    },
+    {
+     "kind": "tests_removed",
+     "name": "packages/typespec-test/test/loadTest/generated/typespec-ts/samples-dev/loadTestAdministrationCreateOrUpdateAppComponentsSample.ts",
+     "path": "packages/typespec-test/test/loadTest/generated/typespec-ts/samples-dev/loadTestAdministrationCreateOrUpdateAppComponentsSample.ts",
+     "why": "deletes this test file"
+    },
+    {
+     "kind": "tests_removed",
+     "name": "packages/typespec-test/test/loadTest/generated/typespec-ts/samples-dev/loadTestAdministrationCreateOrUpdateServerMetricsConfigSample.ts",
+     "path": "packages/typespec-test/test/loadTest/generated/typespec-ts/samples-dev/loadTestAdministrationCreateOrUpdateServerMetricsConfigSample.ts",
+     "why": "deletes this test file"
+    },
+    {
+     "kind": "tests_removed",
+     "name": "packages/typespec-test/test/loadTest/generated/typespec-ts/samples-dev/loadTestAdministrationCreateOrUpdateTestSample.ts",
+     "path": "packages/typespec-test/test/loadTest/generated/typespec-ts/samples-dev/loadTestAdministrationCreateOrUpdateTestSample.ts",
+     "why": "deletes this test file"
+    },
+    {
+     "kind": "tests_removed",
+     "name": "packages/typespec-test/test/loadTest/generated/typespec-ts/samples-dev/loadTestAdministrationDeleteTestFileSample.ts",
+     "path": "packages/typespec-test/test/loadTest/generated/typespec-ts/samples-dev/loadTestAdministrationDeleteTestFileSample.ts",
+     "why": "deletes this test file"
+    },
+    {
+     "kind": "tests_removed",
+     "name": "packages/typespec-test/test/loadTest/generated/typespec-ts/samples-dev/loadTestAdministrationDeleteTestSample.ts",
+     "path": "packages/typespec-test/test/loadTest/generated/typespec-ts/samples-dev/loadTestAdministrationDeleteTestSample.ts",
+     "why": "deletes this test file"
+    },
+    {
+     "kind": "tests_removed",
+     "name": "packages/typespec-test/test/loadTest/generated/typespec-ts/samples-dev/loadTestAdministrationGetAppComponentsSample.ts",
+     "path": "packages/typespec-test/test/loadTest/generated/typespec-ts/samples-dev/loadTestAdministrationGetAppComponentsSample.ts",
+     "why": "deletes this test file"
+    },
+    {
+     "kind": "tests_removed",
+     "name": "packages/typespec-test/test/loadTest/generated/typespec-ts/samples-dev/loadTestAdministrationGetServerMetricsConfigSample.ts",
+     "path": "packages/typespec-test/test/loadTest/generated/typespec-ts/samples-dev/loadTestAdministrationGetServerMetricsConfigSample.ts",
+     "why": "deletes this test file"
+    },
+    {
+     "kind": "tests_removed",
+     "name": "packages/typespec-test/test/loadTest/generated/typespec-ts/samples-dev/loadTestAdministrationGetTestFileSample.ts",
+     "path": "packages/typespec-test/test/loadTest/generated/typespec-ts/samples-dev/loadTestAdministrationGetTestFileSample.ts",
+     "why": "deletes this test file"
+    },
+    {
+     "kind": "tests_removed",
+     "name": "packages/typespec-test/test/loadTest/generated/typespec-ts/samples-dev/loadTestAdministrationGetTestSample.ts",
+     "path": "packages/typespec-test/test/loadTest/generated/typespec-ts/samples-dev/loadTestAdministrationGetTestSample.ts",
+     "why": "deletes this test file"
+    },
+    {
+     "kind": "tests_removed",
+     "name": "packages/typespec-test/test/loadTest/generated/typespec-ts/samples-dev/loadTestAdministrationListTestFilesSample.ts",
+     "path": "packages/typespec-test/test/loadTest/generated/typespec-ts/samples-dev/loadTestAdministrationListTestFilesSample.ts",
+     "why": "deletes this test file"
+    },
+    {
+     "kind": "tests_removed",
+     "name": "packages/typespec-test/test/loadTest/generated/typespec-ts/samples-dev/loadTestAdministrationListTestsSample.ts",
+     "path": "packages/typespec-test/test/loadTest/generated/typespec-ts/samples-dev/loadTestAdministrationListTestsSample.ts",
+     "why": "deletes this test file"
+    },
+    {
+     "kind": "tests_removed",
+     "name": "packages/typespec-test/test/loadTest/generated/typespec-ts/samples-dev/loadTestAdministrationUploadTestFileSample.ts",
+     "path": "packages/typespec-test/test/loadTest/generated/typespec-ts/samples-dev/loadTestAdministrationUploadTestFileSample.ts",
+     "why": "deletes this test file"
+    },
+    {
+     "kind": "tests_removed",
+     "name": "packages/typespec-test/test/loadTest/generated/typespec-ts/samples-dev/loadTestRunCreateOrUpdateAppComponentsSample.ts",
+     "path": "packages/typespec-test/test/loadTest/generated/typespec-ts/samples-dev/loadTestRunCreateOrUpdateAppComponentsSample.ts",
+     "why": "deletes this test file"
+    },
+    {
+     "kind": "tests_removed",
+     "name": "packages/typespec-test/test/loadTest/generated/typespec-ts/samples-dev/loadTestRunCreateOrUpdateServerMetricsConfigSample.ts",
+     "path": "packages/typespec-test/test/loadTest/generated/typespec-ts/samples-dev/loadTestRunCreateOrUpdateServerMetricsConfigSample.ts",
+     "why": "deletes this test file"
+    },
+    {
+     "kind": "tests_removed",
+     "name": "packages/typespec-test/test/loadTest/generated/typespec-ts/samples-dev/loadTestRunCreateOrUpdateTestRunSample.ts",
+     "path": "packages/typespec-test/test/loadTest/generated/typespec-ts/samples-dev/loadTestRunCreateOrUpdateTestRunSample.ts",
+     "why": "deletes this test file"
+    },
+    {
+     "kind": "tests_removed",
+     "name": "packages/typespec-test/test/loadTest/generated/typespec-ts/samples-dev/loadTestRunDeleteTestRunSample.ts",
+     "path": "packages/typespec-test/test/loadTest/generated/typespec-ts/samples-dev/loadTestRunDeleteTestRunSample.ts",
+     "why": "deletes this test file"
+    },
+    {
+     "kind": "tests_removed",
+     "name": "packages/typespec-test/test/loadTest/generated/typespec-ts/samples-dev/loadTestRunGetAppComponentsSample.ts",
+     "path": "packages/typespec-test/test/loadTest/generated/typespec-ts/samples-dev/loadTestRunGetAppComponentsSample.ts",
+     "why": "deletes this test file"
+    },
+    {
+     "kind": "tests_removed",
+     "name": "packages/typespec-test/test/loadTest/generated/typespec-ts/samples-dev/loadTestRunGetTestRunFileSample.ts",
+     "path": "packages/typespec-test/test/loadTest/generated/typespec-ts/samples-dev/loadTestRunGetTestRunFileSample.ts",
+     "why": "deletes this test file"
+    },
+    {
+     "kind": "tests_removed",
+     "name": "packages/typespec-test/test/loadTest/generated/typespec-ts/samples-dev/loadTestRunGetTestRunSample.ts",
+     "path": "packages/typespec-test/test/loadTest/generated/typespec-ts/samples-dev/loadTestRunGetTestRunSample.ts",
+     "why": "deletes this test file"
+    },
+    {
+     "kind": "tests_removed",
+     "name": "packages/typespec-test/test/loadTest/generated/typespec-ts/samples-dev/loadTestRunListMetricDefinitionsSample.ts",
+     "path": "packages/typespec-test/test/loadTest/generated/typespec-ts/samples-dev/loadTestRunListMetricDefinitionsSample.ts",
+     "why": "deletes this test file"
+    },
+    {
+     "kind": "tests_removed",
+     "name": "packages/typespec-test/test/loadTest/generated/typespec-ts/samples-dev/loadTestRunListMetricDimensionValuesSample.ts",
+     "path": "packages/typespec-test/test/loadTest/generated/typespec-ts/samples-dev/loadTestRunListMetricDimensionValuesSample.ts",
+     "why": "deletes this test file"
+    },
+    {
+     "kind": "tests_removed",
+     "name": "packages/typespec-test/test/loadTest/generated/typespec-ts/samples-dev/loadTestRunListMetricNamespacesSample.ts",
+     "path": "packages/typespec-test/test/loadTest/generated/typespec-ts/samples-dev/loadTestRunListMetricNamespacesSample.ts",
+     "why": "deletes this test file"
+    },
+    {
+     "kind": "tests_removed",
+     "name": "packages/typespec-test/test/loadTest/generated/typespec-ts/samples-dev/loadTestRunListMetricsSample.ts",
+     "path": "packages/typespec-test/test/loadTest/generated/typespec-ts/samples-dev/loadTestRunListMetricsSample.ts",
+     "why": "deletes this test file"
+    },
+    {
+     "kind": "tests_removed",
+     "name": "packages/typespec-test/test/loadTest/generated/typespec-ts/samples-dev/loadTestRunListTestRunsSample.ts",
+     "path": "packages/typespec-test/test/loadTest/generated/typespec-ts/samples-dev/loadTestRunListTestRunsSample.ts",
+     "why": "deletes this test file"
+    },
+    {
+     "kind": "tests_removed",
+     "name": "packages/typespec-test/test/loadTest/generated/typespec-ts/samples-dev/loadTestRunStopTestRunSample.ts",
+     "path": "packages/typespec-test/test/loadTest/generated/typespec-ts/samples-dev/loadTestRunStopTestRunSample.ts",
+     "why": "deletes this test file"
+    },
+    {
+     "kind": "tests_removed",
+     "name": "packages/typespec-test/test/loadTest/generated/typespec-ts/samples-dev/loadTestRunTestRunListServerMetricsConfigSample.ts",
+     "path": "packages/typespec-test/test/loadTest/generated/typespec-ts/samples-dev/loadTestRunTestRunListServerMetricsConfigSample.ts",
+     "why": "deletes this test file"
+    },
+    {
+     "kind": "tests_removed",
+     "name": "packages/typespec-test/test/loadTest/generated/typespec-ts/src/azureLoadTesting.ts",
+     "path": "packages/typespec-test/test/loadTest/generated/typespec-ts/src/azureLoadTesting.ts",
+     "why": "deletes this test file"
+    },
+    {
+     "kind": "tests_removed",
+     "name": "packages/typespec-test/test/loadTest/generated/typespec-ts/src/clientDefinitions.ts",
+     "path": "packages/typespec-test/test/loadTest/generated/typespec-ts/src/clientDefinitions.ts",
+     "why": "deletes this test file"
+    },
+    {
+     "kind": "tests_removed",
+     "name": "packages/typespec-test/test/loadTest/generated/typespec-ts/src/index.ts",
+     "path": "packages/typespec-test/test/loadTest/generated/typespec-ts/src/index.ts",
+     "why": "deletes this test file"
+    },
+    {
+     "kind": "tests_removed",
+     "name": "packages/typespec-test/test/loadTest/generated/typespec-ts/src/isUnexpected.ts",
+     "path": "packages/typespec-test/test/loadTest/generated/typespec-ts/src/isUnexpected.ts",
+     "why": "deletes this test file"
+    },
+    {
+     "kind": "tests_removed",
+     "name": "packages/typespec-test/test/loadTest/generated/typespec-ts/src/logger.ts",
+     "path": "packages/typespec-test/test/loadTest/generated/typespec-ts/src/logger.ts",
+     "why": "deletes this test file"
+    },
+    {
+     "kind": "tests_removed",
+     "name": "packages/typespec-test/test/loadTest/generated/typespec-ts/src/models.ts",
+     "path": "packages/typespec-test/test/loadTest/generated/typespec-ts/src/models.ts",
+     "why": "deletes this test file"
+    },
+    {
+     "kind": "tests_removed",
+     "name": "packages/typespec-test/test/loadTest/generated/typespec-ts/src/outputModels.ts",
+     "path": "packages/typespec-test/test/loadTest/generated/typespec-ts/src/outputModels.ts",
+     "why": "deletes this test file"
+    },
+    {
+     "kind": "tests_removed",
+     "name": "packages/typespec-test/test/loadTest/generated/typespec-ts/src/paginateHelper.ts",
+     "path": "packages/typespec-test/test/loadTest/generated/typespec-ts/src/paginateHelper.ts",
+     "why": "deletes this test file"
+    },
+    {
+     "kind": "tests_removed",
+     "name": "packages/typespec-test/test/loadTest/generated/typespec-ts/src/parameters.ts",
+     "path": "packages/typespec-test/test/loadTest/generated/typespec-ts/src/parameters.ts",
+     "why": "deletes this test file"
+    },
+    {
+     "kind": "tests_removed",
+     "name": "packages/typespec-test/test/loadTest/generated/typespec-ts/src/pollingHelper.ts",
+     "path": "packages/typespec-test/test/loadTest/generated/typespec-ts/src/pollingHelper.ts",
+     "why": "deletes this test file"
+    },
+    {
+     "kind": "tests_removed",
+     "name": "packages/typespec-test/test/loadTest/generated/typespec-ts/src/responses.ts",
+     "path": "packages/typespec-test/test/loadTest/generated/typespec-ts/src/responses.ts",
+     "why": "deletes this test file"
+    },
+    {
+     "kind": "tests_removed",
+     "name": "packages/typespec-test/test/loadtesting_modular/generated/typespec-ts/eslint.config.mjs",
+     "path": "packages/typespec-test/test/loadtesting_modular/generated/typespec-ts/eslint.config.mjs",
+     "why": "deletes this test file"
+    },
+    {
+     "kind": "tests_removed",
+     "name": "packages/typespec-test/test/loadtesting_modular/generated/typespec-ts/rollup.config.js",
+     "path": "packages/typespec-test/test/loadtesting_modular/generated/typespec-ts/rollup.config.js",
+     "why": "deletes this test file"
+    },
+    {
+     "kind": "tests_removed",
+     "name": "packages/typespec-test/test/loadtesting_modular/generated/typespec-ts/src/index.ts",
+     "path": "packages/typespec-test/test/loadtesting_modular/generated/typespec-ts/src/index.ts",
+     "why": "deletes this test file"
+    },
+    {
+     "kind": "tests_removed",
+     "name": "packages/typespec-test/test/loadtesting_modular/generated/typespec-ts/src/loadTestAdministration/api/index.ts",
+     "path": "packages/typespec-test/test/loadtesting_modular/generated/typespec-ts/src/loadTestAdministration/api/index.ts",
+     "why": "deletes this test file"
+    },
+    {
+     "kind": "tests_removed",
+     "name": "packages/typespec-test/test/loadtesting_modular/generated/typespec-ts/src/loadTestAdministration/api/loadTestAdministrationContext.ts",
+     "path": "packages/typespec-test/test/loadtesting_modular/generated/typespec-ts/src/loadTestAdministration/api/loadTestAdministrationContext.ts",
+     "why": "deletes this test file"
+    },
+    {
+     "kind": "tests_removed",
+     "name": "packages/typespec-test/test/loadtesting_modular/generated/typespec-ts/src/loadTestAdministration/api/operations.ts",
+     "path": "packages/typespec-test/test/loadtesting_modular/generated/typespec-ts/src/loadTestAdministration/api/operations.ts",
+     "why": "deletes this test file"
+    },
+    {
+     "kind": "tests_removed",
+     "name": "packages/typespec-test/test/loadtesting_modular/generated/typespec-ts/src/loadTestAdministration/api/options.ts",
+     "path": "packages/typespec-test/test/loadtesting_modular/generated/typespec-ts/src/loadTestAdministration/api/options.ts",
+     "why": "deletes this test file"
+    },
+    {
+     "kind": "tests_removed",
+     "name": "packages/typespec-test/test/loadtesting_modular/generated/typespec-ts/src/loadTestAdministration/index.ts",
+     "path": "packages/typespec-test/test/loadtesting_modular/generated/typespec-ts/src/loadTestAdministration/index.ts",
+     "why": "deletes this test file"
+    },
+    {
+     "kind": "tests_removed",
+     "name": "packages/typespec-test/test/loadtesting_modular/generated/typespec-ts/src/loadTestAdministration/loadTestAdministrationClient.ts",
+     "path": "packages/typespec-test/test/loadtesting_modular/generated/typespec-ts/src/loadTestAdministration/loadTestAdministrationClient.ts",
+     "why": "deletes this test file"
+    },
+    {
+     "kind": "tests_removed",
+     "name": "packages/typespec-test/test/loadtesting_modular/generated/typespec-ts/src/loadTestRun/api/index.ts",
+     "path": "packages/typespec-test/test/loadtesting_modular/generated/typespec-ts/src/loadTestRun/api/index.ts",
+     "why": "deletes this test file"
+    },
+    {
+     "kind": "tests_removed",
+     "name": "packages/typespec-test/test/loadtesting_modular/generated/typespec-ts/src/loadTestRun/api/loadTestRunContext.ts",
+     "path": "packages/typespec-test/test/loadtesting_modular/generated/typespec-ts/src/loadTestRun/api/loadTestRunContext.ts",
+     "why": "deletes this test file"
+    },
+    {
+     "kind": "tests_removed",
+     "name": "packages/typespec-test/test/loadtesting_modular/generated/typespec-ts/src/loadTestRun/api/operations.ts",
+     "path": "packages/typespec-test/test/loadtesting_modular/generated/typespec-ts/src/loadTestRun/api/operations.ts",
+     "why": "deletes this test file"
+    },
+    {
+     "kind": "tests_removed",
+     "name": "packages/typespec-test/test/loadtesting_modular/generated/typespec-ts/src/loadTestRun/api/options.ts",
+     "path": "packages/typespec-test/test/loadtesting_modular/generated/typespec-ts/src/loadTestRun/api/options.ts",
+     "why": "deletes this test file"
+    },
+    {
+     "kind": "tests_removed",
+     "name": "packages/typespec-test/test/loadtesting_modular/generated/typespec-ts/src/loadTestRun/index.ts",
+     "path": "packages/typespec-test/test/loadtesting_modular/generated/typespec-ts/src/loadTestRun/index.ts",
+     "why": "deletes this test file"
+    },
+    {
+     "kind": "tests_removed",
+     "name": "packages/typespec-test/test/loadtesting_modular/generated/typespec-ts/src/loadTestRun/loadTestRunClient.ts",
+     "path": "packages/typespec-test/test/loadtesting_modular/generated/typespec-ts/src/loadTestRun/loadTestRunClient.ts",
+     "why": "deletes this test file"
+    },
+    {
+     "kind": "tests_removed",
+     "name": "packages/typespec-test/test/loadtesting_modular/generated/typespec-ts/src/logger.ts",
+     "path": "packages/typespec-test/test/loadtesting_modular/generated/typespec-ts/src/logger.ts",
+     "why": "deletes this test file"
+    },
+    {
+     "kind": "tests_removed",
+     "name": "packages/typespec-test/test/loadtesting_modular/generated/typespec-ts/src/models/index.ts",
+     "path": "packages/typespec-test/test/loadtesting_modular/generated/typespec-ts/src/models/index.ts",
+     "why": "deletes this test file"
+    },
+    {
+     "kind": "tests_removed",
+     "name": "packages/typespec-test/test/loadtesting_modular/generated/typespec-ts/src/models/models.ts",
+     "path": "packages/typespec-test/test/loadtesting_modular/generated/typespec-ts/src/models/models.ts",
+     "why": "deletes this test file"
+    },
+    {
+     "kind": "tests_removed",
+     "name": "packages/typespec-test/test/loadtesting_modular/generated/typespec-ts/src/static-helpers/pagingHelpers.ts",
+     "path": "packages/typespec-test/test/loadtesting_modular/generated/typespec-ts/src/static-helpers/pagingHelpers.ts",
+     "why": "deletes this test file"
+    },
+    {
+     "kind": "tests_removed",
+     "name": "packages/typespec-test/test/loadtesting_modular/generated/typespec-ts/src/static-helpers/urlTemplate.ts",
+     "path": "packages/typespec-test/test/loadtesting_modular/generated/typespec-ts/src/static-helpers/urlTemplate.ts",
+     "why": "deletes this test file"
+    },
+    {
+     "kind": "tests_removed",
+     "name": "packages/typespec-test/test/loadtesting_modular/generated/typespec-ts/src/testProfileAdministration/api/index.ts",
+     "path": "packages/typespec-test/test/loadtesting_modular/generated/typespec-ts/src/testProfileAdministration/api/index.ts",
+     "why": "deletes this test file"
+    },
+    {
+     "kind": "tests_removed",
+     "name": "packages/typespec-test/test/loadtesting_modular/generated/typespec-ts/src/testProfileAdministration/api/operations.ts",
+     "path": "packages/typespec-test/test/loadtesting_modular/generated/typespec-ts/src/testProfileAdministration/api/operations.ts",
+     "why": "deletes this test file"
+    },
+    {
+     "kind": "tests_removed",
+     "name": "packages/typespec-test/test/loadtesting_modular/generated/typespec-ts/src/testProfileAdministration/api/options.ts",
+     "path": "packages/typespec-test/test/loadtesting_modular/generated/typespec-ts/src/testProfileAdministration/api/options.ts",
+     "why": "deletes this test file"
+    },
+    {
+     "kind": "tests_removed",
+     "name": "packages/typespec-test/test/loadtesting_modular/generated/typespec-ts/src/testProfileAdministration/api/testProfileAdministrationContext.ts",
+     "path": "packages/typespec-test/test/loadtesting_modular/generated/typespec-ts/src/testProfileAdministration/api/testProfileAdministrationContext.ts",
+     "why": "deletes this test file"
+    },
+    {
+     "kind": "tests_removed",
+     "name": "packages/typespec-test/test/loadtesting_modular/generated/typespec-ts/src/testProfileAdministration/index.ts",
+     "path": "packages/typespec-test/test/loadtesting_modular/generated/typespec-ts/src/testProfileAdministration/index.ts",
+     "why": "deletes this test file"
+    },
+    {
+     "kind": "tests_removed",
+     "name": "packages/typespec-test/test/loadtesting_modular/generated/typespec-ts/src/testProfileAdministration/testProfileAdministrationClient.ts",
+     "path": "packages/typespec-test/test/loadtesting_modular/generated/typespec-ts/src/testProfileAdministration/testProfileAdministrationClient.ts",
+     "why": "deletes this test file"
+    },
+    {
+     "kind": "tests_removed",
+     "name": "packages/typespec-test/test/loadtesting_modular/generated/typespec-ts/src/testProfileRun/api/index.ts",
+     "path": "packages/typespec-test/test/loadtesting_modular/generated/typespec-ts/src/testProfileRun/api/index.ts",
+     "why": "deletes this test file"
+    },
+    {
+     "kind": "tests_removed",
+     "name": "packages/typespec-test/test/loadtesting_modular/generated/typespec-ts/src/testProfileRun/api/operations.ts",
+     "path": "packages/typespec-test/test/loadtesting_modular/generated/typespec-ts/src/testProfileRun/api/operations.ts",
+     "why": "deletes this test file"
+    },
+    {
+     "kind": "tests_removed",
+     "name": "packages/typespec-test/test/loadtesting_modular/generated/typespec-ts/src/testProfileRun/api/options.ts",
+     "path": "packages/typespec-test/test/loadtesting_modular/generated/typespec-ts/src/testProfileRun/api/options.ts",
+     "why": "deletes this test file"
+    },
+    {
+     "kind": "tests_removed",
+     "name": "packages/typespec-test/test/loadtesting_modular/generated/typespec-ts/src/testProfileRun/api/testProfileRunContext.ts",
+     "path": "packages/typespec-test/test/loadtesting_modular/generated/typespec-ts/src/testProfileRun/api/testProfileRunContext.ts",
+     "why": "deletes this test file"
+    },
+    {
+     "kind": "tests_removed",
+     "name": "packages/typespec-test/test/loadtesting_modular/generated/typespec-ts/src/testProfileRun/index.ts",
+     "path": "packages/typespec-test/test/loadtesting_modular/generated/typespec-ts/src/testProfileRun/index.ts",
+     "why": "deletes this test file"
+    },
+    {
+     "kind": "tests_removed",
+     "name": "packages/typespec-test/test/loadtesting_modular/generated/typespec-ts/src/testProfileRun/testProfileRunClient.ts",
+     "path": "packages/typespec-test/test/loadtesting_modular/generated/typespec-ts/src/testProfileRun/testProfileRunClient.ts",
+     "why": "deletes this test file"
+    },
+    {
+     "kind": "tests_removed",
+     "name": "packages/typespec-ts/test/modularIntegration/generated/server/endpoint/not-defined/src/index.d.ts",
+     "path": "packages/typespec-ts/test/modularIntegration/generated/server/endpoint/not-defined/src/index.d.ts",
+     "why": "deletes this test file"
+    },
+    {
+     "kind": "tests_removed",
+     "name": "packages/typespec-ts/test/modularIntegration/generated/special-words/src/index.d.ts",
+     "path": "packages/typespec-ts/test/modularIntegration/generated/special-words/src/index.d.ts",
+     "why": "deletes this test file"
+    }
+   ],
+   "files_changed": 136,
+   "files_sha256": "e9b4782ef2e7e408e71151a4c45dc68f4152ba5ba75d42f47535103529ea403a",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/Azure/autorest.typescript/issues/3243"
+   ],
+   "license": "MIT",
+   "pr_url": "https://github.com/Azure/autorest.typescript/pull/3259",
+   "repo": "Azure/autorest.typescript",
+   "unplaced": [
+    "packages/typespec-test/test/anomalyDetector/generated/openapi/v1.1/openapi.json",
+    "packages/typespec-test/test/authoring/generated/openapi/2022-05-15-preview/openapi.json",
+    "packages/typespec-test/test/batch_modular/generated/typespec-ts/review/batch.api.md",
+    "packages/typespec-test/test/confidentialLedger/generated/openapi/2022-05-13/openapi.json",
+    "packages/typespec-test/test/contoso/generated/openapi/2022-11-01-preview/openapi.json",
+    "packages/typespec-test/test/hierarchy_generic/generated/typespec-ts/LICENSE",
+    "packages/typespec-test/test/hierarchy_generic/generated/typespec-ts/api-extractor.json",
+    "packages/typespec-test/test/hierarchy_generic/generated/typespec-ts/review/hierarchy-generic.api.md",
+    "packages/typespec-test/test/loadTest/generated/typespec-ts/LICENSE",
+    "packages/typespec-test/test/loadTest/generated/typespec-ts/api-extractor.json",
+    "packages/typespec-test/test/loadTest/generated/typespec-ts/review/load-testing.api.md",
+    "packages/typespec-test/test/loadTest/generated/typespec-ts/sample.env",
+    "packages/typespec-test/test/loadtesting_modular/generated/typespec-ts/LICENSE",
+    "packages/typespec-test/test/loadtesting_modular/generated/typespec-ts/api-extractor.json",
+    "packages/typespec-test/test/loadtesting_modular/generated/typespec-ts/review/load-testing.api.md",
+    "packages/typespec-ts/test/modularIntegration/generated/versioning/removed/v1/src/index.d.ts",
+    "packages/typespec-ts/test/modularIntegration/generated/versioning/removed/v2preview/src/index.d.ts"
+   ]
+  },
+  {
+   "agent": "Devin",
+   "anchored": true,
+   "counts": {
+    "ci_or_config": 0,
+    "file_outside_ask": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 1
+   },
+   "extras": [
+    {
+     "kind": "tests_removed",
+     "name": "tests/crew_test.py",
+     "path": "tests/crew_test.py",
+     "why": "removes 25 more test definitions than it adds"
+    }
+   ],
+   "files_changed": 5,
+   "files_sha256": "2d6295d9b41e3033e51b5d12d89b82f39016d84bbef1594a70200b380b00400b",
+   "files_without_patch": 1,
+   "issue_urls": [
+    "https://github.com/crewAIInc/crewAI/issues/2791"
+   ],
+   "license": "MIT",
+   "pr_url": "https://github.com/crewAIInc/crewAI/pull/2792",
+   "repo": "crewAIInc/crewAI",
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "ci_or_config": 0,
+    "file_outside_ask": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 2,
+   "files_sha256": "4b58394516ba501c7b3341fc2e904141c3f1913964ff4f0bcffa2178f23c8796",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/syncfusion/maui-toolkit/issues/191"
+   ],
+   "license": "MIT",
+   "pr_url": "https://github.com/syncfusion/maui-toolkit/pull/199",
+   "repo": "syncfusion/maui-toolkit",
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "ci_or_config": 0,
+    "file_outside_ask": 1,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [
+    {
+     "kind": "file_outside_ask",
+     "name": "vespa/package.py",
+     "path": "vespa/package.py",
+     "why": "no file the issue names is near this one"
+    }
+   ],
+   "files_changed": 4,
+   "files_sha256": "0e8f0bf945237c81aff3f41a14825646140c2742a28c7ac7033bd302e8b16ff3",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/vespa-engine/pyvespa/issues/983"
+   ],
+   "license": "Apache-2.0",
+   "pr_url": "https://github.com/vespa-engine/pyvespa/pull/1097",
+   "repo": "vespa-engine/pyvespa",
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": false,
+   "counts": {
+    "ci_or_config": 0,
+    "file_outside_ask": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 1,
+   "files_sha256": "bf75dbc46bb3f701e548a08c338fb74640a9434116460139a67b150c13a5673c",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/tokens-studio/figma-plugin/issues/3384"
+   ],
+   "license": "MIT",
+   "pr_url": "https://github.com/tokens-studio/figma-plugin/pull/3388",
+   "repo": "tokens-studio/figma-plugin",
+   "unplaced": []
+  },
+  {
+   "agent": "Claude_Code",
+   "anchored": true,
+   "counts": {
+    "ci_or_config": 0,
+    "file_outside_ask": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 2,
+   "files_sha256": "344d1e0a1b2f90110a770fa72d482ce12007d343b7cb4a5d6db26d2b048ba69c",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/ryoppippi/ccusage/issues/127"
+   ],
+   "license": "MIT",
+   "pr_url": "https://github.com/ryoppippi/ccusage/pull/128",
+   "repo": "ryoppippi/ccusage",
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": false,
+   "counts": {
+    "ci_or_config": 0,
+    "file_outside_ask": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 5,
+   "files_sha256": "64e09f4af8606bf619637b8ee67a1968de16dedfab3f98d51e6724d9df18bc5f",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/pbs/pycaption/issues/109"
+   ],
+   "license": "Apache-2.0",
+   "pr_url": "https://github.com/pbs/pycaption/pull/349",
+   "repo": "pbs/pycaption",
+   "unplaced": [
+    "pycaption/base.py",
+    "pycaption/dfxp/base.py",
+    "pycaption/webvtt.py",
+    "tests/test_base.py"
+   ]
+  },
+  {
+   "agent": "Copilot",
+   "anchored": false,
+   "counts": {
+    "ci_or_config": 0,
+    "file_outside_ask": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 1,
+   "files_sha256": "63dbcbe306f175c2ec6bab8c459930ba4fab2f1d022f4cc60bb9bbf705a71726",
+   "files_without_patch": 1,
+   "issue_urls": [
+    "https://github.com/microsoft/ApplicationInsights-JS/issues/2598"
+   ],
+   "license": "MIT",
+   "pr_url": "https://github.com/microsoft/ApplicationInsights-JS/pull/2600",
+   "repo": "microsoft/ApplicationInsights-JS",
+   "unplaced": [
+    "common/Tests/External/jquery-1.11.1.js"
+   ]
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "ci_or_config": 0,
+    "file_outside_ask": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 3,
+   "files_sha256": "d84eb3a083059f33404fa966fca1317a3db0ad5a3bf8243a1f12a47cdc4a5882",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/Ljzd-PRO/KToolBox/issues/218"
+   ],
+   "license": "BSD-3-Clause",
+   "pr_url": "https://github.com/Ljzd-PRO/KToolBox/pull/278",
+   "repo": "Ljzd-PRO/KToolBox",
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": false,
+   "counts": {
+    "ci_or_config": 0,
+    "file_outside_ask": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 2,
+   "files_sha256": "def720245d1712ad0bf67351b9d2d0c0050d51f32d1bf9e66ff454b0bea7565e",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/goaop/framework/issues/508"
+   ],
+   "license": "MIT",
+   "pr_url": "https://github.com/goaop/framework/pull/509",
+   "repo": "goaop/framework",
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "ci_or_config": 0,
+    "file_outside_ask": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 1,
+   "files_sha256": "83257433921c324079af937c079bbc8ee8b5439de2ccb79c32398f22064a1462",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/mlflow/mlflow/issues/16599"
+   ],
+   "license": "Apache-2.0",
+   "pr_url": "https://github.com/mlflow/mlflow/pull/16600",
+   "repo": "mlflow/mlflow",
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "ci_or_config": 0,
+    "file_outside_ask": 5,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [
+    {
+     "kind": "file_outside_ask",
+     "name": "Directory.Packages.props",
+     "path": "Directory.Packages.props",
+     "why": "no file the issue names is near this one"
+    },
+    {
+     "kind": "file_outside_ask",
+     "name": "e2eTests/e2eTestPrompts.md",
+     "path": "e2eTests/e2eTestPrompts.md",
+     "why": "no file the issue names is near this one"
+    },
+    {
+     "kind": "file_outside_ask",
+     "name": "infra/test-resources.bicep",
+     "path": "infra/test-resources.bicep",
+     "why": "no file the issue names is near this one"
+    },
+    {
+     "kind": "file_outside_ask",
+     "name": "src/AzureMcp.csproj",
+     "path": "src/AzureMcp.csproj",
+     "why": "no file the issue names is near this one"
+    },
+    {
+     "kind": "file_outside_ask",
+     "name": "src/Program.cs",
+     "path": "src/Program.cs",
+     "why": "no file the issue names is near this one"
+    }
+   ],
+   "files_changed": 21,
+   "files_sha256": "8954af57c78fb7d0305a5cf87acf1094634da19bc7e3b6312732185ae74234c0",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/Azure/azure-mcp/issues/579"
+   ],
+   "license": "MIT",
+   "pr_url": "https://github.com/Azure/azure-mcp/pull/580",
+   "repo": "Azure/azure-mcp",
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "ci_or_config": 0,
+    "file_outside_ask": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 2,
+   "files_sha256": "884536fa12ae2388a3afe79138945c91c64002b1493241f918abc6f8c188b4cf",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/open-telemetry/opentelemetry-rust/issues/3058"
+   ],
+   "license": "Apache-2.0",
+   "pr_url": "https://github.com/open-telemetry/opentelemetry-rust/pull/3059",
+   "repo": "open-telemetry/opentelemetry-rust",
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "ci_or_config": 0,
+    "file_outside_ask": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 3,
+   "files_sha256": "6930f7fe2658b8f5f0ddf9255e036059362d5c83d856b7cb1ba06a0d21f05bd5",
+   "files_without_patch": 1,
+   "issue_urls": [
+    "https://github.com/microsoft/vscode-pull-request-github/issues/7019"
+   ],
+   "license": "MIT",
+   "pr_url": "https://github.com/microsoft/vscode-pull-request-github/pull/7255",
+   "repo": "microsoft/vscode-pull-request-github",
+   "unplaced": []
+  },
+  {
+   "agent": "Devin",
+   "anchored": true,
+   "counts": {
+    "ci_or_config": 0,
+    "file_outside_ask": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 4,
+   "files_sha256": "ceeb0bb29863babbec6b4fac28e22b22e364aea0030ef6889381f79f511434d4",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/crewAIInc/crewAI/issues/2933"
+   ],
+   "license": "MIT",
+   "pr_url": "https://github.com/crewAIInc/crewAI/pull/2934",
+   "repo": "crewAIInc/crewAI",
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": false,
+   "counts": {
+    "ci_or_config": 0,
+    "file_outside_ask": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 2,
+   "files_sha256": "17fefe35383cc15b61d7d8d48812590aa82c62d29737d0df2951633db8ddc081",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/microsoft/playwright-mcp/issues/576"
+   ],
+   "license": "Apache-2.0",
+   "pr_url": "https://github.com/microsoft/playwright-mcp/pull/577",
+   "repo": "microsoft/playwright-mcp",
+   "unplaced": [
+    "src/tools/common.ts",
+    "tests/launch.spec.ts"
+   ]
+  },
+  {
+   "agent": "Copilot",
+   "anchored": false,
+   "counts": {
+    "ci_or_config": 0,
+    "file_outside_ask": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 3,
+   "files_sha256": "ca075467dce1f10d85e0498c7f7b53952d887893302d9e071c03066e85fd46bb",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/livingbio/typed-ffmpeg/issues/741"
+   ],
+   "license": "MIT",
+   "pr_url": "https://github.com/livingbio/typed-ffmpeg/pull/742",
+   "repo": "livingbio/typed-ffmpeg",
+   "unplaced": [
+    "src/ffmpeg/compile/compile_cli.py",
+    "src/ffmpeg/compile/tests/test_compile_cli.py",
+    "src/ffmpeg/compile/tests/test_parse_cli.py"
+   ]
+  },
+  {
+   "agent": "Devin",
+   "anchored": true,
+   "counts": {
+    "ci_or_config": 0,
+    "file_outside_ask": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 2,
+   "files_sha256": "fb8e638d94338d888e088d566379fbdcc3ce3a0cc64487fbf1e17a979a1b3c39",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/AgentOps-AI/agentops/issues/1101"
+   ],
+   "license": "MIT",
+   "pr_url": "https://github.com/AgentOps-AI/agentops/pull/1098",
+   "repo": "AgentOps-AI/agentops",
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": false,
+   "counts": {
+    "ci_or_config": 0,
+    "file_outside_ask": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 20,
+   "files_sha256": "807bbb1d6d4daddaac8cb6df9da57598fdd363c4b839475929d47b4bbbf0fa1e",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/Azure/azure-dev/issues/5367"
+   ],
+   "license": "MIT",
+   "pr_url": "https://github.com/Azure/azure-dev/pull/5368",
+   "repo": "Azure/azure-dev",
+   "unplaced": [
+    "cli/azd/cmd/auth_login.go",
+    "cli/azd/cmd/middleware/debug.go",
+    "cli/azd/cmd/middleware/extensions.go",
+    "cli/azd/cmd/middleware/middleware.go",
+    "cli/azd/cmd/util.go",
+    "cli/azd/pkg/azapi/container_registry.go",
+    "cli/azd/pkg/devcenter/provision_provider.go",
+    "cli/azd/pkg/extensions/manager.go",
+    "cli/azd/pkg/infra/provisioning/bicep/bicep_provider.go",
+    "cli/azd/pkg/infra/provisioning_progress_display.go",
+    "cli/azd/pkg/pipeline/azdo_provider.go",
+    "cli/azd/pkg/prompt/prompter.go",
+    "cli/azd/pkg/templates/source.go",
+    "cli/azd/pkg/templates/template_manager.go",
+    "cli/azd/pkg/tools/github/github.go",
+    "cli/azd/pkg/ux/confirm.go",
+    "cli/azd/pkg/ux/internal/input.go",
+    "cli/azd/pkg/ux/multi_select.go",
+    "cli/azd/pkg/ux/prompt.go",
+    "cli/azd/pkg/ux/select.go"
+   ]
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "ci_or_config": 0,
+    "file_outside_ask": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 2,
+   "files_sha256": "0d374885045fe9a7d8fefc463786163cb729a9125852d4b5ca64a3d5d6f1150b",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/dotnet/aspire/issues/10066"
+   ],
+   "license": "MIT",
+   "pr_url": "https://github.com/dotnet/aspire/pull/10067",
+   "repo": "dotnet/aspire",
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "ci_or_config": 0,
+    "file_outside_ask": 32,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [
+    {
+     "kind": "file_outside_ask",
+     "name": ".github/ISSUE_TEMPLATE/bug.yml",
+     "path": ".github/ISSUE_TEMPLATE/bug.yml",
+     "why": "no file the issue names is near this one"
+    },
+    {
+     "kind": "file_outside_ask",
+     "name": "CONTRIBUTING.md",
+     "path": "CONTRIBUTING.md",
+     "why": "no file the issue names is near this one"
+    },
+    {
+     "kind": "file_outside_ask",
+     "name": "NOTICE",
+     "path": "NOTICE",
+     "why": "no file the issue names is near this one"
+    },
+    {
+     "kind": "file_outside_ask",
+     "name": "apps/evm/based/cmd/init.go",
+     "path": "apps/evm/based/cmd/init.go",
+     "why": "no file the issue names is near this one"
+    },
+    {
+     "kind": "file_outside_ask",
+     "name": "apps/evm/single/cmd/init.go",
+     "path": "apps/evm/single/cmd/init.go",
+     "why": "no file the issue names is near this one"
+    },
+    {
+     "kind": "file_outside_ask",
+     "name": "apps/evm/single/cmd/run.go",
+     "path": "apps/evm/single/cmd/run.go",
+     "why": "no file the issue names is near this one"
+    },
+    {
+     "kind": "file_outside_ask",
+     "name": "apps/evm/single/entrypoint.sh",
+     "path": "apps/evm/single/entrypoint.sh",
+     "why": "no file the issue names is near this one"
+    },
+    {
+     "kind": "file_outside_ask",
+     "name": "apps/evm/single/evm-single",
+     "path": "apps/evm/single/evm-single",
+     "why": "no file the issue names is near this one"
+    },
+    {
+     "kind": "file_outside_ask",
+     "name": "apps/evm/single/main.go",
+     "path": "apps/evm/single/main.go",
+     "why": "no file the issue names is near this one"
+    },
+    {
+     "kind": "file_outside_ask",
+     "name": "apps/testapp/cmd/init.go",
+     "path": "apps/testapp/cmd/init.go",
+     "why": "no file the issue names is near this one"
+    },
+    {
+     "kind": "file_outside_ask",
+     "name": "apps/testapp/cmd/root.go",
+     "path": "apps/testapp/cmd/root.go",
+     "why": "no file the issue names is near this one"
+    },
+    {
+     "kind": "file_outside_ask",
+     "name": "block/da_includer.go",
+     "path": "block/da_includer.go",
+     "why": "no file the issue names is near this one"
+    },
+    {
+     "kind": "file_outside_ask",
+     "name": "block/manager.go",
+     "path": "block/manager.go",
+     "why": "no file the issue names is near this one"
+    },
+    {
+     "kind": "file_outside_ask",
+     "name": "block/pending_data.go",
+     "path": "block/pending_data.go",
+     "why": "no file the issue names is near this one"
+    },
+    {
+     "kind": "file_outside_ask",
+     "name": "block/pending_headers.go",
+     "path": "block/pending_headers.go",
+     "why": "no file the issue names is near this one"
+    },
+    {
+     "kind": "file_outside_ask",
+     "name": "client/crates/client/examples/basic.rs",
+     "path": "client/crates/client/examples/basic.rs",
+     "why": "no file the issue names is near this one"
+    },
+    {
+     "kind": "file_outside_ask",
+     "name": "client/crates/client/src/lib.rs",
+     "path": "client/crates/client/src/lib.rs",
+     "why": "no file the issue names is near this one"
+    },
+    {
+     "kind": "file_outside_ask",
+     "name": "core/da/da.go",
+     "path": "core/da/da.go",
+     "why": "no file the issue names is near this one"
+    },
+    {
+     "kind": "file_outside_ask",
+     "name": "core/execution/execution.go",
+     "path": "core/execution/execution.go",
+     "why": "no file the issue names is near this one"
+    },
+    {
+     "kind": "file_outside_ask",
+     "name": "execution/evm/execution.go",
+     "path": "execution/evm/execution.go",
+     "why": "no file the issue names is near this one"
+    },
+    {
+     "kind": "file_outside_ask",
+     "name": "pkg/cmd/version.go",
+     "path": "pkg/cmd/version.go",
+     "why": "no file the issue names is near this one"
+    },
+    {
+     "kind": "file_outside_ask",
+     "name": "pkg/genesis/genesis.go",
+     "path": "pkg/genesis/genesis.go",
+     "why": "no file the issue names is near this one"
+    },
+    {
+     "kind": "file_outside_ask",
+     "name": "pkg/rpc/server/server.go",
+     "path": "pkg/rpc/server/server.go",
+     "why": "no file the issue names is near this one"
+    },
+    {
+     "kind": "file_outside_ask",
+     "name": "pkg/store/keys.go",
+     "path": "pkg/store/keys.go",
+     "why": "no file the issue names is near this one"
+    },
+    {
+     "kind": "file_outside_ask",
+     "name": "pkg/store/types.go",
+     "path": "pkg/store/types.go",
+     "why": "no file the issue names is near this one"
+    },
+    {
+     "kind": "file_outside_ask",
+     "name": "run-evm-nodes",
+     "path": "run-evm-nodes",
+     "why": "no file the issue names is near this one"
+    },
+    {
+     "kind": "file_outside_ask",
+     "name": "scripts/run-evm-nodes.go",
+     "path": "scripts/run-evm-nodes.go",
+     "why": "no file the issue names is near this one"
+    },
+    {
+     "kind": "file_outside_ask",
+     "name": "scripts/run.go",
+     "path": "scripts/run.go",
+     "why": "no file the issue names is near this one"
+    },
+    {
+     "kind": "file_outside_ask",
+     "name": "scripts/test.mk",
+     "path": "scripts/test.mk",
+     "why": "no file the issue names is near this one"
+    },
+    {
+     "kind": "file_outside_ask",
+     "name": "types/data.go",
+     "path": "types/data.go",
+     "why": "no file the issue names is near this one"
+    },
+    {
+     "kind": "file_outside_ask",
+     "name": "types/header.go",
+     "path": "types/header.go",
+     "why": "no file the issue names is near this one"
+    },
+    {
+     "kind": "file_outside_ask",
+     "name": "types/state.go",
+     "path": "types/state.go",
+     "why": "no file the issue names is near this one"
+    }
+   ],
+   "files_changed": 79,
+   "files_sha256": "46d0b3ad2e9587358160bb602804af721d45b063597c1673347ed1b471199509",
+   "files_without_patch": 2,
+   "issue_urls": [
+    "https://github.com/evstack/ev-node/issues/2500"
+   ],
+   "license": "Apache-2.0",
+   "pr_url": "https://github.com/evstack/ev-node/pull/2501",
+   "repo": "evstack/ev-node",
+   "unplaced": []
+  },
+  {
+   "agent": "Devin",
+   "anchored": false,
+   "counts": {
+    "ci_or_config": 0,
+    "file_outside_ask": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 4,
+   "files_sha256": "8f5af732631add1dd8487ecba4fdda9670d6b13b98c5cd9a0852a8bb971a52c5",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/crewAIInc/crewAI/issues/2095"
+   ],
+   "license": "MIT",
+   "pr_url": "https://github.com/crewAIInc/crewAI/pull/2096",
+   "repo": "crewAIInc/crewAI",
+   "unplaced": [
+    "src/crewai/tools/agent_tools/agent_tools.py",
+    "src/crewai/translations/en.json",
+    "tests/crew_test.py",
+    "tests/tools/agent_tools/agent_tools_test.py"
+   ]
+  },
+  {
+   "agent": "Copilot",
+   "anchored": false,
+   "counts": {
+    "ci_or_config": 0,
+    "file_outside_ask": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 3,
+   "files_sha256": "f809cfc4b270308fd426265de9fc993b36e1b71323cbce2c51b14b4ddeaaa8dd",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/dotnet/docfx/issues/9165"
+   ],
+   "license": "MIT",
+   "pr_url": "https://github.com/dotnet/docfx/pull/10684",
+   "repo": "dotnet/docfx",
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "ci_or_config": 2,
+    "file_outside_ask": 6,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [
+    {
+     "kind": "ci_or_config",
+     "name": ".github/workflows/go.yml",
+     "path": ".github/workflows/go.yml",
+     "why": "changes CI config; the issue does not mention it"
+    },
+    {
+     "kind": "ci_or_config",
+     "name": "Makefile",
+     "path": "Makefile",
+     "why": "changes build config; the issue does not mention it"
+    },
+    {
+     "kind": "file_outside_ask",
+     "name": ".github/CONTRIBUTING.md",
+     "path": ".github/CONTRIBUTING.md",
+     "why": "no file the issue names is near this one"
+    },
+    {
+     "kind": "file_outside_ask",
+     "name": ".github/copilot-agent.yml",
+     "path": ".github/copilot-agent.yml",
+     "why": "no file the issue names is near this one"
+    },
+    {
+     "kind": "file_outside_ask",
+     "name": "azurecaf/models_generated.go",
+     "path": "azurecaf/models_generated.go",
+     "why": "no file the issue names is near this one"
+    },
+    {
+     "kind": "file_outside_ask",
+     "name": "history/JSON_REFACTOR_SUMMARY.md",
+     "path": "history/JSON_REFACTOR_SUMMARY.md",
+     "why": "no file the issue names is near this one"
+    },
+    {
+     "kind": "file_outside_ask",
+     "name": "history/RESOURCE_MERGE_SUMMARY.md",
+     "path": "history/RESOURCE_MERGE_SUMMARY.md",
+     "why": "no file the issue names is near this one"
+    },
+    {
+     "kind": "file_outside_ask",
+     "name": "scripts/merge_resource_definitions.py",
+     "path": "scripts/merge_resource_definitions.py",
+     "why": "no file the issue names is near this one"
+    }
+   ],
+   "files_changed": 16,
+   "files_sha256": "8704e72d97b05dcbca5b86913b955f9509e9f91ea04ded0b75587d136b03b8e8",
+   "files_without_patch": 2,
+   "issue_urls": [
+    "https://github.com/aztfmod/terraform-provider-azurecaf/issues/331"
+   ],
+   "license": "MIT",
+   "pr_url": "https://github.com/aztfmod/terraform-provider-azurecaf/pull/332",
+   "repo": "aztfmod/terraform-provider-azurecaf",
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "ci_or_config": 0,
+    "file_outside_ask": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 1,
+   "files_sha256": "29f836a6563015b98cb23b852f2d1510a149f2dc10bf7d8f2f208d01d678d431",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/microsoft/vscode/issues/253183"
+   ],
+   "license": "MIT",
+   "pr_url": "https://github.com/microsoft/vscode/pull/253537",
+   "repo": "microsoft/vscode",
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": false,
+   "counts": {
+    "ci_or_config": 0,
+    "file_outside_ask": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 2,
+   "files_sha256": "9f7a3bd75b9cc0512ebb0e20d53574f1de88b5400c0ded97d9e4fc1f8a03c85c",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/PowerShell/AIShell/issues/388"
+   ],
+   "license": "MIT",
+   "pr_url": "https://github.com/PowerShell/AIShell/pull/389",
+   "repo": "PowerShell/AIShell",
+   "unplaced": [
+    "global.json",
+    "tools/scripts/install-aishell.ps1"
+   ]
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "ci_or_config": 0,
+    "file_outside_ask": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 3,
+   "files_sha256": "b241ab7b7a4012d4c2e53976f4347adb7347aa74f7988bde6dfca08b73cb57cc",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/PyO3/maturin/issues/2673"
+   ],
+   "license": "Apache-2.0",
+   "pr_url": "https://github.com/PyO3/maturin/pull/2674",
+   "repo": "PyO3/maturin",
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "ci_or_config": 0,
+    "file_outside_ask": 5,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [
+    {
+     "kind": "file_outside_ask",
+     "name": "glide-core/src/client/mod.rs",
+     "path": "glide-core/src/client/mod.rs",
+     "why": "no file the issue names is near this one"
+    },
+    {
+     "kind": "file_outside_ask",
+     "name": "glide-core/src/protobuf/command_request.proto",
+     "path": "glide-core/src/protobuf/command_request.proto",
+     "why": "no file the issue names is near this one"
+    },
+    {
+     "kind": "file_outside_ask",
+     "name": "glide-core/src/socket_listener.rs",
+     "path": "glide-core/src/socket_listener.rs",
+     "why": "no file the issue names is near this one"
+    },
+    {
+     "kind": "file_outside_ask",
+     "name": "node/DEVELOPER.md",
+     "path": "node/DEVELOPER.md",
+     "why": "no file the issue names is near this one"
+    },
+    {
+     "kind": "file_outside_ask",
+     "name": "node/rust-client/src/lib.rs",
+     "path": "node/rust-client/src/lib.rs",
+     "why": "no file the issue names is near this one"
+    }
+   ],
+   "files_changed": 6,
+   "files_sha256": "970e680413db94bc3ab99c838a92d71caec033defabd2fd4b1109e27a75ba100",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/valkey-io/valkey-glide/issues/3977"
+   ],
+   "license": "Apache-2.0",
+   "pr_url": "https://github.com/valkey-io/valkey-glide/pull/4389",
+   "repo": "valkey-io/valkey-glide",
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": false,
+   "counts": {
+    "ci_or_config": 0,
+    "file_outside_ask": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 2,
+   "files_sha256": "1a57d0217674377f5f35df2e0839db8f50c5b4e3318cf1c3cfcf99c2dea6f2ed",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/microsoft/perfview/issues/927"
+   ],
+   "license": "MIT",
+   "pr_url": "https://github.com/microsoft/perfview/pull/2219",
+   "repo": "microsoft/perfview",
+   "unplaced": [
+    "src/PerfView.Tests/EventViewerTests.cs",
+    "src/PerfView/EventViewer/EventWindow.xaml.cs"
+   ]
+  },
+  {
+   "agent": "Copilot",
+   "anchored": false,
+   "counts": {
+    "ci_or_config": 0,
+    "file_outside_ask": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 1,
+   "files_sha256": "aa240e57d0edcb164f6fd5d049317e713df03cd7c7423ce4ab26f55d7c8a0cfe",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/dotnet/aspire/issues/9490"
+   ],
+   "license": "MIT",
+   "pr_url": "https://github.com/dotnet/aspire/pull/9491",
+   "repo": "dotnet/aspire",
+   "unplaced": [
+    "src/Aspire.Cli/Interaction/InteractionService.cs"
+   ]
+  },
+  {
+   "agent": "Claude_Code",
+   "anchored": true,
+   "counts": {
+    "ci_or_config": 0,
+    "file_outside_ask": 0,
+    "new_dependency": 0,
+    "public_api_removed": 2,
+    "tests_removed": 0
+   },
+   "extras": [
+    {
+     "kind": "public_api_removed",
+     "name": "get_templates",
+     "path": "src/fastmcp/resources/resource_manager.py",
+     "why": "removes public def/class get_templates"
+    },
+    {
+     "kind": "public_api_removed",
+     "name": "from_client",
+     "path": "src/fastmcp/server/proxy.py",
+     "why": "removes public def/class from_client"
+    }
+   ],
+   "files_changed": 27,
+   "files_sha256": "7f44e3aa94d93f26fdba9f122603d9c16f626274758a11cb258b41a214c09b17",
+   "files_without_patch": 1,
+   "issue_urls": [
+    "https://github.com/jlowin/fastmcp/issues/549"
+   ],
+   "license": "Apache-2.0",
+   "pr_url": "https://github.com/jlowin/fastmcp/pull/870",
+   "repo": "jlowin/fastmcp",
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": false,
+   "counts": {
+    "ci_or_config": 0,
+    "file_outside_ask": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 1,
+   "files_sha256": "c32f5435aa0163cfa2bbf8ff3a7fffbd4d7cc50188e1120dfec5f7cd8275ef64",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/Apollon77/ioBroker.alexa2/issues/1081"
+   ],
+   "license": "MIT",
+   "pr_url": "https://github.com/Apollon77/ioBroker.alexa2/pull/1239",
+   "repo": "Apollon77/ioBroker.alexa2",
+   "unplaced": [
+    "main.js"
+   ]
+  },
+  {
+   "agent": "Devin",
+   "anchored": true,
+   "counts": {
+    "ci_or_config": 0,
+    "file_outside_ask": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 1,
+   "files_sha256": "b9eebc94a2ccee200f443c81fa1a15946864d7a72c5c9e2f4ca11df1c25543d3",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/appsmithorg/appsmith/issues/38436"
+   ],
+   "license": "Apache-2.0",
+   "pr_url": "https://github.com/appsmithorg/appsmith/pull/38584",
+   "repo": "appsmithorg/appsmith",
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": false,
+   "counts": {
+    "ci_or_config": 0,
+    "file_outside_ask": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 1,
+   "files_sha256": "f162839f194835dd863b68f3937cca313545afb5aa87b4703ca491572b4856af",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/CoreWCF/CoreWCF/issues/1611"
+   ],
+   "license": "MIT",
+   "pr_url": "https://github.com/CoreWCF/CoreWCF/pull/1612",
+   "repo": "CoreWCF/CoreWCF",
+   "unplaced": [
+    "templates/TestStage.yml"
+   ]
+  }
+ ],
+ "summary": {
+  "dataset": "hao-li/AIDev@v3",
+  "dataset_revision": "68ed5f4b80d27a9e057fc57567f38bd322ac73ec",
+  "excluded_sample_a_prs_passed_over": 2,
+  "flagged_if_rule5_never_abstained": 30,
+  "funnel": {
+   "linked_issues_that_are_prs": 0,
+   "linked_prs_in_permissive_repos": 3757,
+   "linked_prs_whose_repo_is_missing": 0,
+   "pool": 3703,
+   "pool_by_agent": {
+    "Claude_Code": 63,
+    "Copilot": 3152,
+    "Cursor": 38,
+    "Devin": 340,
+    "OpenAI_Codex": 110
+   },
+   "prs_linked_to_an_issue": 4905,
+   "pull_request_rows": 33596
+  },
+  "github_api_calls_this_run": 66,
+  "inputs_lock_sha256": "ed3325cfc5a4e9408a79647f42ea7278054459c978866b328538b0ca5f084ca9",
+  "kill_test_1a": {
+   "pass": true,
+   "pool": 3703,
+   "threshold": ">= 150"
+  },
+  "kill_test_1b": {
+   "flagged": 12,
+   "of": 60,
+   "pass": true,
+   "threshold": "6..30"
+  },
+  "per_kind": {
+   "ci_or_config": {
+    "extras": 2,
+    "prs": 1
+   },
+   "file_outside_ask": {
+    "extras": 54,
+    "prs": 7
+   },
+   "new_dependency": {
+    "extras": 3,
+    "prs": 3
+   },
+   "public_api_removed": {
+    "extras": 2,
+    "prs": 1
+   },
+   "tests_removed": {
+    "extras": 107,
+    "prs": 2
+   }
+  },
+  "prs_with_a_file_missing_its_patch": 7,
+  "python": "3.12.3",
+  "rules_file": "extras.py",
+  "rules_sha256": "8b6ba12da5cfb716c7369f9d0cdb5a8a71d7d509e8ff3d9f2d13585a288da4f1",
+  "rules_version": 2,
+  "sample": "sample B (held out: rules v2 frozen before this run)",
+  "sample_size": 60,
+  "seed": 20261011,
+  "skipped_fetch_failed": [
+   {
+    "error": "no files",
+    "pr_url": "https://github.com/zuplo/zudoku/pull/1114"
+   },
+   {
+    "error": "no files",
+    "pr_url": "https://github.com/Azure/azure-container-networking/pull/3700"
+   },
+   {
+    "error": "no files",
+    "pr_url": "https://github.com/taiga-family/taiga-ui/pull/11358"
+   },
+   {
+    "error": "no files",
+    "pr_url": "https://github.com/kubernetes-sigs/headlamp/pull/3683"
+   },
+   {
+    "error": "no files",
+    "pr_url": "https://github.com/github/choosealicense.com/pull/1285"
+   }
+  ],
+  "unanchored": 24
+ }
+}
