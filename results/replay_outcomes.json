@@ -1,0 +1,626 @@
+{
+ "summary": {
+  "predictions": "results/replay_predictions.json",
+  "predictions_sha256": "4373e9f61b7b9f1a67365d5c69ec6bf64ee7f522ad0dc44f94713fdbb0c14e41",
+  "flagged_prs": 16,
+  "extras": 35,
+  "labels": {
+   "kept": 17,
+   "pr_not_merged": 18
+  },
+  "kill_test_1c": {
+   "counted_labels": [
+    "reverted",
+    "removed_later",
+    "objected_in_review"
+   ],
+   "count": 0,
+   "threshold": ">= 3",
+   "pass": false,
+   "count_before_hand_check": 4
+  },
+  "failed_calls": [],
+  "prs_merged": 7,
+  "github_api_calls_this_run": 2,
+  "window_days": 90,
+  "as_of_cap": "2026-10-10T00:00:00Z"
+ },
+ "prs": [
+  {
+   "pr_url": "https://github.com/SwitchbackTech/compass/pull/484",
+   "agent": "OpenAI_Codex",
+   "title": "\u2728 Feat: Add waitlist invite tagging",
+   "author": "tyler-dane",
+   "state": "closed",
+   "merged_at": "2025-06-10T11:09:40Z",
+   "closed_at": "2025-06-10T11:09:40Z",
+   "base_ref": "main",
+   "default_branch": "main",
+   "comments": {
+    "total": 0,
+    "human": 0
+   },
+   "extras": [
+    {
+     "kind": "file_outside_ask",
+     "path": "packages/backend/.env.example",
+     "name": "packages/backend/.env.example",
+     "mechanical_label": "removed_later",
+     "mechanical_evidence": "https://github.com/KeepSoftwareSimple/compass-calendar/commit/eef599b40277ec9048d5409ad6d095139317cd38",
+     "label": "kept",
+     "evidence_url": "https://github.com/KeepSoftwareSimple/compass-calendar/commit/eef599b40277ec9048d5409ad6d095139317cd38",
+     "detail": "hand-checked: a cleanup commented out every optional EMAILER_ line; the PR's EMAILER_WAITLIST_INVITE_TAG_ID stays, as '# EMAILER_WAITLIST_INVITE_TAG_ID=...' (mechanical: 0% of the PR's 3 added lines still present; \ud83e\uddf9 Chore: Cleanup `.env.example` (#764) (100% undone in this commit))"
+    },
+    {
+     "kind": "file_outside_ask",
+     "path": "packages/backend/src/__tests__/backend.test.init.js",
+     "name": "packages/backend/src/__tests__/backend.test.init.js",
+     "mechanical_label": "removed_later",
+     "mechanical_evidence": "https://github.com/KeepSoftwareSimple/compass-calendar/commit/ac20c640f3f2a80a3a079ee0f00a201fd5dae39a",
+     "label": "kept",
+     "evidence_url": "https://github.com/KeepSoftwareSimple/compass-calendar/commit/ac20c640f3f2a80a3a079ee0f00a201fd5dae39a",
+     "detail": "hand-checked: converted to backend.test.init.ts in a feature commit; the PR's EMAILER_WAITLIST_INVITE_TAG_ID line is in the .ts file (mechanical: packages/backend/src/__tests__/backend.test.init.js no longer exists; \u2728 feat: move calendar import out of the signup process (#563) (100% undone in this commit))"
+    },
+    {
+     "kind": "file_outside_ask",
+     "path": "packages/backend/src/common/constants/env.constants.ts",
+     "name": "packages/backend/src/common/constants/env.constants.ts",
+     "label": "kept",
+     "evidence_url": "https://github.com/SwitchbackTech/compass/blob/e82a131e6467463bd9c9febddf86b31e83a138b4/packages/backend/src/common/constants/env.constants.ts",
+     "detail": "100% of the PR's 2 added lines still present"
+    },
+    {
+     "kind": "file_outside_ask",
+     "path": "packages/backend/src/common/constants/env.util.ts",
+     "name": "packages/backend/src/common/constants/env.util.ts",
+     "label": "kept",
+     "evidence_url": "https://github.com/SwitchbackTech/compass/blob/e82a131e6467463bd9c9febddf86b31e83a138b4/packages/backend/src/common/constants/env.util.ts",
+     "detail": "100% of the PR's 2 added lines still present"
+    }
+   ],
+   "merge_commit_sha": "39bc4dd66fde2eefd0ba637fc9d34b0d3f4dc777",
+   "as_of": "2025-09-08T11:09:40Z",
+   "as_of_sha": "e82a131e6467463bd9c9febddf86b31e83a138b4",
+   "revert_hits": []
+  },
+  {
+   "pr_url": "https://github.com/crewAIInc/crewAI/pull/2034",
+   "agent": "Devin",
+   "title": "fix: Remove OpenAI dependency for memory reset when using alternative LLMs",
+   "author": "devin-ai-integration[bot]",
+   "state": "closed",
+   "merged_at": null,
+   "closed_at": "2025-02-18T16:29:16Z",
+   "base_ref": "main",
+   "default_branch": "main",
+   "comments": {
+    "total": 3,
+    "human": 1
+   },
+   "extras": [
+    {
+     "kind": "public_api_removed",
+     "path": "src/crewai/crews/crew_output.py",
+     "name": "json",
+     "label": "pr_not_merged",
+     "evidence_url": "https://github.com/crewAIInc/crewAI/pull/2034",
+     "detail": "no stated reason found (state: closed)"
+    },
+    {
+     "kind": "public_api_removed",
+     "path": "src/crewai/tasks/task_output.py",
+     "name": "json",
+     "label": "pr_not_merged",
+     "evidence_url": "https://github.com/crewAIInc/crewAI/pull/2034",
+     "detail": "no stated reason found (state: closed)"
+    },
+    {
+     "kind": "public_api_removed",
+     "path": "src/crewai/tools/base_tool.py",
+     "name": "from_langchain",
+     "label": "pr_not_merged",
+     "evidence_url": "https://github.com/crewAIInc/crewAI/pull/2034",
+     "detail": "no stated reason found (state: closed)"
+    },
+    {
+     "kind": "public_api_removed",
+     "path": "src/crewai/tools/base_tool.py",
+     "name": "to_langchain",
+     "label": "pr_not_merged",
+     "evidence_url": "https://github.com/crewAIInc/crewAI/pull/2034",
+     "detail": "no stated reason found (state: closed)"
+    },
+    {
+     "kind": "file_outside_ask",
+     "path": "tests/conftest.py",
+     "name": "tests/conftest.py",
+     "label": "pr_not_merged",
+     "evidence_url": "https://github.com/crewAIInc/crewAI/pull/2034",
+     "detail": "no stated reason found (state: closed)"
+    }
+   ]
+  },
+  {
+   "pr_url": "https://github.com/elastic/terraform-provider-elasticstack/pull/1220",
+   "agent": "Copilot",
+   "title": "Migrate Elasticsearch enrich policy resource and data source to Terraform Plugin Framework",
+   "author": "Copilot",
+   "state": "closed",
+   "merged_at": "2025-09-02T01:49:21Z",
+   "closed_at": "2025-09-02T01:49:21Z",
+   "base_ref": "main",
+   "default_branch": "main",
+   "comments": {
+    "total": 46,
+    "human": 20
+   },
+   "extras": [
+    {
+     "kind": "tests_removed",
+     "path": "internal/elasticsearch/enrich/policy_data_source_test.go",
+     "name": "internal/elasticsearch/enrich/policy_data_source_test.go",
+     "label": "kept",
+     "evidence_url": "https://github.com/elastic/terraform-provider-elasticstack/blob/6689109b37ae80ccf8368143598d1e879871d2bb/internal/elasticsearch/enrich/policy_data_source_test.go",
+     "detail": "internal/elasticsearch/enrich/policy_data_source_test.go still absent"
+    },
+    {
+     "kind": "tests_removed",
+     "path": "internal/elasticsearch/enrich/policy_test.go",
+     "name": "internal/elasticsearch/enrich/policy_test.go",
+     "label": "kept",
+     "evidence_url": "https://github.com/elastic/terraform-provider-elasticstack/blob/6689109b37ae80ccf8368143598d1e879871d2bb/internal/elasticsearch/enrich/policy_test.go",
+     "detail": "internal/elasticsearch/enrich/policy_test.go still absent"
+    },
+    {
+     "kind": "file_outside_ask",
+     "path": "internal/utils/tfsdk.go",
+     "name": "internal/utils/tfsdk.go",
+     "label": "kept",
+     "evidence_url": "https://github.com/elastic/terraform-provider-elasticstack/blob/6689109b37ae80ccf8368143598d1e879871d2bb/internal/utils/tfsdk.go",
+     "detail": "95% of the PR's 21 added lines still present"
+    },
+    {
+     "kind": "file_outside_ask",
+     "path": "internal/utils/tfsdk_test.go",
+     "name": "internal/utils/tfsdk_test.go",
+     "label": "kept",
+     "evidence_url": "https://github.com/elastic/terraform-provider-elasticstack/blob/6689109b37ae80ccf8368143598d1e879871d2bb/internal/utils/tfsdk_test.go",
+     "detail": "100% of the PR's 31 added lines still present"
+    }
+   ],
+   "merge_commit_sha": "94dde4fc9bd0ae7d7019739033604521b099f59d",
+   "as_of": "2025-12-01T01:49:21Z",
+   "as_of_sha": "6689109b37ae80ccf8368143598d1e879871d2bb",
+   "revert_hits": []
+  },
+  {
+   "pr_url": "https://github.com/collinbarrett/FilterLists/pull/5036",
+   "agent": "Copilot",
+   "title": "Configure Dependabot to automatically update Aspire SDK versions",
+   "author": "Copilot",
+   "state": "closed",
+   "merged_at": null,
+   "closed_at": "2025-07-31T23:10:58Z",
+   "base_ref": "main",
+   "default_branch": "main",
+   "comments": {
+    "total": 2,
+    "human": 0
+   },
+   "extras": [
+    {
+     "kind": "ci_or_config",
+     "path": ".github/dependabot.yml",
+     "name": ".github/dependabot.yml",
+     "label": "pr_not_merged",
+     "evidence_url": "https://github.com/collinbarrett/FilterLists/pull/5036",
+     "detail": "no stated reason found (state: closed)"
+    },
+    {
+     "kind": "ci_or_config",
+     "path": ".github/workflows/check-aspire-versions.yml",
+     "name": ".github/workflows/check-aspire-versions.yml",
+     "label": "pr_not_merged",
+     "evidence_url": "https://github.com/collinbarrett/FilterLists/pull/5036",
+     "detail": "no stated reason found (state: closed)"
+    }
+   ]
+  },
+  {
+   "pr_url": "https://github.com/dotnet/sdk/pull/49315",
+   "agent": "Copilot",
+   "title": "Fix NullReferenceException when NuGet source URLs contain leading whitespace",
+   "author": "Copilot",
+   "state": "closed",
+   "merged_at": null,
+   "closed_at": "2025-06-13T22:33:46Z",
+   "base_ref": "main",
+   "default_branch": "main",
+   "comments": {
+    "total": 8,
+    "human": 5
+   },
+   "extras": [
+    {
+     "kind": "file_outside_ask",
+     "path": "test/Microsoft.DotNet.PackageInstall.Tests/NuGetPackageInstallerTests.cs",
+     "name": "test/Microsoft.DotNet.PackageInstall.Tests/NuGetPackageInstallerTests.cs",
+     "label": "pr_not_merged",
+     "evidence_url": "https://github.com/dotnet/sdk/pull/49315#issuecomment-2966685141",
+     "detail": "last human comment, not an explicit close reason: \"I'm not sure if it would fix the actual issue ... Wouldn't it need to be fixed in [NuGet.Client]?\" (state: closed)"
+    }
+   ],
+   "close_reason": {
+    "url": "https://github.com/dotnet/sdk/pull/49315#issuecomment-2966685141",
+    "quote": "last human comment, not an explicit close reason: \"I'm not sure if it would fix the actual issue ... Wouldn't it need to be fixed in [NuGet.Client]?\""
+   }
+  },
+  {
+   "pr_url": "https://github.com/microsoft/retina/pull/1704",
+   "agent": "Copilot",
+   "title": "fix: fix zap.Any logging issues causing \"unsupported value type\" errors",
+   "author": "Copilot",
+   "state": "closed",
+   "merged_at": null,
+   "closed_at": "2025-07-30T12:01:02Z",
+   "base_ref": "main",
+   "default_branch": "main",
+   "comments": {
+    "total": 20,
+    "human": 13
+   },
+   "extras": [
+    {
+     "kind": "file_outside_ask",
+     "path": "test-summary",
+     "name": "test-summary",
+     "label": "pr_not_merged",
+     "evidence_url": "https://github.com/microsoft/retina/pull/1704#issuecomment-3135981851",
+     "detail": "Signed PR: https://github.com/microsoft/retina/pull/1783 (superseded: Copilot could not sign commits; #1783, merged 2025-07-30, has latency.go only, without test-summary) (state: closed)"
+    }
+   ],
+   "close_reason": {
+    "url": "https://github.com/microsoft/retina/pull/1704#issuecomment-3135981851",
+    "quote": "Signed PR: https://github.com/microsoft/retina/pull/1783 (superseded: Copilot could not sign commits; #1783, merged 2025-07-30, has latency.go only, without test-summary)"
+   }
+  },
+  {
+   "pr_url": "https://github.com/dotnet/maui/pull/30178",
+   "agent": "Copilot",
+   "title": "Fix Label disappearing when android:hardwareAccelerated=\"false\"",
+   "author": "Copilot",
+   "state": "closed",
+   "merged_at": null,
+   "closed_at": "2025-06-24T22:38:12Z",
+   "base_ref": "main",
+   "default_branch": "main",
+   "comments": {
+    "total": 0,
+    "human": 0
+   },
+   "extras": [
+    {
+     "kind": "file_outside_ask",
+     "path": "src/Core/src/Handlers/Border/BorderHandler.Android.cs",
+     "name": "src/Core/src/Handlers/Border/BorderHandler.Android.cs",
+     "label": "pr_not_merged",
+     "evidence_url": "https://github.com/dotnet/maui/pull/30178",
+     "detail": "no stated reason found (state: closed)"
+    },
+    {
+     "kind": "file_outside_ask",
+     "path": "src/Core/tests/DeviceTests/Handlers/Border/BorderHandlerTests.Android.cs",
+     "name": "src/Core/tests/DeviceTests/Handlers/Border/BorderHandlerTests.Android.cs",
+     "label": "pr_not_merged",
+     "evidence_url": "https://github.com/dotnet/maui/pull/30178",
+     "detail": "no stated reason found (state: closed)"
+    }
+   ]
+  },
+  {
+   "pr_url": "https://github.com/haydenbleasel/kibo/pull/180",
+   "agent": "Copilot",
+   "title": "Fix sidebar scroll position reset on navigation in documentation",
+   "author": "Copilot",
+   "state": "closed",
+   "merged_at": null,
+   "closed_at": "2025-07-13T21:22:16Z",
+   "base_ref": "main",
+   "default_branch": "main",
+   "comments": {
+    "total": 1,
+    "human": 0
+   },
+   "extras": [
+    {
+     "kind": "ci_or_config",
+     "path": "apps/docs/tsconfig.json",
+     "name": "apps/docs/tsconfig.json",
+     "label": "pr_not_merged",
+     "evidence_url": "https://github.com/haydenbleasel/kibo/pull/180",
+     "detail": "no stated reason found (state: closed)"
+    }
+   ]
+  },
+  {
+   "pr_url": "https://github.com/dotnet/fsharp/pull/18584",
+   "agent": "Copilot",
+   "title": "Fix CLIEvent properties to be recognized as events in Symbol API",
+   "author": "Copilot",
+   "state": "closed",
+   "merged_at": "2026-03-26T11:44:55Z",
+   "closed_at": "2026-03-26T11:44:55Z",
+   "base_ref": "main",
+   "default_branch": "main",
+   "comments": {
+    "total": 54,
+    "human": 33
+   },
+   "extras": [
+    {
+     "kind": "file_outside_ask",
+     "path": "src/Compiler/Checking/infos.fs",
+     "name": "src/Compiler/Checking/infos.fs",
+     "label": "kept",
+     "evidence_url": "https://github.com/dotnet/fsharp/blob/69fa447ae9e0f828ad8ba16977066ffa23b8eeca/src/Compiler/Checking/infos.fs",
+     "detail": "100% of the PR's 4 added lines still present"
+    },
+    {
+     "kind": "file_outside_ask",
+     "path": "src/Compiler/TypedTree/TypedTreeOps.fs",
+     "name": "src/Compiler/TypedTree/TypedTreeOps.fs",
+     "mechanical_label": "removed_later",
+     "mechanical_evidence": "https://github.com/dotnet/fsharp/commit/b74a9e15e500b1b9a99fd3bc976fa9fdeb67a8e8",
+     "label": "kept",
+     "evidence_url": "https://github.com/dotnet/fsharp/blob/a274432acc830bffeede7a20b9048e34d2a200ff/src/Compiler/TypedTree/TypedTreeOps.Transforms.fs",
+     "detail": "hand-checked: TypedTreeOps.fs was split into 7 files (#19521, commit b74a9e15); the PR's CLIEventAttribute 'E:' prefix line is in TypedTreeOps.Transforms.fs (GitHub code search, 1 hit) (mechanical: src/Compiler/TypedTree/TypedTreeOps.fs no longer exists; Split TypedTreeOps.fs (12,569 lines) into 7 focused files (#19521) (100% undone in this commit))"
+    }
+   ],
+   "merge_commit_sha": "880dda8e783fc9c30dcf35f9c8546b2651fd51af",
+   "as_of": "2026-06-24T11:44:55Z",
+   "as_of_sha": "69fa447ae9e0f828ad8ba16977066ffa23b8eeca",
+   "revert_hits": []
+  },
+  {
+   "pr_url": "https://github.com/Azure/autorest.typescript/pull/3328",
+   "agent": "Copilot",
+   "title": "Add integration test cases for OperationTemplates",
+   "author": "Copilot",
+   "state": "closed",
+   "merged_at": null,
+   "closed_at": "2025-07-01T07:19:23Z",
+   "base_ref": "main",
+   "default_branch": "main",
+   "comments": {
+    "total": 0,
+    "human": 0
+   },
+   "extras": [
+    {
+     "kind": "file_outside_ask",
+     "path": "packages/typespec-ts/test/commands/cadl-ranch-list.js",
+     "name": "packages/typespec-ts/test/commands/cadl-ranch-list.js",
+     "label": "pr_not_merged",
+     "evidence_url": "https://github.com/Azure/autorest.typescript/pull/3328",
+     "detail": "no stated reason found (state: closed)"
+    }
+   ]
+  },
+  {
+   "pr_url": "https://github.com/microsoft/PSRule/pull/2973",
+   "agent": "Copilot",
+   "title": "Add Azure Pipelines adapter support for PSRule v3 CLI",
+   "author": "Copilot",
+   "state": "closed",
+   "merged_at": "2025-07-13T03:54:05Z",
+   "closed_at": "2025-07-13T03:54:05Z",
+   "base_ref": "main",
+   "default_branch": "main",
+   "comments": {
+    "total": 1,
+    "human": 1
+   },
+   "extras": [
+    {
+     "kind": "file_outside_ask",
+     "path": ".github/copilot-instructions.md",
+     "name": ".github/copilot-instructions.md",
+     "label": "kept",
+     "evidence_url": "https://github.com/microsoft/PSRule/blob/19fc55feb04e30b4d1b7855b92842e052ed6c9af/.github/copilot-instructions.md",
+     "detail": "100% of the PR's 1 added lines still present"
+    },
+    {
+     "kind": "file_outside_ask",
+     "path": "src/PSRule.Tool/Program.cs",
+     "name": "src/PSRule.Tool/Program.cs",
+     "label": "kept",
+     "evidence_url": "https://github.com/microsoft/PSRule/blob/19fc55feb04e30b4d1b7855b92842e052ed6c9af/src/PSRule.Tool/Program.cs",
+     "detail": "100% of the PR's 4 added lines still present"
+    }
+   ],
+   "merge_commit_sha": "5876eeeca3e8d82fe1ba0de169867ae1d9f5b7b1",
+   "as_of": "2025-10-11T03:54:05Z",
+   "as_of_sha": "19fc55feb04e30b4d1b7855b92842e052ed6c9af",
+   "revert_hits": []
+  },
+  {
+   "pr_url": "https://github.com/PowerShell/AIShell/pull/385",
+   "agent": "Copilot",
+   "title": "Fix Ollama model and preset command help text formatting",
+   "author": "Copilot",
+   "state": "closed",
+   "merged_at": null,
+   "closed_at": "2026-01-29T17:55:06Z",
+   "base_ref": "main",
+   "default_branch": "main",
+   "comments": {
+    "total": 2,
+    "human": 2
+   },
+   "extras": [
+    {
+     "kind": "file_outside_ask",
+     "path": "global.json",
+     "name": "global.json",
+     "label": "pr_not_merged",
+     "evidence_url": "https://github.com/PowerShell/AIShell/pull/385",
+     "detail": "no stated reason found (state: closed)"
+    }
+   ]
+  },
+  {
+   "pr_url": "https://github.com/orangewise/s3-zip/pull/113",
+   "agent": "Copilot",
+   "title": "Fix npm publish errors by correcting package.json version and repository URL",
+   "author": "Copilot",
+   "state": "closed",
+   "merged_at": "2025-06-08T13:31:53Z",
+   "closed_at": "2025-06-08T13:31:53Z",
+   "base_ref": "master",
+   "default_branch": "master",
+   "comments": {
+    "total": 1,
+    "human": 1
+   },
+   "extras": [
+    {
+     "kind": "new_dependency",
+     "path": "package.json",
+     "name": "normalize-path",
+     "label": "kept",
+     "evidence_url": "https://github.com/orangewise/s3-zip/blob/8df16391a656d1109e0131882094e1d06fc6a897/package.json",
+     "detail": "'normalize-path' still in package.json"
+    }
+   ],
+   "merge_commit_sha": "ba3ec9a2b5150668dbce280b047addd5a28a5129",
+   "as_of": "2025-09-06T13:31:53Z",
+   "as_of_sha": "8df16391a656d1109e0131882094e1d06fc6a897",
+   "revert_hits": []
+  },
+  {
+   "pr_url": "https://github.com/benbalter/jekyll-relative-links/pull/97",
+   "agent": "Copilot",
+   "title": "[WIP] YAML frontmatter field named `excerpt:` breaks jekyll-relative-links",
+   "author": "Copilot",
+   "state": "closed",
+   "merged_at": "2025-05-20T17:05:35Z",
+   "closed_at": "2025-05-20T17:05:35Z",
+   "base_ref": "main",
+   "default_branch": "main",
+   "comments": {
+    "total": 29,
+    "human": 21
+   },
+   "extras": [
+    {
+     "kind": "ci_or_config",
+     "path": ".rubocop.yml",
+     "name": ".rubocop.yml",
+     "label": "kept",
+     "evidence_url": "https://github.com/benbalter/jekyll-relative-links/blob/6cf68fcef569620dcd511c2d01fea9d56d482163/.rubocop.yml",
+     "detail": "100% of the PR's 5 added lines still present"
+    },
+    {
+     "kind": "file_outside_ask",
+     "path": "spec/fixtures/excerpt-in-frontmatter/another-page.md",
+     "name": "spec/fixtures/excerpt-in-frontmatter/another-page.md",
+     "label": "kept",
+     "evidence_url": "https://github.com/benbalter/jekyll-relative-links/blob/6cf68fcef569620dcd511c2d01fea9d56d482163/spec/fixtures/excerpt-in-frontmatter/another-page.md",
+     "detail": "100% of the PR's 2 added lines still present"
+    },
+    {
+     "kind": "file_outside_ask",
+     "path": "spec/fixtures/excerpt-in-frontmatter/page-with-excerpt.md",
+     "name": "spec/fixtures/excerpt-in-frontmatter/page-with-excerpt.md",
+     "label": "kept",
+     "evidence_url": "https://github.com/benbalter/jekyll-relative-links/blob/6cf68fcef569620dcd511c2d01fea9d56d482163/spec/fixtures/excerpt-in-frontmatter/page-with-excerpt.md",
+     "detail": "100% of the PR's 4 added lines still present"
+    }
+   ],
+   "merge_commit_sha": "1122c24c88a8182bfeed971f7c0200b33dd74c25",
+   "as_of": "2025-08-18T17:05:35Z",
+   "as_of_sha": "6cf68fcef569620dcd511c2d01fea9d56d482163",
+   "revert_hits": []
+  },
+  {
+   "pr_url": "https://github.com/Azure/azure-sdk-for-python/pull/41693",
+   "agent": "Copilot",
+   "title": "Combine script `sdk_package` into `sdk_generator` for unified SDK generation",
+   "author": "Copilot",
+   "state": "closed",
+   "merged_at": null,
+   "closed_at": "2025-06-21T02:05:35Z",
+   "base_ref": "main",
+   "default_branch": "main",
+   "comments": {
+    "total": 12,
+    "human": 6
+   },
+   "extras": [
+    {
+     "kind": "public_api_removed",
+     "path": "scripts/auto_release/main.py",
+     "name": "after_multiapi_combiner",
+     "label": "pr_not_merged",
+     "evidence_url": "https://github.com/Azure/azure-sdk-for-python/pull/41693",
+     "detail": "no stated reason found (state: closed)"
+    },
+    {
+     "kind": "public_api_removed",
+     "path": "scripts/auto_release/main.py",
+     "name": "check_package_size",
+     "label": "pr_not_merged",
+     "evidence_url": "https://github.com/Azure/azure-sdk-for-python/pull/41693",
+     "detail": "no stated reason found (state: closed)"
+    },
+    {
+     "kind": "public_api_removed",
+     "path": "scripts/auto_release/main.py",
+     "name": "get_private_package",
+     "label": "pr_not_merged",
+     "evidence_url": "https://github.com/Azure/azure-sdk-for-python/pull/41693",
+     "detail": "no stated reason found (state: closed)"
+    },
+    {
+     "kind": "public_api_removed",
+     "path": "tools/azure-sdk-tools/packaging_tools/sdk_package.py",
+     "name": "generate_main",
+     "label": "pr_not_merged",
+     "evidence_url": "https://github.com/Azure/azure-sdk-for-python/pull/41693",
+     "detail": "no stated reason found (state: closed)"
+    }
+   ]
+  },
+  {
+   "pr_url": "https://github.com/lingodotdev/lingo.dev/pull/867",
+   "agent": "Devin",
+   "title": "fix: template substitution destructive shift() bug",
+   "author": "devin-ai-integration[bot]",
+   "state": "closed",
+   "merged_at": "2025-06-07T06:18:07Z",
+   "closed_at": "2025-06-07T06:18:07Z",
+   "base_ref": "main",
+   "default_branch": "main",
+   "comments": {
+    "total": 1,
+    "human": 0
+   },
+   "extras": [
+    {
+     "kind": "file_outside_ask",
+     "path": ".changeset/few-boxes-sniff.md",
+     "name": ".changeset/few-boxes-sniff.md",
+     "mechanical_label": "removed_later",
+     "mechanical_evidence": "https://github.com/lingodotdev/lingo.dev/commit/a6e9d2c2cd65c96017434c05a6fdde501e718703",
+     "label": "kept",
+     "evidence_url": "https://github.com/lingodotdev/lingo.dev/commit/a6e9d2c2cd65c96017434c05a6fdde501e718703",
+     "detail": "hand-checked: the changesets release bot consumed the note into the changelog ('chore: bump package version', #869), as it does with every changeset (mechanical: .changeset/few-boxes-sniff.md no longer exists; chore: bump package version (#869) (100% undone in this commit))"
+    }
+   ],
+   "merge_commit_sha": "a7bf5538b5b72e41f90371f6211378aac7d5f800",
+   "as_of": "2025-09-05T06:18:07Z",
+   "as_of_sha": "cc595e27f85d7426ec9f25c45f0f41584e201f16",
+   "revert_hits": []
+  }
+ ]
+}
