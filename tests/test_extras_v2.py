@@ -1,6 +1,6 @@
 """Rules v2 (T7): one failing-then-passing fixture per fix, built from T6's audit of sample A."""
-from itemator import extras as X
-from itemator.extras import analyse, extras
+from itemator import extras_v2 as X   # frozen v2; test_extras_v3.py re-runs these on v3
+from itemator.extras_v2 import analyse, extras
 
 
 def f(filename, patch=None, status="modified", previous_filename=None):

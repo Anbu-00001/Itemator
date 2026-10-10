@@ -12,6 +12,9 @@ Run from the repository root (each run refuses to overwrite its output file):
     .venv/bin/python -I eval/replay_aidev.py --rules 2 --seed 20261010 --offline
     # v2 on sample B: run once, after the rules and SEED_B are committed
     .venv/bin/python -I eval/replay_aidev.py --rules 2 --seed 20261011 --exclude-sample-a
+    # v3 on sample C: run once, after rules v3 and SEED_C are committed
+    .venv/bin/python -I eval/replay_aidev.py --rules 3 --seed 20261012 --exclude-sample-a --exclude-sample-b
+(v3 on samples A and B, the development set: eval/rescore_dev.py.)
 
 Inputs are pinned in eval/inputs.lock.json: the dataset commit (downloads use
 it, not the movable ref v3), the parquet sha256 values and the duckdb version.
@@ -46,10 +49,14 @@ import urllib.request
 
 REPO = pathlib.Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(REPO))
-from itemator.extras import KINDS, analyse  # noqa: E402
+from itemator import extras as extras_v3, extras_v1, extras_v2  # noqa: E402
+from itemator.extras import analyse  # noqa: E402
+
+RULES = {1: extras_v1, 2: extras_v2, 3: extras_v3}   # each version's own module: its KINDS and its file
 
 SEED = 20261010          # sample A, fixed on 2026-10-10 before the first run; the v2 development set
-SEED_B = 20261011        # sample B, fixed on 2026-10-11 before rules v2 meet it
+SEED_B = 20261011        # sample B, fixed on 2026-10-11 before rules v2 meet it; with A, the v3 development set
+SEED_C = 20261012        # sample C, fixed before rules v3 meet it; excludes A and B
 SAMPLE = 60
 MAX_FETCHES = 120        # GitHub API calls this run may make (pages count)
 DATASET = "hao-li/AIDev@v3"
@@ -61,8 +68,11 @@ PERMISSIVE = ("MIT", "Apache-2.0", "BSD-2-Clause", "BSD-3-Clause", "ISC", "0BSD"
 DATA = REPO / "data"
 CACHE = REPO / "eval" / "cache"
 SAMPLE_A = REPO / LOCK["sample_a_predictions"]
-DEFAULT_OUT = {(1, SEED, False): "replay_v1_sampleA_rerun.json", (2, SEED, False): "replay_v2_sampleA.json",
-               (2, SEED_B, True): "replay_v2_sampleB.json"}
+SAMPLE_B = REPO / LOCK["sample_b_predictions"]
+DEFAULT_OUT = {(1, SEED, False, False): "replay_v1_sampleA_rerun.json",
+               (2, SEED, False, False): "replay_v2_sampleA.json",
+               (2, SEED_B, True, False): "replay_v2_sampleB.json",
+               (3, SEED_C, True, True): "replay_v3_sampleC.json"}
 
 
 def sha256(path: pathlib.Path) -> str:
@@ -86,6 +96,14 @@ def sample_a_urls() -> set[str]:
     if sha256(SAMPLE_A) != LOCK["sample_a_predictions_sha256"]:
         sys.exit(f"{SAMPLE_A.name} does not match its pinned sha256")
     d = json.loads(SAMPLE_A.read_text())
+    return {p["pr_url"] for p in d["prs"]} | {s["pr_url"] for s in d["summary"]["skipped_fetch_failed"]}
+
+
+def sample_b_urls() -> set[str]:
+    """The PRs walked for sample B (60 scored + the skipped), from the committed file."""
+    if sha256(SAMPLE_B) != LOCK["sample_b_predictions_sha256"]:
+        sys.exit(f"{SAMPLE_B.name} does not match its pinned sha256")
+    d = json.loads(SAMPLE_B.read_text())
     return {p["pr_url"] for p in d["prs"]} | {s["pr_url"] for s in d["summary"]["skipped_fetch_failed"]}
 
 
@@ -189,15 +207,18 @@ class Fetcher:
 
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
-    ap.add_argument("--rules", type=int, choices=(1, 2), required=True)
+    ap.add_argument("--rules", type=int, choices=tuple(RULES), required=True)
     ap.add_argument("--seed", type=int, required=True)
     ap.add_argument("--exclude-sample-a", action="store_true", help="skip the 62 PRs walked for sample A")
+    ap.add_argument("--exclude-sample-b", action="store_true", help="skip the PRs walked for sample B")
     ap.add_argument("--offline", action="store_true", help="read the GitHub cache only; never fetch")
     ap.add_argument("--out", help="output path (default: from rules, seed and exclusion)")
     args = ap.parse_args()
     if args.seed == SEED_B and not args.exclude_sample_a:
         sys.exit("sample B must exclude sample A: add --exclude-sample-a")
-    name = args.out or DEFAULT_OUT.get((args.rules, args.seed, args.exclude_sample_a))
+    if args.seed == SEED_C and not (args.exclude_sample_a and args.exclude_sample_b):
+        sys.exit("sample C must exclude samples A and B: add --exclude-sample-a --exclude-sample-b")
+    name = args.out or DEFAULT_OUT.get((args.rules, args.seed, args.exclude_sample_a, args.exclude_sample_b))
     if not name:
         sys.exit("give --out for this combination")
     out = pathlib.Path(name) if args.out else REPO / "results" / name
@@ -205,7 +226,8 @@ def main() -> int:
         sys.exit(f"{out} exists; this run happens once (move the file away to repeat it)")
     download()
     check_inputs()
-    excluded = sample_a_urls() if args.exclude_sample_a else set()
+    excluded = ((sample_a_urls() if args.exclude_sample_a else set())
+                | (sample_b_urls() if args.exclude_sample_b else set()))
     pool, funnel = build_pool()
     print(f"pool (kill test 1a, passes at >= 150): {len(pool)} -> {'PASS' if len(pool) >= 150 else 'FAIL'}")
     order = sorted(pool, key=lambda p: p["pr_id"])
@@ -222,7 +244,7 @@ def main() -> int:
             skipped.append({"pr_url": pr["pr_url"], "error": got.get("error", "no files")})
             continue
         sample.append((pr, got["files"]))
-    records = []
+    records, KINDS = [], RULES[args.rules].KINDS
     for pr, files in sample:
         a = analyse(pr["issue_text"], files, repo=pr["repo"], version=args.rules)
         records.append({
@@ -234,19 +256,26 @@ def main() -> int:
             "anchored": a.anchored, "unplaced": a.unplaced,
             "extras": [e.to_dict() for e in a.extras],
             "counts": {k: sum(1 for e in a.extras if e.kind == k) for k in KINDS},
+            **({"named_paths": a.named_paths} if args.rules >= 3 else {}),
         })
     flagged = sum(1 for r in records if r["extras"])
     strict = sum(1 for r in records if r["extras"] or r["unplaced"])
     per_kind = {k: {"extras": sum(r["counts"][k] for r in records),
                     "prs": sum(1 for r in records if r["counts"][k])} for k in KINDS}
-    rules_file = REPO / "itemator" / ("extras_v1.py" if args.rules == 1 else "extras.py")
-    label = {SEED: "sample A" + (" (development set for rules v2)" if args.rules == 2 else ""),
-             SEED_B: "sample B (held out: rules v2 frozen before this run)"}.get(args.seed, "other seed")
+    rules_file = pathlib.Path(RULES[args.rules].__file__)
+    label = {(SEED, 1): "sample A", (SEED, 2): "sample A (development set for rules v2)",
+             (SEED, 3): "sample A (development set for rules v3)",
+             (SEED_B, 2): "sample B (held out: rules v2 frozen before this run)",
+             (SEED_B, 3): "sample B (development set for rules v3)",
+             (SEED_C, 3): "sample C (held out: rules v3 frozen before this run)"}.get((args.seed, args.rules), "other seed")
     summary = {
         "dataset": DATASET, "seed": args.seed, "sample": label, "sample_size": len(records),
         "rules_version": args.rules, "rules_file": rules_file.name, "rules_sha256": sha256(rules_file),
         "inputs_lock_sha256": sha256(LOCK_FILE), "dataset_revision": LOCK["dataset_revision"],
-        "python": platform.python_version(), "excluded_sample_a_prs_passed_over": passed_over,
+        "python": platform.python_version(),
+        **({"excluded_sample_a_prs_passed_over": passed_over} if not args.exclude_sample_b else
+           {"excluded_prs_passed_over": passed_over, "excluded_samples": ["A", "B"]}),
+        **({"prs_with_unplaced_files": sum(1 for r in records if r["unplaced"])} if args.rules >= 3 else {}),
         "funnel": funnel,
         "kill_test_1a": {"pool": len(pool), "threshold": ">= 150", "pass": len(pool) >= 150},
         "kill_test_1b": {"flagged": flagged, "of": len(records), "threshold": "6..30",
@@ -260,7 +289,7 @@ def main() -> int:
     out.parent.mkdir(exist_ok=True)
     out.write_text(json.dumps({"summary": summary, "prs": records}, indent=1, sort_keys=True) + "\n")
     print(f"{label}, rules v{args.rules}: {len(records)} of {len(pool)}, seed {args.seed}; "
-          f"sample A PRs passed over: {passed_over}; skipped (fetch failed): {len(skipped)}; "
+          f"excluded PRs passed over: {passed_over}; skipped (fetch failed): {len(skipped)}; "
           f"API calls this run: {fetcher.calls}")
     print(f"flagged (kill test 1b, passes at 6..30): {flagged} of {len(records)} -> "
           f"{'PASS' if 6 <= flagged <= 30 else 'FAIL'}")

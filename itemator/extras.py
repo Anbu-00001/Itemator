@@ -1,11 +1,23 @@
-"""Fixed rules: what a merge request changed beyond its linked issue. Rules version 2.
+"""Fixed rules: what a merge request changed beyond its linked issue. Rules version 3.
 
 No model, no network, no randomness: the same issue text, changed files and
 repository name always give the same extras, in the same order. Version 1
-(commit cf0d762, scored on sample A) is frozen, byte for byte, in extras_v1.py;
-analyse(..., version=1) runs it. Version 2 was fixed on sample A (the
-development set, seed 20261010) after the T6 audit; it is tested once on
-sample B.
+(commit cf0d762, sample A) is frozen in extras_v1.py and version 2 (commit
+12b3d1b, held out on sample B) in extras_v2.py, byte for byte;
+analyse(..., version=1 or 2) runs them. Version 3 was fixed on samples A and
+B together (the development set, seeds 20261010 and 20261011) after the T8
+audit; it is tested once on sample C.
+
+WHAT V3 CHANGES (the rule texts below are v2's, amended where marked v3)
+  - Rule 5 no longer makes extras. Its files are `unplaced` (the card's
+    informational state, "N files the rules could not place"), never named.
+  - Mass events (rule 7): MASS or more files of one kind, all added or all
+    deleted, under one directory become one extra named by that directory.
+  - Rule 6 (new): binary_or_large_added.
+  - Rule 3c (new): generated_code_removed. Generated or vendored code is never
+    a test file (rules 3, 4, 5d).
+  - Rule 1: a package the old file already lists is not new; nor is one whose
+    name contains an acronym of the issue's title.
 
 INPUT
   issue_text: the linked issue's title and body (several issues: joined).
@@ -37,6 +49,12 @@ RULES (an extra is kind + path + name + why; `name` is what a human types)
    Only lines the parser can place in a dependency list count; when a diff hunk
    starts inside an unknown section, a line counts only if it carries a version
    (see the _deps_* functions). go.mod `// indirect` lines do not count.
+   v3: a package that the old file already lists, on a removed or unchanged
+   line the diff shows (go.mod `// indirect` included), is not new (a move from
+   indirect to direct, or between sections, is not new). An index package is
+   not new either when its name contains an acronym of the issue's title (a
+   word of 4 or more capitals with at least 3 letters, such as XMPP): the issue
+   names what the package implements.
    name = the package name (npm: the full `@scope/pkg`; Maven/Gradle: the
    artifact id; go.mod: the module path; a URL line: egg=, the name before
    ' @ ', else the URL's last part; an index option: the URL).
@@ -65,13 +83,22 @@ RULES (an extra is kind + path + name + why; `name` is what a human types)
       than its added lines, and the change as a whole also lost that measure
       (tests moved between files are not removals).
    Skipped when the issue mentions the file's name. name = the path.
+   v3: generated or vendored files (is_generated: a directory generated,
+   __generated__, vendor, vendored, third_party, node_modules, site-packages;
+   or a name like x.generated.cs, x_pb2.py, x.pb.go, x.g.dart) are never test
+   files.
+   c. generated_code_removed (v3). Deleted generated or vendored files, unless
+      the issue names the file or the directory it sits in (_names_closely;
+      naming an ancestor directory, such as a whole package, is not enough).
+      Reported only as a mass event (rule 7); fewer than MASS deletions under
+      one directory are regeneration churn and are dropped.
 4. public_api_removed. On a removed line of a non-test file: a Python `def`
    or `class` indented 0 or 4 spaces (or one tab) whose name does not start
    with '_', or a JS/TS `export` (declaration or `export { a, b as c }`).
    It counts when no added line anywhere in the change defines or exports the
    same name again (signature changes and moves are not removals), and the
    issue does not mention the name. name = the symbol. (Unchanged from v1.)
-5. file_outside_ask (conservative in v2). Every changed file is first checked
+5. unplaced (v3; v2's file_outside_ask, same logic, no longer an extra). Every changed file is first checked
    against the issue:
    a. a path in the issue (a token with '/' or a file extension) equals the
       file's path, ends with it, is a trailing part of it, or is a directory
@@ -95,13 +122,25 @@ RULES (an extra is kind + path + name + why; `name` is what a human types)
    or mocks directory): agents name their new tests after the issue, so a
    matched test alone is no anchor. Without an anchor the rule abstains:
    `anchored = False` and every candidate is listed in `unplaced`.
-   An extra is then a changed file that is not matched, not a test-support
+   A file is then unplaced when it is not matched, not a test-support
    file, not in the same directory as a matched file, and that shares fewer
    than two leading directories with every matched file. Never extras on their
    own: docs (README*, CHANGELOG*, CHANGES*, HISTORY*, NEWS*, anything under
    docs/, doc/ or .changeset/), lockfiles, files under __snapshots__/, and
-   files that rules 1-3 cover (manifests, config files, deleted test files).
+   files that rules 1-3 and 6 cover (manifests, config files, deleted test
+   files, deleted generated files, binary or large files reported by rule 6).
+6. binary_or_large_added (v3). An added file that is binary (GitHub marks it
+   binary, or it has no patch, no added or deleted lines and an extension that
+   is not a known text extension, which includes no extension), or larger than
+   LARGE bytes when the file list gives its size, unless the issue names the
+   file or the directory it sits in (_names_closely). GitHub's file list gives no size, so the reason says when the
+   size is missing; a binary and an empty file look the same there.
    name = the path.
+7. Mass events (v3). Extras of rules 2a, 3a, 3c and 6 whose files were all
+   added, or all deleted, are pooled by kind and by their first two
+   directories; a pool of MASS or more becomes one extra whose path and name
+   are the pool's deepest common directory ("dir/"), with the files in
+   `detail`.
 """
 from __future__ import annotations
 
@@ -109,9 +148,11 @@ import posixpath
 import re
 from dataclasses import asdict, dataclass, field
 
-RULES_VERSION = 2       # v1 (commit cf0d762) is frozen in extras_v1.py; analyse(..., version=1) runs it
-KINDS = ("new_dependency", "ci_or_config", "tests_removed",
-         "public_api_removed", "file_outside_ask")
+RULES_VERSION = 3       # v1 and v2 are frozen in extras_v1.py and extras_v2.py; analyse(..., version=1|2) runs them
+KINDS = ("new_dependency", "ci_or_config", "tests_removed", "generated_code_removed",
+         "public_api_removed", "binary_or_large_added")
+MASS = 10               # files of one kind, added or deleted under one directory: one extra
+LARGE = 1_000_000       # bytes
 
 
 @dataclass(frozen=True)
@@ -120,6 +161,7 @@ class Extra:
     path: str
     name: str
     why: str
+    detail: tuple = ()      # a mass event's files
 
     def to_dict(self) -> dict:
         return asdict(self)
@@ -130,7 +172,7 @@ class Analysis:
     extras: list[Extra]
     named_paths: list[str] = field(default_factory=list)
     anchored: bool = False
-    unplaced: list[str] = field(default_factory=list)   # rule 5 abstained over these
+    unplaced: list[str] = field(default_factory=list)   # files the rules could not place (rule 5)
 
 
 # ---------------------------------------------------------------- helpers
@@ -436,8 +478,33 @@ def _side(patch: str, keep: str) -> str:
                      if raw.startswith(("@@", " ", keep)) and not raw.startswith(("+++", "---")))
 
 
+def _deps_go_all(patch):
+    """go.mod requirements, `// indirect` included (what the old file already lists)."""
+    for sign, text in _lines(patch):
+        m = _GO_REQ.match(text) if sign in "+-" and "=>" not in text else None
+        if m:
+            yield sign, m.group(1), text
+
+
+def _old_names(kind: str, patch: str) -> set[str]:
+    """Packages the old file lists on the lines the diff shows (removed or unchanged)."""
+    old = "\n".join(raw if raw.startswith("@@") else "-" + raw[1:] for raw in patch.splitlines()
+                    if raw.startswith(("@@", " ", "-")) and not raw.startswith("---"))
+    parse = _deps_go_all if kind == "go" else _DEP_PARSERS[kind]
+    return {n.lower() for sign, n, _ in parse(old) if sign == "-"}
+
+
+_ACRONYM = re.compile(r"\b[A-Z][A-Z0-9]{3,}\b")
+
+
+def _title_acronyms(issue_text: str) -> set[str]:
+    title = issue_text.strip().split("\n", 1)[0]
+    return {a.lower() for a in _ACRONYM.findall(title) if sum(c.isalpha() for c in a) >= 3}
+
+
 def _new_dependencies(issue_text, files):
     out = []
+    acronyms = _title_acronyms(issue_text)
     for f in files:
         kind = _manifest_kind(f["filename"])
         if not kind or not f.get("patch"):
@@ -445,7 +512,7 @@ def _new_dependencies(issue_text, files):
         parse = _DEP_PARSERS[kind]
         added = [(n, t) for sign, n, t in parse(_side(f["patch"], "+")) if sign == "+"]
         gone = [(n, t) for sign, n, t in parse(_side(f["patch"], "-")) if sign == "-"]
-        removed = {n.lower() for n, _ in gone}
+        removed = {n.lower() for n, _ in gone} | _old_names(kind, f["patch"])
         removed_sources = {_url_source(kind, t) for _, t in gone} - {None}
         seen = set()
         for name, text in added:
@@ -468,6 +535,8 @@ def _new_dependencies(issue_text, files):
             short = name.rsplit("/", 1)[-1] if kind in ("npm", "go") else name
             if _mentions(issue_text, name) or (short != name and _mentions(issue_text, short)):
                 continue
+            if any(a in _squash(name) for a in acronyms):
+                continue                       # the title names what the package implements
             out.append(Extra("new_dependency", f["filename"], name,
                              f"adds package {name}; the issue does not name it"))
     return out
@@ -615,8 +684,19 @@ def _ext(path: str) -> str:
     return b.rsplit(".", 1)[-1].lower() if "." in b else ""
 
 
+_GENERATED_DIRS = {"generated", "__generated__", "_generated", "vendor", "vendored", "third_party",
+                   "third-party", "node_modules", "site-packages"}
+_GENERATED_NAME = re.compile(r".+(?:[._]generated\.\w+|\.g\.\w+|_pb2(?:_grpc)?\.pyi?|\.pb(?:\.gw)?\.(?:go|cc|h))")
+
+
+def is_generated(path: str) -> bool:
+    """Generated or vendored code (rule 3, v3)."""
+    return (any(d.lower() in _GENERATED_DIRS for d in _dirs(path))
+            or _GENERATED_NAME.fullmatch(_base(path)) is not None)
+
+
 def is_test_file(path: str) -> bool:
-    if _ext(path) not in _CODE_EXT:
+    if _ext(path) not in _CODE_EXT or is_generated(path):
         return False
     return _TEST_NAME.fullmatch(_base(path)) is not None or any(d in _TEST_DIRS for d in _dirs(path))
 
@@ -704,7 +784,7 @@ def _public_api_removed(issue_text, files):
     out = []
     for f in files:
         path, ext = f["filename"], _ext(f["filename"])
-        if ext not in _PY_EXT | _JS_EXT or is_test_file(path):
+        if ext not in _PY_EXT | _JS_EXT or is_test_file(path) or is_generated(path):
             continue
         seen = set()
         for s, t in _lines(f.get("patch")):
@@ -872,46 +952,140 @@ def _near(path: str, named: set[str]) -> bool:
     return False
 
 
-def _file_outside_ask(issue_text, files, covered: set[str], package: str = ""):
+def _unplaced(issue_text, files, covered: set[str], package: str = ""):
+    """Rule 5: (unplaced files, named files, anchored)."""
     candidates = [f["filename"] for f in files
                   if not _exempt(f["filename"]) and f["filename"] not in covered]
     keep = set(candidates)
     named = _named_files(issue_text, [f for f in files if f["filename"] in keep], package)
     if all(_test_support(p) for p in named):
-        return [], sorted(candidates), False   # no anchor, or only tests the agent named after the issue
-    out = [Extra("file_outside_ask", p, p, "no file the issue names is near this one")
-           for p in candidates
+        return sorted(candidates), [], False   # no anchor, or only tests the agent named after the issue
+    out = [p for p in candidates
            if p not in named and not _near(p, named) and not _test_support(p)]
-    return out, sorted(named), True
+    return sorted(out), sorted(named), True
+
+
+# ------------------------------------- rule 3c: generated_code_removed (v3)
+
+def _names_closely(path: str, toks: _IssueTokens, package: str = "") -> bool:
+    """The issue names this file (its path or stem) or the directory it sits in; an ancestor is not enough
+    (rules 3c and 6: an issue that names a whole package does not name every file deleted or added in it)."""
+    p, parent = path.lower(), posixpath.dirname(path).lower()
+    for t in toks.paths:
+        if p == t or p.endswith("/" + t) or t.endswith("/" + p) or (parent and (t == parent or parent.endswith("/" + t))):
+            return True
+    own = lambda n: bool(package) and _squash(n) == package
+    d = _dirs(path)
+    return ((not own(_stem(path)) and _token_named(_stem(path), toks, _GENERIC_STEMS))
+            or (bool(d) and not own(d[-1]) and _token_named(d[-1], toks, _GENERIC_DIRS)))
+
+
+def _generated_code_removed(issue_text, files, package: str = ""):
+    toks = issue_tokens(issue_text)
+    return [Extra("generated_code_removed", f["filename"], f["filename"], "deletes this generated or vendored file")
+            for f in files if f.get("status") == "removed" and is_generated(f["filename"])
+            and not _names_closely(f["filename"], toks, package)]
+
+
+# -------------------------------------- rule 6: binary_or_large_added (v3)
+
+_TEXT_EXT = _CODE_EXT | {
+    "md", "markdown", "mdx", "rst", "txt", "adoc", "asciidoc", "tex", "bib", "json", "jsonc", "json5", "jsonl",
+    "yaml", "yml", "toml", "ini", "cfg", "conf", "config", "properties", "env", "example", "sample", "template",
+    "tpl", "tmpl", "j2", "jinja", "jinja2", "mustache", "hbs", "ejs", "erb", "xml", "xsd", "xsl", "xaml", "resx",
+    "html", "htm", "xhtml", "css", "scss", "sass", "less", "styl", "svg", "csv", "tsv", "sql", "graphql", "gql",
+    "proto", "sh", "bash", "zsh", "fish", "ps1", "psm1", "psd1", "bat", "cmd", "tf", "tfvars", "hcl", "bicep",
+    "tsp", "csproj", "fsproj", "vbproj", "props", "targets", "sln", "gradle", "pom", "mod", "sum", "lock",
+    "pem", "crt", "pub", "patch", "diff", "log", "ipynb", "snap", "http", "razor", "cshtml", "vb", "fs", "fsi",
+    "fsx", "ml", "mli", "hs", "erl", "hrl", "nim", "zig", "pl", "pm", "cmake", "mk", "in", "am", "ac", "service",
+    "plist", "po", "pot", "vtt", "srt", "rake", "gemspec", "podspec", "nix", "dhall", "cue", "rego", "sol",
+    "gitignore", "gitattributes", "gitkeep", "keep", "gitmodules", "nojekyll", "typed", "dockerignore",
+    "npmignore", "npmrc", "nvmrc", "editorconfig", "prettierrc", "eslintrc", "babelrc", "browserslistrc",
+    "eslintignore", "prettierignore", "flake8", "pylintrc", "coveragerc", "rc",
+}
+
+
+def _binary_or_large_added(issue_text, files, package: str = ""):
+    out, toks = [], issue_tokens(issue_text)
+    for f in files:
+        if f.get("status") != "added":
+            continue
+        size = f.get("size") if isinstance(f.get("size"), int) else None
+        large = size is not None and size > LARGE
+        no_lines = not f.get("patch") and not f.get("additions") and not f.get("deletions")
+        marked = f.get("binary") is True
+        if not (large or marked or (no_lines and _ext(f["filename"]) not in _TEXT_EXT)):
+            continue
+        if _names_closely(f["filename"], toks, package):
+            continue
+        if large:
+            why = f"adds a file of {size:,} bytes (over 1 MB)"
+        elif marked:
+            why = "adds a file GitHub marks binary"
+        else:
+            why = (f"adds a file GitHub shows no diff for (+0 -0, extension "
+                   f"{_ext(f['filename']) or 'none'}): binary or empty")
+        if size is None:
+            why += "; its size is not in the file list"
+        elif not large:
+            why += f"; {size:,} bytes"
+        out.append(Extra("binary_or_large_added", f["filename"], f["filename"], why))
+    return out
+
+
+# ------------------------------------------------ rule 7: mass events (v3)
+
+_NOUN = {"ci_or_config": "config files", "tests_removed": "test files",
+         "generated_code_removed": "generated or vendored files", "binary_or_large_added": "binary or large files"}
+
+
+def _mass_events(found, files):
+    status = {f["filename"]: f.get("status") for f in files}
+    keep, pools = [], {}
+    for e in found:
+        st, top = status.get(e.path), "/".join(_dirs(e.path)[:2])
+        if e.kind in _NOUN and e.name == e.path and st in ("added", "removed") and top:
+            pools.setdefault((e.kind, st, top), []).append(e)
+        else:
+            keep.append(e)
+    for (kind, st, _), group in pools.items():
+        if len(group) < MASS:
+            keep += group
+            continue
+        paths = tuple(sorted(e.path for e in group))
+        d = posixpath.commonpath([posixpath.dirname(p) for p in paths]) + "/"
+        verb = "deleted" if st == "removed" else "added"
+        keep.append(Extra(kind, d, d, f"{len(paths)} {_NOUN[kind]} {verb} under {d}", paths))
+    return keep
 
 
 # ------------------------------------------------------------------- entry
 
 def analyse(issue_text: str, files: list[dict], *, repo: str | None = None,
             version: int = RULES_VERSION) -> Analysis:
-    """`repo` ("owner/name") keeps the project's own package directory from naming files (rule 5).
-    version=1 runs the frozen v1 rules (itemator/extras_v1.py), which ignore `repo`."""
-    if version == 1:
-        from itemator import extras_v1
-        v1 = extras_v1.analyse(issue_text, files)
-        return Analysis(extras=[Extra(**e.to_dict()) for e in v1.extras], named_paths=v1.named_paths,
-                        anchored=v1.anchored, unplaced=v1.unplaced)
+    """`repo` ("owner/name") keeps the project's own package directory from naming files (rules 5, 6).
+    version=1 or 2 runs the frozen rules (extras_v1.py through extras_v2.py) and returns v2's objects,
+    so their output is byte for byte what it was."""
+    if version in (1, 2):
+        from itemator import extras_v2
+        return extras_v2.analyse(issue_text, files, repo=repo, version=version)
     if version != RULES_VERSION:
         raise ValueError(f"unknown rules version {version}")
     package = _squash((repo or "").rsplit("/", 1)[-1])
     issue_text = issue_text or ""
     files = [f for f in files if f.get("filename")]
     found = (_new_dependencies(issue_text, files) + _ci_or_config(issue_text, files)
-             + _tests_removed(issue_text, files) + _public_api_removed(issue_text, files))
+             + _tests_removed(issue_text, files) + _generated_code_removed(issue_text, files, package)
+             + _public_api_removed(issue_text, files) + _binary_or_large_added(issue_text, files, package))
+    found = [e for e in _mass_events(found, files)      # 3c: mass events only
+             if e.kind != "generated_code_removed" or e.detail]
     covered = {f["filename"] for f in files
                if _manifest_kind(f["filename"]) or _config_kind(f["filename"])
-               or (is_test_file(f["filename"]) and f.get("status") == "removed")}
-    outside, listed, anchored = _file_outside_ask(issue_text, files, covered, package)
-    found += outside
+               or (f.get("status") == "removed" and (is_test_file(f["filename"]) or is_generated(f["filename"])))}
+    covered |= {p for e in found if e.kind == "binary_or_large_added" for p in (e.detail or (e.path,))}
+    unplaced, named, anchored = _unplaced(issue_text, files, covered, package)
     unique = sorted(set(found), key=lambda e: (KINDS.index(e.kind), e.path, e.name))
-    if anchored:
-        return Analysis(extras=unique, named_paths=listed, anchored=True)
-    return Analysis(extras=unique, anchored=False, unplaced=listed)
+    return Analysis(extras=unique, named_paths=named, anchored=anchored, unplaced=unplaced)
 
 
 def extras(issue_text: str, files: list[dict], *, repo: str | None = None,

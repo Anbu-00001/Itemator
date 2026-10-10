@@ -1,5 +1,5 @@
 """Hand-made fixtures: one positive per kind, plus negatives."""
-from itemator.extras import extras, analyse
+from itemator.extras_v2 import extras, analyse   # v1-era fixtures, run on the frozen v2 rules; test_extras_v3.py re-runs them on v3
 
 
 def f(filename, patch=None, status="modified", previous_filename=None):
