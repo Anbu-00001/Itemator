@@ -1,0 +1,2577 @@
+{
+ "prs": [
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "binary_or_large_added": 0,
+    "ci_or_config": 2,
+    "generated_code_removed": 0,
+    "new_dependency": 2,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [
+    {
+     "detail": [],
+     "kind": "new_dependency",
+     "name": "azure-identity",
+     "path": "examples/Python/ChatApp/requirements.txt",
+     "why": "adds package azure-identity; the issue does not name it"
+    },
+    {
+     "detail": [],
+     "kind": "new_dependency",
+     "name": "openai",
+     "path": "examples/Python/ChatApp/requirements.txt",
+     "why": "adds package openai; the issue does not name it"
+    },
+    {
+     "detail": [],
+     "kind": "ci_or_config",
+     "name": "examples/Python/ChatApp/pyproject.toml",
+     "path": "examples/Python/ChatApp/pyproject.toml",
+     "why": "changes lint settings (tool.black); the issue does not mention them"
+    },
+    {
+     "detail": [],
+     "kind": "ci_or_config",
+     "name": "pyproject.toml",
+     "path": "pyproject.toml",
+     "why": "changes lint settings (tool.black); the issue does not mention them"
+    }
+   ],
+   "files_changed": 6,
+   "files_sha256": "1c82bdba88fbb84e4c3a1ee1013f195ca6a0518328bcae09bb014e98d2c0a6d6",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/Azure/AppConfiguration/issues/1064"
+   ],
+   "license": "MIT",
+   "named_paths": [
+    "examples/Python/ChatApp/app.py",
+    "examples/Python/ChatApp/models.py"
+   ],
+   "pr_url": "https://github.com/Azure/AppConfiguration/pull/1065",
+   "repo": "Azure/AppConfiguration",
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "binary_or_large_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 17,
+   "files_sha256": "7824b3c80dbb7988431aec94943c62affbec8acb170c7dd70b5b936158202224",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/dotnet/fsharp/issues/18571"
+   ],
+   "license": "MIT",
+   "named_paths": [
+    "src/Compiler/Checking/Expressions/CheckExpressions.fs",
+    "src/Compiler/FSComp.txt",
+    "src/Compiler/xlf/FSComp.txt.cs.xlf",
+    "src/Compiler/xlf/FSComp.txt.de.xlf",
+    "src/Compiler/xlf/FSComp.txt.es.xlf",
+    "src/Compiler/xlf/FSComp.txt.fr.xlf",
+    "src/Compiler/xlf/FSComp.txt.it.xlf",
+    "src/Compiler/xlf/FSComp.txt.ja.xlf",
+    "src/Compiler/xlf/FSComp.txt.ko.xlf",
+    "src/Compiler/xlf/FSComp.txt.pl.xlf",
+    "src/Compiler/xlf/FSComp.txt.pt-BR.xlf",
+    "src/Compiler/xlf/FSComp.txt.ru.xlf",
+    "src/Compiler/xlf/FSComp.txt.tr.xlf",
+    "src/Compiler/xlf/FSComp.txt.zh-Hans.xlf",
+    "src/Compiler/xlf/FSComp.txt.zh-Hant.xlf",
+    "tests/FSharp.Compiler.ComponentTests/Attributes/AttributePrivateSetterTests.fs"
+   ],
+   "pr_url": "https://github.com/dotnet/fsharp/pull/18575",
+   "repo": "dotnet/fsharp",
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": false,
+   "counts": {
+    "binary_or_large_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 2,
+   "files_sha256": "51e3f5256363794e66b24f4ebda9d1e50e17e2587542e80c5829a3da87a750f1",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/kubernetes-sigs/sig-storage-local-static-provisioner/issues/504"
+   ],
+   "license": "Apache-2.0",
+   "named_paths": [],
+   "pr_url": "https://github.com/kubernetes-sigs/sig-storage-local-static-provisioner/pull/505",
+   "repo": "kubernetes-sigs/sig-storage-local-static-provisioner",
+   "unplaced": [
+    "pkg/discovery/discovery.go",
+    "pkg/discovery/volume_release_fix_test.go"
+   ]
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "binary_or_large_added": 0,
+    "ci_or_config": 2,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 2,
+    "tests_removed": 0
+   },
+   "extras": [
+    {
+     "detail": [],
+     "kind": "ci_or_config",
+     "name": ".github/workflows/package.yml",
+     "path": ".github/workflows/package.yml",
+     "why": "changes CI config; the issue does not mention it"
+    },
+    {
+     "detail": [],
+     "kind": "ci_or_config",
+     "name": ".github/workflows/python-publish.yml",
+     "path": ".github/workflows/python-publish.yml",
+     "why": "changes CI config; the issue does not mention it"
+    },
+    {
+     "detail": [],
+     "kind": "public_api_removed",
+     "name": "get_local_version",
+     "path": ".github/check_version.py",
+     "why": "removes public def/class get_local_version"
+    },
+    {
+     "detail": [],
+     "kind": "public_api_removed",
+     "name": "get_versions_from_pypi",
+     "path": ".github/check_version.py",
+     "why": "removes public def/class get_versions_from_pypi"
+    }
+   ],
+   "files_changed": 32,
+   "files_sha256": "7e3561211f252b34ddd81c80695d57f89f54b739b7e219b1118d505628cd447a",
+   "files_without_patch": 2,
+   "issue_urls": [
+    "https://github.com/mlco2/codecarbon/issues/904"
+   ],
+   "license": "MIT",
+   "named_paths": [
+    ".github/check_version.py",
+    ".github/pyproject_versions.py",
+    "codecarbon/_version.py"
+   ],
+   "pr_url": "https://github.com/mlco2/codecarbon/pull/905",
+   "repo": "mlco2/codecarbon",
+   "unplaced": [
+    "CONTRIBUTING.md"
+   ]
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "binary_or_large_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 2,
+   "files_sha256": "50af14de2562ae565278e54e3848a4486facf8f07f10b187cc9caa5093b992ca",
+   "files_without_patch": 1,
+   "issue_urls": [
+    "https://github.com/haydenbleasel/kibo/issues/7"
+   ],
+   "license": "MIT",
+   "named_paths": [
+    "packages/gantt/index.tsx"
+   ],
+   "pr_url": "https://github.com/haydenbleasel/kibo/pull/164",
+   "repo": "haydenbleasel/kibo",
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "binary_or_large_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 2,
+   "files_sha256": "a64d325e3a0f0a1927dbe01c7f67e829e89b3a55cf19d9354d07ac7872c44f26",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/taiga-family/taiga-ui/issues/11441"
+   ],
+   "license": "Apache-2.0",
+   "named_paths": [
+    "projects/kit/components/combo-box/combo-box.directive.ts",
+    "projects/kit/components/combo-box/test-stringify-update.spec.ts"
+   ],
+   "pr_url": "https://github.com/taiga-family/taiga-ui/pull/11485",
+   "repo": "taiga-family/taiga-ui",
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": false,
+   "counts": {
+    "binary_or_large_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 12,
+   "files_sha256": "8da67d7aec659ab5d3595b84f9d16dabe584b81cf7f4602bfc945748611f9a38",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/dotnet/Open-XML-SDK/issues/1931"
+   ],
+   "license": "MIT",
+   "named_paths": [],
+   "pr_url": "https://github.com/dotnet/Open-XML-SDK/pull/1932",
+   "repo": "dotnet/Open-XML-SDK",
+   "unplaced": [
+    "Directory.Packages.props",
+    "gen/DocumentFormat.OpenXml.Generator.Models/Converters/QualifiedNameConverter.cs",
+    "gen/DocumentFormat.OpenXml.Generator.Models/Converters/TypedQNameConverter.cs",
+    "gen/DocumentFormat.OpenXml.Generator.Models/DocumentFormat.OpenXml.Generator.Models.csproj",
+    "gen/DocumentFormat.OpenXml.Generator.Models/OpenXmlGeneratorDataSource.cs",
+    "gen/DocumentFormat.OpenXml.Generator/SourceGenerator.targets",
+    "test/Directory.Build.targets",
+    "test/DocumentFormat.OpenXml.Framework.Tests/TestUtility.cs",
+    "test/DocumentFormat.OpenXml.Packaging.Tests/ITestOutputHelperExtenstions.cs",
+    "test/DocumentFormat.OpenXml.Packaging.Tests/PartConstraintRuleTests.cs",
+    "test/DocumentFormat.OpenXml.Packaging.Tests/ParticleTests.cs",
+    "test/DocumentFormat.OpenXml.Packaging.Tests/data/PartConstraintData.json"
+   ]
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "binary_or_large_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 2,
+   "files_sha256": "d30faa357fbd12abbffc099c68d3cb63be7d8257bde22fc6f31d8dbbb782b1cf",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/Azure/azure-container-networking/issues/3746"
+   ],
+   "license": "MIT",
+   "named_paths": [
+    "cns/restserver/internalapi.go",
+    "cns/restserver/internalapi_test.go"
+   ],
+   "pr_url": "https://github.com/Azure/azure-container-networking/pull/3747",
+   "repo": "Azure/azure-container-networking",
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": false,
+   "counts": {
+    "binary_or_large_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 3,
+   "files_sha256": "ee3f55857ca70df4cbacc4722835f76bf9cab82941076a43c04b857816c77c5e",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/Azure/azure-sdk-for-js/issues/34529"
+   ],
+   "license": "MIT",
+   "named_paths": [],
+   "pr_url": "https://github.com/Azure/azure-sdk-for-js/pull/34607",
+   "repo": "Azure/azure-sdk-for-js",
+   "unplaced": [
+    "prepare-changelog.md"
+   ]
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "binary_or_large_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 3,
+   "files_sha256": "9a29f4e05c932cb0583eed226e2dec120abbe60e1bdc1be95ff0df8697120f33",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/dotnet/runtime/issues/115112"
+   ],
+   "license": "MIT",
+   "named_paths": [
+    "src/libraries/System.Net.Http.WinHttpHandler/src/Resources/Strings.resx",
+    "src/libraries/System.Net.Http.WinHttpHandler/src/System/Net/Http/WinHttpHandler.cs",
+    "src/libraries/System.Net.Http.WinHttpHandler/tests/UnitTests/WinHttpHandlerTest.cs"
+   ],
+   "pr_url": "https://github.com/dotnet/runtime/pull/116256",
+   "repo": "dotnet/runtime",
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "binary_or_large_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 1,
+   "files_sha256": "179c30c92cd6ba1bef4708a34326f2fabce569d82f52978cfa48a64e6af4d4df",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/Azure/azure-sdk-for-python/issues/41543"
+   ],
+   "license": "MIT",
+   "named_paths": [
+    "sdk/evaluation/azure-ai-evaluation/samples/evaluation_samples_evaluate.py"
+   ],
+   "pr_url": "https://github.com/Azure/azure-sdk-for-python/pull/41620",
+   "repo": "Azure/azure-sdk-for-python",
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": false,
+   "counts": {
+    "binary_or_large_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 1,
+   "files_sha256": "c06ae35e101a28e26af9f472d498b8d4905621809cf92d1ab30b08b1eae95c43",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/vapourismo/knx-go/issues/109"
+   ],
+   "license": "MIT",
+   "named_paths": [],
+   "pr_url": "https://github.com/vapourismo/knx-go/pull/110",
+   "repo": "vapourismo/knx-go",
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "binary_or_large_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 8,
+   "files_sha256": "c307675d149dce12eeef034e3e8400eb2bd6adf90cb29cfc220c4e95575f9c3f",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/Azure/azure-dev/issues/5238"
+   ],
+   "license": "MIT",
+   "named_paths": [
+    "cli/azd/cmd/infra.go",
+    "cli/azd/cmd/infra_generate.go",
+    "cli/azd/cmd/testdata/TestUsage-azd-infra-gen.snap",
+    "cli/azd/cmd/testdata/TestUsage-azd-infra-generate.snap",
+    "cli/azd/cmd/testdata/TestUsage-azd-infra-synth.snap",
+    "cli/azd/cmd/testdata/TestUsage-azd-infra.snap",
+    "cli/azd/resources/apphost/templates/next-steps.mdt",
+    "cli/azd/resources/scaffold/templates/next-steps-alpha.mdt"
+   ],
+   "pr_url": "https://github.com/Azure/azure-dev/pull/5256",
+   "repo": "Azure/azure-dev",
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "binary_or_large_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 4,
+   "files_sha256": "6848abeff8d48dacb21b0c6a7b5bf8fa20b5eae374e3c4bc7a91d78e6c8fcd6d",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/microsoft/vscode/issues/210520"
+   ],
+   "license": "MIT",
+   "named_paths": [
+    "src/vs/workbench/contrib/notebook/browser/viewModel/foldingModel.ts",
+    "src/vs/workbench/contrib/notebook/browser/viewModel/notebookOutlineEntryFactory.ts"
+   ],
+   "pr_url": "https://github.com/microsoft/vscode/pull/251150",
+   "repo": "microsoft/vscode",
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": false,
+   "counts": {
+    "binary_or_large_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 1,
+   "files_sha256": "5f3fd107da54f80223dbfd1f7a17dc4402776359482d592c5bc7e91eceb6d16a",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/zuplo/zudoku/issues/689"
+   ],
+   "license": "MIT",
+   "named_paths": [],
+   "pr_url": "https://github.com/zuplo/zudoku/pull/1137",
+   "repo": "zuplo/zudoku",
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "binary_or_large_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 1,
+   "files_sha256": "9c3fb1918b2bdac6e726393969eda06a6b1faf8da08fd5cc9c8518ebfc2aa2c1",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/Azure/terraform/issues/458"
+   ],
+   "license": "MIT",
+   "named_paths": [
+    "quickstart/101-azure-ai-foundry/main.tf"
+   ],
+   "pr_url": "https://github.com/Azure/terraform/pull/461",
+   "repo": "Azure/terraform",
+   "unplaced": []
+  },
+  {
+   "agent": "OpenAI_Codex",
+   "anchored": true,
+   "counts": {
+    "binary_or_large_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 4,
+   "files_sha256": "ac4acca59ed78c69af84e95bde88a7f10bde3ff22082c9a8b5942761dcaaa09e",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/hirosystems/explorer/issues/2215"
+   ],
+   "license": "MIT",
+   "named_paths": [
+    "src/app/_components/NetworkOverview/ChartTooltip.tsx",
+    "src/app/_components/NetworkOverview/NetworkOverview.tsx",
+    "src/app/_components/NetworkOverview/__tests__/ChartTooltip.test.tsx"
+   ],
+   "pr_url": "https://github.com/hirosystems/explorer/pull/2246",
+   "repo": "hirosystems/explorer",
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": false,
+   "counts": {
+    "binary_or_large_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 3,
+   "files_sha256": "e0ce1533c45b366b0ac766cf717328ca5aa644db50804eefb2e516e61fb4eaa7",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/microsoft/vstest/issues/4997"
+   ],
+   "license": "MIT",
+   "named_paths": [],
+   "pr_url": "https://github.com/microsoft/vstest/pull/15097",
+   "repo": "microsoft/vstest",
+   "unplaced": [
+    "global.json.backup",
+    "src/Microsoft.TestPlatform.CrossPlatEngine/Adapter/TestExecutionRecorder.cs",
+    "test/Microsoft.TestPlatform.CrossPlatEngine.UnitTests/Adapter/TestExecutionRecorderTests.cs"
+   ]
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "binary_or_large_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 8,
+   "files_sha256": "363e31b07cc67d2054e4e781371e48d12530061f1937c0c4e45a468d05ab9a15",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/microsoft/azure-devops-mcp/issues/183"
+   ],
+   "license": "MIT",
+   "named_paths": [
+    "src/tools/builds.ts",
+    "src/tools/releases.ts",
+    "test/src/tools/builds.test.ts"
+   ],
+   "pr_url": "https://github.com/microsoft/azure-devops-mcp/pull/248",
+   "repo": "microsoft/azure-devops-mcp",
+   "unplaced": [
+    "src/utils.ts"
+   ]
+  },
+  {
+   "agent": "Copilot",
+   "anchored": false,
+   "counts": {
+    "binary_or_large_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 12,
+   "files_sha256": "ff74fcf6cfb8798287b412c2a0a73785c34bd7d1e1297dd4cb0cf6d35c833b5d",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/mlflow/mlflow/issues/16471"
+   ],
+   "license": "Apache-2.0",
+   "named_paths": [],
+   "pr_url": "https://github.com/mlflow/mlflow/pull/16472",
+   "repo": "mlflow/mlflow",
+   "unplaced": [
+    "mlflow/models/python_api.py",
+    "mlflow/pyfunc/__init__.py",
+    "mlflow/pytorch/__init__.py",
+    "mlflow/pytorch/_lightning_autolog.py",
+    "mlflow/sklearn/__init__.py",
+    "mlflow/sklearn/utils.py",
+    "mlflow/tensorflow/__init__.py",
+    "mlflow/tensorflow/callback.py",
+    "mlflow/tracking/client.py",
+    "mlflow/utils/checkpoint_utils.py",
+    "tests/langgraph/sample_code/langgraph_with_autolog.py"
+   ]
+  },
+  {
+   "agent": "Copilot",
+   "anchored": false,
+   "counts": {
+    "binary_or_large_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 1,
+   "files_sha256": "faa236887a964a6011162b795d2ab35a63cf7a9b3e177fc38119b0e8309935e8",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/dotnet/aspire/issues/10416"
+   ],
+   "license": "MIT",
+   "named_paths": [],
+   "pr_url": "https://github.com/dotnet/aspire/pull/10520",
+   "repo": "dotnet/aspire",
+   "unplaced": [
+    "src/Aspire.Hosting.Azure.Storage/AzureStorageExtensions.cs"
+   ]
+  },
+  {
+   "agent": "OpenAI_Codex",
+   "anchored": true,
+   "counts": {
+    "binary_or_large_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 3,
+   "files_sha256": "7494b4cb8da458cf8740802929869d939050dc9f1a2caf0617b39d9319557d37",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/jlowin/fastmcp/issues/487"
+   ],
+   "license": "Apache-2.0",
+   "named_paths": [
+    "src/fastmcp/server/http.py",
+    "tests/server/test_app_state.py"
+   ],
+   "pr_url": "https://github.com/jlowin/fastmcp/pull/489",
+   "repo": "jlowin/fastmcp",
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "binary_or_large_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 16,
+   "files_sha256": "6c51b32517a54f297c6a02a22dc62ab0bd8c78aabab45a5e7b5c4a2b28a584be",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/Azure/azure-sdk-for-net/issues/51415"
+   ],
+   "license": "MIT",
+   "named_paths": [
+    "eng/packages/http-client-csharp-mgmt/generator/Azure.Generator.Management/src/Providers/OperationMethodProviders/ResourceOperationMethodProvider.cs",
+    "eng/packages/http-client-csharp-mgmt/generator/Azure.Generator.Management/src/Providers/ResourceClientProvider.cs",
+    "eng/packages/http-client-csharp-mgmt/generator/Azure.Generator.Management/src/Providers/ResourceCollectionClientProvider.cs",
+    "eng/packages/http-client-csharp-mgmt/generator/Azure.Generator.Management/src/Utilities/ResourceHelpers.cs",
+    "eng/packages/http-client-csharp-mgmt/generator/Azure.Generator.Management/test/Common/InputResourceData.cs",
+    "eng/packages/http-client-csharp-mgmt/generator/Azure.Generator.Management/test/Providers/ResourceCollectionClientProviderTests.cs",
+    "eng/packages/http-client-csharp-mgmt/generator/Azure.Generator.Management/test/Providers/TestData/ResourceCollectionClientProviderTests/Verify_CreateOrUpdateAsyncOperationMethod.cs",
+    "eng/packages/http-client-csharp-mgmt/generator/Azure.Generator.Management/test/Providers/TestData/ResourceCollectionClientProviderTests/Verify_CreateOrUpdateOperationMethod.cs",
+    "eng/packages/http-client-csharp-mgmt/generator/Azure.Generator.Management/test/TestData/ResourceCollectionClientProviderTests/Verify_CreateOrUpdateAsyncOperationMethod.cs",
+    "eng/packages/http-client-csharp-mgmt/generator/Azure.Generator.Management/test/TestData/ResourceCollectionClientProviderTests/Verify_CreateOrUpdateOperationMethod.cs",
+    "eng/packages/http-client-csharp-mgmt/generator/TestProjects/Local/Mgmt-TypeSpec/Configuration.json",
+    "eng/packages/http-client-csharp-mgmt/generator/TestProjects/Local/Mgmt-TypeSpec/src/Generated/RestOperations/ZoosRestOperations.cs",
+    "eng/packages/http-client-csharp-mgmt/generator/TestProjects/Local/Mgmt-TypeSpec/src/Generated/ZooCollection.cs",
+    "eng/packages/http-client-csharp-mgmt/generator/TestProjects/Local/Mgmt-TypeSpec/tspCodeModel.json",
+    "eng/packages/http-client-csharp-mgmt/generator/TestProjects/Local/Mgmt-TypeSpec/tspconfig.yaml",
+    "eng/packages/http-client-csharp-mgmt/generator/TestProjects/Local/Mgmt-TypeSpec/zoo.tsp"
+   ],
+   "pr_url": "https://github.com/Azure/azure-sdk-for-net/pull/51418",
+   "repo": "Azure/azure-sdk-for-net",
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "binary_or_large_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 1,
+   "files_sha256": "5e3aeda93c12081277aa4483476ed87558f0a26c09481fb73e248168fa987b97",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/prefix-dev/rattler-build/issues/1788"
+   ],
+   "license": "BSD-3-Clause",
+   "named_paths": [
+    "src/packaging/metadata.rs"
+   ],
+   "pr_url": "https://github.com/prefix-dev/rattler-build/pull/1799",
+   "repo": "prefix-dev/rattler-build",
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "binary_or_large_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 10,
+   "files_sha256": "8c79aafa6ca299137e2e3e3aac3d9ef4e5c83f37622de18ebc2bf5ef5b6f6592",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/Azure/azure-sdk-for-python/issues/33710"
+   ],
+   "license": "MIT",
+   "named_paths": [
+    "sdk/eventhub/azure-eventhub/samples/async_samples/send_async.py",
+    "sdk/eventhub/azure-eventhub/samples/sync_samples/send.py",
+    "sdk/servicebus/azure-servicebus/samples/async_samples/send_queue_async.py",
+    "sdk/servicebus/azure-servicebus/samples/async_samples/send_topic_async.py",
+    "sdk/servicebus/azure-servicebus/samples/sync_samples/send_queue.py",
+    "sdk/servicebus/azure-servicebus/samples/sync_samples/send_topic.py"
+   ],
+   "pr_url": "https://github.com/Azure/azure-sdk-for-python/pull/41463",
+   "repo": "Azure/azure-sdk-for-python",
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": false,
+   "counts": {
+    "binary_or_large_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 1,
+   "files_sha256": "94ec8ad6e594acad11f47d6e496757735929873474a2a7ecfcd3add1a52b2062",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/microsoft/vscode/issues/123448"
+   ],
+   "license": "MIT",
+   "named_paths": [],
+   "pr_url": "https://github.com/microsoft/vscode/pull/252340",
+   "repo": "microsoft/vscode",
+   "unplaced": [
+    "src/vs/editor/browser/services/hoverService/hoverWidget.ts"
+   ]
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "binary_or_large_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 9,
+   "files_sha256": "554738d1feab677031d3441ea56f4a8b56dfa9f004903d0e54934c0724a39f74",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/microsoft/Generative-AI-for-beginners-dotnet/issues/180"
+   ],
+   "license": "MIT",
+   "named_paths": [
+    "02-SetupDevEnvironment/getting-started-azure-openai.md",
+    "translations/de/02-SetupDevEnvironment/getting-started-azure-openai.md",
+    "translations/es/02-SetupDevEnvironment/getting-started-azure-openai.md",
+    "translations/fr/02-SetupDevEnvironment/getting-started-azure-openai.md",
+    "translations/ja/02-SetupDevEnvironment/getting-started-azure-openai.md",
+    "translations/ko/02-SetupDevEnvironment/getting-started-azure-openai.md",
+    "translations/pt/02-SetupDevEnvironment/getting-started-azure-openai.md",
+    "translations/tw/02-SetupDevEnvironment/getting-started-azure-openai.md",
+    "translations/zh/02-SetupDevEnvironment/getting-started-azure-openai.md"
+   ],
+   "pr_url": "https://github.com/microsoft/Generative-AI-for-beginners-dotnet/pull/181",
+   "repo": "microsoft/Generative-AI-for-beginners-dotnet",
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "binary_or_large_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 6,
+   "files_sha256": "971165081344c3ca9ada1218305456b89d76da089ed2e5a2a6f06d4e208c9dd4",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/microsoft/WinUI-Gallery/issues/1067"
+   ],
+   "license": "MIT",
+   "named_paths": [
+    "WinUIGallery/Samples/ControlPages/ContentDialogPage.xaml",
+    "WinUIGallery/Samples/ControlPages/ContentDialogPage.xaml.cs",
+    "WinUIGallery/Samples/SampleCode/ContentDialog/ContentDialogSample1_cs.txt",
+    "WinUIGallery/Samples/SampleCode/ContentDialog/ContentDialogSample2_cs.txt",
+    "WinUIGallery/Samples/SampleCode/ContentDialog/ContentDialogSample2_xaml.txt"
+   ],
+   "pr_url": "https://github.com/microsoft/WinUI-Gallery/pull/1978",
+   "repo": "microsoft/WinUI-Gallery",
+   "unplaced": [
+    "WinUIGallery/WinUIGallery.csproj"
+   ]
+  },
+  {
+   "agent": "Claude_Code",
+   "anchored": false,
+   "counts": {
+    "binary_or_large_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 30,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [
+    {
+     "detail": [],
+     "kind": "new_dependency",
+     "name": "tree-sitter-c",
+     "path": "Cargo.toml",
+     "why": "adds package tree-sitter-c; the issue does not name it"
+    },
+    {
+     "detail": [],
+     "kind": "new_dependency",
+     "name": "tree-sitter-c-sharp",
+     "path": "Cargo.toml",
+     "why": "adds package tree-sitter-c-sharp; the issue does not name it"
+    },
+    {
+     "detail": [],
+     "kind": "new_dependency",
+     "name": "tree-sitter-cpp",
+     "path": "Cargo.toml",
+     "why": "adds package tree-sitter-cpp; the issue does not name it"
+    },
+    {
+     "detail": [],
+     "kind": "new_dependency",
+     "name": "tree-sitter-go",
+     "path": "Cargo.toml",
+     "why": "adds package tree-sitter-go; the issue does not name it"
+    },
+    {
+     "detail": [],
+     "kind": "new_dependency",
+     "name": "tree-sitter-java",
+     "path": "Cargo.toml",
+     "why": "adds package tree-sitter-java; the issue does not name it"
+    },
+    {
+     "detail": [],
+     "kind": "new_dependency",
+     "name": "tree-sitter-php",
+     "path": "Cargo.toml",
+     "why": "adds package tree-sitter-php; the issue does not name it"
+    },
+    {
+     "detail": [],
+     "kind": "new_dependency",
+     "name": "tree-sitter-ruby",
+     "path": "Cargo.toml",
+     "why": "adds package tree-sitter-ruby; the issue does not name it"
+    },
+    {
+     "detail": [],
+     "kind": "new_dependency",
+     "name": "serde",
+     "path": "crates/core/Cargo.toml",
+     "why": "adds package serde; the issue does not name it"
+    },
+    {
+     "detail": [],
+     "kind": "new_dependency",
+     "name": "serde_json",
+     "path": "crates/core/Cargo.toml",
+     "why": "adds package serde_json; the issue does not name it"
+    },
+    {
+     "detail": [],
+     "kind": "new_dependency",
+     "name": "tree-sitter-c",
+     "path": "crates/core/Cargo.toml",
+     "why": "adds package tree-sitter-c; the issue does not name it"
+    },
+    {
+     "detail": [],
+     "kind": "new_dependency",
+     "name": "tree-sitter-c-sharp",
+     "path": "crates/core/Cargo.toml",
+     "why": "adds package tree-sitter-c-sharp; the issue does not name it"
+    },
+    {
+     "detail": [],
+     "kind": "new_dependency",
+     "name": "tree-sitter-cpp",
+     "path": "crates/core/Cargo.toml",
+     "why": "adds package tree-sitter-cpp; the issue does not name it"
+    },
+    {
+     "detail": [],
+     "kind": "new_dependency",
+     "name": "tree-sitter-go",
+     "path": "crates/core/Cargo.toml",
+     "why": "adds package tree-sitter-go; the issue does not name it"
+    },
+    {
+     "detail": [],
+     "kind": "new_dependency",
+     "name": "tree-sitter-java",
+     "path": "crates/core/Cargo.toml",
+     "why": "adds package tree-sitter-java; the issue does not name it"
+    },
+    {
+     "detail": [],
+     "kind": "new_dependency",
+     "name": "tree-sitter-ruby",
+     "path": "crates/core/Cargo.toml",
+     "why": "adds package tree-sitter-ruby; the issue does not name it"
+    },
+    {
+     "detail": [],
+     "kind": "new_dependency",
+     "name": "anyhow",
+     "path": "crates/similarity-generic/Cargo.toml",
+     "why": "adds package anyhow; the issue does not name it"
+    },
+    {
+     "detail": [],
+     "kind": "new_dependency",
+     "name": "assert_cmd",
+     "path": "crates/similarity-generic/Cargo.toml",
+     "why": "adds package assert_cmd; the issue does not name it"
+    },
+    {
+     "detail": [],
+     "kind": "new_dependency",
+     "name": "clap",
+     "path": "crates/similarity-generic/Cargo.toml",
+     "why": "adds package clap; the issue does not name it"
+    },
+    {
+     "detail": [],
+     "kind": "new_dependency",
+     "name": "once_cell",
+     "path": "crates/similarity-generic/Cargo.toml",
+     "why": "adds package once_cell; the issue does not name it"
+    },
+    {
+     "detail": [],
+     "kind": "new_dependency",
+     "name": "predicates",
+     "path": "crates/similarity-generic/Cargo.toml",
+     "why": "adds package predicates; the issue does not name it"
+    },
+    {
+     "detail": [],
+     "kind": "new_dependency",
+     "name": "serde",
+     "path": "crates/similarity-generic/Cargo.toml",
+     "why": "adds package serde; the issue does not name it"
+    },
+    {
+     "detail": [],
+     "kind": "new_dependency",
+     "name": "serde_json",
+     "path": "crates/similarity-generic/Cargo.toml",
+     "why": "adds package serde_json; the issue does not name it"
+    },
+    {
+     "detail": [],
+     "kind": "new_dependency",
+     "name": "similarity-core",
+     "path": "crates/similarity-generic/Cargo.toml",
+     "why": "adds package similarity-core; the issue does not name it"
+    },
+    {
+     "detail": [],
+     "kind": "new_dependency",
+     "name": "tempfile",
+     "path": "crates/similarity-generic/Cargo.toml",
+     "why": "adds package tempfile; the issue does not name it"
+    },
+    {
+     "detail": [],
+     "kind": "new_dependency",
+     "name": "tree-sitter-c",
+     "path": "crates/similarity-generic/Cargo.toml",
+     "why": "adds package tree-sitter-c; the issue does not name it"
+    },
+    {
+     "detail": [],
+     "kind": "new_dependency",
+     "name": "tree-sitter-c-sharp",
+     "path": "crates/similarity-generic/Cargo.toml",
+     "why": "adds package tree-sitter-c-sharp; the issue does not name it"
+    },
+    {
+     "detail": [],
+     "kind": "new_dependency",
+     "name": "tree-sitter-cpp",
+     "path": "crates/similarity-generic/Cargo.toml",
+     "why": "adds package tree-sitter-cpp; the issue does not name it"
+    },
+    {
+     "detail": [],
+     "kind": "new_dependency",
+     "name": "tree-sitter-go",
+     "path": "crates/similarity-generic/Cargo.toml",
+     "why": "adds package tree-sitter-go; the issue does not name it"
+    },
+    {
+     "detail": [],
+     "kind": "new_dependency",
+     "name": "tree-sitter-java",
+     "path": "crates/similarity-generic/Cargo.toml",
+     "why": "adds package tree-sitter-java; the issue does not name it"
+    },
+    {
+     "detail": [],
+     "kind": "new_dependency",
+     "name": "tree-sitter-ruby",
+     "path": "crates/similarity-generic/Cargo.toml",
+     "why": "adds package tree-sitter-ruby; the issue does not name it"
+    }
+   ],
+   "files_changed": 34,
+   "files_sha256": "ead57f51596db96b84407e92fe11d228f32def5d8f2dbdd97a4dc6aa514d265f",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/mizchi/similarity/issues/8"
+   ],
+   "license": "MIT",
+   "named_paths": [],
+   "pr_url": "https://github.com/mizchi/similarity/pull/13",
+   "repo": "mizchi/similarity",
+   "unplaced": [
+    "crates/core/src/ast_exchange.rs",
+    "crates/core/src/generic_parser_config.rs",
+    "crates/core/src/generic_tree_sitter_parser.rs",
+    "crates/core/src/language_parser.rs",
+    "crates/core/src/lib.rs",
+    "crates/similarity-generic/build.rs",
+    "crates/similarity-generic/examples/configs/custom-language-template.json",
+    "crates/similarity-generic/examples/configs/go.json",
+    "crates/similarity-generic/examples/sample.go",
+    "crates/similarity-generic/examples/usage.sh",
+    "crates/similarity-generic/language_configs/c.json",
+    "crates/similarity-generic/language_configs/cpp.json",
+    "crates/similarity-generic/language_configs/csharp.json",
+    "crates/similarity-generic/language_configs/go.json",
+    "crates/similarity-generic/language_configs/java.json",
+    "crates/similarity-generic/language_configs/ruby.json",
+    "crates/similarity-generic/src/main.rs",
+    "crates/similarity-generic/tests/c_detection_test.rs",
+    "crates/similarity-generic/tests/cpp_detection_test.rs",
+    "crates/similarity-generic/tests/csharp_detection_test.rs",
+    "crates/similarity-generic/tests/go_detection_test.rs",
+    "crates/similarity-generic/tests/java_detection_test.rs",
+    "crates/similarity-generic/tests/multi_language_test.rs",
+    "crates/similarity-generic/tests/ruby_detection_test.rs",
+    "crates/similarity-py/src/lib.rs",
+    "crates/similarity-py/src/python_parser.rs",
+    "crates/similarity-py/tests/similarity_detection_test.rs",
+    "crates/similarity-rs/src/rust_parser.rs",
+    "crates/similarity-ts/src/typescript_parser.rs"
+   ]
+  },
+  {
+   "agent": "Copilot",
+   "anchored": false,
+   "counts": {
+    "binary_or_large_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 4,
+   "files_sha256": "c5319bf62893cf6b7cb4d7b37f68534e114bc61031147edd2495b4d02507ed3a",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/estruyf/vscode-demo-time/issues/141"
+   ],
+   "license": "MIT",
+   "named_paths": [],
+   "pr_url": "https://github.com/estruyf/vscode-demo-time/pull/142",
+   "repo": "estruyf/vscode-demo-time",
+   "unplaced": [
+    "assets/styles/themes/frost.css",
+    "assets/styles/themes/quantum.css",
+    "src/services/DemoApi.ts"
+   ]
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "binary_or_large_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 3,
+   "files_sha256": "260ef62a12a9e603ea5779f0691114ea5edc312387d9ef7ce3875a53f1ca1476",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/streamich/memfs/issues/974"
+   ],
+   "license": "Apache-2.0",
+   "named_paths": [
+    "src/fsa-to-node/worker/FsaNodeSyncAdapterWorker.ts",
+    "src/fsa-to-node/worker/__tests__/FsaNodeSyncAdapterWorker.test.ts"
+   ],
+   "pr_url": "https://github.com/streamich/memfs/pull/1118",
+   "repo": "streamich/memfs",
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": false,
+   "counts": {
+    "binary_or_large_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 39,
+   "files_sha256": "84d0d98a418b55a85617607afc9ae81fd5334832c0d934ad04a1d7b0467df830",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/microsoft/openvmm/issues/300"
+   ],
+   "license": "MIT",
+   "named_paths": [],
+   "pr_url": "https://github.com/microsoft/openvmm/pull/1574",
+   "repo": "microsoft/openvmm",
+   "unplaced": [
+    "flowey/flowey_core/src/node.rs",
+    "openvmm/hvlite_core/src/worker/dispatch.rs",
+    "openvmm/openvmm_entry/src/cli_args.rs",
+    "openvmm/openvmm_entry/src/ttrpc/mod.rs",
+    "support/mesh/mesh_build/src/lib.rs",
+    "support/mesh/mesh_node/src/local_node.rs",
+    "support/mesh/mesh_remote/src/unix_node.rs",
+    "support/mesh/src/lib.rs",
+    "support/pal/src/windows.rs",
+    "vm/acpi_spec/src/lib.rs",
+    "vm/devices/firmware/firmware_uefi/src/service/diagnostics.rs",
+    "vm/devices/firmware/firmware_uefi/src/service/nvram/spec_services/mod.rs",
+    "vm/devices/firmware/firmware_uefi/src/service/nvram/spec_services/nvram_services_ext.rs",
+    "vm/devices/firmware/uefi_specs/src/hyperv/crypto.rs",
+    "vm/devices/firmware/uefi_specs/src/hyperv/nvram.rs",
+    "vm/devices/firmware/uefi_specs/src/lib.rs",
+    "vm/devices/net/linux_net_bindings/src/lib.rs",
+    "vm/devices/storage/disk_nvme/nvme_driver/src/registers.rs",
+    "vm/devices/storage/ide/src/protocol.rs",
+    "vm/devices/support/fs/lx/src/lib.rs",
+    "vm/devices/support/fs/lxutil/src/windows/api.rs",
+    "vm/devices/support/fs/lxutil/src/windows/mod.rs",
+    "vm/devices/support/fs/lxutil/src/windows/util.rs",
+    "vm/devices/support/fs/plan9/src/protocol/macros.rs",
+    "vm/devices/tpm/src/tpm20proto.rs",
+    "vm/devices/uidevices/src/video/protocol.rs",
+    "vm/devices/virtio/virtio/src/spec.rs",
+    "vm/loader/loader_defs/src/linux.rs",
+    "vm/loader/page_table/src/aarch64.rs",
+    "vm/vhd1_defs/src/lib.rs",
+    "vm/vmgs/vmgs/src/vmgs_impl.rs",
+    "vm/whp/src/api.rs",
+    "vm/whp/src/lib.rs",
+    "vm/whp/src/partition_prop.rs",
+    "vmm_core/virt/src/state.rs",
+    "vmm_core/vmotherboard/src/base_chipset.rs",
+    "workers/debug_worker/src/gdb/arch/x86/mod.rs",
+    "workers/vnc_worker/vnc/src/rfb.rs"
+   ]
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "binary_or_large_added": 1,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [
+    {
+     "detail": [],
+     "kind": "binary_or_large_added",
+     "name": ".turbo/cache/7b794222d2140ddb.tar.zst",
+     "path": ".turbo/cache/7b794222d2140ddb.tar.zst",
+     "why": "adds a file GitHub shows no diff for (+0 -0, extension zst): binary or empty; its size is not in the file list"
+    }
+   ],
+   "files_changed": 1117,
+   "files_sha256": "731563400576343451bbf774bf2f701ce66b742d2c4736e3bf02bf8055b804ed",
+   "files_without_patch": 6,
+   "issue_urls": [
+    "https://github.com/microsoft/genaiscript/issues/1725"
+   ],
+   "license": "MIT",
+   "named_paths": [
+    "packages/core/.tshy-build/esm/image.d.ts",
+    "packages/core/.tshy-build/esm/image.d.ts.map",
+    "packages/core/.tshy-build/esm/image.js",
+    "packages/core/.tshy-build/esm/image.js.map",
+    "packages/core/test/generateimage.test.ts"
+   ],
+   "pr_url": "https://github.com/microsoft/genaiscript/pull/1740",
+   "repo": "microsoft/genaiscript",
+   "unplaced": [
+    ".aider.conf.yml",
+    ".augment/rules/ruler_augment_instructions.md",
+    ".clinerules",
+    ".cursor/mcp.json",
+    ".cursor/rules/ruler_cursor_instructions.mdc",
+    ".gemini/settings.json",
+    ".github/copilot-instructions.md.bak",
+    ".idx/airules.md",
+    ".junie/guidelines.md",
+    ".mcp.json",
+    ".openhands/config.toml",
+    ".openhands/microagents/repo.md",
+    ".turbo/cache/7b794222d2140ddb-meta.json",
+    ".vscode/settings.json.bak",
+    ".windsurf/rules/ruler_windsurf_instructions.md",
+    "AGENTS.md",
+    "CLAUDE.md",
+    "GEMINI.md",
+    "claude_desktop_config.json",
+    "packages/runtime/src/runtime.ts",
+    "ruler_aider_instructions.md",
+    "samples/sample/genaisrc/image-backward-compat.genai.mjs",
+    "samples/sample/genaisrc/image-edit.genai.mjs",
+    "samples/sample/genaisrc/image-integration-test.genai.mjs",
+    "samples/sample/genaisrc/image-multiple.genai.mjs",
+    "samples/sample/genaisrc/image-variations.genai.mjs",
+    "tools/eslint-plugin-genaiscript/.tshy-build/.tshy/commonjs.tsbuildinfo",
+    "tools/eslint-plugin-genaiscript/.tshy-build/.tshy/esm.tsbuildinfo",
+    "tools/eslint-plugin-genaiscript/.tshy-build/commonjs/configs/eslint-customized.d.ts",
+    "tools/eslint-plugin-genaiscript/.tshy-build/commonjs/configs/eslint-customized.d.ts.map",
+    "tools/eslint-plugin-genaiscript/.tshy-build/commonjs/configs/eslint-customized.js",
+    "tools/eslint-plugin-genaiscript/.tshy-build/commonjs/configs/eslint-customized.js.map",
+    "tools/eslint-plugin-genaiscript/.tshy-build/commonjs/configs/genaiscript-customized.d.ts",
+    "tools/eslint-plugin-genaiscript/.tshy-build/commonjs/configs/genaiscript-customized.d.ts.map",
+    "tools/eslint-plugin-genaiscript/.tshy-build/commonjs/configs/genaiscript-customized.js",
+    "tools/eslint-plugin-genaiscript/.tshy-build/commonjs/configs/genaiscript-customized.js.map",
+    "tools/eslint-plugin-genaiscript/.tshy-build/commonjs/configs/index.d.ts",
+    "tools/eslint-plugin-genaiscript/.tshy-build/commonjs/configs/index.d.ts.map",
+    "tools/eslint-plugin-genaiscript/.tshy-build/commonjs/configs/index.js",
+    "tools/eslint-plugin-genaiscript/.tshy-build/commonjs/configs/index.js.map",
+    "tools/eslint-plugin-genaiscript/.tshy-build/commonjs/index.d.ts",
+    "tools/eslint-plugin-genaiscript/.tshy-build/commonjs/index.d.ts.map",
+    "tools/eslint-plugin-genaiscript/.tshy-build/commonjs/index.js",
+    "tools/eslint-plugin-genaiscript/.tshy-build/commonjs/index.js.map",
+    "tools/eslint-plugin-genaiscript/.tshy-build/commonjs/processors/index.d.ts",
+    "tools/eslint-plugin-genaiscript/.tshy-build/commonjs/processors/index.d.ts.map",
+    "tools/eslint-plugin-genaiscript/.tshy-build/commonjs/processors/index.js",
+    "tools/eslint-plugin-genaiscript/.tshy-build/commonjs/processors/index.js.map",
+    "tools/eslint-plugin-genaiscript/.tshy-build/commonjs/rules/github-source-headers.d.ts",
+    "tools/eslint-plugin-genaiscript/.tshy-build/commonjs/rules/github-source-headers.d.ts.map",
+    "tools/eslint-plugin-genaiscript/.tshy-build/commonjs/rules/github-source-headers.js",
+    "tools/eslint-plugin-genaiscript/.tshy-build/commonjs/rules/github-source-headers.js.map",
+    "tools/eslint-plugin-genaiscript/.tshy-build/commonjs/rules/index.d.ts",
+    "tools/eslint-plugin-genaiscript/.tshy-build/commonjs/rules/index.d.ts.map",
+    "tools/eslint-plugin-genaiscript/.tshy-build/commonjs/rules/index.js",
+    "tools/eslint-plugin-genaiscript/.tshy-build/commonjs/rules/index.js.map",
+    "tools/eslint-plugin-genaiscript/.tshy-build/commonjs/rules/ts-package-json-author.d.ts",
+    "tools/eslint-plugin-genaiscript/.tshy-build/commonjs/rules/ts-package-json-author.d.ts.map",
+    "tools/eslint-plugin-genaiscript/.tshy-build/commonjs/rules/ts-package-json-author.js",
+    "tools/eslint-plugin-genaiscript/.tshy-build/commonjs/rules/ts-package-json-author.js.map",
+    "tools/eslint-plugin-genaiscript/.tshy-build/commonjs/rules/ts-package-json-bugs.d.ts",
+    "tools/eslint-plugin-genaiscript/.tshy-build/commonjs/rules/ts-package-json-bugs.d.ts.map",
+    "tools/eslint-plugin-genaiscript/.tshy-build/commonjs/rules/ts-package-json-bugs.js",
+    "tools/eslint-plugin-genaiscript/.tshy-build/commonjs/rules/ts-package-json-bugs.js.map",
+    "tools/eslint-plugin-genaiscript/.tshy-build/commonjs/rules/ts-package-json-engine-is-present.d.ts",
+    "tools/eslint-plugin-genaiscript/.tshy-build/commonjs/rules/ts-package-json-engine-is-present.d.ts.map",
+    "tools/eslint-plugin-genaiscript/.tshy-build/commonjs/rules/ts-package-json-engine-is-present.js",
+    "tools/eslint-plugin-genaiscript/.tshy-build/commonjs/rules/ts-package-json-engine-is-present.js.map",
+    "tools/eslint-plugin-genaiscript/.tshy-build/commonjs/rules/ts-package-json-homepage.d.ts",
+    "tools/eslint-plugin-genaiscript/.tshy-build/commonjs/rules/ts-package-json-homepage.d.ts.map",
+    "tools/eslint-plugin-genaiscript/.tshy-build/commonjs/rules/ts-package-json-homepage.js",
+    "tools/eslint-plugin-genaiscript/.tshy-build/commonjs/rules/ts-package-json-homepage.js.map",
+    "tools/eslint-plugin-genaiscript/.tshy-build/commonjs/rules/ts-package-json-license.d.ts",
+    "tools/eslint-plugin-genaiscript/.tshy-build/commonjs/rules/ts-package-json-license.d.ts.map",
+    "tools/eslint-plugin-genaiscript/.tshy-build/commonjs/rules/ts-package-json-license.js",
+    "tools/eslint-plugin-genaiscript/.tshy-build/commonjs/rules/ts-package-json-license.js.map",
+    "tools/eslint-plugin-genaiscript/.tshy-build/commonjs/rules/ts-package-json-repo.d.ts",
+    "tools/eslint-plugin-genaiscript/.tshy-build/commonjs/rules/ts-package-json-repo.d.ts.map",
+    "tools/eslint-plugin-genaiscript/.tshy-build/commonjs/rules/ts-package-json-repo.js",
+    "tools/eslint-plugin-genaiscript/.tshy-build/commonjs/rules/ts-package-json-repo.js.map",
+    "tools/eslint-plugin-genaiscript/.tshy-build/commonjs/rules/ts-versioning-semver.d.ts",
+    "tools/eslint-plugin-genaiscript/.tshy-build/commonjs/rules/ts-versioning-semver.d.ts.map",
+    "tools/eslint-plugin-genaiscript/.tshy-build/commonjs/rules/ts-versioning-semver.js",
+    "tools/eslint-plugin-genaiscript/.tshy-build/commonjs/rules/ts-versioning-semver.js.map",
+    "tools/eslint-plugin-genaiscript/.tshy-build/commonjs/utils/constants.d.ts",
+    "tools/eslint-plugin-genaiscript/.tshy-build/commonjs/utils/constants.d.ts.map",
+    "tools/eslint-plugin-genaiscript/.tshy-build/commonjs/utils/constants.js",
+    "tools/eslint-plugin-genaiscript/.tshy-build/commonjs/utils/constants.js.map",
+    "tools/eslint-plugin-genaiscript/.tshy-build/commonjs/utils/ruleCreator.d.ts",
+    "tools/eslint-plugin-genaiscript/.tshy-build/commonjs/utils/ruleCreator.d.ts.map",
+    "tools/eslint-plugin-genaiscript/.tshy-build/commonjs/utils/ruleCreator.js",
+    "tools/eslint-plugin-genaiscript/.tshy-build/commonjs/utils/ruleCreator.js.map",
+    "tools/eslint-plugin-genaiscript/.tshy-build/commonjs/utils/verifiers.d.ts",
+    "tools/eslint-plugin-genaiscript/.tshy-build/commonjs/utils/verifiers.d.ts.map",
+    "tools/eslint-plugin-genaiscript/.tshy-build/commonjs/utils/verifiers.js",
+    "tools/eslint-plugin-genaiscript/.tshy-build/commonjs/utils/verifiers.js.map",
+    "tools/eslint-plugin-genaiscript/.tshy-build/esm/configs/eslint-customized.d.ts",
+    "tools/eslint-plugin-genaiscript/.tshy-build/esm/configs/eslint-customized.d.ts.map",
+    "tools/eslint-plugin-genaiscript/.tshy-build/esm/configs/eslint-customized.js",
+    "tools/eslint-plugin-genaiscript/.tshy-build/esm/configs/eslint-customized.js.map",
+    "tools/eslint-plugin-genaiscript/.tshy-build/esm/configs/genaiscript-customized.d.ts",
+    "tools/eslint-plugin-genaiscript/.tshy-build/esm/configs/genaiscript-customized.d.ts.map",
+    "tools/eslint-plugin-genaiscript/.tshy-build/esm/configs/genaiscript-customized.js",
+    "tools/eslint-plugin-genaiscript/.tshy-build/esm/configs/genaiscript-customized.js.map",
+    "tools/eslint-plugin-genaiscript/.tshy-build/esm/configs/index.d.ts",
+    "tools/eslint-plugin-genaiscript/.tshy-build/esm/configs/index.d.ts.map",
+    "tools/eslint-plugin-genaiscript/.tshy-build/esm/configs/index.js",
+    "tools/eslint-plugin-genaiscript/.tshy-build/esm/configs/index.js.map",
+    "tools/eslint-plugin-genaiscript/.tshy-build/esm/index.d.ts",
+    "tools/eslint-plugin-genaiscript/.tshy-build/esm/index.d.ts.map",
+    "tools/eslint-plugin-genaiscript/.tshy-build/esm/index.js",
+    "tools/eslint-plugin-genaiscript/.tshy-build/esm/index.js.map",
+    "tools/eslint-plugin-genaiscript/.tshy-build/esm/processors/index.d.ts",
+    "tools/eslint-plugin-genaiscript/.tshy-build/esm/processors/index.d.ts.map",
+    "tools/eslint-plugin-genaiscript/.tshy-build/esm/processors/index.js",
+    "tools/eslint-plugin-genaiscript/.tshy-build/esm/processors/index.js.map",
+    "tools/eslint-plugin-genaiscript/.tshy-build/esm/rules/github-source-headers.d.ts",
+    "tools/eslint-plugin-genaiscript/.tshy-build/esm/rules/github-source-headers.d.ts.map",
+    "tools/eslint-plugin-genaiscript/.tshy-build/esm/rules/github-source-headers.js",
+    "tools/eslint-plugin-genaiscript/.tshy-build/esm/rules/github-source-headers.js.map",
+    "tools/eslint-plugin-genaiscript/.tshy-build/esm/rules/index.d.ts",
+    "tools/eslint-plugin-genaiscript/.tshy-build/esm/rules/index.d.ts.map",
+    "tools/eslint-plugin-genaiscript/.tshy-build/esm/rules/index.js",
+    "tools/eslint-plugin-genaiscript/.tshy-build/esm/rules/index.js.map",
+    "tools/eslint-plugin-genaiscript/.tshy-build/esm/rules/ts-package-json-author.d.ts",
+    "tools/eslint-plugin-genaiscript/.tshy-build/esm/rules/ts-package-json-author.d.ts.map",
+    "tools/eslint-plugin-genaiscript/.tshy-build/esm/rules/ts-package-json-author.js",
+    "tools/eslint-plugin-genaiscript/.tshy-build/esm/rules/ts-package-json-author.js.map",
+    "tools/eslint-plugin-genaiscript/.tshy-build/esm/rules/ts-package-json-bugs.d.ts",
+    "tools/eslint-plugin-genaiscript/.tshy-build/esm/rules/ts-package-json-bugs.d.ts.map",
+    "tools/eslint-plugin-genaiscript/.tshy-build/esm/rules/ts-package-json-bugs.js",
+    "tools/eslint-plugin-genaiscript/.tshy-build/esm/rules/ts-package-json-bugs.js.map",
+    "tools/eslint-plugin-genaiscript/.tshy-build/esm/rules/ts-package-json-engine-is-present.d.ts",
+    "tools/eslint-plugin-genaiscript/.tshy-build/esm/rules/ts-package-json-engine-is-present.d.ts.map",
+    "tools/eslint-plugin-genaiscript/.tshy-build/esm/rules/ts-package-json-engine-is-present.js",
+    "tools/eslint-plugin-genaiscript/.tshy-build/esm/rules/ts-package-json-engine-is-present.js.map",
+    "tools/eslint-plugin-genaiscript/.tshy-build/esm/rules/ts-package-json-homepage.d.ts",
+    "tools/eslint-plugin-genaiscript/.tshy-build/esm/rules/ts-package-json-homepage.d.ts.map",
+    "tools/eslint-plugin-genaiscript/.tshy-build/esm/rules/ts-package-json-homepage.js",
+    "tools/eslint-plugin-genaiscript/.tshy-build/esm/rules/ts-package-json-homepage.js.map",
+    "tools/eslint-plugin-genaiscript/.tshy-build/esm/rules/ts-package-json-license.d.ts",
+    "tools/eslint-plugin-genaiscript/.tshy-build/esm/rules/ts-package-json-license.d.ts.map",
+    "tools/eslint-plugin-genaiscript/.tshy-build/esm/rules/ts-package-json-license.js",
+    "tools/eslint-plugin-genaiscript/.tshy-build/esm/rules/ts-package-json-license.js.map",
+    "tools/eslint-plugin-genaiscript/.tshy-build/esm/rules/ts-package-json-repo.d.ts",
+    "tools/eslint-plugin-genaiscript/.tshy-build/esm/rules/ts-package-json-repo.d.ts.map",
+    "tools/eslint-plugin-genaiscript/.tshy-build/esm/rules/ts-package-json-repo.js",
+    "tools/eslint-plugin-genaiscript/.tshy-build/esm/rules/ts-package-json-repo.js.map",
+    "tools/eslint-plugin-genaiscript/.tshy-build/esm/rules/ts-versioning-semver.d.ts",
+    "tools/eslint-plugin-genaiscript/.tshy-build/esm/rules/ts-versioning-semver.d.ts.map",
+    "tools/eslint-plugin-genaiscript/.tshy-build/esm/rules/ts-versioning-semver.js",
+    "tools/eslint-plugin-genaiscript/.tshy-build/esm/rules/ts-versioning-semver.js.map",
+    "tools/eslint-plugin-genaiscript/.tshy-build/esm/utils/constants.d.ts",
+    "tools/eslint-plugin-genaiscript/.tshy-build/esm/utils/constants.d.ts.map",
+    "tools/eslint-plugin-genaiscript/.tshy-build/esm/utils/constants.js",
+    "tools/eslint-plugin-genaiscript/.tshy-build/esm/utils/constants.js.map",
+    "tools/eslint-plugin-genaiscript/.tshy-build/esm/utils/ruleCreator.d.ts",
+    "tools/eslint-plugin-genaiscript/.tshy-build/esm/utils/ruleCreator.d.ts.map",
+    "tools/eslint-plugin-genaiscript/.tshy-build/esm/utils/ruleCreator.js",
+    "tools/eslint-plugin-genaiscript/.tshy-build/esm/utils/ruleCreator.js.map",
+    "tools/eslint-plugin-genaiscript/.tshy-build/esm/utils/verifiers.d.ts",
+    "tools/eslint-plugin-genaiscript/.tshy-build/esm/utils/verifiers.d.ts.map",
+    "tools/eslint-plugin-genaiscript/.tshy-build/esm/utils/verifiers.js",
+    "tools/eslint-plugin-genaiscript/.tshy-build/esm/utils/verifiers.js.map",
+    "tools/eslint-plugin-genaiscript/.tshy/build.json",
+    "tools/eslint-plugin-genaiscript/.tshy/commonjs.json",
+    "tools/eslint-plugin-genaiscript/.tshy/esm.json",
+    "tools/eslint-plugin-genaiscript/.turbo/turbo-build.log",
+    "tools/eslint-plugin-genaiscript/dist/commonjs/configs/eslint-customized.d.ts",
+    "tools/eslint-plugin-genaiscript/dist/commonjs/configs/eslint-customized.d.ts.map",
+    "tools/eslint-plugin-genaiscript/dist/commonjs/configs/eslint-customized.js",
+    "tools/eslint-plugin-genaiscript/dist/commonjs/configs/eslint-customized.js.map",
+    "tools/eslint-plugin-genaiscript/dist/commonjs/configs/genaiscript-customized.d.ts",
+    "tools/eslint-plugin-genaiscript/dist/commonjs/configs/genaiscript-customized.d.ts.map",
+    "tools/eslint-plugin-genaiscript/dist/commonjs/configs/genaiscript-customized.js",
+    "tools/eslint-plugin-genaiscript/dist/commonjs/configs/genaiscript-customized.js.map",
+    "tools/eslint-plugin-genaiscript/dist/commonjs/configs/index.d.ts",
+    "tools/eslint-plugin-genaiscript/dist/commonjs/configs/index.d.ts.map",
+    "tools/eslint-plugin-genaiscript/dist/commonjs/configs/index.js",
+    "tools/eslint-plugin-genaiscript/dist/commonjs/configs/index.js.map",
+    "tools/eslint-plugin-genaiscript/dist/commonjs/index.d.ts",
+    "tools/eslint-plugin-genaiscript/dist/commonjs/index.d.ts.map",
+    "tools/eslint-plugin-genaiscript/dist/commonjs/index.js",
+    "tools/eslint-plugin-genaiscript/dist/commonjs/index.js.map",
+    "tools/eslint-plugin-genaiscript/dist/commonjs/processors/index.d.ts",
+    "tools/eslint-plugin-genaiscript/dist/commonjs/processors/index.d.ts.map",
+    "tools/eslint-plugin-genaiscript/dist/commonjs/processors/index.js",
+    "tools/eslint-plugin-genaiscript/dist/commonjs/processors/index.js.map",
+    "tools/eslint-plugin-genaiscript/dist/commonjs/rules/github-source-headers.d.ts",
+    "tools/eslint-plugin-genaiscript/dist/commonjs/rules/github-source-headers.d.ts.map",
+    "tools/eslint-plugin-genaiscript/dist/commonjs/rules/github-source-headers.js",
+    "tools/eslint-plugin-genaiscript/dist/commonjs/rules/github-source-headers.js.map",
+    "tools/eslint-plugin-genaiscript/dist/commonjs/rules/index.d.ts",
+    "tools/eslint-plugin-genaiscript/dist/commonjs/rules/index.d.ts.map",
+    "tools/eslint-plugin-genaiscript/dist/commonjs/rules/index.js",
+    "tools/eslint-plugin-genaiscript/dist/commonjs/rules/index.js.map",
+    "tools/eslint-plugin-genaiscript/dist/commonjs/rules/ts-package-json-author.d.ts",
+    "tools/eslint-plugin-genaiscript/dist/commonjs/rules/ts-package-json-author.d.ts.map",
+    "tools/eslint-plugin-genaiscript/dist/commonjs/rules/ts-package-json-author.js",
+    "tools/eslint-plugin-genaiscript/dist/commonjs/rules/ts-package-json-author.js.map",
+    "tools/eslint-plugin-genaiscript/dist/commonjs/rules/ts-package-json-bugs.d.ts",
+    "tools/eslint-plugin-genaiscript/dist/commonjs/rules/ts-package-json-bugs.d.ts.map",
+    "tools/eslint-plugin-genaiscript/dist/commonjs/rules/ts-package-json-bugs.js",
+    "tools/eslint-plugin-genaiscript/dist/commonjs/rules/ts-package-json-bugs.js.map",
+    "tools/eslint-plugin-genaiscript/dist/commonjs/rules/ts-package-json-engine-is-present.d.ts",
+    "tools/eslint-plugin-genaiscript/dist/commonjs/rules/ts-package-json-engine-is-present.d.ts.map",
+    "tools/eslint-plugin-genaiscript/dist/commonjs/rules/ts-package-json-engine-is-present.js",
+    "tools/eslint-plugin-genaiscript/dist/commonjs/rules/ts-package-json-engine-is-present.js.map",
+    "tools/eslint-plugin-genaiscript/dist/commonjs/rules/ts-package-json-homepage.d.ts",
+    "tools/eslint-plugin-genaiscript/dist/commonjs/rules/ts-package-json-homepage.d.ts.map",
+    "tools/eslint-plugin-genaiscript/dist/commonjs/rules/ts-package-json-homepage.js",
+    "tools/eslint-plugin-genaiscript/dist/commonjs/rules/ts-package-json-homepage.js.map",
+    "tools/eslint-plugin-genaiscript/dist/commonjs/rules/ts-package-json-license.d.ts",
+    "tools/eslint-plugin-genaiscript/dist/commonjs/rules/ts-package-json-license.d.ts.map",
+    "tools/eslint-plugin-genaiscript/dist/commonjs/rules/ts-package-json-license.js",
+    "tools/eslint-plugin-genaiscript/dist/commonjs/rules/ts-package-json-license.js.map",
+    "tools/eslint-plugin-genaiscript/dist/commonjs/rules/ts-package-json-repo.d.ts",
+    "tools/eslint-plugin-genaiscript/dist/commonjs/rules/ts-package-json-repo.d.ts.map",
+    "tools/eslint-plugin-genaiscript/dist/commonjs/rules/ts-package-json-repo.js",
+    "tools/eslint-plugin-genaiscript/dist/commonjs/rules/ts-package-json-repo.js.map",
+    "tools/eslint-plugin-genaiscript/dist/commonjs/rules/ts-versioning-semver.d.ts",
+    "tools/eslint-plugin-genaiscript/dist/commonjs/rules/ts-versioning-semver.d.ts.map",
+    "tools/eslint-plugin-genaiscript/dist/commonjs/rules/ts-versioning-semver.js",
+    "tools/eslint-plugin-genaiscript/dist/commonjs/rules/ts-versioning-semver.js.map",
+    "tools/eslint-plugin-genaiscript/dist/commonjs/utils/constants.d.ts",
+    "tools/eslint-plugin-genaiscript/dist/commonjs/utils/constants.d.ts.map",
+    "tools/eslint-plugin-genaiscript/dist/commonjs/utils/constants.js",
+    "tools/eslint-plugin-genaiscript/dist/commonjs/utils/constants.js.map",
+    "tools/eslint-plugin-genaiscript/dist/commonjs/utils/ruleCreator.d.ts",
+    "tools/eslint-plugin-genaiscript/dist/commonjs/utils/ruleCreator.d.ts.map",
+    "tools/eslint-plugin-genaiscript/dist/commonjs/utils/ruleCreator.js",
+    "tools/eslint-plugin-genaiscript/dist/commonjs/utils/ruleCreator.js.map",
+    "tools/eslint-plugin-genaiscript/dist/commonjs/utils/verifiers.d.ts",
+    "tools/eslint-plugin-genaiscript/dist/commonjs/utils/verifiers.d.ts.map",
+    "tools/eslint-plugin-genaiscript/dist/commonjs/utils/verifiers.js",
+    "tools/eslint-plugin-genaiscript/dist/commonjs/utils/verifiers.js.map",
+    "tools/eslint-plugin-genaiscript/dist/esm/configs/eslint-customized.d.ts",
+    "tools/eslint-plugin-genaiscript/dist/esm/configs/eslint-customized.d.ts.map",
+    "tools/eslint-plugin-genaiscript/dist/esm/configs/eslint-customized.js",
+    "tools/eslint-plugin-genaiscript/dist/esm/configs/eslint-customized.js.map",
+    "tools/eslint-plugin-genaiscript/dist/esm/configs/genaiscript-customized.d.ts",
+    "tools/eslint-plugin-genaiscript/dist/esm/configs/genaiscript-customized.d.ts.map",
+    "tools/eslint-plugin-genaiscript/dist/esm/configs/genaiscript-customized.js",
+    "tools/eslint-plugin-genaiscript/dist/esm/configs/genaiscript-customized.js.map",
+    "tools/eslint-plugin-genaiscript/dist/esm/configs/index.d.ts",
+    "tools/eslint-plugin-genaiscript/dist/esm/configs/index.d.ts.map",
+    "tools/eslint-plugin-genaiscript/dist/esm/configs/index.js",
+    "tools/eslint-plugin-genaiscript/dist/esm/configs/index.js.map",
+    "tools/eslint-plugin-genaiscript/dist/esm/index.d.ts",
+    "tools/eslint-plugin-genaiscript/dist/esm/index.d.ts.map",
+    "tools/eslint-plugin-genaiscript/dist/esm/index.js",
+    "tools/eslint-plugin-genaiscript/dist/esm/index.js.map",
+    "tools/eslint-plugin-genaiscript/dist/esm/processors/index.d.ts",
+    "tools/eslint-plugin-genaiscript/dist/esm/processors/index.d.ts.map",
+    "tools/eslint-plugin-genaiscript/dist/esm/processors/index.js",
+    "tools/eslint-plugin-genaiscript/dist/esm/processors/index.js.map",
+    "tools/eslint-plugin-genaiscript/dist/esm/rules/github-source-headers.d.ts",
+    "tools/eslint-plugin-genaiscript/dist/esm/rules/github-source-headers.d.ts.map",
+    "tools/eslint-plugin-genaiscript/dist/esm/rules/github-source-headers.js",
+    "tools/eslint-plugin-genaiscript/dist/esm/rules/github-source-headers.js.map",
+    "tools/eslint-plugin-genaiscript/dist/esm/rules/index.d.ts",
+    "tools/eslint-plugin-genaiscript/dist/esm/rules/index.d.ts.map",
+    "tools/eslint-plugin-genaiscript/dist/esm/rules/index.js",
+    "tools/eslint-plugin-genaiscript/dist/esm/rules/index.js.map",
+    "tools/eslint-plugin-genaiscript/dist/esm/rules/ts-package-json-author.d.ts",
+    "tools/eslint-plugin-genaiscript/dist/esm/rules/ts-package-json-author.d.ts.map",
+    "tools/eslint-plugin-genaiscript/dist/esm/rules/ts-package-json-author.js",
+    "tools/eslint-plugin-genaiscript/dist/esm/rules/ts-package-json-author.js.map",
+    "tools/eslint-plugin-genaiscript/dist/esm/rules/ts-package-json-bugs.d.ts",
+    "tools/eslint-plugin-genaiscript/dist/esm/rules/ts-package-json-bugs.d.ts.map",
+    "tools/eslint-plugin-genaiscript/dist/esm/rules/ts-package-json-bugs.js",
+    "tools/eslint-plugin-genaiscript/dist/esm/rules/ts-package-json-bugs.js.map",
+    "tools/eslint-plugin-genaiscript/dist/esm/rules/ts-package-json-engine-is-present.d.ts",
+    "tools/eslint-plugin-genaiscript/dist/esm/rules/ts-package-json-engine-is-present.d.ts.map",
+    "tools/eslint-plugin-genaiscript/dist/esm/rules/ts-package-json-engine-is-present.js",
+    "tools/eslint-plugin-genaiscript/dist/esm/rules/ts-package-json-engine-is-present.js.map",
+    "tools/eslint-plugin-genaiscript/dist/esm/rules/ts-package-json-homepage.d.ts",
+    "tools/eslint-plugin-genaiscript/dist/esm/rules/ts-package-json-homepage.d.ts.map",
+    "tools/eslint-plugin-genaiscript/dist/esm/rules/ts-package-json-homepage.js",
+    "tools/eslint-plugin-genaiscript/dist/esm/rules/ts-package-json-homepage.js.map",
+    "tools/eslint-plugin-genaiscript/dist/esm/rules/ts-package-json-license.d.ts",
+    "tools/eslint-plugin-genaiscript/dist/esm/rules/ts-package-json-license.d.ts.map",
+    "tools/eslint-plugin-genaiscript/dist/esm/rules/ts-package-json-license.js",
+    "tools/eslint-plugin-genaiscript/dist/esm/rules/ts-package-json-license.js.map",
+    "tools/eslint-plugin-genaiscript/dist/esm/rules/ts-package-json-repo.d.ts",
+    "tools/eslint-plugin-genaiscript/dist/esm/rules/ts-package-json-repo.d.ts.map",
+    "tools/eslint-plugin-genaiscript/dist/esm/rules/ts-package-json-repo.js",
+    "tools/eslint-plugin-genaiscript/dist/esm/rules/ts-package-json-repo.js.map",
+    "tools/eslint-plugin-genaiscript/dist/esm/rules/ts-versioning-semver.d.ts",
+    "tools/eslint-plugin-genaiscript/dist/esm/rules/ts-versioning-semver.d.ts.map",
+    "tools/eslint-plugin-genaiscript/dist/esm/rules/ts-versioning-semver.js",
+    "tools/eslint-plugin-genaiscript/dist/esm/rules/ts-versioning-semver.js.map",
+    "tools/eslint-plugin-genaiscript/dist/esm/utils/constants.d.ts",
+    "tools/eslint-plugin-genaiscript/dist/esm/utils/constants.d.ts.map",
+    "tools/eslint-plugin-genaiscript/dist/esm/utils/constants.js",
+    "tools/eslint-plugin-genaiscript/dist/esm/utils/constants.js.map",
+    "tools/eslint-plugin-genaiscript/dist/esm/utils/ruleCreator.d.ts",
+    "tools/eslint-plugin-genaiscript/dist/esm/utils/ruleCreator.d.ts.map",
+    "tools/eslint-plugin-genaiscript/dist/esm/utils/ruleCreator.js",
+    "tools/eslint-plugin-genaiscript/dist/esm/utils/ruleCreator.js.map",
+    "tools/eslint-plugin-genaiscript/dist/esm/utils/verifiers.d.ts",
+    "tools/eslint-plugin-genaiscript/dist/esm/utils/verifiers.d.ts.map",
+    "tools/eslint-plugin-genaiscript/dist/esm/utils/verifiers.js",
+    "tools/eslint-plugin-genaiscript/dist/esm/utils/verifiers.js.map"
+   ]
+  },
+  {
+   "agent": "Devin",
+   "anchored": true,
+   "counts": {
+    "binary_or_large_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 11,
+   "files_sha256": "e1557cf87880e4c40aae0c43ab33d8a37dc67450b68a1aa70805eaeb99889c29",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/neondatabase/neon/issues/11762"
+   ],
+   "license": "Apache-2.0",
+   "named_paths": [
+    "pageserver/src/http/routes.rs",
+    "pageserver/src/tenant.rs",
+    "pageserver/src/tenant/blob_io.rs",
+    "pageserver/src/tenant/storage_layer/batch_split_writer.rs",
+    "pageserver/src/tenant/storage_layer/delta_layer.rs",
+    "pageserver/src/tenant/storage_layer/image_layer.rs",
+    "pageserver/src/tenant/storage_layer/inmemory_layer.rs",
+    "pageserver/src/tenant/tasks.rs",
+    "pageserver/src/tenant/timeline.rs",
+    "pageserver/src/tenant/timeline/compaction.rs",
+    "pageserver/src/tenant/timeline/detach_ancestor.rs"
+   ],
+   "pr_url": "https://github.com/neondatabase/neon/pull/11835",
+   "repo": "neondatabase/neon",
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "binary_or_large_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 10,
+    "tests_removed": 0
+   },
+   "extras": [
+    {
+     "detail": [],
+     "kind": "public_api_removed",
+     "name": "CheckboxOrRadioGroupArgs",
+     "path": "packages/react/src/utils/form-story-helpers.tsx",
+     "why": "removes public export CheckboxOrRadioGroupArgs"
+    },
+    {
+     "detail": [],
+     "kind": "public_api_removed",
+     "name": "FormControlArgs",
+     "path": "packages/react/src/utils/form-story-helpers.tsx",
+     "why": "removes public export FormControlArgs"
+    },
+    {
+     "detail": [],
+     "kind": "public_api_removed",
+     "name": "formControlArgTypes",
+     "path": "packages/react/src/utils/form-story-helpers.tsx",
+     "why": "removes public export formControlArgTypes"
+    },
+    {
+     "detail": [],
+     "kind": "public_api_removed",
+     "name": "formControlArgTypesWithoutValidation",
+     "path": "packages/react/src/utils/form-story-helpers.tsx",
+     "why": "removes public export formControlArgTypesWithoutValidation"
+    },
+    {
+     "detail": [],
+     "kind": "public_api_removed",
+     "name": "formControlArgs",
+     "path": "packages/react/src/utils/form-story-helpers.tsx",
+     "why": "removes public export formControlArgs"
+    },
+    {
+     "detail": [],
+     "kind": "public_api_removed",
+     "name": "getFormControlArgsByChildComponent",
+     "path": "packages/react/src/utils/form-story-helpers.tsx",
+     "why": "removes public export getFormControlArgsByChildComponent"
+    },
+    {
+     "detail": [],
+     "kind": "public_api_removed",
+     "name": "getTextInputArgTypes",
+     "path": "packages/react/src/utils/form-story-helpers.tsx",
+     "why": "removes public export getTextInputArgTypes"
+    },
+    {
+     "detail": [],
+     "kind": "public_api_removed",
+     "name": "inputWrapperArgTypes",
+     "path": "packages/react/src/utils/form-story-helpers.tsx",
+     "why": "removes public export inputWrapperArgTypes"
+    },
+    {
+     "detail": [],
+     "kind": "public_api_removed",
+     "name": "textInputExcludedControlKeys",
+     "path": "packages/react/src/utils/form-story-helpers.tsx",
+     "why": "removes public export textInputExcludedControlKeys"
+    },
+    {
+     "detail": [],
+     "kind": "public_api_removed",
+     "name": "textInputWithTokensArgTypes",
+     "path": "packages/react/src/utils/form-story-helpers.tsx",
+     "why": "removes public export textInputWithTokensArgTypes"
+    }
+   ],
+   "files_changed": 20,
+   "files_sha256": "963698f678700881e546ac53f6256e380e5b165aa81265c14e4f66c017c96700",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/primer/react/issues/6101"
+   ],
+   "license": "MIT",
+   "named_paths": [
+    "packages/react/src/Autocomplete/Autocomplete.features.stories.tsx",
+    "packages/react/src/Autocomplete/Autocomplete.stories.tsx",
+    "packages/react/src/Button/Button.stories.tsx",
+    "packages/react/src/Button/IconButton.stories.tsx",
+    "packages/react/src/Button/LinkButton.stories.tsx",
+    "packages/react/src/Checkbox/Checkbox.stories.tsx",
+    "packages/react/src/CheckboxGroup/CheckboxGroup.stories.tsx",
+    "packages/react/src/PageHeader/PageHeader.stories.tsx",
+    "packages/react/src/Radio/Radio.stories.tsx",
+    "packages/react/src/RadioGroup/RadioGroup.stories.tsx",
+    "packages/react/src/Select/Select.stories.tsx",
+    "packages/react/src/TextInput/TextInput.dev.stories.tsx",
+    "packages/react/src/TextInput/TextInput.features.stories.tsx",
+    "packages/react/src/TextInput/TextInput.stories.tsx",
+    "packages/react/src/TextInputWithTokens/TextInputWithTokens.features.stories.tsx",
+    "packages/react/src/TextInputWithTokens/TextInputWithTokens.stories.tsx",
+    "packages/react/src/Textarea/Textarea.stories.tsx",
+    "packages/react/src/UnderlineNav/UnderlineNav.Item.stories.tsx",
+    "packages/react/src/utils/form-story-helpers.tsx",
+    "packages/react/src/utils/storybook-helpers.tsx"
+   ],
+   "pr_url": "https://github.com/primer/react/pull/6102",
+   "repo": "primer/react",
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "binary_or_large_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 1,
+   "files_sha256": "db299360558837ab9e5dd2ceec4f20a9409b8af95bd9e38c2a8094e52d2b7a48",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/dotnet/diagnostics/issues/4654"
+   ],
+   "license": "MIT",
+   "named_paths": [
+    "src/SOS/SOS.UnitTests/Scripts/OtherCommands.script"
+   ],
+   "pr_url": "https://github.com/dotnet/diagnostics/pull/5489",
+   "repo": "dotnet/diagnostics",
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": false,
+   "counts": {
+    "binary_or_large_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 11,
+   "files_sha256": "4f351d2ac8c12df814aaf88bea17c41df3514ccbe026283120cef67ccdd9761f",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/wcandillon/react-native-webgpu/issues/211"
+   ],
+   "license": "MIT",
+   "named_paths": [],
+   "pr_url": "https://github.com/wcandillon/react-native-webgpu/pull/236",
+   "repo": "wcandillon/react-native-webgpu",
+   "unplaced": [
+    "apps/example/src/App.tsx",
+    "apps/example/src/Home.tsx",
+    "apps/example/src/Route.ts",
+    "apps/example/src/Triangle/HelloTriangleAutoPresent.tsx",
+    "apps/example/src/Triangle/index.ts",
+    "apps/example/src/components/AutoPresentTriangle.tsx",
+    "apps/example/src/components/useWebGPUAutoPresent.ts",
+    "packages/webgpu/src/Canvas.tsx",
+    "packages/webgpu/src/hooks.tsx"
+   ]
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "binary_or_large_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 10,
+   "files_sha256": "e2f66b25ea9ef506525ca0fe6cd8deee7ab02e43916dc5baa8736a2158655767",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/dotnet/aspnetcore/issues/61956"
+   ],
+   "license": "MIT",
+   "named_paths": [
+    "src/Features/JsonPatch.SystemTextJson/src/JsonPatchDocument.cs",
+    "src/Features/JsonPatch/src/JsonPatchDocument.cs",
+    "src/Features/JsonPatch/src/JsonPatchDocumentOfT.cs",
+    "src/Features/JsonPatch/src/Microsoft.AspNetCore.JsonPatch.csproj",
+    "src/OpenApi/sample/Endpoints/MapSchemasEndpoints.cs",
+    "src/OpenApi/sample/Sample.csproj",
+    "src/OpenApi/test/Microsoft.AspNetCore.OpenApi.Tests/Integration/snapshots/OpenApi3_0/OpenApiDocumentIntegrationTests.VerifyOpenApiDocument_documentName=schemas-by-ref.verified.txt",
+    "src/OpenApi/test/Microsoft.AspNetCore.OpenApi.Tests/Integration/snapshots/OpenApi3_1/OpenApiDocumentIntegrationTests.VerifyOpenApiDocument_documentName=schemas-by-ref.verified.txt"
+   ],
+   "pr_url": "https://github.com/dotnet/aspnetcore/pull/62057",
+   "repo": "dotnet/aspnetcore",
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": false,
+   "counts": {
+    "binary_or_large_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 5,
+   "files_sha256": "864b85c08abc0f78694fd2f78b51f7994892cf48c24af80c22386cfb44a69b83",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/valkey-io/valkey-glide/issues/4249"
+   ],
+   "license": "Apache-2.0",
+   "named_paths": [],
+   "pr_url": "https://github.com/valkey-io/valkey-glide/pull/4288",
+   "repo": "valkey-io/valkey-glide",
+   "unplaced": [
+    "csharp/DEVELOPER.md",
+    "go/DEVELOPER.md",
+    "java/DEVELOPER.md",
+    "node/DEVELOPER.md",
+    "python/DEVELOPER.md"
+   ]
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "binary_or_large_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 6,
+   "files_sha256": "e5023354dd82ac9532f63a903d1f03772b90e612e4af918a0747d995319dcafb",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/typstyle-rs/typstyle/issues/381"
+   ],
+   "license": "Apache-2.0",
+   "named_paths": [
+    "crates/typstyle-core/src/pretty/layout/chain.rs",
+    "tests/fixtures/unit/comment/in-chain-standalone.typ",
+    "tests/fixtures/unit/comment/snap/in-chain-standalone.typ-0.snap",
+    "tests/fixtures/unit/comment/snap/in-chain-standalone.typ-120.snap",
+    "tests/fixtures/unit/comment/snap/in-chain-standalone.typ-40.snap",
+    "tests/fixtures/unit/comment/snap/in-chain-standalone.typ-80.snap"
+   ],
+   "pr_url": "https://github.com/typstyle-rs/typstyle/pull/383",
+   "repo": "typstyle-rs/typstyle",
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": false,
+   "counts": {
+    "binary_or_large_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 1,
+   "files_sha256": "6322460d4169512d459eb225ef16c357cc105016a36373666edc79d07a0e8ea4",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/microsoft/vscode/issues/211114"
+   ],
+   "license": "MIT",
+   "named_paths": [],
+   "pr_url": "https://github.com/microsoft/vscode/pull/251153",
+   "repo": "microsoft/vscode",
+   "unplaced": [
+    "src/vs/workbench/contrib/notebook/browser/viewParts/notebookEditorStickyScroll.ts"
+   ]
+  },
+  {
+   "agent": "Copilot",
+   "anchored": false,
+   "counts": {
+    "binary_or_large_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 2,
+   "files_sha256": "76edd155b024f5f8493d24120530490aaf02c8cf9fec003ebe6c020f0f12aedf",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/Azure/azure-mcp/issues/619"
+   ],
+   "license": "MIT",
+   "named_paths": [],
+   "pr_url": "https://github.com/Azure/azure-mcp/pull/620",
+   "repo": "Azure/azure-mcp",
+   "unplaced": [
+    "tests/Areas/Grafana/LiveTests/GrafanaCommandTests.cs",
+    "tests/Client/MockClientTests.cs"
+   ]
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "binary_or_large_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 2,
+   "files_sha256": "ff21bed22e67d5d2e4cb33a87021bb8ec617eb8b56826507e84b4a500cc8cde5",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/microsoft/go-sqlcmd/issues/566"
+   ],
+   "license": "MIT",
+   "named_paths": [
+    "internal/container/controller.go",
+    "internal/container/controller_test.go"
+   ],
+   "pr_url": "https://github.com/microsoft/go-sqlcmd/pull/588",
+   "repo": "microsoft/go-sqlcmd",
+   "unplaced": []
+  },
+  {
+   "agent": "Devin",
+   "anchored": true,
+   "counts": {
+    "binary_or_large_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 8,
+   "files_sha256": "230663a5365d7eeedce9831ac986727f2138e18e9a8d25952d0bd8d737504cd6",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/appsmithorg/appsmith/issues/38721"
+   ],
+   "license": "Apache-2.0",
+   "named_paths": [
+    "app/client/cypress/e2e/Regression/ClientSide/Autocomplete/Autocomplete_setters_spec.ts",
+    "app/client/cypress/e2e/Regression/ClientSide/Autocomplete/JS_AC1_spec.ts",
+    "app/client/cypress/e2e/Regression/ClientSide/Autocomplete/PropertyPaneSuggestion_spec.ts",
+    "app/client/src/ce/utils/autocomplete/entityDefGeneratorMap.ts",
+    "app/client/src/utils/autocomplete/AutocompleteSortRules.ts",
+    "app/client/src/utils/autocomplete/__tests__/AutocompleteSortRules.test.ts",
+    "app/client/src/utils/autocomplete/__tests__/TernServer.test.ts",
+    "app/client/src/utils/autocomplete/dataTypeSortRules.ts"
+   ],
+   "pr_url": "https://github.com/appsmithorg/appsmith/pull/38690",
+   "repo": "appsmithorg/appsmith",
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": false,
+   "counts": {
+    "binary_or_large_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 3,
+   "files_sha256": "bb7b973650b1919fe3c131540a4a4b878aaac11d41ec9377987acc90cde522fc",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/dotnet/aspire/issues/10461"
+   ],
+   "license": "MIT",
+   "named_paths": [],
+   "pr_url": "https://github.com/dotnet/aspire/pull/10497",
+   "repo": "dotnet/aspire",
+   "unplaced": [
+    "Program.cs",
+    "src/Aspire.Hosting/InteractionService.cs",
+    "tests/Aspire.Hosting.Tests/InteractionServiceTests.cs"
+   ]
+  },
+  {
+   "agent": "Copilot",
+   "anchored": false,
+   "counts": {
+    "binary_or_large_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 4,
+   "files_sha256": "74be9d4683e2b5d7412f52dbc3c435be771b10d19b0f3f6778b30b19585286a6",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/dotnet/maui/issues/29414"
+   ],
+   "license": "MIT",
+   "named_paths": [],
+   "pr_url": "https://github.com/dotnet/maui/pull/30725",
+   "repo": "dotnet/maui",
+   "unplaced": [
+    "src/Controls/src/Core/VisualElement/VisualElement.Platform.cs",
+    "src/Controls/src/Core/VisualElement/VisualElement.cs",
+    "src/Controls/tests/TestCases.HostApp/Issues/Issue29414.cs",
+    "src/Controls/tests/TestCases.Shared.Tests/Tests/Issues/Issue29414.cs"
+   ]
+  },
+  {
+   "agent": "Copilot",
+   "anchored": false,
+   "counts": {
+    "binary_or_large_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 2,
+   "files_sha256": "cc5f417af870c0c5f39bcd61e67116ca8655b55905f5cdcb33df466cbef240b0",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/microsoft/vscode/issues/253569"
+   ],
+   "license": "MIT",
+   "named_paths": [],
+   "pr_url": "https://github.com/microsoft/vscode/pull/254504",
+   "repo": "microsoft/vscode",
+   "unplaced": [
+    "src/vs/workbench/contrib/terminalContrib/links/browser/terminalLocalLinkDetector.ts",
+    "src/vs/workbench/contrib/terminalContrib/links/test/browser/terminalLocalLinkDetector.test.ts"
+   ]
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "binary_or_large_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 5,
+   "files_sha256": "6d96919a0046ca287946cc3458cce186ccaaf1887326dc1217c221fb91a7fe0f",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/dotnet/aspire/issues/9978"
+   ],
+   "license": "MIT",
+   "named_paths": [
+    "src/Aspire.Hosting/Publishing/NullPublishingActivityProgressReporter.cs",
+    "src/Aspire.Hosting/Publishing/PublishingActivityProgressReporter.cs",
+    "src/Aspire.Hosting/Publishing/ResourceContainerImageBuilder.cs",
+    "tests/Aspire.Hosting.Tests/Publishing/PublishingActivityProgressReporterTests.cs"
+   ],
+   "pr_url": "https://github.com/dotnet/aspire/pull/9979",
+   "repo": "dotnet/aspire",
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "binary_or_large_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 1,
+   "files_sha256": "2357304dccb3670cb9b668369f28bd3de5e1c1368918955b254faff856794bc8",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/celestiaorg/celestia-core/issues/2228"
+   ],
+   "license": "Apache-2.0",
+   "named_paths": [
+    "mempool/cat/reactor.go"
+   ],
+   "pr_url": "https://github.com/celestiaorg/celestia-core/pull/2261",
+   "repo": "celestiaorg/celestia-core",
+   "unplaced": []
+  },
+  {
+   "agent": "OpenAI_Codex",
+   "anchored": true,
+   "counts": {
+    "binary_or_large_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 2,
+   "files_sha256": "089a92b96d31795460a90917076162bfcb9dd68da5ad7dc66cf82e6d1a379982",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/SwitchbackTech/compass/issues/549"
+   ],
+   "license": "MIT",
+   "named_paths": [
+    "packages/web/src/views/Forms/EventForm/EventForm.tsx",
+    "packages/web/src/views/Forms/SomedayEventForm/SomedayEventForm.tsx"
+   ],
+   "pr_url": "https://github.com/SwitchbackTech/compass/pull/550",
+   "repo": "SwitchbackTech/compass",
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "binary_or_large_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 8,
+   "files_sha256": "7d8eee74926d06f0fa5c0faf9eefd74140b45c750fd8bf25a022d443e6e3603d",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/NewFuture/DDNS/issues/254"
+   ],
+   "license": "MIT",
+   "named_paths": [
+    "ddns/provider/__init__.py",
+    "ddns/provider/noip.py",
+    "tests/test_provider_noip.py"
+   ],
+   "pr_url": "https://github.com/NewFuture/DDNS/pull/505",
+   "repo": "NewFuture/DDNS",
+   "unplaced": [
+    "schema/v4.0.json"
+   ]
+  },
+  {
+   "agent": "Copilot",
+   "anchored": false,
+   "counts": {
+    "binary_or_large_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 8,
+   "files_sha256": "05d1688a7fd8d845014aeba08e30f67739aa3a4c9fa6cfe9a093e65fd8bfe56e",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/cschleiden/go-workflows/issues/386"
+   ],
+   "license": "MIT",
+   "named_paths": [],
+   "pr_url": "https://github.com/cschleiden/go-workflows/pull/387",
+   "repo": "cschleiden/go-workflows",
+   "unplaced": [
+    "backend/mysql/mysql.go",
+    "backend/mysql/mysql_test.go",
+    "backend/options.go",
+    "backend/redis/queue.go",
+    "backend/redis/queue_test.go",
+    "backend/redis/redis.go",
+    "backend/sqlite/sqlite.go",
+    "backend/sqlite/sqlite_test.go"
+   ]
+  },
+  {
+   "agent": "Copilot",
+   "anchored": false,
+   "counts": {
+    "binary_or_large_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 3,
+   "files_sha256": "fe1c28b029dbb54bf1fa31da366aeeba4bd69e56cbe492b64cf9a258bbb07424",
+   "files_without_patch": 1,
+   "issue_urls": [
+    "https://github.com/NuGet/NuGetGallery/issues/10068"
+   ],
+   "license": "Apache-2.0",
+   "named_paths": [],
+   "pr_url": "https://github.com/NuGet/NuGetGallery/pull/10498",
+   "repo": "NuGet/NuGetGallery",
+   "unplaced": [
+    "src/Bootstrap/dist/css/bootstrap-theme.css",
+    "src/Bootstrap/less/theme/page-statistics-overview.less",
+    "src/NuGetGallery/Content/gallery/css/bootstrap.min.css"
+   ]
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "binary_or_large_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 9,
+   "files_sha256": "5e2333fde4bf5106d032ce4e0299a01cee85b4a03e0780c0197a85b698c697aa",
+   "files_without_patch": 1,
+   "issue_urls": [
+    "https://github.com/Azure/azure-sdk-tools/issues/10517"
+   ],
+   "license": "MIT",
+   "named_paths": [
+    "src/dotnet/APIView/APIViewWeb/wwwroot/spa/sw.js",
+    "src/dotnet/APIView/APIViewWeb/wwwroot/spa/sw.js.map",
+    "src/dotnet/APIView/APIViewWeb/wwwroot/spa/workbox-b7614db5.js",
+    "src/dotnet/APIView/APIViewWeb/wwwroot/spa/workbox-b7614db5.js.map",
+    "src/dotnet/APIView/ClientSPA/src/app/_components/conversation-page/conversation-page.component.ts",
+    "src/dotnet/APIView/ClientSPA/src/app/_components/review-page/review-page.component.ts",
+    "src/dotnet/APIView/ClientSPA/src/app/_components/revision-page/revision-page.component.ts",
+    "src/dotnet/APIView/ClientSPA/src/app/_components/samples-page/samples-page.component.ts",
+    "src/dotnet/APIView/ClientSPA/src/app/app.component.ts"
+   ],
+   "pr_url": "https://github.com/Azure/azure-sdk-tools/pull/10979",
+   "repo": "Azure/azure-sdk-tools",
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": false,
+   "counts": {
+    "binary_or_large_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 1,
+   "files_sha256": "7d1540303be7b362c03bbed6e6e66eb938dde45b9c9a90fcdc697f6437028d3b",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/githubnext/awesome-continuous-ai/issues/12"
+   ],
+   "license": "MIT",
+   "named_paths": [],
+   "pr_url": "https://github.com/githubnext/awesome-continuous-ai/pull/13",
+   "repo": "githubnext/awesome-continuous-ai",
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "binary_or_large_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 8,
+   "files_sha256": "fadad9e45951058fa2bbf7e50e06a435fbba1a4602e8953e499acb975549f0ce",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/feiskyer/chatgpt-copilot/issues/467"
+   ],
+   "license": "ISC",
+   "named_paths": [
+    "src/openai.ts"
+   ],
+   "pr_url": "https://github.com/feiskyer/chatgpt-copilot/pull/490",
+   "repo": "feiskyer/chatgpt-copilot",
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "binary_or_large_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 8,
+   "files_sha256": "dd42866aa91746834acb6bcb66a188860971bc566317f4bf76118d1dc1e27bbd",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/Voxelum/x-minecraft-launcher/issues/1000"
+   ],
+   "license": "MIT",
+   "named_paths": [
+    "xmcl-runtime-api/src/entities/setting.schema.ts",
+    "xmcl-runtime-api/src/entities/setting.ts",
+    "xmcl-runtime/instance/InstanceService.ts"
+   ],
+   "pr_url": "https://github.com/Voxelum/x-minecraft-launcher/pull/1021",
+   "repo": "Voxelum/x-minecraft-launcher",
+   "unplaced": [
+    "xmcl-electron-app/main/definedServices.ts",
+    "xmcl-runtime-api/index.ts",
+    "xmcl-runtime/xaeroMaps/XaeroMapsService.ts",
+    "xmcl-runtime/xaeroMaps/index.ts"
+   ]
+  },
+  {
+   "agent": "Copilot",
+   "anchored": false,
+   "counts": {
+    "binary_or_large_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 2,
+   "files_sha256": "b8420326976713480a65d8cf2f9436ff8f21feb7fda0573e9cec6cd3d5feeb81",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/microsoft/vstest/issues/5017"
+   ],
+   "license": "MIT",
+   "named_paths": [],
+   "pr_url": "https://github.com/microsoft/vstest/pull/15096",
+   "repo": "microsoft/vstest",
+   "unplaced": [
+    "src/vstest.console/Processors/RunTestsArgumentProcessor.cs",
+    "test/vstest.console.UnitTests/Processors/RunTestsArgumentProcessorTests.cs"
+   ]
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "binary_or_large_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 7,
+   "files_sha256": "3c07583c73c247e114231a4c0c723836b0849fdce66cc44f0a9cf372f7281f60",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/mlflow/mlflow/issues/16545"
+   ],
+   "license": "Apache-2.0",
+   "named_paths": [
+    ".github/policy.rego"
+   ],
+   "pr_url": "https://github.com/mlflow/mlflow/pull/16546",
+   "repo": "mlflow/mlflow",
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "binary_or_large_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "tests_removed": 0
+   },
+   "extras": [],
+   "files_changed": 2,
+   "files_sha256": "309d7f35e118ad678388c6b52338e132082a6f1bcdcbfdd673903a4e80059b8d",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/taiga-family/taiga-ui/issues/9680"
+   ],
+   "license": "Apache-2.0",
+   "named_paths": [
+    "projects/kit/components/drawer/drawer.style.less"
+   ],
+   "pr_url": "https://github.com/taiga-family/taiga-ui/pull/11348",
+   "repo": "taiga-family/taiga-ui",
+   "unplaced": []
+  }
+ ],
+ "summary": {
+  "dataset": "hao-li/AIDev@v3",
+  "dataset_revision": "68ed5f4b80d27a9e057fc57567f38bd322ac73ec",
+  "excluded_prs_passed_over": 1,
+  "excluded_samples": [
+   "A",
+   "B"
+  ],
+  "flagged_if_rule5_never_abstained": 28,
+  "funnel": {
+   "linked_issues_that_are_prs": 0,
+   "linked_prs_in_permissive_repos": 3757,
+   "linked_prs_whose_repo_is_missing": 0,
+   "pool": 3703,
+   "pool_by_agent": {
+    "Claude_Code": 63,
+    "Copilot": 3152,
+    "Cursor": 38,
+    "Devin": 340,
+    "OpenAI_Codex": 110
+   },
+   "prs_linked_to_an_issue": 4905,
+   "pull_request_rows": 33596
+  },
+  "github_api_calls_this_run": 76,
+  "inputs_lock_sha256": "7897f2edaebd0ef38bfe777771071ff5b22683da2daff7004d7115403bcbf909",
+  "kill_test_1a": {
+   "pass": true,
+   "pool": 3703,
+   "threshold": ">= 150"
+  },
+  "kill_test_1b": {
+   "flagged": 5,
+   "of": 60,
+   "pass": false,
+   "threshold": "6..30"
+  },
+  "per_kind": {
+   "binary_or_large_added": {
+    "extras": 1,
+    "prs": 1
+   },
+   "ci_or_config": {
+    "extras": 4,
+    "prs": 2
+   },
+   "generated_code_removed": {
+    "extras": 0,
+    "prs": 0
+   },
+   "new_dependency": {
+    "extras": 32,
+    "prs": 2
+   },
+   "public_api_removed": {
+    "extras": 12,
+    "prs": 2
+   },
+   "tests_removed": {
+    "extras": 0,
+    "prs": 0
+   }
+  },
+  "prs_with_a_file_missing_its_patch": 5,
+  "prs_with_unplaced_files": 26,
+  "python": "3.12.3",
+  "rules_file": "extras.py",
+  "rules_sha256": "52915bc2314215ffc1b20c742ae59986efd9b51ab5673e8255fafc6aeef6b594",
+  "rules_version": 3,
+  "sample": "sample C (held out: rules v3 frozen before this run)",
+  "sample_size": 60,
+  "seed": 20261012,
+  "skipped_fetch_failed": [
+   {
+    "error": "no files",
+    "pr_url": "https://github.com/Azure/azure-sdk-for-js/pull/34612"
+   },
+   {
+    "error": "no files",
+    "pr_url": "https://github.com/dotnet/SqlClient/pull/3432"
+   },
+   {
+    "error": "no files",
+    "pr_url": "https://github.com/binarywang/WxJava/pull/3663"
+   },
+   {
+    "error": "no files",
+    "pr_url": "https://github.com/tokens-studio/figma-plugin/pull/3415"
+   },
+   {
+    "error": "no files",
+    "pr_url": "https://github.com/ant-design/ant-design-pro/pull/11537"
+   }
+  ],
+  "unanchored": 23
+ }
+}
