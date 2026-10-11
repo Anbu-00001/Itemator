@@ -121,6 +121,7 @@ A = [
  ("label: grouped unit always files", '    unit = "files" if e.path.endswith("/") or e.kind == "version_bump" else _UNIT.get(e.kind, "names")', '    unit = "files"'),
  ("label: version bump unit", ' or e.kind == "version_bump" else', " else"),
  ("label: version bump unlabelled", '"version_bump": "version bump",', ""),
+ ("label: whitespace only unlabelled", '\n          "whitespace_only": "whitespace only"}', "}"),
  ("anchors: version not matched", '        elif e.kind == "version_bump":\n            matches = lambda text: e.name in text\n', ""),
  ("log: block printed before the card", '    print(report["card"]["final_line"])\n    print(report["card"]["todo_line"])\n    print(log_block(report))\n', '    print(log_block(report))\n    print(report["card"]["final_line"])\n    print(report["card"]["todo_line"])\n'),
 ]

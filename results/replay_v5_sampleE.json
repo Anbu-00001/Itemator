@@ -1,0 +1,2269 @@
+{
+ "prs": [
+  {
+   "agent": "Copilot",
+   "anchored": false,
+   "counts": {
+    "binary_or_large_added": 0,
+    "build_output_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "stray_file": 0,
+    "tests_removed": 0,
+    "version_bump": 0,
+    "whitespace_only": 0
+   },
+   "extras": [],
+   "files_changed": 2,
+   "files_sha256": "ebaa93e4a0bb40234e3a42d6ffe3a2e98d597b4f80406778628335786ae4bdc1",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/sgb-io/fta/issues/74"
+   ],
+   "license": "MIT",
+   "named_paths": [],
+   "pr_url": "https://github.com/sgb-io/fta/pull/237",
+   "repo": "sgb-io/fta",
+   "stray": [],
+   "unplaced": [
+    "crates/fta/src/utils/mod.rs",
+    "crates/fta/src/utils/tests.rs"
+   ]
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "binary_or_large_added": 0,
+    "build_output_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "stray_file": 0,
+    "tests_removed": 0,
+    "version_bump": 0,
+    "whitespace_only": 0
+   },
+   "extras": [],
+   "files_changed": 3,
+   "files_sha256": "b0a7e5ad0d25b0ac4f1ce556bc6532612af3ddcb9d3d5c49f9382747586aa2e4",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/dotnet/aspnetcore/issues/62540"
+   ],
+   "license": "MIT",
+   "named_paths": [
+    "src/Components/Web.JS/src/Boot.Web.ts"
+   ],
+   "pr_url": "https://github.com/dotnet/aspnetcore/pull/62541",
+   "repo": "dotnet/aspnetcore",
+   "stray": [],
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "binary_or_large_added": 0,
+    "build_output_added": 0,
+    "ci_or_config": 1,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "stray_file": 0,
+    "tests_removed": 0,
+    "version_bump": 0,
+    "whitespace_only": 0
+   },
+   "extras": [
+    {
+     "detail": [],
+     "kind": "ci_or_config",
+     "name": "tsconfig.json",
+     "path": "tsconfig.json",
+     "why": "changes build config; the issue does not mention it"
+    }
+   ],
+   "files_changed": 3,
+   "files_sha256": "2f79589d5ff977e574fb840a91420572f8d65ef3ea8224d32ef7bf0d7ae12498",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/lukasoppermann/style-dictionary-utils/issues/107"
+   ],
+   "license": "MIT",
+   "named_paths": [
+    "src/transformer/shadow-css.test.ts",
+    "src/transformer/shadow-css.ts"
+   ],
+   "pr_url": "https://github.com/lukasoppermann/style-dictionary-utils/pull/114",
+   "repo": "lukasoppermann/style-dictionary-utils",
+   "stray": [],
+   "unplaced": []
+  },
+  {
+   "agent": "OpenAI_Codex",
+   "anchored": false,
+   "counts": {
+    "binary_or_large_added": 0,
+    "build_output_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "stray_file": 0,
+    "tests_removed": 0,
+    "version_bump": 0,
+    "whitespace_only": 0
+   },
+   "extras": [],
+   "files_changed": 2,
+   "files_sha256": "3c6457df70384be2aca750a3e600cfe6c663a973dc6f4d094389677a4b701c5a",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/alvinwan/timefhuman/issues/69"
+   ],
+   "license": "Apache-2.0",
+   "named_paths": [],
+   "pr_url": "https://github.com/alvinwan/timefhuman/pull/85",
+   "repo": "alvinwan/timefhuman",
+   "stray": [],
+   "unplaced": [
+    "tests/test_e2e.py",
+    "timefhuman/grammar.lark"
+   ]
+  },
+  {
+   "agent": "OpenAI_Codex",
+   "anchored": true,
+   "counts": {
+    "binary_or_large_added": 0,
+    "build_output_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "stray_file": 0,
+    "tests_removed": 0,
+    "version_bump": 0,
+    "whitespace_only": 0
+   },
+   "extras": [],
+   "files_changed": 10,
+   "files_sha256": "72c2c850c79917c4afd343554f1f160be20e2112729205dc9b3b1fdce699a7f2",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/forntoh/LcdMenu/issues/352"
+   ],
+   "license": "MIT",
+   "named_paths": [
+    "src/MenuItem.h"
+   ],
+   "pr_url": "https://github.com/forntoh/LcdMenu/pull/375",
+   "repo": "forntoh/LcdMenu",
+   "stray": [],
+   "unplaced": [
+    ".gitignore",
+    "examples/ItemLabel/ItemLabel.ino"
+   ]
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "binary_or_large_added": 0,
+    "build_output_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "stray_file": 0,
+    "tests_removed": 0,
+    "version_bump": 0,
+    "whitespace_only": 0
+   },
+   "extras": [],
+   "files_changed": 5,
+   "files_sha256": "3c0973440fa406587962bc825b56aab852e2afdeac10b4c14e6de870c0a44dca",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/NewFuture/DDNS/issues/527"
+   ],
+   "license": "MIT",
+   "named_paths": [
+    "ddns/provider/noip.py",
+    "ddns/util/http.py"
+   ],
+   "pr_url": "https://github.com/NewFuture/DDNS/pull/528",
+   "repo": "NewFuture/DDNS",
+   "stray": [],
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": false,
+   "counts": {
+    "binary_or_large_added": 0,
+    "build_output_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "stray_file": 0,
+    "tests_removed": 0,
+    "version_bump": 0,
+    "whitespace_only": 0
+   },
+   "extras": [],
+   "files_changed": 10,
+   "files_sha256": "3b23bfadead4b15abeb21d5516f8d6eb5e4e952e671e004337d62372d2bda2ed",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/Jaysmito101/cgl/issues/38"
+   ],
+   "license": "MIT",
+   "named_paths": [],
+   "pr_url": "https://github.com/Jaysmito101/cgl/pull/43",
+   "repo": "Jaysmito101/cgl",
+   "stray": [],
+   "unplaced": [
+    ".gitignore",
+    "examples/python/approximating_pi.py",
+    "examples/python/basic_plotting.py",
+    "examples/python/basic_widgets.py",
+    "examples/python/basic_window.py",
+    "examples/python/game_of_life.py",
+    "examples/python/mandelbrot_viewer.py",
+    "examples/python/simple_physics.py",
+    "examples/python/triangle_fractal.py"
+   ]
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "binary_or_large_added": 0,
+    "build_output_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "stray_file": 0,
+    "tests_removed": 0,
+    "version_bump": 0,
+    "whitespace_only": 0
+   },
+   "extras": [],
+   "files_changed": 1,
+   "files_sha256": "7e62b69bfa1e8726238af74b44c123e15fc7dde5a0c2fe7fbd7bdb59550a48d7",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/syncfusion/maui-toolkit/issues/218"
+   ],
+   "license": "MIT",
+   "named_paths": [
+    "maui/src/Charts/Axis/CategoryAxis.cs"
+   ],
+   "pr_url": "https://github.com/syncfusion/maui-toolkit/pull/219",
+   "repo": "syncfusion/maui-toolkit",
+   "stray": [],
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "binary_or_large_added": 0,
+    "build_output_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "stray_file": 0,
+    "tests_removed": 0,
+    "version_bump": 0,
+    "whitespace_only": 0
+   },
+   "extras": [],
+   "files_changed": 5,
+   "files_sha256": "36a85a0557596e147831a2f04a2518e56bb3598564c764f1aa30e559818f8780",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/haydenbleasel/ultracite/issues/177"
+   ],
+   "license": "MIT",
+   "named_paths": [
+    "__tests__/lefthook.test.ts",
+    "scripts/lefthook.ts"
+   ],
+   "pr_url": "https://github.com/haydenbleasel/ultracite/pull/178",
+   "repo": "haydenbleasel/ultracite",
+   "stray": [],
+   "unplaced": []
+  },
+  {
+   "agent": "Cursor",
+   "anchored": true,
+   "counts": {
+    "binary_or_large_added": 0,
+    "build_output_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "stray_file": 0,
+    "tests_removed": 0,
+    "version_bump": 0,
+    "whitespace_only": 0
+   },
+   "extras": [],
+   "files_changed": 1,
+   "files_sha256": "aae6862c6fd590121ec0684f93a0e86b65a5dda768f3616b7e5070ff8f5edfd8",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/getsentry/sentry-cli/issues/2537"
+   ],
+   "license": "BSD-3-Clause",
+   "named_paths": [
+    "src/commands/login.rs"
+   ],
+   "pr_url": "https://github.com/getsentry/sentry-cli/pull/2554",
+   "repo": "getsentry/sentry-cli",
+   "stray": [],
+   "unplaced": []
+  },
+  {
+   "agent": "Devin",
+   "anchored": false,
+   "counts": {
+    "binary_or_large_added": 0,
+    "build_output_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "stray_file": 0,
+    "tests_removed": 0,
+    "version_bump": 0,
+    "whitespace_only": 0
+   },
+   "extras": [],
+   "files_changed": 1,
+   "files_sha256": "ed52d7baa11fa3a5b6a098400d0b90be33f4d9cd1b0f49eb1c777a956ef4c9d1",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/antiwork/shortest/issues/249"
+   ],
+   "license": "MIT",
+   "named_paths": [],
+   "pr_url": "https://github.com/antiwork/shortest/pull/250",
+   "repo": "antiwork/shortest",
+   "stray": [],
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "binary_or_large_added": 0,
+    "build_output_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "stray_file": 0,
+    "tests_removed": 0,
+    "version_bump": 0,
+    "whitespace_only": 0
+   },
+   "extras": [],
+   "files_changed": 3,
+   "files_sha256": "959d28ca80c85e0d0c75b26c1a77cb36a44517705b0c6e78b47c474674ca2ce2",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/microsoft/qsharp/issues/2510"
+   ],
+   "license": "MIT",
+   "named_paths": [
+    "language_service/src/code_lens.rs",
+    "language_service/src/code_lens/tests.rs",
+    "language_service/src/test_utils.rs"
+   ],
+   "pr_url": "https://github.com/microsoft/qsharp/pull/2511",
+   "repo": "microsoft/qsharp",
+   "stray": [],
+   "unplaced": []
+  },
+  {
+   "agent": "Devin",
+   "anchored": true,
+   "counts": {
+    "binary_or_large_added": 0,
+    "build_output_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "stray_file": 0,
+    "tests_removed": 0,
+    "version_bump": 0,
+    "whitespace_only": 0
+   },
+   "extras": [],
+   "files_changed": 8,
+   "files_sha256": "7434393b942b92d6cadaf13f38561881ac02729a23aec1b6828d70c610725947",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/crewAIInc/crewAI/issues/2164"
+   ],
+   "license": "MIT",
+   "named_paths": [
+    "src/crewai/agent.py",
+    "src/crewai/crew.py",
+    "src/crewai/knowledge/knowledge.py",
+    "src/crewai/knowledge/storage/knowledge_storage.py",
+    "tests/agent_test.py",
+    "tests/crew_test.py",
+    "tests/test_agent_knowledge.py"
+   ],
+   "pr_url": "https://github.com/crewAIInc/crewAI/pull/2165",
+   "repo": "crewAIInc/crewAI",
+   "stray": [],
+   "unplaced": []
+  },
+  {
+   "agent": "OpenAI_Codex",
+   "anchored": true,
+   "counts": {
+    "binary_or_large_added": 0,
+    "build_output_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "stray_file": 0,
+    "tests_removed": 0,
+    "version_bump": 0,
+    "whitespace_only": 0
+   },
+   "extras": [],
+   "files_changed": 2,
+   "files_sha256": "b9ddd60a4957246265d432407ab3ced44d32281e921d41c817faa89a993c259a",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/RooCodeInc/Roo-Code/issues/3648"
+   ],
+   "license": "Apache-2.0",
+   "named_paths": [
+    "webview-ui/src/components/history/CopyButton.tsx"
+   ],
+   "pr_url": "https://github.com/RooCodeInc/Roo-Code/pull/3685",
+   "repo": "RooCodeInc/Roo-Code",
+   "stray": [],
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": false,
+   "counts": {
+    "binary_or_large_added": 0,
+    "build_output_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "stray_file": 0,
+    "tests_removed": 0,
+    "version_bump": 0,
+    "whitespace_only": 0
+   },
+   "extras": [],
+   "files_changed": 2,
+   "files_sha256": "5e5420f9aa446741db5a88fea0c36c528e3dfa690ca0d5f9f00270c0f1450e2b",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/shugo/textbringer/issues/121"
+   ],
+   "license": "MIT",
+   "named_paths": [],
+   "pr_url": "https://github.com/shugo/textbringer/pull/124",
+   "repo": "shugo/textbringer",
+   "stray": [],
+   "unplaced": [
+    "lib/textbringer/buffer.rb",
+    "test/textbringer/commands/test_buffers.rb"
+   ]
+  },
+  {
+   "agent": "OpenAI_Codex",
+   "anchored": false,
+   "counts": {
+    "binary_or_large_added": 0,
+    "build_output_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "stray_file": 0,
+    "tests_removed": 0,
+    "version_bump": 0,
+    "whitespace_only": 0
+   },
+   "extras": [],
+   "files_changed": 1,
+   "files_sha256": "212f34f79c437cbae3a64e1cc4b6f2ee1c957a6e23c1f520106ed16ed76d2b41",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/elsa-workflows/elsa-core/issues/6651"
+   ],
+   "license": "MIT",
+   "named_paths": [],
+   "pr_url": "https://github.com/elsa-workflows/elsa-core/pull/6658",
+   "repo": "elsa-workflows/elsa-core",
+   "stray": [],
+   "unplaced": [
+    "src/modules/Elsa.MassTransit/Features/MassTransitFeature.cs"
+   ]
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "binary_or_large_added": 0,
+    "build_output_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "stray_file": 0,
+    "tests_removed": 0,
+    "version_bump": 0,
+    "whitespace_only": 0
+   },
+   "extras": [],
+   "files_changed": 5,
+   "files_sha256": "4d26b3aad22faa0c6efe706702138b4f04125c991957fe1027604bc2ecd61c93",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/owncast/owncast/issues/3950"
+   ],
+   "license": "MIT",
+   "named_paths": [
+    "web/components/chat/ChatTextField/ChatTextField.tsx",
+    "web/i18n/en/translation.json",
+    "web/i18n/en/translation_old.json"
+   ],
+   "pr_url": "https://github.com/owncast/owncast/pull/4356",
+   "repo": "owncast/owncast",
+   "stray": [],
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "binary_or_large_added": 0,
+    "build_output_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "stray_file": 0,
+    "tests_removed": 0,
+    "version_bump": 0,
+    "whitespace_only": 0
+   },
+   "extras": [],
+   "files_changed": 9,
+   "files_sha256": "88320253ad0b2cf6107e88678fccd581443013ebca387a91d362175b0d92a6e9",
+   "files_without_patch": 1,
+   "issue_urls": [
+    "https://github.com/primer/react/issues/6366"
+   ],
+   "license": "MIT",
+   "named_paths": [
+    "packages/react/jest.config.js",
+    "packages/react/src/Button/__tests__/Button.test.tsx",
+    "packages/react/src/ConfirmationDialog/ConfirmationDialog.test.tsx",
+    "packages/react/src/LabelGroup/LabelGroup.test.tsx",
+    "packages/react/src/TextInput/TextInput.test.tsx",
+    "packages/react/vitest.config.browser.mts"
+   ],
+   "pr_url": "https://github.com/primer/react/pull/6367",
+   "repo": "primer/react",
+   "stray": [],
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "binary_or_large_added": 0,
+    "build_output_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "stray_file": 0,
+    "tests_removed": 0,
+    "version_bump": 0,
+    "whitespace_only": 0
+   },
+   "extras": [],
+   "files_changed": 3,
+   "files_sha256": "d396d945cdfc50093efde257cb5b69de05eebcb8dc6a377f6d1d4703686380bc",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/jamesmh/coravel/issues/444"
+   ],
+   "license": "MIT",
+   "named_paths": [
+    "Src/Coravel/Scheduling/Schedule/Interfaces/IGetScheduleInfo.cs"
+   ],
+   "pr_url": "https://github.com/jamesmh/coravel/pull/445",
+   "repo": "jamesmh/coravel",
+   "stray": [],
+   "unplaced": []
+  },
+  {
+   "agent": "Devin",
+   "anchored": true,
+   "counts": {
+    "binary_or_large_added": 0,
+    "build_output_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "stray_file": 0,
+    "tests_removed": 0,
+    "version_bump": 0,
+    "whitespace_only": 0
+   },
+   "extras": [],
+   "files_changed": 3,
+   "files_sha256": "7963875c17f051c8ee12ca46e30013e7144f965d8bc38e1d88f6ced2d7ec017a",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/crewAIInc/crewAI/issues/2886"
+   ],
+   "license": "MIT",
+   "named_paths": [
+    "src/crewai/agent.py",
+    "src/crewai/agents/crew_agent_executor.py",
+    "tests/agent_test.py"
+   ],
+   "pr_url": "https://github.com/crewAIInc/crewAI/pull/2887",
+   "repo": "crewAIInc/crewAI",
+   "stray": [],
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "binary_or_large_added": 0,
+    "build_output_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "stray_file": 0,
+    "tests_removed": 0,
+    "version_bump": 0,
+    "whitespace_only": 0
+   },
+   "extras": [],
+   "files_changed": 4,
+   "files_sha256": "85337a5c445426160cbd25ae851883566f7759ae5f51d547ab2d227df00ae881",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/primer/react/issues/6068"
+   ],
+   "license": "MIT",
+   "named_paths": [
+    "packages/react/jest.config.js",
+    "packages/react/src/CounterLabel/CounterLabel.test.tsx",
+    "packages/react/vitest.config.mts"
+   ],
+   "pr_url": "https://github.com/primer/react/pull/6069",
+   "repo": "primer/react",
+   "stray": [],
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "binary_or_large_added": 0,
+    "build_output_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "stray_file": 0,
+    "tests_removed": 0,
+    "version_bump": 0,
+    "whitespace_only": 0
+   },
+   "extras": [],
+   "files_changed": 3,
+   "files_sha256": "7c4097c045f6ec4198bc4057133daf955ee06f95a40fe9e5ed2ff73fbbca58b4",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/microsoft/genaiscript/issues/1710"
+   ],
+   "license": "MIT",
+   "named_paths": [
+    ".github/workflows/pr-summary.yml"
+   ],
+   "pr_url": "https://github.com/microsoft/genaiscript/pull/1711",
+   "repo": "microsoft/genaiscript",
+   "stray": [],
+   "unplaced": [
+    "packages/sample/genaisrc/pr-summary-artifact.genai.mjs"
+   ]
+  },
+  {
+   "agent": "Copilot",
+   "anchored": false,
+   "counts": {
+    "binary_or_large_added": 0,
+    "build_output_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "stray_file": 0,
+    "tests_removed": 0,
+    "version_bump": 0,
+    "whitespace_only": 0
+   },
+   "extras": [],
+   "files_changed": 1,
+   "files_sha256": "b7ffea54227632f11d671bb5532fd1d49a52786a4dc5758b14abdbb53579a838",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/rqlite/rqlite/issues/2158"
+   ],
+   "license": "MIT",
+   "named_paths": [],
+   "pr_url": "https://github.com/rqlite/rqlite/pull/2159",
+   "repo": "rqlite/rqlite",
+   "stray": [],
+   "unplaced": [
+    "cmd/rqlite/main.go"
+   ]
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "binary_or_large_added": 0,
+    "build_output_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "stray_file": 0,
+    "tests_removed": 0,
+    "version_bump": 0,
+    "whitespace_only": 0
+   },
+   "extras": [],
+   "files_changed": 4,
+   "files_sha256": "55717ca72e1a942e80251d3572b1908217f912a19e2e3b5e88095ecb93047915",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/dotnet/maui/issues/30760"
+   ],
+   "license": "MIT",
+   "named_paths": [
+    "src/Controls/samples/Controls.Sample/Pages/Controls/TitleBarPage.xaml.cs",
+    "src/Controls/tests/DeviceTests/Elements/Layout/LayoutTests.cs",
+    "src/Controls/tests/DeviceTests/Elements/Window/WindowTests.cs",
+    "src/Controls/tests/DeviceTests/Xaml/XamlTests.cs"
+   ],
+   "pr_url": "https://github.com/dotnet/maui/pull/30761",
+   "repo": "dotnet/maui",
+   "stray": [],
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": false,
+   "counts": {
+    "binary_or_large_added": 0,
+    "build_output_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "stray_file": 0,
+    "tests_removed": 0,
+    "version_bump": 0,
+    "whitespace_only": 0
+   },
+   "extras": [],
+   "files_changed": 1,
+   "files_sha256": "538fdd32222797080324c477331dbd27bd9af878a2591bef709ed7db87822718",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/dotnet/maui/issues/30357"
+   ],
+   "license": "MIT",
+   "named_paths": [],
+   "pr_url": "https://github.com/dotnet/maui/pull/30358",
+   "repo": "dotnet/maui",
+   "stray": [],
+   "unplaced": [
+    "eng/common/tools.sh"
+   ]
+  },
+  {
+   "agent": "OpenAI_Codex",
+   "anchored": false,
+   "counts": {
+    "binary_or_large_added": 0,
+    "build_output_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "stray_file": 0,
+    "tests_removed": 0,
+    "version_bump": 0,
+    "whitespace_only": 0
+   },
+   "extras": [],
+   "files_changed": 2,
+   "files_sha256": "4966acba5c589cc07894bacbfd6514d5b8c5f4af95a2994d8d28fa9ed0205a0d",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/openai/openai-agents-js/issues/130"
+   ],
+   "license": "MIT",
+   "named_paths": [],
+   "pr_url": "https://github.com/openai/openai-agents-js/pull/135",
+   "repo": "openai/openai-agents-js",
+   "stray": [],
+   "unplaced": [
+    "packages/agents-openai/src/openaiTracingExporter.ts",
+    "packages/agents-openai/test/openaiTracingExporter.test.ts"
+   ]
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "binary_or_large_added": 0,
+    "build_output_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "stray_file": 0,
+    "tests_removed": 0,
+    "version_bump": 0,
+    "whitespace_only": 0
+   },
+   "extras": [],
+   "files_changed": 2,
+   "files_sha256": "ee23b74884d1c719c6167877fb093a6949509c7e00a989b77ea757883ccc46d1",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/cschleiden/go-workflows/issues/385"
+   ],
+   "license": "MIT",
+   "named_paths": [
+    "worker/workflow_orchestrator.go",
+    "worker/workflow_orchestrator_test.go"
+   ],
+   "pr_url": "https://github.com/cschleiden/go-workflows/pull/388",
+   "repo": "cschleiden/go-workflows",
+   "stray": [],
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": false,
+   "counts": {
+    "binary_or_large_added": 0,
+    "build_output_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "stray_file": 0,
+    "tests_removed": 0,
+    "version_bump": 0,
+    "whitespace_only": 0
+   },
+   "extras": [],
+   "files_changed": 4,
+   "files_sha256": "a5e5a16a52c412b91000cc5a77a75490012837de7b8b06b4fd8436a0c0524acb",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/microsoft/RulesEngine/issues/667"
+   ],
+   "license": "MIT",
+   "named_paths": [],
+   "pr_url": "https://github.com/microsoft/RulesEngine/pull/674",
+   "repo": "microsoft/RulesEngine",
+   "stray": [],
+   "unplaced": [
+    "global.json",
+    "src/RulesEngine/RulesEngine.cs",
+    "src/RulesEngine/RulesEngine.csproj",
+    "test/RulesEngine.UnitTest/CustomTypeFromRuleParameterTest.cs"
+   ]
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "binary_or_large_added": 0,
+    "build_output_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "stray_file": 1,
+    "tests_removed": 0,
+    "version_bump": 1,
+    "whitespace_only": 0
+   },
+   "extras": [
+    {
+     "detail": [
+      "pyproject.toml",
+      "src/spotify_scraper/__init__.py"
+     ],
+     "kind": "version_bump",
+     "name": "2.0.7",
+     "path": "pyproject.toml",
+     "why": "changes the package version from 2.0.15 to 2.0.7; the issue names neither version"
+    },
+    {
+     "detail": [],
+     "kind": "stray_file",
+     "name": "MCP_TESTING.md",
+     "path": "MCP_TESTING.md",
+     "why": "adds a top-level document the issue does not name; the issue does not ask for it"
+    }
+   ],
+   "files_changed": 14,
+   "files_sha256": "c294deb850bb14a07e1aea91260b5f0c9ffd03dd10dbe46fb7ecb4702850626c",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/AliAkhtari78/SpotifyScraper/issues/47"
+   ],
+   "license": "MIT",
+   "named_paths": [
+    "src/spotify_scraper/parsers/json_parser.py",
+    "tests/unit/test_track_album.py",
+    "tests/unit/test_track_album_mcp.py"
+   ],
+   "pr_url": "https://github.com/AliAkhtari78/SpotifyScraper/pull/48",
+   "repo": "AliAkhtari78/SpotifyScraper",
+   "stray": [
+    "MCP_TESTING.md"
+   ],
+   "unplaced": [
+    "MCP_TESTING.md",
+    "examples/mcp_testing_demo.py",
+    "mcp_test_runner.py",
+    "track_with_album.json"
+   ]
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "binary_or_large_added": 0,
+    "build_output_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "stray_file": 0,
+    "tests_removed": 0,
+    "version_bump": 0,
+    "whitespace_only": 0
+   },
+   "extras": [],
+   "files_changed": 3,
+   "files_sha256": "d29fc3830ecb22f02129b2ddca69228f8fe5b1764af33a063106d0dba58a1a1d",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/microsoft/finops-toolkit/issues/1729"
+   ],
+   "license": "MIT",
+   "named_paths": [
+    "docs-mslearn/toolkit/hubs/configure-scopes.md",
+    "docs-mslearn/toolkit/hubs/data-processing.md",
+    "docs-mslearn/toolkit/hubs/deploy.md"
+   ],
+   "pr_url": "https://github.com/microsoft/finops-toolkit/pull/1733",
+   "repo": "microsoft/finops-toolkit",
+   "stray": [],
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": false,
+   "counts": {
+    "binary_or_large_added": 0,
+    "build_output_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "stray_file": 0,
+    "tests_removed": 0,
+    "version_bump": 0,
+    "whitespace_only": 0
+   },
+   "extras": [],
+   "files_changed": 1,
+   "files_sha256": "6f7acf6db014fc140d9697572c4c7fed2538e0363111c16bf35b43b59e3c6972",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/dotnet/aspire/issues/9729"
+   ],
+   "license": "MIT",
+   "named_paths": [],
+   "pr_url": "https://github.com/dotnet/aspire/pull/9730",
+   "repo": "dotnet/aspire",
+   "stray": [],
+   "unplaced": [
+    "tests/Aspire.Hosting.Tests/WithHttpCommandTests.cs"
+   ]
+  },
+  {
+   "agent": "Copilot",
+   "anchored": false,
+   "counts": {
+    "binary_or_large_added": 0,
+    "build_output_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "stray_file": 0,
+    "tests_removed": 0,
+    "version_bump": 0,
+    "whitespace_only": 0
+   },
+   "extras": [],
+   "files_changed": 126,
+   "files_sha256": "3e5438def115480b53e9b2637e99d4f4fa7785739893ffc37789d6517facc7d9",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/microsoft/typescript-go/issues/1119"
+   ],
+   "license": "Apache-2.0",
+   "named_paths": [],
+   "pr_url": "https://github.com/microsoft/typescript-go/pull/1141",
+   "repo": "microsoft/typescript-go",
+   "stray": [],
+   "unplaced": [
+    "internal/printer/helpers.go",
+    "internal/transformers/commonjsmodule_test.go",
+    "testdata/baselines/reference/submodule/compiler/esModuleInterop.js",
+    "testdata/baselines/reference/submodule/compiler/esModuleInterop.js.diff",
+    "testdata/baselines/reference/submodule/compiler/esModuleInteropDefaultImports.js",
+    "testdata/baselines/reference/submodule/compiler/esModuleInteropDefaultImports.js.diff",
+    "testdata/baselines/reference/submodule/compiler/esModuleInteropImportCall.js",
+    "testdata/baselines/reference/submodule/compiler/esModuleInteropImportCall.js.diff",
+    "testdata/baselines/reference/submodule/compiler/esModuleInteropImportNamespace.js",
+    "testdata/baselines/reference/submodule/compiler/esModuleInteropImportNamespace.js.diff",
+    "testdata/baselines/reference/submodule/compiler/esModuleInteropNamedDefaultImports.js",
+    "testdata/baselines/reference/submodule/compiler/esModuleInteropNamedDefaultImports.js.diff",
+    "testdata/baselines/reference/submodule/compiler/esModuleInteropPrettyErrorRelatedInformation.js",
+    "testdata/baselines/reference/submodule/compiler/esModuleInteropPrettyErrorRelatedInformation.js.diff",
+    "testdata/baselines/reference/submodule/compiler/esModuleInteropUsesExportStarWhenDefaultPlusNames.js",
+    "testdata/baselines/reference/submodule/compiler/esModuleInteropUsesExportStarWhenDefaultPlusNames.js.diff",
+    "testdata/baselines/reference/submodule/compiler/esModuleInteropWithExportStar.js",
+    "testdata/baselines/reference/submodule/compiler/esModuleInteropWithExportStar.js.diff",
+    "testdata/baselines/reference/submodule/compiler/esModuleIntersectionCrash.js",
+    "testdata/baselines/reference/submodule/compiler/esModuleIntersectionCrash.js.diff",
+    "testdata/baselines/reference/submodule/compiler/moduleResolutionWithModule(module=node16,moduleresolution=node16).js",
+    "testdata/baselines/reference/submodule/compiler/moduleResolutionWithModule(module=node16,moduleresolution=node16).js.diff",
+    "testdata/baselines/reference/submodule/compiler/moduleResolutionWithModule(module=node16,moduleresolution=nodenext).js",
+    "testdata/baselines/reference/submodule/compiler/moduleResolutionWithModule(module=node16,moduleresolution=nodenext).js.diff",
+    "testdata/baselines/reference/submodule/compiler/moduleResolutionWithModule(module=nodenext,moduleresolution=node16).js",
+    "testdata/baselines/reference/submodule/compiler/moduleResolutionWithModule(module=nodenext,moduleresolution=node16).js.diff",
+    "testdata/baselines/reference/submodule/compiler/moduleResolutionWithModule(module=nodenext,moduleresolution=nodenext).js",
+    "testdata/baselines/reference/submodule/compiler/moduleResolutionWithModule(module=nodenext,moduleresolution=nodenext).js.diff",
+    "testdata/baselines/reference/submodule/compiler/symlinkedWorkspaceDependenciesNoDirectLinkGeneratesDeepNonrelativeName.js",
+    "testdata/baselines/reference/submodule/compiler/symlinkedWorkspaceDependenciesNoDirectLinkGeneratesDeepNonrelativeName.js.diff",
+    "testdata/baselines/reference/submodule/conformance/arbitraryModuleNamespaceIdentifiers_module(module=node16).js",
+    "testdata/baselines/reference/submodule/conformance/arbitraryModuleNamespaceIdentifiers_module(module=node16).js.diff",
+    "testdata/baselines/reference/submodule/conformance/arbitraryModuleNamespaceIdentifiers_module(module=nodenext).js",
+    "testdata/baselines/reference/submodule/conformance/arbitraryModuleNamespaceIdentifiers_module(module=nodenext).js.diff",
+    "testdata/baselines/reference/submodule/conformance/exportAsNamespace2(module=amd).js",
+    "testdata/baselines/reference/submodule/conformance/exportAsNamespace2(module=amd).js.diff",
+    "testdata/baselines/reference/submodule/conformance/exportAsNamespace2(module=commonjs).js",
+    "testdata/baselines/reference/submodule/conformance/exportAsNamespace2(module=commonjs).js.diff",
+    "testdata/baselines/reference/submodule/conformance/exportAsNamespace2(module=system).js",
+    "testdata/baselines/reference/submodule/conformance/exportAsNamespace2(module=system).js.diff",
+    "testdata/baselines/reference/submodule/conformance/exportAsNamespace2(module=umd).js",
+    "testdata/baselines/reference/submodule/conformance/exportAsNamespace2(module=umd).js.diff",
+    "testdata/baselines/reference/submodule/conformance/exportAsNamespace3(module=amd).js",
+    "testdata/baselines/reference/submodule/conformance/exportAsNamespace3(module=amd).js.diff",
+    "testdata/baselines/reference/submodule/conformance/exportAsNamespace3(module=commonjs).js",
+    "testdata/baselines/reference/submodule/conformance/exportAsNamespace3(module=commonjs).js.diff",
+    "testdata/baselines/reference/submodule/conformance/exportAsNamespace3(module=system).js",
+    "testdata/baselines/reference/submodule/conformance/exportAsNamespace3(module=system).js.diff",
+    "testdata/baselines/reference/submodule/conformance/exportAsNamespace3(module=umd).js",
+    "testdata/baselines/reference/submodule/conformance/exportAsNamespace3(module=umd).js.diff",
+    "testdata/baselines/reference/submodule/conformance/exportAsNamespace4(module=amd).js",
+    "testdata/baselines/reference/submodule/conformance/exportAsNamespace4(module=amd).js.diff",
+    "testdata/baselines/reference/submodule/conformance/exportAsNamespace4(module=commonjs).js",
+    "testdata/baselines/reference/submodule/conformance/exportAsNamespace4(module=commonjs).js.diff",
+    "testdata/baselines/reference/submodule/conformance/exportAsNamespace4(module=system).js",
+    "testdata/baselines/reference/submodule/conformance/exportAsNamespace4(module=system).js.diff",
+    "testdata/baselines/reference/submodule/conformance/exportAsNamespace4(module=umd).js",
+    "testdata/baselines/reference/submodule/conformance/exportAsNamespace4(module=umd).js.diff",
+    "testdata/baselines/reference/submodule/conformance/exportAsNamespace_exportAssignment.js",
+    "testdata/baselines/reference/submodule/conformance/exportAsNamespace_exportAssignment.js.diff",
+    "testdata/baselines/reference/submodule/conformance/exportDefault.js",
+    "testdata/baselines/reference/submodule/conformance/exportDefault.js.diff",
+    "testdata/baselines/reference/submodule/conformance/importEquals1.js",
+    "testdata/baselines/reference/submodule/conformance/importEquals1.js.diff",
+    "testdata/baselines/reference/submodule/conformance/importEquals2.js",
+    "testdata/baselines/reference/submodule/conformance/importEquals2.js.diff",
+    "testdata/baselines/reference/submodule/conformance/intersectionsAndEmptyObjects.js",
+    "testdata/baselines/reference/submodule/conformance/intersectionsAndEmptyObjects.js.diff",
+    "testdata/baselines/reference/submodule/conformance/nodeModules1(module=node16).js",
+    "testdata/baselines/reference/submodule/conformance/nodeModules1(module=node16).js.diff",
+    "testdata/baselines/reference/submodule/conformance/nodeModules1(module=nodenext).js",
+    "testdata/baselines/reference/submodule/conformance/nodeModules1(module=nodenext).js.diff",
+    "testdata/baselines/reference/submodule/conformance/nodeModulesConditionalPackageExports(module=node16).js",
+    "testdata/baselines/reference/submodule/conformance/nodeModulesConditionalPackageExports(module=node16).js.diff",
+    "testdata/baselines/reference/submodule/conformance/nodeModulesConditionalPackageExports(module=nodenext).js",
+    "testdata/baselines/reference/submodule/conformance/nodeModulesConditionalPackageExports(module=nodenext).js.diff",
+    "testdata/baselines/reference/submodule/conformance/nodeModulesDeclarationEmitWithPackageExports(module=node16).js",
+    "testdata/baselines/reference/submodule/conformance/nodeModulesDeclarationEmitWithPackageExports(module=node16).js.diff",
+    "testdata/baselines/reference/submodule/conformance/nodeModulesDeclarationEmitWithPackageExports(module=nodenext).js",
+    "testdata/baselines/reference/submodule/conformance/nodeModulesDeclarationEmitWithPackageExports(module=nodenext).js.diff",
+    "testdata/baselines/reference/submodule/conformance/nodeModulesImportResolutionIntoExport(module=node16).js",
+    "testdata/baselines/reference/submodule/conformance/nodeModulesImportResolutionIntoExport(module=node16).js.diff",
+    "testdata/baselines/reference/submodule/conformance/nodeModulesImportResolutionIntoExport(module=nodenext).js",
+    "testdata/baselines/reference/submodule/conformance/nodeModulesImportResolutionIntoExport(module=nodenext).js.diff",
+    "testdata/baselines/reference/submodule/conformance/nodeModulesImportResolutionNoCycle(module=node16).js",
+    "testdata/baselines/reference/submodule/conformance/nodeModulesImportResolutionNoCycle(module=node16).js.diff",
+    "testdata/baselines/reference/submodule/conformance/nodeModulesImportResolutionNoCycle(module=nodenext).js",
+    "testdata/baselines/reference/submodule/conformance/nodeModulesImportResolutionNoCycle(module=nodenext).js.diff",
+    "testdata/baselines/reference/submodule/conformance/nodeModulesPackageExports(module=node16).js",
+    "testdata/baselines/reference/submodule/conformance/nodeModulesPackageExports(module=node16).js.diff",
+    "testdata/baselines/reference/submodule/conformance/nodeModulesPackageExports(module=nodenext).js",
+    "testdata/baselines/reference/submodule/conformance/nodeModulesPackageExports(module=nodenext).js.diff",
+    "testdata/baselines/reference/submodule/conformance/nodeModulesPackageImports(module=node16).js",
+    "testdata/baselines/reference/submodule/conformance/nodeModulesPackageImports(module=node16).js.diff",
+    "testdata/baselines/reference/submodule/conformance/nodeModulesPackageImports(module=nodenext).js",
+    "testdata/baselines/reference/submodule/conformance/nodeModulesPackageImports(module=nodenext).js.diff",
+    "testdata/baselines/reference/submodule/conformance/nodeModulesPackagePatternExports(module=node16).js",
+    "testdata/baselines/reference/submodule/conformance/nodeModulesPackagePatternExports(module=node16).js.diff",
+    "testdata/baselines/reference/submodule/conformance/nodeModulesPackagePatternExports(module=nodenext).js",
+    "testdata/baselines/reference/submodule/conformance/nodeModulesPackagePatternExports(module=nodenext).js.diff",
+    "testdata/baselines/reference/submodule/conformance/nodeModulesPackagePatternExportsExclude(module=node16).js",
+    "testdata/baselines/reference/submodule/conformance/nodeModulesPackagePatternExportsExclude(module=node16).js.diff",
+    "testdata/baselines/reference/submodule/conformance/nodeModulesPackagePatternExportsExclude(module=nodenext).js",
+    "testdata/baselines/reference/submodule/conformance/nodeModulesPackagePatternExportsExclude(module=nodenext).js.diff",
+    "testdata/baselines/reference/submodule/conformance/nodeModulesPackagePatternExportsTrailers(module=node16).js",
+    "testdata/baselines/reference/submodule/conformance/nodeModulesPackagePatternExportsTrailers(module=node16).js.diff",
+    "testdata/baselines/reference/submodule/conformance/nodeModulesPackagePatternExportsTrailers(module=nodenext).js",
+    "testdata/baselines/reference/submodule/conformance/nodeModulesPackagePatternExportsTrailers(module=nodenext).js.diff",
+    "testdata/baselines/reference/submodule/conformance/nodeModulesResolveJsonModule(module=node16).js",
+    "testdata/baselines/reference/submodule/conformance/nodeModulesResolveJsonModule(module=node16).js.diff",
+    "testdata/baselines/reference/submodule/conformance/nodeModulesResolveJsonModule(module=nodenext).js",
+    "testdata/baselines/reference/submodule/conformance/nodeModulesResolveJsonModule(module=nodenext).js.diff",
+    "testdata/baselines/reference/submodule/conformance/nodeModulesTypesVersionPackageExports(module=node16).js",
+    "testdata/baselines/reference/submodule/conformance/nodeModulesTypesVersionPackageExports(module=node16).js.diff",
+    "testdata/baselines/reference/submodule/conformance/nodeModulesTypesVersionPackageExports(module=nodenext).js",
+    "testdata/baselines/reference/submodule/conformance/nodeModulesTypesVersionPackageExports(module=nodenext).js.diff",
+    "testdata/baselines/reference/submodule/conformance/nodePackageSelfName(module=node16).js",
+    "testdata/baselines/reference/submodule/conformance/nodePackageSelfName(module=node16).js.diff",
+    "testdata/baselines/reference/submodule/conformance/nodePackageSelfName(module=nodenext).js",
+    "testdata/baselines/reference/submodule/conformance/nodePackageSelfName(module=nodenext).js.diff",
+    "testdata/baselines/reference/submodule/conformance/nodePackageSelfNameScoped(module=node16).js",
+    "testdata/baselines/reference/submodule/conformance/nodePackageSelfNameScoped(module=node16).js.diff",
+    "testdata/baselines/reference/submodule/conformance/nodePackageSelfNameScoped(module=nodenext).js",
+    "testdata/baselines/reference/submodule/conformance/nodePackageSelfNameScoped(module=nodenext).js.diff",
+    "testdata/baselines/reference/submodule/conformance/verbatimModuleSyntaxRestrictionsCJS.js",
+    "testdata/baselines/reference/submodule/conformance/verbatimModuleSyntaxRestrictionsCJS.js.diff"
+   ]
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "binary_or_large_added": 0,
+    "build_output_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "stray_file": 0,
+    "tests_removed": 0,
+    "version_bump": 0,
+    "whitespace_only": 0
+   },
+   "extras": [],
+   "files_changed": 5,
+   "files_sha256": "4e8f3b3a922af77221d1cb0a57296dba26b0ae993b51023bef1be6dadab45b7b",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/dotnet/sdk/issues/49349"
+   ],
+   "license": "MIT",
+   "named_paths": [
+    "src/Tasks/Microsoft.NET.Build.Tasks.UnitTests/GivenAGenerateDepsFile.cs",
+    "src/Tasks/Microsoft.NET.Build.Tasks.UnitTests/GivenAGenerateRuntimeConfigurationFiles.cs",
+    "src/Tasks/Microsoft.NET.Build.Tasks/GenerateDepsFile.cs",
+    "src/Tasks/Microsoft.NET.Build.Tasks/GenerateRuntimeConfigurationFiles.cs",
+    "src/Tasks/Microsoft.NET.Build.Tasks/HashingUtils.cs"
+   ],
+   "pr_url": "https://github.com/dotnet/sdk/pull/49459",
+   "repo": "dotnet/sdk",
+   "stray": [],
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": false,
+   "counts": {
+    "binary_or_large_added": 0,
+    "build_output_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "stray_file": 0,
+    "tests_removed": 0,
+    "version_bump": 0,
+    "whitespace_only": 0
+   },
+   "extras": [],
+   "files_changed": 4,
+   "files_sha256": "75f92eb015c6ebca133b94df26ddcc0d15f5e7284f893612626285573ed63a50",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/microsoft/vscode/issues/250272"
+   ],
+   "license": "MIT",
+   "named_paths": [],
+   "pr_url": "https://github.com/microsoft/vscode/pull/251760",
+   "repo": "microsoft/vscode",
+   "stray": [],
+   "unplaced": [
+    "src/vs/workbench/contrib/search/browser/search.contribution.ts",
+    "src/vs/workbench/contrib/search/browser/searchView.ts",
+    "src/vs/workbench/contrib/search/test/browser/confirmReplaceAll.test.ts",
+    "src/vs/workbench/services/search/common/search.ts"
+   ]
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "binary_or_large_added": 0,
+    "build_output_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "stray_file": 0,
+    "tests_removed": 0,
+    "version_bump": 0,
+    "whitespace_only": 0
+   },
+   "extras": [],
+   "files_changed": 2,
+   "files_sha256": "7b9abcdec4799e72e4ca58072389f8453d80a1ad321351998967d5a7e6c3afc2",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/rust-cross/cargo-zigbuild/issues/343"
+   ],
+   "license": "MIT",
+   "named_paths": [
+    "src/zig.rs"
+   ],
+   "pr_url": "https://github.com/rust-cross/cargo-zigbuild/pull/353",
+   "repo": "rust-cross/cargo-zigbuild",
+   "stray": [],
+   "unplaced": [
+    "src/bin/cargo-zigbuild.rs"
+   ]
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "binary_or_large_added": 0,
+    "build_output_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "stray_file": 0,
+    "tests_removed": 0,
+    "version_bump": 0,
+    "whitespace_only": 0
+   },
+   "extras": [],
+   "files_changed": 1,
+   "files_sha256": "ae4119be6c32783bbffddc467acd4d2132f2890a7aee5c28ff3f9e29eb63d707",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/oxc-project/oxc/issues/12530"
+   ],
+   "license": "MIT",
+   "named_paths": [
+    "crates/oxc_linter/src/rules/promise/prefer_await_to_callbacks.rs"
+   ],
+   "pr_url": "https://github.com/oxc-project/oxc/pull/12537",
+   "repo": "oxc-project/oxc",
+   "stray": [],
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "binary_or_large_added": 0,
+    "build_output_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "stray_file": 0,
+    "tests_removed": 0,
+    "version_bump": 0,
+    "whitespace_only": 0
+   },
+   "extras": [],
+   "files_changed": 1,
+   "files_sha256": "9d00856e91ea4397b9413a8392502a12f972564078a38496d633ba25ed9464f0",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/Azure/azure-sdk-for-java/issues/45594"
+   ],
+   "license": "MIT",
+   "named_paths": [
+    "sdk/tools/azure-openrewrite/pom.xml"
+   ],
+   "pr_url": "https://github.com/Azure/azure-sdk-for-java/pull/45595",
+   "repo": "Azure/azure-sdk-for-java",
+   "stray": [],
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "binary_or_large_added": 0,
+    "build_output_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "stray_file": 0,
+    "tests_removed": 0,
+    "version_bump": 0,
+    "whitespace_only": 0
+   },
+   "extras": [],
+   "files_changed": 1,
+   "files_sha256": "6cb7ff579942b703987cb0b4c51256e040c86a261f334b27d674da6d44af37c9",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/microsoft/PowerToys/issues/40240"
+   ],
+   "license": "MIT",
+   "named_paths": [
+    ".pipelines/ESRPSigning_core.json"
+   ],
+   "pr_url": "https://github.com/microsoft/PowerToys/pull/40241",
+   "repo": "microsoft/PowerToys",
+   "stray": [],
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "binary_or_large_added": 0,
+    "build_output_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "stray_file": 0,
+    "tests_removed": 0,
+    "version_bump": 0,
+    "whitespace_only": 0
+   },
+   "extras": [],
+   "files_changed": 14,
+   "files_sha256": "144025c2f860dd68eb2789cab353e26606390f4e2feb1ceac6eca7767f094137",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/microsoft/OpenAPI.NET/issues/2387"
+   ],
+   "license": "MIT",
+   "named_paths": [
+    "src/Microsoft.OpenApi.YamlReader/Microsoft.OpenApi.YamlReader.csproj",
+    "test/Microsoft.OpenApi.Readers.Tests/Microsoft.OpenApi.Readers.Tests.csproj",
+    "test/Microsoft.OpenApi.Tests/Microsoft.OpenApi.Tests.csproj"
+   ],
+   "pr_url": "https://github.com/microsoft/OpenAPI.NET/pull/2388",
+   "repo": "microsoft/OpenAPI.NET",
+   "stray": [],
+   "unplaced": [
+    "performance/benchmark/BenchmarkDotNet.Artifacts/results/performance.Descriptions-report-github.md",
+    "performance/benchmark/BenchmarkDotNet.Artifacts/results/performance.Descriptions-report.csv",
+    "performance/benchmark/BenchmarkDotNet.Artifacts/results/performance.Descriptions-report.html",
+    "performance/benchmark/BenchmarkDotNet.Artifacts/results/performance.Descriptions-report.json"
+   ]
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "binary_or_large_added": 0,
+    "build_output_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "stray_file": 0,
+    "tests_removed": 0,
+    "version_bump": 0,
+    "whitespace_only": 0
+   },
+   "extras": [],
+   "files_changed": 1,
+   "files_sha256": "4966010bb770ec03773dab1be89a209b0888f1f8096d6be31adf9fa75dea15be",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/dotnet/aspire/issues/10458"
+   ],
+   "license": "MIT",
+   "named_paths": [
+    "eng/scripts/get-aspire-cli.ps1"
+   ],
+   "pr_url": "https://github.com/dotnet/aspire/pull/10459",
+   "repo": "dotnet/aspire",
+   "stray": [],
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "binary_or_large_added": 0,
+    "build_output_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "stray_file": 0,
+    "tests_removed": 0,
+    "version_bump": 0,
+    "whitespace_only": 0
+   },
+   "extras": [],
+   "files_changed": 6,
+   "files_sha256": "4631535d8abf58f456e06cca6924f615e6882db2ce3b4a5e405b5acdaccf8b68",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/Azure/azure-sdk-for-js/issues/27403"
+   ],
+   "license": "MIT",
+   "named_paths": [
+    "sdk/translation/ai-translation-text-rest/src/errorParsingPolicy.ts",
+    "sdk/translation/ai-translation-text-rest/src/index.ts",
+    "sdk/translation/ai-translation-text-rest/src/textTranslationClient.ts",
+    "sdk/translation/ai-translation-text-rest/test/public/errorHandlingTest.spec.ts",
+    "sdk/translation/ai-translation-text-rest/test/public/utils/testHelper.ts"
+   ],
+   "pr_url": "https://github.com/Azure/azure-sdk-for-js/pull/34481",
+   "repo": "Azure/azure-sdk-for-js",
+   "stray": [],
+   "unplaced": []
+  },
+  {
+   "agent": "Devin",
+   "anchored": true,
+   "counts": {
+    "binary_or_large_added": 0,
+    "build_output_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "stray_file": 0,
+    "tests_removed": 0,
+    "version_bump": 0,
+    "whitespace_only": 0
+   },
+   "extras": [],
+   "files_changed": 3,
+   "files_sha256": "3e8a4e1cb45856777ae6f9bee2b55a35697a945ee2f2cbf615ab5048701630d4",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/svapnil/iso20022.js/issues/38"
+   ],
+   "license": "MIT",
+   "named_paths": [
+    "src/pain/001/sepa-credit-payment-initiation.ts",
+    "test/pain/001/sepa-credit-payment-initiation.test.ts"
+   ],
+   "pr_url": "https://github.com/svapnil/iso20022.js/pull/43",
+   "repo": "svapnil/iso20022.js",
+   "stray": [],
+   "unplaced": [
+    "src/lib/types.ts"
+   ]
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "binary_or_large_added": 0,
+    "build_output_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "stray_file": 0,
+    "tests_removed": 0,
+    "version_bump": 0,
+    "whitespace_only": 0
+   },
+   "extras": [],
+   "files_changed": 5,
+   "files_sha256": "f4ed0156f24a1132ae7679f334945e4d7fc1cf475e9569ae4b84d26f51235e5c",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/github/gh-gei/issues/1357"
+   ],
+   "license": "MIT",
+   "named_paths": [
+    "src/OctoshiftCLI.Tests/ado2gh/Commands/IntegrateBoards/IntegrateBoardsCommandHandlerTests.cs",
+    "src/ado2gh/Commands/IntegrateBoards/IntegrateBoardsCommandHandler.cs"
+   ],
+   "pr_url": "https://github.com/github/gh-gei/pull/1360",
+   "repo": "github/gh-gei",
+   "stray": [],
+   "unplaced": [
+    "global.json",
+    "src/Octoshift/Services/AdoApi.cs"
+   ]
+  },
+  {
+   "agent": "Devin",
+   "anchored": true,
+   "counts": {
+    "binary_or_large_added": 0,
+    "build_output_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "stray_file": 0,
+    "tests_removed": 0,
+    "version_bump": 0,
+    "whitespace_only": 0
+   },
+   "extras": [],
+   "files_changed": 2,
+   "files_sha256": "e0130e6584976fb590c43d7a1f57e078487ef628d339dda88f953384ac101bee",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/sam-goodwin/alchemy/issues/163"
+   ],
+   "license": "Apache-2.0",
+   "named_paths": [
+    "alchemy/src/neon/project.ts",
+    "alchemy/test/neon/project.test.ts"
+   ],
+   "pr_url": "https://github.com/sam-goodwin/alchemy/pull/247",
+   "repo": "sam-goodwin/alchemy",
+   "stray": [],
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": false,
+   "counts": {
+    "binary_or_large_added": 0,
+    "build_output_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "stray_file": 0,
+    "tests_removed": 0,
+    "version_bump": 0,
+    "whitespace_only": 0
+   },
+   "extras": [],
+   "files_changed": 7,
+   "files_sha256": "084153a89d04b9f1daa2583b9c9ae1ff41e9df9928efe43e363c649a1775399a",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/specmatic/specmatic/issues/1836"
+   ],
+   "license": "MIT",
+   "named_paths": [],
+   "pr_url": "https://github.com/specmatic/specmatic/pull/1856",
+   "repo": "specmatic/specmatic",
+   "stray": [],
+   "unplaced": [
+    "application/src/main/kotlin/application/TestCommand.kt",
+    "junit5-support/src/main/kotlin/io/specmatic/test/SpecmaticJUnitSupport.kt",
+    "junit5-support/src/main/kotlin/io/specmatic/test/listeners/ContractExecutionListener.kt",
+    "junit5-support/src/main/kotlin/io/specmatic/test/reports/OpenApiCoverageReportProcessor.kt",
+    "junit5-support/src/main/kotlin/io/specmatic/test/status/TestExecutionStatus.kt",
+    "junit5-support/src/test/kotlin/io/specmatic/test/NoTestsExecutedReportTest.kt",
+    "junit5-support/src/test/kotlin/io/specmatic/test/status/TestExecutionStatusTest.kt"
+   ]
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "binary_or_large_added": 0,
+    "build_output_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "stray_file": 0,
+    "tests_removed": 0,
+    "version_bump": 0,
+    "whitespace_only": 0
+   },
+   "extras": [],
+   "files_changed": 12,
+   "files_sha256": "3b82e58b53beae38d016712ad43e811b9f2f79a50dce16ed2151d39d736fcb74",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/dotnet/maui/issues/30256"
+   ],
+   "license": "MIT",
+   "named_paths": [
+    "src/Controls/src/Core/Accelerator.cs",
+    "src/Controls/src/Core/AcceleratorTypeConverter.cs",
+    "src/Controls/src/Core/Menu/MenuItem.cs",
+    "src/Controls/src/Core/PublicAPI/net-android/PublicAPI.Unshipped.txt",
+    "src/Controls/src/Core/PublicAPI/net-ios/PublicAPI.Unshipped.txt",
+    "src/Controls/src/Core/PublicAPI/net-maccatalyst/PublicAPI.Unshipped.txt",
+    "src/Controls/src/Core/PublicAPI/net-tizen/PublicAPI.Unshipped.txt",
+    "src/Controls/src/Core/PublicAPI/net-windows/PublicAPI.Unshipped.txt",
+    "src/Controls/src/Core/PublicAPI/net/PublicAPI.Unshipped.txt",
+    "src/Controls/src/Core/PublicAPI/netstandard/PublicAPI.Unshipped.txt"
+   ],
+   "pr_url": "https://github.com/dotnet/maui/pull/30526",
+   "repo": "dotnet/maui",
+   "stray": [],
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": false,
+   "counts": {
+    "binary_or_large_added": 0,
+    "build_output_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "stray_file": 0,
+    "tests_removed": 0,
+    "version_bump": 0,
+    "whitespace_only": 0
+   },
+   "extras": [],
+   "files_changed": 2,
+   "files_sha256": "d7ade7538479a882d91969b5b6cb5e9a1ee38243120ec2ebd1da0517b11390c0",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/Azure/azure-sdk-for-js/issues/32671"
+   ],
+   "license": "MIT",
+   "named_paths": [],
+   "pr_url": "https://github.com/Azure/azure-sdk-for-js/pull/34476",
+   "repo": "Azure/azure-sdk-for-js",
+   "stray": [],
+   "unplaced": [
+    "sdk/core/ts-http-runtime/src/policies/formDataPolicy.ts",
+    "sdk/core/ts-http-runtime/test/formDataPolicy.spec.ts"
+   ]
+  },
+  {
+   "agent": "Cursor",
+   "anchored": false,
+   "counts": {
+    "binary_or_large_added": 0,
+    "build_output_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "stray_file": 1,
+    "tests_removed": 0,
+    "version_bump": 0,
+    "whitespace_only": 0
+   },
+   "extras": [
+    {
+     "detail": [],
+     "kind": "stray_file",
+     "name": "SHOW_COMMANDS_IMPLEMENTATION_SUMMARY.md",
+     "path": "SHOW_COMMANDS_IMPLEMENTATION_SUMMARY.md",
+     "why": "adds a top-level document the issue does not name; the issue does not ask for it"
+    }
+   ],
+   "files_changed": 18,
+   "files_sha256": "8b6d9c27e1d53c70ec021870883c84a0f1a00470a59d78a36bee6b10baa814a9",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/StarRocks/starrocks/issues/52446"
+   ],
+   "license": "Apache-2.0",
+   "named_paths": [],
+   "pr_url": "https://github.com/StarRocks/starrocks/pull/61244",
+   "repo": "StarRocks/starrocks",
+   "stray": [
+    "SHOW_COMMANDS_IMPLEMENTATION_SUMMARY.md"
+   ],
+   "unplaced": [
+    "SHOW_COMMANDS_IMPLEMENTATION_SUMMARY.md",
+    "fe/fe-core/src/main/java/com/starrocks/qe/ShowExecutor.java",
+    "fe/fe-core/src/main/java/com/starrocks/qe/ShowResultProcessor.java",
+    "fe/fe-core/src/main/java/com/starrocks/sql/ast/ShowBackendsStmt.java",
+    "fe/fe-core/src/main/java/com/starrocks/sql/ast/ShowComputeNodesStmt.java",
+    "fe/fe-core/src/main/java/com/starrocks/sql/ast/ShowEnginesStmt.java",
+    "fe/fe-core/src/main/java/com/starrocks/sql/ast/ShowFrontendsStmt.java",
+    "fe/fe-core/src/main/java/com/starrocks/sql/ast/ShowPluginsStmt.java",
+    "fe/fe-core/src/main/java/com/starrocks/sql/ast/ShowRepositoriesStmt.java",
+    "fe/fe-core/src/main/java/com/starrocks/sql/ast/ShowResourcesStmt.java",
+    "fe/fe-core/src/main/java/com/starrocks/sql/ast/ShowRolesStmt.java",
+    "fe/fe-core/src/main/java/com/starrocks/sql/ast/ShowStmt.java",
+    "fe/fe-core/src/main/java/com/starrocks/sql/ast/ShowUserStmt.java",
+    "fe/fe-core/src/main/java/com/starrocks/sql/parser/AstBuilder.java",
+    "fe/fe-core/src/main/java/com/starrocks/sql/parser/StarRocks.g4",
+    "fe/fe-core/src/test/java/com/starrocks/qe/ShowEnginesStmtTest.java",
+    "fe/fe-core/src/test/java/com/starrocks/qe/ShowResultProcessorTest.java",
+    "fe/fe-core/src/test/java/com/starrocks/sql/analyzer/ShowStmtAnalyzerTest.java"
+   ]
+  },
+  {
+   "agent": "Copilot",
+   "anchored": false,
+   "counts": {
+    "binary_or_large_added": 0,
+    "build_output_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "stray_file": 0,
+    "tests_removed": 0,
+    "version_bump": 0,
+    "whitespace_only": 0
+   },
+   "extras": [],
+   "files_changed": 3,
+   "files_sha256": "8f22573c556c106949f13edf10eff5f6969a493a3f5f249380780dae25723c66",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/mono/SkiaSharp/issues/3294"
+   ],
+   "license": "MIT",
+   "named_paths": [],
+   "pr_url": "https://github.com/mono/SkiaSharp/pull/3295",
+   "repo": "mono/SkiaSharp",
+   "stray": [],
+   "unplaced": [
+    "scripts/azure-pipelines-complete-internal.yml",
+    "scripts/azure-pipelines-complete.yml",
+    "scripts/azure-pipelines-tests.yml"
+   ]
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "binary_or_large_added": 0,
+    "build_output_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "stray_file": 0,
+    "tests_removed": 0,
+    "version_bump": 0,
+    "whitespace_only": 0
+   },
+   "extras": [],
+   "files_changed": 6,
+   "files_sha256": "92e86fa0366af0e341d36f211b2006ae7e48c3213a4788190e44cf81cc467768",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/microsoft/fluentui-blazor/issues/3996"
+   ],
+   "license": "MIT",
+   "named_paths": [
+    "src/Core/Components/NavMenu/FluentNavLink.razor",
+    "src/Core/Components/NavMenu/FluentNavLink.razor.cs",
+    "tests/Core/NavMenu/FluentNavLinkTests.FluentNavLink_InsideNavGroup_WithHref.verified.html",
+    "tests/Core/NavMenu/FluentNavLinkTests.FluentNavLink_KeyboardNavigation_InsideNavGroup.verified.html",
+    "tests/Core/NavMenu/FluentNavLinkTests.FluentNavLink_KeyboardNavigation_Standalone.verified.html",
+    "tests/Core/NavMenu/FluentNavLinkTests.cs"
+   ],
+   "pr_url": "https://github.com/microsoft/fluentui-blazor/pull/3998",
+   "repo": "microsoft/fluentui-blazor",
+   "stray": [],
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "binary_or_large_added": 0,
+    "build_output_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "stray_file": 0,
+    "tests_removed": 0,
+    "version_bump": 0,
+    "whitespace_only": 0
+   },
+   "extras": [],
+   "files_changed": 4,
+   "files_sha256": "f9891a17bb426c72c3775bdf1da838932679fba16b9cbe1d8b8ccdda54ab38a0",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/microsoft/Spartan2/issues/35"
+   ],
+   "license": "MIT",
+   "named_paths": [
+    "src/sumcheck.rs"
+   ],
+   "pr_url": "https://github.com/microsoft/Spartan2/pull/36",
+   "repo": "microsoft/Spartan2",
+   "stray": [],
+   "unplaced": [
+    "src/polys/multilinear.rs",
+    "src/provider/msm.rs"
+   ]
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "binary_or_large_added": 0,
+    "build_output_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "stray_file": 0,
+    "tests_removed": 0,
+    "version_bump": 0,
+    "whitespace_only": 0
+   },
+   "extras": [],
+   "files_changed": 2,
+   "files_sha256": "afc6a80782f5f7824e16fa4c7e5d684269fb3248b7eb3baa041a8aa4ca4fe294",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/microsoft/vscode/issues/180918"
+   ],
+   "license": "MIT",
+   "named_paths": [
+    "src/vs/editor/contrib/colorPicker/browser/colorPickerParticipantUtils.ts",
+    "src/vs/editor/contrib/colorPicker/test/browser/standaloneColorPickerMulticursor.test.ts"
+   ],
+   "pr_url": "https://github.com/microsoft/vscode/pull/252346",
+   "repo": "microsoft/vscode",
+   "stray": [],
+   "unplaced": []
+  },
+  {
+   "agent": "Devin",
+   "anchored": false,
+   "counts": {
+    "binary_or_large_added": 0,
+    "build_output_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "stray_file": 0,
+    "tests_removed": 0,
+    "version_bump": 0,
+    "whitespace_only": 0
+   },
+   "extras": [],
+   "files_changed": 2,
+   "files_sha256": "c917949675cbe13661ca75cd13f425bb8986967c563c7ee1c880f42ffbeae43f",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/crewAIInc/crewAI/issues/2282"
+   ],
+   "license": "MIT",
+   "named_paths": [],
+   "pr_url": "https://github.com/crewAIInc/crewAI/pull/2635",
+   "repo": "crewAIInc/crewAI",
+   "stray": [],
+   "unplaced": [
+    "src/crewai/utilities/internal_instructor.py",
+    "tests/utilities/test_internal_instructor.py"
+   ]
+  },
+  {
+   "agent": "Copilot",
+   "anchored": false,
+   "counts": {
+    "binary_or_large_added": 0,
+    "build_output_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "stray_file": 0,
+    "tests_removed": 0,
+    "version_bump": 0,
+    "whitespace_only": 0
+   },
+   "extras": [],
+   "files_changed": 1,
+   "files_sha256": "2db4be06e97a373e8308ffcd917d29b8cb6c40be3bb2ca3caf42f286ec1a7853",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/0x2E/fusion/issues/186"
+   ],
+   "license": "MIT",
+   "named_paths": [],
+   "pr_url": "https://github.com/0x2E/fusion/pull/188",
+   "repo": "0x2E/fusion",
+   "stray": [],
+   "unplaced": [
+    "frontend/src/lib/utils.ts"
+   ]
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "binary_or_large_added": 0,
+    "build_output_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "stray_file": 0,
+    "tests_removed": 0,
+    "version_bump": 0,
+    "whitespace_only": 0
+   },
+   "extras": [],
+   "files_changed": 1,
+   "files_sha256": "d5e810805c8de5dfb64ea2c31450bb0904f10cfd4b9375d6765406a31362e8c5",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/microsoft/vscode/issues/248001"
+   ],
+   "license": "MIT",
+   "named_paths": [
+    "src/vs/workbench/contrib/terminalContrib/stickyScroll/browser/terminalStickyScrollOverlay.ts"
+   ],
+   "pr_url": "https://github.com/microsoft/vscode/pull/253018",
+   "repo": "microsoft/vscode",
+   "stray": [],
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "binary_or_large_added": 0,
+    "build_output_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "stray_file": 0,
+    "tests_removed": 0,
+    "version_bump": 0,
+    "whitespace_only": 0
+   },
+   "extras": [],
+   "files_changed": 2,
+   "files_sha256": "a326cbb15aad0b199e3076e0b18736a039d16b1368b40ba78b860747d47d0b63",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/microsoft/vscode/issues/248532"
+   ],
+   "license": "MIT",
+   "named_paths": [
+    "src/vs/workbench/contrib/notebook/browser/view/cellParts/cellOutput.ts",
+    "src/vs/workbench/contrib/notebook/test/browser/cellOutput.test.ts"
+   ],
+   "pr_url": "https://github.com/microsoft/vscode/pull/253761",
+   "repo": "microsoft/vscode",
+   "stray": [],
+   "unplaced": []
+  },
+  {
+   "agent": "Devin",
+   "anchored": true,
+   "counts": {
+    "binary_or_large_added": 0,
+    "build_output_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "stray_file": 0,
+    "tests_removed": 0,
+    "version_bump": 0,
+    "whitespace_only": 0
+   },
+   "extras": [],
+   "files_changed": 4,
+   "files_sha256": "89bc9dcc413d99f30610d33837c9185d3494c47b24df1b4be7bf1444dd512720",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/crewAIInc/crewAI/issues/3059"
+   ],
+   "license": "MIT",
+   "named_paths": [
+    "src/crewai/cli/create_crew.py",
+    "tests/cli/test_create_crew.py"
+   ],
+   "pr_url": "https://github.com/crewAIInc/crewAI/pull/3060",
+   "repo": "crewAIInc/crewAI",
+   "stray": [],
+   "unplaced": []
+  },
+  {
+   "agent": "OpenAI_Codex",
+   "anchored": true,
+   "counts": {
+    "binary_or_large_added": 0,
+    "build_output_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "stray_file": 0,
+    "tests_removed": 0,
+    "version_bump": 0,
+    "whitespace_only": 0
+   },
+   "extras": [],
+   "files_changed": 2,
+   "files_sha256": "4a67933993a6674882a220d2f5fd3d42da2996c51e2f2833cdb31e6c06912543",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/openai/openai-agents-python/issues/668"
+   ],
+   "license": "MIT",
+   "named_paths": [
+    "src/agents/extensions/visualization.py",
+    "tests/test_visualization.py"
+   ],
+   "pr_url": "https://github.com/openai/openai-agents-python/pull/737",
+   "repo": "openai/openai-agents-python",
+   "stray": [],
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": false,
+   "counts": {
+    "binary_or_large_added": 0,
+    "build_output_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "stray_file": 0,
+    "tests_removed": 0,
+    "version_bump": 0,
+    "whitespace_only": 0
+   },
+   "extras": [],
+   "files_changed": 2,
+   "files_sha256": "69276135abed8410cd4c966bcd2facfa6868f767c49fa9a152dcb17eb9986f6b",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/dotnet/aspire/issues/9392"
+   ],
+   "license": "MIT",
+   "named_paths": [],
+   "pr_url": "https://github.com/dotnet/aspire/pull/9413",
+   "repo": "dotnet/aspire",
+   "stray": [],
+   "unplaced": [
+    "src/Aspire.Hosting.MySql/MySqlBuilderExtensions.cs",
+    "src/Aspire.Hosting.Redis/RedisBuilderExtensions.cs"
+   ]
+  },
+  {
+   "agent": "Copilot",
+   "anchored": false,
+   "counts": {
+    "binary_or_large_added": 0,
+    "build_output_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "stray_file": 0,
+    "tests_removed": 0,
+    "version_bump": 0,
+    "whitespace_only": 0
+   },
+   "extras": [],
+   "files_changed": 3,
+   "files_sha256": "2fbe26269fe383a21e548e4aa3eb654caa2a22e313afb6f27b346733b5fa5023",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/Azure/azure-sdk-for-rust/issues/2698"
+   ],
+   "license": "MIT",
+   "named_paths": [],
+   "pr_url": "https://github.com/Azure/azure-sdk-for-rust/pull/2699",
+   "repo": "Azure/azure-sdk-for-rust",
+   "stray": [],
+   "unplaced": [
+    "sdk/identity/azure_identity/src/azure_cli_credential.rs",
+    "sdk/identity/azure_identity/src/azure_developer_cli_credential.rs",
+    "sdk/identity/azure_identity/tests/default_options_test.rs"
+   ]
+  }
+ ],
+ "summary": {
+  "dataset": "hao-li/AIDev@v3",
+  "dataset_revision": "68ed5f4b80d27a9e057fc57567f38bd322ac73ec",
+  "excluded_prs_passed_over": 2,
+  "excluded_samples": [
+   "A",
+   "B",
+   "C",
+   "D"
+  ],
+  "flagged_if_rule5_never_abstained": 29,
+  "funnel": {
+   "linked_issues_that_are_prs": 0,
+   "linked_prs_in_permissive_repos": 3757,
+   "linked_prs_whose_repo_is_missing": 0,
+   "pool": 3703,
+   "pool_by_agent": {
+    "Claude_Code": 63,
+    "Copilot": 3152,
+    "Cursor": 38,
+    "Devin": 340,
+    "OpenAI_Codex": 110
+   },
+   "prs_linked_to_an_issue": 4905,
+   "pull_request_rows": 33596
+  },
+  "github_api_calls_this_run": 65,
+  "inputs_lock_sha256": "ef49bfeea2d9761fbd06518fa8bd0e59d490e3e517e390a6c8e655948f0f6d79",
+  "kill_test_1a": {
+   "pass": true,
+   "pool": 3703,
+   "threshold": ">= 150"
+  },
+  "kill_test_1b": {
+   "flagged": 3,
+   "of": 60,
+   "pass": false,
+   "threshold": "6..30"
+  },
+  "per_kind": {
+   "binary_or_large_added": {
+    "extras": 0,
+    "prs": 0
+   },
+   "build_output_added": {
+    "extras": 0,
+    "prs": 0
+   },
+   "ci_or_config": {
+    "extras": 1,
+    "prs": 1
+   },
+   "generated_code_removed": {
+    "extras": 0,
+    "prs": 0
+   },
+   "new_dependency": {
+    "extras": 0,
+    "prs": 0
+   },
+   "public_api_removed": {
+    "extras": 0,
+    "prs": 0
+   },
+   "stray_file": {
+    "extras": 2,
+    "prs": 2
+   },
+   "tests_removed": {
+    "extras": 0,
+    "prs": 0
+   },
+   "version_bump": {
+    "extras": 1,
+    "prs": 1
+   },
+   "whitespace_only": {
+    "extras": 0,
+    "prs": 0
+   }
+  },
+  "prs_with_a_file_missing_its_patch": 1,
+  "prs_with_unplaced_files": 28,
+  "python": "3.12.3",
+  "rules_file": "extras.py",
+  "rules_sha256": "67f62f09fefc36f21cbf32bb4fcf895f5557dd0f7845b1d9a73a066062900682",
+  "rules_version": 5,
+  "sample": "sample E (held out: rules v5 frozen before this run)",
+  "sample_size": 60,
+  "seed": 20261014,
+  "skipped_fetch_failed": [
+   {
+    "error": "no files",
+    "pr_url": "https://github.com/Azure/azure-rest-api-specs/pull/35395"
+   },
+   {
+    "error": "no files",
+    "pr_url": "https://github.com/usememos/memos/pull/4815"
+   },
+   {
+    "error": "no files",
+    "pr_url": "https://github.com/Azure/Azure-Sentinel/pull/12443"
+   },
+   {
+    "error": "no files",
+    "pr_url": "https://github.com/risingwavelabs/risingwave/pull/22637"
+   }
+  ],
+  "unanchored": 21
+ }
+}

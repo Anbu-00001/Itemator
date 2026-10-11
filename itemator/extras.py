@@ -1,15 +1,29 @@
-"""Fixed rules: what a merge request changed beyond its linked issue. Rules version 4.
+"""Fixed rules: what a merge request changed beyond its linked issue. Rules version 5.
 
 No model, no network, no randomness: the same issue text, changed files and
 repository name always give the same extras, in the same order. Version 1
 (commit cf0d762, sample A) is frozen in extras_v1.py, version 2 (commit
-12b3d1b, held out on sample B) in extras_v2.py and version 3 (held out on
-sample C) in extras_v3.py, byte for byte; analyse(..., version=1, 2 or 3) runs
-them. Version 4 was fixed on samples A, B and C together (the development set,
-seeds 20261010, 20261011 and 20261012) after the T10 audit and the T13 live
-test; it is tested once on sample D.
+12b3d1b, held out on sample B) in extras_v2.py, version 3 (held out on
+sample C) in extras_v3.py and version 4 (held out on sample D) in
+extras_v4.py, byte for byte; analyse(..., version=1, 2, 3 or 4) runs them.
+Version 5 was fixed on samples A, B, C and D together (the development set,
+seeds 20261010 to 20261013) after the T19 audit of sample D; it is tested
+once on sample E.
 
-WHAT V4 CHANGES (the rule texts below are v3's, amended where marked v4)
+WHAT V5 CHANGES (the rule texts below are v4's, amended where marked v5)
+  - Rule 2a: NOT changed. A stricter test (only the file's own name keeps the
+    rule quiet) was built and measured on samples A to D: it tripled the CI or
+    config lines (11 to 34) and most of the new ones sat in issues about CI,
+    workflows or config. The v4 keyword muting stays, so a workflow-engine
+    issue still mutes a CI file (the elsa-core#6677 miss is a known limit).
+  - Rule 5: a config or manifest file the issue names is a named file, so it
+    anchors the change.
+  - Rule 8: a Python virtual environment is one pool named by its root.
+  - Rule 9: temp and scratch artefacts (9c); lockfile reasons say only what
+    the changed files show.
+  - Rule 10 (new): whitespace_only.
+
+WHAT V4 CHANGED (the rule texts below are v3's, amended where marked v4)
   - Rule 1: a manifest the change adds (Cargo.toml, package.json,
     pyproject.toml) is one extra, "adds package X", not one per dependency.
     In pyproject.toml, a one-line `dependencies = [...]` or
@@ -155,6 +169,9 @@ RULES (an extra is kind + path + name + why; `name` is what a human types)
    docs/, doc/ or .changeset/), lockfiles, files under __snapshots__/, and
    files that rules 1-3 and 6 cover (manifests, config files, deleted test
    files, deleted generated files, binary or large files reported by rule 6).
+   v5: config and manifest files (rules 1 and 2) are matched too, so a config
+   file the issue names anchors the change; they are still never unplaced,
+   and neither are the files of a rule 10 extra.
 6. binary_or_large_added (v3). An added file that is binary (GitHub marks it
    binary, or it has no patch, no added or deleted lines and an extension that
    is not a known text extension, which includes no extension), or larger than
@@ -179,6 +196,10 @@ RULES (an extra is kind + path + name + why; `name` is what a human types)
    (_BUILD_DIRS), pooled by the path up to that directory; a pool of MASS or
    more is one extra, "N generated files committed", named by the directory.
    Its files are left out of every other rule.
+   v5: a Python virtual environment is pooled by its root, the directory
+   that holds its pyvenv.cfg or its bin/activate (Scripts/activate on
+   Windows), so the root's own files (pyvenv.cfg, the lib64 link) count and
+   the extra is named by the root.
 9. stray_file (v4). Added files the issue does not name that look left
    behind: (a) a lockfile of a package manager the repo does not use (the
    change shows another manager's lockfile of the same ecosystem in that
@@ -190,6 +211,27 @@ RULES (an extra is kind + path + name + why; `name` is what a human types)
    One extra per change: name = the path for one file, else "stray files"
    with the files in `detail`. `Analysis.stray` lists them; `unplaced` is
    unchanged.
+   (c, v5) A temp or scratch artefact: an added file named *-temp.*,
+   *_tmp.*, *.tmp (any of - _ . before temp or tmp) or scratch*, outside
+   test-support directories; or a directory named tmp*, temp* or scratch*
+   (not template, tmpl, temper..., tempo... or tempest) whose changed files
+   are all added and that the issue does not name (nor any file in it): one entry per directory, its
+   path ending in '/'. "Name" here is the file's own path, base name or stem
+   (as in rule 2a), not an ancestor directory. A temp-named config file is
+   reported here, not by rule 2a.
+   v5 wording (a): "a second lockfile for another package manager" when
+   another manager's lockfile is in the change; else what the changed files
+   show about the manifest (not among them, or among them but not new).
+10. whitespace_only (v5). A modified file with added or removed lines whose
+   added and removed lines are the same once each is stripped of leading and
+   trailing whitespace and blank lines are dropped (final newline,
+   indentation, blank-line churn), unless the issue mentions a formatting
+   word (_FORMAT_WORDS) or another extra already reports the file. Renamed
+   files and changes without added or removed lines (a mode change) are not
+   read. WHITESPACE_GROUP or more such files are one extra named by the
+   directory they share ("whitespace-only edits", path "./", when they share
+   none), with the count and the first three paths in the reason and every
+   file in `detail`; fewer are left to rule 5.
 """
 from __future__ import annotations
 
@@ -197,11 +239,14 @@ import posixpath
 import re
 from dataclasses import asdict, dataclass, field
 
-RULES_VERSION = 4       # v1, v2 and v3 are frozen in extras_v1.py, extras_v2.py and extras_v3.py; analyse(..., version=1|2|3) runs them
+RULES_VERSION = 5       # v1 to v4 are frozen in extras_v1.py to extras_v4.py; analyse(..., version=1|2|3|4) runs them
 KINDS = ("new_dependency", "ci_or_config", "tests_removed", "generated_code_removed",
-         "public_api_removed", "binary_or_large_added", "version_bump", "build_output_added", "stray_file")
+         "public_api_removed", "binary_or_large_added", "version_bump", "build_output_added", "stray_file",
+         "whitespace_only")
 MASS = 10               # files of one kind, added or deleted under one directory: one extra
 LARGE = 1_000_000       # bytes
+WHITESPACE_GROUP = 3    # whitespace-only files in one change that make one extra (T33 brief item 3; T19 audit of sample D,
+                        # section 7: 17 such files in one PR were 17 unplaced names); one or two are left to rule 5
 
 
 @dataclass(frozen=True)
@@ -222,7 +267,7 @@ class Analysis:
     named_paths: list[str] = field(default_factory=list)
     anchored: bool = False
     unplaced: list[str] = field(default_factory=list)   # files the rules could not place (rule 5)
-    stray: list[str] = field(default_factory=list)      # files rule 9 reports as stray_file (v4)
+    stray: list[str] = field(default_factory=list)      # files rule 9 reports as stray_file (v4); a temp directory (v5) ends in '/'
 
 
 # ---------------------------------------------------------------- helpers
@@ -696,7 +741,7 @@ _LINT_WORDS = ("lint", "linter", "linting", "eslint", "prettier", "ruff", "flake
                "mypy", "formatter", "stylelint", "biome", "golangci", "rubocop", "editorconfig",
                "markdownlint")
 
-# (description, test on (path, basename), keywords that count as a mention)
+# (description, test on (path, basename), keywords that count as a mention, as in v4)
 _CONFIG_RULES = [
     ("dependency-update config", lambda p, b: p in (".github/dependabot.yml", ".github/dependabot.yaml",
                                                     ".github/renovate.json", ".github/renovate.json5")
@@ -731,13 +776,30 @@ def _config_kind(path: str):
     return None
 
 
+_TOOL_SUFFIX = re.compile(r"(?:rc|[-_]config)$")   # .eslintrc, .pre-commit-config: a dotfile named after its tool (v5)
+_MIN_STEM = 2       # a one-letter stem ("a.yml") would be named by the article "a"; such a file is named by its base name
+
+
+def _config_stems(path: str) -> set[str]:
+    """A config file's stem (no leading dots, no extensions) and, for a dotfile, the tool it is named after."""
+    b = _base(path)
+    stem = b.lstrip(".").split(".")[0]
+    return {stem, _TOOL_SUFFIX.sub("", stem) if b.startswith(".") else stem}
+
+
+def _names_config(issue_text: str, path: str) -> bool:
+    """The issue names the file itself, by its base name or its stem, as a whole word (used by rule 9c)."""
+    stems = [s for s in _config_stems(path) if len(s) >= _MIN_STEM]
+    return _mentions(issue_text, _base(path)) or any(_mentions(issue_text, s) for s in stems)
+
+
 def _ci_or_config(issue_text, files):
     out = []
     for f in files:
         ck = _config_kind(f["filename"])
         if not ck:
             continue
-        desc, words = ck
+        desc, words = ck                    # v5 keeps v4's mention test: a stricter "name the file" version tripled the CI lines
         if _mentions(issue_text, _base(f["filename"])) or any(_mentions(issue_text, w) for w in words):
             continue
         out.append(Extra("ci_or_config", f["filename"], f["filename"],
@@ -1117,6 +1179,8 @@ def _unplaced(issue_text, files, covered: set[str], package: str = ""):
     candidates = [f["filename"] for f in files
                   if not _exempt(f["filename"]) and f["filename"] not in covered]
     keep = set(candidates)
+    keep |= {f["filename"] for f in files if f["filename"] in covered and not _exempt(f["filename"])   # v5: a named config
+             and (_manifest_kind(f["filename"]) or _config_kind(f["filename"]))}                    # or manifest anchors
     named = _named_files(issue_text, [f for f in files if f["filename"] in keep], package)
     if all(_test_support(p) for p in named):
         return sorted(candidates), [], False   # no anchor, or only tests the agent named after the issue
@@ -1230,13 +1294,30 @@ _BUILD_DIRS = {".turbo", "dist", ".tshy-build", "build", "target", "node_modules
                "site-packages"}   # build or install output; site-packages is node_modules' Python counterpart
 
 
+_VENV_MARKERS = ("pyvenv.cfg", "bin/activate", "Scripts/activate")   # what `python -m venv` writes at or under its root (v5)
+
+
+def _venv_roots(files) -> list[str]:
+    """Rule 8 (v5): the roots of the Python virtual environments the change adds, outermost first."""
+    roots = set()
+    for f in files:
+        for m in _VENV_MARKERS:
+            if f.get("status") == "added" and f["filename"].endswith("/" + m):
+                roots.add(f["filename"][:-len(m) - 1])
+    return sorted(roots, key=len)
+
+
 def _build_output(issue_text, files):
-    """(extras, their files): added files pooled by the path up to their first build-output directory."""
-    pools, toks = {}, issue_tokens(issue_text)
+    """(extras, their files): added files pooled by their virtual environment's root (v5), else by the path up to
+    their first build-output directory."""
+    pools, toks, roots = {}, issue_tokens(issue_text), _venv_roots(files)
     for f in files:
         parts = f["filename"].split("/")
         hit = next((i for i, d in enumerate(parts[:-1]) if d.lower() in _BUILD_DIRS), None)
-        if f.get("status") == "added" and hit is not None:
+        root = next((r for r in roots if f["filename"].startswith(r + "/")), None)
+        if f.get("status") == "added" and root is not None:
+            pools.setdefault(root, []).append(f["filename"])
+        elif f.get("status") == "added" and hit is not None:
             pools.setdefault("/".join(parts[:hit + 1]), []).append(f["filename"])
     out, taken = [], set()
     for d, paths in sorted(pools.items()):
@@ -1244,7 +1325,9 @@ def _build_output(issue_text, files):
             continue
         paths = tuple(sorted(paths))
         taken.update(paths)
-        out.append(Extra("build_output_added", d + "/", d + "/", f"{len(paths)} generated files committed under {d}/", paths))
+        venv = " (a Python virtual environment)" if d in roots else ""
+        out.append(Extra("build_output_added", d + "/", d + "/", f"{len(paths)} generated files committed under {d}/{venv}",
+                         paths))
     return out, taken
 
 
@@ -1272,10 +1355,40 @@ def _stray_lockfiles(issue_text, files):
             continue
         others = sorted(o for o, (_, m) in _LOCK_MANAGER.items() if o != b and m == manifest
                         and status.get(posixpath.join(d, o)) not in (None, "removed"))
+        where = status.get(posixpath.join(d, manifest))      # v5: say only what the changed files show
         if others:
-            out.append((f["filename"], f"a {manager} lockfile beside {others[0]}, the lockfile of the package manager in use"))
-        elif status.get(posixpath.join(d, manifest)) != "added":
-            out.append((f["filename"], f"a {manager} lockfile in a project that had none (its {manifest} is not new)"))
+            out.append((f["filename"], f"a second lockfile for another package manager ({manager}'s {b} beside {others[0]})"))
+        elif where is None:
+            out.append((f["filename"], f"a {manager} lockfile; the changed files show no matching manifest ({manifest})"))
+        elif where != "added":
+            out.append((f["filename"], f"a {manager} lockfile; its {manifest} is in the change but not new"))
+    return out
+
+
+_TEMP_FILE = re.compile(r".+[-_.](?:temp|tmp)(?:\..+)?|scratch.*", re.I)   # x-temp.json, x_tmp.py, x.tmp, scratch.md (v5)
+_TEMP_DIR = re.compile(r"(?:tmp|temp|scratch)[\w.\-]*", re.I)               # tmp/, temp/, tempvalidator/, scratch_area/
+_NOT_TEMP = re.compile(r"templat|tmpl|temper|tempo(?!rar)|tempest", re.I)    # words, not markers: templates, temperature
+
+
+def _temp_strays(issue_text, files):
+    """Rule 9c (v5): [(entry, why, its files)] for temp or scratch files, and directories, the issue does not name
+    itself (a path, base name or stem; naming an ancestor directory, such as the whole package, is not enough)."""
+    toks, pools, out = issue_tokens(issue_text), {}, []
+    itself = lambda p: _path_named(p, toks) or _names_config(issue_text, p)
+    for f in files:
+        p = f["filename"]
+        parts = p.split("/")
+        hit = next((i for i, d in enumerate(parts[:-1]) if _TEMP_DIR.fullmatch(d) and not _NOT_TEMP.match(d)), None)
+        if hit is not None:
+            pools.setdefault("/".join(parts[:hit + 1]), []).append(f)
+        elif (f.get("status") == "added" and _TEMP_FILE.fullmatch(parts[-1]) and not _test_support(p)
+              and not itself(p)):
+            out.append((p, "a temp or scratch file", (p,)))
+    for d, members in sorted(pools.items()):
+        paths = tuple(sorted(m["filename"] for m in members))
+        if any(m.get("status") != "added" for m in members) or _mentions(issue_text, _base(d)) or any(map(itself, paths)):
+            continue
+        out.append((d + "/", f"a temp or scratch directory ({len(paths)} added files)", paths))
     return out
 
 
@@ -1311,16 +1424,48 @@ def _stray_extra(found):
                   f"{len(paths)} files the issue does not ask for: " + "; ".join(f"{p} ({w})" for p, w in found), paths)]
 
 
+# ----------------------------------------------------- rule 10: whitespace_only (v5)
+
+_FORMAT_WORDS = ("format", "formats", "formatted", "formatting", "formatter", "reformat", "reformatted", "whitespace",
+                 "whitespaces", "white space", "indent", "indentation", "lint", "linter", "linting", "style", "styling",
+                 "prettier", "newline", "newlines", "trailing", "line ending", "line endings", "crlf", "eol")
+
+
+def _whitespace_only_file(f) -> bool:
+    """A modified file whose added and removed lines are the same once stripped, blank lines dropped."""
+    side, changed = {"+": [], "-": []}, False
+    for sign, text in _lines(f.get("patch")):
+        if sign in side:
+            changed = True
+            if text.strip():
+                side[sign].append(text.strip())
+    return f.get("status") == "modified" and changed and side["+"] == side["-"]
+
+
+def _whitespace_only(issue_text, files, reported):
+    """([the extra], its files) when WHITESPACE_GROUP or more files change only in whitespace; else ([], set())."""
+    if any(_mentions(issue_text, w) for w in _FORMAT_WORDS):
+        return [], set()
+    paths = sorted(f["filename"] for f in files if f["filename"] not in reported and _whitespace_only_file(f))
+    if len(paths) < WHITESPACE_GROUP:
+        return [], set()
+    d = posixpath.commonpath([posixpath.dirname(p) for p in paths])
+    where, name = (d + "/", d + "/") if d else ("./", "whitespace-only edits")
+    why = (f"{len(paths)} files whose changes are whitespace only (indentation, blank lines or the final newline): "
+           + ", ".join(paths[:3]) + (", ..." if len(paths) > 3 else ""))
+    return [Extra("whitespace_only", where, name, why, tuple(paths))], set(paths)
+
+
 # ------------------------------------------------------------------- entry
 
 def analyse(issue_text: str, files: list[dict], *, repo: str | None = None,
             version: int = RULES_VERSION) -> Analysis:
     """`repo` ("owner/name") keeps the project's own package directory from naming files (rules 5, 6).
-    version=1, 2 or 3 runs the frozen rules (extras_v1.py through extras_v3.py) and returns their own
+    version=1, 2, 3 or 4 runs the frozen rules (extras_v1.py through extras_v4.py) and returns their own
     objects, so their output is byte for byte what it was."""
-    if version in (1, 2, 3):
-        from itemator import extras_v3
-        return extras_v3.analyse(issue_text, files, repo=repo, version=version)
+    if version in (1, 2, 3, 4):
+        from itemator import extras_v4
+        return extras_v4.analyse(issue_text, files, repo=repo, version=version)
     if version != RULES_VERSION:
         raise ValueError(f"unknown rules version {version}")
     package = _squash((repo or "").rsplit("/", 1)[-1])
@@ -1328,20 +1473,28 @@ def analyse(issue_text: str, files: list[dict], *, repo: str | None = None,
     files = [f for f in files if f.get("filename")]
     build, taken = _build_output(issue_text, files)
     rest = [f for f in files if f["filename"] not in taken]     # rule 8's files: no other rule reads them
-    found = (_new_dependencies(issue_text, rest) + _ci_or_config(issue_text, rest)
+    named_rest = _named_files(issue_text, rest, package)
+    temp = _temp_strays(issue_text, rest)    # v5: rule 9c, before rule 2a reads the files
+    temp_files = {p for _, _, paths in temp for p in paths}
+    found = (_new_dependencies(issue_text, rest)
+             + _ci_or_config(issue_text, [f for f in rest if f["filename"] not in temp_files])
              + _tests_removed(issue_text, rest) + _generated_code_removed(issue_text, rest, package)
              + _public_api_removed(issue_text, rest) + _binary_or_large_added(issue_text, rest, package))
     found = [e for e in _mass_events(found, rest)      # 3c: mass events only
              if e.kind != "generated_code_removed" or e.detail]
     found += build + _version_bumps(issue_text, rest)
+    ws, ws_files = _whitespace_only(issue_text, rest, {p for e in found for p in (e.detail or ()) + (e.path,)})
+    found += ws
     covered = {f["filename"] for f in files
                if _manifest_kind(f["filename"]) or _config_kind(f["filename"])
                or (f.get("status") == "removed" and (is_test_file(f["filename"]) or is_generated(f["filename"])))}
     covered |= {p for e in found if e.kind == "binary_or_large_added" for p in (e.detail or (e.path,))}
     covered |= taken
+    covered |= ws_files
     unplaced, named, anchored = _unplaced(issue_text, files, covered, package)
     stray = sorted(_stray_lockfiles(issue_text, rest)
-                   + _stray(issue_text, rest, _named_files(issue_text, rest, package), covered, package))
+                   + [(p, why) for p, why, _ in temp]
+                   + _stray(issue_text, [f for f in rest if f["filename"] not in temp_files], named_rest, covered, package))
     found += _stray_extra(stray)
     unique = sorted(set(found), key=lambda e: (KINDS.index(e.kind), e.path, e.name))
     return Analysis(extras=unique, named_paths=named, anchored=anchored, unplaced=unplaced, stray=[p for p, _ in stray])

@@ -14,9 +14,9 @@ import pytest
 import test_extras as T1
 import test_extras_v2 as T2
 import test_extras_v3 as T3
-from itemator import extras as V4
+from itemator import extras_v4 as V4
 from itemator import extras_v3
-from itemator.extras import analyse, extras
+from itemator.extras_v4 import analyse, extras
 
 V3_SHA256 = "52915bc2314215ffc1b20c742ae59986efd9b51ab5673e8255fafc6aeef6b594"   # extras.py of rules v3 (T9 report)
 EDIT, f, kinds, binary = T3.EDIT, T3.f, T3.kinds, T3.binary

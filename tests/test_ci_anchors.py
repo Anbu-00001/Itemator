@@ -299,7 +299,8 @@ def test_thread_stub_has_no_banned_words(monkeypatch):
     monkeypatch.setitem(sys.modules, spec.name, audit)
     spec.loader.exec_module(audit)
     for kind in ("new_dependency", "ci_or_config", "tests_removed", "generated_code_removed",
-                 "public_api_removed", "binary_or_large_added", "version_bump", "build_output_added", "stray_file"):
+                 "public_api_removed", "binary_or_large_added", "version_bump", "build_output_added", "stray_file",
+                 "whitespace_only"):
         stub = ci.thread_stub(Extra(kind, "p", "n", "why it is here", ("a", "b")))
         assert f"({ci._label(Extra(kind, 'p', 'n', 'w', ('a', 'b')))})" in stub and not audit.BANNED_RE.search(stub)
 
@@ -475,7 +476,8 @@ def test_six_files_of_one_kind_in_one_directory_are_one_line():
 
 
 def test_new_kinds_have_labels_and_a_version_bump_anchors_on_its_line():
-    for kind, label in (("version_bump", "version bump"), ("build_output_added", "build output"), ("stray_file", "stray file")):
+    for kind, label in (("version_bump", "version bump"), ("build_output_added", "build output"), ("stray_file", "stray file"),
+                        ("whitespace_only", "whitespace only")):
         assert ci._label(Extra(kind, "p", "n", "w")) == label
     assert ci._label(Extra("version_bump", "a.toml", "1.1.0", "w", ("a.toml", "b.py"))) == "version bump, 2 files"
     pj = F("package.json", '@@ -1,4 +1,5 @@\n {\n+  "description": "y",\n   "name": "x",\n-  "version": "1.0.0",\n'

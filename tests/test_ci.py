@@ -129,7 +129,7 @@ def test_change_inside_the_ask(repo, tmp_path, monkeypatch):
     assert out["card"] == {"final_line": "Nothing beyond #12.", "todo_line": "Approve as usual.",
                            "caveat_line": None, "injection_line": None}
     assert out["issue_iids"] == [12] and out["issues_from"] == "closes_issues"
-    assert out["mr_iid"] == 5 and out["rules_version"] == 4 and out["head_sha"] == head
+    assert out["mr_iid"] == 5 and out["rules_version"] == 5 and out["head_sha"] == head
     assert out["injection"] == [] and out["generated_at"].endswith("Z")
 
 

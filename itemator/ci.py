@@ -376,7 +376,8 @@ def decide_state(issues: list[dict], mr_author_id, analysis) -> str:
 _LABEL = {"new_dependency": "new dependency", "ci_or_config": "config change", "tests_removed": "tests removed",
           "generated_code_removed": "generated code removed", "public_api_removed": "public API removed",
           "binary_or_large_added": "binary or large file", "version_bump": "version bump",
-          "build_output_added": "build output", "stray_file": "stray file", "policy_changed": "team policy change"}
+          "build_output_added": "build output", "stray_file": "stray file", "policy_changed": "team policy change",
+          "whitespace_only": "whitespace only"}
 _UNIT = {"new_dependency": "packages"}      # what a grouped extra's detail lists when it is not files
 
 
@@ -398,7 +399,7 @@ _PLURAL = {"new_dependency": "new dependencies", "ci_or_config": "config changes
            "generated_code_removed": "generated files deleted", "public_api_removed": "public names removed",
            "binary_or_large_added": "binary or large files added", "version_bump": "version changes",
            "build_output_added": "build output directories", "stray_file": "stray file entries",
-           "policy_changed": "team policy changes"}
+           "policy_changed": "team policy changes", "whitespace_only": "whitespace-only groups"}
 
 
 def _group_key(e):
