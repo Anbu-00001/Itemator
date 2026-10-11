@@ -1,8 +1,8 @@
 # Use Itemator in your own project
 
-These steps are what we did in this project. They were checked here, on GitLab.com; we have not installed Itemator in a second project.
+We created the flows in this project through GitLab's GraphQL API; the menu path below (AI > Flows) is the documented one and is untested by us. We have not installed Itemator in a second project.
 
-**You need:** GitLab with the Duo Agent Platform and custom flows turned on, the Maintainer role in the project (to create triggers), and a Python 3.12 runner image for the CI job.
+**You need:** GitLab with the Duo Agent Platform and custom flows turned on, a role that can create AI flows and triggers (ours was a custom Developer + AI role), and a Python 3.12 runner image for the CI job.
 
 ## 1. The CI job
 1. Copy the `itemator/` folder to the root of your repository.
@@ -12,7 +12,7 @@ These steps are what we did in this project. They were checked here, on GitLab.c
 ## 2. The two flows
 In the project, open **AI** > **Flows** > **New flow**, choose **Private**, and paste the contents of [flows/itemator_card.yml](../flows/itemator_card.yml). Do the same for [flows/itemator_react.yml](../flows/itemator_react.yml). GitLab creates one service account per flow, named like `ai-itemator-card-<your group>` and `ai-itemator-react-<your group>`.
 
-**Change two names in the reaction flow.** Its prompt names the two accounts exactly (`CARD_BOT` and `REACT_BOT`). Replace them with the account names GitLab created in your group; the flow then ignores thread text written by anyone else.
+**Change two names in the reaction flow.** Its prompt names the two accounts exactly (`CARD_BOT` and `REACT_BOT`). Replace them with the account names GitLab created in your group; only notes from those two accounts then count as cards or settled answers.
 
 ## 3. The triggers
 In **AI** > **Triggers** > **New flow trigger** (Maintainer role):
