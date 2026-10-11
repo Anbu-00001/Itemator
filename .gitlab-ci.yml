@@ -1,6 +1,30 @@
+# One pipeline per change: a merge request pipeline while an MR is open,
+# otherwise a branch pipeline (GitLab's documented pattern).
+workflow:
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+    - if: $CI_COMMIT_BRANCH && $CI_OPEN_MERGE_REQUESTS
+      when: never
+    - if: $CI_COMMIT_BRANCH
+
 hardcode-audit:
   image: python:3.12
   variables:
     GIT_DEPTH: "0"
   script:
     - python tools/hardcode_audit.py
+
+# The facts for the card: fixed rules, no model. The Duo flow reads the artifact.
+itemator:
+  image: python:3.12
+  variables:
+    GIT_DEPTH: "0"
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+  script:
+    - python -m itemator.ci --out itemator.json
+  artifacts:
+    paths:
+      - itemator.json
+    expire_in: 30 days
+    when: always
