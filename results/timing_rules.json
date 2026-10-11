@@ -1,0 +1,17 @@
+{
+  "what": "time of itemator.extras on cached real agent PRs (best of 3 each)",
+  "issue_text": "fixed generic sentence (real issue texts are not cached)",
+  "rules_version": 3,
+  "python": "3.12.3",
+  "cpu": "Intel(R) Core(TM) 7 150U",
+  "prs_timed": 180,
+  "median_ms": 0.48,
+  "p95_ms": 5.0,
+  "max_ms": 80.0,
+  "total_s": 0.392,
+  "slowest": {
+    "files": 504,
+    "patch_chars": 3490546,
+    "ms": 80.0
+  }
+}

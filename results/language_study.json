@@ -1,0 +1,17 @@
+{
+  "what": "Why Itemator is written in Python: the language study of 2026-10-11. Scores and day estimates are estimates by research agents, not measurements; the speed figures are in timing_rules.json and the GitLab figures were read from GitLab's API on 2026-10-11.",
+  "rewrite_candidates": {
+    "rust":       {"score": 1, "days_min": 8, "days_max": 13, "main_reason": "no gain over a sub-millisecond Python run; heavy builds; image 327 MB against 43 MB"},
+    "cpp":        {"score": 1, "days_min": 7, "days_max": 13, "main_reason": "no mature MIT library for reading diffs"},
+    "go":         {"score": 2, "days_min": 6, "days_max": 11, "main_reason": "a good language but no gain for this workload"},
+    "typescript": {"score": 2, "days_min": 4, "days_max": 10, "main_reason": "no gain in bug-catching over typed Python; the Duo agent environment blocks the npm registry"}
+  },
+  "scale": {"max_score": 10, "days_left_at_study": 15},
+  "gitlab_default_flow_image_runtimes": "Python, Go, Ruby, Node and Java; no Rust or C/C++ compiler (Dockerfile of gitlab-org/duo-workflow/default-docker-image, read 2026-10-11)",
+  "gitlab_language_share_percent": {
+    "hackathon_reference_project_python": 62.83,
+    "duo_ai_gateway_python": 93.54,
+    "ai_catalog_component_javascript": 99.77
+  },
+  "hackathon_field": {"entries_with_code": 77, "python_led": 44, "javascript_or_typescript_led": 28, "go": 3, "rust": 2, "source": "field scan of 2026-10-10, 143 projects, about 20 README lines each"}
+}
