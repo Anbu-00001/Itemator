@@ -126,7 +126,8 @@ def test_new_dependency_beyond_the_ask(repo, tmp_path, monkeypatch):
     assert code == 0 and out["state"] == "extras"
     assert [(e["kind"], e["name"]) for e in out["extras"]] == [("new_dependency", "leftpad-py"),
                                                                ("ci_or_config", ".gitlab-ci.yml")]
-    assert set(out["extras"][0]) == {"kind", "path", "name", "why", "detail"}
+    assert set(out["extras"][0]) == {"kind", "path", "name", "why", "detail", "anchor", "anchorless_reason",
+                                     "thread_stub", "plain_facts"}
     assert out["card"]["final_line"] == ("2 things beyond #12: `leftpad-py` (new dependency), "
                                          "`.gitlab-ci.yml` (CI change).")
     assert out["card"]["todo_line"] == ('Type each name in its thread to keep it, or reply "split" '

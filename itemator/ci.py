@@ -329,6 +329,123 @@ def card_lines(state: str, issues: list[dict], extras: list, unplaced: list, inj
             "injection_line": INJECTION_LINE if injection else None}
 
 
+# ---------------------------------------------------------------- anchors
+# Where each extra sits in the diff, so the flow can open a thread on that line
+# (create_merge_request_diff_note: old_path, new_path, and old_line for a removed
+# line or new_line for an added one) without computing anything itself.
+
+MAX_PATCH_BYTES = 204_800     # GitLab's default per-file patch limit (diff_max_patch_bytes); over it, no lines to comment on
+_HUNK = re.compile(r"@@ -(\d+)(?:,\d+)? \+(\d+)(?:,\d+)? @@")
+
+
+def diff_lines(patch: str | None):
+    """Yield (sign, old_no, new_no, text) for each line of a patch that starts at a hunk header.
+
+    '+' has only new_no, '-' only old_no, ' ' (context) both. The header sets the counters, so a hunk
+    that starts mid-file is numbered from its own start. The "\\ No newline at end of file" marker
+    is not a line."""
+    if not patch:
+        return
+    lines = patch.split("\n")
+    if lines[-1] == "":
+        lines.pop()
+    old = new = 0
+    for line in lines:
+        if line.startswith("@@"):
+            m = _HUNK.match(line)
+            if m:
+                old, new = int(m.group(1)), int(m.group(2))
+            continue
+        if line.startswith("\\"):
+            continue
+        if line.startswith("+"):
+            yield "+", None, new, line[1:]
+            new += 1
+        elif line.startswith("-"):
+            yield "-", old, None, line[1:]
+            old += 1
+        else:
+            yield " ", old, new, line[1:]
+            old += 1
+            new += 1
+
+
+def _first_line(f: dict, signs: str, matches=None):
+    """The first added ('+') or removed ('-') line of f's patch that `matches`, as an anchor, else None."""
+    for sign, old, new, text in diff_lines(f.get("patch")):
+        if sign in signs and (matches is None or matches(text)):
+            return {"old_path": f.get("previous_filename") or f["filename"], "new_path": f["filename"],
+                    "old_line": old, "new_line": new}
+    return None
+
+
+def _names(name: str):
+    """A test for a line that names a package: case, '-', '_' and '.' are interchangeable, and the
+    name is not a piece of a longer one."""
+    parts = [re.escape(p) for p in re.split(r"[-_.]+", name) if p]
+    if not parts:
+        return None
+    return re.compile(r"(?<![A-Za-z0-9])" + r"[-_.]*".join(parts) + r"(?![A-Za-z0-9])", re.I).search
+
+
+def anchor_for(e, by_path: dict):
+    """(anchor, None) or (None, reason): the line of the diff an extra sits on.
+
+    Added-line kinds (dependency, config, binary or large) anchor on an added line, the first one that
+    names the package; removed-line kinds (tests, public API, generated code) on the first removed line
+    that carries the test or the symbol. Either falls back to the first line of the other sign (a deleted
+    CI file has only removed lines). A mass event anchors on the first file of its detail list."""
+    f = by_path.get(e.detail[0] if e.detail else e.path)
+    if f is None:
+        return None, "file not in the diff"
+    patch = f.get("patch")
+    if f.get("binary") or not patch:
+        return None, "no text patch"
+    if len(patch.encode("utf-8", "replace")) > MAX_PATCH_BYTES:
+        return None, "patch over GitLab's size limit"
+    if e.kind == "tests_removed":
+        signs, matches = "-", (X._ASSERT if "assertion lines" in e.why else X._TEST_DEF).search
+    elif e.kind == "public_api_removed":
+        ext = X._ext(f["filename"])
+        signs, matches = "-", lambda text: e.name in X._symbols(text, ext)
+    elif e.kind == "generated_code_removed":
+        signs, matches = "-", None
+    else:
+        signs, matches = "+", None
+        if e.kind == "new_dependency":
+            matches = _names(e.name)
+        elif e.kind == "ci_or_config" and not e.detail and e.name != e.path:      # an npm script: its own line
+            matches = lambda text: f'"{e.name}"' in text
+    other = "+-".replace(signs, "")
+    a = _first_line(f, signs, matches) or _first_line(f, signs) or _first_line(f, other)
+    return (a, None) if a else (None, "no text patch")
+
+
+def _code(text: str) -> str:
+    """An inline code span that holds any text, backticks included, on one line."""
+    text = re.sub(r"[\r\n]+", " ", text)
+    fence = "`" * (max((len(run) for run in re.findall(r"`+", text)), default=0) + 1)
+    pad = " " if text.startswith("`") or text.endswith("`") else ""
+    return f"{fence}{pad}{text}{pad}{fence}"
+
+
+def thread_stub(e) -> str:
+    """The opening text of the extra's thread; the flow may post it as it is."""
+    why = re.sub(r"[\r\n]+", " ", e.why).strip()
+    if not why.endswith((".", "!", "?")):
+        why += "."
+    return (f"{_code(e.name)} ({_label(e)}): {why} To keep it, reply with its exact name. "
+            "To move it into its own MR, reply `split`. If this is not really an extra, reply `not an extra`.")
+
+
+def describe_extra(e, by_path: dict) -> dict:
+    anchor, reason = anchor_for(e, by_path)
+    return {**e.to_dict(), "detail": list(e.detail), "anchor": anchor, "anchorless_reason": reason,
+            "thread_stub": thread_stub(e),
+            "plain_facts": {"kind": e.kind, "name": e.name, "why": e.why, "detail_count": len(e.detail),
+                            "path": e.path}}
+
+
 def facts(*, mr_iid: int, mr_title: str, mr_description: str, mr_author_id, issues: list[dict],
           issues_from: str, files: list[dict], repo: str | None, base_sha: str, head_sha: str,
           warnings: list, now: datetime.datetime) -> dict:
@@ -338,6 +455,7 @@ def facts(*, mr_iid: int, mr_title: str, mr_description: str, mr_author_id, issu
     found = [] if state == "no_issue" else analysis.extras      # no ask, so nothing is "beyond" it
     unplaced = [] if state == "no_issue" else analysis.unplaced
     injection = scan_injection(mr_title, mr_description, issues, files)
+    by_path = {f["filename"]: f for f in files}
     return {
         "rules_version": X.RULES_VERSION,
         "mr_iid": mr_iid,
@@ -346,13 +464,52 @@ def facts(*, mr_iid: int, mr_title: str, mr_description: str, mr_author_id, issu
         "issue_iids": [i["iid"] for i in issues],
         "issues_from": issues_from,
         "state": state,
-        "extras": [{**e.to_dict(), "detail": list(e.detail)} for e in found],
+        "extras": [describe_extra(e, by_path) for e in found],
         "unplaced": list(unplaced),
         "injection": injection,
         "card": card_lines(state, issues, found, unplaced, injection, _author_wrote(issues, mr_author_id)),
         "warnings": warnings,
+        "truncated": False,        # the job log carries a compact copy when the full one is over LOG_LIMIT
         "generated_at": now.strftime("%Y-%m-%dT%H:%M:%SZ"),
     }
+
+
+# ---------------------------------------------------------------- job log
+# The flow can read the facts from the job log when it may not download the artifact.
+
+LOG_LIMIT = 100_000           # characters of JSON in the log
+LOG_BEGIN, LOG_END = "<<<ITEMATOR-JSON", "ITEMATOR-JSON>>>"
+
+
+def _one_line(obj) -> str:
+    """Compact ASCII JSON. '<' and '>' are escaped, so no name in the data can spell a marker."""
+    return json.dumps(obj, separators=(",", ":")).replace("<", "\\u003c").replace(">", "\\u003e")
+
+
+def log_block(report: dict, limit: int = LOG_LIMIT) -> str:
+    """The report between the markers. Over `limit`, a compact copy whose `truncated` names what was cut."""
+    text = _one_line(report)
+    if len(text) > limit:
+        c = {**report, "extras": [{k: v for k, v in e.items() if k != "detail"} for e in report["extras"]]}
+        cut = ["extras[].detail"]
+
+        def size():
+            return len(_one_line({**c, "truncated": cut}))
+        for key in ("unplaced", "injection"):
+            if size() > limit and len(c[key]) > 20:
+                c[f"{key}_total"], c[key] = len(c[key]), c[key][:20]
+                cut.append(f"{key}[20:]")
+        if size() > limit:
+            c["extras"] = [{k: v for k, v in e.items() if k != "plain_facts"} for e in c["extras"]]
+            cut.append("extras[].plain_facts")
+        n = len(c["extras"])
+        while c["extras"] and size() > limit:
+            c["extras"] = c["extras"][:len(c["extras"]) // 2]
+        if len(c["extras"]) < n:
+            c["extras_total"] = n
+            cut.append(f"extras[{len(c['extras'])}:]")
+        text = _one_line({**c, "truncated": cut})
+    return f"{LOG_BEGIN}\n{text}\n{LOG_END}"
 
 
 # ------------------------------------------------------------------- main
@@ -394,6 +551,7 @@ def main(argv=None, env=None) -> int:
           f"{len(report['injection'])} injection flags -> {args.out}")
     print(report["card"]["final_line"])
     print(report["card"]["todo_line"])
+    print(log_block(report))
     return 0
 
 
