@@ -15,6 +15,11 @@ hardcode-audit:
     - python tools/hardcode_audit.py
 
 # The facts for the card: fixed rules, no model. The Duo flow reads the artifact.
+# The checker comes from the target branch (T20, T26 F1): itemator/ is exported from the tip of the target branch
+# (origin/<target>, fetched here; the merge base CI_MERGE_REQUEST_DIFF_BASE_SHA when that ref cannot be read, and
+# the card then says so) into a directory outside the checkout and run from there, so a merge request that edits
+# itemator/ cannot rewrite the code that judges it. Only when that commit has no itemator/ci.py yet does the merge
+# request's own copy run, and the card says so. Limit: this job definition itself still comes from the merge request.
 itemator:
   image: python:3.12
   variables:
@@ -22,7 +27,34 @@ itemator:
   rules:
     - if: $CI_PIPELINE_SOURCE == "merge_request_event"
   script:
-    - python -m itemator.ci --out itemator.json
+    - |
+      set -eu
+      base="${CI_MERGE_REQUEST_DIFF_BASE_SHA:-}"
+      target="${CI_MERGE_REQUEST_TARGET_BRANCH_NAME:-}"
+      tip=""
+      if [ -n "$target" ]; then
+        git fetch -q --no-tags origin "+refs/heads/$target:refs/remotes/origin/$target" 2>/dev/null || true
+        tip="$(git rev-parse -q --verify "refs/remotes/origin/$target^{commit}" 2>/dev/null || true)"
+      fi
+      case "$tip" in
+        *[!0-9a-f]*|"") tip="$base" ;;
+      esac
+      [ "${#tip}" -eq 40 ] || tip="$base"
+      checker=merge_request
+      dir="$CI_PROJECT_DIR"
+      case "$tip" in
+        *[!0-9a-f]*) ;;
+        *)
+          if [ "${#tip}" -eq 40 ] && git cat-file -e "$tip:itemator/ci.py" 2>/dev/null; then
+            dir="$(mktemp -d)"
+            git archive --format=tar -o "$dir.tar" "$tip" itemator
+            tar -x -f "$dir.tar" -C "$dir"
+            checker=base
+          fi
+          ;;
+      esac
+      cd "$dir"
+      ITEMATOR_CHECKER="$checker" ITEMATOR_CHECKER_SHA="$tip" python -E -m itemator.ci --repo "$CI_PROJECT_DIR" --out "$CI_PROJECT_DIR/itemator.json"
   artifacts:
     paths:
       - itemator.json

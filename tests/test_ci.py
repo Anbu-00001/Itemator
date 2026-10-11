@@ -92,9 +92,18 @@ def routes(mr_obj, closes, *issues):
     return r
 
 
-def env(repo, head, **kw):
+def env(repo, head, target="base", **kw):
+    """`target` (T26 F1): where origin/main points in the checkout: "base" for repo.base, a sha, or None for no
+    such ref (the checker then falls back to the merge base)."""
+    tip = repo.base if target == "base" else target
+    if tip:
+        repo.git("update-ref", "refs/remotes/origin/main", tip)
+    else:
+        subprocess.run(["git", "-C", str(repo.path), "update-ref", "-d", "refs/remotes/origin/main"], capture_output=True)
     return {"CI_API_V4_URL": API, "CI_PROJECT_ID": "7", "CI_PROJECT_PATH": "grp/showcase",
-            "CI_MERGE_REQUEST_IID": "5", "CI_MERGE_REQUEST_DIFF_BASE_SHA": repo.base, "CI_COMMIT_SHA": head, **kw}
+            "CI_MERGE_REQUEST_IID": "5", "CI_MERGE_REQUEST_DIFF_BASE_SHA": repo.base, "CI_COMMIT_SHA": head,
+            "CI_MERGE_REQUEST_TARGET_BRANCH_NAME": "main",
+            "ITEMATOR_CHECKER": "base", "ITEMATOR_CHECKER_SHA": tip or repo.base, **kw}     # T20: set by the job script
 
 
 def no_package(method, url, body, timeout):
@@ -136,7 +145,7 @@ def test_new_dependency_beyond_the_ask(repo, tmp_path, monkeypatch):
     assert out["card"]["final_line"] == ("2 things beyond #12: `leftpad-py` (new dependency), "
                                          "`.gitlab-ci.yml` (CI change).")
     assert out["card"]["todo_line"] == ('Type each name in its thread to keep it, or reply "split" '
-                                        'to move it to its own MR.')
+                                        'to move it to its own MR, "remove" to drop it.')
 
 
 def test_no_issue(repo, tmp_path, monkeypatch):
@@ -348,3 +357,12 @@ def test_card_has_no_banned_words(monkeypatch):
     issues, e = [{"ref": "#12"}], [Extra("new_dependency", "r.txt", "x", "why")]
     lines = [ci.INJECTION_LINE] + [v for s in ci.STATES for v in ci.card_lines(s, issues, e, ["u"], [1]).values() if v]
     assert len(lines) == 16 and not [x for x in lines if audit.BANNED_RE.search(x)]
+
+
+def test_a_base_missing_from_the_clone_says_so(repo, tmp_path, monkeypatch, capsys):
+    """T24 NOTE 1 (T26): a shallow clone lacks the base; the job still fails (exit 2, no facts), but says why."""
+    head = repo.commit({"src/parser.py": FIXED})
+    code, out = job(repo, head, FakeHttp(routes(mr(), [issue()])), tmp_path, monkeypatch,
+                    CI_MERGE_REQUEST_DIFF_BASE_SHA="f" * 40)
+    assert code == 2 and out is None
+    assert "the base commit is not in this clone (a shallow clone? set GIT_DEPTH to 0)" in capsys.readouterr().err

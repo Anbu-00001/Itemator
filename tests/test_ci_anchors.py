@@ -260,6 +260,7 @@ def test_mass_event_of_generated_files_anchors_on_the_first_removed_line():
 # ------------------------------------------------- thread stub, plain facts
 
 KEEP = ("To keep it, reply with its exact name. To move it into its own MR, reply `split`. "
+        "To drop it from this MR, reply `remove`. "
         "If this is not really an extra, reply `not an extra`.")
 
 
@@ -270,6 +271,19 @@ def test_thread_stub_text():
     assert ci.thread_stub(ci_e) == ("`.gitlab-ci.yml` (CI change): changes CI config; the issue does not mention it. " + KEEP)
     mass = Extra("ci_or_config", "conf/", "conf/", "12 config files added under conf/", tuple("abcdefghijkl"))
     assert ci.thread_stub(mass).startswith("`conf/` (config change, 12 files): 12 config files added under conf/. To keep it")
+
+
+def test_thread_stub_offers_four_answers_and_keeps_what_the_react_flow_reads():
+    """T23: keep, split, remove and dismiss, in that order, each once; the react flow still finds the thread by
+    "reply with its exact name" and the name between the first pair of backticks."""
+    answers = ["reply with its exact name.", "reply `split`.", "reply `remove`.", "reply `not an extra`."]
+    for e in (Extra("new_dependency", "requirements.txt", "leftpad-py", "adds it"),
+              Extra("tests_removed", "t.py", "a`b", "x", ("p", "q"))):
+        for stub in (ci.thread_stub(e), ci.thread_stub(e, "PyPI: x.", other_person=True)):
+            at = [stub.find(a) for a in answers]
+            assert [stub.count(a) for a in answers] == [1, 1, 1, 1] and at == sorted(at) and at[0] > 0
+            assert stub.split("`")[1] == ci.shown_name(e.name)
+            assert stub.endswith("To drop it from this MR, reply `remove`. If this is not really an extra, reply `not an extra`.")
 
 
 def test_thread_stub_survives_odd_names():
@@ -296,7 +310,7 @@ def test_plain_facts_and_record_shape():
     assert rec["plain_facts"] == {"kind": "ci_or_config", "name": "conf/", "why": "12 config files added under conf/",
                                   "detail_count": 12, "path": "conf/"}
     assert list(rec) == ["kind", "path", "name", "why", "detail", "anchor", "anchorless_reason", "thread_stub", "plain_facts"]
-    assert rec["detail"] == list("abcdefghijkl") and rec["thread_stub"] == ci.thread_stub(e)
+    assert rec["detail"] == list("abcdefghijkl") and rec["thread_stub"] == ci.thread_stub(e, offers=())   # T26 F4: a mass event offers neither
     one = ci.describe_extra(dep("r.txt"), {"r.txt": F("r.txt", added("leftpad-py==1"))})
     assert one["plain_facts"]["detail_count"] == 0 and one["anchor"] == at("r.txt", "r.txt", None, 1)
 
@@ -440,9 +454,10 @@ def test_six_extras_of_one_kind_from_one_manifest_are_one_line():
     assert e["anchor"] == at("Cargo.toml", "Cargo.toml", None, 2)
     assert e["thread_stub"].startswith("`Cargo.toml` (new dependency, 7 packages): 7 new dependencies in Cargo.toml: crate-a, ")
     assert e["thread_stub"].endswith("To keep it, reply with its exact name. To move it into its own MR, reply `split`. "
+                                     "To drop it from this MR, reply `remove`. "
                                      "If this is not really an extra, reply `not an extra`.")
     assert rep["card"]["final_line"] == "1 thing beyond #12: `Cargo.toml` (new dependency, 7 packages)."
-    assert rep["card"]["todo_line"] == 'Type each name in its thread to keep it, or reply "split" to move it to its own MR.'
+    assert rep["card"]["todo_line"] == 'Type each name in its thread to keep it, or reply "split" to move it to its own MR, "remove" to drop it.'
     five = facts_for([F("src/parser.rs", "@@ -1 +1 @@\n-a\n+b\n"), _cargo(names[:5])])
     assert [x["name"] for x in five["extras"]] == names[:5] and all("detail" not in x["plain_facts"] for x in five["extras"])
 

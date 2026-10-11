@@ -13,11 +13,16 @@ API read that fails. The message says which.
 Inputs (GitLab's predefined variables): CI_API_V4_URL, CI_PROJECT_ID,
 CI_PROJECT_PATH, CI_MERGE_REQUEST_IID, CI_MERGE_REQUEST_DIFF_BASE_SHA,
 CI_COMMIT_SHA (or CI_MERGE_REQUEST_SOURCE_BRANCH_SHA in a merged results
-pipeline, where CI_COMMIT_SHA is the merge commit), CI_JOB_TOKEN.
+pipeline, where CI_COMMIT_SHA is the merge commit), CI_JOB_TOKEN, CI_MERGE_REQUEST_TARGET_BRANCH_NAME; and from the
+job script (T20) ITEMATOR_CHECKER ("base" when this code was exported from the target branch) and ITEMATOR_CHECKER_SHA.
+The team policy (.itemator.toml, itemator/policy.py) is read from the tip of the target branch
+(origin/<CI_MERGE_REQUEST_TARGET_BRANCH_NAME>, T26 F1), or from CI_MERGE_REQUEST_DIFF_BASE_SHA when that ref cannot be
+resolved, and the card then says so. The diff always starts at CI_MERGE_REQUEST_DIFF_BASE_SHA.
 """
 from __future__ import annotations
 
 import argparse
+import dataclasses
 import datetime
 import json
 import os
@@ -30,6 +35,7 @@ import urllib.parse
 import urllib.request
 
 from itemator import extras as X
+from itemator import policy as POL
 from itemator import registry as RG
 
 STATES = ("inside_ask", "extras", "no_issue", "author_wrote_issue", "unplaced_only")
@@ -45,9 +51,23 @@ class JobError(Exception):
 _STATUS = {"A": "added", "D": "removed", "M": "modified", "R": "renamed", "C": "copied", "T": "changed"}
 
 
-def _git(repo: str, *args: str) -> bytes:
+ATTR_SOURCE = True      # T26 B1: on git 2.40 or later, read .gitattributes from the base, never from the checkout
+FIRST_FEW_BYTES = 8000  # git's own test for a binary file: a NUL among the first 8000 bytes
+_DIFF = ("--find-renames", "--no-ext-diff", "--no-textconv")
+_INDEX = re.compile(r"index ([0-9a-f]+)\.\.([0-9a-f]+)")
+
+
+def _git(repo: str, *args: str, attr_source: str | None = None) -> bytes:
+    """git with no attributes from outside the stored commits (T26 B1): no core.attributesFile, no system file and,
+    with `attr_source` (honoured by git 2.40 or later), that commit's .gitattributes instead of the checkout's.
+    $GIT_DIR/info/attributes cannot be switched off; diff_files does not trust git's word on "binary" anyway."""
+    env = {**os.environ, "GIT_ATTR_NOSYSTEM": "1", "GIT_LITERAL_PATHSPECS": "1"}
+    env.pop("GIT_ATTR_SOURCE", None)
+    if attr_source:
+        env["GIT_ATTR_SOURCE"] = attr_source
     try:
-        r = subprocess.run(["git", "-C", repo, *args], capture_output=True, check=False)
+        r = subprocess.run(["git", "-c", "core.attributesFile=/dev/null", "-C", repo, *args], capture_output=True,
+                           check=False, env=env)
     except OSError as e:
         raise JobError(f"git could not start: {e}") from e
     if r.returncode != 0:
@@ -67,9 +87,56 @@ def _hunk_lines(chunk: str):
     return lines, None
 
 
+def _binary_blobs(repo: str, oids) -> set:
+    """The blobs among `oids` whose first FIRST_FEW_BYTES bytes hold a NUL: git's own test for a binary file, run on
+    the stored blob, so no attribute changes the answer (T26 B1). One `git cat-file --batch`; the rest of each blob
+    is read and dropped, never kept."""
+    want = sorted({o for o in oids if o.strip("0")})
+    if not want:
+        return set()
+    out = set()
+    try:
+        p = subprocess.Popen(["git", "-C", repo, "cat-file", "--batch"], stdin=subprocess.PIPE,
+                             stdout=subprocess.PIPE, stderr=subprocess.DEVNULL)
+        try:
+            for oid in want:
+                p.stdin.write(oid.encode("ascii") + b"\n")
+                p.stdin.flush()
+                meta = p.stdout.readline().split()
+                if len(meta) != 3 or not meta[2].isdigit():
+                    continue                      # "<oid> missing": a submodule's commit, not a blob here
+                size = int(meta[2])
+                first = p.stdout.read(min(size, FIRST_FEW_BYTES))
+                left = size - len(first) + 1      # the rest of the blob and the newline after it
+                while left > 0:
+                    piece = p.stdout.read(min(left, 1 << 20))
+                    if not piece:
+                        break
+                    left -= len(piece)
+                if b"\0" in first:
+                    out.add(oid)
+        finally:
+            p.stdin.close()
+            p.stdout.close()
+            p.wait()
+    except OSError as e:
+        raise JobError(f"git cat-file could not run: {e}") from e
+    return out
+
+
+def _patches(text: bytes) -> list[str]:
+    return [c for c in re.split(r"(?m)^(?=diff --git )", text.decode("utf-8", "replace")) if c.startswith("diff --git ")]
+
+
 def diff_files(repo: str, base: str, head: str) -> list[dict]:
-    """`git diff --find-renames base head` as the file list extras() takes (GitHub's field names)."""
-    raw = _git(repo, "diff", "--find-renames", "--no-ext-diff", "--name-status", "-z", base, head).split(b"\0")
+    """`git diff --find-renames base head` as the file list extras() takes (GitHub's field names).
+
+    T26 B1: attributes the merge request controls (.gitattributes at any depth, and on git before 2.40 every
+    attribute file) can make git print "Binary files differ" for a text file, or a text patch for a binary. So a file
+    is binary here only when one of its stored blobs fails git's own test, and a text file git called binary is
+    diffed again with --text."""
+    src = base if ATTR_SOURCE else None
+    raw = _git(repo, "diff", *_DIFF, "--name-status", "-z", base, head, attr_source=src).split(b"\0")
     entries, i = [], 0
     while i < len(raw) and raw[i]:
         code = raw[i].decode()[0]
@@ -79,9 +146,7 @@ def diff_files(repo: str, base: str, head: str) -> list[dict]:
             old = new = raw[i + 1]
             i += 2
         entries.append((code, old.decode("utf-8", "replace"), new.decode("utf-8", "replace")))
-    patch = _git(repo, "diff", "--find-renames", "--no-ext-diff", "--no-color", "-p", base, head)
-    chunks = [c for c in re.split(r"(?m)^(?=diff --git )", patch.decode("utf-8", "replace"))
-              if c.startswith("diff --git ")]
+    chunks = _patches(_git(repo, "diff", *_DIFF, "--no-color", "--full-index", "-p", base, head, attr_source=src))
     if len(chunks) != len(entries):
         raise JobError(f"git diff listed {len(entries)} files but printed {len(chunks)} patches")
     sizes = {}
@@ -91,16 +156,27 @@ def diff_files(repo: str, base: str, head: str) -> list[dict]:
             parts = meta.split()
             if len(parts) == 4 and parts[3].isdigit():
                 sizes[path.decode("utf-8", "replace")] = int(parts[3])
+    parsed = [_hunk_lines(c) for c in chunks]
+    blobs = [next((m.groups() for m in map(_INDEX.match, header) if m), ()) for header, _ in parsed]
+    binary = _binary_blobs(repo, [o for pair in blobs for o in pair])
     files = []
-    for (code, old, new), chunk in zip(entries, chunks):
-        header, hunks = _hunk_lines(chunk)
+    for (code, old, new), (header, hunks), pair in zip(entries, parsed, blobs):
+        is_binary = any(o in binary for o in pair)
+        if not is_binary and any(line.startswith("Binary files ") for line in header):
+            again = _patches(_git(repo, "diff", *_DIFF, "--no-color", "--text", "-p", base, head, "--",
+                                  *dict.fromkeys((old, new)), attr_source=src))
+            if len(again) != 1:
+                raise JobError(f"git diff --text printed {len(again)} patches for one file")
+            header, hunks = _hunk_lines(again[0])
+        if is_binary:
+            hunks = None
         f = {"filename": new, "status": _STATUS.get(code, "modified"),
              "patch": "\n".join(hunks) + "\n" if hunks else None,
              "additions": sum(1 for line in hunks or () if line.startswith("+")),
              "deletions": sum(1 for line in hunks or () if line.startswith("-"))}
         if code in "RC":
             f["previous_filename"] = old
-        if any(line.startswith("Binary files ") for line in header):
+        if is_binary:
             f["binary"] = True
         if code == "A" and new in sizes:
             f["size"] = sizes[new]
@@ -300,7 +376,7 @@ def decide_state(issues: list[dict], mr_author_id, analysis) -> str:
 _LABEL = {"new_dependency": "new dependency", "ci_or_config": "config change", "tests_removed": "tests removed",
           "generated_code_removed": "generated code removed", "public_api_removed": "public API removed",
           "binary_or_large_added": "binary or large file", "version_bump": "version bump",
-          "build_output_added": "build output", "stray_file": "stray file"}
+          "build_output_added": "build output", "stray_file": "stray file", "policy_changed": "team policy change"}
 _UNIT = {"new_dependency": "packages"}      # what a grouped extra's detail lists when it is not files
 
 
@@ -321,7 +397,8 @@ GROUP = 6   # extras of one kind from one file or one directory shown as one car
 _PLURAL = {"new_dependency": "new dependencies", "ci_or_config": "config changes", "tests_removed": "test files that lose tests",
            "generated_code_removed": "generated files deleted", "public_api_removed": "public names removed",
            "binary_or_large_added": "binary or large files added", "version_bump": "version changes",
-           "build_output_added": "build output directories", "stray_file": "stray file entries"}
+           "build_output_added": "build output directories", "stray_file": "stray file entries",
+           "policy_changed": "team policy changes"}
 
 
 def _group_key(e):
@@ -350,7 +427,8 @@ def group_extras(extras: list) -> list:
 
 
 def card_lines(state: str, issues: list[dict], extras: list, unplaced: list, injection: list,
-               author_wrote: bool = False) -> dict:
+               author_wrote: bool = False, notes: tuple = ()) -> dict:
+    """`notes` (T20): more visible sentences for the caveat line (where the checker came from, the team policy)."""
     refs = ", ".join(i["ref"] for i in issues)
     if state == "no_issue":
         final, todo = "No one described this change.", "Link the issue it answers, or say why it needs none."
@@ -359,7 +437,7 @@ def card_lines(state: str, issues: list[dict], extras: list, unplaced: list, inj
     elif state == "extras":
         names = ", ".join(f"{_code(e.name)} ({_label(e)})" for e in extras)
         final = f"{len(extras)} {'thing' if len(extras) == 1 else 'things'} beyond {refs}: {names}."
-        todo = 'Type each name in its thread to keep it, or reply "split" to move it to its own MR.'
+        todo = 'Type each name in its thread to keep it, or reply "split" to move it to its own MR, "remove" to drop it.'
     elif state == "unplaced_only":
         n = len(unplaced)
         final = f"{n} {'file' if n == 1 else 'files'} the rules could not place."
@@ -367,6 +445,7 @@ def card_lines(state: str, issues: list[dict], extras: list, unplaced: list, inj
     else:
         final, todo = f"Nothing beyond {refs}.", "Approve as usual."
     caveat = AUTHOR_CAVEAT if author_wrote and state in ("extras", "unplaced_only", "inside_ask") else None
+    caveat = " ".join(c for c in (caveat, *notes) if c) or None
     return {"final_line": final, "todo_line": todo, "caveat_line": caveat,
             "injection_line": INJECTION_LINE if injection else None}
 
@@ -479,18 +558,56 @@ def _code(text: str) -> str:
     return f"`{shown_name(text)}`"
 
 
-def thread_stub(e, registry_line: str | None = None) -> str:
+OTHER_PERSON = "A reply from the merge request author does not count."
+MAX_LISTED = 1000       # characters of package names a grouped dependency thread lists; past it, no split or remove (T26 B2)
+_MANIFEST = re.compile(r"pyproject\.toml|package\.json|requirements(?:-[^/]*)?\.txt|go\.mod|Cargo\.toml|Gemfile")
+_CONFIG_EXT = (".yml", ".yaml", ".toml", ".json", ".cfg", ".ini")
+_ADDED_KINDS = ("stray_file", "binary_or_large_added", "build_output_added")
+
+
+def _manifest(path: str) -> bool:
+    return bool(_MANIFEST.fullmatch(posixpath.basename(path)))
+
+
+def _config_file(path: str) -> bool:
+    name = posixpath.basename(path)
+    return not _manifest(path) and (
+        name in (".gitlab-ci.yml", "Dockerfile") or name.startswith("Dockerfile.") or name.endswith(_CONFIG_EXT))
+
+
+def answers(e, items: tuple, by_path: dict) -> tuple:
+    """Which of `split` and `remove` the react flow accepts for this extra (its Step 5a part 3), so a stub never
+    offers what the flow would refuse (T26 F4): both for a CI or config file named by its path, and for a manifest
+    dependency alone or in a group whose thread lists every package (B2: the flow checks each changed line against
+    that list); `remove` alone for a file this merge request adds."""
+    if e.kind == "ci_or_config" and e.name == e.path and not e.detail and _config_file(e.path):
+        return ("split", "remove")
+    if e.kind == "new_dependency" and _manifest(e.path) and (
+            not e.detail or (items and len(", ".join(shown_name(i.name) for i in items)) <= MAX_LISTED)):
+        return ("split", "remove")
+    if e.kind in _ADDED_KINDS and e.name == e.path and (by_path.get(e.path) or {}).get("status") == "added":
+        return ("remove",)
+    return ()
+
+
+def thread_stub(e, registry_line: str | None = None, other_person: bool = False,
+                offers: tuple = ("split", "remove")) -> str:
     """The opening text of the extra's thread; the flow may post it as it is. `registry_line` (T17): the sentence of
-    registry facts for a new dependency, placed before the replies."""
+    registry facts for a new dependency, placed before the replies. `other_person` (T20, names.other_person_required):
+    OTHER_PERSON before the replies, as visible text, because the react flow cannot read markdown comments.
+    `offers` (T26 F4, from answers()): which of `split` and `remove` it names; the default names both."""
     why = shown_name(e.why).strip()
     if not why.endswith((".", "!", "?")):
         why += "."
     facts = f" {registry_line}" if registry_line else ""
+    facts += f" {OTHER_PERSON}" if other_person else ""
+    split = "To move it into its own MR, reply `split`. " if "split" in offers else ""
+    remove = "To drop it from this MR, reply `remove`. " if "remove" in offers else ""
     return (f"{_code(e.name)} ({_label(e)}): {why}{facts} To keep it, reply with its exact name. "
-            "To move it into its own MR, reply `split`. If this is not really an extra, reply `not an extra`.")
+            f"{split}{remove}If this is not really an extra, reply `not an extra`.")
 
 
-def describe_extra(e, by_path: dict, items: tuple = (), registry: dict | None = None) -> dict:
+def describe_extra(e, by_path: dict, items: tuple = (), registry: dict | None = None, other_person: bool = False) -> dict:
     """A grouped extra (`items`, from group_extras) anchors where its first item does, and keeps every item in
     plain_facts.detail. `registry` (T17, from registry.look_up) goes to plain_facts and its sentence to the stub."""
     anchor, reason = anchor_for(items[0] if items else e, by_path)
@@ -500,25 +617,116 @@ def describe_extra(e, by_path: dict, items: tuple = (), registry: dict | None = 
     if registry is not None:
         plain["registry"] = registry
     rec = {**e.to_dict(), "detail": list(e.detail), "anchor": anchor, "anchorless_reason": reason,
-           "thread_stub": thread_stub(e, RG.sentence(registry)), "plain_facts": plain}
+           "thread_stub": thread_stub(e, RG.sentence(registry), other_person, answers(e, items, by_path)),
+           "plain_facts": plain}
     if rec["name"] != plain["name"]:          # T22: `name` is what the approver sees and types; `raw_name` is the manifest's
         rec["name"], rec["raw_name"] = plain["name"], e.name
     return rec
 
 
+# ---------------------------------------------------------------- team policy and checker (T20)
+
+CHECKER_CAVEAT = "These facts come from this merge request's own copy of the checker, not the target branch's."
+TARGET_CAVEAT = ("The target branch could not be read in this job, so the team policy and the checker come from the "
+                 "commit this branch started from.")
+ASKS_OTHER = "The team policy asks for someone other than the author to name each extra."
+AT_TARGET, AT_FORK = "on the target branch", "at the commit this branch started from"
+_SHOWN_QUIETED = 10
+_SHA40 = re.compile(r"[0-9a-f]{40}")
+
+
+def target_tip(repo: str, env, base: str) -> tuple[str, bool]:
+    """(sha, True): the tip of the target branch, refs/remotes/origin/<CI_MERGE_REQUEST_TARGET_BRANCH_NAME> in the
+    checkout, where the team policy is read (T26 F1: the merge base is the author's choice, so a branch cut before a
+    stricter policy would be judged by the old one). (base, False) when that ref does not resolve to a full sha."""
+    name = env.get("CI_MERGE_REQUEST_TARGET_BRANCH_NAME") or ""
+    if name:
+        try:
+            sha = _git(repo, "rev-parse", "-q", "--verify", f"refs/remotes/origin/{name}^{{commit}}")
+        except JobError:
+            sha = b""
+        sha = sha.decode("ascii", "replace").rstrip("\n")
+        if _SHA40.fullmatch(sha):
+            return sha, True
+    return base, False
+
+
+def policy_edit(files: list[dict], at: str = AT_TARGET):
+    """A `policy_changed` extra when the merge request adds, edits, renames or deletes the team policy file: it
+    always needs a name, and this merge request is still judged by the target branch's copy."""
+    for f in files:
+        if POL.FILE in (f["filename"], f.get("previous_filename")):
+            return X.Extra("policy_changed", f["filename"], POL.FILE,
+                           f"changes the team policy file {POL.FILE}; this merge request is still judged by the "
+                           f"copy {at}")
+    return None
+
+
+def policy_note(policy, quieted: list, at: str = AT_TARGET, asks_other: bool = False) -> str | None:
+    """The visible sentences about the team policy: why it was not used, what it quieted, a pattern that ignores
+    every path, and (T26 F8) that someone other than the author must name each extra still open."""
+    if policy is None:
+        return None
+    if policy.ignored:
+        return f"The team policy file {POL.FILE} {at} was not used: {policy.ignored}."
+    out = []
+    if quieted:
+        n = len(quieted)
+        shown = ", ".join(f"{_code(e.name)} ({_label(e)})" for e in quieted[:_SHOWN_QUIETED])
+        more = f", and {n - _SHOWN_QUIETED} more" if n > _SHOWN_QUIETED else ""
+        out.append(f"The team policy ({POL.FILE} {at}) quieted {n} "
+                   f"{'extra' if n == 1 else 'extras'}: {shown}{more}.")
+    every = [p for p in policy.paths if POL.matches_everything(p)]
+    if every:
+        out.append("The team policy ignores every path (" + ", ".join(_code(p) for p in every) + ").")
+    if asks_other:
+        out.append(ASKS_OTHER)
+    return " ".join(out) or None
+
+
+def checker_of(env, target: str, head: str) -> dict:
+    """Where the code computing these facts came from: "base" only when the job script says it exported it from
+    `target` (target_tip: the target branch tip, or the merge base when that cannot be read)."""
+    if env.get("ITEMATOR_CHECKER") == "base" and env.get("ITEMATOR_CHECKER_SHA") == target:
+        return {"source": "base", "sha": target}
+    return {"source": "merge_request", "sha": head}
+
+
 def facts(*, mr_iid: int, mr_title: str, mr_description: str, mr_author_id, issues: list[dict],
           issues_from: str, files: list[dict], repo: str | None, base_sha: str, head_sha: str,
-          warnings: list, now: datetime.datetime, registry_fetch=None) -> dict:
+          warnings: list, now: datetime.datetime, registry_fetch=None, policy=None, checker=None,
+          fallback: bool = False) -> dict:
+    """`policy` (T20, policy.read; None when not read) quiets extras and sets who may name one; `checker`
+    (checker_of) says where this code came from; `fallback` (T26 F1): the target branch could not be read, so
+    both came from the merge base, and the card says so."""
+    at = AT_FORK if fallback else AT_TARGET
     issue_text = "\n\n".join(f"{i['title']}\n{i['description']}" for i in issues)
     analysis = X.analyse(issue_text, files, repo=repo)
     state = decide_state(issues, mr_author_id, analysis)
     found = [] if state == "no_issue" else analysis.extras      # no ask, so nothing is "beyond" it
-    grouped = group_extras(found)
     unplaced = [] if state == "no_issue" else analysis.unplaced
-    injection = scan_injection(mr_title, mr_description, issues, files)
+    edit = policy_edit(files, at) if state != "no_issue" else None
+    if edit:            # it replaces an extra the rules found on that one file (an added policy is a stray_file)
+        found = [e for e in found if not e.name == e.path == edit.path] + [edit]
+        unplaced = [u for u in unplaced if u != edit.path]
+    grouped = group_extras(found)
     by_path = {f["filename"]: f for f in files}
     registry = RG.look_up(grouped, by_path, registry_fetch, now) if registry_fetch else [None] * len(grouped)
-    return {
+    kept, quieted = [], []
+    for (e, items), r in zip(grouped, registry):
+        why = POL.why_ignored(policy, e, items, r, by_path) if policy else None
+        if why:
+            quieted.append((e, why))
+        else:
+            kept.append(((e, items), r))
+    if state != "no_issue":
+        state = decide_state(issues, mr_author_id, X.Analysis([e for (e, _), _ in kept], unplaced=unplaced))
+    injection = scan_injection(mr_title, mr_description, issues, files)
+    other = bool(policy and policy.other_person_required)
+    notes = (CHECKER_CAVEAT if checker and checker["source"] != "base" else None,
+             TARGET_CAVEAT if fallback else None,
+             policy_note(policy, [e for e, _ in quieted], at, asks_other=other and bool(kept)))
+    report = {
         "rules_version": X.RULES_VERSION,
         "mr_iid": mr_iid,
         "base_sha": base_sha,
@@ -526,14 +734,21 @@ def facts(*, mr_iid: int, mr_title: str, mr_description: str, mr_author_id, issu
         "issue_iids": [i["iid"] for i in issues],
         "issues_from": issues_from,
         "state": state,
-        "extras": [describe_extra(e, by_path, items, r) for (e, items), r in zip(grouped, registry)],
+        "extras": [describe_extra(e, by_path, items, r, other) for (e, items), r in kept],
         "unplaced": list(unplaced),
         "injection": injection,
-        "card": card_lines(state, issues, [e for e, _ in grouped], unplaced, injection, _author_wrote(issues, mr_author_id)),
+        "card": card_lines(state, issues, [e for (e, _), _ in kept], unplaced, injection,
+                           _author_wrote(issues, mr_author_id), notes),
         "warnings": warnings,
         "truncated": False,        # the job log carries a compact copy when the full one is over LOG_LIMIT
         "generated_at": now.strftime("%Y-%m-%dT%H:%M:%SZ"),
     }
+    if policy is not None:
+        report["policy"] = {**policy.to_dict(), "ignored_extras": [
+            {"name": shown_name(e.name), "kind": e.kind, "why": why} for e, why in quieted]}
+    if checker is not None:
+        report["checker"] = checker
+    return report
 
 
 # ---------------------------------------------------------------- job log
@@ -561,6 +776,10 @@ def log_block(report: dict, limit: int = LOG_LIMIT) -> str:
             if size() > limit and len(c[key]) > 20:
                 c[f"{key}_total"], c[key] = len(c[key]), c[key][:20]
                 cut.append(f"{key}[20:]")
+        quiet = (c.get("policy") or {}).get("ignored_extras") or []
+        if size() > limit and len(quiet) > 20:          # T20
+            c["policy"] = {**c["policy"], "ignored_extras": quiet[:20], "ignored_extras_total": len(quiet)}
+            cut.append("policy.ignored_extras[20:]")
         if size() > limit:
             c["extras"] = [{k: v for k, v in e.items() if k != "plain_facts"} for e in c["extras"]]
             cut.append("extras[].plain_facts")
@@ -583,17 +802,29 @@ def run(env, repo_dir: str, http, registry_fetch=None) -> dict:
     if missing or not head:
         raise JobError("not a merge request pipeline: missing " + ", ".join(missing or ["CI_COMMIT_SHA"]))
     pid, iid, base = env["CI_PROJECT_ID"], env["CI_MERGE_REQUEST_IID"], env["CI_MERGE_REQUEST_DIFF_BASE_SHA"]
-    files = diff_files(repo_dir, base, head)
+    try:
+        files = diff_files(repo_dir, base, head)
+    except JobError as e:
+        try:
+            _git(repo_dir, "cat-file", "-e", f"{base}^{{commit}}")
+        except JobError:
+            raise JobError(f"{e}; the base commit is not in this clone (a shallow clone? set GIT_DEPTH to 0)") from e
+        raise
     api = Api(env["CI_API_V4_URL"], env.get("CI_JOB_TOKEN") or None, http)
     mr = api.get(f"/projects/{pid}/merge_requests/{iid}")
     description = mr.get("description") or env.get("CI_MERGE_REQUEST_DESCRIPTION") or ""
     warnings: list[str] = []
     issues, issues_from = linked_issues(api, pid, iid, description, warnings)
+    target, resolved = target_tip(repo_dir, env, base)
+    policy = POL.read(repo_dir, target)       # T20, T26 F1: from the target branch tip, never from the merge request
+    if not resolved:
+        policy = dataclasses.replace(policy, source="merge_base")
     return facts(mr_iid=int(iid), mr_title=mr.get("title") or env.get("CI_MERGE_REQUEST_TITLE") or "",
                  mr_description=description, mr_author_id=(mr.get("author") or {}).get("id"),
                  issues=issues, issues_from=issues_from, files=files, repo=env.get("CI_PROJECT_PATH"),
                  base_sha=base, head_sha=head, warnings=warnings,
-                 now=datetime.datetime.now(datetime.timezone.utc), registry_fetch=registry_fetch)
+                 now=datetime.datetime.now(datetime.timezone.utc), registry_fetch=registry_fetch,
+                 policy=policy, checker=checker_of(env, target, head), fallback=not resolved)
 
 
 def main(argv=None, env=None, registry_fetch=None) -> int:

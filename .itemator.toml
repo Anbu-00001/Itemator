@@ -1,0 +1,13 @@
+# Itemator team policy. The checker reads it from the branch a merge request targets, never from the merge
+# request itself; a merge request that changes this file gets a "policy_changed" extra that always needs a name.
+# Schema: itemator/policy.py.
+
+[names]
+# false: this is a solo project. The only person who can type a name is the person who wrote the merge
+# request, so requiring someone else would leave every extra open for ever.
+other_person_required = false
+
+[ignore]
+# Nothing is quieted: every extra needs a name.
+kinds = []
+paths = []

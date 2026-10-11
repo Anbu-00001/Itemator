@@ -21,6 +21,7 @@ NOW = datetime.datetime(2026, 10, 11, 9, 0, tzinfo=datetime.timezone.utc)
 PYPI = "https://pypi.org/pypi/leftpad-py/json"
 OSV = "https://api.osv.dev/v1/query"
 KEEP = ("To keep it, reply with its exact name. To move it into its own MR, reply `split`. "
+        "To drop it from this MR, reply `remove`. "
         "If this is not really an extra, reply `not an extra`.")
 ISSUE = {"iid": 12, "ref": "#12", "title": "Parser drops trailing comma",
          "description": "The parser in src/parser.py keeps an empty item after a trailing comma.", "author_id": 1}

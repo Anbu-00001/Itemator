@@ -1,8 +1,9 @@
-"""Mutation test for the CI job (T11, T12a, T17, T22): break the state logic, the injection scan, the
+"""Mutation test for the CI job (T11, T12a, T17, T22, T20, T23, T26): break the state logic, the injection scan, the
 diff, the line counting and anchors, the thread stub or the job-log copy in a copy of
-itemator/ci.py, or the registry facts in a copy of itemator/registry.py; tests/test_ci.py (T11
-mutants), tests/test_ci_anchors.py (T12a mutants) or tests/test_registry.py (T17 and T22 mutants) must
-fail for every mutant.
+itemator/ci.py, the registry facts in a copy of itemator/registry.py, or the team policy in a copy of
+itemator/policy.py; tests/test_ci.py (T11 mutants), tests/test_ci_anchors.py (T12a mutants),
+tests/test_registry.py (T17 and T22 mutants) or tests/test_policy.py (T20 mutants) must fail for every mutant;
+each T26 mutant names its own test file (tests/test_diff_attributes.py, tests/test_answers.py, tests/test_policy.py).
 
 Usage (WORK must be outside the repository, or pytest would collect the copies):
     .venv/bin/python -I eval/mutate_ci.py "$PWD" /tmp/itemator-ci-mutants [T17]
@@ -28,6 +29,7 @@ M = [
  ("api: token sent first", "status, body = self.http(url, {})", 'status, body = self.http(url, {"JOB-TOKEN": self.token} if self.token else {})'),
  ("card: singular wrong", '"Skim this file." if n == 1 else', '"Skim this file." if n == 0 else'),
  ("card: injection line dropped", '"injection_line": INJECTION_LINE if injection else None}', '"injection_line": None}'),
+ ("card: todo without remove (T23)", ', "remove" to drop it.\'', ".'"),
  # ---- injection scan
  ("scan: removed lines scanned", '        elif line.startswith("+"):\n            yield', '        elif line.startswith(("+", "-")):\n            yield'),
  ("scan: context lines not counted", '        elif line.startswith(" "):\n            n += 1', '        elif line.startswith(" "):\n            pass'),
@@ -85,11 +87,16 @@ A = [
  ("anchors: size limit off by one", "> MAX_PATCH_BYTES:", ">= MAX_PATCH_BYTES:"),
  ("anchors: size limit dropped", 'if len(patch.encode("utf-8", "replace")) > MAX_PATCH_BYTES:', "if False:"),
  ("anchors: missing file reason", 'return None, "file not in the diff"', 'return None, "no text patch"'),
- ("anchors: extras carry none", '"extras": [describe_extra(e, by_path, items, r) for (e, items), r in zip(grouped, registry)],', '"extras": [{**e.to_dict(), "detail": list(e.detail)} for e, _ in grouped],'),
+ ("anchors: extras carry none", '"extras": [describe_extra(e, by_path, items, r, other) for (e, items), r in kept],', '"extras": [{**e.to_dict(), "detail": list(e.detail)} for (e, _), _ in kept],'),
  # ---- stub, plain facts
  ("stub: no closing full stop", '    if not why.endswith((".", "!", "?")):\n        why += "."\n', ""),
  ("stub: double full stop", 'if not why.endswith((".", "!", "?")):', "if True:"),
  ("stub: kind instead of label", '({_label(e)}): {why}', '({e.kind}): {why}'),
+ ("stub: remove answer dropped (T23)", "To drop it from this MR, reply `remove`. ", ""),
+ ("stub: remove not in backticks (T23)", "reply `remove`.", "reply remove."),
+ ("stub: remove after the dismissal (T23)",
+  'f"{split}{remove}If this is not really an extra, reply `not an extra`.")',
+  'f"{split}If this is not really an extra, reply `not an extra`. {remove}")'),
  ("plain facts: detail count wrong", '"detail_count": len(e.detail)', '"detail_count": 0'),
  # ---- job log
  ("log: markers not escaped", r'.replace("<", "\\u003c").replace(">", "\\u003e")', ""),
@@ -109,7 +116,7 @@ A = [
  ("group: named kinds by directory", 'e.path if e.name != e.path else posixpath.dirname(e.path) + "/")', 'posixpath.dirname(e.path) + "/")'),
  ("group: first item not the anchor", "anchor_for(items[0] if items else e, by_path)", "anchor_for(e, by_path)"),
  ("group: items not in plain facts", '        plain["detail"] = [i.to_dict() for i in items]\n', "        pass\n"),
- ("group: card shows every item", "card_lines(state, issues, [e for e, _ in grouped]", "card_lines(state, issues, found"),
+ ("group: card shows every item", "card_lines(state, issues, [e for (e, _), _ in kept]", "card_lines(state, issues, found"),
  ("group: why without names", 'f"{len(items)} {_PLURAL.get(e.kind, e.kind)} in {where}: " + ", ".join(i.name for i in items)', 'f"{len(items)} {_PLURAL.get(e.kind, e.kind)} in {where}"'),
  ("label: grouped unit always files", '    unit = "files" if e.path.endswith("/") or e.kind == "version_bump" else _UNIT.get(e.kind, "names")', '    unit = "files"'),
  ("label: version bump unit", ' or e.kind == "version_bump" else', " else"),
@@ -213,7 +220,7 @@ RG = [
  ("honesty: junk advisories counted", 'if not isinstance(v, dict) or not isinstance(v.get("id"), str):', "if not isinstance(v, dict):"),
 ]
 RC = [
- ("stub: registry sentence dropped", "thread_stub(e, RG.sentence(registry))", "thread_stub(e)"),
+ ("stub: registry sentence dropped", "thread_stub(e, RG.sentence(registry), other_person,", "thread_stub(e, None, other_person,"),
  ("stub: sentence after the replies", '{why}{facts} To keep it, reply with its exact name. "', '{why} To keep it, reply with its exact name.{facts} "'),
  ("plain_facts: registry dropped", '        plain["registry"] = registry', "        pass"),
  ("job: registries not asked by default", "registry_fetch or RG.fetch", "registry_fetch"),
@@ -228,11 +235,117 @@ RC = [
  ("card: raw name on the final line", 'names = ", ".join(f"{_code(e.name)} (', 'names = ", ".join(f"`{e.name}` ('),
  ("json: raw_name dropped", 'rec["name"], rec["raw_name"] = plain["name"], e.name', 'rec["name"] = plain["name"]'),
  ("json: raw name kept as name", 'rec["name"], rec["raw_name"] = plain["name"], e.name', 'rec["raw_name"] = e.name'),
- ("plain_facts: raw name", '"name": shown_name(e.name)', '"name": e.name'),
+ ("plain_facts: raw name", 'plain = {"kind": e.kind, "name": shown_name(e.name)', 'plain = {"kind": e.kind, "name": e.name'),
 ]
-SRC = {"itemator/ci.py": (REPO / "itemator/ci.py").read_text(), "itemator/registry.py": (REPO / "itemator/registry.py").read_text()}
+# T20: the team policy file (itemator/policy.py) and how ci.py uses it, judged by tests/test_policy.py
+PC = [
+ ("policy: an edit is not an extra", "    if edit:            # it replaces", "    if False:            # it replaces"),
+ ("policy: an edit keeps the stray duplicate", "found = [e for e in found if not e.name == e.path == edit.path] + [edit]", "found = [*found, edit]"),
+ ("policy: an edit stays unplaced", "        unplaced = [u for u in unplaced if u != edit.path]\n", ""),
+ ("policy: an edit on a no-issue MR", 'edit = policy_edit(files, at) if state != "no_issue" else None', "edit = policy_edit(files, at)"),
+ ("policy: rename away not seen", 'if POL.FILE in (f["filename"], f.get("previous_filename")):', 'if POL.FILE == f["filename"]:'),
+ ("policy: quieting ignored", "        if why:\n            quieted.append", "        if False:\n            quieted.append"),
+ ("policy: state not recomputed", '    if state != "no_issue":\n        state = decide_state(', '    if False:\n        state = decide_state('),
+ ("policy: read from the MR head", "policy = POL.read(repo_dir, target)", "policy = POL.read(repo_dir, head)"),
+ ("names: other person ignored", "other = bool(policy and policy.other_person_required)", "other = False"),
+ ("names: other person always", "other = bool(policy and policy.other_person_required)", "other = bool(policy)"),
+ ("stub: sentence dropped", 'facts += f" {OTHER_PERSON}" if other_person else ""', 'facts += ""'),
+ ("card: notes dropped", 'caveat = " ".join(c for c in (caveat, *notes) if c) or None', "pass"),
+ ("card: unused reason dropped", "    if policy.ignored:\n        return f\"The team", "    if False:\n        return f\"The team"),
+ ("card: quieted not listed", "    if quieted:\n        n = len(quieted)", "    if False:\n        n = len(quieted)"),
+ ("card: every path not said", "    if every:\n", "    if False:\n"),
+ ("card: quieted list not capped", "quieted[:_SHOWN_QUIETED]", "quieted"),
+ ("json: ignored_extras empty", 'for e, why in quieted]}', 'for e, why in []]}'),
+ ("log: quieted list not cut", "        if size() > limit and len(quiet) > 20:          # T20", "        if False:"),
+ ("checker: caveat dropped", 'CHECKER_CAVEAT if checker and checker["source"] != "base" else None', "None"),
+ ("checker: sha not compared", ' and env.get("ITEMATOR_CHECKER_SHA") == target', ""),
+ ("checker: any value means base", 'env.get("ITEMATOR_CHECKER") == "base" and', 'env.get("ITEMATOR_CHECKER") is not None and'),
+]
+PO = [
+ ("schema: unknown table allowed", "        if table not in SCHEMA:\n            return", "        if False:\n            return"),
+ ("schema: non-table allowed", "        if not isinstance(value, dict):\n            return", "        if False:\n            return"),
+ ("schema: unknown key allowed", "            if want is None:\n", "            if False:\n"),
+ ("schema: wrong type allowed", "            if type(v) is not want:", "            if False:"),
+ ("schema: default asks for another person", 'names.get("other_person_required", False)', 'names.get("other_person_required", True)'),
+ ("kinds: unknown kind allowed", "if type(k) is not str or k not in X.KINDS:", "if type(k) is not str:"),
+ ("kinds: built-in exception listable", "        if k in NEVER_IGNORED:\n            return", "        if False:\n            return"),
+ ("paths: no pattern cap", "    if len(paths) > MAX_PATTERNS:", "    if False:"),
+ ("paths: cap off by one", "    if len(paths) > MAX_PATTERNS:", "    if len(paths) >= MAX_PATTERNS:"),
+ ("paths: empty pattern allowed", "if type(p) is not str or not p:", "if type(p) is not str:"),
+ ("paths: control characters allowed", "        if _CONTROL.search(p):", "        if False:"),
+ ("paths: C1 controls allowed", '_CONTROL = re.compile(r"[\\x00-\\x1f\\x7f-\\x9f]")', '_CONTROL = re.compile(r"[\\x00-\\x1f\\x7f]")'),
+ ("paths: no length cap", "        if len(p) > MAX_PATTERN_CHARS:", "        if False:"),
+ ("size: not capped in parse", "    if len(data) > MAX_BYTES:\n        return", "    if False:\n        return"),
+ ("size: read before the cap", "        if not size.isdigit() or int(size) > MAX_BYTES:", "        if not size.isdigit():"),
+ ("size: cap off by one", "int(size) > MAX_BYTES", "int(size) >= MAX_BYTES"),
+ ("file: symlink read", 'kind != b"blob" or mode not in (b"100644", b"100755")', 'kind != b"blob"'),
+ ("file: missing file not recognised", "        if path != FILE.encode():\n            return Policy(sha=sha)\n", ""),
+ ("sha: not checked", "    if not isinstance(sha, str) or not _SHA.fullmatch(sha):", "    if not isinstance(sha, str):"),
+ ("sha: search, not fullmatch", "not _SHA.fullmatch(sha)", "not _SHA.search(sha)"),
+ ("git: no timeout", "check=False, timeout=TIMEOUT)", "check=False)"),
+ ("git: timeout not caught", "    except subprocess.TimeoutExpired as e:\n        raise _Unreadable(f\"git {args[0]} timed out\") from e\n", ""),
+ ("registry: not-found package quieted", 'all((p.get("lookup") == "ok" and p.get("found") is True)', 'all((p.get("lookup") == "ok")'),
+ ("registry: unread package quieted", '               for p in registry["packages"])', '               or p.get("lookup") == "unavailable" for p in registry["packages"])'),
+ ("registry: lookup cap not checked", ' or registry.get("count") != len(registry["packages"])', ""),
+ ("registry: exception dropped", '    if e.kind == "new_dependency" and not _registry_knows_every_package(registry):\n        return None\n', ""),
+ ("built-in: binary quietable", 'NEVER_IGNORED = ("policy_changed", "binary_or_large_added")', 'NEVER_IGNORED = ("policy_changed",)'),
+ ("built-in: policy edit quietable", 'NEVER_IGNORED = ("policy_changed", "binary_or_large_added")', 'NEVER_IGNORED = ("binary_or_large_added",)'),
+ ("paths: one matching file suffices", "    if not all(any(fnmatch.fnmatchcase(f, g) for g in policy.paths) for f in files):", "    if not any(any(fnmatch.fnmatchcase(f, g) for g in policy.paths) for f in files):"),
+ ("paths: case-insensitive", "    if not all(any(fnmatch.fnmatchcase(f, g) for g", "    if not all(any(fnmatch.fnmatch(f.lower(), g.lower()) for g"),
+ ("paths: rename source ignored", "        if old:\n            out.add(old)\n", "        pass\n"),
+ ("paths: group items ignored", "    if items:\n        paths = [i.path for i in items]\n", "    if False:\n        paths = []\n"),
+ ("paths: detail files ignored", '    elif e.detail and (e.path.endswith("/") or e.kind == "version_bump"):', "    elif False:"),
+ ("every path: not reported", '"ignores_every_path": [p for p in self.paths if matches_everything(p)]', '"ignores_every_path": []'),
+ ("reason: backtick kept", '_UNSAFE = re.compile(r"[`\\x00-', '_UNSAFE = re.compile(r"[\\x00-'),
+ ("reason: no length cap", "return _UNSAFE.sub(\"'\", str(value))[:40]", "return _UNSAFE.sub(\"'\", str(value))"),
+]
+# T26: (label, old, new, file, the test file that must kill it)
+T26 = [
+ ("attrs: text file left binary", '        if not is_binary and any(line.startswith("Binary files ") for line in header):\n', '        if False:\n', "itemator/ci.py", "tests/test_diff_attributes.py"),
+ ("attrs: binary by git's word", "        is_binary = any(o in binary for o in pair)\n", '        is_binary = any(line.startswith("Binary files ") for line in header)\n', "itemator/ci.py", "tests/test_diff_attributes.py"),
+ ("attrs: blob test skipped", "    binary = _binary_blobs(repo, [o for pair in blobs for o in pair])\n", "    binary = set()\n", "itemator/ci.py", "tests/test_diff_attributes.py"),
+ ("attrs: NUL test misses byte 0", 'if b"\\0" in first:', 'if b"\\0" in first[1:]:', "itemator/ci.py", "tests/test_diff_attributes.py"),
+ ("attrs: binary keeps a forced patch", "        if is_binary:\n            hunks = None\n", "", "itemator/ci.py", "tests/test_diff_attributes.py"),
+ ("attrs: textconv on", '_DIFF = ("--find-renames", "--no-ext-diff", "--no-textconv")', '_DIFF = ("--find-renames", "--no-ext-diff")', "itemator/ci.py", "tests/test_diff_attributes.py"),
+ ("attrs: attributes file read", '["git", "-c", "core.attributesFile=/dev/null", "-C", repo, *args]', '["git", "-C", repo, *args]', "itemator/ci.py", "tests/test_diff_attributes.py"),
+ ("attrs: system file read", 'env = {**os.environ, "GIT_ATTR_NOSYSTEM": "1", ', 'env = {**os.environ, ', "itemator/ci.py", "tests/test_diff_attributes.py"),
+ ("attrs: base attributes not used", "    src = base if ATTR_SOURCE else None\n", "    src = None\n", "itemator/ci.py", "tests/test_diff_attributes.py"),
+ ("attrs: re-read without --text", '"--no-color", "--text", "-p"', '"--no-color", "-p"', "itemator/ci.py", "tests/test_diff_attributes.py"),
+ ("answers: a manifest is a config file", "    return not _manifest(path) and (\n", "    return (\n", "itemator/ci.py", "tests/test_answers.py"),
+ ("answers: any file is a config file", 'name in (".gitlab-ci.yml", "Dockerfile") or name.startswith("Dockerfile.") or name.endswith(_CONFIG_EXT))', "True)", "itemator/ci.py", "tests/test_answers.py"),
+ ("answers: dependency outside a manifest", 'if e.kind == "new_dependency" and _manifest(e.path) and (', 'if e.kind == "new_dependency" and (', "itemator/ci.py", "tests/test_answers.py"),
+ ("answers: a list without its items", "not e.detail or (items and len(", "not e.detail or (True and len(", "itemator/ci.py", "tests/test_answers.py"),
+ ("answers: list not capped", ")) <= MAX_LISTED)):", ")) <= 10 * MAX_LISTED)):", "itemator/ci.py", "tests/test_answers.py"),
+ ("answers: cap off by one", ")) <= MAX_LISTED)):", ")) < MAX_LISTED)):", "itemator/ci.py", "tests/test_answers.py"),
+ ("answers: modified file removable", '.get("status") == "added":', '.get("status") is not None:', "itemator/ci.py", "tests/test_answers.py"),
+ ("answers: a group name removable", "if e.kind in _ADDED_KINDS and e.name == e.path and", "if e.kind in _ADDED_KINDS and", "itemator/ci.py", "tests/test_answers.py"),
+ ("answers: tests_removed removable", '_ADDED_KINDS = ("stray_file", "binary_or_large_added", "build_output_added")', '_ADDED_KINDS = ("stray_file", "binary_or_large_added", "build_output_added", "tests_removed")', "itemator/ci.py", "tests/test_answers.py"),
+ ("stub: split always offered", '" if "split" in offers else ""', '" if True else ""', "itemator/ci.py", "tests/test_answers.py"),
+ ("stub: remove always offered", '" if "remove" in offers else ""', '" if True else ""', "itemator/ci.py", "tests/test_answers.py"),
+ ("stub: offers not passed", "other_person, answers(e, items, by_path)),", "other_person),", "itemator/ci.py", "tests/test_answers.py"),
+ ("target: merge base used", "    target, resolved = target_tip(repo_dir, env, base)\n", "    target, resolved = base, True\n", "itemator/ci.py", "tests/test_policy.py"),
+ ("target: not a full sha used", "        if _SHA40.fullmatch(sha):\n", "        if sha:\n", "itemator/ci.py", "tests/test_policy.py"),
+ ("target: fallback caveat dropped", "             TARGET_CAVEAT if fallback else None,\n", "             None,\n", "itemator/ci.py", "tests/test_policy.py"),
+ ("target: fallback says target branch", "    at = AT_FORK if fallback else AT_TARGET\n", "    at = AT_TARGET\n", "itemator/ci.py", "tests/test_policy.py"),
+ ("target: policy source kept", '        policy = dataclasses.replace(policy, source="merge_base")\n', "        pass\n", "itemator/ci.py", "tests/test_policy.py"),
+ ("checker: compared with the merge base", "checker=checker_of(env, target, head)", "checker=checker_of(env, base, head)", "itemator/ci.py", "tests/test_policy.py"),
+ ("card: other-person sentence dropped", "    if asks_other:\n        out.append(ASKS_OTHER)\n", "", "itemator/ci.py", "tests/test_policy.py"),
+ ("card: other-person sentence, nothing to name", "asks_other=other and bool(kept)", "asks_other=other", "itemator/ci.py", "tests/test_policy.py"),
+ ("parse: deep TOML raises", "    except (RecursionError, MemoryError, OverflowError, ValueError):\n        return TOO_DEEP\n", "    except MemoryError:\n        return TOO_DEEP\n", "itemator/policy.py", "tests/test_policy.py"),
+ ("reason: TOML message shown", 'return f"it is not valid TOML ({where})"', "return f\"it is not valid TOML ({_UNSAFE.sub(' ', str(e))[:120]})\"", "itemator/policy.py", "tests/test_policy.py"),
+ ("every path: one probe", '_PROBES = ("a", "a/b/c.d", ".x", "-", "Dockerfile")', '_PROBES = ("a/b/c.d",)', "itemator/policy.py", "tests/test_policy.py"),
+ ("every path: any probe", "return all(fnmatch.fnmatchcase(p, pattern) for p in _PROBES)", "return any(fnmatch.fnmatchcase(p, pattern) for p in _PROBES)", "itemator/policy.py", "tests/test_policy.py"),
+ ("registry: url source quieted", '(p.get("lookup") == "not_from_registry" and p.get("reason") == "own_package")', 'p.get("lookup") == "not_from_registry"', "itemator/policy.py", "tests/test_policy.py"),
+ ("registry: not_supported quieted", '               for p in registry["packages"])', '               or p.get("lookup") == "not_supported" for p in registry["packages"])', "itemator/policy.py", "tests/test_policy.py"),
+ ("registry: own_package not counted", '               or (p.get("lookup") == "not_from_registry" and p.get("reason") == "own_package")\n', "", "itemator/policy.py", "tests/test_policy.py"),
+ ("policy: source not reported", '"source": self.source', '"source": "target_branch"', "itemator/policy.py", "tests/test_policy.py"),
+]
+SRC = {"itemator/ci.py": (REPO / "itemator/ci.py").read_text(), "itemator/registry.py": (REPO / "itemator/registry.py").read_text(),
+       "itemator/policy.py": (REPO / "itemator/policy.py").read_text()}
 JOBS = ([(*m, "itemator/ci.py", "tests/test_ci.py") for m in M] + [(*m, "itemator/ci.py", "tests/test_ci_anchors.py") for m in A]
-        + [(*m, "itemator/ci.py", "tests/test_registry.py") for m in RC] + [(*m, "itemator/registry.py", "tests/test_registry.py") for m in RG])
+        + [(*m, "itemator/ci.py", "tests/test_registry.py") for m in RC] + [(*m, "itemator/registry.py", "tests/test_registry.py") for m in RG]
+        + [(*m, "itemator/ci.py", "tests/test_policy.py") for m in PC] + [(*m, "itemator/policy.py", "tests/test_policy.py") for m in PO]
+        + T26)
 for label, old, new, path, _ in JOBS:
     assert SRC[path].count(old) == 1, f"mutant {label!r}: anchor found {SRC[path].count(old)} times in {path}"
 if sys.argv[3:] == ["T17"]:
