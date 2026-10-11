@@ -1,0 +1,314 @@
+{
+ "agents_below_min": {
+  "Cursor": 28
+ },
+ "by_agent": {
+  "Claude_Code": {
+   "merged": 33,
+   "merged_human_reviewed_only_empty_approvals": 2,
+   "merged_no_human_inline_comment": 31,
+   "merged_no_human_review": 24,
+   "merged_no_human_review_and_no_human_inline_comment": 24,
+   "merged_no_human_review_by_anyone_but_the_author": 24,
+   "merged_no_human_review_or_inline_comment_by_anyone_but_the_author": 24,
+   "merged_with_human_review": 9,
+   "pool_prs": 63,
+   "shares": {
+    "merged_human_reviewed_only_empty_approvals": 0.2222,
+    "merged_no_human_inline_comment": 0.9394,
+    "merged_no_human_review": 0.7273,
+    "merged_no_human_review_and_no_human_inline_comment": 0.7273,
+    "merged_no_human_review_by_anyone_but_the_author": 0.7273,
+    "merged_no_human_review_or_inline_comment_by_anyone_but_the_author": 0.7273,
+    "merged_with_human_review": 0.2727
+   },
+   "time": {
+    "median_minutes": 236.217,
+    "merged_within_10_min": 8,
+    "merged_within_60_min": 15,
+    "negative_durations_left_out": 0,
+    "share_within_10_min": 0.2424,
+    "share_within_60_min": 0.4545,
+    "timed": 33,
+    "unparseable_left_out": 0
+   }
+  },
+  "Copilot": {
+   "merged": 1352,
+   "merged_human_reviewed_only_empty_approvals": 362,
+   "merged_no_human_inline_comment": 737,
+   "merged_no_human_review": 182,
+   "merged_no_human_review_and_no_human_inline_comment": 182,
+   "merged_no_human_review_by_anyone_but_the_author": 182,
+   "merged_no_human_review_or_inline_comment_by_anyone_but_the_author": 182,
+   "merged_with_human_review": 1170,
+   "pool_prs": 3152,
+   "shares": {
+    "merged_human_reviewed_only_empty_approvals": 0.3094,
+    "merged_no_human_inline_comment": 0.5451,
+    "merged_no_human_review": 0.1346,
+    "merged_no_human_review_and_no_human_inline_comment": 0.1346,
+    "merged_no_human_review_by_anyone_but_the_author": 0.1346,
+    "merged_no_human_review_or_inline_comment_by_anyone_but_the_author": 0.1346,
+    "merged_with_human_review": 0.8654
+   },
+   "time": {
+    "median_minutes": 1318.783,
+    "merged_within_10_min": 19,
+    "merged_within_60_min": 180,
+    "negative_durations_left_out": 0,
+    "share_within_10_min": 0.0141,
+    "share_within_60_min": 0.1331,
+    "timed": 1352,
+    "unparseable_left_out": 0
+   }
+  },
+  "Devin": {
+   "merged": 111,
+   "merged_human_reviewed_only_empty_approvals": 31,
+   "merged_no_human_inline_comment": 82,
+   "merged_no_human_review": 36,
+   "merged_no_human_review_and_no_human_inline_comment": 36,
+   "merged_no_human_review_by_anyone_but_the_author": 36,
+   "merged_no_human_review_or_inline_comment_by_anyone_but_the_author": 36,
+   "merged_with_human_review": 75,
+   "pool_prs": 340,
+   "shares": {
+    "merged_human_reviewed_only_empty_approvals": 0.4133,
+    "merged_no_human_inline_comment": 0.7387,
+    "merged_no_human_review": 0.3243,
+    "merged_no_human_review_and_no_human_inline_comment": 0.3243,
+    "merged_no_human_review_by_anyone_but_the_author": 0.3243,
+    "merged_no_human_review_or_inline_comment_by_anyone_but_the_author": 0.3243,
+    "merged_with_human_review": 0.6757
+   },
+   "time": {
+    "median_minutes": 244.25,
+    "merged_within_10_min": 7,
+    "merged_within_60_min": 38,
+    "negative_durations_left_out": 0,
+    "share_within_10_min": 0.0631,
+    "share_within_60_min": 0.3423,
+    "timed": 111,
+    "unparseable_left_out": 0
+   }
+  },
+  "OpenAI_Codex": {
+   "merged": 86,
+   "merged_human_reviewed_only_empty_approvals": 19,
+   "merged_no_human_inline_comment": 72,
+   "merged_no_human_review": 40,
+   "merged_no_human_review_and_no_human_inline_comment": 40,
+   "merged_no_human_review_by_anyone_but_the_author": 46,
+   "merged_no_human_review_or_inline_comment_by_anyone_but_the_author": 46,
+   "merged_with_human_review": 46,
+   "pool_prs": 110,
+   "shares": {
+    "merged_human_reviewed_only_empty_approvals": 0.413,
+    "merged_no_human_inline_comment": 0.8372,
+    "merged_no_human_review": 0.4651,
+    "merged_no_human_review_and_no_human_inline_comment": 0.4651,
+    "merged_no_human_review_by_anyone_but_the_author": 0.5349,
+    "merged_no_human_review_or_inline_comment_by_anyone_but_the_author": 0.5349,
+    "merged_with_human_review": 0.5349
+   },
+   "time": {
+    "median_minutes": 174.217,
+    "merged_within_10_min": 17,
+    "merged_within_60_min": 30,
+    "negative_durations_left_out": 0,
+    "share_within_10_min": 0.1977,
+    "share_within_60_min": 0.3488,
+    "timed": 86,
+    "unparseable_left_out": 0
+   }
+  }
+ },
+ "checks": {
+  "flagged_list_length_equals_flagged_counts_in_the_two_summaries": true,
+  "pull_request_columns": [
+   "id",
+   "number",
+   "title",
+   "body",
+   "agent",
+   "user_id",
+   "user",
+   "state",
+   "created_at",
+   "closed_at",
+   "merged_at",
+   "repo_id",
+   "repo_url",
+   "html_url"
+  ],
+  "review_comment_rows": 19450,
+  "review_comment_rows_with_user_type_missing": 0,
+  "review_comments_whose_review_is_not_in_pr_reviews": 0,
+  "review_comments_whose_url_names_another_pull_request_than_their_review": 7,
+  "review_ids_that_repeat": 0,
+  "review_rows": 28875,
+  "review_rows_with_user_type_missing": 1,
+  "review_state_values": [
+   "APPROVED",
+   "CHANGES_REQUESTED",
+   "COMMENTED",
+   "DISMISSED"
+  ],
+  "reviews_whose_pr_is_not_in_pull_request": 0,
+  "user_type_Bot_but_name_has_no_[bot]_suffix": 6197,
+  "user_type_User_but_name_ends_in_[bot]": 0,
+  "user_type_values": [
+   "Bot",
+   "User"
+  ]
+ },
+ "dataset": "hao-li/AIDev",
+ "dataset_ref": "v3",
+ "dataset_revision": "68ed5f4b80d27a9e057fc57567f38bd322ac73ec",
+ "definitions": {
+  "flagged.found_in_pool": "Listed URLs that match a pool pull request.",
+  "flagged.listed": "Distinct pull request URLs flagged by rules v4 (a non-empty extras list) in results/replay_v4_devABC.json (samples A, B, C) and results/replay_v4_sampleD.json.",
+  "flagged.merged": "Flagged pool pull requests that were merged.",
+  "flagged.merged_with_human_inline_comment": "Flagged and merged, with at least one human inline comment.",
+  "flagged.merged_with_human_review": "Flagged and merged, with at least one human review.",
+  "flagged.merged_with_neither": "Flagged and merged, with no human review and no human inline comment.",
+  "flagged.not_in_pool": "Listed URLs that match no pool pull request.",
+  "flagged.not_merged": "Flagged pool pull requests that were not merged.",
+  "merged": "Pool pull requests with merged_at set.",
+  "merged_human_reviewed_only_empty_approvals": "Merged, with at least one human review, every human review being an empty approval.",
+  "merged_no_human_inline_comment": "Merged, and no human inline comment.",
+  "merged_no_human_review": "Merged, and no pr_reviews row with user_type 'User' (bot-only reviews and no reviews both land here).",
+  "merged_no_human_review_and_no_human_inline_comment": "Merged, no human review and no human inline comment.",
+  "merged_no_human_review_by_anyone_but_the_author": "Merged, and no human review by an account other than the author's (includes the ones with no human review).",
+  "merged_no_human_review_or_inline_comment_by_anyone_but_the_author": "Merged, and no human review and no human inline comment by an account other than the author's.",
+  "merged_with_human_review": "Merged, and at least one human review.",
+  "pool_prs": "Pool pull requests in the group, merged or not.",
+  "shares.merged_human_reviewed_only_empty_approvals": "merged_human_reviewed_only_empty_approvals divided by merged_with_human_review, rounded to 4 decimals.",
+  "shares.merged_no_human_inline_comment": "merged_no_human_inline_comment divided by merged, rounded to 4 decimals.",
+  "shares.merged_no_human_review": "merged_no_human_review divided by merged, rounded to 4 decimals.",
+  "shares.merged_no_human_review_and_no_human_inline_comment": "merged_no_human_review_and_no_human_inline_comment divided by merged, rounded to 4 decimals.",
+  "shares.merged_no_human_review_by_anyone_but_the_author": "merged_no_human_review_by_anyone_but_the_author divided by merged, rounded to 4 decimals.",
+  "shares.merged_no_human_review_or_inline_comment_by_anyone_but_the_author": "merged_no_human_review_or_inline_comment_by_anyone_but_the_author divided by merged, rounded to 4 decimals.",
+  "shares.merged_with_human_review": "merged_with_human_review divided by merged, rounded to 4 decimals.",
+  "time.median_minutes": "Median of the timed gaps, in minutes (linear interpolation), rounded to 3 decimals.",
+  "time.merged_within_10_min": "Timed pull requests merged 10 minutes or less after creation.",
+  "time.merged_within_60_min": "Timed pull requests merged 60 minutes or less after creation.",
+  "time.negative_durations_left_out": "Merged pull requests whose merged_at is before created_at; left out.",
+  "time.share_within_10_min": "merged_within_10_min divided by timed, rounded to 4 decimals.",
+  "time.share_within_60_min": "merged_within_60_min divided by timed, rounded to 4 decimals.",
+  "time.timed": "Merged pull requests with a parseable, non-negative time from created_at to merged_at.",
+  "time.unparseable_left_out": "Merged pull requests whose created_at or merged_at did not parse; left out."
+ },
+ "duckdb": "1.5.6",
+ "files": {
+  "issue.parquet": {
+   "bytes": 3222463,
+   "sha256": "0787e44a5a3ea9ffd9fdc9d8deb49360cfa05171e13d84ec31df3232a21466b4"
+  },
+  "pr_review_comments.parquet": {
+   "bytes": 14728130,
+   "sha256": "bf8578c58712939324bd4cac9da43d39f9b144b6690e9efa39bdf5ba4f8c4b27"
+  },
+  "pr_reviews.parquet": {
+   "bytes": 7517041,
+   "sha256": "3b7996c6365000e9e7f91bb428ecff78b36290997bee4732e840b0f5cdce70f5"
+  },
+  "pull_request.parquet": {
+   "bytes": 16855612,
+   "sha256": "08f520b5ef36b6281f82090db09ac14aefc3534ee113886e7bc85131fd8d214c"
+  },
+  "related_issue.parquet": {
+   "bytes": 75579,
+   "sha256": "34ed28d8294956d68eecc4665acfd4059ce31565c42e8bc1e4950accc81b12c9"
+  },
+  "repository.parquet": {
+   "bytes": 167251,
+   "sha256": "5b76717c39be1cada097d680aa0fcecd03611aa52ae05ef7f1d1e0e1e8b34192"
+  }
+ },
+ "flagged": {
+  "found_in_pool": 32,
+  "listed": 32,
+  "merged": 8,
+  "merged_with_human_inline_comment": 0,
+  "merged_with_human_review": 3,
+  "merged_with_neither": 5,
+  "not_in_pool": 0,
+  "not_merged": 24
+ },
+ "flagged_sources": {
+  "results/replay_v4_devABC.json": {
+   "flagged_pull_requests": 24,
+   "sha256": "b4bb0af9a443f86737db6e4b403c0159a28a00103cf1de9bfe27e58c7d7faf3c"
+  },
+  "results/replay_v4_sampleD.json": {
+   "flagged_pull_requests": 8,
+   "sha256": "a736987c5d021a8f6b9707959243da43802c2c2aaf520a69894d8fc78de93c28"
+  }
+ },
+ "inputs_lock_sha256": "f96ede8fc59a0d640ce9afa99c394a521741647484b19b207c4edd3a213e7af0",
+ "licence": "CC BY 4.0 (see NOTICE)",
+ "min_group": 30,
+ "not_computed": {
+  "merged_by_the_authors_own_account": "pull_request has none of a merger, merged_by or merged-by-user column (checks.pull_request_columns), so who pressed merge is not in the data. The by_anyone_but_the_author rows are the nearest available figures; they only look at reviews and review comments.",
+  "no_review_no_inline_comment_no_issue_style_comment": "Needs the pr_comments table, which is not in data/ and is not fetched here. merged_no_human_review_and_no_human_inline_comment is an upper bound for it."
+ },
+ "overall": {
+  "merged": 1610,
+  "merged_human_reviewed_only_empty_approvals": 420,
+  "merged_no_human_inline_comment": 945,
+  "merged_no_human_review": 295,
+  "merged_no_human_review_and_no_human_inline_comment": 295,
+  "merged_no_human_review_by_anyone_but_the_author": 302,
+  "merged_no_human_review_or_inline_comment_by_anyone_but_the_author": 302,
+  "merged_with_human_review": 1315,
+  "pool_prs": 3703,
+  "shares": {
+   "merged_human_reviewed_only_empty_approvals": 0.3194,
+   "merged_no_human_inline_comment": 0.587,
+   "merged_no_human_review": 0.1832,
+   "merged_no_human_review_and_no_human_inline_comment": 0.1832,
+   "merged_no_human_review_by_anyone_but_the_author": 0.1876,
+   "merged_no_human_review_or_inline_comment_by_anyone_but_the_author": 0.1876,
+   "merged_with_human_review": 0.8168
+  },
+  "time": {
+   "median_minutes": 1118.892,
+   "merged_within_10_min": 56,
+   "merged_within_60_min": 270,
+   "negative_durations_left_out": 0,
+   "share_within_10_min": 0.0348,
+   "share_within_60_min": 0.1677,
+   "timed": 1610,
+   "unparseable_left_out": 0
+  }
+ },
+ "pool_funnel": {
+  "linked_issues_that_are_prs": 0,
+  "linked_prs_in_permissive_repos": 3757,
+  "linked_prs_whose_repo_is_missing": 0,
+  "pool": 3703,
+  "pool_by_agent": {
+   "Claude_Code": 63,
+   "Copilot": 3152,
+   "Cursor": 38,
+   "Devin": 340,
+   "OpenAI_Codex": 110
+  },
+  "prs_linked_to_an_issue": 4905,
+  "pull_request_rows": 33596
+ },
+ "python": "3.12.3",
+ "terms": {
+  "author": "pull_request.user, compared with the reviewer's user name ignoring case. For Copilot and Devin the author is the agent's own account, so every human is someone else; for the other agents it is the person who ran the agent.",
+  "bot": "user_type is 'Bot' (the dataset's marker). A missing user_type is neither human nor bot.",
+  "empty approval": "A review with state APPROVED whose body is null or only whitespace.",
+  "human": "A review row in pr_reviews, or an inline comment row in pr_review_comments, whose user_type is 'User'. The dataset's own user_type column is the only marker used; no list of names was made.",
+  "human inline comment": "At least one pr_review_comments row with user_type 'User' that belongs, through pull_request_review_id = pr_reviews.id, to a review of the pull request.",
+  "human review": "At least one pr_reviews row of the pull request (pr_id) with user_type 'User', in any state (APPROVED, COMMENTED, CHANGES_REQUESTED, DISMISSED).",
+  "merged": "pull_request.merged_at is not null.",
+  "pool": "Pull requests from eval/replay_aidev.py build_pool: linked to an issue in related_issue, in a repository with a permissive licence, the linked issue a real issue with a non-empty body.",
+  "timing": "Seconds from pull_request.created_at to merged_at, both ISO-8601 UTC. A negative gap or a value that does not parse is counted and left out of the time figures. 'Within 10 min' and 'within 60 min' include the limit."
+ }
+}

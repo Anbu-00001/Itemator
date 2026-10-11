@@ -273,10 +273,10 @@ def test_thread_stub_text():
 
 
 def test_thread_stub_survives_odd_names():
-    assert ci.thread_stub(Extra("tests_removed", "p", "a`b", "x")).startswith("``a`b`` (tests removed): x. ")
-    assert ci.thread_stub(Extra("tests_removed", "p", "`a`", "x")).startswith("`` `a` `` (tests removed): x. ")
+    assert ci.thread_stub(Extra("tests_removed", "p", "a`b", "x")).startswith("`a'b` (tests removed): x. ")      # T22: one apostrophe each
+    assert ci.thread_stub(Extra("tests_removed", "p", "`a`", "x")).startswith("`'a'` (tests removed): x. ")
     odd = ci.thread_stub(Extra("tests_removed", "p", "a\nb", "deletes\r\nit"))
-    assert "\n" not in odd and "\r" not in odd and odd.startswith("`a b` (tests removed): deletes it. ")
+    assert "\n" not in odd and "\r" not in odd and odd.startswith("`a'b` (tests removed): deletes''it. ")
 
 
 def test_thread_stub_has_no_banned_words(monkeypatch):

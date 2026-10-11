@@ -9,6 +9,10 @@
   "related_issue.parquet": {"bytes": 75579, "sha256": "34ed28d8294956d68eecc4665acfd4059ce31565c42e8bc1e4950accc81b12c9"},
   "repository.parquet": {"bytes": 167251, "sha256": "5b76717c39be1cada097d680aa0fcecd03611aa52ae05ef7f1d1e0e1e8b34192"}
  },
+ "review_tables": {
+  "pr_reviews.parquet": {"bytes": 7517041, "sha256": "3b7996c6365000e9e7f91bb428ecff78b36290997bee4732e840b0f5cdce70f5"},
+  "pr_review_comments.parquet": {"bytes": 14728130, "sha256": "bf8578c58712939324bd4cac9da43d39f9b144b6690e9efa39bdf5ba4f8c4b27"}
+ },
  "duckdb": "1.5.6",
  "python": "3.12.3",
  "sample_a_predictions": "results/replay_predictions.json",

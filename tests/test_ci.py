@@ -97,11 +97,16 @@ def env(repo, head, **kw):
             "CI_MERGE_REQUEST_IID": "5", "CI_MERGE_REQUEST_DIFF_BASE_SHA": repo.base, "CI_COMMIT_SHA": head, **kw}
 
 
+def no_package(method, url, body, timeout):
+    """The registries in these tests know no package (T17); tests/test_registry.py covers the facts."""
+    return 404, b""
+
+
 def job(repo, head, http, tmp_path, monkeypatch, **kw):
     """Run the job as CI does; return (exit status, itemator.json or None)."""
     monkeypatch.setattr(ci, "http_get", http)
     out = tmp_path / "itemator.json"
-    code = ci.main(["--out", str(out), "--repo", str(repo.path)], env=env(repo, head, **kw))
+    code = ci.main(["--out", str(out), "--repo", str(repo.path)], env=env(repo, head, **kw), registry_fetch=no_package)
     return code, (json.loads(out.read_text()) if out.exists() else None)
 
 

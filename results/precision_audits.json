@@ -1,0 +1,120 @@
+{
+ "confidence_level": 0.95,
+ "labeller": "one language model per sample; no second reader; no upstream outcomes (merged, reverted, objected to)",
+ "samples": [
+  {
+   "sample": "A",
+   "rules": "v1",
+   "status": "development",
+   "seed": 20261010,
+   "note": "results/audits/sample-A-rules-v1.md",
+   "prs_scored": 60,
+   "prs_flagged": 16,
+   "extras": 35,
+   "extras_real_strict": 14,
+   "extras_real_lenient": 17,
+   "prs_with_real_strict": 9,
+   "prs_with_real_lenient": 10,
+   "pr_strict_interval_95": [
+    0.332,
+    0.769
+   ],
+   "pr_lenient_interval_95": [
+    0.386,
+    0.815
+   ],
+   "share_of_prs_flagged": 0.267
+  },
+  {
+   "sample": "B",
+   "rules": "v2",
+   "status": "held_out",
+   "seed": 20261011,
+   "note": "results/audits/sample-B-rules-v2.md",
+   "prs_scored": 60,
+   "prs_flagged": 12,
+   "extras": 168,
+   "extras_real_strict": 10,
+   "extras_real_lenient": 119,
+   "prs_with_real_strict": 5,
+   "prs_with_real_lenient": 8,
+   "pr_strict_interval_95": [
+    0.193,
+    0.68
+   ],
+   "pr_lenient_interval_95": [
+    0.391,
+    0.862
+   ],
+   "share_of_prs_flagged": 0.2
+  },
+  {
+   "sample": "C",
+   "rules": "v3",
+   "status": "held_out",
+   "seed": 20261012,
+   "note": "results/audits/sample-C-rules-v3.md",
+   "prs_scored": 60,
+   "prs_flagged": 5,
+   "extras": 49,
+   "extras_real_strict": 5,
+   "extras_real_lenient": 5,
+   "prs_with_real_strict": 3,
+   "prs_with_real_lenient": 3,
+   "pr_strict_interval_95": [
+    0.231,
+    0.882
+   ],
+   "pr_lenient_interval_95": [
+    0.231,
+    0.882
+   ],
+   "share_of_prs_flagged": 0.083
+  },
+  {
+   "sample": "D",
+   "rules": "v4",
+   "status": "held_out",
+   "seed": 20261013,
+   "note": "results/audits/sample-D-rules-v4.md",
+   "prs_scored": 60,
+   "prs_flagged": 8,
+   "extras": 12,
+   "extras_real_strict": 4,
+   "extras_real_lenient": 5,
+   "prs_with_real_strict": 4,
+   "prs_with_real_lenient": 5,
+   "pr_strict_interval_95": [
+    0.215,
+    0.785
+   ],
+   "pr_lenient_interval_95": [
+    0.306,
+    0.863
+   ],
+   "share_of_prs_flagged": 0.133
+  }
+ ],
+ "held_out_pooled": {
+  "samples": [
+   "B",
+   "C",
+   "D"
+  ],
+  "rules_differ_between_samples": true,
+  "prs_flagged": 25,
+  "prs_with_real_strict": 12,
+  "prs_with_real_lenient": 16,
+  "strict_interval_95": [
+   0.3,
+   0.665
+  ],
+  "lenient_interval_95": [
+   0.445,
+   0.798
+  ],
+  "prs_scored": 180,
+  "prs_flagged_share": 0.139
+ },
+ "notes": "Pooled across rule versions for a single plain sentence; the samples are different PRs and the rules changed, so it is not a controlled comparison."
+}

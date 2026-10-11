@@ -2,9 +2,65 @@
 
 **One click for what was asked. A name for anything more.**
 
-When an agent or a new teammate opens a merge request, someone approves it, often without reading. Itemator lists what the change did beyond its linked issue. A GitLab Duo flow offers to move each extra into its own merge request, and the approver keeps an extra only by typing its name. Changes that stay inside the issue keep the normal one-click approval.
+When an AI agent or a new teammate opens a merge request, someone approves it, often without reading. Anthropic reports that Claude Code users approve 93% <!-- from: results/external_figures.json:approval_rate_claude_code_permission_prompts.value --> of permission prompts, and calls the result approval fatigue ([source](https://www.anthropic.com/engineering/claude-code-auto-mode)). A merge request has the same problem: the change that was asked for is easy to check, and the extras that came with it are not.
 
-**Status:** in development for GitLab's *Life After Code* hackathon (Path A, Supervised). Every number in this README sits next to a pointer to the results file that produced it; a CI check enforces that.
+Itemator lists what a merge request changed beyond its linked issue, and asks a person to name each extra before it merges. Changes that stay inside the issue keep the normal one-click approval.
+
+**Status:** built for GitLab's *Life After Code* hackathon (Path A, Supervised). Every number in this README sits next to a pointer to the results file that produced it, and a CI check (`tools/hardcode_audit.py`) enforces that.
+
+## How it works
+1. **A CI job lists the extras.** The `itemator` job reads the merge request's diff and its linked issue and applies fixed rules (`itemator/extras.py`): a new dependency, a CI or config change, removed tests, a removed public function, a committed binary or build output, a version bump, a stray file. No model decides whether an extra exists. It writes `itemator.json`.
+2. **A GitLab Duo flow posts the card.** `flows/itemator_card.yml` starts by itself when the merge request pipeline finishes. The card is two lines: what is beyond the issue, and what the approver does next. Each extra gets its own resolvable thread on the line it changed, and the merge request is set to Draft.
+3. **The approver answers in the thread.** `flows/itemator_react.yml` reads the answers: the exact name keeps the extra, `not an extra` dismisses it, `split` moves a CI or config file or a package manifest into its own merge request and takes it out of this one. The flow records who typed what, reopens a thread that was resolved without a name, and takes Draft off when every extra is settled. Its summary says so when the author typed every name.
+
+All three steps ran live on GitLab.com in this project, on throwaway merge requests that were closed afterwards. Nothing here is seeded demo data.
+
+## How often agent pull requests get a second look
+Itemator exists because a merge request that changes more than its issue asked for depends on someone noticing. The same AIDev data shows how often a human comments on these pull requests. Of the 1610 <!-- from: results/review_stats.json:overall.merged --> merged agent pull requests that link an issue (in public repositories with a permissive licence):
+
+- 59% <!-- from: results/review_stats.json:overall.shares.merged_no_human_inline_comment --> had no comment by a human on any line of the diff.
+- 18% <!-- from: results/review_stats.json:overall.shares.merged_no_human_review --> had no review by a human at all.
+- Of those that did have a human review, 32% <!-- from: results/review_stats.json:overall.shares.merged_human_reviewed_only_empty_approvals --> held only approvals with no text.
+- The median time from opening to merging was 1118.9 <!-- from: results/review_stats.json:overall.time.median_minutes --> minutes, so these are not instant merges.
+
+This does not say anyone was careless. Reviews and talk outside GitHub are invisible here, an empty approval may follow a careful read, and the pool is mostly one agent (Copilot). It sizes how often a human leaves a written trace on a line, which is what an extra needs to be caught. Of the 8 <!-- from: results/review_stats.json:flagged.merged --> merged pull requests that rules v4 flagged in our samples, 0 <!-- from: results/review_stats.json:flagged.merged_with_human_inline_comment --> had a human comment on any line. The definitions and the per-agent split are in [results/review_stats.json](results/review_stats.json).
+
+## What we measured
+The rules were checked on real pull requests that coding agents opened and linked to an issue, taken from the AIDev dataset by a seeded random draw. Four samples of sixty: the rules were tuned on the first, and for each later sample the next version of the rules was committed before that sample was drawn. For every flagged pull request, a language model read the diff against the issue and said whether at least one extra was real.
+
+| Sample | Rules | Use | Flagged of scored | Held a real extra (strict) | Held a real extra (lenient) |
+|---|---|---|---|---|---|
+| A | v1 | tuning | 16 <!-- from: results/precision_audits.json:samples[0].prs_flagged --> of 60 <!-- from: results/precision_audits.json:samples[0].prs_scored --> | 9 <!-- from: results/precision_audits.json:samples[0].prs_with_real_strict --> | 10 <!-- from: results/precision_audits.json:samples[0].prs_with_real_lenient --> |
+| B | v2 | held out | 12 <!-- from: results/precision_audits.json:samples[1].prs_flagged --> of 60 <!-- from: results/precision_audits.json:samples[1].prs_scored --> | 5 <!-- from: results/precision_audits.json:samples[1].prs_with_real_strict --> | 8 <!-- from: results/precision_audits.json:samples[1].prs_with_real_lenient --> |
+| C | v3 | held out | 5 <!-- from: results/precision_audits.json:samples[2].prs_flagged --> of 60 <!-- from: results/precision_audits.json:samples[2].prs_scored --> | 3 <!-- from: results/precision_audits.json:samples[2].prs_with_real_strict --> | 3 <!-- from: results/precision_audits.json:samples[2].prs_with_real_lenient --> |
+| D | v4 | held out | 8 <!-- from: results/precision_audits.json:samples[3].prs_flagged --> of 60 <!-- from: results/precision_audits.json:samples[3].prs_scored --> | 4 <!-- from: results/precision_audits.json:samples[3].prs_with_real_strict --> | 5 <!-- from: results/precision_audits.json:samples[3].prs_with_real_lenient --> |
+
+Read this table with its limits next to it:
+- **The labels are one model's reading.** There is one reader per sample, no second reader, and no check against what maintainers later did. Strict means a clear extra; lenient also counts borderline calls. The four audit notes, with every borderline call, are in [results/audits/](results/audits/).
+- **The samples are small.** On the three held-out samples together, the card flagged 25 <!-- from: results/precision_audits.json:held_out_pooled.prs_flagged --> pull requests, and 12 <!-- from: results/precision_audits.json:held_out_pooled.prs_with_real_strict --> of them held a clear extra (a range of 30% <!-- from: results/precision_audits.json:held_out_pooled.strict_interval_95[0] --> to 67% <!-- from: results/precision_audits.json:held_out_pooled.strict_interval_95[1] --> at 95% <!-- from: results/precision_audits.json:confidence_level --> confidence). The rules changed between samples, so this is a plain count, not a controlled comparison, and we do not claim a later version is better.
+- **Every version was fixed on earlier samples, and the audits list what each new version still gets wrong.** For example, on sample D every new-dependency flag was a package the changed code already used.
+- About 14% <!-- from: results/precision_audits.json:held_out_pooled.prs_flagged_share --> of the pull requests were flagged, so most merge requests keep the one-click path.
+
+## Related tools
+Several tools already flag changes beyond the ask. As their own pages describe them on 2026-10-11, none makes the approver decide each extra by name inside GitLab:
+
+| Tool | What it does | What it leaves to the approver |
+|---|---|---|
+| CodeRabbit, Issue Assessment | Checks a pull request against its linked issue for out-of-scope changes; warns by default, can block | One override for the whole pull request |
+| Prelint | Lists decisions nobody asked for, with optional Agree buttons | Approval is optional; GitHub only |
+| ScopeDiff, unasked, MergeWarden | Compare a change with a declared scope, locally or in CI | Block the whole run, or only report |
+| GitLab Code Review Flow | Reviews a merge request from its title, description and diff | The linked issue is not one of its inputs |
+
+Itemator's claim is narrower than detection: one thread per extra, a typed name, in GitLab, against the linked issue.
+
+## Known limits
+- **Draft, not a lock.** The role we hold in this project cannot turn on "All threads must be resolved", so an unnamed extra puts the merge request in Draft but does not lock the merge button. A project owner can add that setting.
+- **The job is defined in the merge request's own CI file.** A merge request that rewrites the `itemator` job can hide its extras. Real use needs the job pulled in from a protected include or a pipeline execution policy that the merge request cannot edit; the role we hold here cannot set that up.
+- **Author-typed names.** A solo author can type every name. The summary says when that happened, instead of hiding it.
+- **Rules miss things.** For example, a one-line edit of a dependency list in `pyproject.toml` was missed until a live test found it (fixed in rules v4). The audits list more.
+- **The approved event is untested.** The flow can react when a merge request is approved, but a second approver is needed to test it, and we have not.
+- **No hook on merge.** GitLab's merge trigger is off by default, so no record is written at the moment of merging; the summary note lists who named what once the last extra is settled.
+- **Split is narrow.** It moves whole CI or config files and package manifests only; it refuses anything else and says why.
 
 ## Why Python
 We checked whether Itemator should be written in Rust, Go, TypeScript or C++ instead. We kept Python: speed is not the problem, and a rewrite would cost most of our remaining time for no change in any result. Research agents scored each rewrite (model estimates, not measurements):

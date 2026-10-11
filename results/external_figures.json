@@ -1,0 +1,11 @@
+{
+ "note": "Figures quoted from other people's pages. Typed by hand from the page named in `source`, read on `read_on`; the repository does not compute them.",
+ "approval_rate_claude_code_permission_prompts": {
+  "value": 0.93,
+  "quote": "Claude Code users approve 93% of permission prompts",
+  "source": "https://www.anthropic.com/engineering/claude-code-auto-mode",
+  "published": "2026-03-25",
+  "read_on": "2026-10-11",
+  "caveat": "Two news sites repeat the figure as 97%; the original page says 93%."
+ }
+}

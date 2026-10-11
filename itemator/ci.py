@@ -3,7 +3,7 @@
 Run in a merge request pipeline as `python -m itemator.ci [--out itemator.json]`.
 Standard library only. The job only reads: git, and the GitLab API, anonymously
 first (the project is public) and with the job token only when that read is
-refused. It never writes to the merge request (the job token cannot); the Duo
+refused, and, for each new dependency, its public registry and OSV (itemator/registry.py). It never writes to the merge request (the job token cannot); the Duo
 flow reads itemator.json and posts the card.
 
 Exit 0 whatever the facts say: they are information, not a merge condition.
@@ -30,6 +30,7 @@ import urllib.parse
 import urllib.request
 
 from itemator import extras as X
+from itemator import registry as RG
 
 STATES = ("inside_ask", "extras", "no_issue", "author_wrote_issue", "unplaced_only")
 INJECTION_LINE = "This MR contains text addressed to automated reviewers; it was not followed."
@@ -356,7 +357,7 @@ def card_lines(state: str, issues: list[dict], extras: list, unplaced: list, inj
     elif state == "author_wrote_issue":
         final, todo = AUTHOR_CAVEAT, f"A second person reads {refs} before approving."
     elif state == "extras":
-        names = ", ".join(f"`{e.name}` ({_label(e)})" for e in extras)
+        names = ", ".join(f"{_code(e.name)} ({_label(e)})" for e in extras)
         final = f"{len(extras)} {'thing' if len(extras) == 1 else 'things'} beyond {refs}: {names}."
         todo = 'Type each name in its thread to keep it, or reply "split" to move it to its own MR.'
     elif state == "unplaced_only":
@@ -464,37 +465,50 @@ def anchor_for(e, by_path: dict):
     return (a, None) if a else (None, "no text patch")
 
 
+_UNTYPED = re.compile(r"[`\x00-\x1f\x7f-\x9f]")
+
+
+def shown_name(name: str) -> str:
+    """The name as the stub and the card show it, and as the approver types it (T22, T21 FIX 2): each backtick or
+    control character becomes an apostrophe, so the text between the first pair of backticks is always the whole name."""
+    return _UNTYPED.sub("'", name)
+
+
 def _code(text: str) -> str:
-    """An inline code span that holds any text, backticks included, on one line."""
-    text = re.sub(r"[\r\n]+", " ", text)
-    fence = "`" * (max((len(run) for run in re.findall(r"`+", text)), default=0) + 1)
-    pad = " " if text.startswith("`") or text.endswith("`") else ""
-    return f"{fence}{pad}{text}{pad}{fence}"
+    """An inline code span on one line, for a name."""
+    return f"`{shown_name(text)}`"
 
 
-def thread_stub(e) -> str:
-    """The opening text of the extra's thread; the flow may post it as it is."""
-    why = re.sub(r"[\r\n]+", " ", e.why).strip()
+def thread_stub(e, registry_line: str | None = None) -> str:
+    """The opening text of the extra's thread; the flow may post it as it is. `registry_line` (T17): the sentence of
+    registry facts for a new dependency, placed before the replies."""
+    why = shown_name(e.why).strip()
     if not why.endswith((".", "!", "?")):
         why += "."
-    return (f"{_code(e.name)} ({_label(e)}): {why} To keep it, reply with its exact name. "
+    facts = f" {registry_line}" if registry_line else ""
+    return (f"{_code(e.name)} ({_label(e)}): {why}{facts} To keep it, reply with its exact name. "
             "To move it into its own MR, reply `split`. If this is not really an extra, reply `not an extra`.")
 
 
-def describe_extra(e, by_path: dict, items: tuple = ()) -> dict:
+def describe_extra(e, by_path: dict, items: tuple = (), registry: dict | None = None) -> dict:
     """A grouped extra (`items`, from group_extras) anchors where its first item does, and keeps every item in
-    plain_facts.detail."""
+    plain_facts.detail. `registry` (T17, from registry.look_up) goes to plain_facts and its sentence to the stub."""
     anchor, reason = anchor_for(items[0] if items else e, by_path)
-    plain = {"kind": e.kind, "name": e.name, "why": e.why, "detail_count": len(e.detail), "path": e.path}
+    plain = {"kind": e.kind, "name": shown_name(e.name), "why": e.why, "detail_count": len(e.detail), "path": e.path}
     if items:
         plain["detail"] = [i.to_dict() for i in items]
-    return {**e.to_dict(), "detail": list(e.detail), "anchor": anchor, "anchorless_reason": reason,
-            "thread_stub": thread_stub(e), "plain_facts": plain}
+    if registry is not None:
+        plain["registry"] = registry
+    rec = {**e.to_dict(), "detail": list(e.detail), "anchor": anchor, "anchorless_reason": reason,
+           "thread_stub": thread_stub(e, RG.sentence(registry)), "plain_facts": plain}
+    if rec["name"] != plain["name"]:          # T22: `name` is what the approver sees and types; `raw_name` is the manifest's
+        rec["name"], rec["raw_name"] = plain["name"], e.name
+    return rec
 
 
 def facts(*, mr_iid: int, mr_title: str, mr_description: str, mr_author_id, issues: list[dict],
           issues_from: str, files: list[dict], repo: str | None, base_sha: str, head_sha: str,
-          warnings: list, now: datetime.datetime) -> dict:
+          warnings: list, now: datetime.datetime, registry_fetch=None) -> dict:
     issue_text = "\n\n".join(f"{i['title']}\n{i['description']}" for i in issues)
     analysis = X.analyse(issue_text, files, repo=repo)
     state = decide_state(issues, mr_author_id, analysis)
@@ -503,6 +517,7 @@ def facts(*, mr_iid: int, mr_title: str, mr_description: str, mr_author_id, issu
     unplaced = [] if state == "no_issue" else analysis.unplaced
     injection = scan_injection(mr_title, mr_description, issues, files)
     by_path = {f["filename"]: f for f in files}
+    registry = RG.look_up(grouped, by_path, registry_fetch, now) if registry_fetch else [None] * len(grouped)
     return {
         "rules_version": X.RULES_VERSION,
         "mr_iid": mr_iid,
@@ -511,7 +526,7 @@ def facts(*, mr_iid: int, mr_title: str, mr_description: str, mr_author_id, issu
         "issue_iids": [i["iid"] for i in issues],
         "issues_from": issues_from,
         "state": state,
-        "extras": [describe_extra(e, by_path, items) for e, items in grouped],
+        "extras": [describe_extra(e, by_path, items, r) for (e, items), r in zip(grouped, registry)],
         "unplaced": list(unplaced),
         "injection": injection,
         "card": card_lines(state, issues, [e for e, _ in grouped], unplaced, injection, _author_wrote(issues, mr_author_id)),
@@ -561,7 +576,7 @@ def log_block(report: dict, limit: int = LOG_LIMIT) -> str:
 
 # ------------------------------------------------------------------- main
 
-def run(env, repo_dir: str, http) -> dict:
+def run(env, repo_dir: str, http, registry_fetch=None) -> dict:
     need = ("CI_API_V4_URL", "CI_PROJECT_ID", "CI_MERGE_REQUEST_IID", "CI_MERGE_REQUEST_DIFF_BASE_SHA")
     missing = [k for k in need if not env.get(k)]
     head = env.get("CI_MERGE_REQUEST_SOURCE_BRANCH_SHA") or env.get("CI_COMMIT_SHA")
@@ -578,16 +593,16 @@ def run(env, repo_dir: str, http) -> dict:
                  mr_description=description, mr_author_id=(mr.get("author") or {}).get("id"),
                  issues=issues, issues_from=issues_from, files=files, repo=env.get("CI_PROJECT_PATH"),
                  base_sha=base, head_sha=head, warnings=warnings,
-                 now=datetime.datetime.now(datetime.timezone.utc))
+                 now=datetime.datetime.now(datetime.timezone.utc), registry_fetch=registry_fetch)
 
 
-def main(argv=None, env=None) -> int:
+def main(argv=None, env=None, registry_fetch=None) -> int:
     p = argparse.ArgumentParser(prog="python -m itemator.ci", description=__doc__.split("\n")[0])
     p.add_argument("--out", default="itemator.json")
     p.add_argument("--repo", default=".", help="the git checkout (default: the current directory)")
     args = p.parse_args(argv)
     try:
-        report = run(os.environ if env is None else env, args.repo, http_get)
+        report = run(os.environ if env is None else env, args.repo, http_get, registry_fetch or RG.fetch)
     except JobError as e:
         print(f"itemator: {e}", file=sys.stderr)
         return 2
