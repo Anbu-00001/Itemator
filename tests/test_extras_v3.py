@@ -12,9 +12,9 @@ import pytest
 
 import test_extras as T1
 import test_extras_v2 as T2
-from itemator import extras as V3
+from itemator import extras_v3 as V3   # frozen v3 (T15); test_extras_v4.py re-runs these on v4
 from itemator import extras_v2
-from itemator.extras import analyse, extras
+from itemator.extras_v3 import analyse, extras
 
 V2_SHA256 = "8b6ba12da5cfb716c7369f9d0cdb5a8a71d7d509e8ff3d9f2d13585a288da4f1"   # extras.py at 12b3d1b
 EDIT = "@@ -1 +1 @@\n-a\n+b\n"

@@ -21,6 +21,7 @@ import argparse
 import datetime
 import json
 import os
+import posixpath
 import re
 import subprocess
 import sys
@@ -297,14 +298,54 @@ def decide_state(issues: list[dict], mr_author_id, analysis) -> str:
 
 _LABEL = {"new_dependency": "new dependency", "ci_or_config": "config change", "tests_removed": "tests removed",
           "generated_code_removed": "generated code removed", "public_api_removed": "public API removed",
-          "binary_or_large_added": "binary or large file"}
+          "binary_or_large_added": "binary or large file", "version_bump": "version bump",
+          "build_output_added": "build output", "stray_file": "stray file"}
+_UNIT = {"new_dependency": "packages"}      # what a grouped extra's detail lists when it is not files
 
 
 def _label(e) -> str:
     label = _LABEL.get(e.kind, e.kind)
     if e.kind == "ci_or_config" and (X._config_kind(e.path) or ("",))[0] == "CI config":
         label = "CI change"
-    return f"{label}, {len(e.detail)} files" if e.detail else label
+    if not e.detail:
+        return label
+    unit = "files" if e.path.endswith("/") or e.kind == "version_bump" else _UNIT.get(e.kind, "names")
+    return f"{label}, {len(e.detail)} {unit}"
+
+
+# ---------------------------------------------------------------- grouping (rules v4)
+
+GROUP = 6   # extras of one kind from one file or one directory shown as one card line with a count (brief T15 item 7;
+            # T10 audit of sample C, table 2: single manifests put 7 and 8 dependency lines on one card)
+_PLURAL = {"new_dependency": "new dependencies", "ci_or_config": "config changes", "tests_removed": "test files that lose tests",
+           "generated_code_removed": "generated files deleted", "public_api_removed": "public names removed",
+           "binary_or_large_added": "binary or large files added", "version_bump": "version changes",
+           "build_output_added": "build output directories", "stray_file": "stray file entries"}
+
+
+def _group_key(e):
+    if e.detail:
+        return None                    # a mass event or a group already
+    return e.kind, (e.path if e.name != e.path else posixpath.dirname(e.path) + "/")
+
+
+def group_extras(extras: list) -> list:
+    """[(extra, items)]: GROUP or more extras of one kind from one file (the dependencies of a manifest, the names
+    of a module) or, for kinds named by their path, from one directory become one extra at the first one's place,
+    named by that file or directory, with the names as detail; `items` keeps the extras it stands for."""
+    pools = {}
+    for e in extras:
+        pools.setdefault(_group_key(e), []).append(e)
+    out = []
+    for e in extras:
+        key = _group_key(e)
+        if key is None or len(pools[key]) < GROUP:
+            out.append((e, ()))
+        elif pools[key][0] is e:
+            items, where = tuple(pools[key]), (key[1] if key[1] != "/" else "./")
+            why = f"{len(items)} {_PLURAL.get(e.kind, e.kind)} in {where}: " + ", ".join(i.name for i in items)
+            out.append((X.Extra(e.kind, where, where, why, tuple(i.name for i in items)), items))
+    return out
 
 
 def card_lines(state: str, issues: list[dict], extras: list, unplaced: list, injection: list,
@@ -414,6 +455,8 @@ def anchor_for(e, by_path: dict):
         signs, matches = "+", None
         if e.kind == "new_dependency":
             matches = _names(e.name)
+        elif e.kind == "version_bump":
+            matches = lambda text: e.name in text
         elif e.kind == "ci_or_config" and not e.detail and e.name != e.path:      # an npm script: its own line
             matches = lambda text: f'"{e.name}"' in text
     other = "+-".replace(signs, "")
@@ -438,12 +481,15 @@ def thread_stub(e) -> str:
             "To move it into its own MR, reply `split`. If this is not really an extra, reply `not an extra`.")
 
 
-def describe_extra(e, by_path: dict) -> dict:
-    anchor, reason = anchor_for(e, by_path)
+def describe_extra(e, by_path: dict, items: tuple = ()) -> dict:
+    """A grouped extra (`items`, from group_extras) anchors where its first item does, and keeps every item in
+    plain_facts.detail."""
+    anchor, reason = anchor_for(items[0] if items else e, by_path)
+    plain = {"kind": e.kind, "name": e.name, "why": e.why, "detail_count": len(e.detail), "path": e.path}
+    if items:
+        plain["detail"] = [i.to_dict() for i in items]
     return {**e.to_dict(), "detail": list(e.detail), "anchor": anchor, "anchorless_reason": reason,
-            "thread_stub": thread_stub(e),
-            "plain_facts": {"kind": e.kind, "name": e.name, "why": e.why, "detail_count": len(e.detail),
-                            "path": e.path}}
+            "thread_stub": thread_stub(e), "plain_facts": plain}
 
 
 def facts(*, mr_iid: int, mr_title: str, mr_description: str, mr_author_id, issues: list[dict],
@@ -453,6 +499,7 @@ def facts(*, mr_iid: int, mr_title: str, mr_description: str, mr_author_id, issu
     analysis = X.analyse(issue_text, files, repo=repo)
     state = decide_state(issues, mr_author_id, analysis)
     found = [] if state == "no_issue" else analysis.extras      # no ask, so nothing is "beyond" it
+    grouped = group_extras(found)
     unplaced = [] if state == "no_issue" else analysis.unplaced
     injection = scan_injection(mr_title, mr_description, issues, files)
     by_path = {f["filename"]: f for f in files}
@@ -464,10 +511,10 @@ def facts(*, mr_iid: int, mr_title: str, mr_description: str, mr_author_id, issu
         "issue_iids": [i["iid"] for i in issues],
         "issues_from": issues_from,
         "state": state,
-        "extras": [describe_extra(e, by_path) for e in found],
+        "extras": [describe_extra(e, by_path, items) for e, items in grouped],
         "unplaced": list(unplaced),
         "injection": injection,
-        "card": card_lines(state, issues, found, unplaced, injection, _author_wrote(issues, mr_author_id)),
+        "card": card_lines(state, issues, [e for e, _ in grouped], unplaced, injection, _author_wrote(issues, mr_author_id)),
         "warnings": warnings,
         "truncated": False,        # the job log carries a compact copy when the full one is over LOG_LIMIT
         "generated_at": now.strftime("%Y-%m-%dT%H:%M:%SZ"),

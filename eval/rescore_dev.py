@@ -1,11 +1,16 @@
-"""Rules v3 on samples A and B, the development set it was fixed on: a development score, not a test score.
+"""Rules v3 on samples A and B, and rules v4 on samples A, B and C: the development sets they were fixed on.
+Development scores, not test scores.
 
 Run from the repository root, after the rules are final (the output is never overwritten):
-    .venv/bin/python -I eval/rescore_dev.py
+    .venv/bin/python -I eval/rescore_dev.py              # v3 on A and B: results/replay_v3_devAB.json
+    .venv/bin/python -I eval/rescore_dev.py --rules 4    # v4 on A, B and C: results/replay_v4_devABC.json
 No network: issue text comes from the pinned dataset (data/, checked against eval/inputs.lock.json),
 file lists from eval/cache. For every PR it first checks that the cached files hash to the committed v2
 record and that rules v2, run again, give the committed v2 extras and unplaced files; any mismatch is
 listed in the summary. Writes results/replay_v3_devAB.json.
+With --rules 4 the baseline is rules v3 as committed (replay_v3_devAB.json for A and B, replay_v3_sampleC.json for
+C): the cached files must hash the same and frozen v3, run again, must give the same extras, unplaced files and
+anchoring. Precision needs a human or model audit; these files hold counts only.
 """
 from __future__ import annotations
 
@@ -17,9 +22,13 @@ import sys
 REPO = pathlib.Path(__file__).resolve().parent.parent
 sys.path[:0] = [str(REPO / "eval"), str(REPO)]
 import replay_aidev as R  # noqa: E402
-from itemator import extras as V3  # noqa: E402
+from itemator import ci  # noqa: E402
+from itemator import extras as V4  # noqa: E402
+from itemator import extras_v3 as V3  # noqa: E402
 
 OUT = REPO / "results" / "replay_v3_devAB.json"
+OUT_V4 = REPO / "results" / "replay_v4_devABC.json"
+V3_DEV, V3_C = REPO / "results/replay_v3_devAB.json", REPO / "results/replay_v3_sampleC.json"
 SAMPLES = {"A": (R.SEED, REPO / "results/replay_v2_sampleA.json"),
            "B": (R.SEED_B, REPO / "results/replay_v2_sampleB.json")}
 V2_KINDS = ("new_dependency", "ci_or_config", "tests_removed", "public_api_removed", "file_outside_ask")
@@ -75,7 +84,7 @@ def main() -> int:
     summary = {
         "score": "development score: rules v3 were fixed on these 120 PRs (samples A and B); not a test score",
         "dataset_revision": R.LOCK["dataset_revision"], "inputs_lock_sha256": R.sha256(R.LOCK_FILE),
-        "rules_v3_sha256": R.sha256(REPO / "itemator/extras.py"),
+        "rules_v3_sha256": R.sha256(REPO / "itemator/extras_v3.py"),
         "rules_v2_sha256": R.sha256(REPO / "itemator/extras_v2.py"),
         "v2_results_sha256": {s: R.sha256(f) for s, (_, f) in SAMPLES.items()},
         "v2_reproduced": not mismatches, "v2_mismatches": mismatches,
@@ -91,5 +100,79 @@ def main() -> int:
     return 0
 
 
+def tally4(records, key):
+    t = {"flagged_prs": sum(1 for r in records if r[key]["extras"]),
+         "extras": sum(len(r[key]["extras"]) for r in records),
+         "extras_with_mass_events_expanded": sum(len(e.get("detail") or ()) or 1 for r in records for e in r[key]["extras"]),
+         "unanchored": sum(1 for r in records if not r[key]["anchored"]),
+         "prs_with_unplaced_files": sum(1 for r in records if r[key]["unplaced"]),
+         "unplaced_files": sum(len(r[key]["unplaced"]) for r in records),
+         "per_kind": {k: {"extras": sum(r[key]["counts"].get(k, 0) for r in records),
+                          "prs": sum(1 for r in records if r[key]["counts"].get(k, 0))}
+                      for k in (V3.KINDS if key == "v3" else V4.KINDS)}}
+    if key == "v4":
+        t["card_lines_after_grouping"] = sum(r["v4"]["card_lines"] for r in records)
+        t["prs_with_stray_files"] = sum(1 for r in records if r["v4"]["stray"])
+    return t
+
+
+def main_v4() -> int:
+    if OUT_V4.exists():
+        sys.exit(f"{OUT_V4} exists; this run happens once (move the file away to repeat it)")
+    R.check_inputs()
+    pool, _ = R.build_pool()
+    by_url = {p["pr_url"]: p for p in pool}
+    ref = [(r["sample"], r["seed"], r["pr_url"], r["v3"]["extras"], r["v3"]["unplaced"], r["anchored"], r["files_sha256"])
+           for r in json.loads(V3_DEV.read_text())["prs"]]
+    ref += [("C", R.SEED_C, r["pr_url"], r["extras"], r["unplaced"], r["anchored"], r["files_sha256"])
+            for r in json.loads(V3_C.read_text())["prs"]]
+    records, mismatches = [], []
+    for sample, seed, url, v3_extras, v3_unplaced, v3_anchored, v3_sha in ref:
+        pr = by_url[url]
+        files = json.loads((R.CACHE / f"{pr['pr_id']}.json").read_text())["files"]
+        digest = hashlib.sha256(json.dumps(files, sort_keys=True).encode()).hexdigest()
+        again = V3.analyse(pr["issue_text"], files, repo=pr["repo"])
+        if (digest != v3_sha or json.loads(json.dumps([e.to_dict() for e in again.extras])) != v3_extras
+                or again.unplaced != v3_unplaced or again.anchored != v3_anchored):
+            mismatches.append(url)
+        a = V4.analyse(pr["issue_text"], files, repo=pr["repo"])
+        records.append({
+            "sample": sample, "seed": seed, "pr_url": url, "repo": pr["repo"], "agent": pr["agent"],
+            "files_changed": len(files), "files_sha256": digest,
+            "v3": {"extras": v3_extras, "unplaced": v3_unplaced, "anchored": v3_anchored,
+                   "counts": {k: sum(1 for e in v3_extras if e["kind"] == k) for k in V3.KINDS}},
+            "v4": {"extras": [e.to_dict() for e in a.extras], "named_paths": a.named_paths, "unplaced": a.unplaced,
+                   "anchored": a.anchored, "stray": a.stray, "card_lines": len(ci.group_extras(a.extras)),
+                   "counts": {k: sum(1 for e in a.extras if e.kind == k) for k in V4.KINDS}},
+        })
+    changed = [{"pr_url": r["pr_url"], "sample": r["sample"],
+                "v3": [[e["kind"], e["name"]] for e in r["v3"]["extras"]],
+                "v4": [[e["kind"], e["name"]] for e in r["v4"]["extras"]],
+                "v4_card_lines": r["v4"]["card_lines"], "v4_stray": r["v4"]["stray"]}
+               for r in records if [[e["kind"], e["name"]] for e in r["v3"]["extras"]]
+               != [[e["kind"], e["name"]] for e in r["v4"]["extras"]]]
+    samples = ("A", "B", "C")
+    summary = {
+        "score": "development score: rules v4 were fixed on these 180 PRs (samples A, B and C); not a test score. "
+                 "These are counts, not precision: precision needs a human or model audit of the extras",
+        "dataset_revision": R.LOCK["dataset_revision"], "inputs_lock_sha256": R.sha256(R.LOCK_FILE),
+        "rules_v4_sha256": R.sha256(REPO / "itemator/extras.py"), "rules_v3_sha256": R.sha256(REPO / "itemator/extras_v3.py"),
+        "ci_sha256": R.sha256(REPO / "itemator/ci.py"), "card_group_threshold": ci.GROUP,
+        "v3_results_sha256": {"A+B": R.sha256(V3_DEV), "C": R.sha256(V3_C)},
+        "v3_reproduced": not mismatches, "v3_mismatches": mismatches,
+        "by_sample": {s: {"prs": sum(1 for r in records if r["sample"] == s),
+                          "v3": tally4([r for r in records if r["sample"] == s], "v3"),
+                          "v4": tally4([r for r in records if r["sample"] == s], "v4")} for s in samples},
+        "all": {"prs": len(records), "v3": tally4(records, "v3"), "v4": tally4(records, "v4")},
+        "prs_whose_extras_changed": changed,
+    }
+    OUT_V4.write_text(json.dumps({"summary": summary, "prs": records}, indent=1, sort_keys=True) + "\n")
+    print(json.dumps({k: summary[k] for k in ("v3_reproduced", "v3_mismatches", "by_sample", "all")}, indent=1))
+    print(f"wrote {OUT_V4}")
+    return 0
+
+
 if __name__ == "__main__":
-    sys.exit(main())
+    if sys.argv[1:] not in ([], ["--rules", "3"], ["--rules", "4"]):
+        sys.exit("usage: rescore_dev.py [--rules 3|4]")
+    sys.exit(main_v4() if sys.argv[1:] == ["--rules", "4"] else main())

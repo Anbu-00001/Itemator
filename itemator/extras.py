@@ -1,14 +1,27 @@
-"""Fixed rules: what a merge request changed beyond its linked issue. Rules version 3.
+"""Fixed rules: what a merge request changed beyond its linked issue. Rules version 4.
 
 No model, no network, no randomness: the same issue text, changed files and
 repository name always give the same extras, in the same order. Version 1
-(commit cf0d762, sample A) is frozen in extras_v1.py and version 2 (commit
-12b3d1b, held out on sample B) in extras_v2.py, byte for byte;
-analyse(..., version=1 or 2) runs them. Version 3 was fixed on samples A and
-B together (the development set, seeds 20261010 and 20261011) after the T8
-audit; it is tested once on sample C.
+(commit cf0d762, sample A) is frozen in extras_v1.py, version 2 (commit
+12b3d1b, held out on sample B) in extras_v2.py and version 3 (held out on
+sample C) in extras_v3.py, byte for byte; analyse(..., version=1, 2 or 3) runs
+them. Version 4 was fixed on samples A, B and C together (the development set,
+seeds 20261010, 20261011 and 20261012) after the T10 audit and the T13 live
+test; it is tested once on sample D.
 
-WHAT V3 CHANGES (the rule texts below are v2's, amended where marked v3)
+WHAT V4 CHANGES (the rule texts below are v3's, amended where marked v4)
+  - Rule 1: a manifest the change adds (Cargo.toml, package.json,
+    pyproject.toml) is one extra, "adds package X", not one per dependency.
+    In pyproject.toml, a one-line `dependencies = [...]` or
+    `dev-dependencies = [...]` is read even when the hunk shows no section.
+  - Rule 1b (new): version_bump.
+  - Rule 4: a name still defined at the head (on a context line) or deleted
+    with its file while a file of the same stem is added or renamed is not
+    removed; story, mock and fixture helpers are not package API.
+  - Rule 6: an added file with lines but no patch is large.
+  - Rule 8 (new): build_output_added. Rule 9 (new): stray_file.
+
+WHAT V3 CHANGED (the rule texts below are v2's, amended where marked v3)
   - Rule 5 no longer makes extras. Its files are `unplaced` (the card's
     informational state, "N files the rules could not place"), never named.
   - Mass events (rule 7): MASS or more files of one kind, all added or all
@@ -55,6 +68,15 @@ RULES (an extra is kind + path + name + why; `name` is what a human types)
    not new either when its name contains an acronym of the issue's title (a
    word of 4 or more capitals with at least 3 letters, such as XMPP): the issue
    names what the package implements.
+   v4: a manifest the change adds (status added: Cargo.toml, package.json or
+   pyproject.toml) belongs to a new package, so its dependencies are not
+   extras one by one: it is one extra named by the package it declares
+   ([package] name, the top-level "name", [project] or [tool.poetry] name;
+   else its directory), unless the issue mentions that name. A manifest
+   that declares no package and lists no dependency (tool settings only)
+   gives nothing here. In pyproject.toml, a key named exactly dependencies
+   or dev-dependencies whose array is on one line is read as a dependency
+   array even when the hunk shows no section header.
    name = the package name (npm: the full `@scope/pkg`; Maven/Gradle: the
    artifact id; go.mod: the module path; a URL line: egg=, the name before
    ' @ ', else the URL's last part; an index option: the URL).
@@ -97,7 +119,11 @@ RULES (an extra is kind + path + name + why; `name` is what a human types)
    with '_', or a JS/TS `export` (declaration or `export { a, b as c }`).
    It counts when no added line anywhere in the change defines or exports the
    same name again (signature changes and moves are not removals), and the
-   issue does not mention the name. name = the symbol. (Unchanged from v1.)
+   issue does not mention the name. name = the symbol.
+   v4: a name on a context line of any file is still defined at the head; a
+   deleted file whose stem equals that of an added or renamed file moved;
+   files under a *story*/*stories* name, __mocks__ or fixtures are helpers,
+   not package API.
 5. unplaced (v3; v2's file_outside_ask, same logic, no longer an extra). Every changed file is first checked
    against the issue:
    a. a path in the issue (a token with '/' or a file extension) equals the
@@ -136,11 +162,34 @@ RULES (an extra is kind + path + name + why; `name` is what a human types)
    file or the directory it sits in (_names_closely). GitHub's file list gives no size, so the reason says when the
    size is missing; a binary and an empty file look the same there.
    name = the path.
+   v4: an added file with added or deleted lines but no patch (GitHub shows
+   no diff when it is too large to show) is large, unless it is generated or
+   vendored, or a lockfile (rule 9a reads those).
 7. Mass events (v3). Extras of rules 2a, 3a, 3c and 6 whose files were all
    added, or all deleted, are pooled by kind and by their first two
    directories; a pool of MASS or more becomes one extra whose path and name
    are the pool's deepest common directory ("dir/"), with the files in
    `detail`.
+1b. version_bump (v4). A changed package version (package.json's top-level
+   "version", Cargo [package] or [workspace.package] version, pyproject
+   [project] or [tool.poetry] version, a Python __version__) when the issue
+   mentions neither the old nor the new version. One extra per new version;
+   name = the version, `detail` = its files when there are several.
+8. build_output_added (v4). Added files under a build-output directory
+   (_BUILD_DIRS), pooled by the path up to that directory; a pool of MASS or
+   more is one extra, "N generated files committed", named by the directory.
+   Its files are left out of every other rule.
+9. stray_file (v4). Added files the issue does not name that look left
+   behind: (a) a lockfile of a package manager the repo does not use (the
+   change shows another manager's lockfile of the same ecosystem in that
+   directory, or the manifest it locks is not added, so the project had no
+   such lockfile), unless the issue mentions the manager or the file;
+   (b) a backup or editor copy (*.backup, *.bak, *.orig, *.swp, *~); a
+   top-level *.md other than README, CHANGELOG, LICENSE, CONTRIBUTING; a
+   new top-level file that is not code and that no other changed file names.
+   One extra per change: name = the path for one file, else "stray files"
+   with the files in `detail`. `Analysis.stray` lists them; `unplaced` is
+   unchanged.
 """
 from __future__ import annotations
 
@@ -148,9 +197,9 @@ import posixpath
 import re
 from dataclasses import asdict, dataclass, field
 
-RULES_VERSION = 3       # v1 and v2 are frozen in extras_v1.py and extras_v2.py; analyse(..., version=1|2) runs them
+RULES_VERSION = 4       # v1, v2 and v3 are frozen in extras_v1.py, extras_v2.py and extras_v3.py; analyse(..., version=1|2|3) runs them
 KINDS = ("new_dependency", "ci_or_config", "tests_removed", "generated_code_removed",
-         "public_api_removed", "binary_or_large_added")
+         "public_api_removed", "binary_or_large_added", "version_bump", "build_output_added", "stray_file")
 MASS = 10               # files of one kind, added or deleted under one directory: one extra
 LARGE = 1_000_000       # bytes
 
@@ -173,6 +222,7 @@ class Analysis:
     named_paths: list[str] = field(default_factory=list)
     anchored: bool = False
     unplaced: list[str] = field(default_factory=list)   # files the rules could not place (rule 5)
+    stray: list[str] = field(default_factory=list)      # files rule 9 reports as stray_file (v4)
 
 
 # ---------------------------------------------------------------- helpers
@@ -328,7 +378,8 @@ def _deps_pyproject(patch):
             key, value = kv
             if value.startswith("["):
                 array_key = key if "]" not in value else None
-            dep_array = _pyproject_dep_array(section, key)
+            dep_array = _pyproject_dep_array(section, key) or (     # v4: a one-line array, section unknown
+                section is None and key in _ONE_LINE_DEP_KEYS and value.startswith("[") and "]" in value)
             if section is not None and re.search(r"(^|\.)(dev-)?dependencies$", section) \
                     and section.startswith("tool.") and not value.startswith("["):
                 if sign in "+-" and key.lower() != "python":
@@ -351,6 +402,9 @@ def _deps_pyproject(patch):
             yield sign, q.group(1), text
         elif not known and q.group(3) and _HAS_VERSION.search(q.group(3)):
             yield sign, q.group(1), text            # unknown place: needs a version
+
+
+_ONE_LINE_DEP_KEYS = ("dependencies", "dev-dependencies")
 
 
 def _pyproject_dep_array(section, key) -> bool:
@@ -502,6 +556,43 @@ def _title_acronyms(issue_text: str) -> set[str]:
     return {a.lower() for a in _ACRONYM.findall(title) if sum(c.isalpha() for c in a) >= 3}
 
 
+_PACKAGE_MANIFESTS = {"cargo", "npm", "pyproject"}     # manifests that declare their own package (v4)
+_QUOTED = re.compile(r"""["']([^"']+)["']""")
+
+
+def _package_name(kind: str, patch: str) -> str | None:
+    """The package a manifest declares: Cargo [package] name, package.json's top-level "name", or pyproject
+    [project] or [tool.poetry] name."""
+    if kind == "npm":
+        return next((value for sign, block, key, value, _ in _npm_pairs(patch) if block is None and key == "name"), None)
+    section = None
+    for sign, text in _lines(patch):
+        h = _TOML_HEADER.match(text)
+        if h and "=" not in text:
+            section = h.group(1).strip().strip('"')
+            continue
+        kv = _toml_kv(text)
+        m = _QUOTED.match(kv[1]) if kv and kv[0] == "name" and section in ("package", "project", "tool.poetry") else None
+        if m:
+            return m.group(1)
+    return None
+
+
+def _new_package(issue_text, f, kind, parse):
+    """v4: a manifest the change adds belongs to a new package; its dependencies come with it."""
+    deps = {n.lower() for sign, n, _ in parse(_side(f["patch"], "+")) if sign == "+"}
+    name = _package_name(kind, f["patch"])
+    if not name and not deps:
+        return None                                     # tool settings only (rule 2c reads them)
+    name = name or _base(posixpath.dirname(f["filename"])) or f["filename"]
+    if _mentions(issue_text, name) or _mentions(issue_text, name.rsplit("/", 1)[-1]):
+        return None
+    n = len(deps)
+    return Extra("new_dependency", f["filename"], name,
+                 f"adds package {name} (a new {_base(f['filename'])} with {n} "
+                 f"{'dependency' if n == 1 else 'dependencies'}); the issue does not name it")
+
+
 def _new_dependencies(issue_text, files):
     out = []
     acronyms = _title_acronyms(issue_text)
@@ -510,6 +601,9 @@ def _new_dependencies(issue_text, files):
         if not kind or not f.get("patch"):
             continue
         parse = _DEP_PARSERS[kind]
+        if f.get("status") == "added" and kind in _PACKAGE_MANIFESTS:
+            out += [e for e in [_new_package(issue_text, f, kind, parse)] if e]
+            continue
         added = [(n, t) for sign, n, t in parse(_side(f["patch"], "+")) if sign == "+"]
         gone = [(n, t) for sign, n, t in parse(_side(f["patch"], "-")) if sign == "-"]
         removed = {n.lower() for n, _ in gone} | _old_names(kind, f["patch"])
@@ -539,6 +633,58 @@ def _new_dependencies(issue_text, files):
                 continue                       # the title names what the package implements
             out.append(Extra("new_dependency", f["filename"], name,
                              f"adds package {name}; the issue does not name it"))
+    return out
+
+
+# --------------------------------------------- rule 1b: version_bump (v4)
+
+_PY_VERSION = re.compile(r"""^\s*__version__\s*=\s*["']([^"']+)["']""")
+_VERSION_SECTIONS = {"package", "workspace.package", "project", "tool.poetry"}
+
+
+def _versions(f: dict, sign: str) -> list[str]:
+    """The package versions on one side ('+' or '-') of f's diff."""
+    kind, patch = _manifest_kind(f["filename"]), f.get("patch")
+    if kind == "npm":
+        return [value for s, block, key, value, _ in _npm_pairs(patch) if s == sign and block is None and key == "version"]
+    if kind in ("cargo", "pyproject"):
+        out, section = [], None
+        for s, text in _lines(patch):
+            if s == "@":
+                section = None
+                continue
+            h = _TOML_HEADER.match(text)
+            if h and "=" not in text:
+                section = h.group(1).strip().strip('"')
+                continue
+            kv = _toml_kv(text)
+            m = _QUOTED.match(kv[1]) if s == sign and kv and kv[0] == "version" and section in _VERSION_SECTIONS else None
+            if m:
+                out.append(m.group(1))
+        return out
+    if _ext(f["filename"]) in _PY_EXT:
+        return [m.group(1) for s, t in _lines(patch) if s == sign for m in [_PY_VERSION.match(t)] if m]
+    return []
+
+
+def _version_bumps(issue_text, files):
+    bumps = {}
+    for f in files:
+        if f.get("status") == "added" or not f.get("patch"):
+            continue
+        old = _versions(f, "-")
+        for v in _versions(f, "+"):
+            if old and v not in old:
+                bumps.setdefault(v, []).append((f["filename"], old[0]))
+    out = []
+    for v, hits in sorted(bumps.items()):
+        olds = sorted({o for _, o in hits})
+        if _mentions(issue_text, v) or any(_mentions(issue_text, o) for o in olds):
+            continue
+        paths = tuple(sorted(p for p, _ in hits))
+        out.append(Extra("version_bump", paths[0], v,
+                         f"changes the package version from {', '.join(olds)} to {v}; the issue names neither version",
+                         paths if len(paths) > 1 else ()))
     return out
 
 
@@ -775,17 +921,31 @@ def _symbols(text: str, ext: str) -> list[str]:
     return []
 
 
+_STORY = re.compile(r"(?:(?<![A-Za-z])[Ss]|(?<=[a-z])S)tor(?:y|ies)")    # story, Story, stories; not history
+_HELPER_DIRS = {"__mocks__", "fixtures", "__fixtures__"}
+
+
+def _not_api(path: str) -> bool:
+    """v4: story, mock and fixture helpers are not package API."""
+    return any(_STORY.search(part) for part in path.split("/")) or any(d.lower() in _HELPER_DIRS for d in _dirs(path))
+
+
 def _public_api_removed(issue_text, files):
     defined_again = set()
     for f in files:
         for s, t in _lines(f.get("patch")):
-            if s == "+":
+            if s in ("+", " "):          # v4: a context line is at the head too
                 defined_again.update(_symbols(t, _ext(f["filename"])))
+    twins = {_squash(_stem(f["filename"])) for f in files if f.get("status") in ("added", "renamed")}
     out = []
     for f in files:
         path, ext = f["filename"], _ext(f["filename"])
         if ext not in _PY_EXT | _JS_EXT or is_test_file(path) or is_generated(path):
             continue
+        if _not_api(path):
+            continue
+        if f.get("status") == "removed" and _squash(_stem(path)) in twins:
+            continue                     # v4: moved, a file of the same stem is added or renamed
         seen = set()
         for s, t in _lines(f.get("patch")):
             if s != "-":
@@ -1014,7 +1174,9 @@ def _binary_or_large_added(issue_text, files, package: str = ""):
         large = size is not None and size > LARGE
         no_lines = not f.get("patch") and not f.get("additions") and not f.get("deletions")
         marked = f.get("binary") is True
-        if not (large or marked or (no_lines and _ext(f["filename"]) not in _TEXT_EXT)):
+        hidden = (not f.get("patch") and not no_lines and not is_generated(f["filename"])   # v4: too large to show
+                  and _base(f["filename"]) not in _LOCKFILES)
+        if not (large or marked or hidden or (no_lines and _ext(f["filename"]) not in _TEXT_EXT)):
             continue
         if _names_closely(f["filename"], toks, package):
             continue
@@ -1022,6 +1184,9 @@ def _binary_or_large_added(issue_text, files, package: str = ""):
             why = f"adds a file of {size:,} bytes (over 1 MB)"
         elif marked:
             why = "adds a file GitHub marks binary"
+        elif hidden:
+            why = (f"adds a file GitHub shows no diff for although it counts its lines "
+                   f"(+{f.get('additions') or 0} -{f.get('deletions') or 0}): too large to show")
         else:
             why = (f"adds a file GitHub shows no diff for (+0 -0, extension "
                    f"{_ext(f['filename']) or 'none'}): binary or empty")
@@ -1059,33 +1224,127 @@ def _mass_events(found, files):
     return keep
 
 
+# -------------------------------------------- rule 8: build_output_added (v4)
+
+_BUILD_DIRS = {".turbo", "dist", ".tshy-build", "build", "target", "node_modules", ".next", "__pycache__",
+               "site-packages"}   # build or install output; site-packages is node_modules' Python counterpart
+
+
+def _build_output(issue_text, files):
+    """(extras, their files): added files pooled by the path up to their first build-output directory."""
+    pools, toks = {}, issue_tokens(issue_text)
+    for f in files:
+        parts = f["filename"].split("/")
+        hit = next((i for i, d in enumerate(parts[:-1]) if d.lower() in _BUILD_DIRS), None)
+        if f.get("status") == "added" and hit is not None:
+            pools.setdefault("/".join(parts[:hit + 1]), []).append(f["filename"])
+    out, taken = [], set()
+    for d, paths in sorted(pools.items()):
+        if len(paths) < MASS or any(t == d.lower() or d.lower().endswith("/" + t) for t in toks.paths):
+            continue
+        paths = tuple(sorted(paths))
+        taken.update(paths)
+        out.append(Extra("build_output_added", d + "/", d + "/", f"{len(paths)} generated files committed under {d}/", paths))
+    return out, taken
+
+
+# ----------------------------------------------------- rule 9: stray_file (v4)
+
+_LOCK_MANAGER = {"package-lock.json": ("npm", "package.json"), "npm-shrinkwrap.json": ("npm", "package.json"),
+                 "yarn.lock": ("yarn", "package.json"), "pnpm-lock.yaml": ("pnpm", "package.json"),
+                 "bun.lock": ("bun", "package.json"), "bun.lockb": ("bun", "package.json"),
+                 "poetry.lock": ("poetry", "pyproject.toml"), "uv.lock": ("uv", "pyproject.toml"),
+                 "pdm.lock": ("pdm", "pyproject.toml"), "Pipfile.lock": ("pipenv", "Pipfile")}
+_LEFTOVER = re.compile(r".+(?:\.(?:backup|bak|orig|swp)|~)")
+_KEPT_TOP = re.compile(r"(README|CHANGELOG|LICEN[CS]E|CONTRIBUTING)([.\-_].*)?", re.IGNORECASE)
+_HOUSEKEEPING = {".gitkeep", ".keep", ".gitignore", ".gitattributes"}   # read by git, named by no file
+
+
+def _stray_lockfiles(issue_text, files):
+    status = {f["filename"]: f.get("status") for f in files}
+    out = []
+    for f in files:
+        b, d = _base(f["filename"]), posixpath.dirname(f["filename"])
+        if f.get("status") != "added" or b not in _LOCK_MANAGER:
+            continue
+        manager, manifest = _LOCK_MANAGER[b]
+        if _mentions(issue_text, manager) or _mentions(issue_text, b):
+            continue
+        others = sorted(o for o, (_, m) in _LOCK_MANAGER.items() if o != b and m == manifest
+                        and status.get(posixpath.join(d, o)) not in (None, "removed"))
+        if others:
+            out.append((f["filename"], f"a {manager} lockfile beside {others[0]}, the lockfile of the package manager in use"))
+        elif status.get(posixpath.join(d, manifest)) != "added":
+            out.append((f["filename"], f"a {manager} lockfile in a project that had none (its {manifest} is not new)"))
+    return out
+
+
+def _stray(issue_text, files, named, covered, package):
+    toks = issue_tokens(issue_text)
+    head = {f["filename"]: "\n".join(t for s, t in _lines(f.get("patch")) if s in ("+", " ")).lower() for f in files}
+    out = []
+    for f in files:
+        p, b = f["filename"], _base(f["filename"])
+        if f.get("status") != "added" or p in covered or p in named or _names_closely(p, toks, package):
+            continue
+        if _LEFTOVER.fullmatch(b):
+            out.append((p, "a backup or editor copy"))
+        elif "/" in p or _exempt(p) or _KEPT_TOP.fullmatch(b):
+            continue
+        elif _ext(p) in ("md", "markdown"):
+            out.append((p, "a top-level document the issue does not name"))
+        elif _ext(p) not in _CODE_EXT and b not in _HOUSEKEEPING and not any(
+                b.lower() in text for q, text in head.items() if q != p):
+            out.append((p, "a new top-level file no other changed file names"))
+    return out
+
+
+def _stray_extra(found):
+    if len(found) == 1:
+        p, why = found[0]
+        return [Extra("stray_file", p, p, f"adds {why}; the issue does not ask for it")]
+    if not found:
+        return []
+    paths = tuple(p for p, _ in found)
+    d = posixpath.commonpath([posixpath.dirname(p) for p in paths])
+    return [Extra("stray_file", (d + "/") if d else "./", "stray files",
+                  f"{len(paths)} files the issue does not ask for: " + "; ".join(f"{p} ({w})" for p, w in found), paths)]
+
+
 # ------------------------------------------------------------------- entry
 
 def analyse(issue_text: str, files: list[dict], *, repo: str | None = None,
             version: int = RULES_VERSION) -> Analysis:
     """`repo` ("owner/name") keeps the project's own package directory from naming files (rules 5, 6).
-    version=1 or 2 runs the frozen rules (extras_v1.py through extras_v2.py) and returns v2's objects,
-    so their output is byte for byte what it was."""
-    if version in (1, 2):
-        from itemator import extras_v2
-        return extras_v2.analyse(issue_text, files, repo=repo, version=version)
+    version=1, 2 or 3 runs the frozen rules (extras_v1.py through extras_v3.py) and returns their own
+    objects, so their output is byte for byte what it was."""
+    if version in (1, 2, 3):
+        from itemator import extras_v3
+        return extras_v3.analyse(issue_text, files, repo=repo, version=version)
     if version != RULES_VERSION:
         raise ValueError(f"unknown rules version {version}")
     package = _squash((repo or "").rsplit("/", 1)[-1])
     issue_text = issue_text or ""
     files = [f for f in files if f.get("filename")]
-    found = (_new_dependencies(issue_text, files) + _ci_or_config(issue_text, files)
-             + _tests_removed(issue_text, files) + _generated_code_removed(issue_text, files, package)
-             + _public_api_removed(issue_text, files) + _binary_or_large_added(issue_text, files, package))
-    found = [e for e in _mass_events(found, files)      # 3c: mass events only
+    build, taken = _build_output(issue_text, files)
+    rest = [f for f in files if f["filename"] not in taken]     # rule 8's files: no other rule reads them
+    found = (_new_dependencies(issue_text, rest) + _ci_or_config(issue_text, rest)
+             + _tests_removed(issue_text, rest) + _generated_code_removed(issue_text, rest, package)
+             + _public_api_removed(issue_text, rest) + _binary_or_large_added(issue_text, rest, package))
+    found = [e for e in _mass_events(found, rest)      # 3c: mass events only
              if e.kind != "generated_code_removed" or e.detail]
+    found += build + _version_bumps(issue_text, rest)
     covered = {f["filename"] for f in files
                if _manifest_kind(f["filename"]) or _config_kind(f["filename"])
                or (f.get("status") == "removed" and (is_test_file(f["filename"]) or is_generated(f["filename"])))}
     covered |= {p for e in found if e.kind == "binary_or_large_added" for p in (e.detail or (e.path,))}
+    covered |= taken
     unplaced, named, anchored = _unplaced(issue_text, files, covered, package)
+    stray = sorted(_stray_lockfiles(issue_text, rest)
+                   + _stray(issue_text, rest, _named_files(issue_text, rest, package), covered, package))
+    found += _stray_extra(stray)
     unique = sorted(set(found), key=lambda e: (KINDS.index(e.kind), e.path, e.name))
-    return Analysis(extras=unique, named_paths=named, anchored=anchored, unplaced=unplaced)
+    return Analysis(extras=unique, named_paths=named, anchored=anchored, unplaced=unplaced, stray=[p for p, _ in stray])
 
 
 def extras(issue_text: str, files: list[dict], *, repo: str | None = None,

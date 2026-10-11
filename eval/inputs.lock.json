@@ -15,5 +15,7 @@
  "sample_a_predictions_sha256": "4373e9f61b7b9f1a67365d5c69ec6bf64ee7f522ad0dc44f94713fdbb0c14e41",
  "sample_b_predictions": "results/replay_v2_sampleB.json",
  "sample_b_predictions_sha256": "4c71a09e7e472ce5cafb4c874780f450ed7200b32f62a9aebeb36cbe9af00e99",
+ "sample_c_predictions": "results/replay_v3_sampleC.json",
+ "sample_c_predictions_sha256": "1c1559d6bf980fd45f0de474dedbb519b121d8b956a287fa3726c24e482403b4",
  "rules_v1_sha256": "746616a33a6fdb4a3a013034ca83c31beb2187d769594070cadace69acadade4"
 }

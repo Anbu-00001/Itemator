@@ -285,7 +285,7 @@ def test_thread_stub_has_no_banned_words(monkeypatch):
     monkeypatch.setitem(sys.modules, spec.name, audit)
     spec.loader.exec_module(audit)
     for kind in ("new_dependency", "ci_or_config", "tests_removed", "generated_code_removed",
-                 "public_api_removed", "binary_or_large_added"):
+                 "public_api_removed", "binary_or_large_added", "version_bump", "build_output_added", "stray_file"):
         stub = ci.thread_stub(Extra(kind, "p", "n", "why it is here", ("a", "b")))
         assert f"({ci._label(Extra(kind, 'p', 'n', 'w', ('a', 'b')))})" in stub and not audit.BANNED_RE.search(stub)
 
@@ -423,3 +423,46 @@ def test_compact_copy_cuts_long_lists_then_extras_only_as_far_as_it_must():
     assert 0 < kept < 1000 and c["extras_total"] == 1000 and c["truncated"][-1] == f"extras[{kept}:]"
     assert "extras[].plain_facts" in c["truncated"] and len(ci._one_line(c)) <= 60_000
     assert all("plain_facts" not in e and "detail" not in e for e in c["extras"])
+
+
+# ---------------------------------------------- T15 (rules v4): grouping on the card, the new kinds
+def _cargo(names):
+    return F("Cargo.toml", f"@@ -1,1 +1,{len(names) + 1} @@\n [dependencies]\n" + "".join(f'+{n} = "1"\n' for n in names))
+
+
+def test_six_extras_of_one_kind_from_one_manifest_are_one_line():
+    names = [f"crate-{c}" for c in "abcdefg"]
+    rep = facts_for([F("src/parser.rs", "@@ -1 +1 @@\n-a\n+b\n"), _cargo(names)])
+    e = only_extra(rep)
+    assert (e["kind"], e["name"], e["path"]) == ("new_dependency", "Cargo.toml", "Cargo.toml")
+    assert e["detail"] == names and e["plain_facts"]["detail_count"] == 7
+    assert [d["name"] for d in e["plain_facts"]["detail"]] == names and e["plain_facts"]["detail"][0]["kind"] == "new_dependency"
+    assert e["anchor"] == at("Cargo.toml", "Cargo.toml", None, 2)
+    assert e["thread_stub"].startswith("`Cargo.toml` (new dependency, 7 packages): 7 new dependencies in Cargo.toml: crate-a, ")
+    assert e["thread_stub"].endswith("To keep it, reply with its exact name. To move it into its own MR, reply `split`. "
+                                     "If this is not really an extra, reply `not an extra`.")
+    assert rep["card"]["final_line"] == "1 thing beyond #12: `Cargo.toml` (new dependency, 7 packages)."
+    assert rep["card"]["todo_line"] == 'Type each name in its thread to keep it, or reply "split" to move it to its own MR.'
+    five = facts_for([F("src/parser.rs", "@@ -1 +1 @@\n-a\n+b\n"), _cargo(names[:5])])
+    assert [x["name"] for x in five["extras"]] == names[:5] and all("detail" not in x["plain_facts"] for x in five["extras"])
+
+
+def test_six_files_of_one_kind_in_one_directory_are_one_line():
+    imgs = [F(f"img/p{i}.png", None, "added", additions=0, deletions=0) for i in range(6)]
+    rep = facts_for([F("src/parser.py", "@@ -1 +1 @@\n-a\n+b\n")] + imgs)
+    e = only_extra(rep)
+    assert (e["kind"], e["name"], e["path"]) == ("binary_or_large_added", "img/", "img/")
+    assert e["detail"] == [x["filename"] for x in imgs] and e["anchorless_reason"] == "no text patch"
+    assert "(binary or large file, 6 files)" in e["thread_stub"] and "6 binary or large files added in img/" in e["why"]
+    two_kinds = facts_for([F("src/parser.py", "@@ -1 +1 @@\n-a\n+b\n")] + imgs[:3] +
+                          [F(f"img/Dockerfile.{c}", "@@ -1 +1 @@\n-FROM a\n+FROM b\n") for c in "abc"])
+    assert len(two_kinds["extras"]) == 6                     # 3 + 3 of two kinds in one directory: not grouped
+
+
+def test_new_kinds_have_labels_and_a_version_bump_anchors_on_its_line():
+    for kind, label in (("version_bump", "version bump"), ("build_output_added", "build output"), ("stray_file", "stray file")):
+        assert ci._label(Extra(kind, "p", "n", "w")) == label
+    assert ci._label(Extra("version_bump", "a.toml", "1.1.0", "w", ("a.toml", "b.py"))) == "version bump, 2 files"
+    pj = F("package.json", '@@ -1,4 +1,5 @@\n {\n+  "description": "y",\n   "name": "x",\n-  "version": "1.0.0",\n'
+                           '+  "version": "1.1.0",\n   "main": "i.js"\n')
+    assert anchor(Extra("version_bump", "package.json", "1.1.0", "w"), pj) == (at("package.json", "package.json", None, 4), None)

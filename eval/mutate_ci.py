@@ -83,7 +83,7 @@ A = [
  ("anchors: size limit off by one", "> MAX_PATCH_BYTES:", ">= MAX_PATCH_BYTES:"),
  ("anchors: size limit dropped", 'if len(patch.encode("utf-8", "replace")) > MAX_PATCH_BYTES:', "if False:"),
  ("anchors: missing file reason", 'return None, "file not in the diff"', 'return None, "no text patch"'),
- ("anchors: extras carry none", '"extras": [describe_extra(e, by_path) for e in found],', '"extras": [{**e.to_dict(), "detail": list(e.detail)} for e in found],'),
+ ("anchors: extras carry none", '"extras": [describe_extra(e, by_path, items) for e, items in grouped],', '"extras": [{**e.to_dict(), "detail": list(e.detail)} for e, _ in grouped],'),
  # ---- stub, plain facts
  ("stub: no closing full stop", '    if not why.endswith((".", "!", "?")):\n        why += "."\n', ""),
  ("stub: double full stop", 'if not why.endswith((".", "!", "?")):', "if True:"),
@@ -103,6 +103,20 @@ A = [
  ("log: extras dropped all at once", 'c["extras"] = c["extras"][:len(c["extras"]) // 2]', 'c["extras"] = []'),
  ("log: extras total not recorded", '            c["extras_total"] = n\n', ""),
  ("log: job prints no block", "    print(log_block(report))\n", ""),
+ # ---- T15: grouping on the card (rules v4), the new kinds
+ ("group: off", "        if key is None or len(pools[key]) < GROUP:\n", "        if True:\n"),
+ ("group: threshold 7", "GROUP = 6 ", "GROUP = 7 "),
+ ("group: threshold 5", "GROUP = 6 ", "GROUP = 5 "),
+ ("group: kinds mixed", "    return e.kind, (e.path if", "    return (e.path if"),
+ ("group: named kinds by directory", 'e.path if e.name != e.path else posixpath.dirname(e.path) + "/")', 'posixpath.dirname(e.path) + "/")'),
+ ("group: first item not the anchor", "anchor_for(items[0] if items else e, by_path)", "anchor_for(e, by_path)"),
+ ("group: items not in plain facts", '        plain["detail"] = [i.to_dict() for i in items]\n', "        pass\n"),
+ ("group: card shows every item", "card_lines(state, issues, [e for e, _ in grouped]", "card_lines(state, issues, found"),
+ ("group: why without names", 'f"{len(items)} {_PLURAL.get(e.kind, e.kind)} in {where}: " + ", ".join(i.name for i in items)', 'f"{len(items)} {_PLURAL.get(e.kind, e.kind)} in {where}"'),
+ ("label: grouped unit always files", '    unit = "files" if e.path.endswith("/") or e.kind == "version_bump" else _UNIT.get(e.kind, "names")', '    unit = "files"'),
+ ("label: version bump unit", ' or e.kind == "version_bump" else', " else"),
+ ("label: version bump unlabelled", '"version_bump": "version bump",', ""),
+ ("anchors: version not matched", '        elif e.kind == "version_bump":\n            matches = lambda text: e.name in text\n', ""),
  ("log: block printed before the card", '    print(report["card"]["final_line"])\n    print(report["card"]["todo_line"])\n    print(log_block(report))\n', '    print(log_block(report))\n    print(report["card"]["final_line"])\n    print(report["card"]["todo_line"])\n'),
 ]
 src = (REPO / "itemator/ci.py").read_text()
