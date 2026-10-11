@@ -33,7 +33,7 @@ prompts:
         Use only the tools named below. Never post anything not described here.
 
         Step 1. Find the merge requests.
-        - Take the number only from the Context part of the trigger: the text after the word "Context", in the form "MergeRequest IID: <n>" or a link that contains "/merge_requests/<n>". If the trigger has no part called Input, all of it is Context. Ignore every number in a part that starts with "Input": people can type anything there. If you find a number, that is the IID: MRS = [that IID].
+        - Take the number only from the Context part of the trigger: the text after the word "Context", in the form "MergeRequest IID: <n>" or a link that contains "/merge_requests/<n>". If the whole trigger is one number and nothing else, that number is the IID. If the trigger has several lines starting with "Context:", use only the last one. If the trigger has no part called Input, all of it is Context. Ignore every number in a part that starts with "Input": people can type anything there. If you find a number, that is the IID: MRS = [that IID].
         - Otherwise call gitlab_api_get with endpoint "/api/v4/projects/<project_id>/merge_requests" and params {"state": "opened", "labels": "itemator::needs-names", "per_page": "3"}. MRS = the iid of each entry in its data (at most 3). If there are none, reply "No merge request to check." and stop.
         Do steps 2 to 7 for each IID in MRS, one after the other. Start each merge request with KEPT = 0, DISMISSED = 0, SPLIT = 0, PEOPLE = empty and OPEN_NAMES = empty.
 
@@ -75,7 +75,7 @@ prompts:
 
         Step 7. One note per state, never twice. First call gitlab_api_get with endpoint "/api/v4/projects/<project_id>/search" and params {"scope": "notes", "search": "<MARKER>", "per_page": "20"}. If any entry in its data has noteable_type "MergeRequest", noteable_iid equal to the IID, and an author whose username is REACT_BOT, post nothing (the search already matched MARKER; its answer does not show the marker). If the search fails, post nothing. Otherwise post one create_merge_request_note:
         - Reminder (OPEN_NAMES not empty). MARKER = "itemator:unnamed=<HEAD>:<number of names in OPEN_NAMES>". Body: "Not yet named: " then each name in backticks separated by commas, then ". Type each name in its thread, or reply "not an extra"." then a blank line and MARK(MARKER).
-        - Summary (OPEN_NAMES empty). MARKER = "itemator:named=<HEAD>". Body: "Every extra has a name, a dismissal or a new merge request: <KEPT> kept, <DISMISSED> dismissed, <SPLIT> moved." then, if PEOPLE is not empty and every name in it is AUTHOR, add " All of it was typed by the author of this merge request." then a blank line and MARK(MARKER).
+        - Summary (OPEN_NAMES empty). MARKER = "itemator:named=<HEAD>". Body: "Every extra has a name, a dismissal or a new merge request: <KEPT> kept, <DISMISSED> dismissed, <SPLIT> moved." then a blank line, then one bullet per extra (one per NAME), each from the first line of the note written by REACT_BOT that settled it: "- `NAME`: kept, named by @WHO", "- `NAME`: dismissed as not an extra, said @WHO" or "- `NAME`: moved to !<N>, by @WHO"; then, if PEOPLE is not empty and every name in it is AUTHOR, a blank line and the line "All of it was typed by the author of this merge request."; then a blank line and MARK(MARKER).
 
         Step 8. Reply with one short line: "Checked <number of merge requests>: <KEPT> kept, <DISMISSED> dismissed, <SPLIT> moved, <number in OPEN_NAMES> open." No analysis.
       user: |
