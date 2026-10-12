@@ -37,6 +37,7 @@ import urllib.request
 from itemator import extras as X
 from itemator import policy as POL
 from itemator import registry as RG
+from itemator import said as SAID
 
 STATES = ("inside_ask", "extras", "no_issue", "author_wrote_issue", "unplaced_only")
 INJECTION_LINE = "This MR contains text addressed to automated reviewers; it was not followed."
@@ -377,6 +378,7 @@ _LABEL = {"new_dependency": "new dependency", "ci_or_config": "config change", "
           "generated_code_removed": "generated code removed", "public_api_removed": "public API removed",
           "binary_or_large_added": "binary or large file", "version_bump": "version bump",
           "build_output_added": "build output", "stray_file": "stray file", "policy_changed": "team policy change",
+          "agent_instructions": "agent instructions",
           "whitespace_only": "whitespace only"}
 _UNIT = {"new_dependency": "packages"}      # what a grouped extra's detail lists when it is not files
 
@@ -399,7 +401,8 @@ _PLURAL = {"new_dependency": "new dependencies", "ci_or_config": "config changes
            "generated_code_removed": "generated files deleted", "public_api_removed": "public names removed",
            "binary_or_large_added": "binary or large files added", "version_bump": "version changes",
            "build_output_added": "build output directories", "stray_file": "stray file entries",
-           "policy_changed": "team policy changes", "whitespace_only": "whitespace-only groups"}
+           "policy_changed": "team policy changes", "whitespace_only": "whitespace-only groups",
+           "agent_instructions": "agent instruction extras"}
 
 
 def _group_key(e):
@@ -563,7 +566,9 @@ OTHER_PERSON = "A reply from the merge request author does not count."
 MAX_LISTED = 1000       # characters of package names a grouped dependency thread lists; past it, no split or remove (T26 B2)
 _MANIFEST = re.compile(r"pyproject\.toml|package\.json|requirements(?:-[^/]*)?\.txt|go\.mod|Cargo\.toml|Gemfile")
 _CONFIG_EXT = (".yml", ".yaml", ".toml", ".json", ".cfg", ".ini")
-_ADDED_KINDS = ("stray_file", "binary_or_large_added", "build_output_added")
+_ADDED_KINDS = ("stray_file", "binary_or_large_added", "build_output_added", "agent_instructions")   # T37: an added
+# agent instruction file named by its path can be removed; a modified, deleted or grouped one offers neither (the flow
+# refuses whole-file and multi-file edits of existing files)
 
 
 def _manifest(path: str) -> bool:
@@ -580,7 +585,7 @@ def answers(e, items: tuple, by_path: dict) -> tuple:
     """Which of `split` and `remove` the react flow accepts for this extra (its Step 5a part 3), so a stub never
     offers what the flow would refuse (T26 F4): both for a CI or config file named by its path, and for a manifest
     dependency alone or in a group whose thread lists every package (B2: the flow checks each changed line against
-    that list); `remove` alone for a file this merge request adds."""
+    that list); `remove` alone for a file this merge request adds (T37: an agent instruction file too)."""
     if e.kind == "ci_or_config" and e.name == e.path and not e.detail and _config_file(e.path):
         return ("split", "remove")
     if e.kind == "new_dependency" and _manifest(e.path) and (
@@ -592,15 +597,17 @@ def answers(e, items: tuple, by_path: dict) -> tuple:
 
 
 def thread_stub(e, registry_line: str | None = None, other_person: bool = False,
-                offers: tuple = ("split", "remove")) -> str:
+                offers: tuple = ("split", "remove"), said: str | None = None) -> str:
     """The opening text of the extra's thread; the flow may post it as it is. `registry_line` (T17): the sentence of
     registry facts for a new dependency, placed before the replies. `other_person` (T20, names.other_person_required):
     OTHER_PERSON before the replies, as visible text, because the react flow cannot read markdown comments.
-    `offers` (T26 F4, from answers()): which of `split` and `remove` it names; the default names both."""
+    `offers` (T26 F4, from answers()): which of `split` and `remove` it names; the default names both. `said` (T35,
+    said.said): one of three fixed sentences on whether the MR's own text names the extra, never the author's words."""
     why = shown_name(e.why).strip()
     if not why.endswith((".", "!", "?")):
         why += "."
     facts = f" {registry_line}" if registry_line else ""
+    facts += f" {SAID.SENTENCE[said]}" if said else ""
     facts += f" {OTHER_PERSON}" if other_person else ""
     split = "To move it into its own MR, reply `split`. " if "split" in offers else ""
     remove = "To drop it from this MR, reply `remove`. " if "remove" in offers else ""
@@ -608,7 +615,8 @@ def thread_stub(e, registry_line: str | None = None, other_person: bool = False,
             f"{split}{remove}If this is not really an extra, reply `not an extra`.")
 
 
-def describe_extra(e, by_path: dict, items: tuple = (), registry: dict | None = None, other_person: bool = False) -> dict:
+def describe_extra(e, by_path: dict, items: tuple = (), registry: dict | None = None, other_person: bool = False,
+                   said: str | None = None) -> dict:
     """A grouped extra (`items`, from group_extras) anchors where its first item does, and keeps every item in
     plain_facts.detail. `registry` (T17, from registry.look_up) goes to plain_facts and its sentence to the stub."""
     anchor, reason = anchor_for(items[0] if items else e, by_path)
@@ -617,8 +625,10 @@ def describe_extra(e, by_path: dict, items: tuple = (), registry: dict | None = 
         plain["detail"] = [i.to_dict() for i in items]
     if registry is not None:
         plain["registry"] = registry
+    if said:
+        plain["said"] = said
     rec = {**e.to_dict(), "detail": list(e.detail), "anchor": anchor, "anchorless_reason": reason,
-           "thread_stub": thread_stub(e, RG.sentence(registry), other_person, answers(e, items, by_path)),
+           "thread_stub": thread_stub(e, RG.sentence(registry), other_person, answers(e, items, by_path), said),
            "plain_facts": plain}
     if rec["name"] != plain["name"]:          # T22: `name` is what the approver sees and types; `raw_name` is the manifest's
         rec["name"], rec["raw_name"] = plain["name"], e.name
@@ -696,10 +706,11 @@ def checker_of(env, target: str, head: str) -> dict:
 def facts(*, mr_iid: int, mr_title: str, mr_description: str, mr_author_id, issues: list[dict],
           issues_from: str, files: list[dict], repo: str | None, base_sha: str, head_sha: str,
           warnings: list, now: datetime.datetime, registry_fetch=None, policy=None, checker=None,
-          fallback: bool = False) -> dict:
+          fallback: bool = False, description_cut: bool = False) -> dict:
     """`policy` (T20, policy.read; None when not read) quiets extras and sets who may name one; `checker`
     (checker_of) says where this code came from; `fallback` (T26 F1): the target branch could not be read, so
-    both came from the merge base, and the card says so."""
+    both came from the merge base, and the card says so. `description_cut` (T35): the description may be truncated,
+    so no thread says it does not mention an extra."""
     at = AT_FORK if fallback else AT_TARGET
     issue_text = "\n\n".join(f"{i['title']}\n{i['description']}" for i in issues)
     analysis = X.analyse(issue_text, files, repo=repo)
@@ -722,6 +733,10 @@ def facts(*, mr_iid: int, mr_title: str, mr_description: str, mr_author_id, issu
             kept.append(((e, items), r))
     if state != "no_issue":
         state = decide_state(issues, mr_author_id, X.Analysis([e for (e, _), _ in kept], unplaced=unplaced))
+    said = SAID.said(mr_title, mr_description, [SAID.names(e.name, e.path, e.detail) for (e, _), _ in kept],
+                     cut=description_cut)             # T35: the extras the description does not mention come first
+    ranked = sorted(zip(said, kept), key=lambda p: p[0] != SAID.SILENT)
+    said, kept = [s for s, _ in ranked], [k for _, k in ranked]
     injection = scan_injection(mr_title, mr_description, issues, files)
     other = bool(policy and policy.other_person_required)
     notes = (CHECKER_CAVEAT if checker and checker["source"] != "base" else None,
@@ -735,7 +750,7 @@ def facts(*, mr_iid: int, mr_title: str, mr_description: str, mr_author_id, issu
         "issue_iids": [i["iid"] for i in issues],
         "issues_from": issues_from,
         "state": state,
-        "extras": [describe_extra(e, by_path, items, r, other) for (e, items), r in kept],
+        "extras": [describe_extra(e, by_path, items, r, other, s) for ((e, items), r), s in zip(kept, said)],
         "unplaced": list(unplaced),
         "injection": injection,
         "card": card_lines(state, issues, [e for (e, _), _ in kept], unplaced, injection,
@@ -814,6 +829,9 @@ def run(env, repo_dir: str, http, registry_fetch=None) -> dict:
     api = Api(env["CI_API_V4_URL"], env.get("CI_JOB_TOKEN") or None, http)
     mr = api.get(f"/projects/{pid}/merge_requests/{iid}")
     description = mr.get("description") or env.get("CI_MERGE_REQUEST_DESCRIPTION") or ""
+    # T35: the API gives the whole description. CI_MERGE_REQUEST_DESCRIPTION, the fallback, is cut by GitLab (to 2700
+    # characters, per GitLab's CI variable docs; not re-checked offline), so a description from it never says silent.
+    cut = not mr.get("description") and bool(description)
     warnings: list[str] = []
     issues, issues_from = linked_issues(api, pid, iid, description, warnings)
     target, resolved = target_tip(repo_dir, env, base)
@@ -825,7 +843,7 @@ def run(env, repo_dir: str, http, registry_fetch=None) -> dict:
                  issues=issues, issues_from=issues_from, files=files, repo=env.get("CI_PROJECT_PATH"),
                  base_sha=base, head_sha=head, warnings=warnings,
                  now=datetime.datetime.now(datetime.timezone.utc), registry_fetch=registry_fetch,
-                 policy=policy, checker=checker_of(env, target, head), fallback=not resolved)
+                 policy=policy, checker=checker_of(env, target, head), fallback=not resolved, description_cut=cut)
 
 
 def main(argv=None, env=None, registry_fetch=None) -> int:

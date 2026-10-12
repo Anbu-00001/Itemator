@@ -477,9 +477,11 @@ def test_six_files_of_one_kind_in_one_directory_are_one_line():
 
 def test_new_kinds_have_labels_and_a_version_bump_anchors_on_its_line():
     for kind, label in (("version_bump", "version bump"), ("build_output_added", "build output"), ("stray_file", "stray file"),
-                        ("whitespace_only", "whitespace only")):
+                        ("whitespace_only", "whitespace only"), ("agent_instructions", "agent instructions")):
         assert ci._label(Extra(kind, "p", "n", "w")) == label
     assert ci._label(Extra("version_bump", "a.toml", "1.1.0", "w", ("a.toml", "b.py"))) == "version bump, 2 files"
+    assert ci._label(Extra("agent_instructions", "./", "agent instruction files", "w", ("AGENTS.md", "CLAUDE.md"))) == \
+        "agent instructions, 2 files"
     pj = F("package.json", '@@ -1,4 +1,5 @@\n {\n+  "description": "y",\n   "name": "x",\n-  "version": "1.0.0",\n'
                            '+  "version": "1.1.0",\n   "main": "i.js"\n')
     assert anchor(Extra("version_bump", "package.json", "1.1.0", "w"), pj) == (at("package.json", "package.json", None, 4), None)

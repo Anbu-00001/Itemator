@@ -11,9 +11,9 @@ import pytest
 
 import test_extras_v3 as T3
 import test_extras_v4 as T4
-from itemator import extras as V5
+from itemator import extras_v5 as V5           # T37: v5 is frozen in extras_v5.py; test_extras_v6 runs these on v6
 from itemator import extras_v3, extras_v4
-from itemator.extras import analyse, extras
+from itemator.extras_v5 import analyse, extras
 
 V4_SHA256 = "41e497cc53a0df460e1af58b6b2e45954ddb14236f8360a338aefee192098dd2"   # extras.py of rules v4 (T15 report)
 EDIT, f, kinds, binary, new = T3.EDIT, T3.f, T3.kinds, T3.binary, T4.new

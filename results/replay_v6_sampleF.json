@@ -1,0 +1,2325 @@
+{
+ "prs": [
+  {
+   "agent": "Copilot",
+   "anchored": false,
+   "counts": {
+    "agent_instructions": 0,
+    "binary_or_large_added": 0,
+    "build_output_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "stray_file": 0,
+    "tests_removed": 0,
+    "version_bump": 0,
+    "whitespace_only": 0
+   },
+   "extras": [],
+   "files_changed": 2,
+   "files_sha256": "b5aacf3d53d2e0ca066737758efc5f53c52c6a8ba9848139f00f90d777e61023",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/celestiaorg/celestia-app/issues/4990"
+   ],
+   "license": "Apache-2.0",
+   "named_paths": [],
+   "pr_url": "https://github.com/celestiaorg/celestia-app/pull/4991",
+   "repo": "celestiaorg/celestia-app",
+   "stray": [],
+   "unplaced": [
+    "test/util/malicious/constructor_test.go",
+    "test/util/malicious/tree.go"
+   ]
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "agent_instructions": 0,
+    "binary_or_large_added": 0,
+    "build_output_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "stray_file": 0,
+    "tests_removed": 0,
+    "version_bump": 0,
+    "whitespace_only": 0
+   },
+   "extras": [],
+   "files_changed": 2,
+   "files_sha256": "bd3c347a15db4bf660fdefa8fb9a51ed9f48aa98ba131f78a62d96bb2d4fe877",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/Azure/azure-functions-core-tools/issues/4392"
+   ],
+   "license": "MIT",
+   "named_paths": [
+    "src/Cli/Abstractions/Command/Command.cs",
+    "test/Cli/Func.E2E.Tests/Commands/FuncStart/TimeoutTests.cs"
+   ],
+   "pr_url": "https://github.com/Azure/azure-functions-core-tools/pull/4437",
+   "repo": "Azure/azure-functions-core-tools",
+   "stray": [],
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "agent_instructions": 0,
+    "binary_or_large_added": 0,
+    "build_output_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "stray_file": 0,
+    "tests_removed": 0,
+    "version_bump": 0,
+    "whitespace_only": 0
+   },
+   "extras": [],
+   "files_changed": 1,
+   "files_sha256": "2a5eb4bff7b31e025647fd6b1a51d856a798ba5d2f1964f9d5e443dd686a7b32",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/dotnet/aspnetcore/issues/62352"
+   ],
+   "license": "MIT",
+   "named_paths": [
+    "src/ProjectTemplates/Web.ProjectTemplates/content/BlazorWeb-CSharp/BlazorWeb-CSharp/Components/Account/Pages/Register.razor"
+   ],
+   "pr_url": "https://github.com/dotnet/aspnetcore/pull/62443",
+   "repo": "dotnet/aspnetcore",
+   "stray": [],
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": false,
+   "counts": {
+    "agent_instructions": 0,
+    "binary_or_large_added": 0,
+    "build_output_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "stray_file": 0,
+    "tests_removed": 0,
+    "version_bump": 0,
+    "whitespace_only": 0
+   },
+   "extras": [],
+   "files_changed": 1,
+   "files_sha256": "48fd12b70053555f8691efc5f1d8d73f6086418052387998ccae79186dbdf5d8",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/dotnet/sdk/issues/49469"
+   ],
+   "license": "MIT",
+   "named_paths": [],
+   "pr_url": "https://github.com/dotnet/sdk/pull/49470",
+   "repo": "dotnet/sdk",
+   "stray": [],
+   "unplaced": []
+  },
+  {
+   "agent": "Devin",
+   "anchored": true,
+   "counts": {
+    "agent_instructions": 0,
+    "binary_or_large_added": 0,
+    "build_output_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "stray_file": 0,
+    "tests_removed": 0,
+    "version_bump": 0,
+    "whitespace_only": 0
+   },
+   "extras": [],
+   "files_changed": 1,
+   "files_sha256": "2d5696ea522da82f6152c785898dd1baca40251cbdcffde6eb06bce170177d05",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/GlareDB/glaredb/issues/3567"
+   ],
+   "license": "MIT",
+   "named_paths": [
+    "crates/glaredb_core/src/functions/scalar/builtin/negate.rs"
+   ],
+   "pr_url": "https://github.com/GlareDB/glaredb/pull/3568",
+   "repo": "GlareDB/glaredb",
+   "stray": [],
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": false,
+   "counts": {
+    "agent_instructions": 0,
+    "binary_or_large_added": 0,
+    "build_output_added": 0,
+    "ci_or_config": 1,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "stray_file": 0,
+    "tests_removed": 0,
+    "version_bump": 0,
+    "whitespace_only": 0
+   },
+   "extras": [
+    {
+     "detail": [],
+     "kind": "ci_or_config",
+     "name": "Justfile",
+     "path": "Justfile",
+     "why": "changes build config; the issue does not mention it"
+    }
+   ],
+   "files_changed": 1,
+   "files_sha256": "9fce6f852af652258c3e0366cb3bf4e3f82fdbc8e0722f6f1203ba1ef7e951ba",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/hyperlight-dev/hyperlight/issues/729"
+   ],
+   "license": "Apache-2.0",
+   "named_paths": [],
+   "pr_url": "https://github.com/hyperlight-dev/hyperlight/pull/730",
+   "repo": "hyperlight-dev/hyperlight",
+   "stray": [],
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": false,
+   "counts": {
+    "agent_instructions": 0,
+    "binary_or_large_added": 0,
+    "build_output_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "stray_file": 1,
+    "tests_removed": 0,
+    "version_bump": 0,
+    "whitespace_only": 0
+   },
+   "extras": [
+    {
+     "detail": [],
+     "kind": "stray_file",
+     "name": "package-lock.json",
+     "path": "package-lock.json",
+     "why": "adds a npm lockfile; the changed files show no matching manifest (package.json); the issue does not ask for it"
+    }
+   ],
+   "files_changed": 4,
+   "files_sha256": "fae580c76be92d6acd8b0bfb0851c93f3b3edb8a0680d404ad2395f357b19739",
+   "files_without_patch": 1,
+   "issue_urls": [
+    "https://github.com/Voxelum/minecraft-launcher-core-node/issues/323"
+   ],
+   "license": "MIT",
+   "named_paths": [],
+   "pr_url": "https://github.com/Voxelum/minecraft-launcher-core-node/pull/324",
+   "repo": "Voxelum/minecraft-launcher-core-node",
+   "stray": [
+    "package-lock.json"
+   ],
+   "unplaced": [
+    "packages/core/launch.test.ts",
+    "packages/core/launch.ts"
+   ]
+  },
+  {
+   "agent": "Copilot",
+   "anchored": false,
+   "counts": {
+    "agent_instructions": 0,
+    "binary_or_large_added": 0,
+    "build_output_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "stray_file": 0,
+    "tests_removed": 0,
+    "version_bump": 0,
+    "whitespace_only": 0
+   },
+   "extras": [],
+   "files_changed": 4,
+   "files_sha256": "88cd392df85018f1ffb1875d31a2a4f9e34567ad163c0cd3f4b24944fa40febd",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/primer/stylelint-config/issues/620"
+   ],
+   "license": "MIT",
+   "named_paths": [],
+   "pr_url": "https://github.com/primer/stylelint-config/pull/621",
+   "repo": "primer/stylelint-config",
+   "stray": [],
+   "unplaced": [
+    "plugins/responsive-widths.js"
+   ]
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "agent_instructions": 0,
+    "binary_or_large_added": 0,
+    "build_output_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "stray_file": 0,
+    "tests_removed": 0,
+    "version_bump": 0,
+    "whitespace_only": 0
+   },
+   "extras": [],
+   "files_changed": 1,
+   "files_sha256": "099f7e44efb8b7f5ac4c546cf2080d1dd05ccc26ba7f26e1aec3a798bcb5328c",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/celestiaorg/celestia-core/issues/2123"
+   ],
+   "license": "Apache-2.0",
+   "named_paths": [
+    "blocksync/pool.go"
+   ],
+   "pr_url": "https://github.com/celestiaorg/celestia-core/pull/2125",
+   "repo": "celestiaorg/celestia-core",
+   "stray": [],
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "agent_instructions": 1,
+    "binary_or_large_added": 0,
+    "build_output_added": 0,
+    "ci_or_config": 2,
+    "generated_code_removed": 0,
+    "new_dependency": 2,
+    "public_api_removed": 0,
+    "stray_file": 0,
+    "tests_removed": 0,
+    "version_bump": 0,
+    "whitespace_only": 0
+   },
+   "extras": [
+    {
+     "detail": [],
+     "kind": "new_dependency",
+     "name": "setuptools",
+     "path": "pyproject.toml",
+     "why": "adds package setuptools; the issue does not name it"
+    },
+    {
+     "detail": [],
+     "kind": "new_dependency",
+     "name": "wheel",
+     "path": "pyproject.toml",
+     "why": "adds package wheel; the issue does not name it"
+    },
+    {
+     "detail": [],
+     "kind": "ci_or_config",
+     "name": ".github/workflows/package.yml",
+     "path": ".github/workflows/package.yml",
+     "why": "changes CI config; the issue does not mention it"
+    },
+    {
+     "detail": [],
+     "kind": "ci_or_config",
+     "name": ".github/workflows/python-publish.yml",
+     "path": ".github/workflows/python-publish.yml",
+     "why": "changes CI config; the issue does not mention it"
+    },
+    {
+     "detail": [],
+     "kind": "agent_instructions",
+     "name": ".github/copilot-instructions.md",
+     "path": ".github/copilot-instructions.md",
+     "why": "changes what coding agents are told: edits an agent instruction file the issue does not ask for"
+    }
+   ],
+   "files_changed": 28,
+   "files_sha256": "e51c99180b671abf0b2d25bcf06f81127a1412a58c3f6f1a0b73429ef2826fbc",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/mlco2/codecarbon/issues/887"
+   ],
+   "license": "MIT",
+   "named_paths": [
+    "pyproject.toml",
+    "requirements.txt",
+    "requirements/requirements-api.txt",
+    "requirements/requirements-carbonboard.txt",
+    "requirements/requirements-dashboard.txt",
+    "requirements/requirements-dev.txt",
+    "requirements/requirements-test.py3.10.txt",
+    "requirements/requirements-test.py3.11.txt",
+    "requirements/requirements-test.py3.12.txt",
+    "requirements/requirements-test.py3.13.txt",
+    "requirements/requirements-test.py3.8.txt",
+    "requirements/requirements-test.py3.9.txt"
+   ],
+   "pr_url": "https://github.com/mlco2/codecarbon/pull/892",
+   "repo": "mlco2/codecarbon",
+   "stray": [],
+   "unplaced": [
+    ".conda/recipe.yaml",
+    "codecarbon/data/hardware/cpu_dataset_builder/amd_cpu_scrapper.py",
+    "codecarbon/data/hardware/cpu_dataset_builder/intel_cpu_scrapper.py",
+    "codecarbon/data/hardware/cpu_dataset_builder/merge_scrapped_cpu_power.py",
+    "examples/compare_cpu_load_and_RAPL.py"
+   ]
+  },
+  {
+   "agent": "OpenAI_Codex",
+   "anchored": true,
+   "counts": {
+    "agent_instructions": 0,
+    "binary_or_large_added": 0,
+    "build_output_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "stray_file": 0,
+    "tests_removed": 0,
+    "version_bump": 0,
+    "whitespace_only": 0
+   },
+   "extras": [],
+   "files_changed": 2,
+   "files_sha256": "7b6785878f13c6ec45f24b4c329c9bccb8ee341f7847356be9710205ba3d1811",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/prebid/Prebid.js/issues/12772"
+   ],
+   "license": "Apache-2.0",
+   "named_paths": [
+    "modules/ixBidAdapter.js",
+    "test/spec/modules/ixBidAdapter_spec.js"
+   ],
+   "pr_url": "https://github.com/prebid/Prebid.js/pull/13357",
+   "repo": "prebid/Prebid.js",
+   "stray": [],
+   "unplaced": []
+  },
+  {
+   "agent": "Devin",
+   "anchored": true,
+   "counts": {
+    "agent_instructions": 0,
+    "binary_or_large_added": 0,
+    "build_output_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "stray_file": 0,
+    "tests_removed": 0,
+    "version_bump": 0,
+    "whitespace_only": 0
+   },
+   "extras": [],
+   "files_changed": 4,
+   "files_sha256": "dec2103cbcd26066cf523e73af3424b064b2ece90613a587466c6fea0af18ca5",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/crewAIInc/crewAI/issues/2762"
+   ],
+   "license": "MIT",
+   "named_paths": [
+    "src/crewai/knowledge/knowledge.py",
+    "src/crewai/knowledge/source/base_file_knowledge_source.py",
+    "tests/knowledge/test_csv_knowledge_source_updates.py"
+   ],
+   "pr_url": "https://github.com/crewAIInc/crewAI/pull/2763",
+   "repo": "crewAIInc/crewAI",
+   "stray": [],
+   "unplaced": [
+    "manual_test_csv_update.py"
+   ]
+  },
+  {
+   "agent": "Copilot",
+   "anchored": false,
+   "counts": {
+    "agent_instructions": 0,
+    "binary_or_large_added": 0,
+    "build_output_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "stray_file": 0,
+    "tests_removed": 0,
+    "version_bump": 0,
+    "whitespace_only": 0
+   },
+   "extras": [],
+   "files_changed": 2,
+   "files_sha256": "1ee9c1eba744515d4eb3ea4c264a147897247ea50f89fbe03f8cd6da0ee650a8",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/microsoft/go-mssqldb/issues/265"
+   ],
+   "license": "BSD-3-Clause",
+   "named_paths": [],
+   "pr_url": "https://github.com/microsoft/go-mssqldb/pull/266",
+   "repo": "microsoft/go-mssqldb",
+   "stray": [],
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "agent_instructions": 0,
+    "binary_or_large_added": 0,
+    "build_output_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "stray_file": 0,
+    "tests_removed": 0,
+    "version_bump": 0,
+    "whitespace_only": 0
+   },
+   "extras": [],
+   "files_changed": 4,
+   "files_sha256": "772dc2e96bf1ef77260ab722254e3373665cacc49ebf46502930f5f877ce9f45",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/lgallard/terraform-aws-backup/issues/128"
+   ],
+   "license": "Apache-2.0",
+   "named_paths": [
+    "main.tf"
+   ],
+   "pr_url": "https://github.com/lgallard/terraform-aws-backup/pull/129",
+   "repo": "lgallard/terraform-aws-backup",
+   "stray": [],
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "agent_instructions": 0,
+    "binary_or_large_added": 0,
+    "build_output_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "stray_file": 0,
+    "tests_removed": 0,
+    "version_bump": 0,
+    "whitespace_only": 0
+   },
+   "extras": [],
+   "files_changed": 3,
+   "files_sha256": "f750f48ba64bf8bcb1714335419a79d6c1b6aee6ae66600b7408762a005130ab",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/streamlit/streamlit/issues/11801"
+   ],
+   "license": "Apache-2.0",
+   "named_paths": [
+    "frontend/lib/src/components/widgets/DataFrame/DataFrame.test.tsx",
+    "frontend/lib/src/components/widgets/DataFrame/DataFrame.tsx",
+    "frontend/lib/src/components/widgets/DataFrame/menus/ColumnVisibilityMenu.test.tsx"
+   ],
+   "pr_url": "https://github.com/streamlit/streamlit/pull/11858",
+   "repo": "streamlit/streamlit",
+   "stray": [],
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "agent_instructions": 0,
+    "binary_or_large_added": 0,
+    "build_output_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "stray_file": 0,
+    "tests_removed": 0,
+    "version_bump": 0,
+    "whitespace_only": 0
+   },
+   "extras": [],
+   "files_changed": 24,
+   "files_sha256": "defcfb4ddfca83b7b0807599d7a1b560f3d7bc74c94c1832a39e3a8a4ee42e32",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/dotnet/aspnetcore/issues/62548"
+   ],
+   "license": "MIT",
+   "named_paths": [
+    "src/Components/Components/src/PersistentState/PersistentServicesRegistry.cs",
+    "src/Components/Components/src/PersistentStateAttribute.cs",
+    "src/Components/Components/src/RegisterPersistentComponentStateServiceCollectionExtensions.cs",
+    "src/Components/Components/test/PersistentState/PersistentServicesRegistryTest.cs"
+   ],
+   "pr_url": "https://github.com/dotnet/aspnetcore/pull/62549",
+   "repo": "dotnet/aspnetcore",
+   "stray": [],
+   "unplaced": [
+    ".gitignore",
+    "src/ProjectTemplates/Web.ProjectTemplates/content/BlazorWeb-CSharp/BlazorWeb-CSharp/Components/Layout/ReconnectModal.razor.js"
+   ]
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "agent_instructions": 0,
+    "binary_or_large_added": 0,
+    "build_output_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "stray_file": 0,
+    "tests_removed": 0,
+    "version_bump": 0,
+    "whitespace_only": 0
+   },
+   "extras": [],
+   "files_changed": 10,
+   "files_sha256": "796afad6620a4ea26cf16a895d83a933c13f226fe2fc7464cd561dfeff956959",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/Azure/azure-sdk-for-python/issues/33710"
+   ],
+   "license": "MIT",
+   "named_paths": [
+    "sdk/eventhub/azure-eventhub/samples/async_samples/send_async.py",
+    "sdk/eventhub/azure-eventhub/samples/sync_samples/send.py",
+    "sdk/servicebus/azure-servicebus/samples/async_samples/send_queue_async.py",
+    "sdk/servicebus/azure-servicebus/samples/async_samples/send_topic_async.py",
+    "sdk/servicebus/azure-servicebus/samples/sync_samples/send_queue.py",
+    "sdk/servicebus/azure-servicebus/samples/sync_samples/send_topic.py"
+   ],
+   "pr_url": "https://github.com/Azure/azure-sdk-for-python/pull/41462",
+   "repo": "Azure/azure-sdk-for-python",
+   "stray": [],
+   "unplaced": []
+  },
+  {
+   "agent": "Devin",
+   "anchored": true,
+   "counts": {
+    "agent_instructions": 0,
+    "binary_or_large_added": 0,
+    "build_output_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "stray_file": 0,
+    "tests_removed": 0,
+    "version_bump": 0,
+    "whitespace_only": 0
+   },
+   "extras": [],
+   "files_changed": 4,
+   "files_sha256": "ffa8bff2ccaaac3f5e80b64f7d83938612d0e2d8913c60e85f78ebefe69163d7",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/crewAIInc/crewAI/issues/2632"
+   ],
+   "license": "MIT",
+   "named_paths": [
+    "src/crewai/crew.py",
+    "tests/concurrency_test.py"
+   ],
+   "pr_url": "https://github.com/crewAIInc/crewAI/pull/2633",
+   "repo": "crewAIInc/crewAI",
+   "stray": [],
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "agent_instructions": 0,
+    "binary_or_large_added": 0,
+    "build_output_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "stray_file": 1,
+    "tests_removed": 0,
+    "version_bump": 0,
+    "whitespace_only": 0
+   },
+   "extras": [
+    {
+     "detail": [],
+     "kind": "stray_file",
+     "name": "package-lock.json",
+     "path": "package-lock.json",
+     "why": "adds a npm lockfile; the changed files show no matching manifest (package.json); the issue does not ask for it"
+    }
+   ],
+   "files_changed": 2,
+   "files_sha256": "0ee7beaeaa8936bf9bfdd141a6720b2938e734b0ae241f21e329c9c8e79aabad",
+   "files_without_patch": 1,
+   "issue_urls": [
+    "https://github.com/haydenbleasel/kibo/issues/61"
+   ],
+   "license": "MIT",
+   "named_paths": [
+    "packages/gantt/index.tsx"
+   ],
+   "pr_url": "https://github.com/haydenbleasel/kibo/pull/166",
+   "repo": "haydenbleasel/kibo",
+   "stray": [
+    "package-lock.json"
+   ],
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "agent_instructions": 0,
+    "binary_or_large_added": 0,
+    "build_output_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "stray_file": 0,
+    "tests_removed": 0,
+    "version_bump": 0,
+    "whitespace_only": 0
+   },
+   "extras": [],
+   "files_changed": 3,
+   "files_sha256": "38e359386bdec8200af7237d42c7fbe280f51ca47fdc7c332e8b402701e22833",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/Azure/azure-sdk-for-python/issues/41743"
+   ],
+   "license": "MIT",
+   "named_paths": [
+    "sdk/evaluation/azure-ai-evaluation/azure/ai/evaluation/__init__.py",
+    "sdk/evaluation/azure-ai-evaluation/azure/ai/evaluation/red_team/__init__.py",
+    "sdk/evaluation/azure-ai-evaluation/tests/unittests/test_lazy_imports.py"
+   ],
+   "pr_url": "https://github.com/Azure/azure-sdk-for-python/pull/41852",
+   "repo": "Azure/azure-sdk-for-python",
+   "stray": [],
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": false,
+   "counts": {
+    "agent_instructions": 0,
+    "binary_or_large_added": 0,
+    "build_output_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "stray_file": 0,
+    "tests_removed": 0,
+    "version_bump": 0,
+    "whitespace_only": 0
+   },
+   "extras": [],
+   "files_changed": 8,
+   "files_sha256": "2f8b669c05b10db8b664a89c98a75bef892f07b85952904ae7874cd164fe14d0",
+   "files_without_patch": 4,
+   "issue_urls": [
+    "https://github.com/dotnet/sdk/issues/49529"
+   ],
+   "license": "MIT",
+   "named_paths": [],
+   "pr_url": "https://github.com/dotnet/sdk/pull/49530",
+   "repo": "dotnet/sdk",
+   "stray": [],
+   "unplaced": [
+    "sdk.slnx",
+    "src/RazorSdk/Razor.slnf",
+    "test/benchmarks/Directory.Build.props",
+    "test/benchmarks/StaticWebAssetsSdk/.gitignore",
+    "test/benchmarks/StaticWebAssetsSdk/Directory.Build.template",
+    "test/benchmarks/StaticWebAssetsSdk/EmptyBenchmark.cs",
+    "test/benchmarks/StaticWebAssetsSdk/Microsoft.NET.Sdk.StaticWebAssets.Benchmarks.csproj",
+    "test/benchmarks/StaticWebAssetsSdk/Program.cs"
+   ]
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "agent_instructions": 0,
+    "binary_or_large_added": 0,
+    "build_output_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "stray_file": 0,
+    "tests_removed": 0,
+    "version_bump": 0,
+    "whitespace_only": 0
+   },
+   "extras": [],
+   "files_changed": 1,
+   "files_sha256": "072b15597eb8c147a95fbee338eb1e53a9b96391ec2df1c71683ddd82e4cbef0",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/microsoft/vscode-cosmosdb/issues/2694"
+   ],
+   "license": "MIT",
+   "named_paths": [
+    "src/tree/BaseCachedBranchDataProvider.ts"
+   ],
+   "pr_url": "https://github.com/microsoft/vscode-cosmosdb/pull/2696",
+   "repo": "microsoft/vscode-cosmosdb",
+   "stray": [],
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "agent_instructions": 0,
+    "binary_or_large_added": 0,
+    "build_output_added": 0,
+    "ci_or_config": 1,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "stray_file": 0,
+    "tests_removed": 0,
+    "version_bump": 0,
+    "whitespace_only": 0
+   },
+   "extras": [
+    {
+     "detail": [],
+     "kind": "ci_or_config",
+     "name": "angular-app/tsconfig.json",
+     "path": "angular-app/tsconfig.json",
+     "why": "changes build config; the issue does not mention it"
+    }
+   ],
+   "files_changed": 23,
+   "files_sha256": "af9554890d10ba9df9d34ec7ed5b5af9d69e24dad291bdb624f7f25cc652faf2",
+   "files_without_patch": 1,
+   "issue_urls": [
+    "https://github.com/johnpapa/shopathome/issues/218"
+   ],
+   "license": "MIT",
+   "named_paths": [
+    "angular-app/angular.json"
+   ],
+   "pr_url": "https://github.com/johnpapa/shopathome/pull/219",
+   "repo": "johnpapa/shopathome",
+   "stray": [],
+   "unplaced": [
+    "angular-app/src/app/app.component.ts",
+    "angular-app/src/app/core/components/auth-login.component.ts",
+    "angular-app/src/app/core/components/auth-logout.component.ts",
+    "angular-app/src/app/core/components/header-bar-brand.component.ts",
+    "angular-app/src/app/core/components/header-bar.component.ts",
+    "angular-app/src/app/core/components/nav.component.ts",
+    "angular-app/src/app/core/components/not-found.component.ts",
+    "angular-app/src/app/discounts.component.ts",
+    "angular-app/src/app/home.component.ts",
+    "angular-app/src/app/products/product-detail.component.ts",
+    "angular-app/src/app/products/product-list.component.ts",
+    "angular-app/src/app/products/products.component.ts",
+    "angular-app/src/app/router.ts",
+    "angular-app/src/app/shared/button-footer.component.ts",
+    "angular-app/src/app/shared/card-content.component.ts",
+    "angular-app/src/app/shared/list-header.component.ts",
+    "angular-app/src/app/shared/modal.component.ts",
+    "angular-app/src/karma.conf.js",
+    "angular-app/src/main.ts"
+   ]
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "agent_instructions": 0,
+    "binary_or_large_added": 0,
+    "build_output_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "stray_file": 0,
+    "tests_removed": 0,
+    "version_bump": 0,
+    "whitespace_only": 0
+   },
+   "extras": [],
+   "files_changed": 4,
+   "files_sha256": "479b3c424c3bce682de215e4bbcdd6709f4a2081087524fc938d12089aca38eb",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/microsoft/finops-toolkit/issues/1612"
+   ],
+   "license": "MIT",
+   "named_paths": [
+    "docs-mslearn/toolkit/workbooks/customize-workbooks.md",
+    "docs-mslearn/toolkit/workbooks/finops-workbooks-overview.md"
+   ],
+   "pr_url": "https://github.com/microsoft/finops-toolkit/pull/1629",
+   "repo": "microsoft/finops-toolkit",
+   "stray": [],
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": false,
+   "counts": {
+    "agent_instructions": 0,
+    "binary_or_large_added": 0,
+    "build_output_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "stray_file": 0,
+    "tests_removed": 0,
+    "version_bump": 0,
+    "whitespace_only": 0
+   },
+   "extras": [],
+   "files_changed": 9,
+   "files_sha256": "41c66690e10cd05ed1065455e39b6278ba7501194f206a8b1b9f4f77c0192424",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/celestiaorg/celestia-core/issues/1958"
+   ],
+   "license": "Apache-2.0",
+   "named_paths": [],
+   "pr_url": "https://github.com/celestiaorg/celestia-core/pull/1959",
+   "repo": "celestiaorg/celestia-core",
+   "stray": [],
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": false,
+   "counts": {
+    "agent_instructions": 0,
+    "binary_or_large_added": 0,
+    "build_output_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "stray_file": 0,
+    "tests_removed": 0,
+    "version_bump": 0,
+    "whitespace_only": 0
+   },
+   "extras": [],
+   "files_changed": 17,
+   "files_sha256": "0ea177854a70a79b34169af69452b96e84036016868466b308a62c0ec0608923",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/microsoft/Generative-AI-for-beginners-dotnet/issues/161"
+   ],
+   "license": "MIT",
+   "named_paths": [],
+   "pr_url": "https://github.com/microsoft/Generative-AI-for-beginners-dotnet/pull/176",
+   "repo": "microsoft/Generative-AI-for-beginners-dotnet",
+   "stray": [],
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": false,
+   "counts": {
+    "agent_instructions": 0,
+    "binary_or_large_added": 0,
+    "build_output_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "stray_file": 0,
+    "tests_removed": 0,
+    "version_bump": 0,
+    "whitespace_only": 0
+   },
+   "extras": [],
+   "files_changed": 3,
+   "files_sha256": "3534ba1cf034c6550e8f316d17413e48b88e312e523668905d8670387ab453bc",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/Ljzd-PRO/KToolBox/issues/232"
+   ],
+   "license": "BSD-3-Clause",
+   "named_paths": [],
+   "pr_url": "https://github.com/Ljzd-PRO/KToolBox/pull/264",
+   "repo": "Ljzd-PRO/KToolBox",
+   "stray": [],
+   "unplaced": [
+    "ktoolbox/action/job.py",
+    "ktoolbox/configuration.py",
+    "ktoolbox/utils.py"
+   ]
+  },
+  {
+   "agent": "Copilot",
+   "anchored": false,
+   "counts": {
+    "agent_instructions": 0,
+    "binary_or_large_added": 0,
+    "build_output_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "stray_file": 0,
+    "tests_removed": 0,
+    "version_bump": 0,
+    "whitespace_only": 0
+   },
+   "extras": [],
+   "files_changed": 3,
+   "files_sha256": "35adda526722d818b58e337152b719030190ae52f13dfbb5bb035f24b9ef4a38",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/dotnet/sdk/issues/49846"
+   ],
+   "license": "MIT",
+   "named_paths": [],
+   "pr_url": "https://github.com/dotnet/sdk/pull/49859",
+   "repo": "dotnet/sdk",
+   "stray": [],
+   "unplaced": [
+    "src/Cli/dotnet/Commands/Run/VirtualProjectBuildingCommand.cs",
+    "src/Tasks/Microsoft.NET.Build.Tasks/targets/Microsoft.NET.Sdk.props",
+    "test/dotnet.Tests/CommandTests/Run/RunFileTests.cs"
+   ]
+  },
+  {
+   "agent": "Copilot",
+   "anchored": false,
+   "counts": {
+    "agent_instructions": 0,
+    "binary_or_large_added": 0,
+    "build_output_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "stray_file": 0,
+    "tests_removed": 0,
+    "version_bump": 0,
+    "whitespace_only": 0
+   },
+   "extras": [],
+   "files_changed": 3,
+   "files_sha256": "68e8dd3b4cb0ebd377bc8b92828d8e267138da64910737609bf83d0afc99af93",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/tomhrr/cosh/issues/153"
+   ],
+   "license": "BSD-3-Clause",
+   "named_paths": [],
+   "pr_url": "https://github.com/tomhrr/cosh/pull/175",
+   "repo": "tomhrr/cosh",
+   "stray": [],
+   "unplaced": [
+    ".gitignore",
+    "src/vm/vm_string.rs",
+    "tests/tests.rs"
+   ]
+  },
+  {
+   "agent": "Devin",
+   "anchored": true,
+   "counts": {
+    "agent_instructions": 0,
+    "binary_or_large_added": 0,
+    "build_output_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "stray_file": 0,
+    "tests_removed": 0,
+    "version_bump": 0,
+    "whitespace_only": 0
+   },
+   "extras": [],
+   "files_changed": 3,
+   "files_sha256": "43c3a08c8b16895bac8b2ac09d4336336e6ca159478cb56f7dfed479226b39c4",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/laiso/site2pdf/issues/18"
+   ],
+   "license": "MIT",
+   "named_paths": [
+    "package.json",
+    "src/index.ts",
+    "tests/index.test.ts"
+   ],
+   "pr_url": "https://github.com/laiso/site2pdf/pull/19",
+   "repo": "laiso/site2pdf",
+   "stray": [],
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "agent_instructions": 0,
+    "binary_or_large_added": 0,
+    "build_output_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "stray_file": 0,
+    "tests_removed": 0,
+    "version_bump": 0,
+    "whitespace_only": 0
+   },
+   "extras": [],
+   "files_changed": 10,
+   "files_sha256": "c42a7a6041b7ed6fb4d410c181d22703bb34df149a87a93aa0586b832001dedc",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/elastic/terraform-provider-elasticstack/issues/678"
+   ],
+   "license": "Apache-2.0",
+   "named_paths": [
+    "internal/elasticsearch/ingest/processor_reroute_data_source.go",
+    "internal/elasticsearch/ingest/processor_reroute_data_source_test.go",
+    "internal/elasticsearch/ingest/processor_reroute_unit_test.go",
+    "provider/provider.go"
+   ],
+   "pr_url": "https://github.com/elastic/terraform-provider-elasticstack/pull/1204",
+   "repo": "elastic/terraform-provider-elasticstack",
+   "stray": [],
+   "unplaced": [
+    "examples/data-sources/elasticstack_elasticsearch_ingest_processor_reroute/data-source.tf",
+    "internal/models/ingest.go",
+    "templates/data-sources/elasticsearch_ingest_processor_reroute.md.tmpl"
+   ]
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "agent_instructions": 0,
+    "binary_or_large_added": 0,
+    "build_output_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "stray_file": 0,
+    "tests_removed": 0,
+    "version_bump": 0,
+    "whitespace_only": 0
+   },
+   "extras": [],
+   "files_changed": 1,
+   "files_sha256": "c5436e08b117a0b598332aab5ac62619bc1b743ce82e7a2673b768654dac160e",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/microsoft/vstest/issues/5160"
+   ],
+   "license": "MIT",
+   "named_paths": [
+    "src/testhost.x86/TestHostTraceListener.cs"
+   ],
+   "pr_url": "https://github.com/microsoft/vstest/pull/15092",
+   "repo": "microsoft/vstest",
+   "stray": [],
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "agent_instructions": 0,
+    "binary_or_large_added": 0,
+    "build_output_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "stray_file": 0,
+    "tests_removed": 0,
+    "version_bump": 0,
+    "whitespace_only": 0
+   },
+   "extras": [],
+   "files_changed": 15,
+   "files_sha256": "450bc46f3ffa9a0656dd99b9868e3099dd8fe659935f6b4f8f5a70cba1fc956d",
+   "files_without_patch": 9,
+   "issue_urls": [
+    "https://github.com/lynx-family/lynx-stack/issues/1196"
+   ],
+   "license": "Apache-2.0",
+   "named_paths": [
+    "packages/web-platform/web-elements/src/XSwiper/XSwiper.ts",
+    "packages/web-platform/web-elements/src/XSwiper/XSwiperAutoScroll.ts",
+    "packages/web-platform/web-tests/tests/react.spec.ts",
+    "packages/web-platform/web-tests/tests/react.spec.ts-snapshots/x-swiper/scroll-to/1-chromium-linux.png",
+    "packages/web-platform/web-tests/tests/react.spec.ts-snapshots/x-swiper/scroll-to/1-firefox-linux.png",
+    "packages/web-platform/web-tests/tests/react.spec.ts-snapshots/x-swiper/scroll-to/1-webkit-linux.png",
+    "packages/web-platform/web-tests/tests/react.spec.ts-snapshots/x-swiper/scroll-to/2-chromium-linux.png",
+    "packages/web-platform/web-tests/tests/react.spec.ts-snapshots/x-swiper/scroll-to/2-firefox-linux.png",
+    "packages/web-platform/web-tests/tests/react.spec.ts-snapshots/x-swiper/scroll-to/2-webkit-linux.png",
+    "packages/web-platform/web-tests/tests/react.spec.ts-snapshots/x-swiper/scroll-to/3-chromium-linux.png",
+    "packages/web-platform/web-tests/tests/react.spec.ts-snapshots/x-swiper/scroll-to/3-firefox-linux.png",
+    "packages/web-platform/web-tests/tests/react.spec.ts-snapshots/x-swiper/scroll-to/3-webkit-linux.png",
+    "packages/web-platform/web-tests/tests/react/basic-element-x-swiper-method-scroll-to/index.css",
+    "packages/web-platform/web-tests/tests/react/basic-element-x-swiper-method-scroll-to/index.jsx"
+   ],
+   "pr_url": "https://github.com/lynx-family/lynx-stack/pull/1197",
+   "repo": "lynx-family/lynx-stack",
+   "stray": [],
+   "unplaced": []
+  },
+  {
+   "agent": "Claude_Code",
+   "anchored": true,
+   "counts": {
+    "agent_instructions": 0,
+    "binary_or_large_added": 0,
+    "build_output_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "stray_file": 0,
+    "tests_removed": 0,
+    "version_bump": 0,
+    "whitespace_only": 0
+   },
+   "extras": [],
+   "files_changed": 17,
+   "files_sha256": "d2de2dd5358090d041aa6bf02b9dbb5ec1a25e518c3901932b944fcbda1442e5",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/Deepractice/PromptX/issues/129"
+   ],
+   "license": "MIT",
+   "named_paths": [
+    ".promptx/resource/project.registry.json",
+    "src/lib/core/pouch/commands/InitCommand.js",
+    "src/lib/core/resource/protocols/ProjectProtocol.js",
+    "src/lib/mcp/MCPServerStdioCommand.js",
+    "src/lib/utils/DirectoryService.js",
+    "src/lib/utils/ProjectManager.js"
+   ],
+   "pr_url": "https://github.com/Deepractice/PromptX/pull/130",
+   "repo": "Deepractice/PromptX",
+   "stray": [],
+   "unplaced": [
+    ".promptx/pouch.json"
+   ]
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "agent_instructions": 0,
+    "binary_or_large_added": 0,
+    "build_output_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "stray_file": 0,
+    "tests_removed": 0,
+    "version_bump": 0,
+    "whitespace_only": 0
+   },
+   "extras": [],
+   "files_changed": 1,
+   "files_sha256": "694163dc99aca97d59d818442b177fe3c5fd772e0076824fcf7e82b8521fc231",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/mlflow/mlflow/issues/15899"
+   ],
+   "license": "Apache-2.0",
+   "named_paths": [
+    "pyproject.toml"
+   ],
+   "pr_url": "https://github.com/mlflow/mlflow/pull/15900",
+   "repo": "mlflow/mlflow",
+   "stray": [],
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "agent_instructions": 0,
+    "binary_or_large_added": 0,
+    "build_output_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "stray_file": 0,
+    "tests_removed": 0,
+    "version_bump": 0,
+    "whitespace_only": 0
+   },
+   "extras": [],
+   "files_changed": 9,
+   "files_sha256": "27a659a154f41211974f3f0a2828c9190c742b2c3834d8c3e24e58b363def375",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/microsoft/genaiscript/issues/1702"
+   ],
+   "license": "MIT",
+   "named_paths": [
+    "AGENTIC_SEARCH.md",
+    "packages/core/src/agenticsearch.internals.test.ts",
+    "packages/core/src/agenticsearch.test.ts",
+    "packages/core/src/agenticsearch.ts"
+   ],
+   "pr_url": "https://github.com/microsoft/genaiscript/pull/1703",
+   "repo": "microsoft/genaiscript",
+   "stray": [],
+   "unplaced": [
+    "packages/cli/genaisrc/system.retrieval_agentic_search.genai.mts",
+    "packages/sample/genaisrc/agentic-search-demo.genai.mts"
+   ]
+  },
+  {
+   "agent": "Cursor",
+   "anchored": false,
+   "counts": {
+    "agent_instructions": 0,
+    "binary_or_large_added": 0,
+    "build_output_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "stray_file": 0,
+    "tests_removed": 0,
+    "version_bump": 0,
+    "whitespace_only": 0
+   },
+   "extras": [],
+   "files_changed": 4,
+   "files_sha256": "36786530b882073fc2d8a2f1c9491a6c2359f934839e32bbb9cb880f16823c9b",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/Project-MONAI/tutorials/issues/2001"
+   ],
+   "license": "Apache-2.0",
+   "named_paths": [],
+   "pr_url": "https://github.com/Project-MONAI/tutorials/pull/2005",
+   "repo": "Project-MONAI/tutorials",
+   "stray": [],
+   "unplaced": [
+    "2d_classification/mednist_tutorial.ipynb",
+    "2d_classification/monai_101.ipynb",
+    "2d_classification/monai_201.ipynb"
+   ]
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "agent_instructions": 0,
+    "binary_or_large_added": 0,
+    "build_output_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "stray_file": 0,
+    "tests_removed": 0,
+    "version_bump": 0,
+    "whitespace_only": 0
+   },
+   "extras": [],
+   "files_changed": 4,
+   "files_sha256": "fd39601cf617f5cf9370a0f1a1011f904a37a0094eca834010f995f0afe6c01c",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/haydenbleasel/ultracite/issues/175"
+   ],
+   "license": "MIT",
+   "named_paths": [
+    "__tests__/format.test.ts",
+    "scripts/format.ts"
+   ],
+   "pr_url": "https://github.com/haydenbleasel/ultracite/pull/176",
+   "repo": "haydenbleasel/ultracite",
+   "stray": [],
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": false,
+   "counts": {
+    "agent_instructions": 0,
+    "binary_or_large_added": 0,
+    "build_output_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "stray_file": 0,
+    "tests_removed": 0,
+    "version_bump": 0,
+    "whitespace_only": 0
+   },
+   "extras": [],
+   "files_changed": 1,
+   "files_sha256": "0b84ae3c8ce05137675d88ea7190ce4e735017fbb05ad6684fe3bd567e9137bd",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/owid/owid-grapher/issues/4641"
+   ],
+   "license": "MIT",
+   "named_paths": [],
+   "pr_url": "https://github.com/owid/owid-grapher/pull/5078",
+   "repo": "owid/owid-grapher",
+   "stray": [],
+   "unplaced": [
+    "adminSiteClient/ChartList.tsx"
+   ]
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "agent_instructions": 0,
+    "binary_or_large_added": 0,
+    "build_output_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "stray_file": 0,
+    "tests_removed": 0,
+    "version_bump": 0,
+    "whitespace_only": 0
+   },
+   "extras": [],
+   "files_changed": 10,
+   "files_sha256": "3cf83e3d3195751291d63e1155e0b4948ea49f5f08add1e7dd8d205ae5cd7817",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/backstage/backstage/issues/27413"
+   ],
+   "license": "Apache-2.0",
+   "named_paths": [
+    "packages/backend-plugin-api/src/paths.test.ts",
+    "packages/backend-plugin-api/src/paths.ts",
+    "plugins/app-backend/src/service/router.ts",
+    "plugins/auth-backend/src/database/AuthDatabase.ts",
+    "plugins/catalog-backend/src/database/migrations.ts",
+    "plugins/scaffolder-backend/src/scaffolder/tasks/DatabaseTaskStore.ts"
+   ],
+   "pr_url": "https://github.com/backstage/backstage/pull/30549",
+   "repo": "backstage/backstage",
+   "stray": [],
+   "unplaced": [
+    "packages/cli/src/modules/build/lib/builder/config.ts",
+    "packages/cli/src/modules/build/lib/builder/copyAssets.ts"
+   ]
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "agent_instructions": 0,
+    "binary_or_large_added": 0,
+    "build_output_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 1,
+    "public_api_removed": 0,
+    "stray_file": 0,
+    "tests_removed": 0,
+    "version_bump": 0,
+    "whitespace_only": 0
+   },
+   "extras": [
+    {
+     "detail": [],
+     "kind": "new_dependency",
+     "name": "@microsoft/applicationinsights-dependencies-js",
+     "path": "extensions/applicationinsights-analytics-js/package.json",
+     "why": "adds package @microsoft/applicationinsights-dependencies-js; the issue does not name it"
+    }
+   ],
+   "files_changed": 5,
+   "files_sha256": "035eef6bdcdcfab42d38c2b6f53d2e83c03f4834ddf2761e5b3c502c8dcca3ef",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/microsoft/ApplicationInsights-JS/issues/2594"
+   ],
+   "license": "MIT",
+   "named_paths": [
+    "extensions/applicationinsights-dependencies-js/Tests/Unit/src/ajax.tests.ts",
+    "extensions/applicationinsights-dependencies-js/src/ajax.ts"
+   ],
+   "pr_url": "https://github.com/microsoft/ApplicationInsights-JS/pull/2595",
+   "repo": "microsoft/ApplicationInsights-JS",
+   "stray": [],
+   "unplaced": [
+    "extensions/applicationinsights-analytics-js/src/JavaScriptSDK/AnalyticsPlugin.ts"
+   ]
+  },
+  {
+   "agent": "Copilot",
+   "anchored": false,
+   "counts": {
+    "agent_instructions": 0,
+    "binary_or_large_added": 0,
+    "build_output_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "stray_file": 0,
+    "tests_removed": 0,
+    "version_bump": 0,
+    "whitespace_only": 0
+   },
+   "extras": [],
+   "files_changed": 2,
+   "files_sha256": "140920a1f479b9c9e635139a90c03111ec2d95c8ec38ea594f5a3edddd210ca5",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/vscode-neovim/vscode-neovim/issues/2510"
+   ],
+   "license": "MIT",
+   "named_paths": [],
+   "pr_url": "https://github.com/vscode-neovim/vscode-neovim/pull/2526",
+   "repo": "vscode-neovim/vscode-neovim",
+   "stray": [],
+   "unplaced": [
+    "src/cmdline_manager.ts",
+    "src/messages_manager.ts"
+   ]
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "agent_instructions": 0,
+    "binary_or_large_added": 0,
+    "build_output_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "stray_file": 0,
+    "tests_removed": 0,
+    "version_bump": 0,
+    "whitespace_only": 0
+   },
+   "extras": [],
+   "files_changed": 4,
+   "files_sha256": "0a2466ba9be1f76542f04095229d21ed66c78d78f2dfe7a614fd3b3c0b96e47c",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/giselles-ai/giselle/issues/881"
+   ],
+   "license": "Apache-2.0",
+   "named_paths": [
+    "packages/data-type/src/flow/trigger/github.ts",
+    "packages/flow/src/trigger/github.ts",
+    "packages/giselle-engine/src/core/github/handle-webhook.ts"
+   ],
+   "pr_url": "https://github.com/giselles-ai/giselle/pull/902",
+   "repo": "giselles-ai/giselle",
+   "stray": [],
+   "unplaced": [
+    "internal-packages/workflow-designer-ui/src/header/ui/trigger-input-dialog.tsx"
+   ]
+  },
+  {
+   "agent": "Devin",
+   "anchored": true,
+   "counts": {
+    "agent_instructions": 0,
+    "binary_or_large_added": 0,
+    "build_output_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "stray_file": 0,
+    "tests_removed": 0,
+    "version_bump": 0,
+    "whitespace_only": 0
+   },
+   "extras": [],
+   "files_changed": 5,
+   "files_sha256": "2331e366b486074d07ba8fdd9ca1b897e0fca8410448db1d52a381fe1f3560d9",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/AgentOps-AI/agentops/issues/721"
+   ],
+   "license": "MIT",
+   "named_paths": [
+    "agentops/session.py"
+   ],
+   "pr_url": "https://github.com/AgentOps-AI/agentops/pull/728",
+   "repo": "AgentOps-AI/agentops",
+   "stray": [],
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": false,
+   "counts": {
+    "agent_instructions": 0,
+    "binary_or_large_added": 0,
+    "build_output_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "stray_file": 0,
+    "tests_removed": 0,
+    "version_bump": 0,
+    "whitespace_only": 0
+   },
+   "extras": [],
+   "files_changed": 3,
+   "files_sha256": "31b8e900fa4a23cb3ed3c493333585aa859d7679c31b8cfa5a1fb2a0608e361e",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/dotnet/fsharp/issues/17856"
+   ],
+   "license": "MIT",
+   "named_paths": [],
+   "pr_url": "https://github.com/dotnet/fsharp/pull/18586",
+   "repo": "dotnet/fsharp",
+   "stray": [],
+   "unplaced": [
+    "src/Compiler/Service/ServiceDeclarationLists.fs",
+    "tests/FSharp.Compiler.Service.Tests/TooltipTests.fs"
+   ]
+  },
+  {
+   "agent": "Copilot",
+   "anchored": false,
+   "counts": {
+    "agent_instructions": 0,
+    "binary_or_large_added": 0,
+    "build_output_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "stray_file": 0,
+    "tests_removed": 0,
+    "version_bump": 0,
+    "whitespace_only": 0
+   },
+   "extras": [],
+   "files_changed": 2,
+   "files_sha256": "612d1d4268ca87cc2d1a322268e0eb5207c5194fdbe3d3e747a582b1b406611b",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/microsoft/TypeScript/issues/61894"
+   ],
+   "license": "Apache-2.0",
+   "named_paths": [],
+   "pr_url": "https://github.com/microsoft/TypeScript/pull/61895",
+   "repo": "microsoft/TypeScript",
+   "stray": [],
+   "unplaced": [
+    "src/services/codefixes/importFixes.ts",
+    "tests/cases/fourslash/completionsSymbolTypeOnlyImportBug.ts"
+   ]
+  },
+  {
+   "agent": "Copilot",
+   "anchored": false,
+   "counts": {
+    "agent_instructions": 0,
+    "binary_or_large_added": 0,
+    "build_output_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "stray_file": 0,
+    "tests_removed": 0,
+    "version_bump": 0,
+    "whitespace_only": 0
+   },
+   "extras": [],
+   "files_changed": 1,
+   "files_sha256": "88e7bc2cffdf78a7ab8be83be7a7e4dbea9f46c3241772a0bbe7c6fc84187471",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/microsoft/perfview/issues/2199"
+   ],
+   "license": "MIT",
+   "named_paths": [],
+   "pr_url": "https://github.com/microsoft/perfview/pull/2212",
+   "repo": "microsoft/perfview",
+   "stray": [],
+   "unplaced": [
+    "src/PerfView/PerfViewData.cs"
+   ]
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "agent_instructions": 0,
+    "binary_or_large_added": 0,
+    "build_output_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "stray_file": 0,
+    "tests_removed": 0,
+    "version_bump": 0,
+    "whitespace_only": 0
+   },
+   "extras": [],
+   "files_changed": 2,
+   "files_sha256": "da1577a5561200760ce11686599375c4c5dd56384ae95af8ecd451f692be24db",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/microsoft/onnxruntime/issues/16619"
+   ],
+   "license": "MIT",
+   "named_paths": [
+    "onnxruntime/core/providers/cpu/tensor/concat.cc",
+    "onnxruntime/test/providers/cpu/sequence/concat_from_sequence_op_test.cc"
+   ],
+   "pr_url": "https://github.com/microsoft/onnxruntime/pull/25067",
+   "repo": "microsoft/onnxruntime",
+   "stray": [],
+   "unplaced": []
+  },
+  {
+   "agent": "OpenAI_Codex",
+   "anchored": true,
+   "counts": {
+    "agent_instructions": 0,
+    "binary_or_large_added": 0,
+    "build_output_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "stray_file": 0,
+    "tests_removed": 0,
+    "version_bump": 0,
+    "whitespace_only": 0
+   },
+   "extras": [],
+   "files_changed": 1,
+   "files_sha256": "70bf2e065284ff31d793cd5f9ff6dc62b5f1a77efe06daa09497b97a13be765c",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/davidmigloz/langchain_dart/issues/696"
+   ],
+   "license": "MIT",
+   "named_paths": [
+    "packages/openai_realtime_dart/lib/src/client.dart"
+   ],
+   "pr_url": "https://github.com/davidmigloz/langchain_dart/pull/723",
+   "repo": "davidmigloz/langchain_dart",
+   "stray": [],
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": false,
+   "counts": {
+    "agent_instructions": 0,
+    "binary_or_large_added": 0,
+    "build_output_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "stray_file": 0,
+    "tests_removed": 0,
+    "version_bump": 0,
+    "whitespace_only": 0
+   },
+   "extras": [],
+   "files_changed": 1,
+   "files_sha256": "81f4999818ca2c9992bc9665af0fe7aad737d173742f2a59465713fd32d0c75f",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/dotnet/aspire/issues/9713"
+   ],
+   "license": "MIT",
+   "named_paths": [],
+   "pr_url": "https://github.com/dotnet/aspire/pull/9714",
+   "repo": "dotnet/aspire",
+   "stray": [],
+   "unplaced": [
+    "tests/Aspire.Hosting.Testing.Tests/TestingBuilderTests.cs"
+   ]
+  },
+  {
+   "agent": "Copilot",
+   "anchored": false,
+   "counts": {
+    "agent_instructions": 0,
+    "binary_or_large_added": 0,
+    "build_output_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "stray_file": 0,
+    "tests_removed": 0,
+    "version_bump": 0,
+    "whitespace_only": 0
+   },
+   "extras": [],
+   "files_changed": 4,
+   "files_sha256": "e6baaafac02a580b51fd8e9399b92c753748bc8050239281800a3fd21d71f3c4",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/microsoft/typespec/issues/7547"
+   ],
+   "license": "MIT",
+   "named_paths": [],
+   "pr_url": "https://github.com/microsoft/typespec/pull/7553",
+   "repo": "microsoft/typespec",
+   "stray": [],
+   "unplaced": [
+    ".chronus/changes/copilot-fix-7547-2025-7-15-15-47-23.md",
+    "packages/http-specs/spec-summary.md",
+    "packages/http-specs/specs/payload/pageable/main.tsp",
+    "packages/http-specs/specs/payload/pageable/mockapi.ts"
+   ]
+  },
+  {
+   "agent": "Copilot",
+   "anchored": false,
+   "counts": {
+    "agent_instructions": 0,
+    "binary_or_large_added": 0,
+    "build_output_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "stray_file": 0,
+    "tests_removed": 0,
+    "version_bump": 0,
+    "whitespace_only": 0
+   },
+   "extras": [],
+   "files_changed": 1,
+   "files_sha256": "77707e425f57b55dd452340850fe5b7d4b53eb7b150386eba1309ef442f66332",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/mlflow/mlflow/issues/16388"
+   ],
+   "license": "Apache-2.0",
+   "named_paths": [],
+   "pr_url": "https://github.com/mlflow/mlflow/pull/16389",
+   "repo": "mlflow/mlflow",
+   "stray": [],
+   "unplaced": [
+    "tests/langchain/test_langchain_model_export.py"
+   ]
+  },
+  {
+   "agent": "Claude_Code",
+   "anchored": true,
+   "counts": {
+    "agent_instructions": 0,
+    "binary_or_large_added": 0,
+    "build_output_added": 0,
+    "ci_or_config": 2,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "stray_file": 0,
+    "tests_removed": 0,
+    "version_bump": 0,
+    "whitespace_only": 0
+   },
+   "extras": [
+    {
+     "detail": [],
+     "kind": "ci_or_config",
+     "name": ".github/workflows/comprehensive-testing.yml",
+     "path": ".github/workflows/comprehensive-testing.yml",
+     "why": "changes CI config; the issue does not mention it"
+    },
+    {
+     "detail": [],
+     "kind": "ci_or_config",
+     "name": ".github/workflows/npm-release.yml",
+     "path": ".github/workflows/npm-release.yml",
+     "why": "changes CI config; the issue does not mention it"
+    }
+   ],
+   "files_changed": 17,
+   "files_sha256": "b6a5dd32e24c779f32dc20728fc2cbd7eab517f01a5670141d1ea9d0168f67f3",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/ruvnet/ruv-FANN/issues/66"
+   ],
+   "license": "MIT",
+   "named_paths": [
+    ".github/workflows/comprehensive-testing.yml",
+    "ruv-swarm/npm/bin/ruv-swarm-clean.js",
+    "ruv-swarm/npm/data/.gitkeep",
+    "ruv-swarm/npm/package.json",
+    "ruv-swarm/npm/scripts/start-mcp-server.sh",
+    "ruv-swarm/npm/src/mcp-scope-tools.js",
+    "ruv-swarm/npm/src/scope-manager.js",
+    "ruv-swarm/npm/test/epic-66-acceptance-validation.test.js",
+    "ruv-swarm/npm/test/persistence.test.js",
+    "ruv-swarm/npm/test/run-all-tests.js",
+    "ruv-swarm/npm/test/scope-management-comprehensive.test.js",
+    "ruv-swarm/npm/test/scope-management-fixed.test.js",
+    "ruv-swarm/npm/test/scope-management-node.test.js",
+    "ruv-swarm/npm/test/scope-management-validation.test.js"
+   ],
+   "pr_url": "https://github.com/ruvnet/ruv-FANN/pull/68",
+   "repo": "ruvnet/ruv-FANN",
+   "stray": [],
+   "unplaced": [
+    ".gitignore"
+   ]
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "agent_instructions": 0,
+    "binary_or_large_added": 0,
+    "build_output_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "stray_file": 0,
+    "tests_removed": 0,
+    "version_bump": 0,
+    "whitespace_only": 0
+   },
+   "extras": [],
+   "files_changed": 38,
+   "files_sha256": "2a4c663960d0c8264502fe6a7f17ee657fe0e41efb4efff8db4e157a3a1c08dd",
+   "files_without_patch": 19,
+   "issue_urls": [
+    "https://github.com/Azure/autorest.csharp/issues/5325"
+   ],
+   "license": "MIT",
+   "named_paths": [
+    "package.json",
+    "samples/AnomalyDetector/tspCodeModel.json",
+    "src/TypeSpec.Extension/Emitter.Csharp/package.json",
+    "test/CadlRanchProjects/azure/core/basic/tspCodeModel.json",
+    "test/CadlRanchProjects/azure/core/model/tspCodeModel.json",
+    "test/CadlRanchProjects/azure/core/page/tspCodeModel.json",
+    "test/CadlRanchProjects/azure/example/basic/tspCodeModel.json",
+    "test/CadlRanchProjects/azure/resource-manager/resources/tspCodeModel.json",
+    "test/TestProjects/Authoring-TypeSpec/tspCodeModel.json",
+    "test/TestProjects/Customizations-TypeSpec/tspCodeModel.json",
+    "test/TestProjects/FirstTest-TypeSpec/tspCodeModel.json",
+    "test/TestProjects/MgmtTypeSpec/tspCodeModel.json",
+    "test/TestProjects/ModelReaderWriterValidation-TypeSpec/tspCodeModel.json",
+    "test/TestProjects/NoDocs-TypeSpec/tspCodeModel.json",
+    "test/TestProjects/sdk/newprojecttypespec/Azure.NewProject.TypeSpec/tspCodeModel.json"
+   ],
+   "pr_url": "https://github.com/Azure/autorest.csharp/pull/5334",
+   "repo": "Azure/autorest.csharp",
+   "stray": [],
+   "unplaced": [
+    "src/AutoRest.CSharp/Common/Output/Expressions/Samples/Snippets.ExampleValues.cs"
+   ]
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "agent_instructions": 0,
+    "binary_or_large_added": 0,
+    "build_output_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "stray_file": 0,
+    "tests_removed": 0,
+    "version_bump": 0,
+    "whitespace_only": 0
+   },
+   "extras": [],
+   "files_changed": 15,
+   "files_sha256": "6ec0fc273954057f0a6c20300c498d2071943aab3bf2182140caa13da340994b",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/dotnet/maui/issues/30097"
+   ],
+   "license": "MIT",
+   "named_paths": [
+    "src/Compatibility/Maps/src/Android/MapRenderer.cs",
+    "src/Compatibility/Maps/src/iOS/MapRenderer.cs",
+    "src/Controls/src/Core/TypedBinding.cs",
+    "src/Controls/tests/Core.UnitTests/TypedBindingUnitTests.cs",
+    "src/Controls/tests/DeviceTests/Controls.DeviceTests.csproj",
+    "src/Controls/tests/DeviceTests/ControlsDeviceTestExtensions.cs",
+    "src/Controls/tests/DeviceTests/Elements/Map/MapTests.cs",
+    "src/Controls/tests/DeviceTests/TestCategory.cs",
+    "src/Core/maps/src/Handlers/Map/MapHandler.Android.cs",
+    "src/Core/maps/src/Platform/iOS/MauiMKMapView.cs"
+   ],
+   "pr_url": "https://github.com/dotnet/maui/pull/30116",
+   "repo": "dotnet/maui",
+   "stray": [],
+   "unplaced": [
+    ".github/scripts/BuildAndRunHostApp.ps1",
+    ".github/scripts/Review-PR.ps1",
+    ".github/scripts/shared/Build-AndDeploy.ps1",
+    ".github/scripts/shared/Start-Emulator.ps1",
+    "eng/pipelines/ci-copilot.yml"
+   ]
+  },
+  {
+   "agent": "Copilot",
+   "anchored": false,
+   "counts": {
+    "agent_instructions": 0,
+    "binary_or_large_added": 0,
+    "build_output_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "stray_file": 0,
+    "tests_removed": 0,
+    "version_bump": 0,
+    "whitespace_only": 0
+   },
+   "extras": [],
+   "files_changed": 1,
+   "files_sha256": "232c6cea8a44ca7cc7f33f0b08c97abc8670c22585c5c9d1768833cb1115854c",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/dotenvx/dotenvx/issues/606"
+   ],
+   "license": "BSD-3-Clause",
+   "named_paths": [],
+   "pr_url": "https://github.com/dotenvx/dotenvx/pull/607",
+   "repo": "dotenvx/dotenvx",
+   "stray": [],
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": false,
+   "counts": {
+    "agent_instructions": 0,
+    "binary_or_large_added": 0,
+    "build_output_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "stray_file": 1,
+    "tests_removed": 0,
+    "version_bump": 0,
+    "whitespace_only": 0
+   },
+   "extras": [
+    {
+     "detail": [],
+     "kind": "stray_file",
+     "name": "run_examples.sh",
+     "path": "run_examples.sh",
+     "why": "adds a new top-level file no other changed file names; the issue does not ask for it"
+    }
+   ],
+   "files_changed": 5,
+   "files_sha256": "917b224580c07d01792e1f60c9af0cf1be54071fa06b6d6ff7aab2dfbc699753",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/aztfmod/terraform-provider-azurecaf/issues/329"
+   ],
+   "license": "MIT",
+   "named_paths": [],
+   "pr_url": "https://github.com/aztfmod/terraform-provider-azurecaf/pull/330",
+   "repo": "aztfmod/terraform-provider-azurecaf",
+   "stray": [
+    "run_examples.sh"
+   ],
+   "unplaced": [
+    "azurecaf/resource_name.go",
+    "azurecaf/resource_name_import_integration_test.go",
+    "azurecaf/resource_name_import_unit_test.go",
+    "examples/terraform.rc",
+    "run_examples.sh"
+   ]
+  },
+  {
+   "agent": "Copilot",
+   "anchored": false,
+   "counts": {
+    "agent_instructions": 0,
+    "binary_or_large_added": 0,
+    "build_output_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "stray_file": 0,
+    "tests_removed": 0,
+    "version_bump": 0,
+    "whitespace_only": 0
+   },
+   "extras": [],
+   "files_changed": 1,
+   "files_sha256": "e5de51f362b51d9b63e9eda7abc62ad7c5eae4131e27dda33d926530bb6afaca",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/taiga-family/taiga-ui/issues/11463"
+   ],
+   "license": "Apache-2.0",
+   "named_paths": [],
+   "pr_url": "https://github.com/taiga-family/taiga-ui/pull/11464",
+   "repo": "taiga-family/taiga-ui",
+   "stray": [],
+   "unplaced": [
+    "projects/demo-cypress/src/tests/textfield-in-table.cy.ts"
+   ]
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "agent_instructions": 0,
+    "binary_or_large_added": 0,
+    "build_output_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "stray_file": 0,
+    "tests_removed": 0,
+    "version_bump": 0,
+    "whitespace_only": 0
+   },
+   "extras": [],
+   "files_changed": 1,
+   "files_sha256": "be623707cf967f653bfc3271281de4b8df26bc74c19e21e1cac53cf329d01ea6",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/microsoft/perfview/issues/2253"
+   ],
+   "license": "MIT",
+   "named_paths": [
+    "src/PerfView/StackViewer/StackWindow.xaml.cs"
+   ],
+   "pr_url": "https://github.com/microsoft/perfview/pull/2254",
+   "repo": "microsoft/perfview",
+   "stray": [],
+   "unplaced": []
+  },
+  {
+   "agent": "Copilot",
+   "anchored": true,
+   "counts": {
+    "agent_instructions": 0,
+    "binary_or_large_added": 0,
+    "build_output_added": 0,
+    "ci_or_config": 0,
+    "generated_code_removed": 0,
+    "new_dependency": 0,
+    "public_api_removed": 0,
+    "stray_file": 0,
+    "tests_removed": 0,
+    "version_bump": 0,
+    "whitespace_only": 0
+   },
+   "extras": [],
+   "files_changed": 1,
+   "files_sha256": "397e90935129f2189dccd21c4416a01d60082ec6e212076e0ad7f149422a442c",
+   "files_without_patch": 0,
+   "issue_urls": [
+    "https://github.com/dotnet/aspnetcore/issues/62659"
+   ],
+   "license": "MIT",
+   "named_paths": [
+    "src/Components/Components/src/PersistentStateValueProvider.cs"
+   ],
+   "pr_url": "https://github.com/dotnet/aspnetcore/pull/62661",
+   "repo": "dotnet/aspnetcore",
+   "stray": [],
+   "unplaced": []
+  }
+ ],
+ "summary": {
+  "dataset": "hao-li/AIDev@v3",
+  "dataset_revision": "68ed5f4b80d27a9e057fc57567f38bd322ac73ec",
+  "excluded_prs_passed_over": 9,
+  "excluded_samples": [
+   "A",
+   "B",
+   "C",
+   "D",
+   "E"
+  ],
+  "flagged_if_rule5_never_abstained": 33,
+  "funnel": {
+   "linked_issues_that_are_prs": 0,
+   "linked_prs_in_permissive_repos": 3757,
+   "linked_prs_whose_repo_is_missing": 0,
+   "pool": 3703,
+   "pool_by_agent": {
+    "Claude_Code": 63,
+    "Copilot": 3152,
+    "Cursor": 38,
+    "Devin": 340,
+    "OpenAI_Codex": 110
+   },
+   "prs_linked_to_an_issue": 4905,
+   "pull_request_rows": 33596
+  },
+  "github_api_calls_this_run": 66,
+  "inputs_lock_sha256": "2f7be312ba0726e93735b0617144b165c5e54bba9dc3a806f40a167761c48519",
+  "kill_test_1a": {
+   "pass": true,
+   "pool": 3703,
+   "threshold": ">= 150"
+  },
+  "kill_test_1b": {
+   "flagged": 8,
+   "of": 60,
+   "pass": true,
+   "threshold": "6..30"
+  },
+  "per_kind": {
+   "agent_instructions": {
+    "extras": 1,
+    "prs": 1
+   },
+   "binary_or_large_added": {
+    "extras": 0,
+    "prs": 0
+   },
+   "build_output_added": {
+    "extras": 0,
+    "prs": 0
+   },
+   "ci_or_config": {
+    "extras": 6,
+    "prs": 4
+   },
+   "generated_code_removed": {
+    "extras": 0,
+    "prs": 0
+   },
+   "new_dependency": {
+    "extras": 3,
+    "prs": 2
+   },
+   "public_api_removed": {
+    "extras": 0,
+    "prs": 0
+   },
+   "stray_file": {
+    "extras": 3,
+    "prs": 3
+   },
+   "tests_removed": {
+    "extras": 0,
+    "prs": 0
+   },
+   "version_bump": {
+    "extras": 0,
+    "prs": 0
+   },
+   "whitespace_only": {
+    "extras": 0,
+    "prs": 0
+   }
+  },
+  "prs_with_a_file_missing_its_patch": 6,
+  "prs_with_unplaced_files": 31,
+  "python": "3.12.3",
+  "rules_file": "extras.py",
+  "rules_sha256": "4f08fd035c39a59c7d3f86e7facbc6b3258dda218868d8ba325f06ca7f164a60",
+  "rules_version": 6,
+  "sample": "sample F (held out: rules v6 frozen before this run)",
+  "sample_size": 60,
+  "seed": 20261015,
+  "skipped_fetch_failed": [
+   {
+    "error": "no files",
+    "pr_url": "https://github.com/xtermjs/xterm.js/pull/5361"
+   },
+   {
+    "error": "no files",
+    "pr_url": "https://github.com/Ljzd-PRO/KToolBox/pull/277"
+   },
+   {
+    "error": "no files",
+    "pr_url": "https://github.com/Azure/azure-rest-api-specs/pull/35642"
+   },
+   {
+    "error": "no files",
+    "pr_url": "https://github.com/microsoft/playwright/pull/36011"
+   },
+   {
+    "error": "gh: Not Found (HTTP 404)",
+    "pr_url": "https://github.com/antiwork/helper/pull/393"
+   },
+   {
+    "error": "no files",
+    "pr_url": "https://github.com/ant-design/ant-design-mobile/pull/6914"
+   }
+  ],
+  "unanchored": 24
+ }
+}

@@ -498,3 +498,20 @@ def test_the_other_person_sentence_shows_only_while_something_needs_a_name(repo,
     head = repo.commit({"notes.txt": "todo\n"})
     out = facts(repo, head, tmp_path, monkeypatch)
     assert out["state"] == "extras" and out["card"]["caveat_line"].endswith(ASKS_OTHER)
+
+
+# ---- T37 item 2: a file that changes what coding agents are told is never quieted by a team policy
+def test_agent_instructions_are_never_quieted():
+    e = Extra("agent_instructions", "AGENTS.md", "AGENTS.md", "w")
+    stray = Extra("stray_file", "NOTES.md", "NOTES.md", "w")
+    by_path = {p: {"filename": p, "status": "added"} for p in ("AGENTS.md", "NOTES.md")}
+    by_kind = POL.Policy(sha="a" * 40, found=True, kinds=("agent_instructions",))
+    by_md = POL.Policy(sha="a" * 40, found=True, paths=("*.md",))
+    assert POL.why_ignored(by_kind, e, (), None, by_path) is None
+    assert POL.why_ignored(by_md, e, (), None, by_path) is None
+    assert POL.why_ignored(by_md, stray, (), None, by_path) == "its files match ignore.paths `*.md`"     # the control
+    group = Extra("agent_instructions", "./", "agent instruction files", "w", ("AGENTS.md", "CLAUDE.md"))
+    assert POL.why_ignored(by_md, group, (), None, by_path) is None
+    assert POL.parse(b'[ignore]\nkinds = ["agent_instructions"]\n') == "ignore.kinds lists agent_instructions, which is never ignored"
+    assert POL.parse(b'[ignore]\nkinds = ["binary_or_large_added"]\n') == \
+        "ignore.kinds lists binary_or_large_added, which is never ignored"         # the same visible reason

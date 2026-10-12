@@ -1,4 +1,4 @@
-"""Mutation test: break each rule in a copy of extras.py (rules v5); the extras tests must fail.
+"""Mutation test: break each rule in a copy of extras.py (rules v6); the extras tests must fail.
 
 The unmutated copy runs first and must pass (T9: test_hardcode_audit.py cannot load
 tools/ inside a copy, so running every test file there failed for every mutant,
@@ -36,9 +36,9 @@ M = [
  ("5c directory tokens dropped", "                    or any(_token_named(d, toks, _GENERIC_DIRS) for d in _dirs(path) if not own(d))):", "                    ):"),
  ("5 three-word joins dropped", '_forms("".join(seq[i:i + 2])) | _forms("".join(seq[i:i + 3]))', '_forms("".join(seq[i:i + 2]))'),
  # ---- rules v2 (T7)
- ("v3 version=1 not dispatched", "    if version in (1, 2, 3, 4):\n", "    if version in (2, 3, 4):\n"),
- ("v3 version=2 not dispatched", "    if version in (1, 2, 3, 4):\n", "    if version in (1, 3, 4):\n"),
- ("v4 version=3 not dispatched", "    if version in (1, 2, 3, 4):\n", "    if version in (1, 2, 4):\n"),
+ ("v3 version=1 not dispatched", "    if version in (1, 2, 3, 4, 5):\n", "    if version in (2, 3, 4, 5):\n"),
+ ("v3 version=2 not dispatched", "    if version in (1, 2, 3, 4, 5):\n", "    if version in (1, 3, 4, 5):\n"),
+ ("v4 version=3 not dispatched", "    if version in (1, 2, 3, 4, 5):\n", "    if version in (1, 2, 4, 5):\n"),
  ("v2 1 URL lines yield nothing", "            name = _url_req_name(s)\n", "            name = None\n"),
  ("v2 1 URL source read as version", "            source = _url_source(kind, text)\n", "            source = None\n"),
  ("v2 1 npm owner/repo not a URL", " or _NPM_SHORTHAND.fullmatch(value):", ":"),
@@ -135,7 +135,7 @@ M = [
  ("v4 9b references ignored", "not any(\n                b.lower() in text for q, text in head.items() if q != p):", "True:"),
  ("v4 9b named files stray", " or p in named or _names_closely(p, toks, package):", ":"),
  # ---- rules v5 (T33)
- ("v5 version=4 not dispatched", "    if version in (1, 2, 3, 4):\n", "    if version in (1, 2, 3):\n"),
+ ("v5 version=4 not dispatched", "    if version in (1, 2, 3, 4, 5):\n", "    if version in (1, 2, 3, 5):\n"),
  ("v2 2 dependabot words dropped", '     ("dependabot", "renovate")),', "     _CI_WORDS),"),
  ("v5 2 base name does not name", "    return _mentions(issue_text, _base(path)) or any(", "    return any("),
  ("v5 2 stem does not name", " or any(_mentions(issue_text, s) for s in stems)", ""),
@@ -168,8 +168,37 @@ M = [
  ("v5 10 reported files counted again", 'if f["filename"] not in reported and _whitespace_only_file(f)', "if _whitespace_only_file(f)"),
  ("v5 10 files left unplaced", "    covered |= ws_files\n", ""),
  ("v5 10 shared directory not the name", '    where, name = (d + "/", d + "/") if d else ("./", "whitespace-only edits")', '    where, name = "./", "whitespace-only edits"'),
- ("v5 10 every path in the reason", '", ".join(paths[:3])', '", ".join(paths)'),
+ ("v5 10 every path in the reason", 'newline): "\n           + ", ".join(paths[:3])', 'newline): "\n           + ", ".join(paths)'),
  ("v5 10 detail cut to three", "why, tuple(paths))], set(paths)", "why, tuple(paths[:3]))], set(paths)"),
+ # ---- rules v6 (T37)
+ ("v6 version=5 not dispatched", "    if version in (1, 2, 3, 4, 5):\n", "    if version in (1, 2, 3, 4):\n"),
+ ("v6 11 off", "    found += agent\n", ""),
+ ("v6 11 files stay in other rules", '    rest = [f for f in rest if f["filename"] not in agent_files]\n', ""),
+ ("v6 11 files left unplaced", "    covered |= agent_files                 # v6: an agent instruction file is never unplaced\n", ""),
+ ("v6 11 named files do not anchor", " | set(anchors)   # v6: rule 11\n", "\n"),
+ ("v6 11 any depth off", "for i in range(len(parts)) for r in _AGENT_RX)", "for i in range(1) for r in _AGENT_RX)"),
+ ("v6 11 ** stays in one directory", '".+" if t == "**"', '"[^/]+" if t == "**"'),
+ ("v6 11 * crosses directories", '"[^/]+" if t == "*"', '".+" if t == "*"'),
+ ("v6 11 copilot-agent.yml missed", '".github/agents/*", ".github/copilot-agent.yml",', '".github/agents/*",'),
+ ("v6 11 deleted files skipped", "    hits = [f for f in files if any(is_agent_instructions(p)", '    hits = [f for f in files if f.get("status") != "removed" and any(is_agent_instructions(p)'),
+ ("v6 11 old path ignored", 'any(is_agent_instructions(p) for p in filter(None, (f["filename"], f.get("previous_filename"))))]', 'is_agent_instructions(f["filename"])]'),
+ ("v6 11 issue ignored", "    unasked = [f for f in hits if not any(_names_agent_file(issue_text, p)\n", "    unasked = [f for f in hits if not any(False\n"),
+ ("v6 11 base name ignored", "    if _mentions(issue_text, b) or any(_mentions(issue_text, w) for w in _AGENT_WORDS):", "    if any(_mentions(issue_text, w) for w in _AGENT_WORDS):"),
+ ("v6 11 phrases ignored", "    if _mentions(issue_text, b) or any(_mentions(issue_text, w) for w in _AGENT_WORDS):", "    if _mentions(issue_text, b):"),
+ ("v6 11 MCP names every file", '    return "mcp" in b.lower() and any(', "    return any("),
+ ("v6 11 MCP names nothing", '    return "mcp" in b.lower() and any(', "    return False and any("),
+ ("v6 11 one file grouped", "    if len(unasked) == 1:\n", "    if False:\n"),
+ ("v6 11 detail cut to three", "why, paths)], every", "why, paths[:3])], every"),
+ ("v6 11 count missing", 'f"{AGENT_TOLD}: {len(paths)} agent instruction files', 'f"{AGENT_TOLD}: agent instruction files'),
+ ("v6 11 every path in the reason", '+ "): "\n           + ", ".join(paths[:3])', '+ "): "\n           + ", ".join(paths)'),
+ ("v6 11 states missing", '           + ", ".join(f"{n} {s}" for s, n in sorted(states.items())) + "): "\n', '           + "): "\n'),
+ ("v6 11 verb always edits", "{_AGENT_VERB.get(f.get('status'), 'edits')}", "edits"),
+ ("v6 11 group not named by its directory", '(d + "/") if d else "./", "agent instruction files"', '"./", "agent instruction files"'),
+ ("v6 1b lower wording off", "        if all(_lower(o, v) for o in olds):", "        if False:"),
+ ("v6 1b text order", "    return b + [0] * (n - len(b)) < a + [0] * (n - len(a))", "    return new < old"),
+ ("v6 1b not padded", "    return b + [0] * (n - len(b)) < a + [0] * (n - len(a))", "    return b < a"),
+ ("v6 1b any number is dotted", '_DOTTED_VERSION = re.compile(r"\\d+(?:\\.\\d+)+")', '_DOTTED_VERSION = re.compile(r"\\d+(?:\\.\\d+)*")'),
+ ("v6 1b prefix is enough", "    if not (_DOTTED_VERSION.fullmatch(old) and _DOTTED_VERSION.fullmatch(new)):", "    if not (_DOTTED_VERSION.match(old) and _DOTTED_VERSION.match(new)):"),
 ]
 src = (REPO / "itemator/extras.py").read_text()
 TESTS = sorted(str(p.relative_to(REPO)) for p in (REPO / "tests").glob("test_extras*.py"))

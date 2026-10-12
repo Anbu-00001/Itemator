@@ -95,3 +95,21 @@ def test_the_in_scope_dependency_is_never_named_by_the_extra_thread(repo, tmp_pa
     stub = out["extras"][0]["thread_stub"]
     assert "requests-cache" not in stub and "requests_cache" not in stub
     check_stub(stub, "colorama", BOTH)
+
+
+# ---- T37 item 3: an agent instruction file offers `remove` only when the merge request adds that one file; the react flow
+# refuses whole-file and multi-file edits of existing files, so a modified, deleted or grouped one offers neither
+@pytest.mark.parametrize("e, by_path, offers", [
+    (Extra("agent_instructions", ".github/copilot-agent.yml", ".github/copilot-agent.yml", "w"),
+     added(".github/copilot-agent.yml"), REMOVE_ONLY),
+    (Extra("agent_instructions", ".github/copilot-instructions.md", ".github/copilot-instructions.md", "w"),
+     modified(".github/copilot-instructions.md"), NEITHER),
+    (Extra("agent_instructions", "AGENTS.md", "AGENTS.md", "w"), {"AGENTS.md": {"filename": "AGENTS.md", "status": "removed"}},
+     NEITHER),
+    (Extra("agent_instructions", "./", "agent instruction files", "w", ("AGENTS.md", "CLAUDE.md")),
+     {**added("AGENTS.md"), **added("CLAUDE.md")}, NEITHER),
+])
+def test_agent_instructions_offer_remove_only_for_one_added_file(e, by_path, offers):
+    assert ci.answers(e, (), by_path) == offers
+    check_stub(ci.thread_stub(e, offers=ci.answers(e, (), by_path)), e.name, offers)
+    assert ci._label(e).startswith("agent instructions")

@@ -1,10 +1,12 @@
-"""Rules v3 on samples A and B, v4 on samples A, B and C, v5 on A to D: the development sets they were fixed on.
+"""Rules v3 on samples A and B, v4 on samples A, B and C, v5 on A to D, v6 on A to E: the development sets they were
+fixed on.
 Development scores, not test scores.
 
 Run from the repository root, after the rules are final (the output is never overwritten):
     .venv/bin/python -I eval/rescore_dev.py              # v3 on A and B: results/replay_v3_devAB.json
     .venv/bin/python -I eval/rescore_dev.py --rules 4    # v4 on A, B and C: results/replay_v4_devABC.json
     .venv/bin/python -I eval/rescore_dev.py --rules 5    # v5 on A, B, C and D: results/replay_v5_devABCD.json
+    .venv/bin/python -I eval/rescore_dev.py --rules 6    # v6 on A to E: results/replay_v6_devABCDE.json
 No network: issue text comes from the pinned dataset (data/, checked against eval/inputs.lock.json),
 file lists from eval/cache. For every PR it first checks that the cached files hash to the committed v2
 record and that rules v2, run again, give the committed v2 extras and unplaced files; any mismatch is
@@ -15,6 +17,8 @@ anchoring. Precision needs a human or model audit; these files hold counts only.
 With --rules 5 the baseline is rules v4 as committed (replay_v4_devABC.json for A to C, replay_v4_sampleD.json for D):
 the cached files must hash the same and frozen v4, run again, must give the same extras, unplaced files, named files,
 stray files and anchoring.
+With --rules 6 the baseline is rules v5 as committed (replay_v5_devABCD.json for A to D, replay_v5_sampleE.json for E),
+checked the same way against frozen v5 (extras_v5.py).
 """
 from __future__ import annotations
 
@@ -27,13 +31,16 @@ REPO = pathlib.Path(__file__).resolve().parent.parent
 sys.path[:0] = [str(REPO / "eval"), str(REPO)]
 import replay_aidev as R  # noqa: E402
 from itemator import ci  # noqa: E402
-from itemator import extras as V5  # noqa: E402
+from itemator import extras as V6  # noqa: E402
+from itemator import extras_v5 as V5  # noqa: E402
 from itemator import extras_v4 as V4  # noqa: E402
 from itemator import extras_v3 as V3  # noqa: E402
 
 OUT = REPO / "results" / "replay_v3_devAB.json"
 OUT_V4 = REPO / "results" / "replay_v4_devABC.json"
 OUT_V5 = REPO / "results" / "replay_v5_devABCD.json"
+OUT_V6 = REPO / "results" / "replay_v6_devABCDE.json"
+V5_DEV, V5_E = REPO / "results/replay_v5_devABCD.json", REPO / "results/replay_v5_sampleE.json"
 V4_DEV, V4_D = REPO / "results/replay_v4_devABC.json", REPO / "results/replay_v4_sampleD.json"
 V3_DEV, V3_C = REPO / "results/replay_v3_devAB.json", REPO / "results/replay_v3_sampleC.json"
 SAMPLES = {"A": (R.SEED, REPO / "results/replay_v2_sampleA.json"),
@@ -180,7 +187,14 @@ def main_v4() -> int:
 
 
 def tally5(records, key):
-    kinds = V4.KINDS if key == "v4" else V5.KINDS
+    return _tally(records, key, V4.KINDS if key == "v4" else V5.KINDS)
+
+
+def tally6(records, key):
+    return _tally(records, key, V5.KINDS if key == "v5" else V6.KINDS)
+
+
+def _tally(records, key, kinds):
     return {"flagged_prs": sum(1 for r in records if r[key]["extras"]),
             "extras": sum(len(r[key]["extras"]) for r in records),
             "extras_with_mass_events_expanded": sum(len(e.get("detail") or ()) or 1 for r in records for e in r[key]["extras"]),
@@ -229,7 +243,7 @@ def main_v5() -> int:
         "score": "development score: rules v5 were fixed on these 240 PRs (samples A, B, C and D); not a test score. "
                  "These are counts, not precision: precision needs a human or model audit of the extras",
         "dataset_revision": R.LOCK["dataset_revision"], "inputs_lock_sha256": R.sha256(R.LOCK_FILE),
-        "rules_v5_sha256": R.sha256(REPO / "itemator/extras.py"), "rules_v4_sha256": R.sha256(REPO / "itemator/extras_v4.py"),
+        "rules_v5_sha256": R.sha256(REPO / "itemator/extras_v5.py"), "rules_v4_sha256": R.sha256(REPO / "itemator/extras_v4.py"),
         "ci_sha256": R.sha256(REPO / "itemator/ci.py"), "card_group_threshold": ci.GROUP,
         "whitespace_group_threshold": V5.WHITESPACE_GROUP,
         "v4_results_sha256": {"A+B+C": R.sha256(V4_DEV), "D": R.sha256(V4_D)},
@@ -246,7 +260,54 @@ def main_v5() -> int:
     return 0
 
 
+def main_v6() -> int:
+    if OUT_V6.exists():
+        sys.exit(f"{OUT_V6} exists; this run happens once (move the file away to repeat it)")
+    R.check_inputs()
+    pool, _ = R.build_pool()
+    by_url = {p["pr_url"]: p for p in pool}
+    ref = [(r["sample"], r["seed"], r["pr_url"], r["v5"], r["files_sha256"]) for r in json.loads(V5_DEV.read_text())["prs"]]
+    ref += [("E", R.SEED_E, r["pr_url"], r, r["files_sha256"]) for r in json.loads(V5_E.read_text())["prs"]]
+    records, mismatches = [], []
+    for sample, seed, url, v5, v5_sha in ref:
+        pr = by_url[url]
+        files = json.loads((R.CACHE / f"{pr['pr_id']}.json").read_text())["files"]
+        digest = hashlib.sha256(json.dumps(files, sort_keys=True).encode()).hexdigest()
+        again = _record(V5.analyse(pr["issue_text"], files, repo=pr["repo"]), V5.KINDS)
+        if digest != v5_sha or any(again[k] != v5[k] for k in ("extras", "unplaced", "anchored", "named_paths", "stray")):
+            mismatches.append(url)
+        records.append({"sample": sample, "seed": seed, "pr_url": url, "repo": pr["repo"], "agent": pr["agent"],
+                        "files_changed": len(files), "files_sha256": digest, "v5": again,
+                        "v6": _record(V6.analyse(pr["issue_text"], files, repo=pr["repo"]), V6.KINDS)})
+    pairs = lambda r, key: [[e["kind"], e["name"]] for e in r[key]["extras"]]
+    changed = [{"pr_url": r["pr_url"], "sample": r["sample"], "v5": pairs(r, "v5"), "v6": pairs(r, "v6"),
+                "v6_card_lines": r["v6"]["card_lines"], "v6_stray": r["v6"]["stray"]}
+               for r in records if pairs(r, "v5") != pairs(r, "v6") or r["v5"]["extras"] != r["v6"]["extras"]]
+    anchoring = [{"pr_url": r["pr_url"], "sample": r["sample"], "v5": r["v5"]["anchored"], "v6": r["v6"]["anchored"],
+                  "v6_named_paths": r["v6"]["named_paths"]} for r in records if r["v5"]["anchored"] != r["v6"]["anchored"]]
+    samples = ("A", "B", "C", "D", "E")
+    summary = {
+        "score": "development score: rules v6 were fixed on these 300 PRs (samples A to E); not a test score. "
+                 "These are counts, not precision: precision needs a human or model audit of the extras",
+        "dataset_revision": R.LOCK["dataset_revision"], "inputs_lock_sha256": R.sha256(R.LOCK_FILE),
+        "rules_v6_sha256": R.sha256(REPO / "itemator/extras.py"), "rules_v5_sha256": R.sha256(REPO / "itemator/extras_v5.py"),
+        "ci_sha256": R.sha256(REPO / "itemator/ci.py"), "card_group_threshold": ci.GROUP,
+        "v5_results_sha256": {"A+B+C+D": R.sha256(V5_DEV), "E": R.sha256(V5_E)},
+        "v5_reproduced": not mismatches, "v5_mismatches": mismatches,
+        "by_sample": {s: {"prs": sum(1 for r in records if r["sample"] == s),
+                          "v5": tally6([r for r in records if r["sample"] == s], "v5"),
+                          "v6": tally6([r for r in records if r["sample"] == s], "v6")} for s in samples},
+        "all": {"prs": len(records), "v5": tally6(records, "v5"), "v6": tally6(records, "v6")},
+        "prs_whose_extras_changed": changed, "prs_whose_anchoring_changed": anchoring,
+    }
+    OUT_V6.write_text(json.dumps({"summary": summary, "prs": records}, indent=1, sort_keys=True) + "\n")
+    print(json.dumps({k: summary[k] for k in ("v5_reproduced", "v5_mismatches", "all", "prs_whose_extras_changed",
+                                              "prs_whose_anchoring_changed")}, indent=1))
+    print(f"wrote {OUT_V6}")
+    return 0
+
+
 if __name__ == "__main__":
-    if sys.argv[1:] not in ([], ["--rules", "3"], ["--rules", "4"], ["--rules", "5"]):
-        sys.exit("usage: rescore_dev.py [--rules 3|4|5]")
-    sys.exit({"4": main_v4, "5": main_v5}.get(sys.argv[2] if sys.argv[1:] else "", main)())
+    if sys.argv[1:] not in ([], ["--rules", "3"], ["--rules", "4"], ["--rules", "5"], ["--rules", "6"]):
+        sys.exit("usage: rescore_dev.py [--rules 3|4|5|6]")
+    sys.exit({"4": main_v4, "5": main_v5, "6": main_v6}.get(sys.argv[2] if sys.argv[1:] else "", main)())

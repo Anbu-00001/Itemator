@@ -76,7 +76,9 @@ def req(*lines):
 
 
 def card(files, fetch):
-    return ci.facts(mr_iid=5, mr_title="Fix the parser", mr_description="Closes #12", mr_author_id=2, issues=[ISSUE],
+    # T35: no description, so no said-or-silent sentence sits between the registry sentence and the replies
+    # (tests/test_said.py checks that sentence and its place after the registry one)
+    return ci.facts(mr_iid=5, mr_title="Fix the parser", mr_description="", mr_author_id=2, issues=[ISSUE],
                     issues_from="closes_issues", files=files, repo=None, base_sha="a", head_sha="b", warnings=[],
                     now=NOW, registry_fetch=fetch)
 

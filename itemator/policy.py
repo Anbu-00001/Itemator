@@ -34,12 +34,14 @@ SCHEMA = {"names": {"other_person_required": bool}, "ignore": {"kinds": list, "p
 # - policy_changed: the merge request edits the rules the next merge requests are judged by.
 # - binary_or_large_added: nobody can read a binary or a huge file in review, so a name is the only sign
 #   that someone looked.
+# - agent_instructions (T37): a file that changes what coding agents are told or may use; a policy that hid it would
+#   let the next agent change its own instructions unseen.
 # A new dependency is quieted only when the registry found every package (why_ignored): one the registry does not
 # know may be a typo or a name taken by someone else; one whose facts could not be read (past the lookup cap, an
 # invalid name, a network error) proves nothing; and (T26 B3) neither does a URL, git or local-path source or an
 # ecosystem with no lookup (go, gem, maven, gradle). The only exception is the package the merge request declares
 # itself (reason own_package).
-NEVER_IGNORED = ("policy_changed", "binary_or_large_added")
+NEVER_IGNORED = ("policy_changed", "binary_or_large_added", "agent_instructions")
 
 _SHA = re.compile(r"[0-9a-f]{40}")
 _CONTROL = re.compile(r"[\x00-\x1f\x7f-\x9f]")

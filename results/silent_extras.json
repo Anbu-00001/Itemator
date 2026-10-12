@@ -1,0 +1,789 @@
+{
+ "summary": {
+  "what": "Whether each extra the rules found is named in the agent's own PR title or body (T35 Part 1).",
+  "rule": "itemator/said.py after T38: a name counts when nothing that continues it touches it (no letter, digit or _, and no - . / @ + ~ followed or preceded by one); for a path extra also its base name (no / before it) or full path; for an extra with a detail list also its file's or directory's base name and any listed item; closed HTML comments, link destinations, reference definitions and HTML attributes dropped. named = strong match (in code, a full path, or exact case of a name that is not an ordinary word); weak = only an ordinary word (lowercase letters, 8 or fewer, or a generic directory) outside code, which gets no sentence. Names under 3 characters or without a letter or digit never match. Paraphrases are not counted. A PR with no body is judged on its title alone.",
+  "unit": "one extra record as the replay files hold it (rules v4 for A to D, v5 for E), before card grouping",
+  "not_claimed": "No precision, no rate of agents hiding changes: small samples, string matching only.",
+  "inputs": {
+   "pull_request.parquet_sha256": "08f520b5ef36b6281f82090db09ac14aefc3534ee113886e7bc85131fd8d214c",
+   "duckdb": "1.5.6",
+   "replays": [
+    "results/replay_v4_devABC.json",
+    "results/replay_v4_sampleD.json",
+    "results/replay_v5_sampleE.json"
+   ],
+   "audit": "results/audits/sample-D-rules-v4.md"
+  },
+  "per_sample": {
+   "A": {
+    "flagged_prs": 9,
+    "extras": 14,
+    "named": 3,
+    "listed_under_beyond_the_issue": 0,
+    "named_strong": 3,
+    "weak_only_no_sentence": 0,
+    "not_named": 11,
+    "not_read": 0,
+    "prs_with_empty_body": 0
+   },
+   "B": {
+    "flagged_prs": 8,
+    "extras": 11,
+    "named": 4,
+    "listed_under_beyond_the_issue": 0,
+    "named_strong": 4,
+    "weak_only_no_sentence": 1,
+    "not_named": 6,
+    "not_read": 0,
+    "prs_with_empty_body": 0
+   },
+   "C": {
+    "flagged_prs": 7,
+    "extras": 34,
+    "named": 1,
+    "listed_under_beyond_the_issue": 0,
+    "named_strong": 1,
+    "weak_only_no_sentence": 1,
+    "not_named": 32,
+    "not_read": 0,
+    "prs_with_empty_body": 0
+   },
+   "D": {
+    "flagged_prs": 8,
+    "extras": 12,
+    "named": 3,
+    "listed_under_beyond_the_issue": 0,
+    "named_strong": 3,
+    "weak_only_no_sentence": 0,
+    "not_named": 9,
+    "not_read": 0,
+    "prs_with_empty_body": 0
+   },
+   "E": {
+    "flagged_prs": 3,
+    "extras": 4,
+    "named": 1,
+    "listed_under_beyond_the_issue": 0,
+    "named_strong": 1,
+    "weak_only_no_sentence": 0,
+    "not_named": 3,
+    "not_read": 0,
+    "prs_with_empty_body": 0
+   },
+   "total": {
+    "flagged_prs": 35,
+    "extras": 75,
+    "named": 12,
+    "listed_under_beyond_the_issue": 0,
+    "named_strong": 12,
+    "weak_only_no_sentence": 2,
+    "not_named": 61,
+    "not_read": 0,
+    "prs_with_empty_body": 0
+   }
+  },
+  "sample_D_audit_clearly_real": [
+   {
+    "pr_url": "https://github.com/microsoft/typespec/pull/7664",
+    "kind": "build_output_added",
+    "name": "packages/http-client-python/venv_build_wheel/lib/python3.12/site-packages/",
+    "said": "silent"
+   },
+   {
+    "pr_url": "https://github.com/haydenbleasel/ultracite/pull/180",
+    "kind": "stray_file",
+    "name": "package-lock.json",
+    "said": "silent"
+   },
+   {
+    "pr_url": "https://github.com/Azure/azure-sdk-for-js/pull/34479",
+    "kind": "ci_or_config",
+    "name": "sdk/appconfiguration/app-configuration/tsconfig.test.vitest-temp.json",
+    "said": "silent"
+   },
+   {
+    "pr_url": "https://github.com/elsa-workflows/elsa-core/pull/6677",
+    "kind": "stray_file",
+    "name": "dotnet-install.sh",
+    "said": "silent"
+   }
+  ]
+ },
+ "extras": [
+  {
+   "sample": "A",
+   "pr_url": "https://github.com/crewAIInc/crewAI/pull/2034",
+   "kind": "public_api_removed",
+   "name": "json",
+   "detail_count": 0,
+   "body_empty": false,
+   "said": "silent"
+  },
+  {
+   "sample": "A",
+   "pr_url": "https://github.com/crewAIInc/crewAI/pull/2034",
+   "kind": "public_api_removed",
+   "name": "json",
+   "detail_count": 0,
+   "body_empty": false,
+   "said": "silent"
+  },
+  {
+   "sample": "A",
+   "pr_url": "https://github.com/crewAIInc/crewAI/pull/2034",
+   "kind": "public_api_removed",
+   "name": "from_langchain",
+   "detail_count": 0,
+   "body_empty": false,
+   "said": "silent"
+  },
+  {
+   "sample": "A",
+   "pr_url": "https://github.com/crewAIInc/crewAI/pull/2034",
+   "kind": "public_api_removed",
+   "name": "to_langchain",
+   "detail_count": 0,
+   "body_empty": false,
+   "said": "silent"
+  },
+  {
+   "sample": "A",
+   "pr_url": "https://github.com/microsoft/typespec/pull/7662",
+   "kind": "build_output_added",
+   "name": "packages/http-client-python/venv_build_wheel/lib/python3.12/site-packages/",
+   "detail_count": 499,
+   "body_empty": false,
+   "said": "silent"
+  },
+  {
+   "sample": "A",
+   "pr_url": "https://github.com/collinbarrett/FilterLists/pull/5036",
+   "kind": "ci_or_config",
+   "name": ".github/workflows/check-aspire-versions.yml",
+   "detail_count": 0,
+   "body_empty": false,
+   "said": "named"
+  },
+  {
+   "sample": "A",
+   "pr_url": "https://github.com/microsoft/retina/pull/1704",
+   "kind": "binary_or_large_added",
+   "name": "test-summary",
+   "detail_count": 0,
+   "body_empty": false,
+   "said": "silent"
+  },
+  {
+   "sample": "A",
+   "pr_url": "https://github.com/haydenbleasel/kibo/pull/180",
+   "kind": "ci_or_config",
+   "name": "apps/docs/tsconfig.json",
+   "detail_count": 0,
+   "body_empty": false,
+   "said": "named"
+  },
+  {
+   "sample": "A",
+   "pr_url": "https://github.com/orangewise/s3-zip/pull/113",
+   "kind": "new_dependency",
+   "name": "normalize-path",
+   "detail_count": 0,
+   "body_empty": false,
+   "said": "named"
+  },
+  {
+   "sample": "A",
+   "pr_url": "https://github.com/benbalter/jekyll-relative-links/pull/97",
+   "kind": "ci_or_config",
+   "name": ".rubocop.yml",
+   "detail_count": 0,
+   "body_empty": false,
+   "said": "silent"
+  },
+  {
+   "sample": "A",
+   "pr_url": "https://github.com/microsoft/typespec/pull/7423",
+   "kind": "binary_or_large_added",
+   "name": "packages/http-client-csharp/generator/Microsoft.TypeSpec.Generator/test/TestResults/2ca011f1-331c-4fb9-8274-d966a9e2786e/runner_pkrvmxyh4eaekms_2025-06-16.03_56_21.coverage",
+   "detail_count": 0,
+   "body_empty": false,
+   "said": "silent"
+  },
+  {
+   "sample": "A",
+   "pr_url": "https://github.com/Azure/azure-sdk-for-python/pull/41693",
+   "kind": "public_api_removed",
+   "name": "after_multiapi_combiner",
+   "detail_count": 0,
+   "body_empty": false,
+   "said": "silent"
+  },
+  {
+   "sample": "A",
+   "pr_url": "https://github.com/Azure/azure-sdk-for-python/pull/41693",
+   "kind": "public_api_removed",
+   "name": "check_package_size",
+   "detail_count": 0,
+   "body_empty": false,
+   "said": "silent"
+  },
+  {
+   "sample": "A",
+   "pr_url": "https://github.com/Azure/azure-sdk-for-python/pull/41693",
+   "kind": "public_api_removed",
+   "name": "get_private_package",
+   "detail_count": 0,
+   "body_empty": false,
+   "said": "silent"
+  },
+  {
+   "sample": "B",
+   "pr_url": "https://github.com/tomhrr/cosh/pull/182",
+   "kind": "new_dependency",
+   "name": "fnv",
+   "detail_count": 0,
+   "body_empty": false,
+   "said": "named"
+  },
+  {
+   "sample": "B",
+   "pr_url": "https://github.com/microsoft/react-native-gallery/pull/601",
+   "kind": "stray_file",
+   "name": "FONT_SCALE_ACCESSIBILITY.md",
+   "detail_count": 0,
+   "body_empty": false,
+   "said": "named"
+  },
+  {
+   "sample": "B",
+   "pr_url": "https://github.com/v0l/snort/pull/603",
+   "kind": "binary_or_large_added",
+   "name": "packages/app/public/phoenix/img/apple-touch-icon.png",
+   "detail_count": 0,
+   "body_empty": false,
+   "said": "silent"
+  },
+  {
+   "sample": "B",
+   "pr_url": "https://github.com/Azure/autorest.typescript/pull/3259",
+   "kind": "generated_code_removed",
+   "name": "packages/typespec-test/test/",
+   "detail_count": 102,
+   "body_empty": false,
+   "said": "weak"
+  },
+  {
+   "sample": "B",
+   "pr_url": "https://github.com/crewAIInc/crewAI/pull/2792",
+   "kind": "tests_removed",
+   "name": "tests/crew_test.py",
+   "detail_count": 0,
+   "body_empty": false,
+   "said": "named"
+  },
+  {
+   "sample": "B",
+   "pr_url": "https://github.com/evstack/ev-node/pull/2501",
+   "kind": "binary_or_large_added",
+   "name": "apps/evm/single/evm-single",
+   "detail_count": 0,
+   "body_empty": false,
+   "said": "silent"
+  },
+  {
+   "sample": "B",
+   "pr_url": "https://github.com/evstack/ev-node/pull/2501",
+   "kind": "binary_or_large_added",
+   "name": "run-evm-nodes",
+   "detail_count": 0,
+   "body_empty": false,
+   "said": "silent"
+  },
+  {
+   "sample": "B",
+   "pr_url": "https://github.com/aztfmod/terraform-provider-azurecaf/pull/332",
+   "kind": "ci_or_config",
+   "name": ".github/workflows/go.yml",
+   "detail_count": 0,
+   "body_empty": false,
+   "said": "silent"
+  },
+  {
+   "sample": "B",
+   "pr_url": "https://github.com/aztfmod/terraform-provider-azurecaf/pull/332",
+   "kind": "ci_or_config",
+   "name": "Makefile",
+   "detail_count": 0,
+   "body_empty": false,
+   "said": "named"
+  },
+  {
+   "sample": "B",
+   "pr_url": "https://github.com/jlowin/fastmcp/pull/870",
+   "kind": "public_api_removed",
+   "name": "get_templates",
+   "detail_count": 0,
+   "body_empty": false,
+   "said": "silent"
+  },
+  {
+   "sample": "B",
+   "pr_url": "https://github.com/jlowin/fastmcp/pull/870",
+   "kind": "public_api_removed",
+   "name": "from_client",
+   "detail_count": 0,
+   "body_empty": false,
+   "said": "silent"
+  },
+  {
+   "sample": "C",
+   "pr_url": "https://github.com/Azure/AppConfiguration/pull/1065",
+   "kind": "new_dependency",
+   "name": "azure-identity",
+   "detail_count": 0,
+   "body_empty": false,
+   "said": "silent"
+  },
+  {
+   "sample": "C",
+   "pr_url": "https://github.com/Azure/AppConfiguration/pull/1065",
+   "kind": "new_dependency",
+   "name": "openai",
+   "detail_count": 0,
+   "body_empty": false,
+   "said": "weak"
+  },
+  {
+   "sample": "C",
+   "pr_url": "https://github.com/Azure/AppConfiguration/pull/1065",
+   "kind": "ci_or_config",
+   "name": "examples/Python/ChatApp/pyproject.toml",
+   "detail_count": 0,
+   "body_empty": false,
+   "said": "silent"
+  },
+  {
+   "sample": "C",
+   "pr_url": "https://github.com/Azure/AppConfiguration/pull/1065",
+   "kind": "ci_or_config",
+   "name": "pyproject.toml",
+   "detail_count": 0,
+   "body_empty": false,
+   "said": "silent"
+  },
+  {
+   "sample": "C",
+   "pr_url": "https://github.com/mlco2/codecarbon/pull/905",
+   "kind": "ci_or_config",
+   "name": ".github/workflows/package.yml",
+   "detail_count": 0,
+   "body_empty": false,
+   "said": "silent"
+  },
+  {
+   "sample": "C",
+   "pr_url": "https://github.com/mlco2/codecarbon/pull/905",
+   "kind": "ci_or_config",
+   "name": ".github/workflows/python-publish.yml",
+   "detail_count": 0,
+   "body_empty": false,
+   "said": "silent"
+  },
+  {
+   "sample": "C",
+   "pr_url": "https://github.com/mlco2/codecarbon/pull/905",
+   "kind": "public_api_removed",
+   "name": "get_local_version",
+   "detail_count": 0,
+   "body_empty": false,
+   "said": "silent"
+  },
+  {
+   "sample": "C",
+   "pr_url": "https://github.com/mlco2/codecarbon/pull/905",
+   "kind": "public_api_removed",
+   "name": "get_versions_from_pypi",
+   "detail_count": 0,
+   "body_empty": false,
+   "said": "silent"
+  },
+  {
+   "sample": "C",
+   "pr_url": "https://github.com/mlco2/codecarbon/pull/905",
+   "kind": "version_bump",
+   "name": "3.0.5",
+   "detail_count": 0,
+   "body_empty": false,
+   "said": "silent"
+  },
+  {
+   "sample": "C",
+   "pr_url": "https://github.com/haydenbleasel/kibo/pull/164",
+   "kind": "stray_file",
+   "name": "package-lock.json",
+   "detail_count": 0,
+   "body_empty": false,
+   "said": "silent"
+  },
+  {
+   "sample": "C",
+   "pr_url": "https://github.com/Azure/azure-sdk-for-js/pull/34607",
+   "kind": "stray_file",
+   "name": "prepare-changelog.md",
+   "detail_count": 0,
+   "body_empty": false,
+   "said": "silent"
+  },
+  {
+   "sample": "C",
+   "pr_url": "https://github.com/microsoft/vstest/pull/15097",
+   "kind": "stray_file",
+   "name": "global.json.backup",
+   "detail_count": 0,
+   "body_empty": false,
+   "said": "silent"
+  },
+  {
+   "sample": "C",
+   "pr_url": "https://github.com/mizchi/similarity/pull/13",
+   "kind": "new_dependency",
+   "name": "tree-sitter-c",
+   "detail_count": 0,
+   "body_empty": false,
+   "said": "silent"
+  },
+  {
+   "sample": "C",
+   "pr_url": "https://github.com/mizchi/similarity/pull/13",
+   "kind": "new_dependency",
+   "name": "tree-sitter-c-sharp",
+   "detail_count": 0,
+   "body_empty": false,
+   "said": "silent"
+  },
+  {
+   "sample": "C",
+   "pr_url": "https://github.com/mizchi/similarity/pull/13",
+   "kind": "new_dependency",
+   "name": "tree-sitter-cpp",
+   "detail_count": 0,
+   "body_empty": false,
+   "said": "silent"
+  },
+  {
+   "sample": "C",
+   "pr_url": "https://github.com/mizchi/similarity/pull/13",
+   "kind": "new_dependency",
+   "name": "tree-sitter-go",
+   "detail_count": 0,
+   "body_empty": false,
+   "said": "silent"
+  },
+  {
+   "sample": "C",
+   "pr_url": "https://github.com/mizchi/similarity/pull/13",
+   "kind": "new_dependency",
+   "name": "tree-sitter-java",
+   "detail_count": 0,
+   "body_empty": false,
+   "said": "silent"
+  },
+  {
+   "sample": "C",
+   "pr_url": "https://github.com/mizchi/similarity/pull/13",
+   "kind": "new_dependency",
+   "name": "tree-sitter-php",
+   "detail_count": 0,
+   "body_empty": false,
+   "said": "silent"
+  },
+  {
+   "sample": "C",
+   "pr_url": "https://github.com/mizchi/similarity/pull/13",
+   "kind": "new_dependency",
+   "name": "tree-sitter-ruby",
+   "detail_count": 0,
+   "body_empty": false,
+   "said": "silent"
+  },
+  {
+   "sample": "C",
+   "pr_url": "https://github.com/mizchi/similarity/pull/13",
+   "kind": "new_dependency",
+   "name": "serde",
+   "detail_count": 0,
+   "body_empty": false,
+   "said": "silent"
+  },
+  {
+   "sample": "C",
+   "pr_url": "https://github.com/mizchi/similarity/pull/13",
+   "kind": "new_dependency",
+   "name": "serde_json",
+   "detail_count": 0,
+   "body_empty": false,
+   "said": "silent"
+  },
+  {
+   "sample": "C",
+   "pr_url": "https://github.com/mizchi/similarity/pull/13",
+   "kind": "new_dependency",
+   "name": "tree-sitter-c",
+   "detail_count": 0,
+   "body_empty": false,
+   "said": "silent"
+  },
+  {
+   "sample": "C",
+   "pr_url": "https://github.com/mizchi/similarity/pull/13",
+   "kind": "new_dependency",
+   "name": "tree-sitter-c-sharp",
+   "detail_count": 0,
+   "body_empty": false,
+   "said": "silent"
+  },
+  {
+   "sample": "C",
+   "pr_url": "https://github.com/mizchi/similarity/pull/13",
+   "kind": "new_dependency",
+   "name": "tree-sitter-cpp",
+   "detail_count": 0,
+   "body_empty": false,
+   "said": "silent"
+  },
+  {
+   "sample": "C",
+   "pr_url": "https://github.com/mizchi/similarity/pull/13",
+   "kind": "new_dependency",
+   "name": "tree-sitter-go",
+   "detail_count": 0,
+   "body_empty": false,
+   "said": "silent"
+  },
+  {
+   "sample": "C",
+   "pr_url": "https://github.com/mizchi/similarity/pull/13",
+   "kind": "new_dependency",
+   "name": "tree-sitter-java",
+   "detail_count": 0,
+   "body_empty": false,
+   "said": "silent"
+  },
+  {
+   "sample": "C",
+   "pr_url": "https://github.com/mizchi/similarity/pull/13",
+   "kind": "new_dependency",
+   "name": "tree-sitter-ruby",
+   "detail_count": 0,
+   "body_empty": false,
+   "said": "silent"
+  },
+  {
+   "sample": "C",
+   "pr_url": "https://github.com/mizchi/similarity/pull/13",
+   "kind": "new_dependency",
+   "name": "similarity-generic",
+   "detail_count": 0,
+   "body_empty": false,
+   "said": "named"
+  },
+  {
+   "sample": "C",
+   "pr_url": "https://github.com/microsoft/genaiscript/pull/1740",
+   "kind": "binary_or_large_added",
+   "name": ".turbo/cache/7b794222d2140ddb.tar.zst",
+   "detail_count": 0,
+   "body_empty": false,
+   "said": "silent"
+  },
+  {
+   "sample": "C",
+   "pr_url": "https://github.com/microsoft/genaiscript/pull/1740",
+   "kind": "binary_or_large_added",
+   "name": "packages/core/genaisrc/genaiscript.d.ts",
+   "detail_count": 0,
+   "body_empty": false,
+   "said": "silent"
+  },
+  {
+   "sample": "C",
+   "pr_url": "https://github.com/microsoft/genaiscript/pull/1740",
+   "kind": "build_output_added",
+   "name": "packages/core/.tshy-build/",
+   "detail_count": 795,
+   "body_empty": false,
+   "said": "silent"
+  },
+  {
+   "sample": "C",
+   "pr_url": "https://github.com/microsoft/genaiscript/pull/1740",
+   "kind": "build_output_added",
+   "name": "tools/eslint-plugin-genaiscript/.tshy-build/",
+   "detail_count": 138,
+   "body_empty": false,
+   "said": "silent"
+  },
+  {
+   "sample": "C",
+   "pr_url": "https://github.com/microsoft/genaiscript/pull/1740",
+   "kind": "build_output_added",
+   "name": "tools/eslint-plugin-genaiscript/dist/",
+   "detail_count": 138,
+   "body_empty": false,
+   "said": "silent"
+  },
+  {
+   "sample": "C",
+   "pr_url": "https://github.com/microsoft/genaiscript/pull/1740",
+   "kind": "stray_file",
+   "name": "stray files",
+   "detail_count": 10,
+   "body_empty": false,
+   "said": "silent"
+  },
+  {
+   "sample": "D",
+   "pr_url": "https://github.com/microsoft/ApplicationInsights-JS/pull/2540",
+   "kind": "new_dependency",
+   "name": "@microsoft/dynamicproto-js",
+   "detail_count": 0,
+   "body_empty": false,
+   "said": "silent"
+  },
+  {
+   "sample": "D",
+   "pr_url": "https://github.com/microsoft/ApplicationInsights-JS/pull/2540",
+   "kind": "new_dependency",
+   "name": "globby",
+   "detail_count": 0,
+   "body_empty": false,
+   "said": "silent"
+  },
+  {
+   "sample": "D",
+   "pr_url": "https://github.com/microsoft/ApplicationInsights-JS/pull/2540",
+   "kind": "new_dependency",
+   "name": "magic-string",
+   "detail_count": 0,
+   "body_empty": false,
+   "said": "silent"
+  },
+  {
+   "sample": "D",
+   "pr_url": "https://github.com/microsoft/typespec/pull/7664",
+   "kind": "build_output_added",
+   "name": "packages/http-client-python/venv_build_wheel/lib/python3.12/site-packages/",
+   "detail_count": 499,
+   "body_empty": false,
+   "said": "silent"
+  },
+  {
+   "sample": "D",
+   "pr_url": "https://github.com/monosans/proxy-scraper-checker/pull/696",
+   "kind": "new_dependency",
+   "name": "urlencoding",
+   "detail_count": 0,
+   "body_empty": false,
+   "said": "silent"
+  },
+  {
+   "sample": "D",
+   "pr_url": "https://github.com/monosans/proxy-scraper-checker/pull/696",
+   "kind": "stray_file",
+   "name": "config_discovery_example.toml",
+   "detail_count": 0,
+   "body_empty": false,
+   "said": "named"
+  },
+  {
+   "sample": "D",
+   "pr_url": "https://github.com/haydenbleasel/ultracite/pull/180",
+   "kind": "stray_file",
+   "name": "package-lock.json",
+   "detail_count": 0,
+   "body_empty": false,
+   "said": "silent"
+  },
+  {
+   "sample": "D",
+   "pr_url": "https://github.com/johnpapa/shopathome/pull/217",
+   "kind": "new_dependency",
+   "name": "concurrently",
+   "detail_count": 0,
+   "body_empty": false,
+   "said": "named"
+  },
+  {
+   "sample": "D",
+   "pr_url": "https://github.com/johnpapa/shopathome/pull/217",
+   "kind": "new_dependency",
+   "name": "concurrently",
+   "detail_count": 0,
+   "body_empty": false,
+   "said": "named"
+  },
+  {
+   "sample": "D",
+   "pr_url": "https://github.com/microsoft/ebpf-for-windows/pull/4495",
+   "kind": "ci_or_config",
+   "name": ".github/workflows/reusable-build.yml",
+   "detail_count": 0,
+   "body_empty": false,
+   "said": "silent"
+  },
+  {
+   "sample": "D",
+   "pr_url": "https://github.com/Azure/azure-sdk-for-js/pull/34479",
+   "kind": "ci_or_config",
+   "name": "sdk/appconfiguration/app-configuration/tsconfig.test.vitest-temp.json",
+   "detail_count": 0,
+   "body_empty": false,
+   "said": "silent"
+  },
+  {
+   "sample": "D",
+   "pr_url": "https://github.com/elsa-workflows/elsa-core/pull/6677",
+   "kind": "stray_file",
+   "name": "dotnet-install.sh",
+   "detail_count": 0,
+   "body_empty": false,
+   "said": "silent"
+  },
+  {
+   "sample": "E",
+   "pr_url": "https://github.com/lukasoppermann/style-dictionary-utils/pull/114",
+   "kind": "ci_or_config",
+   "name": "tsconfig.json",
+   "detail_count": 0,
+   "body_empty": false,
+   "said": "silent"
+  },
+  {
+   "sample": "E",
+   "pr_url": "https://github.com/AliAkhtari78/SpotifyScraper/pull/48",
+   "kind": "version_bump",
+   "name": "2.0.7",
+   "detail_count": 2,
+   "body_empty": false,
+   "said": "named"
+  },
+  {
+   "sample": "E",
+   "pr_url": "https://github.com/AliAkhtari78/SpotifyScraper/pull/48",
+   "kind": "stray_file",
+   "name": "MCP_TESTING.md",
+   "detail_count": 0,
+   "body_empty": false,
+   "said": "silent"
+  },
+  {
+   "sample": "E",
+   "pr_url": "https://github.com/StarRocks/starrocks/pull/61244",
+   "kind": "stray_file",
+   "name": "SHOW_COMMANDS_IMPLEMENTATION_SUMMARY.md",
+   "detail_count": 0,
+   "body_empty": false,
+   "said": "silent"
+  }
+ ]
+}

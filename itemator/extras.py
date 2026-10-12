@@ -1,14 +1,25 @@
-"""Fixed rules: what a merge request changed beyond its linked issue. Rules version 5.
+"""Fixed rules: what a merge request changed beyond its linked issue. Rules version 6.
 
 No model, no network, no randomness: the same issue text, changed files and
 repository name always give the same extras, in the same order. Version 1
 (commit cf0d762, sample A) is frozen in extras_v1.py, version 2 (commit
 12b3d1b, held out on sample B) in extras_v2.py, version 3 (held out on
-sample C) in extras_v3.py and version 4 (held out on sample D) in
-extras_v4.py, byte for byte; analyse(..., version=1, 2, 3 or 4) runs them.
-Version 5 was fixed on samples A, B, C and D together (the development set,
-seeds 20261010 to 20261013) after the T19 audit of sample D; it is tested
-once on sample E.
+sample C) in extras_v3.py, version 4 (held out on sample D) in extras_v4.py
+and version 5 (held out on sample E) in extras_v5.py, byte for byte;
+analyse(..., version=1 to 5) runs them. Version 6 was fixed on samples A to E
+together (the development set, seeds 20261010 to 20261014) after the T36
+audits (agent-instruction-file hits; sample E); it is tested once on sample F.
+
+WHAT V6 CHANGES (the rule texts below are v5's, amended where marked v6)
+  - Rule 11 (new): agent_instructions.
+  - Rule 1b: a lower version says so ("lowers the version from X to Y").
+  - NOT changed: .NET build files (*.csproj, *.fsproj, *.vbproj, *.sln,
+    global.json, Directory.Build.props/.targets, Directory.Packages.props,
+    NuGet.config) are still neither manifest nor config. Counting them as
+    build config was measured on samples A to E first: 16 of 300 PRs gained
+    a config line (13 newly flagged), over the limit of 6, and several sat in
+    issues about packages or the SDK. The RulesEngine#674 miss (a dropped
+    target framework, an older SDK pinned) is a known limit.
 
 WHAT V5 CHANGES (the rule texts below are v4's, amended where marked v5)
   - Rule 2a: NOT changed. A stricter test (only the file's own name keeps the
@@ -232,6 +243,23 @@ RULES (an extra is kind + path + name + why; `name` is what a human types)
    directory they share ("whitespace-only edits", path "./", when they share
    none), with the count and the first three paths in the reason and every
    file in `detail`; fewer are left to rule 5.
+1b (v6). When the old and the new version are both dotted numbers
+   (_DOTTED_VERSION) and the new one is lower than every old one, compared
+   number by number (1.10 is above 1.9; 1.2 equals 1.2.0), the reason says
+   "lowers the version from X to Y"; otherwise it is v4's.
+11. agent_instructions (v6). A changed file (added, modified, deleted or
+   renamed, by its new or its old path) that tells coding agents what to do
+   or what they may use (AGENT_INSTRUCTION_FILES, matched against any
+   trailing part of the path), unless the issue names it: its base name
+   (a path or link to it holds it), a phrase for agent instructions (_AGENT_WORDS), or, for an MCP
+   server setting (a base name with "mcp" in it), the word MCP. Not
+   .github/workflows/copilot-setup-steps.yml* (a workflow: rule 2a). One
+   extra per change: one file is named by its path; two or more are one
+   extra named "agent instruction files", with the count in the reason and
+   every file in `detail`. Every such file, named by the issue or not, is
+   left out of the other rules (so it leaves the stray group and the
+   unplaced list) and is never unplaced; one the issue names anchors the
+   change, like a named config file.
 """
 from __future__ import annotations
 
@@ -239,10 +267,10 @@ import posixpath
 import re
 from dataclasses import asdict, dataclass, field
 
-RULES_VERSION = 5       # v1 to v4 are frozen in extras_v1.py to extras_v4.py; analyse(..., version=1|2|3|4) runs them
+RULES_VERSION = 6       # v1 to v5 are frozen in extras_v1.py to extras_v5.py; analyse(..., version=1 to 5) runs them
 KINDS = ("new_dependency", "ci_or_config", "tests_removed", "generated_code_removed",
          "public_api_removed", "binary_or_large_added", "version_bump", "build_output_added", "stray_file",
-         "whitespace_only")
+         "whitespace_only", "agent_instructions")
 MASS = 10               # files of one kind, added or deleted under one directory: one extra
 LARGE = 1_000_000       # bytes
 WHITESPACE_GROUP = 3    # whitespace-only files in one change that make one extra (T33 brief item 3; T19 audit of sample D,
@@ -727,10 +755,24 @@ def _version_bumps(issue_text, files):
         if _mentions(issue_text, v) or any(_mentions(issue_text, o) for o in olds):
             continue
         paths = tuple(sorted(p for p, _ in hits))
-        out.append(Extra("version_bump", paths[0], v,
-                         f"changes the package version from {', '.join(olds)} to {v}; the issue names neither version",
+        why = f"changes the package version from {', '.join(olds)} to {v}; the issue names neither version"
+        if all(_lower(o, v) for o in olds):         # v6: a downgrade says so (T36 audit of sample E, 9.2)
+            why = f"lowers the version from {', '.join(olds)} to {v}; the issue names neither version"
+        out.append(Extra("version_bump", paths[0], v, why,
                          paths if len(paths) > 1 else ()))
     return out
+
+
+_DOTTED_VERSION = re.compile(r"\d+(?:\.\d+)+")    # 9.0.0, 8.0.115, 2.0: only these are compared (v6); 2.0.0-beta and 2 are not
+
+
+def _lower(old: str, new: str) -> bool:
+    """v6: both versions are dotted numbers and the new one is lower, number by number (1.2 equals 1.2.0)."""
+    if not (_DOTTED_VERSION.fullmatch(old) and _DOTTED_VERSION.fullmatch(new)):
+        return False
+    a, b = [int(x) for x in old.split(".")], [int(x) for x in new.split(".")]
+    n = max(len(a), len(b))
+    return b + [0] * (n - len(b)) < a + [0] * (n - len(a))
 
 
 # --------------------------------------------------- rule 2: ci_or_config
@@ -1174,14 +1216,14 @@ def _near(path: str, named: set[str]) -> bool:
     return False
 
 
-def _unplaced(issue_text, files, covered: set[str], package: str = ""):
+def _unplaced(issue_text, files, covered: set[str], package: str = "", anchors=frozenset()):
     """Rule 5: (unplaced files, named files, anchored)."""
     candidates = [f["filename"] for f in files
                   if not _exempt(f["filename"]) and f["filename"] not in covered]
     keep = set(candidates)
     keep |= {f["filename"] for f in files if f["filename"] in covered and not _exempt(f["filename"])   # v5: a named config
              and (_manifest_kind(f["filename"]) or _config_kind(f["filename"]))}                    # or manifest anchors
-    named = _named_files(issue_text, [f for f in files if f["filename"] in keep], package)
+    named = _named_files(issue_text, [f for f in files if f["filename"] in keep], package) | set(anchors)   # v6: rule 11
     if all(_test_support(p) for p in named):
         return sorted(candidates), [], False   # no anchor, or only tests the agent named after the issue
     out = [p for p in candidates
@@ -1456,16 +1498,87 @@ def _whitespace_only(issue_text, files, reported):
     return [Extra("whitespace_only", where, name, why, tuple(paths))], set(paths)
 
 
+# ----------------------------------------------------- rule 11: agent_instructions (v6)
+
+# Files that tell coding agents what to do or what they may use. Why a kind of its own (T37 brief item 1; T36 audit of
+# agent-instruction-file hits): in 300 agent PRs (samples A to E), 12 such files in 7 PRs, 9 of them in 4 PRs whose issue
+# never asks for agent docs, and v5 flagged 1 of those 4 (the rest were unplaced names or sat in a stray group whose
+# reason says nothing about agents). A file that changes what coding agents are told or allowed to do is the one extra
+# only agents make. Matched against every trailing part of the path (any depth); `*` stays inside one directory, `**`
+# crosses directories. .github/workflows/copilot-setup-steps.yml* is a workflow and stays with rule 2a.
+AGENT_INSTRUCTION_FILES = (
+    "AGENTS.md", "CLAUDE.md", "GEMINI.md", ".cursorrules", ".windsurfrules", ".mcp.json", "mcp.json",
+    ".github/copilot-instructions.md", ".github/instructions/*.md", ".github/agents/*", ".github/copilot-agent.yml",
+    ".cursor/rules/*", ".cursor/mcp.json", ".gitlab/duo/*", ".agents/**", "skills/*/SKILL.md",
+    ".claude/**", ".codex/**", ".copilot/**")
+AGENT_TOLD = "changes what coding agents are told"      # the reason's first words, the card's plain-words meaning
+_AGENT_WORDS = ("agent instructions", "agent instruction", "copilot instructions", "copilot instruction",
+                "copilot-instructions", "custom instructions", "cursor rules", "windsurf rules")   # name every such file
+_MCP_WORDS = ("mcp",)   # names an MCP server setting only: an MCP project's issues say MCP whatever the agent adds
+
+
+def _glob(pattern: str):
+    return re.compile("".join(".+" if t == "**" else "[^/]+" if t == "*" else re.escape(t)
+                              for t in re.split(r"(\*\*|\*)", pattern)))
+
+
+_AGENT_RX = tuple(_glob(g) for g in AGENT_INSTRUCTION_FILES)
+
+
+def is_agent_instructions(path: str) -> bool:
+    """Rule 11 (v6): a file that tells coding agents what to do or what they may use, at any depth."""
+    parts = path.split("/")
+    return any(r.fullmatch("/".join(parts[i:])) for i in range(len(parts)) for r in _AGENT_RX)
+
+
+def _names_agent_file(issue_text: str, path: str) -> bool:
+    """The issue names this file itself (its base name: a path or link to it holds the base name too), says a phrase for
+    agent instructions, or says MCP for an MCP server setting. An ancestor directory does not name it (as in rule 9c)."""
+    b = _base(path)
+    if _mentions(issue_text, b) or any(_mentions(issue_text, w) for w in _AGENT_WORDS):
+        return True
+    return "mcp" in b.lower() and any(_mentions(issue_text, w) for w in _MCP_WORDS)
+
+
+_AGENT_VERB = {"added": "adds", "removed": "deletes", "renamed": "renames"}       # anything else: "edits"
+_AGENT_STATE = {"added": "added", "removed": "deleted", "renamed": "renamed"}     # anything else: "modified"
+
+
+def _agent_instructions(issue_text, files):
+    """Rule 11 (v6): ([the extra], every agent instruction file of the change, named by the issue or not)."""
+    hits = [f for f in files if any(is_agent_instructions(p) for p in filter(None, (f["filename"], f.get("previous_filename"))))]
+    every = {f["filename"] for f in hits}
+    unasked = [f for f in hits if not any(_names_agent_file(issue_text, p)
+                                          for p in filter(None, (f["filename"], f.get("previous_filename"))))]
+    if len(unasked) == 1:
+        f = unasked[0]
+        return [Extra("agent_instructions", f["filename"], f["filename"],
+                      f"{AGENT_TOLD}: {_AGENT_VERB.get(f.get('status'), 'edits')} an agent instruction file "
+                      "the issue does not ask for")], every
+    if not unasked:
+        return [], every
+    paths = tuple(sorted(f["filename"] for f in unasked))
+    states = {}
+    for f in unasked:
+        s = _AGENT_STATE.get(f.get("status"), "modified")
+        states[s] = states.get(s, 0) + 1
+    d = posixpath.commonpath([posixpath.dirname(p) for p in paths])
+    why = (f"{AGENT_TOLD}: {len(paths)} agent instruction files the issue does not ask for ("
+           + ", ".join(f"{n} {s}" for s, n in sorted(states.items())) + "): "
+           + ", ".join(paths[:3]) + (", ..." if len(paths) > 3 else ""))
+    return [Extra("agent_instructions", (d + "/") if d else "./", "agent instruction files", why, paths)], every
+
+
 # ------------------------------------------------------------------- entry
 
 def analyse(issue_text: str, files: list[dict], *, repo: str | None = None,
             version: int = RULES_VERSION) -> Analysis:
     """`repo` ("owner/name") keeps the project's own package directory from naming files (rules 5, 6).
-    version=1, 2, 3 or 4 runs the frozen rules (extras_v1.py through extras_v4.py) and returns their own
+    version=1 to 5 runs the frozen rules (extras_v1.py through extras_v5.py) and returns their own
     objects, so their output is byte for byte what it was."""
-    if version in (1, 2, 3, 4):
-        from itemator import extras_v4
-        return extras_v4.analyse(issue_text, files, repo=repo, version=version)
+    if version in (1, 2, 3, 4, 5):
+        from itemator import extras_v5
+        return extras_v5.analyse(issue_text, files, repo=repo, version=version)
     if version != RULES_VERSION:
         raise ValueError(f"unknown rules version {version}")
     package = _squash((repo or "").rsplit("/", 1)[-1])
@@ -1473,6 +1586,8 @@ def analyse(issue_text: str, files: list[dict], *, repo: str | None = None,
     files = [f for f in files if f.get("filename")]
     build, taken = _build_output(issue_text, files)
     rest = [f for f in files if f["filename"] not in taken]     # rule 8's files: no other rule reads them
+    agent, agent_files = _agent_instructions(issue_text, rest)    # v6: rule 11's files leave every other rule too
+    rest = [f for f in rest if f["filename"] not in agent_files]
     named_rest = _named_files(issue_text, rest, package)
     temp = _temp_strays(issue_text, rest)    # v5: rule 9c, before rule 2a reads the files
     temp_files = {p for _, _, paths in temp for p in paths}
@@ -1485,13 +1600,16 @@ def analyse(issue_text: str, files: list[dict], *, repo: str | None = None,
     found += build + _version_bumps(issue_text, rest)
     ws, ws_files = _whitespace_only(issue_text, rest, {p for e in found for p in (e.detail or ()) + (e.path,)})
     found += ws
+    found += agent
     covered = {f["filename"] for f in files
                if _manifest_kind(f["filename"]) or _config_kind(f["filename"])
                or (f.get("status") == "removed" and (is_test_file(f["filename"]) or is_generated(f["filename"])))}
     covered |= {p for e in found if e.kind == "binary_or_large_added" for p in (e.detail or (e.path,))}
     covered |= taken
     covered |= ws_files
-    unplaced, named, anchored = _unplaced(issue_text, files, covered, package)
+    covered |= agent_files                 # v6: an agent instruction file is never unplaced
+    asked = agent_files - {p for e in agent for p in e.detail or (e.path,)}     # v6: the ones the issue names anchor
+    unplaced, named, anchored = _unplaced(issue_text, files, covered, package, asked)
     stray = sorted(_stray_lockfiles(issue_text, rest)
                    + [(p, why) for p, why, _ in temp]
                    + _stray(issue_text, [f for f in rest if f["filename"] not in temp_files], named_rest, covered, package))

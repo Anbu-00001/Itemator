@@ -1,13 +1,14 @@
-"""Mutation test for the CI job (T11, T12a, T17, T22, T20, T23, T26): break the state logic, the injection scan, the
+"""Mutation test for the CI job (T11, T12a, T17, T22, T20, T23, T26, T35): break the state logic, the injection scan, the
 diff, the line counting and anchors, the thread stub or the job-log copy in a copy of
 itemator/ci.py, the registry facts in a copy of itemator/registry.py, or the team policy in a copy of
 itemator/policy.py; tests/test_ci.py (T11 mutants), tests/test_ci_anchors.py (T12a mutants),
 tests/test_registry.py (T17 and T22 mutants) or tests/test_policy.py (T20 mutants) must fail for every mutant;
-each T26 mutant names its own test file (tests/test_diff_attributes.py, tests/test_answers.py, tests/test_policy.py).
+each T26 mutant names its own test file (tests/test_diff_attributes.py, tests/test_answers.py, tests/test_policy.py);
+T35 mutants break itemator/said.py or its wiring in itemator/ci.py and are judged by tests/test_said.py.
 
 Usage (WORK must be outside the repository, or pytest would collect the copies):
-    .venv/bin/python -I eval/mutate_ci.py "$PWD" /tmp/itemator-ci-mutants [T17]
-With T17, only the T17 mutants run (every anchor of every mutant is still checked first).
+    .venv/bin/python -I eval/mutate_ci.py "$PWD" /tmp/itemator-ci-mutants [T17|T35]
+With T17 (or T35), only the T17 (or T35) mutants run (every anchor of every mutant is still checked first).
 Exit status 0 only when every mutant is killed.
 """
 import pathlib, shutil, subprocess, sys
@@ -87,7 +88,7 @@ A = [
  ("anchors: size limit off by one", "> MAX_PATCH_BYTES:", ">= MAX_PATCH_BYTES:"),
  ("anchors: size limit dropped", 'if len(patch.encode("utf-8", "replace")) > MAX_PATCH_BYTES:', "if False:"),
  ("anchors: missing file reason", 'return None, "file not in the diff"', 'return None, "no text patch"'),
- ("anchors: extras carry none", '"extras": [describe_extra(e, by_path, items, r, other) for (e, items), r in kept],', '"extras": [{**e.to_dict(), "detail": list(e.detail)} for (e, _), _ in kept],'),
+ ("anchors: extras carry none", '"extras": [describe_extra(e, by_path, items, r, other, s) for ((e, items), r), s in zip(kept, said)],', '"extras": [{**e.to_dict(), "detail": list(e.detail)} for ((e, _), _), s in zip(kept, said)],'),   # T35: anchor follows the new line
  # ---- stub, plain facts
  ("stub: no closing full stop", '    if not why.endswith((".", "!", "?")):\n        why += "."\n', ""),
  ("stub: double full stop", 'if not why.endswith((".", "!", "?")):', "if True:"),
@@ -122,6 +123,7 @@ A = [
  ("label: version bump unit", ' or e.kind == "version_bump" else', " else"),
  ("label: version bump unlabelled", '"version_bump": "version bump",', ""),
  ("label: whitespace only unlabelled", '\n          "whitespace_only": "whitespace only"}', "}"),
+ ("label: agent instructions unlabelled (T37)", '\n          "agent_instructions": "agent instructions",', ""),
  ("anchors: version not matched", '        elif e.kind == "version_bump":\n            matches = lambda text: e.name in text\n', ""),
  ("log: block printed before the card", '    print(report["card"]["final_line"])\n    print(report["card"]["todo_line"])\n    print(log_block(report))\n', '    print(log_block(report))\n    print(report["card"]["final_line"])\n    print(report["card"]["todo_line"])\n'),
 ]
@@ -289,8 +291,9 @@ PO = [
  ("registry: unread package quieted", '               for p in registry["packages"])', '               or p.get("lookup") == "unavailable" for p in registry["packages"])'),
  ("registry: lookup cap not checked", ' or registry.get("count") != len(registry["packages"])', ""),
  ("registry: exception dropped", '    if e.kind == "new_dependency" and not _registry_knows_every_package(registry):\n        return None\n', ""),
- ("built-in: binary quietable", 'NEVER_IGNORED = ("policy_changed", "binary_or_large_added")', 'NEVER_IGNORED = ("policy_changed",)'),
- ("built-in: policy edit quietable", 'NEVER_IGNORED = ("policy_changed", "binary_or_large_added")', 'NEVER_IGNORED = ("binary_or_large_added",)'),
+ ("built-in: binary quietable", 'NEVER_IGNORED = ("policy_changed", "binary_or_large_added", "agent_instructions")', 'NEVER_IGNORED = ("policy_changed", "agent_instructions")'),
+ ("built-in: policy edit quietable", 'NEVER_IGNORED = ("policy_changed", "binary_or_large_added", "agent_instructions")', 'NEVER_IGNORED = ("binary_or_large_added", "agent_instructions")'),
+ ("built-in: agent instructions quietable (T37)", 'NEVER_IGNORED = ("policy_changed", "binary_or_large_added", "agent_instructions")', 'NEVER_IGNORED = ("policy_changed", "binary_or_large_added")'),
  ("paths: one matching file suffices", "    if not all(any(fnmatch.fnmatchcase(f, g) for g in policy.paths) for f in files):", "    if not any(any(fnmatch.fnmatchcase(f, g) for g in policy.paths) for f in files):"),
  ("paths: case-insensitive", "    if not all(any(fnmatch.fnmatchcase(f, g) for g", "    if not all(any(fnmatch.fnmatch(f.lower(), g.lower()) for g"),
  ("paths: rename source ignored", "        if old:\n            out.add(old)\n", "        pass\n"),
@@ -320,10 +323,11 @@ T26 = [
  ("answers: cap off by one", ")) <= MAX_LISTED)):", ")) < MAX_LISTED)):", "itemator/ci.py", "tests/test_answers.py"),
  ("answers: modified file removable", '.get("status") == "added":', '.get("status") is not None:', "itemator/ci.py", "tests/test_answers.py"),
  ("answers: a group name removable", "if e.kind in _ADDED_KINDS and e.name == e.path and", "if e.kind in _ADDED_KINDS and", "itemator/ci.py", "tests/test_answers.py"),
- ("answers: tests_removed removable", '_ADDED_KINDS = ("stray_file", "binary_or_large_added", "build_output_added")', '_ADDED_KINDS = ("stray_file", "binary_or_large_added", "build_output_added", "tests_removed")', "itemator/ci.py", "tests/test_answers.py"),
+ ("answers: tests_removed removable", '_ADDED_KINDS = ("stray_file", "binary_or_large_added", "build_output_added", "agent_instructions")', '_ADDED_KINDS = ("stray_file", "binary_or_large_added", "build_output_added", "agent_instructions", "tests_removed")', "itemator/ci.py", "tests/test_answers.py"),
+ ("answers: agent instructions not removable (T37)", '"build_output_added", "agent_instructions")', '"build_output_added")', "itemator/ci.py", "tests/test_answers.py"),
  ("stub: split always offered", '" if "split" in offers else ""', '" if True else ""', "itemator/ci.py", "tests/test_answers.py"),
  ("stub: remove always offered", '" if "remove" in offers else ""', '" if True else ""', "itemator/ci.py", "tests/test_answers.py"),
- ("stub: offers not passed", "other_person, answers(e, items, by_path)),", "other_person),", "itemator/ci.py", "tests/test_answers.py"),
+ ("stub: offers not passed", "other_person, answers(e, items, by_path), said),", "other_person, said=said),", "itemator/ci.py", "tests/test_answers.py"),
  ("target: merge base used", "    target, resolved = target_tip(repo_dir, env, base)\n", "    target, resolved = base, True\n", "itemator/ci.py", "tests/test_policy.py"),
  ("target: not a full sha used", "        if _SHA40.fullmatch(sha):\n", "        if sha:\n", "itemator/ci.py", "tests/test_policy.py"),
  ("target: fallback caveat dropped", "             TARGET_CAVEAT if fallback else None,\n", "             None,\n", "itemator/ci.py", "tests/test_policy.py"),
@@ -341,23 +345,106 @@ T26 = [
  ("registry: own_package not counted", '               or (p.get("lookup") == "not_from_registry" and p.get("reason") == "own_package")\n', "", "itemator/policy.py", "tests/test_policy.py"),
  ("policy: source not reported", '"source": self.source', '"source": "target_branch"', "itemator/policy.py", "tests/test_policy.py"),
 ]
+# T35 and T38: said or silent (itemator/said.py and its wiring in itemator/ci.py), judged by tests/test_said.py
+SD, CI, TS = "itemator/said.py", "itemator/ci.py", "tests/test_said.py"
+T35 = [(label, old, new, path, TS) for label, old, new, path in [
+ ("said: listed never", "                out.append(LISTED)\n                continue\n", "                out.append(NAMED)\n                continue\n", SD),
+ ("said: listed tested on the rest", "if any(_find(k, listed, False, until, clock) for k in keys):", "if any(_find(k, rest, False, until, clock) for k in keys):", SD),
+ ("said: weak shown as named", 'out.append(NAMED if found == "strong" else WEAK if found else', "out.append(NAMED if found else", SD),
+ ("said: the search stops at a weak match", "found = _find(k, rest, True, until, clock) or found", "found = _find(k, rest, False, until, clock) or found", SD),
+ ("said: title ignored", 'listed, rest, hidden = _texts(_cap(title or "")[0].translate(_DROP).replace("\\n", " "), text)', 'listed, rest, hidden = _texts("", text)', SD),
+ ("said: cut says silent", "None if (cut or over or unclosed)", "None if (over or unclosed)", SD),
+ ("said: over the cap says silent", "None if (cut or over or unclosed)", "None if (cut or unclosed)", SD),
+ ("said: unclosed comment says silent", "None if (cut or over or unclosed)", "None if (cut or over)", SD),
+ ("said: hidden HTML read", "    if hidden:\n        return [None] * len(extras)\n", "", SD),
+ ("said: blank text read", "    if not description or not description.strip():\n", "    if not description:\n", SD),
+ ("said: no text says silent", "    if not description or not description.strip():\n        return [None] * len(extras)\n", "    if not description or not description.strip():\n        return [SILENT] * len(extras)\n", SD),
+ ("said: weak shown", "    return [None if s == WEAK else s for s in said_detail(title, description, extras, **kw)]", "    return [NAMED if s == WEAK else s for s in said_detail(title, description, extras, **kw)]", SD),
+ ("said: deadline not checked per extra", "            if clock() > until:\n                raise _Late\n            keys = _keys(candidates)", "            keys = _keys(candidates)", SD),
+ ("match: deadline not checked in the search", "        if clock() > until:\n            raise _Late\n        i = t.low.find", "        i = t.low.find", SD),
+ ("match: substring", 'if not _edge_before(t.low, i) or not _edge_after(t.low, i + n) or (base and i and t.low[i - 1] == "/"):', "if False:", SD),
+ ("match: joining characters end a name", "return not (_word(c) or (c in _JOIN and j + 1 < len(low) and _word(low[j + 1])))", "return not _word(c)", SD),
+ ("match: joining characters start a name", "return not (_word(c) or (c in _JOIN and i >= 2 and _word(low[i - 2])))", "return not _word(c)", SD),
+ ("match: a sentence-end dot continues", "(c in _JOIN and j + 1 < len(low) and _word(low[j + 1]))", "c in _JOIN", SD),
+ ("match: underscore ends a word", 'return c.isalnum() or c == "_"', "return c.isalnum()", SD),
+ ("match: base name after a slash", ' or (base and i and t.low[i - 1] == "/")', "", SD),
+ ("strong: code not strong", 'if t.code[i] or "/" in text or', 'if "/" in text or', SD),
+ ("strong: a full path not strong", 'if t.code[i] or "/" in text or (not ordinary', "if t.code[i] or (not ordinary", SD),
+ ("strong: ordinary words strong", "(not ordinary and t.text[i:i + n] == text)", "(t.text[i:i + n] == text)", SD),
+ ("strong: case ignored", "(not ordinary and t.text[i:i + n] == text)", "(not ordinary)", SD),
+ ("ordinary: no length limit", "(s.isalpha() and s.islower() and len(s) <= ORDINARY)", "(s.isalpha() and s.islower())", SD),
+ ("ordinary: upper case ordinary", "(s.isalpha() and s.islower() and len(s) <= ORDINARY)", "(s.isalpha() and len(s) <= ORDINARY)", SD),
+ ("ordinary: generic directories not", "(s.isalpha() and s.islower() and len(s) <= ORDINARY) or _lower(s) in GENERIC)", "(s.isalpha() and s.islower() and len(s) <= ORDINARY))", SD),
+ ("keys: short names matched", "if len(s) < MIN_LEN or not any(", "if len(s) < 1 or not any(", SD),
+ ("keys: punctuation names matched", "        if len(s) < MIN_LEN or not any(ch.isalnum() for ch in s):\n", "        if len(s) < MIN_LEN:\n", SD),
+ ("keys: control characters kept", "        if any(ord(ch) < 32 or 0x7F <= ord(ch) <= 0x9F for ch in text):\n            continue\n", "", SD),
+ ("keys: base flag lost", "seen[s] = seen.get(s, True) and base", "seen[s] = False", SD),
+ ("keys: a base name hides the full name", "seen[s] = seen.get(s, True) and base", "seen[s] = seen.get(s, False) or base", SD),
+ ("names: no base name", "        out += [(full, False), (posixpath.basename(full), True)]\n", "        out += [(full, False)]\n", SD),
+ ("names: no items", "    out += [(str(d), False) for d in list(detail)[:MAX_NAMES]]\n", "", SD),
+ ("comments: not stripped", '        j = text.find("<!--", search)\n', "        j = -1\n", SD),
+ ("comments: stripped inside code spans", "if fenced[ln] or _in(spans[ln], j - starts[ln]):", "if fenced[ln]:", SD),
+ ("comments: stripped inside fences", "if fenced[ln] or _in(spans[ln], j - starts[ln]):", "if _in(spans[ln], j - starts[ln]):", SD),
+ ("comments: unclosed says read", '            return "".join(out), True\n', '            return "".join(out), False\n', SD),
+ ("links: destination and title kept", "out.append(line[i:o - 1] if image else line[i:o] + line[o + 1:j])", "out.append(line[i:k])", SD),
+ ("images: alt kept", 'image = o > i and line[o - 1] == "!"', "image = False", SD),
+ ("refdefs: kept", "        if _REFDEF.match(line):\n            out.append((\"\", False, False))\n            continue\n", "", SD),
+ ("tags: attributes kept", 'out.append((_TAG.sub("", plain), False))', "out.append((plain, False))", SD),
+ ("tags: hidden not seen", '            hidden = hidden or "hidden" in low or "style" in low\n', "            hidden = hidden\n", SD),
+ ("invisible: kept", "text, unclosed = _uncomment(text.translate(_DROP))", "text, unclosed = _uncomment(text)", SD),
+ ("code spans: none", "        spans.append((runs[k][0], runs[m][0] + runs[m][1]))\n", "", SD),
+ ("cap: none", 'return raw[:MAX_BYTES].decode("utf-8", "ignore"), len(text) > len(head) or len(raw) > MAX_BYTES', 'return raw.decode("utf-8", "ignore"), False', SD),
+ ("cap: in characters only", "len(text) > len(head) or len(raw) > MAX_BYTES", "len(text) > len(head)", SD),
+ ("heading: level 7", "if not 1 <= n <= 6 or", "if not 1 <= n <= 7 or", SD),
+ ("heading: no space needed", '(len(s) > n and s[n] not in " \\t")', "False", SD),
+ ("heading: closing hashes kept", '    if not bare or bare[-1] in " \\t":\n        text = bare.strip()\n', "", SD),
+ ("heading: case-sensitive", '.rstrip(":").strip().casefold() == HEADING', '.rstrip(":").strip() == HEADING', SD),
+ ("heading: emphasis kept", 'text.strip().strip("*_").strip()', "text.strip()", SD),
+ ("section: never ends at a heading", '            here, region, blank = _beyond(heading), "start", True\n', '            here, region, blank = here or _beyond(heading), "start", True\n', SD),
+ ("section: a rule does not end it", "        if _rule(line) or (_underline(line) and not blank) or (here and (", "        if (_underline(line) and not blank) or (here and (", SD),
+ ("section: a bold line does not end it", '_bold_only(s) or (region != "start" and _label(s))', '(region != "start" and _label(s))', SD),
+ ("section: a label does not end it", '_bold_only(s) or (region != "start" and _label(s))', "_bold_only(s)", SD),
+ ("section: a first-block label ends it", '(region != "start" and _label(s))', "_label(s)", SD),
+ ("section: an HTML block does not end it", "            html, here = True, False\n", "            html = True\n", SD),
+ ("html: no HTML blocks", "        if _html_start(line):\n", "        if False:\n", SD),
+ ("html: any tag is a block tag", "return name[:k] in _BLOCK_TAGS and", "return bool(name[:k]) and", SD),
+ ("fence: ignored", "        f = _fence(line)\n        if f is not None:\n            fence = f\n", "        f = None\n        if f is not None:\n            fence = f\n", SD),
+ ("fence: a shorter fence closes", "len(s) >= fence[1] and ", "", SD),
+ ("fence: no $$ blocks", '    if s.rstrip() == "$$":\n        return "$", 2\n', "", SD),
+ ("setext: none", "if heading is None and blank and _paragraph(line) and k < len(lines) and _underline(lines[k]):", "if False:", SD),
+ ("setext: without a blank line before", "if heading is None and blank and _paragraph(line)", "if heading is None and _paragraph(line)", SD),
+ ("listed: any paragraph", '            elif region in ("start", "para"):\n', '            elif region in ("start", "para", "after", "other"):\n', SD),
+ ("listed: no list continuation", '            elif region == "list" or (region == "gap" and _indent(line) >= 2):\n', "            elif False:\n", SD),
+ ("order: none", "    ranked = sorted(zip(said, kept), key=lambda p: p[0] != SAID.SILENT)\n", "    ranked = list(zip(said, kept))\n", CI),
+ ("order: silent last", "key=lambda p: p[0] != SAID.SILENT)", "key=lambda p: p[0] == SAID.SILENT)", CI),
+ ("stub: said sentence dropped", '    facts += f" {SAID.SENTENCE[said]}" if said else ""\n', "", CI),
+ ("stub: sentence after the other-person one", '    facts += f" {SAID.SENTENCE[said]}" if said else ""\n    facts += f" {OTHER_PERSON}" if other_person else ""\n', '    facts += f" {OTHER_PERSON}" if other_person else ""\n    facts += f" {SAID.SENTENCE[said]}" if said else ""\n', CI),
+ ("plain_facts: said missing", '    if said:\n        plain["said"] = said\n', "", CI),
+ ("facts: cut not passed", "                     cut=description_cut)", "                     cut=False)", CI),
+ ("run: the CI variable trusted", '    cut = not mr.get("description") and bool(description)\n', "    cut = False\n", CI),
+ ("facts: title not passed", "    said = SAID.said(mr_title, mr_description,", '    said = SAID.said("", mr_description,', CI),
+ ("facts: names from the name only", "[SAID.names(e.name, e.path, e.detail) for (e, _), _ in kept]", "[[e.name] for (e, _), _ in kept]", CI),
+]]
 SRC = {"itemator/ci.py": (REPO / "itemator/ci.py").read_text(), "itemator/registry.py": (REPO / "itemator/registry.py").read_text(),
-       "itemator/policy.py": (REPO / "itemator/policy.py").read_text()}
+       "itemator/policy.py": (REPO / "itemator/policy.py").read_text(), "itemator/said.py": (REPO / "itemator/said.py").read_text()}
 JOBS = ([(*m, "itemator/ci.py", "tests/test_ci.py") for m in M] + [(*m, "itemator/ci.py", "tests/test_ci_anchors.py") for m in A]
         + [(*m, "itemator/ci.py", "tests/test_registry.py") for m in RC] + [(*m, "itemator/registry.py", "tests/test_registry.py") for m in RG]
         + [(*m, "itemator/ci.py", "tests/test_policy.py") for m in PC] + [(*m, "itemator/policy.py", "tests/test_policy.py") for m in PO]
-        + T26)
+        + T26 + T35)
 for label, old, new, path, _ in JOBS:
     assert SRC[path].count(old) == 1, f"mutant {label!r}: anchor found {SRC[path].count(old)} times in {path}"
 if sys.argv[3:] == ["T17"]:
     JOBS = [j for j in JOBS if j[4] == "tests/test_registry.py"]
+if sys.argv[3:] == ["T35"]:
+    JOBS = [j for j in JOBS if j[4] == "tests/test_said.py"]
 def run(i, path, text, tests):
     d = WORK / f"m{i:02d}"
     if d.exists(): shutil.rmtree(d)
     for sub in ("itemator", "tests", "tools"):
         shutil.copytree(REPO / sub, d / sub, ignore=shutil.ignore_patterns("__pycache__"))
     (d / path).write_text(text)
-    return subprocess.run([PY, "-m", "pytest", "-q", "-p", "no:cacheprovider", tests], cwd=d, capture_output=True, text=True)
+    return subprocess.run([PY, "-m", "pytest", "-q", "-x", "-p", "no:cacheprovider", tests], cwd=d, capture_output=True,
+                          text=True)       # T38: -x, one failure kills a mutant; the suite must fit a 10-minute foreground run
 for target in sorted({j[4] for j in JOBS}):
     base = run(99, "itemator/ci.py", SRC["itemator/ci.py"], target)
     if base.returncode != 0:

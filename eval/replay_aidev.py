@@ -18,6 +18,8 @@ Run from the repository root (each run refuses to overwrite its output file):
     .venv/bin/python -I eval/replay_aidev.py --rules 4 --seed 20261013 --exclude-sample-a --exclude-sample-b --exclude-sample-c
     # v5 on sample E: run once, after rules v5 and SEED_E are committed
     .venv/bin/python -I eval/replay_aidev.py --rules 5 --seed 20261014 --exclude-sample-a --exclude-sample-b --exclude-sample-c --exclude-sample-d
+    # v6 on sample F: run once, after rules v6 and SEED_F are committed
+    .venv/bin/python -I eval/replay_aidev.py --rules 6 --seed 20261015 --exclude-sample-a --exclude-sample-b --exclude-sample-c --exclude-sample-d --exclude-sample-e
 (v3 on samples A and B, and v4 on samples A, B and C, the development sets: eval/rescore_dev.py.)
 
 Inputs are pinned in eval/inputs.lock.json: the dataset commit (downloads use
@@ -53,16 +55,17 @@ import urllib.request
 
 REPO = pathlib.Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(REPO))
-from itemator import extras as extras_v5, extras_v1, extras_v2, extras_v3, extras_v4  # noqa: E402
+from itemator import extras as extras_v6, extras_v1, extras_v2, extras_v3, extras_v4, extras_v5  # noqa: E402
 from itemator.extras import analyse  # noqa: E402
 
-RULES = {1: extras_v1, 2: extras_v2, 3: extras_v3, 4: extras_v4, 5: extras_v5}   # each version's own module: its KINDS and its file
+RULES = {1: extras_v1, 2: extras_v2, 3: extras_v3, 4: extras_v4, 5: extras_v5, 6: extras_v6}   # each version's own module: its KINDS and its file
 
 SEED = 20261010          # sample A, fixed on 2026-10-10 before the first run; the v2 development set
 SEED_B = 20261011        # sample B, fixed on 2026-10-11 before rules v2 meet it; with A, the v3 development set
 SEED_C = 20261012        # sample C, fixed before rules v3 meet it; excludes A and B; with A and B, the v4 development set
 SEED_D = 20261013        # sample D, fixed before rules v4 meet it; excludes A, B and C; with A to C, the v5 development set
-SEED_E = 20261014        # sample E, fixed before rules v5 meet it; excludes A, B, C and D
+SEED_E = 20261014        # sample E, fixed before rules v5 meet it; excludes A, B, C and D; with A to D, the v6 development set
+SEED_F = 20261015        # sample F, fixed before rules v6 meet it; excludes A, B, C, D and E
 SAMPLE = 60
 MAX_FETCHES = 120        # GitHub API calls this run may make (pages count)
 DATASET = "hao-li/AIDev@v3"
@@ -77,12 +80,14 @@ SAMPLE_A = REPO / LOCK["sample_a_predictions"]
 SAMPLE_B = REPO / LOCK["sample_b_predictions"]
 SAMPLE_C = REPO / LOCK["sample_c_predictions"]
 SAMPLE_D = REPO / LOCK["sample_d_predictions"]
-DEFAULT_OUT = {(1, SEED, False, False, False, False): "replay_v1_sampleA_rerun.json",     # (rules, seed, exclude A, B, C, D)
-               (2, SEED, False, False, False, False): "replay_v2_sampleA.json",
-               (2, SEED_B, True, False, False, False): "replay_v2_sampleB.json",
-               (3, SEED_C, True, True, False, False): "replay_v3_sampleC.json",
-               (4, SEED_D, True, True, True, False): "replay_v4_sampleD.json",
-               (5, SEED_E, True, True, True, True): "replay_v5_sampleE.json"}
+SAMPLE_E = REPO / LOCK["sample_e_predictions"]
+DEFAULT_OUT = {(1, SEED, False, False, False, False, False): "replay_v1_sampleA_rerun.json",   # (rules, seed, exclude A to E)
+               (2, SEED, False, False, False, False, False): "replay_v2_sampleA.json",
+               (2, SEED_B, True, False, False, False, False): "replay_v2_sampleB.json",
+               (3, SEED_C, True, True, False, False, False): "replay_v3_sampleC.json",
+               (4, SEED_D, True, True, True, False, False): "replay_v4_sampleD.json",
+               (5, SEED_E, True, True, True, True, False): "replay_v5_sampleE.json",
+               (6, SEED_F, True, True, True, True, True): "replay_v6_sampleF.json"}
 
 
 def sha256(path: pathlib.Path) -> str:
@@ -130,6 +135,14 @@ def sample_d_urls() -> set[str]:
     if sha256(SAMPLE_D) != LOCK["sample_d_predictions_sha256"]:
         sys.exit(f"{SAMPLE_D.name} does not match its pinned sha256")
     d = json.loads(SAMPLE_D.read_text())
+    return {p["pr_url"] for p in d["prs"]} | {s["pr_url"] for s in d["summary"]["skipped_fetch_failed"]}
+
+
+def sample_e_urls() -> set[str]:
+    """The PRs walked for sample E (60 scored + the skipped), from the committed file."""
+    if sha256(SAMPLE_E) != LOCK["sample_e_predictions_sha256"]:
+        sys.exit(f"{SAMPLE_E.name} does not match its pinned sha256")
+    d = json.loads(SAMPLE_E.read_text())
     return {p["pr_url"] for p in d["prs"]} | {s["pr_url"] for s in d["summary"]["skipped_fetch_failed"]}
 
 
@@ -239,6 +252,7 @@ def main() -> int:
     ap.add_argument("--exclude-sample-b", action="store_true", help="skip the PRs walked for sample B")
     ap.add_argument("--exclude-sample-c", action="store_true", help="skip the PRs walked for sample C")
     ap.add_argument("--exclude-sample-d", action="store_true", help="skip the PRs walked for sample D")
+    ap.add_argument("--exclude-sample-e", action="store_true", help="skip the PRs walked for sample E")
     ap.add_argument("--offline", action="store_true", help="read the GitHub cache only; never fetch")
     ap.add_argument("--out", help="output path (default: from rules, seed and exclusion)")
     args = ap.parse_args()
@@ -252,8 +266,12 @@ def main() -> int:
                                     and args.exclude_sample_d):
         sys.exit("sample E must exclude samples A, B, C and D: add --exclude-sample-a --exclude-sample-b "
                  "--exclude-sample-c --exclude-sample-d")
+    if args.seed == SEED_F and not (args.exclude_sample_a and args.exclude_sample_b and args.exclude_sample_c
+                                    and args.exclude_sample_d and args.exclude_sample_e):
+        sys.exit("sample F must exclude samples A to E: add --exclude-sample-a --exclude-sample-b "
+                 "--exclude-sample-c --exclude-sample-d --exclude-sample-e")
     name = args.out or DEFAULT_OUT.get((args.rules, args.seed, args.exclude_sample_a, args.exclude_sample_b,
-                                        args.exclude_sample_c, args.exclude_sample_d))
+                                        args.exclude_sample_c, args.exclude_sample_d, args.exclude_sample_e))
     if not name:
         sys.exit("give --out for this combination")
     out = pathlib.Path(name) if args.out else REPO / "results" / name
@@ -264,7 +282,8 @@ def main() -> int:
     excluded = ((sample_a_urls() if args.exclude_sample_a else set())
                 | (sample_b_urls() if args.exclude_sample_b else set())
                 | (sample_c_urls() if args.exclude_sample_c else set())
-                | (sample_d_urls() if args.exclude_sample_d else set()))
+                | (sample_d_urls() if args.exclude_sample_d else set())
+                | (sample_e_urls() if args.exclude_sample_e else set()))
     pool, funnel = build_pool()
     print(f"pool (kill test 1a, passes at >= 150): {len(pool)} -> {'PASS' if len(pool) >= 150 else 'FAIL'}")
     order = sorted(pool, key=lambda p: p["pr_id"])
@@ -311,7 +330,10 @@ def main() -> int:
              (SEED_D, 4): "sample D (held out: rules v4 frozen before this run)",
              **{(s, 5): f"sample {n} (development set for rules v5)" for s, n in ((SEED, "A"), (SEED_B, "B"),
                                                                                  (SEED_C, "C"), (SEED_D, "D"))},
-             (SEED_E, 5): "sample E (held out: rules v5 frozen before this run)"}.get((args.seed, args.rules), "other seed")
+             (SEED_E, 5): "sample E (held out: rules v5 frozen before this run)",
+             **{(s, 6): f"sample {n} (development set for rules v6)" for s, n in ((SEED, "A"), (SEED_B, "B"), (SEED_C, "C"),
+                                                                                 (SEED_D, "D"), (SEED_E, "E"))},
+             (SEED_F, 6): "sample F (held out: rules v6 frozen before this run)"}.get((args.seed, args.rules), "other seed")
     summary = {
         "dataset": DATASET, "seed": args.seed, "sample": label, "sample_size": len(records),
         "rules_version": args.rules, "rules_file": rules_file.name, "rules_sha256": sha256(rules_file),
@@ -320,7 +342,7 @@ def main() -> int:
         **({"excluded_sample_a_prs_passed_over": passed_over} if not args.exclude_sample_b else
            {"excluded_prs_passed_over": passed_over,
             "excluded_samples": [s for s, on in (("A", args.exclude_sample_a), ("B", True), ("C", args.exclude_sample_c),
-                                           ("D", args.exclude_sample_d)) if on]}),
+                                           ("D", args.exclude_sample_d), ("E", args.exclude_sample_e)) if on]}),
         **({"prs_with_unplaced_files": sum(1 for r in records if r["unplaced"])} if args.rules >= 3 else {}),
         "funnel": funnel,
         "kill_test_1a": {"pool": len(pool), "threshold": ">= 150", "pass": len(pool) >= 150},
