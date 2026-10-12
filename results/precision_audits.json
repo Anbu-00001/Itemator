@@ -1,5 +1,9 @@
 {
  "confidence_level": 0.95,
+ "flag_count_range": [
+  6,
+  30
+ ],
  "labeller": "one language model per sample; no second reader; no upstream outcomes (merged, reverted, objected to)",
  "samples": [
   {
@@ -93,28 +97,52 @@
     0.863
    ],
    "share_of_prs_flagged": 0.133
+  },
+  {
+   "sample": "E",
+   "rules": "v5",
+   "status": "held_out",
+   "seed": 20261014,
+   "note": "results/audits/sample-E-rules-v5.md",
+   "prs_scored": 60,
+   "prs_flagged": 3,
+   "extras": 4,
+   "extras_real_strict": 3,
+   "extras_real_lenient": 4,
+   "prs_with_real_strict": 2,
+   "prs_with_real_lenient": 3,
+   "pr_strict_interval_95": [
+    0.208,
+    0.939
+   ],
+   "pr_lenient_interval_95": [
+    0.439,
+    1.0
+   ],
+   "share_of_prs_flagged": 0.05
   }
  ],
  "held_out_pooled": {
   "samples": [
    "B",
    "C",
-   "D"
+   "D",
+   "E"
   ],
   "rules_differ_between_samples": true,
-  "prs_flagged": 25,
-  "prs_with_real_strict": 12,
-  "prs_with_real_lenient": 16,
+  "prs_flagged": 28,
+  "prs_with_real_strict": 14,
+  "prs_with_real_lenient": 19,
   "strict_interval_95": [
-   0.3,
-   0.665
+   0.326,
+   0.674
   ],
   "lenient_interval_95": [
-   0.445,
-   0.798
+   0.493,
+   0.821
   ],
-  "prs_scored": 180,
-  "prs_flagged_share": 0.139
+  "prs_scored": 240,
+  "prs_flagged_share": 0.117
  },
  "notes": "Pooled across rule versions for a single plain sentence; the samples are different PRs and the rules changed, so it is not a controlled comparison."
 }

@@ -35,6 +35,9 @@ SAMPLES = [
     dict(sample="D", rules="v4", status="held_out", seed=20261013, note="results/audits/sample-D-rules-v4.md",
          prs_scored=60, prs_flagged=8, extras=12, extras_real_strict=4, extras_real_lenient=5,
          prs_with_real_strict=4, prs_with_real_lenient=5),
+    dict(sample="E", rules="v5", status="held_out", seed=20261014, note="results/audits/sample-E-rules-v5.md",
+         prs_scored=60, prs_flagged=3, extras=4, extras_real_strict=3, extras_real_lenient=4,
+         prs_with_real_strict=2, prs_with_real_lenient=3),
 ]
 
 
@@ -52,6 +55,7 @@ def main() -> None:
     n = sum(s["prs_flagged"] for s in held)
     out = {
         "confidence_level": 0.95,
+        "flag_count_range": [6, 30],   # the pre-registered range for "flagged PRs of 60" (kill test 1b in every replay file)
         "labeller": "one language model per sample; no second reader; no upstream outcomes (merged, reverted, objected to)",
         "samples": rows,
         "held_out_pooled": {
