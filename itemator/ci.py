@@ -581,7 +581,41 @@ def _config_file(path: str) -> bool:
         name in (".gitlab-ci.yml", "Dockerfile") or name.startswith("Dockerfile.") or name.endswith(_CONFIG_EXT))
 
 
-def answers(e, items: tuple, by_path: dict) -> tuple:
+ALWAYS = ("To keep it and stop asking about this file, reply `always`; that opens a merge request that changes the "
+          "team policy.")
+# T40: `always` keeps the extra and opens a merge request (react Step 5b) that adds its path to ignore.paths in the
+# target branch's .itemator.toml, so later merge requests stop asking. A path there quiets every quietable extra on
+# that exact file, so it is offered only where that is narrow and safe to write: a CI/config or stray file named by its
+# path, one file and not a group; never a package manifest (it would quiet later dependencies and version bumps); a path
+# fnmatch reads literally (no * ? [ ] ! { }) and TOML needs no escape for (no quote, backslash, space or backtick), at
+# most 120 characters; never a kind the policy cannot quiet; and only while the target branch's policy file was read,
+# used and has room for one more path (always_allowed), so the flow has a valid file and line to extend.
+ALWAYS_KINDS = ("ci_or_config", "stray_file")
+ALWAYS_PATH = re.compile(r"[A-Za-z0-9._/@+-]{1,120}")
+
+
+def always_allowed(policy: dict | None) -> bool:
+    """T40: from the `policy` object of itemator.json (Policy.to_dict): the file was found on the target branch tip,
+    used (no reason it was ignored) and lists fewer than MAX_PATTERNS paths. Missing, invalid or read from the merge
+    base: `always` is not offered."""
+    return bool(policy and policy.get("found") is True and policy.get("ignored") is None
+                and policy.get("source") == "target_branch"
+                and len((policy.get("active") or {}).get("ignore_paths") or ()) < POL.MAX_PATTERNS)
+
+
+def can_always(e, items: tuple = ()) -> bool:
+    return (e.kind in ALWAYS_KINDS and e.kind not in POL.NEVER_IGNORED and e.name == e.path and not e.detail
+            and not items and bool(ALWAYS_PATH.fullmatch(e.path)) and not _manifest(e.path))
+
+
+def answers(e, items: tuple, by_path: dict, always: bool = False) -> tuple:
+    """`split` and `remove` where the react flow accepts them (_split_remove), then `always` (T40) when the target
+    branch's policy file can take one more path (`always`, from always_allowed) and the extra qualifies (can_always)."""
+    offers = _split_remove(e, items, by_path)
+    return (*offers, "always") if always and can_always(e, items) else offers
+
+
+def _split_remove(e, items: tuple, by_path: dict) -> tuple:
     """Which of `split` and `remove` the react flow accepts for this extra (its Step 5a part 3), so a stub never
     offers what the flow would refuse (T26 F4): both for a CI or config file named by its path, and for a manifest
     dependency alone or in a group whose thread lists every package (B2: the flow checks each changed line against
@@ -601,7 +635,7 @@ def thread_stub(e, registry_line: str | None = None, other_person: bool = False,
     """The opening text of the extra's thread; the flow may post it as it is. `registry_line` (T17): the sentence of
     registry facts for a new dependency, placed before the replies. `other_person` (T20, names.other_person_required):
     OTHER_PERSON before the replies, as visible text, because the react flow cannot read markdown comments.
-    `offers` (T26 F4, from answers()): which of `split` and `remove` it names; the default names both. `said` (T35,
+    `offers` (T26 F4, from answers()): which of `split`, `remove` and `always` (T40) it names; the default names split and remove. `said` (T35,
     said.said): one of three fixed sentences on whether the MR's own text names the extra, never the author's words."""
     why = shown_name(e.why).strip()
     if not why.endswith((".", "!", "?")):
@@ -611,12 +645,13 @@ def thread_stub(e, registry_line: str | None = None, other_person: bool = False,
     facts += f" {OTHER_PERSON}" if other_person else ""
     split = "To move it into its own MR, reply `split`. " if "split" in offers else ""
     remove = "To drop it from this MR, reply `remove`. " if "remove" in offers else ""
+    always = f"{ALWAYS} " if "always" in offers else ""
     return (f"{_code(e.name)} ({_label(e)}): {why}{facts} To keep it, reply with its exact name. "
-            f"{split}{remove}If this is not really an extra, reply `not an extra`.")
+            f"{split}{remove}{always}If this is not really an extra, reply `not an extra`.")
 
 
 def describe_extra(e, by_path: dict, items: tuple = (), registry: dict | None = None, other_person: bool = False,
-                   said: str | None = None) -> dict:
+                   said: str | None = None, always: bool = False) -> dict:
     """A grouped extra (`items`, from group_extras) anchors where its first item does, and keeps every item in
     plain_facts.detail. `registry` (T17, from registry.look_up) goes to plain_facts and its sentence to the stub."""
     anchor, reason = anchor_for(items[0] if items else e, by_path)
@@ -628,7 +663,7 @@ def describe_extra(e, by_path: dict, items: tuple = (), registry: dict | None = 
     if said:
         plain["said"] = said
     rec = {**e.to_dict(), "detail": list(e.detail), "anchor": anchor, "anchorless_reason": reason,
-           "thread_stub": thread_stub(e, RG.sentence(registry), other_person, answers(e, items, by_path), said),
+           "thread_stub": thread_stub(e, RG.sentence(registry), other_person, answers(e, items, by_path, always), said),
            "plain_facts": plain}
     if rec["name"] != plain["name"]:          # T22: `name` is what the approver sees and types; `raw_name` is the manifest's
         rec["name"], rec["raw_name"] = plain["name"], e.name
@@ -739,6 +774,7 @@ def facts(*, mr_iid: int, mr_title: str, mr_description: str, mr_author_id, issu
     said, kept = [s for s, _ in ranked], [k for _, k in ranked]
     injection = scan_injection(mr_title, mr_description, issues, files)
     other = bool(policy and policy.other_person_required)
+    always = always_allowed(policy.to_dict() if policy else None)       # T40
     notes = (CHECKER_CAVEAT if checker and checker["source"] != "base" else None,
              TARGET_CAVEAT if fallback else None,
              policy_note(policy, [e for e, _ in quieted], at, asks_other=other and bool(kept)))
@@ -750,7 +786,7 @@ def facts(*, mr_iid: int, mr_title: str, mr_description: str, mr_author_id, issu
         "issue_iids": [i["iid"] for i in issues],
         "issues_from": issues_from,
         "state": state,
-        "extras": [describe_extra(e, by_path, items, r, other, s) for ((e, items), r), s in zip(kept, said)],
+        "extras": [describe_extra(e, by_path, items, r, other, s, always) for ((e, items), r), s in zip(kept, said)],
         "unplaced": list(unplaced),
         "injection": injection,
         "card": card_lines(state, issues, [e for (e, _), _ in kept], unplaced, injection,

@@ -1,14 +1,16 @@
-"""Mutation test for the CI job (T11, T12a, T17, T22, T20, T23, T26, T35): break the state logic, the injection scan, the
+"""Mutation test for the CI job (T11, T12a, T17, T22, T20, T23, T26, T35, T40): break the state logic, the injection scan, the
 diff, the line counting and anchors, the thread stub or the job-log copy in a copy of
 itemator/ci.py, the registry facts in a copy of itemator/registry.py, or the team policy in a copy of
 itemator/policy.py; tests/test_ci.py (T11 mutants), tests/test_ci_anchors.py (T12a mutants),
 tests/test_registry.py (T17 and T22 mutants) or tests/test_policy.py (T20 mutants) must fail for every mutant;
 each T26 mutant names its own test file (tests/test_diff_attributes.py, tests/test_answers.py, tests/test_policy.py);
 T35 mutants break itemator/said.py or its wiring in itemator/ci.py and are judged by tests/test_said.py.
+T40 mutants break the `always` offer in itemator/ci.py (judged by tests/test_answers.py) or the react prompt in
+flows/itemator_react.yml (judged by tests/test_react_prompt.py, which parses it with a YAML parser).
 
 Usage (WORK must be outside the repository, or pytest would collect the copies):
-    .venv/bin/python -I eval/mutate_ci.py "$PWD" /tmp/itemator-ci-mutants [T17|T35]
-With T17 (or T35), only the T17 (or T35) mutants run (every anchor of every mutant is still checked first).
+    .venv/bin/python -I eval/mutate_ci.py "$PWD" /tmp/itemator-ci-mutants [T17|T35|T40]
+With T17 (or T35, T40), only those mutants run (every anchor of every mutant is still checked first).
 Exit status 0 only when every mutant is killed.
 """
 import pathlib, shutil, subprocess, sys
@@ -88,7 +90,7 @@ A = [
  ("anchors: size limit off by one", "> MAX_PATCH_BYTES:", ">= MAX_PATCH_BYTES:"),
  ("anchors: size limit dropped", 'if len(patch.encode("utf-8", "replace")) > MAX_PATCH_BYTES:', "if False:"),
  ("anchors: missing file reason", 'return None, "file not in the diff"', 'return None, "no text patch"'),
- ("anchors: extras carry none", '"extras": [describe_extra(e, by_path, items, r, other, s) for ((e, items), r), s in zip(kept, said)],', '"extras": [{**e.to_dict(), "detail": list(e.detail)} for ((e, _), _), s in zip(kept, said)],'),   # T35: anchor follows the new line
+ ("anchors: extras carry none", '"extras": [describe_extra(e, by_path, items, r, other, s, always) for ((e, items), r), s in zip(kept, said)],', '"extras": [{**e.to_dict(), "detail": list(e.detail)} for ((e, _), _), s in zip(kept, said)],'),   # T35: anchor follows the new line
  # ---- stub, plain facts
  ("stub: no closing full stop", '    if not why.endswith((".", "!", "?")):\n        why += "."\n', ""),
  ("stub: double full stop", 'if not why.endswith((".", "!", "?")):', "if True:"),
@@ -96,8 +98,8 @@ A = [
  ("stub: remove answer dropped (T23)", "To drop it from this MR, reply `remove`. ", ""),
  ("stub: remove not in backticks (T23)", "reply `remove`.", "reply remove."),
  ("stub: remove after the dismissal (T23)",
-  'f"{split}{remove}If this is not really an extra, reply `not an extra`.")',
-  'f"{split}If this is not really an extra, reply `not an extra`. {remove}")'),
+  'f"{split}{remove}{always}If this is not really an extra, reply `not an extra`.")',       # T40: anchor follows the new line
+  'f"{split}{always}If this is not really an extra, reply `not an extra`. {remove}")'),
  ("plain facts: detail count wrong", '"detail_count": len(e.detail)', '"detail_count": 0'),
  # ---- job log
  ("log: markers not escaped", r'.replace("<", "\\u003c").replace(">", "\\u003e")', ""),
@@ -327,7 +329,7 @@ T26 = [
  ("answers: agent instructions not removable (T37)", '"build_output_added", "agent_instructions")', '"build_output_added")', "itemator/ci.py", "tests/test_answers.py"),
  ("stub: split always offered", '" if "split" in offers else ""', '" if True else ""', "itemator/ci.py", "tests/test_answers.py"),
  ("stub: remove always offered", '" if "remove" in offers else ""', '" if True else ""', "itemator/ci.py", "tests/test_answers.py"),
- ("stub: offers not passed", "other_person, answers(e, items, by_path), said),", "other_person, said=said),", "itemator/ci.py", "tests/test_answers.py"),
+ ("stub: offers not passed", "other_person, answers(e, items, by_path, always), said),", "other_person, said=said),", "itemator/ci.py", "tests/test_answers.py"),
  ("target: merge base used", "    target, resolved = target_tip(repo_dir, env, base)\n", "    target, resolved = base, True\n", "itemator/ci.py", "tests/test_policy.py"),
  ("target: not a full sha used", "        if _SHA40.fullmatch(sha):\n", "        if sha:\n", "itemator/ci.py", "tests/test_policy.py"),
  ("target: fallback caveat dropped", "             TARGET_CAVEAT if fallback else None,\n", "             None,\n", "itemator/ci.py", "tests/test_policy.py"),
@@ -425,22 +427,62 @@ T35 = [(label, old, new, path, TS) for label, old, new, path in [
  ("facts: title not passed", "    said = SAID.said(mr_title, mr_description,", '    said = SAID.said("", mr_description,', CI),
  ("facts: names from the name only", "[SAID.names(e.name, e.path, e.detail) for (e, _), _ in kept]", "[[e.name] for (e, _), _ in kept]", CI),
 ]]
+# T40: the `always` offer (itemator/ci.py, judged by tests/test_answers.py) and the react prompt (judged by
+# tests/test_react_prompt.py)
+TA, FL, TP = "tests/test_answers.py", "flows/itemator_react.yml", "tests/test_react_prompt.py"
+T40 = [(label, old, new, path, test) for label, old, new, path, test in [
+ ("always: any kind", 'ALWAYS_KINDS = ("ci_or_config", "stray_file")', 'ALWAYS_KINDS = ("ci_or_config", "stray_file", "tests_removed")', CI, TA),
+ ("always: stray files not offered", 'ALWAYS_KINDS = ("ci_or_config", "stray_file")', 'ALWAYS_KINDS = ("ci_or_config",)', CI, TA),
+ ("always: never-ignored kind offered", " and e.kind not in POL.NEVER_IGNORED and e.name", " and e.name", CI, TA),
+ ("always: a line of a file", " and e.name == e.path and not e.detail\n", " and not e.detail\n", CI, TA),
+ ("always: a group by detail", " and not e.detail\n            and not items", "\n            and not items", CI, TA),
+ ("always: a group by items", "            and not items and bool(ALWAYS_PATH", "            and bool(ALWAYS_PATH", CI, TA),
+ ("always: glob characters allowed", 'ALWAYS_PATH = re.compile(r"[A-Za-z0-9._/@+-]{1,120}")', 'ALWAYS_PATH = re.compile(r"[^\\s`]{1,120}")', CI, TA),
+ ("always: 121 characters", 'ALWAYS_PATH = re.compile(r"[A-Za-z0-9._/@+-]{1,120}")', 'ALWAYS_PATH = re.compile(r"[A-Za-z0-9._/@+-]{1,121}")', CI, TA),
+ ("always: 119 characters", 'ALWAYS_PATH = re.compile(r"[A-Za-z0-9._/@+-]{1,120}")', 'ALWAYS_PATH = re.compile(r"[A-Za-z0-9._/@+-]{1,119}")', CI, TA),
+ ("always: a prefix of the path", "bool(ALWAYS_PATH.fullmatch(e.path))", "bool(ALWAYS_PATH.match(e.path))", CI, TA),
+ ("always: manifests offered", " and not _manifest(e.path))\n", ")\n", CI, TA),
+ ("always: policy not found", 'policy.get("found") is True and', "True and", CI, TA),
+ ("always: ignored policy used", 'policy.get("ignored") is None', "True", CI, TA),
+ ("always: merge-base policy used", '                and policy.get("source") == "target_branch"\n', "", CI, TA),
+ ("always: no room off by one", "< POL.MAX_PATTERNS)", "<= POL.MAX_PATTERNS)", CI, TA),
+ ("always: the flag ignored", "if always and can_always(e, items) else offers", "if can_always(e, items) else offers", CI, TA),
+ ("always: offered first", '(*offers, "always")', '("always", *offers)', CI, TA),
+ ("always: facts offer it with any policy", "    always = always_allowed(policy.to_dict() if policy else None)       # T40\n", "    always = bool(policy)\n", CI, TA),
+ ("always: not passed to the stub", "other_person, answers(e, items, by_path, always), said),", "other_person, answers(e, items, by_path), said),", CI, TA),
+ ("stub: always sentence dropped", 'always = f"{ALWAYS} " if "always" in offers else ""', 'always = ""', CI, TA),
+ ("stub: always sentence first", 'f"{split}{remove}{always}If this', 'f"{always}{split}{remove}If this', CI, TA),
+ ("prompt: refusal list misses remember", '"Remove partly done:", "Cannot remember:" or "Remember failed:" (there may be none).', '"Remove partly done:" or "Cannot remember:" (there may be none).', FL, TP),
+ ("prompt: reminder misses remember", '"Remove partly done:", "Cannot remember:" or "Remember failed:"; otherwise', '"Remove partly done:"; otherwise', FL, TP),
+ ("prompt: offer sentence differs", "reply `always`; that opens a merge request that changes the team policy.\" the thread is ALWAYS_OK", "reply `always`.\" the thread is ALWAYS_OK", FL, TP),
+ ("prompt: no mention step", "        Step 7b. The mention thread.", "        The mention thread.", FL, TP),
+ ("prompt: mention reopened", "discussion_id and resolved true. Never touch any other discussion", "discussion_id and resolved false. Never touch any other discussion", FL, TP),
+ ("prompt: bot threads resolved", "take every discussion whose first note is not a bot note, whose", "take every discussion whose", FL, TP),
+ ("prompt: fork not refused", ' If source_project_id is not project_id, reply "Cannot remember: the branch is in a fork." and stop.', "", FL, TP),
+ ("prompt: description not exact", " Close it to keep asking.\" (no other text", "\" (no other text", FL, TP),
+ ("prompt: kept reply without kept by", '"Kept: `NAME`, kept by @WHO. Policy change', '"Kept: `NAME`, by @WHO. Policy change', FL, TP),
+ ("prompt: whole line rewritten", 'paths = ["a"] becomes paths = ["a", "PATH"]', 'paths = ["a"] becomes paths = ["PATH"]', FL, TP),
+ ("prompt: create_merge_request dropped", '      - "create_merge_request"\n', "", FL, TP),
+]]
 SRC = {"itemator/ci.py": (REPO / "itemator/ci.py").read_text(), "itemator/registry.py": (REPO / "itemator/registry.py").read_text(),
-       "itemator/policy.py": (REPO / "itemator/policy.py").read_text(), "itemator/said.py": (REPO / "itemator/said.py").read_text()}
+       "itemator/policy.py": (REPO / "itemator/policy.py").read_text(), "itemator/said.py": (REPO / "itemator/said.py").read_text(),
+       FL: (REPO / FL).read_text()}
 JOBS = ([(*m, "itemator/ci.py", "tests/test_ci.py") for m in M] + [(*m, "itemator/ci.py", "tests/test_ci_anchors.py") for m in A]
         + [(*m, "itemator/ci.py", "tests/test_registry.py") for m in RC] + [(*m, "itemator/registry.py", "tests/test_registry.py") for m in RG]
         + [(*m, "itemator/ci.py", "tests/test_policy.py") for m in PC] + [(*m, "itemator/policy.py", "tests/test_policy.py") for m in PO]
-        + T26 + T35)
+        + T26 + T35 + T40)
 for label, old, new, path, _ in JOBS:
     assert SRC[path].count(old) == 1, f"mutant {label!r}: anchor found {SRC[path].count(old)} times in {path}"
 if sys.argv[3:] == ["T17"]:
     JOBS = [j for j in JOBS if j[4] == "tests/test_registry.py"]
 if sys.argv[3:] == ["T35"]:
     JOBS = [j for j in JOBS if j[4] == "tests/test_said.py"]
+if sys.argv[3:] == ["T40"]:
+    JOBS = [j for j in JOBS if j in T40]
 def run(i, path, text, tests):
     d = WORK / f"m{i:02d}"
     if d.exists(): shutil.rmtree(d)
-    for sub in ("itemator", "tests", "tools"):
+    for sub in ("itemator", "tests", "tools", "flows"):        # T40: the react prompt is judged too
         shutil.copytree(REPO / sub, d / sub, ignore=shutil.ignore_patterns("__pycache__"))
     (d / path).write_text(text)
     return subprocess.run([PY, "-m", "pytest", "-q", "-x", "-p", "no:cacheprovider", tests], cwd=d, capture_output=True,

@@ -113,3 +113,204 @@ def test_agent_instructions_offer_remove_only_for_one_added_file(e, by_path, off
     assert ci.answers(e, (), by_path) == offers
     check_stub(ci.thread_stub(e, offers=ci.answers(e, (), by_path)), e.name, offers)
     assert ci._label(e).startswith("agent instructions")
+
+
+# ---- T40: `always` keeps the extra and opens a merge request that adds its path to ignore.paths on the target branch.
+# Offered only for one CI/config or stray file named by its path, a path fnmatch and TOML read literally, never a
+# package manifest or a kind the policy cannot quiet, and only when the target branch's policy file was read and used.
+import json                                                       # noqa: E402
+import pathlib                                                    # noqa: E402
+import re                                                         # noqa: E402
+
+from itemator import policy as POL                                # noqa: E402
+from itemator.extras import KINDS, Analysis                        # noqa: E402
+
+ALWAYS = ("To keep it and stop asking about this file, reply `always`; that opens a merge request that changes the "
+          "team policy.")
+GOOD = {"source": "target_branch", "sha": "a" * 40, "file": ".itemator.toml", "found": True, "ignored": None,
+        "active": {"other_person_required": False, "ignore_kinds": [], "ignore_paths": [], "ignores_every_path": []}}
+
+
+def policy_dict(**change):
+    out = json.loads(json.dumps(GOOD))
+    paths = change.pop("paths", None)
+    if paths is not None:
+        out["active"]["ignore_paths"] = paths
+    return {**out, **change}
+
+
+def offers_always(e, items=(), by_path=None, policy=GOOD):
+    return "always" in ci.answers(e, items, by_path or {}, ci.always_allowed(policy))
+
+
+def one_file(kind, path="conf/app.ini"):
+    return Extra(kind, path, path, "x")
+
+
+@pytest.mark.parametrize("kind", sorted(set(KINDS) | {"policy_changed"}))
+def test_always_only_for_a_config_or_stray_file(kind):
+    assert offers_always(one_file(kind), by_path=added("conf/app.ini")) is (kind in ("ci_or_config", "stray_file"))
+
+
+@pytest.mark.parametrize("e, items", [
+    (Extra("ci_or_config", "conf/", "conf/", "x", ("conf/a.yml", "conf/b.yml")), ()),          # grouped, by detail
+    (Extra("stray_file", "a.txt", "a.txt", "x"), (Extra("stray_file", "a.txt", "a.txt", "x"),) * 2),   # grouped, by items
+    (Extra("stray_file", "./", "stray files", "x", ("a", "b")), ()),                           # a group name
+    (Extra("ci_or_config", "package.json", "build", "x"), ()),                                 # one line of a file
+    (Extra("ci_or_config", "Makefile", "build", "x"), ()),                                     # one target of a file
+    (Extra("ci_or_config", "pyproject.toml", "pyproject.toml", "x"), ()),                      # a manifest
+    (Extra("stray_file", "web/package.json", "web/package.json", "x"), ()),
+    (Extra("ci_or_config", "requirements-dev.txt", "requirements-dev.txt", "x"), ()),
+])
+def test_always_never_for_a_group_a_line_or_a_manifest(e, items):
+    assert not offers_always(e, items)
+
+
+@pytest.mark.parametrize("path, ok", [
+    ("a/B.c_d@e+f-g.yml", True), (".gitlab-ci.yml", True), ("Dockerfile", True), ("x" * 120, True),
+    ("x" * 121, False), ("", False), ("conf/*.yml", False), ("conf/a?.yml", False), ("conf/[ab].yml", False),
+    ("conf/a].yml", False), ("conf/!a.yml", False), ("conf/{a}.yml", False), ("conf/a b.yml", False),
+    ("conf/a`b.yml", False), ('conf/a".yml', False), ("conf/a\\b.yml", False), ("conf/a'b.yml", False),
+    ("conf/a#b.yml", False), ("conf/a,b.yml", False), ("conf/a~.yml", False), ("conf/é.yml", False),
+    ("conf/a\n.yml", False), ("conf/a.yml\n", False), ("conf/a\t.yml", False),
+])
+def test_always_needs_a_plain_short_path(path, ok):
+    for kind in ("ci_or_config", "stray_file"):
+        assert offers_always(one_file(kind, path)) is ok, (kind, path)
+
+
+def test_always_never_for_a_kind_the_policy_cannot_quiet(monkeypatch):
+    assert offers_always(one_file("stray_file"))
+    monkeypatch.setattr(POL, "NEVER_IGNORED", (*POL.NEVER_IGNORED, "stray_file"))
+    assert not offers_always(one_file("stray_file")) and offers_always(one_file("ci_or_config"))
+
+
+@pytest.mark.parametrize("policy, ok", [
+    (GOOD, True),
+    (None, False),
+    (policy_dict(found=False), False),                                        # no file on the target branch
+    (policy_dict(ignored="it is not valid TOML (line 2, column 8)"), False),  # a file that was not used
+    (policy_dict(found=False, ignored="it could not be read (git ls-tree failed)"), False),
+    (policy_dict(source="merge_base"), False),                                # the target branch was not read
+    (policy_dict(paths=[f"p{i}" for i in range(19)]), True),                  # room for one more
+    (policy_dict(paths=[f"p{i}" for i in range(20)]), False),                 # POL.MAX_PATTERNS already
+])
+def test_always_needs_a_used_policy_file_on_the_target_branch(policy, ok):
+    assert ci.always_allowed(policy) is ok
+    assert offers_always(one_file("ci_or_config"), policy=policy) is ok
+
+
+def test_always_is_not_offered_unless_asked():
+    e = one_file("ci_or_config")
+    assert ci.answers(e, (), {}) == BOTH and ci.answers(e, (), {}, False) == BOTH
+    assert ci.answers(e, (), {}, True) == ("split", "remove", "always")
+    assert ci.answers(one_file("stray_file"), (), added("conf/app.ini"), True) == ("remove", "always")
+    assert ci.answers(one_file("stray_file"), (), modified("conf/app.ini"), True) == ("always",)
+    assert ci.answers(one_file("tests_removed"), (), {}, True) == NEITHER
+
+
+def test_the_always_sentence_comes_after_split_and_remove_and_before_not_an_extra():
+    from test_registry import banned
+    for e, by_path, words in ((one_file("ci_or_config"), {}, (SPLIT, REMOVE)),
+                              (one_file("stray_file"), added("conf/app.ini"), (REMOVE,)),
+                              (one_file("stray_file"), modified("conf/app.ini"), ())):
+        offers = ci.answers(e, (), by_path, True)
+        for stub in (ci.thread_stub(e, None, False, offers),
+                     ci.thread_stub(e, "PyPI: x.", True, offers, said="silent")):
+            assert stub.count(ALWAYS) == 1 and stub.endswith(f"{ALWAYS} {TAIL}")
+            order = [KEEP, *words, ALWAYS, TAIL]
+            assert [stub.count(s) for s in order] == [1] * len(order)
+            assert [stub.index(s) for s in order] == sorted(stub.index(s) for s in order)
+            assert stub.split("`")[1] == e.name and "reply with its exact name" in stub
+            assert not banned().search(stub)
+        full = ci.thread_stub(e, "PyPI: x.", True, offers, said="silent")
+        before = ["PyPI: x.", "The description does not mention this.", ci.OTHER_PERSON, KEEP]
+        assert [full.index(s) for s in before] == sorted(full.index(s) for s in before)
+    assert ALWAYS not in ci.thread_stub(one_file("ci_or_config"))
+    assert ci.ALWAYS == ALWAYS
+
+
+def run_facts(monkeypatch, extras, policy, files=()):
+    a = Analysis(list(extras), unplaced=[])
+    monkeypatch.setattr(ci.X, "analyse", lambda *_, **__: a)
+    issues = [{"iid": 12, "ref": "#12", "title": "t", "description": "d", "author_id": 1}]
+    import datetime
+    return ci.facts(mr_iid=5, mr_title="t", mr_description="", mr_author_id=2, issues=issues,
+                    issues_from="closes_issues", files=list(files), repo="o/r", base_sha="a" * 40, head_sha="b" * 40,
+                    warnings=[], now=datetime.datetime(2026, 10, 12, tzinfo=datetime.timezone.utc), policy=policy)
+
+
+def test_facts_offer_always_only_with_a_used_policy(monkeypatch):
+    extras = [one_file("ci_or_config", ".gitlab-ci.yml"), one_file("stray_file", "notes.txt"),
+              Extra("new_dependency", "requirements.txt", "leftpad", "adds leftpad"),
+              one_file("binary_or_large_added", "logo.png")]
+    files = [{"filename": "notes.txt", "status": "added"}, {"filename": "logo.png", "status": "added"}]
+    sha = "c" * 40
+    for policy, want in ((POL.Policy(sha=sha, found=True), [True, True, False, False]),
+                         (POL.Policy(sha=sha), [False] * 4),
+                         (POL.Policy(sha=sha, found=True, ignored="it is not UTF-8 text"), [False] * 4),
+                         (POL.Policy(sha=sha, found=True, source="merge_base"), [False] * 4),
+                         (None, [False] * 4)):
+        out = run_facts(monkeypatch, extras, policy, files)
+        assert [ALWAYS in x["thread_stub"] for x in out["extras"]] == want, policy
+
+
+OWN = pathlib.Path(__file__).resolve().parent.parent / ".itemator.toml"
+OWN_TEXT = OWN.read_text() if OWN.exists() else "[names]\nother_person_required = false\n[ignore]\nkinds = []\npaths = []\n"
+
+
+@pytest.mark.parametrize("policy, want", [(OWN_TEXT, True), ("[ignore]\npaths = 3\n", False), (None, False)])
+def test_job_offers_always_with_the_repository_policy_file(repo, tmp_path, monkeypatch, policy, want):
+    """End to end: the target branch carries this repository's own .itemator.toml (valid, nothing quieted), an
+    invalid one, or none."""
+    if policy is not None:
+        repo.base = repo.commit({".itemator.toml": policy}, "target branch")
+    head = repo.commit({"src/parser.py": FIXED, ".gitlab-ci.yml": "test:\n  script: [pytest, ruff]\n"})
+    code, out = job(repo, head, FakeHttp(routes(mr(), [issue()])), tmp_path, monkeypatch)
+    assert code == 0 and [x["name"] for x in out["extras"]] == [".gitlab-ci.yml"], out["extras"]
+    assert (ALWAYS in out["extras"][0]["thread_stub"]) is want
+
+
+# ---- the replay records: with a used, empty policy, the facts are what they were without one, except the policy's
+# own `found` and the stubs that gain the `always` sentence (re-derived here from the brief, not from ci.py)
+ROOT = pathlib.Path(__file__).resolve().parent.parent
+_MANIFEST_NAME = re.compile(r"pyproject\.toml|package\.json|requirements(?:-[^/]*)?\.txt|go\.mod|Cargo\.toml|Gemfile")
+
+
+def brief_offers_always(x: dict) -> bool:
+    path = x["path"]
+    return (x["kind"] in ("ci_or_config", "stray_file") and x.get("raw_name", x["name"]) == path and not x["detail"]
+            and "detail" not in x["plain_facts"] and bool(re.fullmatch(r"[A-Za-z0-9._/@+-]{1,120}", path))
+            and not _MANIFEST_NAME.fullmatch(path.rsplit("/", 1)[-1]))
+
+
+def test_replay_records_gain_the_always_sentence_only_where_offered(monkeypatch):
+    from test_checker_job import cached_files
+    paths = sorted((ROOT / "results").glob("replay_v4_*.json"))
+    if not paths:
+        pytest.skip("no results/ in this copy")
+    cache, seen, gained, listed = cached_files(), 0, {}, []
+    for path in paths:
+        for rec in json.loads(path.read_text())["prs"]:
+            v4 = rec.get("v4", rec)
+            extras = [Extra(x["kind"], x["path"], x["name"], x["why"], tuple(x["detail"])) for x in v4["extras"]]
+            files = cache.get(rec["files_sha256"], [])
+            off = json.loads(json.dumps(run_facts(monkeypatch, extras, POL.Policy(sha="a" * 40), files)))
+            on = json.loads(json.dumps(run_facts(monkeypatch, extras, POL.Policy(sha="a" * 40, found=True), files)))
+            assert off["policy"]["found"] is False and on["policy"]["found"] is True
+            assert {**on["policy"], "found": False} == off["policy"]
+            assert {k: v for k, v in on.items() if k not in ("extras", "policy")} == \
+                {k: v for k, v in off.items() if k not in ("extras", "policy")}, rec["pr_url"]
+            assert len(on["extras"]) == len(off["extras"])
+            for x, y in zip(on["extras"], off["extras"]):
+                assert {**x, "thread_stub": ""} == {**y, "thread_stub": ""}
+                changed = x["thread_stub"] != y["thread_stub"]
+                assert changed is brief_offers_always(x), (rec["pr_url"], x["kind"], x["path"])
+                if changed:
+                    assert x["thread_stub"] == y["thread_stub"].replace(f" {TAIL}", f" {ALWAYS} {TAIL}")
+                    gained[x["kind"]] = gained.get(x["kind"], 0) + 1
+                    listed.append(f"{rec['pr_url']} {x['kind']} {x['path']}")
+            seen += 1
+    assert seen == 240 and gained.get("ci_or_config") and gained.get("stray_file")
+    print(f"{seen} replay records; stubs that gain the always sentence: {gained}")
+    print("\n".join(listed))
