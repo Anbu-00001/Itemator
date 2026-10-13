@@ -2,10 +2,11 @@
 
 How this works: Claude writes a question here only when it cannot decide something that is yours to decide. Edit this file on GitHub, write your answer after `ANSWER:`, and commit. Claude re-reads it at every wake-up and never waits on it: it keeps building on the stated DEFAULT. Never paste tokens or passwords here (this repository is public).
 
-## Status (updated Oct 13, morning)
-- Done today: the policy-edit gap fixed and committed; Build Session transcript stored and analysed (clarity first; the judges' own demo loop ends in an automatic merge, and our "All threads must be resolved" lock is the brake); storyboard v3 written (five shots).
-- Running: the first Opus audit pass (reaction-flow prompt, `always`, the gap fix). Next: live test that an armed auto-merge waits for an open Itemator thread and then merges by itself once the name is typed (about 3 credits).
-- Credits today: meter 97.6 at 05:41; stop at 172.6. GitHub commits today: 3 of 10.
+## Status (updated Oct 13, 07:05 IST)
+- Done today: audited by Opus (1 blocker, 10 fixes, all applied); reaction flow v1.5.0 published and live-tested; eight pre-registered Developer Flow runs on our repository (all eight stayed inside the issue; nothing for the card to flag); sample F audited (4 of 8 flagged merge requests held a real extra).
+- Live proof for the video: with Draft lifted and auto-merge armed (what the organisers' demo loop does), an open Itemator thread keeps the merge blocked, and typing the name lets GitLab merge by itself within seconds.
+- Next: README/Devpost refresh; maybe a rules v7 (new-dependency rule is the weak one: 0 of 5 real events on samples D and F); next Opus audit after 08:50.
+- Credits today: about 25 to 30 used by estimate (cap 75; the meter lags about 18 h). GitHub commits today: 3 of 10 before this update.
 
 ## Open questions
 
