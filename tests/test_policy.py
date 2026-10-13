@@ -1,6 +1,7 @@
 """The team policy file (T20): .itemator.toml read from the target branch. It can quiet extras or tighten who may
 name them, never add one; a merge request that edits it gets a policy_changed extra. Real git repositories in tmp,
 a fake GitLab API, no network."""
+import pathlib
 import re
 import subprocess
 
@@ -61,7 +62,8 @@ def test_missing_file_changes_nothing(repo, tmp_path, monkeypatch):
                           ("binary_or_large_added", "assets/logo.png"), ("version_bump", "1.1.0")]
     assert out["state"] == "extras" and out["card"]["caveat_line"] is None
     assert out["policy"] == {"source": "target_branch", "sha": repo.base, "file": ".itemator.toml", "found": False,
-                             "ignored": None, "active": {"other_person_required": False, "ignore_kinds": [],
+                             "ignored": None, "paths_line_ok": False,
+                             "active": {"other_person_required": False, "ignore_kinds": [],
                                                         "ignore_paths": [], "ignores_every_path": []},
                              "ignored_extras": []}
     assert all(OTHER not in e["thread_stub"] for e in out["extras"])
@@ -149,10 +151,29 @@ def test_a_merge_request_that_adds_or_deletes_the_policy_is_an_extra(repo, tmp_p
     assert "old-policy.toml" not in out["unplaced"]
 
 
-def test_no_issue_means_no_policy_extra(repo, tmp_path, monkeypatch):
+def test_a_policy_edit_asks_for_a_name_even_when_no_issue_describes_it(repo, tmp_path, monkeypatch):
+    # T41: the merge request `always` opens has no linked issue; its one-line policy edit still needs a typed name
     head = repo.commit({".itemator.toml": "[names]\n"})
     code, out = job(repo, head, FakeHttp(routes(mr(description=""), [])), tmp_path, monkeypatch)
-    assert out["state"] == "no_issue" and out["extras"] == []
+    assert out["state"] == "no_issue"                      # the card still says nobody described the change
+    assert kinds(out) == [("policy_changed", ".itemator.toml")] and out["unplaced"] == []
+    e = out["extras"][0]
+    assert e["anchor"] is not None and e["thread_stub"].startswith("`.itemator.toml` (team policy change): ")
+    assert out["card"]["final_line"] == "No one described this change."
+    assert out["card"]["todo_line"] == "Link the issue it answers, or say why it needs none."
+
+
+def test_no_issue_without_a_policy_edit_still_has_no_extras(repo, tmp_path, monkeypatch):
+    head = repo.commit({"src/parser.py": FIXED, ".gitlab-ci.yml": "test:\n  script: [pytest, ruff]\n"})
+    code, out = job(repo, head, FakeHttp(routes(mr(description=""), [])), tmp_path, monkeypatch)
+    assert out["state"] == "no_issue" and out["extras"] == [] and out["unplaced"] == []
+
+
+def test_a_policy_edit_with_no_issue_is_not_quieted_by_the_policy(repo, tmp_path, monkeypatch):
+    with_policy(repo, '[ignore]\nkinds = ["ci_or_config"]\npaths = ["*"]\n')
+    head = repo.commit({".itemator.toml": '[ignore]\nkinds = ["ci_or_config"]\npaths = ["*", "a.yml"]\n'})
+    code, out = job(repo, head, FakeHttp(routes(mr(description=""), [])), tmp_path, monkeypatch)
+    assert out["state"] == "no_issue" and kinds(out) == [("policy_changed", ".itemator.toml")]
 
 
 @pytest.mark.parametrize("text, reason", [
@@ -515,3 +536,47 @@ def test_agent_instructions_are_never_quieted():
     assert POL.parse(b'[ignore]\nkinds = ["agent_instructions"]\n') == "ignore.kinds lists agent_instructions, which is never ignored"
     assert POL.parse(b'[ignore]\nkinds = ["binary_or_large_added"]\n') == \
         "ignore.kinds lists binary_or_large_added, which is never ignored"         # the same visible reason
+
+
+# T42 (audit pass 1, fix 6): the stub offers `always` only where the react flow's one-line edit can be made
+@pytest.mark.parametrize("text, ok", [
+    ('[ignore]\nkinds = []\npaths = []\n', True),
+    ('[names]\nother_person_required = false\n\n[ignore]\npaths = ["a", "b"]\n', True),
+    ('[ignore]\n  paths = ["a"]  # kept\n', True),
+    ('[ignore]\npaths=[]\n', False),                                  # valid TOML, but not the spelling the flow reads
+    ('[ignore]\npaths\t= []\n', False),
+    ('[ignore]\npaths = [\n  "a",\n]\n', False),                      # a list over several lines
+    ('[ignore]\nkinds = []\n', False),                                # no paths line
+    ('[names]\nother_person_required = false\n', False),              # no [ignore] table
+    ('ignore.paths = []\n', False),                                   # dotted key
+    ('paths = []\n', False),                                          # a paths line outside any [ignore] table
+    ('[ignore]\npaths = ["a",]\n', False),                            # a trailing comma would become ", ,"
+    ('[ignore]\npaths = ["a", ]\n', False),
+    ('[ignore]\npaths = ["a" # x ]\n]\n', False),                    # a # inside the list
+    ('[ignore]\npaths = []\npaths = ["a"]\n', False),                 # two lines (and invalid TOML)
+    ('[other]\npaths = []\n[ignore]\nkinds = []\n', False),           # the line is in another table
+    ('[ignore]\nkinds = []\n[other]\npaths = []\n', False),
+    ('# paths = []\n[ignore]\npaths = []\n', False),                  # the same text in a comment: the edit would hit it
+])
+def test_paths_line_ok_only_for_the_layout_the_flow_edits(text, ok):
+    assert POL.paths_line_ok(text) is ok
+
+
+def test_read_marks_the_real_policy_file_ok_and_a_policy_without_the_line_not(tmp_path):
+    for body, ok in (('[ignore]\npaths = []\n', True), ('[ignore]\npaths=[]\n', False)):
+        repo = tmp_path / str(ok)
+        repo.mkdir()
+        (repo / ".itemator.toml").write_text(body)
+        subprocess.run(["git", "init", "-q", str(repo)], check=True)
+        subprocess.run(["git", "-C", str(repo), "add", "."], check=True)
+        subprocess.run(["git", "-C", str(repo), "-c", "user.name=t", "-c", "user.email=t@t", "commit", "-q", "-m", "x"], check=True)
+        sha = subprocess.run(["git", "-C", str(repo), "rev-parse", "HEAD"], capture_output=True, text=True, check=True).stdout.strip()
+        pol = POL.read(str(repo), sha)
+        assert pol.paths_line_ok is ok and pol.to_dict()["paths_line_ok"] is ok
+
+
+def test_this_repository_policy_file_can_be_extended_by_always():
+    f = pathlib.Path(__file__).resolve().parent.parent / ".itemator.toml"
+    if not f.exists():
+        pytest.skip("no .itemator.toml in this copy")
+    assert POL.paths_line_ok(f.read_text())

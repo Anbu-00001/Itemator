@@ -71,12 +71,38 @@ class Policy:
     other_person_required: bool = False
     kinds: tuple = ()
     paths: tuple = ()
+    paths_line_ok: bool = False         # T42: the react flow can extend the file with a one-line edit (see paths_line_ok)
 
     def to_dict(self) -> dict:
         return {"source": self.source, "sha": self.sha, "file": FILE, "found": self.found, "ignored": self.ignored,
+                "paths_line_ok": self.paths_line_ok,
                 "active": {"other_person_required": self.other_person_required, "ignore_kinds": list(self.kinds),
                            "ignore_paths": list(self.paths),
                            "ignores_every_path": [p for p in self.paths if matches_everything(p)]}}
+
+
+_PATHS_LINE = re.compile(r" *paths = \[([^#\n]*)\][^\n]*")
+
+
+def paths_line_ok(text: str) -> bool:
+    """T42: the react flow's `always` edits one line, so it needs exactly one line in the [ignore] table that starts
+    (after spaces) with `paths = [` and closes the list on the same line, with no # in the list and no trailing comma,
+    and that line must occur once in the whole file. Anything else (`paths=[]`, a list over several lines, no [ignore]
+    table, dotted keys) is valid TOML that the flow refuses, so the offer is not made (the audit's fix 6)."""
+    lines = text.split("\n")
+    start = next((i for i, ln in enumerate(lines) if ln == "[ignore]"), None)
+    if start is None:
+        return False
+    table = []
+    for ln in lines[start + 1:]:
+        if ln.startswith("["):
+            break
+        table.append(ln)
+    hits = [ln for ln in table if re.match(r" *paths = \[", ln)]
+    if len(hits) != 1:
+        return False
+    m = _PATHS_LINE.fullmatch(hits[0])
+    return bool(m) and not m.group(1).rstrip().endswith(",") and text.count(hits[0]) == 1
 
 
 def parse(data: bytes):
@@ -167,7 +193,7 @@ def read(repo: str, sha) -> Policy:
     settings = parse(data)
     if isinstance(settings, str):
         return Policy(sha=sha, found=True, ignored=settings)
-    return Policy(sha=sha, found=True, **settings)
+    return Policy(sha=sha, found=True, paths_line_ok=paths_line_ok(data.decode("utf-8")), **settings)
 
 
 # ---------------------------------------------------------------- which extras it quiets

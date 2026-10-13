@@ -127,7 +127,7 @@ from itemator.extras import KINDS, Analysis                        # noqa: E402
 
 ALWAYS = ("To keep it and stop asking about this file, reply `always`; that opens a merge request that changes the "
           "team policy.")
-GOOD = {"source": "target_branch", "sha": "a" * 40, "file": ".itemator.toml", "found": True, "ignored": None,
+GOOD = {"source": "target_branch", "sha": "a" * 40, "file": ".itemator.toml", "found": True, "ignored": None, "paths_line_ok": True,
         "active": {"other_person_required": False, "ignore_kinds": [], "ignore_paths": [], "ignores_every_path": []}}
 
 
@@ -192,6 +192,7 @@ def test_always_never_for_a_kind_the_policy_cannot_quiet(monkeypatch):
     (policy_dict(ignored="it is not valid TOML (line 2, column 8)"), False),  # a file that was not used
     (policy_dict(found=False, ignored="it could not be read (git ls-tree failed)"), False),
     (policy_dict(source="merge_base"), False),                                # the target branch was not read
+    (policy_dict(paths_line_ok=False), False),                                # valid TOML the flow cannot extend (T42)
     (policy_dict(paths=[f"p{i}" for i in range(19)]), True),                  # room for one more
     (policy_dict(paths=[f"p{i}" for i in range(20)]), False),                 # POL.MAX_PATTERNS already
 ])
@@ -246,7 +247,8 @@ def test_facts_offer_always_only_with_a_used_policy(monkeypatch):
               one_file("binary_or_large_added", "logo.png")]
     files = [{"filename": "notes.txt", "status": "added"}, {"filename": "logo.png", "status": "added"}]
     sha = "c" * 40
-    for policy, want in ((POL.Policy(sha=sha, found=True), [True, True, False, False]),
+    for policy, want in ((POL.Policy(sha=sha, found=True, paths_line_ok=True), [True, True, False, False]),
+                             (POL.Policy(sha=sha, found=True), [False] * 4),
                          (POL.Policy(sha=sha), [False] * 4),
                          (POL.Policy(sha=sha, found=True, ignored="it is not UTF-8 text"), [False] * 4),
                          (POL.Policy(sha=sha, found=True, source="merge_base"), [False] * 4),
@@ -296,9 +298,9 @@ def test_replay_records_gain_the_always_sentence_only_where_offered(monkeypatch)
             extras = [Extra(x["kind"], x["path"], x["name"], x["why"], tuple(x["detail"])) for x in v4["extras"]]
             files = cache.get(rec["files_sha256"], [])
             off = json.loads(json.dumps(run_facts(monkeypatch, extras, POL.Policy(sha="a" * 40), files)))
-            on = json.loads(json.dumps(run_facts(monkeypatch, extras, POL.Policy(sha="a" * 40, found=True), files)))
+            on = json.loads(json.dumps(run_facts(monkeypatch, extras, POL.Policy(sha="a" * 40, found=True, paths_line_ok=True), files)))
             assert off["policy"]["found"] is False and on["policy"]["found"] is True
-            assert {**on["policy"], "found": False} == off["policy"]
+            assert {**on["policy"], "found": False, "paths_line_ok": False} == off["policy"]
             assert {k: v for k, v in on.items() if k not in ("extras", "policy")} == \
                 {k: v for k, v in off.items() if k not in ("extras", "policy")}, rec["pr_url"]
             assert len(on["extras"]) == len(off["extras"])

@@ -20,7 +20,10 @@ Checks (each prints PASS or FAIL with file:line):
     AGENTS.md and docs/. "credit" is banned; "credits" only after "GitLab" or in a
     sentence about billing.
  5. Commit hygiene. No `Co-Authored-By:` trailer, and a `Signed-off-by:` trailer on
-    every commit reachable from HEAD.
+    every commit reachable from HEAD. Three kinds of commit are exempt from the sign-off
+    only: the platform's own first commit, GitLab's merge-button commit ("See merge
+    request" in a message with two parents) and a commit authored by a flow's service
+    account (service_account_group_<id>_<hash>@noreply.gitlab.com).
  6. Licences. Every dependency in pyproject.toml (including optional extras,
     dependency-groups and build requires) is in tools/licences.json with SPDX "MIT",
     or is `"dev_only": true` with a reason and used only in dev-like groups.
@@ -426,23 +429,31 @@ def check_banned(root: Path) -> list[Finding]:
 
 # ---------------------------------------------------------------- check 5
 UNSIGNED_PLATFORM_COMMIT = "36891e91"
+SERVICE_ACCOUNT_EMAIL = re.compile(r"service_account_group_\d+_[0-9a-f]{32}@noreply\.gitlab\.com")
 
 
 def check_commits(root: Path) -> list[Finding]:
-    done = git(root, "log", "--format=%H%x1f%B%x1e")
+    done = git(root, "log", "--format=%H%x1f%P%x1f%ae%x1f%B%x1e")
     if done.returncode != 0:
         return [Finding("git", 0, f"cannot read the commit log: {done.stderr.strip() or 'not a git repository'}")]
     found = []
     for record in done.stdout.split("\x1e"):
         if not record.strip():
             continue
-        sha, _, body = record.strip("\n").partition("\x1f")
+        sha, parents, email, body = record.strip("\n").split("\x1f", 3)
         where = f"commit {sha[:8]}"
         if re.search(r"^\s*co-authored-by\s*:", body, re.I | re.M):
             found.append(Finding(where, 0, "has a Co-Authored-By trailer"))
         # The hackathon platform created this project with its own unsigned "Initial commit"; we did not write it
         # and never rewrite published history, so it is the one commit allowed without a sign-off.
         if sha.startswith(UNSIGNED_PLATFORM_COMMIT):
+            continue
+        # Two more kinds are not written by a person: the merge commit GitLab makes when the Merge button is used
+        # (it holds no change of its own; its parents are checked) and a commit made by a flow's service account
+        # (a person who does not sign it off has not accepted the DCO for it; the merge request they approve is theirs).
+        if len(parents.split()) > 1 and "See merge request " in body:
+            continue
+        if SERVICE_ACCOUNT_EMAIL.fullmatch(email):
             continue
         if not re.search(r"^\s*signed-off-by\s*:\s*\S.*<[^>\s]+>", body, re.I | re.M):
             found.append(Finding(where, 0, f"has no Signed-off-by trailer ({body.strip().splitlines()[0][:50] if body.strip() else 'empty message'})"))

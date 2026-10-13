@@ -244,10 +244,10 @@ RC = [
 ]
 # T20: the team policy file (itemator/policy.py) and how ci.py uses it, judged by tests/test_policy.py
 PC = [
- ("policy: an edit is not an extra", "    if edit:            # it replaces", "    if False:            # it replaces"),
+ ("policy: an edit is not an extra", "    if edit:                            # issue describes it", "    if False:                            # issue describes it"),
  ("policy: an edit keeps the stray duplicate", "found = [e for e in found if not e.name == e.path == edit.path] + [edit]", "found = [*found, edit]"),
  ("policy: an edit stays unplaced", "        unplaced = [u for u in unplaced if u != edit.path]\n", ""),
- ("policy: an edit on a no-issue MR", 'edit = policy_edit(files, at) if state != "no_issue" else None', "edit = policy_edit(files, at)"),
+ ("policy: no edit on a no-issue MR (T41)", "edit = policy_edit(files, at)       # T41:", 'edit = policy_edit(files, at) if state != "no_issue" else None       # T41:'),
  ("policy: rename away not seen", 'if POL.FILE in (f["filename"], f.get("previous_filename")):', 'if POL.FILE == f["filename"]:'),
  ("policy: quieting ignored", "        if why:\n            quieted.append", "        if False:\n            quieted.append"),
  ("policy: state not recomputed", '    if state != "no_issue":\n        state = decide_state(', '    if False:\n        state = decide_state('),
@@ -464,13 +464,34 @@ T40 = [(label, old, new, path, test) for label, old, new, path, test in [
  ("prompt: whole line rewritten", 'paths = ["a"] becomes paths = ["a", "PATH"]', 'paths = ["a"] becomes paths = ["PATH"]', FL, TP),
  ("prompt: create_merge_request dropped", '      - "create_merge_request"\n', "", FL, TP),
 ]]
+T42 = [(label, old, new, path, test) for label, old, new, path, test in [
+ ("t42: comment match allowed", " or OLD does not appear exactly once in the whole decoded file (a comment counts)", "", FL, TP),
+ ("t42: trailing comma allowed", " or the text between the [ and its closing ] holds a # or ends with a comma", "", FL, TP),
+ ("t42: leftover branch ignored", " Otherwise call gitlab_api_get with endpoint \"/api/v4/projects/<project_id>/repository/branches/<BRANCH with each / written as %2F>\"; if that branch exists, reply \"Cannot remember: the branch `BRANCH` is left from an earlier try; delete it, then reply always again.\" and stop (HTTP 404 means go on).", "", FL, TP),
+ ("t42: compare endpoint dropped", '"/api/v4/projects/<project_id>/repository/compare" and params {"from": TIP, "to": BRANCH, "straight": "true"}', '"/api/v4/projects/<project_id>/repository/files/.itemator.toml" and params {"ref": BRANCH}', FL, TP),
+ ("t42: compare not straight", '"to": BRANCH, "straight": "true"}', '"to": BRANCH}', FL, TP),
+ ("t42: two plus lines allowed", 'and exactly one line starting with "+"', 'and a line starting with "+"', FL, TP),
+ ("t42: mention typed with the answer", "T1 with every @ai-itemator- mention taken out and spaces at both ends taken off, is exactly NAME", "T1 is exactly NAME", FL, TP),
+ ("t42: T2 keeps its spaces", "then spaces at both ends and one trailing full stop taken off again, in lower case", "in lower case", FL, TP),
+ ("t42: mention step resolves a person's question", ", and in which every note after the first is a bot note or a system note (no person has replied)", "", FL, TP),
+ ("t42: mention step resolves a mention of a person", ' and mentions no @account except accounts whose name starts with "@ai-itemator-"', "", FL, TP),
+ ("t42: no-issue label swapped", ' (leave add_labels out while the label "itemator::no-issue" is on: these labels replace each other, and the second one would lift the Draft hold)', "", FL, TP),
+ ("t42: always offered where the flow cannot edit", '                and policy.get("paths_line_ok") is True                 # T42: the flow can make the one-line edit\n', "", CI, TA),
+ ("t42: paths line seen twice", "return bool(m) and not m.group(1).rstrip().endswith(\",\") and text.count(hits[0]) == 1", "return bool(m) and not m.group(1).rstrip().endswith(\",\")", "itemator/policy.py", "tests/test_policy.py"),
+ ("t42: trailing comma allowed", "return bool(m) and not m.group(1).rstrip().endswith(\",\") and text.count", "return bool(m) and text.count", "itemator/policy.py", "tests/test_policy.py"),
+ ("t42: two paths lines allowed", "    if len(hits) != 1:\n        return False\n    m = _PATHS_LINE", "    if not hits:\n        return False\n    m = _PATHS_LINE", "itemator/policy.py", "tests/test_policy.py"),
+ ("t42: table runs to the end of the file", '        if ln.startswith("["):\n            break\n        table.append(ln)', "        table.append(ln)", "itemator/policy.py", "tests/test_policy.py"),
+ ("t42: no [ignore] table needed", "    if start is None:\n        return False\n    table = []", "    if start is None:\n        start = -1\n    table = []", "itemator/policy.py", "tests/test_policy.py"),
+ ("t42: a # inside the list allowed", '_PATHS_LINE = re.compile(r" *paths = \\[([^#\\n]*)\\][^\\n]*")', '_PATHS_LINE = re.compile(r" *paths = \\[([^\\n]*)\\][^\\n]*")', "itemator/policy.py", "tests/test_policy.py"),
+ ("t42: label added to no-issue merge request", 'or (the label "itemator::no-issue" is not on the merge request and the label "itemator::needs-names" is missing)', 'or the label "itemator::needs-names" is missing', FL, TP),
+]]
 SRC = {"itemator/ci.py": (REPO / "itemator/ci.py").read_text(), "itemator/registry.py": (REPO / "itemator/registry.py").read_text(),
        "itemator/policy.py": (REPO / "itemator/policy.py").read_text(), "itemator/said.py": (REPO / "itemator/said.py").read_text(),
        FL: (REPO / FL).read_text()}
 JOBS = ([(*m, "itemator/ci.py", "tests/test_ci.py") for m in M] + [(*m, "itemator/ci.py", "tests/test_ci_anchors.py") for m in A]
         + [(*m, "itemator/ci.py", "tests/test_registry.py") for m in RC] + [(*m, "itemator/registry.py", "tests/test_registry.py") for m in RG]
         + [(*m, "itemator/ci.py", "tests/test_policy.py") for m in PC] + [(*m, "itemator/policy.py", "tests/test_policy.py") for m in PO]
-        + T26 + T35 + T40)
+        + T26 + T35 + T40 + T42)
 for label, old, new, path, _ in JOBS:
     assert SRC[path].count(old) == 1, f"mutant {label!r}: anchor found {SRC[path].count(old)} times in {path}"
 if sys.argv[3:] == ["T17"]:
@@ -479,6 +500,8 @@ if sys.argv[3:] == ["T35"]:
     JOBS = [j for j in JOBS if j[4] == "tests/test_said.py"]
 if sys.argv[3:] == ["T40"]:
     JOBS = [j for j in JOBS if j in T40]
+if sys.argv[3:] == ["T42"]:
+    JOBS = [j for j in JOBS if j in T42]
 def run(i, path, text, tests):
     d = WORK / f"m{i:02d}"
     if d.exists(): shutil.rmtree(d)

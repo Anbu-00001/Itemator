@@ -1,4 +1,4 @@
-"""Collect the headline counts of the four model-made label audits into results/precision_audits.json.
+"""Collect the headline counts of the six model-made label audits into results/precision_audits.json.
 
 Every count below is typed from the audit note named in `note`; none is computed from the rules.
 The only computation here is the Wilson 95% interval. Labels are one model's reading of each diff
@@ -38,6 +38,13 @@ SAMPLES = [
     dict(sample="E", rules="v5", status="held_out", seed=20261014, note="results/audits/sample-E-rules-v5.md",
          prs_scored=60, prs_flagged=3, extras=4, extras_real_strict=3, extras_real_lenient=4,
          prs_with_real_strict=2, prs_with_real_lenient=3),
+    # F: rules v6, the first sample audited by a model other than the one that wrote the rules (note: sample-F-rules-v6.md).
+    # description_*: how the description sentence (itemator/said.py) read on the 13 extras, from section 5 of the note.
+    dict(sample="F", rules="v6", status="held_out", seed=20261015, note="results/audits/sample-F-rules-v6.md",
+         prs_scored=60, prs_flagged=8, extras=13, extras_real_strict=5, extras_real_lenient=5,
+         prs_with_real_strict=4, prs_with_real_lenient=4,
+         description_says_names=4, description_says_does_not_mention=9, description_names_that_were_real=0,
+         real_extras_the_description_did_not_mention=5),
 ]
 
 

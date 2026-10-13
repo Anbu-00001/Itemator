@@ -120,6 +120,33 @@
     1.0
    ],
    "share_of_prs_flagged": 0.05
+  },
+  {
+   "sample": "F",
+   "rules": "v6",
+   "status": "held_out",
+   "seed": 20261015,
+   "note": "results/audits/sample-F-rules-v6.md",
+   "prs_scored": 60,
+   "prs_flagged": 8,
+   "extras": 13,
+   "extras_real_strict": 5,
+   "extras_real_lenient": 5,
+   "prs_with_real_strict": 4,
+   "prs_with_real_lenient": 4,
+   "description_says_names": 4,
+   "description_says_does_not_mention": 9,
+   "description_names_that_were_real": 0,
+   "real_extras_the_description_did_not_mention": 5,
+   "pr_strict_interval_95": [
+    0.215,
+    0.785
+   ],
+   "pr_lenient_interval_95": [
+    0.215,
+    0.785
+   ],
+   "share_of_prs_flagged": 0.133
   }
  ],
  "held_out_pooled": {
@@ -127,22 +154,23 @@
    "B",
    "C",
    "D",
-   "E"
+   "E",
+   "F"
   ],
   "rules_differ_between_samples": true,
-  "prs_flagged": 28,
-  "prs_with_real_strict": 14,
-  "prs_with_real_lenient": 19,
+  "prs_flagged": 36,
+  "prs_with_real_strict": 18,
+  "prs_with_real_lenient": 23,
   "strict_interval_95": [
-   0.326,
-   0.674
+   0.345,
+   0.655
   ],
   "lenient_interval_95": [
-   0.493,
-   0.821
+   0.476,
+   0.775
   ],
-  "prs_scored": 240,
-  "prs_flagged_share": 0.117
+  "prs_scored": 300,
+  "prs_flagged_share": 0.12
  },
  "notes": "Pooled across rule versions for a single plain sentence; the samples are different PRs and the rules changed, so it is not a controlled comparison."
 }

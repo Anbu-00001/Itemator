@@ -109,3 +109,41 @@ def test_every_earlier_quoted_phrase_is_kept(flow):
     quoted = set(re.findall(r'"([^"\n]{3,})"', old))
     assert len(quoted) > 60
     assert sorted(q for q in quoted if q not in system) == []
+
+
+def test_t42_the_one_line_edit_is_checked_with_compare_not_with_a_character_count(flow):
+    """Audit pass 1, fixes 1 to 4: OLD occurs once (a comment counts), no # or trailing comma in the list, a leftover branch
+    stops `always`, and the check reads the compare endpoint instead of counting characters."""
+    _, system = flow
+    step = system[system.index("Step 5b."):system.index("Step 6.")]
+    for s in ("does not appear exactly once in the whole decoded file (a comment counts)",
+              "holds a # or ends with a comma",
+              "is left from an earlier try; delete it, then reply always again.",
+              '"/api/v4/projects/<project_id>/repository/compare"', '"straight": "true"',
+              'exactly one line starting with "-"', 'exactly one line starting with "+"'):
+        assert s in step, s
+    assert "SIZE" not in step and "length of NEW_LINE" not in step
+
+
+def test_t42_an_answer_typed_with_the_mention_counts(flow):
+    _, system = flow
+    assert "then spaces at both ends and one trailing full stop taken off again, in lower case" in system
+    assert 'T1 with every @ai-itemator- mention taken out and spaces at both ends taken off, is exactly NAME' in system
+
+
+def test_t42_the_mention_step_leaves_a_question_from_a_person_alone(flow):
+    _, system = flow
+    step = system[system.index("Step 7b."):system.index("Step 8.")]
+    assert 'mentions no @account except accounts whose name starts with "@ai-itemator-"' in step
+    assert "every note after the first is a bot note or a system note" in step
+
+
+def test_t42_a_no_issue_merge_request_never_swaps_its_label_and_stays_in_draft(flow):
+    """The itemator:: labels replace each other (checked live on !24, 2026-10-13), so adding needs-names to a no-issue merge
+    request would drop no-issue and let Step 6 lift the Draft hold."""
+    _, system = flow
+    step = system[system.index("Step 6."):system.index("Step 7.")]
+    assert step.count('"itemator::no-issue"') == 3
+    assert 'leave add_labels out while the label "itemator::no-issue" is on' in step
+    assert 'the label "itemator::no-issue" is not on the merge request and the label "itemator::needs-names" is missing' in step
+    assert 'and the label "itemator::no-issue" is not on the merge request (one that nobody described' in step

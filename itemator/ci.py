@@ -599,6 +599,7 @@ def always_allowed(policy: dict | None) -> bool:
     used (no reason it was ignored) and lists fewer than MAX_PATTERNS paths. Missing, invalid or read from the merge
     base: `always` is not offered."""
     return bool(policy and policy.get("found") is True and policy.get("ignored") is None
+                and policy.get("paths_line_ok") is True                 # T42: the flow can make the one-line edit
                 and policy.get("source") == "target_branch"
                 and len((policy.get("active") or {}).get("ignore_paths") or ()) < POL.MAX_PATTERNS)
 
@@ -752,8 +753,10 @@ def facts(*, mr_iid: int, mr_title: str, mr_description: str, mr_author_id, issu
     state = decide_state(issues, mr_author_id, analysis)
     found = [] if state == "no_issue" else analysis.extras      # no ask, so nothing is "beyond" it
     unplaced = [] if state == "no_issue" else analysis.unplaced
-    edit = policy_edit(files, at) if state != "no_issue" else None
-    if edit:            # it replaces an extra the rules found on that one file (an added policy is a stray_file)
+    edit = policy_edit(files, at)       # T41: a change to the team policy always asks for a typed name, also when no
+    if edit:                            # issue describes it (the policy merge request `always` opens has none)
+        # it replaces an extra the rules found on that one file (an added policy is a stray_file); with no issue there
+        # is no ask, so nothing else is "beyond" it and the policy edit is the only extra
         found = [e for e in found if not e.name == e.path == edit.path] + [edit]
         unplaced = [u for u in unplaced if u != edit.path]
     grouped = group_extras(found)
