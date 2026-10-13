@@ -30,6 +30,7 @@ Put it at the root of the branch merge requests target; it is read from there, n
 [names]
 other_person_required = false   # true: only someone other than the author can name an extra
 hold_until_named = false        # true: the itemator job fails while an extra has no name (see below)
+asker_required = false          # true: only the person who wrote the linked issue can keep an extra
 
 [ignore]
 kinds = []   # whole kinds of extras to quiet, e.g. ["whitespace_only"]; never policy_changed, binary_or_large_added or agent_instructions

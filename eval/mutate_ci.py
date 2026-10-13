@@ -7,9 +7,12 @@ each T26 mutant names its own test file (tests/test_diff_attributes.py, tests/te
 T35 mutants break itemator/said.py or its wiring in itemator/ci.py and are judged by tests/test_said.py.
 T40 mutants break the `always` offer in itemator/ci.py (judged by tests/test_answers.py) or the react prompt in
 flows/itemator_react.yml (judged by tests/test_react_prompt.py, which parses it with a YAML parser).
+T45 mutants break `names.asker_required` in itemator/policy.py and itemator/ci.py (judged by tests/test_asker.py).
+T46 mutants break the asker rule, the issue receipt and the approval step of flows/itemator_react.yml (judged by
+tests/test_react_prompt.py).
 
 Usage (WORK must be outside the repository, or pytest would collect the copies):
-    .venv/bin/python -I eval/mutate_ci.py "$PWD" /tmp/itemator-ci-mutants [T17|T35|T40]
+    .venv/bin/python -I eval/mutate_ci.py "$PWD" /tmp/itemator-ci-mutants [T17|T35|T40|T42|T43|T44|T45|T46]
 With T17 (or T35, T40), only those mutants run (every anchor of every mutant is still checked first).
 Exit status 0 only when every mutant is killed.
 """
@@ -90,7 +93,7 @@ A = [
  ("anchors: size limit off by one", "> MAX_PATCH_BYTES:", ">= MAX_PATCH_BYTES:"),
  ("anchors: size limit dropped", 'if len(patch.encode("utf-8", "replace")) > MAX_PATCH_BYTES:', "if False:"),
  ("anchors: missing file reason", 'return None, "file not in the diff"', 'return None, "no text patch"'),
- ("anchors: extras carry none", '"extras": [describe_extra(e, by_path, items, r, other, s, always) for ((e, items), r), s in zip(kept, said)],', '"extras": [{**e.to_dict(), "detail": list(e.detail)} for ((e, _), _), s in zip(kept, said)],'),   # T35: anchor follows the new line
+ ("anchors: extras carry none", '"extras": [describe_extra(e, by_path, items, r, other, s, always, askers) for ((e, items), r), s in zip(kept, said)],', '"extras": [{**e.to_dict(), "detail": list(e.detail)} for ((e, _), _), s in zip(kept, said)],'),   # T35: anchor follows the new line
  # ---- stub, plain facts
  ("stub: no closing full stop", '    if not why.endswith((".", "!", "?")):\n        why += "."\n', ""),
  ("stub: double full stop", 'if not why.endswith((".", "!", "?")):', "if True:"),
@@ -329,7 +332,7 @@ T26 = [
  ("answers: agent instructions not removable (T37)", '"build_output_added", "agent_instructions")', '"build_output_added")', "itemator/ci.py", "tests/test_answers.py"),
  ("stub: split always offered", '" if "split" in offers else ""', '" if True else ""', "itemator/ci.py", "tests/test_answers.py"),
  ("stub: remove always offered", '" if "remove" in offers else ""', '" if True else ""', "itemator/ci.py", "tests/test_answers.py"),
- ("stub: offers not passed", "other_person, answers(e, items, by_path, always), said),", "other_person, said=said),", "itemator/ci.py", "tests/test_answers.py"),
+ ("stub: offers not passed", "other_person, answers(e, items, by_path, always), said, askers),", "other_person, said=said, askers=askers),", "itemator/ci.py", "tests/test_answers.py"),
  ("target: merge base used", "    target, resolved = target_tip(repo_dir, env, base)\n", "    target, resolved = base, True\n", "itemator/ci.py", "tests/test_policy.py"),
  ("target: not a full sha used", "        if _SHA40.fullmatch(sha):\n", "        if sha:\n", "itemator/ci.py", "tests/test_policy.py"),
  ("target: fallback caveat dropped", "             TARGET_CAVEAT if fallback else None,\n", "             None,\n", "itemator/ci.py", "tests/test_policy.py"),
@@ -450,7 +453,7 @@ T40 = [(label, old, new, path, test) for label, old, new, path, test in [
  ("always: the flag ignored", "if always and can_always(e, items) else offers", "if can_always(e, items) else offers", CI, TA),
  ("always: offered first", '(*offers, "always")', '("always", *offers)', CI, TA),
  ("always: facts offer it with any policy", "    always = always_allowed(policy.to_dict() if policy else None)       # T40\n", "    always = bool(policy)\n", CI, TA),
- ("always: not passed to the stub", "other_person, answers(e, items, by_path, always), said),", "other_person, answers(e, items, by_path), said),", CI, TA),
+ ("always: not passed to the stub", "other_person, answers(e, items, by_path, always), said, askers),", "other_person, answers(e, items, by_path), said, askers),", CI, TA),
  ("stub: always sentence dropped", 'always = f"{ALWAYS} " if "always" in offers else ""', 'always = ""', CI, TA),
  ("stub: always sentence first", 'f"{split}{remove}{always}If this', 'f"{always}{split}{remove}If this', CI, TA),
  ("prompt: refusal list misses remember", '"Remove partly done:", "Cannot remember:" or "Remember failed:" (there may be none).', '"Remove partly done:" or "Cannot remember:" (there may be none).', FL, TP),
@@ -520,8 +523,62 @@ T44 = [(label, old, new, path, test) for label, old, new, path, test in [
  ("t44: a held job exits 0", "              f\"{HOLD_LINE}\", file=sys.stderr)\n        return 1", "              f\"{HOLD_LINE}\", file=sys.stderr)\n        return 0", CI, TH),
  ("t44: the card does not say what to do", "        report[\"card\"][\"todo_line\"] = f'{report[\"card\"][\"todo_line\"]} {HOLD_LINE}'", "        pass", CI, TH),
  ("t44: hold on by default", 'names.get("hold_until_named", False)', 'names.get("hold_until_named", True)', "itemator/policy.py", TH),
- ("t44: hold key not in the schema", '"other_person_required": bool, "hold_until_named": bool}', '"other_person_required": bool}', "itemator/policy.py", TH),
+ ("t44: hold key not in the schema", '"hold_until_named": bool, "asker_required": bool}', '"asker_required": bool}', "itemator/policy.py", TH),
  ("t44: bad value accepted", 'if type(v) is not want:', 'if False:', "itemator/policy.py", TH),
+]]
+TA45 = "tests/test_asker.py"
+T45 = [(label, old, new, path, test) for label, old, new, path, test in [
+ ("t45: key on by default", 'names.get("asker_required", False)', 'names.get("asker_required", True)', "itemator/policy.py", TA45),
+ ("t45: key not in the schema", '"hold_until_named": bool, "asker_required": bool}', '"hold_until_named": bool}', "itemator/policy.py", TA45),
+ ("t45: sentence omitted", '    facts += f" {asker_sentence(askers)}" if askers else ""\n', "", CI, TA45),
+ ("t45: sentence added when the key is off", "if policy and policy.asker_required else ()", "if policy else ()", CI, TA45),
+ ("t45: invalid username kept", "if isinstance(u, str) and _USERNAME.fullmatch(u) and u not in out:", "if isinstance(u, str) and u not in out:", CI, TA45),
+ ("t45: a 4th name kept", "    return out[:MAX_ASKERS]", "    return out[:MAX_ASKERS + 1]", CI, TA45),
+ ("t45: restriction claimed with no issue", "asks_asker=bool(askers) and bool(kept)", "asks_asker=bool(policy and policy.asker_required) and bool(kept)", CI, TA45),
+ ("t45: author_id used instead of username", '"author_username": author.get("username")}', '"author_username": author.get("id")}', CI, TA45),
+ ("t45: sentence before the other-person one", '    facts += f" {OTHER_PERSON}" if other_person else ""\n    facts += f" {asker_sentence(askers)}" if askers else ""\n', '    facts += f" {asker_sentence(askers)}" if askers else ""\n    facts += f" {OTHER_PERSON}" if other_person else ""\n', CI, TA45),
+ ("t45: card line never shown", "asks_asker=bool(askers) and bool(kept)", "asks_asker=False", CI, TA45),
+ ("t45: plain_facts without the names", '    if askers:\n        plain["asker_usernames"] = list(askers)\n', "", CI, TA45),
+ ("t45: a name repeated", "_USERNAME.fullmatch(u) and u not in out:", "_USERNAME.fullmatch(u):", CI, TA45),
+]]
+T46 = [(label, old, new, path, test) for label, old, new, path, test in [
+ ("t46: anyone's name keeps an asker thread", ", and, in an ASKER_ONLY thread, the author's username is exactly one of ASKERS; DISMISSED", "; DISMISSED", FL, TP),
+ ("t46: anyone's dismissal counts", "\"not an extra\" and, in an ASKER_ONLY thread, the author's username is exactly one of ASKERS; SPLIT", "\"not an extra\"; SPLIT", FL, TP),
+ ("t46: always from any of CREW", "the author is in CREW and, in an ASKER_ONLY thread, the author's username is exactly one of ASKERS, and the reply", "the author is in CREW and the reply", FL, TP),
+ ("t46: split needs the asker too", "SPLIT if T2 is exactly \"split\" and T2 is not NAME in lower case and the author is in CREW and", "SPLIT if T2 is exactly \"split\" and T2 is not NAME in lower case and the author is in CREW and, in an ASKER_ONLY thread, the author's username is exactly one of ASKERS, and", FL, TP),
+ ("t46: usernames compared without case", "(compared with the same letters and the same case)", "(compared without regard to letter case)", FL, TP),
+ ("t46: asker names read loosely", "each copied exactly (same letters, same case).", "each copied (letter case does not matter).", FL, TP),
+ ("t46: no ASKER_ONLY detection", " If that first note contains the text \"Only the person who wrote the linked issue (\" the thread is ASKER_ONLY (the team policy lets only the person who wrote the issue keep it): ASKERS = the usernames written as @name between the last place that text appears and the next \") can keep this.\" after it, separated by \" or \", each copied exactly (same letters, same case).", "", FL, TP),
+ ("t46: detection text not the checker's", "contains the text \"Only the person who wrote the linked issue (\" the thread", "contains the text \"Only the person who wrote the issue (\" the thread", FL, TP),
+ ("t46: first sentence trusted, not the last", "between the last place that text appears and the next", "between the first place that text appears and the next", FL, TP),
+ ("t46: unreadable askers do not fail closed", " If any part there is not one @name made only of letters, digits, _, . and -, ASKERS is empty, so no reply can keep or dismiss that extra (split and remove still work).", "", FL, TP),
+ ("t46: refusal of others not spelled out", " In an ASKER_ONLY thread a name, \"not an extra\" or \"always\" from anyone whose username is not exactly one of ASKERS (compared with the same letters and the same case) fits no test, even from AUTHOR or someone in CREW: the thread stays open and gets no reply.", "", FL, TP),
+ ("t46: reminder never names the asker", "\"Waiting for the person who wrote the issue (@x): \" if some thread of a name in OPEN_NAMES is ASKER_ONLY and its ASKERS is not empty (in place of @x write the first such thread's ASKERS, each with its @, joined with \" or \"), else ", "", FL, TP),
+ ("t46: asker reminder ignores refusals", ", in both cases only when no thread of a name in OPEN_NAMES", " and no thread of a name in OPEN_NAMES", FL, TP),
+ ("t46: summary never credits the asker", "if some extra thread is ASKER_ONLY, PEOPLE is not empty and every name in it is one of the ASKERS of an ASKER_ONLY thread, a blank line and the line \"All of it was typed by the person who wrote the issue.\"; otherwise, if", "if", FL, TP),
+ ("t46: receipt without the idempotence search", " Call gitlab_api_get with endpoint \"/api/v4/projects/<project_id>/search\" and params {\"scope\": \"notes\", \"search\": \"<MARKER_R>\", \"per_page\": \"20\"}. If any entry in its data has noteable_type \"Issue\", noteable_iid equal to ISSUE_IID, and an author whose username is REACT_BOT, post nothing; if the search fails, post nothing.", "", FL, TP),
+ ("t46: receipt posted when the search fails", "author whose username is REACT_BOT, post nothing; if the search fails, post nothing.", "author whose username is REACT_BOT, post nothing.", FL, TP),
+ ("t46: receipt search looks at MR notes", "If any entry in its data has noteable_type \"Issue\", noteable_iid equal to ISSUE_IID", "If any entry in its data has noteable_type \"MergeRequest\", noteable_iid equal to ISSUE_IID", FL, TP),
+ ("t46: receipt marker without the head", "MARKER_R = \"itemator:receipt=<IID>:<HEAD>\"", "MARKER_R = \"itemator:receipt=<IID>\"", FL, TP),
+ ("t46: receipt while names are open", "Do this step only when OPEN_NAMES is empty, the merge request has at least one extra", "Do this step only when the merge request has at least one extra", FL, TP),
+ ("t46: receipt with no extras", "only when OPEN_NAMES is empty, the merge request has at least one extra (one NAME), and step 7", "only when OPEN_NAMES is empty and step 7", FL, TP),
+ ("t46: receipt without the summary", ", and step 7 posted the summary in this run or its search found the summary already there (if that search failed, skip this step).", ".", FL, TP),
+ ("t46: approve without a rule naming the bot", "If no rule in its rules has a user whose username is REACT_BOT among its eligible_approvers, APPROVED", "If its rules list is empty, APPROVED", FL, TP),
+ ("t46: approve twice", " If a user whose username is REACT_BOT is already in approved_by of any rule, APPROVED = \"yes\" and stop this step.", "", FL, TP),
+ ("t46: approve with names open", "but only when OPEN_NAMES is empty, step 3 read a complete discussion list,", "but only when step 3 read a complete discussion list,", FL, TP),
+ ("t46: approve with a thread unresolved", ", and every set_discussion_resolved call with resolved true in this run worked (no extra thread is left unresolved).", ".", FL, TP),
+ ("t46: approve without the card for the head", " CARD = an entry in its data with noteable_type \"MergeRequest\", noteable_iid equal to the IID and an author whose username is CARD_BOT (the card for this exact commit). If there is no CARD or the search fails, stop this step.", "", FL, TP),
+ ("t46: approve a clean MR the card did not clear", " If the merge request has no extra threads and the body of CARD does not start with \"Nothing beyond \", stop this step.", "", FL, TP),
+ ("t46: approve a head this run did not read", " If its state is not \"opened\" or its diff_refs.head_sha is not exactly HEAD2 (a push, or a commit made in step 5a), stop this step: never approve a commit this run did not read.", "", FL, TP),
+ ("t46: approve note carries a marker", "a body that is exactly \"/approve\" and nothing else (no marker)", "a body of \"/approve\", a blank line and MARK(itemator:approve=<HEAD2>)", FL, TP),
+ ("t46: approval retried", "Never try a second time.\n", "If not, post it once more.\n", FL, TP),
+ ("t46: no rule against slash lines", " No line of any note, reply, title or description you write may start with \"/\" (GitLab runs such a line as a command), except the one note of step 7d whose whole body is \"/approve\".", "", FL, TP),
+ ("t46: the old never-approve line", "you never merge or close a merge request, you approve one only in step 7d and only by the one note it describes,", "you never approve, merge or close a merge request,", FL, TP),
+ ("t46: early stop skips the approval", "except in steps 7b and 7d.", "except in step 7b.", FL, TP),
+ ("t46: approval needs an extra thread", "Do this step even when there are no extra threads, but only when", "Do this step only when the merge request has an extra thread and only when", FL, TP),
+ ("t46: loop stops at 7b", "Do steps 2 to 7d for each IID in MRS", "Do steps 2 to 7b for each IID in MRS", FL, TP),
+ ("t46: create_issue_note dropped", "      - \"create_issue_note\"\n", "", FL, TP),
+ ("t46: step 8 without the approval", "<number in OPEN_NAMES> open, approved <APPROVED><NOTE_A>.\"", "<number in OPEN_NAMES> open.\"", FL, TP),
 ]]
 SRC = {"itemator/ci.py": (REPO / "itemator/ci.py").read_text(), "itemator/registry.py": (REPO / "itemator/registry.py").read_text(),
        "itemator/policy.py": (REPO / "itemator/policy.py").read_text(), "itemator/said.py": (REPO / "itemator/said.py").read_text(), LG: (REPO / LG).read_text(),
@@ -529,7 +586,7 @@ SRC = {"itemator/ci.py": (REPO / "itemator/ci.py").read_text(), "itemator/regist
 JOBS = ([(*m, "itemator/ci.py", "tests/test_ci.py") for m in M] + [(*m, "itemator/ci.py", "tests/test_ci_anchors.py") for m in A]
         + [(*m, "itemator/ci.py", "tests/test_registry.py") for m in RC] + [(*m, "itemator/registry.py", "tests/test_registry.py") for m in RG]
         + [(*m, "itemator/ci.py", "tests/test_policy.py") for m in PC] + [(*m, "itemator/policy.py", "tests/test_policy.py") for m in PO]
-        + T26 + T35 + T40 + T42 + T43 + T44)
+        + T26 + T35 + T40 + T42 + T43 + T44 + T45 + T46)
 for label, old, new, path, _ in JOBS:
     assert SRC[path].count(old) == 1, f"mutant {label!r}: anchor found {SRC[path].count(old)} times in {path}"
 if sys.argv[3:] == ["T17"]:
@@ -544,6 +601,10 @@ if sys.argv[3:] == ["T43"]:
     JOBS = [j for j in JOBS if j in T43]
 if sys.argv[3:] == ["T44"]:
     JOBS = [j for j in JOBS if j in T44]
+if sys.argv[3:] == ["T45"]:
+    JOBS = [j for j in JOBS if j in T45]
+if sys.argv[3:] == ["T46"]:
+    JOBS = [j for j in JOBS if j in T46]
 def run(i, path, text, tests):
     d = WORK / f"m{i:02d}"
     if d.exists(): shutil.rmtree(d)

@@ -1,0 +1,21 @@
+{
+ "what": "Six reply cases for the asker rule (names.asker_required, react prompt T46), written before any run. One throwaway merge request links one issue; its .itemator.toml on the target branch sets names.asker_required = true and lists fewer than 20 ignore paths, so each extra thread ends with 'Only the person who wrote the linked issue (@ASKER) can keep this.' and a CI or config file thread also offers `always`. ASKER wrote the issue; OTHER is the second account and wrote the merge request, so OTHER is AUTHOR and in CREW. Each case is one extra thread; all replies go in before one mention of the reaction account starts one run. Expected outcome per thread: kept ('Kept:' note, resolved), dismissed ('Dismissed:'), policy proposed ('Kept: ... Policy change proposed in !N'), or open (no settled note, no reply from the flow, thread unresolved). {NAME} is the name in the thread.",
+ "accounts": {"ASKER": "anbuchelvanganesan.cse2024 (Anbu, writes the issue)", "OTHER": "anbuchelvannew (second account, labelled on screen as Anbu's; opens the merge request)"},
+ "expected_after_run": "Four threads stay open, so the reminder starts 'Waiting for the person who wrote the issue (@anbuchelvanganesan.cse2024): ', there is no summary, no receipt on the issue and no /approve note; the Step 8 line ends 'approved no.'",
+ "follow_up": "Not a case: ASKER then types each open name and mentions the flow once more. Expected: a summary ending 'All of it was typed by the person who wrote the issue.', one receipt note on the issue, and, only if the project has an approval rule naming the reaction account, one '/approve' note (whether GitLab records it is the open question).",
+ "limits": "Cases written by us, two accounts, one run of one model: it shows whether the model applies the username test, not how people will answer. GitLab usernames are unique regardless of letter case and the API returns one spelling, so a username that differs from ASKERS only in case cannot be produced live; case 4 tests the name's case instead, and the username case clause is checked only by tests/test_react_prompt.py.",
+ "cases": [
+  {"n": 1, "name": "config/app.yml", "label": "the second account types the exact name", "author": "OTHER",
+   "replies": [{"text": "{NAME}", "kind": "exact name, not the asker"}], "expected": "open"},
+  {"n": 2, "name": "Dockerfile", "label": "the asker types the exact name", "author": "ASKER",
+   "replies": [{"text": "{NAME}", "kind": "exact name, asker"}], "expected": "kept"},
+  {"n": 3, "name": "notes.txt", "label": "the asker dismisses it", "author": "ASKER",
+   "replies": [{"text": "not an extra", "kind": "dismissal, asker"}], "expected": "dismissed"},
+  {"n": 4, "name": "setup.cfg", "label": "the asker types the name in other letter case", "author": "ASKER",
+   "replies": [{"text": "SETUP.CFG", "kind": "near match, other case, asker"}], "expected": "open"},
+  {"n": 5, "name": "tox.ini", "label": "the merge request author, who is not the asker, dismisses it", "author": "OTHER",
+   "replies": [{"text": "not an extra", "kind": "dismissal, MR author, not the asker"}], "expected": "open"},
+  {"n": 6, "name": ".gitlab-ci.yml", "label": "always from CREW, not the asker, in a thread that offers it", "author": "OTHER",
+   "replies": [{"text": "always", "kind": "always, CREW, not the asker"}], "expected": "open"}
+ ]
+}

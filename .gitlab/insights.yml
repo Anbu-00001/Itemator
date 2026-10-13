@@ -1,0 +1,35 @@
+# GitLab Insights (Ultimate): how the merge requests in this project were judged by Itemator, week by week.
+# The labels are set by the two flows (flows/itemator_card.yml, flows/itemator_react.yml); tests/test_insights.py
+# checks that every label named here is one the flows really apply.
+itemator:
+  title: "Itemator"
+  charts:
+    - title: "Merge requests by what Itemator found"
+      description: "Merge requests per week, grouped by the label the flows left on them: needs-names (an extra still has no name), named (every extra has an answer), inside-ask (nothing beyond the issue), no-issue, second-reader, unplaced."
+      type: stacked-bar
+      query:
+        data_source: issuables
+        params:
+          issuable_type: merge_request
+          issuable_state: all
+          collection_labels:
+            - "itemator::needs-names"
+            - "itemator::named"
+            - "itemator::inside-ask"
+            - "itemator::no-issue"
+            - "itemator::second-reader"
+            - "itemator::unplaced"
+          group_by: week
+          period_limit: 8
+    - title: "Merge requests still waiting for a name"
+      description: "Merge requests per week that carry the needs-names label right now."
+      type: bar
+      query:
+        data_source: issuables
+        params:
+          issuable_type: merge_request
+          issuable_state: opened
+          filter_labels:
+            - "itemator::needs-names"
+          group_by: week
+          period_limit: 8

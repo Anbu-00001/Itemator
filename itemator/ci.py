@@ -259,7 +259,8 @@ def _issue(raw: dict, project_id: str) -> dict:
         ref = f"{m.group(1)}#{iid}" if m else f"#{iid}"
     author = raw.get("author") or {}
     return {"iid": iid, "ref": ref, "title": raw.get("title") or "",
-            "description": raw.get("description") or "", "author_id": author.get("id")}
+            "description": raw.get("description") or "", "author_id": author.get("id"),
+            "author_username": author.get("username")}       # T45: checked by asker_usernames before it is shown
 
 
 def linked_issues(api: Api, project_id: str, mr_iid: str, description: str, warnings: list):
@@ -563,6 +564,26 @@ def _code(text: str) -> str:
 
 
 OTHER_PERSON = "A reply from the merge request author does not count."
+ASKER_ONLY_PREFIX = "Only the person who wrote the linked issue ("
+ASKER_ONLY_SUFFIX = ") can keep this."
+MAX_ASKERS = 3          # names in the sentence; past it, the first three issues' authors
+_USERNAME = re.compile(r"[A-Za-z0-9_][A-Za-z0-9_.-]{0,254}")
+
+
+def asker_usernames(issues: list[dict]) -> list[str]:
+    """T45 (names.asker_required): the linked issues' authors as the issue API gave them (author.username, never the
+    merge request), in issue order, each once, at most MAX_ASKERS. A username is written into a thread, so one that is
+    not a plain GitLab username is dropped; none left means no restriction."""
+    out = []
+    for i in issues:
+        u = i.get("author_username")
+        if isinstance(u, str) and _USERNAME.fullmatch(u) and u not in out:
+            out.append(u)
+    return out[:MAX_ASKERS]
+
+
+def asker_sentence(askers) -> str:
+    return ASKER_ONLY_PREFIX + " or ".join(f"@{u}" for u in askers) + ASKER_ONLY_SUFFIX
 MAX_LISTED = 1000       # characters of package names a grouped dependency thread lists; past it, no split or remove (T26 B2)
 _MANIFEST = re.compile(r"pyproject\.toml|package\.json|requirements(?:-[^/]*)?\.txt|go\.mod|Cargo\.toml|Gemfile")
 _CONFIG_EXT = (".yml", ".yaml", ".toml", ".json", ".cfg", ".ini")
@@ -632,18 +653,20 @@ def _split_remove(e, items: tuple, by_path: dict) -> tuple:
 
 
 def thread_stub(e, registry_line: str | None = None, other_person: bool = False,
-                offers: tuple = ("split", "remove"), said: str | None = None) -> str:
+                offers: tuple = ("split", "remove"), said: str | None = None, askers: tuple = ()) -> str:
     """The opening text of the extra's thread; the flow may post it as it is. `registry_line` (T17): the sentence of
     registry facts for a new dependency, placed before the replies. `other_person` (T20, names.other_person_required):
     OTHER_PERSON before the replies, as visible text, because the react flow cannot read markdown comments.
     `offers` (T26 F4, from answers()): which of `split`, `remove` and `always` (T40) it names; the default names split and remove. `said` (T35,
-    said.said): one of three fixed sentences on whether the MR's own text names the extra, never the author's words."""
+    said.said): one of three fixed sentences on whether the MR's own text names the extra, never the author's words.
+    `askers` (T45, asker_usernames): the issue authors who alone may keep it, named right after OTHER_PERSON."""
     why = shown_name(e.why).strip()
     if not why.endswith((".", "!", "?")):
         why += "."
     facts = f" {registry_line}" if registry_line else ""
     facts += f" {SAID.SENTENCE[said]}" if said else ""
     facts += f" {OTHER_PERSON}" if other_person else ""
+    facts += f" {asker_sentence(askers)}" if askers else ""
     split = "To move it into its own MR, reply `split`. " if "split" in offers else ""
     remove = "To drop it from this MR, reply `remove`. " if "remove" in offers else ""
     always = f"{ALWAYS} " if "always" in offers else ""
@@ -652,7 +675,7 @@ def thread_stub(e, registry_line: str | None = None, other_person: bool = False,
 
 
 def describe_extra(e, by_path: dict, items: tuple = (), registry: dict | None = None, other_person: bool = False,
-                   said: str | None = None, always: bool = False) -> dict:
+                   said: str | None = None, always: bool = False, askers: tuple = ()) -> dict:
     """A grouped extra (`items`, from group_extras) anchors where its first item does, and keeps every item in
     plain_facts.detail. `registry` (T17, from registry.look_up) goes to plain_facts and its sentence to the stub."""
     anchor, reason = anchor_for(items[0] if items else e, by_path)
@@ -663,8 +686,10 @@ def describe_extra(e, by_path: dict, items: tuple = (), registry: dict | None = 
         plain["registry"] = registry
     if said:
         plain["said"] = said
+    if askers:
+        plain["asker_usernames"] = list(askers)
     rec = {**e.to_dict(), "detail": list(e.detail), "anchor": anchor, "anchorless_reason": reason,
-           "thread_stub": thread_stub(e, RG.sentence(registry), other_person, answers(e, items, by_path, always), said),
+           "thread_stub": thread_stub(e, RG.sentence(registry), other_person, answers(e, items, by_path, always), said, askers),
            "plain_facts": plain}
     if rec["name"] != plain["name"]:          # T22: `name` is what the approver sees and types; `raw_name` is the manifest's
         rec["name"], rec["raw_name"] = plain["name"], e.name
@@ -677,6 +702,7 @@ CHECKER_CAVEAT = "These facts come from this merge request's own copy of the che
 TARGET_CAVEAT = ("The target branch could not be read in this job, so the team policy and the checker come from the "
                  "commit this branch started from.")
 ASKS_OTHER = "The team policy asks for someone other than the author to name each extra."
+ASKS_ASKER = "The team policy lets only the person who wrote the issue keep an extra."
 AT_TARGET, AT_FORK = "on the target branch", "at the commit this branch started from"
 _SHOWN_QUIETED = 10
 _SHA40 = re.compile(r"[0-9a-f]{40}")
@@ -709,7 +735,8 @@ def policy_edit(files: list[dict], at: str = AT_TARGET):
     return None
 
 
-def policy_note(policy, quieted: list, at: str = AT_TARGET, asks_other: bool = False) -> str | None:
+def policy_note(policy, quieted: list, at: str = AT_TARGET, asks_other: bool = False,
+                asks_asker: bool = False) -> str | None:
     """The visible sentences about the team policy: why it was not used, what it quieted, a pattern that ignores
     every path, and (T26 F8) that someone other than the author must name each extra still open."""
     if policy is None:
@@ -728,6 +755,8 @@ def policy_note(policy, quieted: list, at: str = AT_TARGET, asks_other: bool = F
         out.append("The team policy ignores every path (" + ", ".join(_code(p) for p in every) + ").")
     if asks_other:
         out.append(ASKS_OTHER)
+    if asks_asker:          # T45: an extra still open names the issue author who alone may keep it
+        out.append(ASKS_ASKER)
     return " ".join(out) or None
 
 
@@ -778,9 +807,11 @@ def facts(*, mr_iid: int, mr_title: str, mr_description: str, mr_author_id, issu
     injection = scan_injection(mr_title, mr_description, issues, files)
     other = bool(policy and policy.other_person_required)
     always = always_allowed(policy.to_dict() if policy else None)       # T40
+    askers = tuple(asker_usernames(issues)) if policy and policy.asker_required else ()    # T45; no issue (no_issue), no names
     notes = (CHECKER_CAVEAT if checker and checker["source"] != "base" else None,
              TARGET_CAVEAT if fallback else None,
-             policy_note(policy, [e for e, _ in quieted], at, asks_other=other and bool(kept)))
+             policy_note(policy, [e for e, _ in quieted], at, asks_other=other and bool(kept),
+                         asks_asker=bool(askers) and bool(kept)))
     report = {
         "rules_version": X.RULES_VERSION,
         "mr_iid": mr_iid,
@@ -789,7 +820,7 @@ def facts(*, mr_iid: int, mr_title: str, mr_description: str, mr_author_id, issu
         "issue_iids": [i["iid"] for i in issues],
         "issues_from": issues_from,
         "state": state,
-        "extras": [describe_extra(e, by_path, items, r, other, s, always) for ((e, items), r), s in zip(kept, said)],
+        "extras": [describe_extra(e, by_path, items, r, other, s, always, askers) for ((e, items), r), s in zip(kept, said)],
         "unplaced": list(unplaced),
         "injection": injection,
         "card": card_lines(state, issues, [e for (e, _), _ in kept], unplaced, injection,

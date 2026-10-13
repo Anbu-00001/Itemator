@@ -4,6 +4,7 @@ request, so a merge request cannot weaken the rules it is judged by. A merge req
 
     [names]
     other_person_required = true      # a name typed by the merge request author does not count
+    asker_required = true             # only the person who wrote the linked issue can keep an extra (T45)
     [ignore]
     kinds = ["version_bump"]          # extras of these kinds never need a name
     paths = ["docs/**", "*.md"]       # extras whose files all match one of these never need a name
@@ -28,7 +29,7 @@ MAX_BYTES = 64 * 1024
 MAX_PATTERNS = 20
 MAX_PATTERN_CHARS = 200
 TIMEOUT = 10            # seconds per git call
-SCHEMA = {"names": {"other_person_required": bool, "hold_until_named": bool}, "ignore": {"kinds": list, "paths": list}}
+SCHEMA = {"names": {"other_person_required": bool, "hold_until_named": bool, "asker_required": bool}, "ignore": {"kinds": list, "paths": list}}
 
 # Built-in exceptions: no policy quiets these.
 # - policy_changed: the merge request edits the rules the next merge requests are judged by.
@@ -70,6 +71,7 @@ class Policy:
     ignored: str | None = None          # why the file was not used; the defaults apply
     other_person_required: bool = False
     hold_until_named: bool = False      # T44: the itemator job fails while an extra has no name (see ci.hold)
+    asker_required: bool = False        # T45: only the linked issue's author can keep an extra (see ci.asker_usernames)
     kinds: tuple = ()
     paths: tuple = ()
     paths_line_ok: bool = False         # T42: the react flow can extend the file with a one-line edit (see paths_line_ok)
@@ -77,7 +79,8 @@ class Policy:
     def to_dict(self) -> dict:
         return {"source": self.source, "sha": self.sha, "file": FILE, "found": self.found, "ignored": self.ignored,
                 "paths_line_ok": self.paths_line_ok,
-                "active": {"other_person_required": self.other_person_required, "hold_until_named": self.hold_until_named, "ignore_kinds": list(self.kinds),
+                "active": {"other_person_required": self.other_person_required, "hold_until_named": self.hold_until_named,
+                           "asker_required": self.asker_required, "ignore_kinds": list(self.kinds),
                            "ignore_paths": list(self.paths),
                            "ignores_every_path": [p for p in self.paths if matches_everything(p)]}}
 
@@ -107,7 +110,7 @@ def paths_line_ok(text: str) -> bool:
 
 
 def parse(data: bytes):
-    """The settings ({"other_person_required", "kinds", "paths"}), or the reason the whole file is ignored. A file
+    """The settings ({"other_person_required", "hold_until_named", "asker_required", "kinds", "paths"}), or the reason the whole file is ignored. A file
     nested too deeply for the parser is a reason too, never a crash (T26 F2)."""
     try:
         return _parse(data)
@@ -154,7 +157,8 @@ def _parse(data: bytes):
         if len(p) > MAX_PATTERN_CHARS:
             return f"an ignore.paths pattern is longer than {MAX_PATTERN_CHARS} characters"
     return {"other_person_required": names.get("other_person_required", False),
-            "hold_until_named": names.get("hold_until_named", False), "kinds": tuple(kinds),
+            "hold_until_named": names.get("hold_until_named", False),
+            "asker_required": names.get("asker_required", False), "kinds": tuple(kinds),
             "paths": tuple(paths)}
 
 
