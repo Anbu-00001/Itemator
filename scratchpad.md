@@ -2,11 +2,11 @@
 
 How this works: Claude writes a question here only when it cannot decide something that is yours to decide. Edit this file on GitHub, write your answer after `ANSWER:`, and commit. Claude re-reads it at every wake-up and never waits on it: it keeps building on the stated DEFAULT. Never paste tokens or passwords here (this repository is public).
 
-## Status (updated Oct 13, 07:05 IST)
-- Done today: audited by Opus (1 blocker, 10 fixes, all applied); reaction flow v1.5.0 published and live-tested; eight pre-registered Developer Flow runs on our repository (all eight stayed inside the issue; nothing for the card to flag); sample F audited (4 of 8 flagged merge requests held a real extra).
-- Live proof for the video: with Draft lifted and auto-merge armed (what the organisers' demo loop does), an open Itemator thread keeps the merge blocked, and typing the name lets GitLab merge by itself within seconds.
-- Next: README/Devpost refresh; maybe a rules v7 (new-dependency rule is the weak one: 0 of 5 real events on samples D and F); next Opus audit after 08:50.
-- Credits today: about 25 to 30 used by estimate (cap 75; the meter lags about 18 h). GitHub commits today: 3 of 10 before this update.
+## Status (updated Oct 13, 19:00 IST)
+- The crons did not fire on Oct 13, so nothing ran from about 08:00 to 17:40; work resumed when you came back. Sorry.
+- Done since: second Opus audit applied (one wrong README claim fixed, plus eleven smaller fixes); the fixes went through a real merge request that Itemator itself judged (two extras, both named, merged); a decision log that touches the Release and Monitor stages (all nine stages now); 625 mutants all caught in CI; unit tests now run in every pipeline; `always` re-tested live on the tightened prompt.
+- Honest gap, now stated in the README: in the organisers' own auto-merge loop the merge is armed inside the pipeline, before the card exists, so GitLab can merge first.
+- Credits today: about 160 on the meter plus a few not yet shown; I am not spending more today. GitHub commits today: 6 of 10 after this update.
 
 ## Open questions
 
@@ -18,6 +18,11 @@ ANSWER: Sure, will answer within October 25
 ### Q2. Office hours: please ask the organisers two things (Thu Oct 15 19:00 UTC or Tue Oct 20 10:00 UTC, or on Discord)
 (a) The question in Q1. (b) "Duo Code Review is assigned automatically when a merge request is created. Does that interact with a custom flow that also triggers on reviewer assignment?" (we saw both fire).
 ANSWER: Will ask and let you know
+
+### Q3. A commit by GitLab's Developer Flow carries your institutional email in a public project (your call)
+Facts: the flow signs its commits "Signed-off-by: <your name> <your institutional email>" on the closed merge requests !26 to !33 (the field study). They are visible in a public project; I cannot remove them. I have added a line to AGENTS.md telling agents never to sign off in a person's name, and the sign-off check now exempts only our own flow accounts.
+DEFAULT: leave the closed merge requests as they are. If you want them hidden, only a project owner can delete a merge request.
+ANSWER:
 
 ## Answered
 - Q (Oct 12-13): Build Session transcript: answered by the user's paste (stored in the vault).
