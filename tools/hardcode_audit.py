@@ -22,8 +22,9 @@ Checks (each prints PASS or FAIL with file:line):
  5. Commit hygiene. No `Co-Authored-By:` trailer, and a `Signed-off-by:` trailer on
     every commit reachable from HEAD. Three kinds of commit are exempt from the sign-off
     only: the platform's own first commit, GitLab's merge-button commit ("See merge
-    request" in a message with two parents) and a commit authored by a flow's service
-    account (service_account_group_<id>_<hash>@noreply.gitlab.com).
+    request" in a message with two parents and no change of its own, so a clean merge) and a
+    commit authored by one of this project's flow accounts
+    (service_account_group_121124982_<hash>@noreply.gitlab.com).
  6. Licences. Every dependency in pyproject.toml (including optional extras,
     dependency-groups and build requires) is in tools/licences.json with SPDX "MIT",
     or is `"dev_only": true` with a reason and used only in dev-like groups.
@@ -429,7 +430,8 @@ def check_banned(root: Path) -> list[Finding]:
 
 # ---------------------------------------------------------------- check 5
 UNSIGNED_PLATFORM_COMMIT = "36891e91"
-SERVICE_ACCOUNT_EMAIL = re.compile(r"service_account_group_\d+_[0-9a-f]{32}@noreply\.gitlab\.com")
+# Only this project's own flow accounts (group 121124982 is the top-level group that owns the Duo service accounts):
+SERVICE_ACCOUNT_EMAIL = re.compile(r"service_account_group_121124982_[0-9a-f]{32}@noreply\.gitlab\.com")
 
 
 def check_commits(root: Path) -> list[Finding]:
@@ -451,8 +453,8 @@ def check_commits(root: Path) -> list[Finding]:
         # Two more kinds are not written by a person: the merge commit GitLab makes when the Merge button is used
         # (it holds no change of its own; its parents are checked) and a commit made by a flow's service account
         # (a person who does not sign it off has not accepted the DCO for it; the merge request they approve is theirs).
-        if len(parents.split()) > 1 and "See merge request " in body:
-            continue
+        if len(parents.split()) > 1 and "See merge request " in body and not git(root, "diff-tree", "--cc", "--no-commit-id", "-p", "-r", sha).stdout.strip():
+            continue                                   # a merge that adds changes of its own needs a sign-off like any commit
         if SERVICE_ACCOUNT_EMAIL.fullmatch(email):
             continue
         if not re.search(r"^\s*signed-off-by\s*:\s*\S.*<[^>\s]+>", body, re.I | re.M):

@@ -113,7 +113,7 @@ M = [
  ("v4 4 mocks and fixtures are API", '_HELPER_DIRS = {"__mocks__", "fixtures", "__fixtures__"}', "_HELPER_DIRS = set()"),
  ("v4 6 hidden off", "        if not (large or marked or hidden or (no_lines", "        if not (large or marked or (no_lines"),
  ("v4 6 generated hidden flagged", ' and not is_generated(f["filename"])   # v4: too large to show', "   # v4: too large to show"),
- ("v4 6 lockfile hidden flagged", '\n                  and _base(f["filename"]) not in _LOCKFILES)', ")"),
+ ("v4 6 lockfile hidden flagged", '   # v4: too large to show\n                  and _base(f["filename"]) not in _LOCKFILES)', ")   # v4: too large to show"),
  ("v4 8 build output off", "        if len(paths) < MASS or any(", "        if True or any("),
  ("v4 8 build threshold dropped", "        if len(paths) < MASS or any(", "        if any("),
  ("v4 8 build files read by other rules", '    rest = [f for f in files if f["filename"] not in taken]', "    rest = files"),
@@ -214,7 +214,12 @@ if base.returncode != 0:
 survivors = 0
 for i, (label, old, new) in enumerate(M):
     assert src.count(old) == 1, f"mutant {label!r}: anchor found {src.count(old)} times"
-    r = run(i, src.replace(old, new))
+    mutated = src.replace(old, new)
+    try:
+        compile(mutated, "extras.py", "exec")
+    except SyntaxError as e:                # a mutant that does not compile is not "killed by a test": it is a bad mutant
+        print(f"INVALID  {label:40s} {e.msg}"); survivors += 1; continue
+    r = run(i, mutated)
     failed = [l.split("::")[1].split(" ")[0] for l in r.stdout.splitlines() if l.startswith("FAILED")]
     killed = r.returncode != 0
     survivors += not killed

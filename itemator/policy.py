@@ -81,7 +81,7 @@ class Policy:
                            "ignores_every_path": [p for p in self.paths if matches_everything(p)]}}
 
 
-_PATHS_LINE = re.compile(r" *paths = \[([^#\n]*)\][^\n]*")
+_PATHS_LINE = re.compile(r" *paths = \[([^#\[\]\n]*)\][^\n]*")        # no # and no bracket inside the list: "*.[ch]" would make its end ambiguous
 
 
 def paths_line_ok(text: str) -> bool:

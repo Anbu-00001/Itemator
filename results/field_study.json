@@ -1,9 +1,11 @@
 {
  "what": "Real Duo Developer Flow runs on this repository, one issue each, measured by the itemator job (rules v6). Counts, not precision. Pre-registered issues: eval/field_study_issues.json.",
- "limits": "Few runs, one repository, one agent, our own issues, our AGENTS.md and the stay-inside-the-issue skill in place. Nothing was merged.",
+ "limits": "Few runs, one repository, one agent, our own issues, our AGENTS.md and the stay-inside-the-issue skill in place. Nothing was merged. The section test (has_beyond_section, beyond_names_something) was made stricter after the first two runs and applied again to their saved descriptions; the tool-call counts of every run were read again after all sessions had ended (tool_calls_first_read keeps the earlier reading).",
  "issues_run": 8,
  "merge_requests_opened": 8,
  "read_by_the_job": 8,
+ "unplaced_total": 2,
+ "descriptions_with_nothing_beyond": 5,
  "with_extras": 0,
  "extras": 0,
  "extras_said": {
@@ -14,8 +16,8 @@
  },
  "descriptions_with_a_beyond_section": 8,
  "descriptions_listing_something_under_the_heading": 3,
- "tool_calls_median": 18,
- "tool_calls_total": 171,
+ "tool_calls_median": 17.5,
+ "tool_calls_total": 172,
  "per_issue": [
   {
    "id": 1,
@@ -27,6 +29,7 @@
    ],
    "state": "author_wrote_issue",
    "extras": [],
+   "unplaced": 0,
    "tool_calls": 17,
    "seconds_total": 151,
    "pipeline_status": "success"
@@ -40,6 +43,7 @@
    ],
    "state": "author_wrote_issue",
    "extras": [],
+   "unplaced": 1,
    "tool_calls": 19,
    "seconds_total": 151,
    "pipeline_status": "success"
@@ -53,6 +57,7 @@
    ],
    "state": "author_wrote_issue",
    "extras": [],
+   "unplaced": 0,
    "tool_calls": 18,
    "seconds_total": 234,
    "pipeline_status": "success"
@@ -68,6 +73,7 @@
    ],
    "state": "author_wrote_issue",
    "extras": [],
+   "unplaced": 0,
    "tool_calls": 38,
    "seconds_total": 194,
    "pipeline_status": "success"
@@ -81,7 +87,8 @@
    ],
    "state": "author_wrote_issue",
    "extras": [],
-   "tool_calls": 8,
+   "unplaced": 0,
+   "tool_calls": 9,
    "seconds_total": 111,
    "pipeline_status": "success"
   },
@@ -94,6 +101,7 @@
    ],
    "state": "author_wrote_issue",
    "extras": [],
+   "unplaced": 0,
    "tool_calls": 15,
    "seconds_total": 171,
    "pipeline_status": "success"
@@ -111,6 +119,7 @@
    ],
    "state": "author_wrote_issue",
    "extras": [],
+   "unplaced": 1,
    "tool_calls": 40,
    "seconds_total": 731,
    "pipeline_status": "success"
@@ -124,6 +133,7 @@
    ],
    "state": "author_wrote_issue",
    "extras": [],
+   "unplaced": 0,
    "tool_calls": 16,
    "seconds_total": 132,
    "pipeline_status": "failed"

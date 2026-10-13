@@ -1,0 +1,183 @@
+KILLED  1 new_dependency off                     test_v1_v2_fixtures_hold_on_v6[test_extras.test_deterministic_order],test_v1_v2_fixtures_hold_on_v6[test_extras.test_go_indirect_and_pyproject_keyword
+KILLED  1 version bump counted as new            test_v1_v2_fixtures_hold_on_v6[test_extras.test_version_bump_is_not_a_new_dependency],test_v3_fixtures_hold_on_v6[test_dependency_already_in_the_manif
+KILLED  1 issue mention ignored                  test_v1_v2_fixtures_hold_on_v6[test_extras.test_dependency_named_in_issue_is_not_extra],test_v1_v2_fixtures_hold_on_v6[test_extras_v2.test_index_depen
+KILLED  1 go indirect counted                    test_v1_v2_fixtures_hold_on_v6[test_extras.test_go_indirect_and_pyproject_keywords_are_not_dependencies]
+KILLED  1 pyproject keywords counted             test_v1_v2_fixtures_hold_on_v6[test_extras.test_go_indirect_and_pyproject_keywords_are_not_dependencies],test_v1_v2_fixtures_hold_on_v6[test_extras_v2
+KILLED  2 ci_or_config off                       test_v1_v2_fixtures_hold_on_v6[test_extras.test_ci_config_change_is_extra],test_v1_v2_fixtures_hold_on_v6[test_extras_v2.test_npm_lifecycle_scripts_ar
+KILLED  2 mention ignored                        test_v1_v2_fixtures_hold_on_v6[test_extras.test_ci_config_mentioned_is_not_extra],test_v1_v2_fixtures_hold_on_v6[test_extras_v2.test_r2_dependabot_ask
+KILLED  3 deleted test ignored                   test_v1_v2_fixtures_hold_on_v6[test_extras.test_deleted_test_file_is_extra],test_v1_v2_fixtures_hold_on_v6[test_extras_v2.test_r3a_deleting_the_failin
+KILLED  3 net loss ignored                       test_v1_v2_fixtures_hold_on_v6[test_extras.test_net_removed_assertions_is_extra]
+KILLED  3 MR-wide guard dropped                  test_v1_v2_fixtures_hold_on_v6[test_extras.test_tests_moved_between_files_are_not_removed]
+KILLED  4 public_api off                         test_v1_v2_fixtures_hold_on_v6[test_extras.test_deterministic_order],test_v1_v2_fixtures_hold_on_v6[test_extras.test_removed_js_export_is_extra],test_
+KILLED  4 underscore names counted               test_v1_v2_fixtures_hold_on_v6[test_extras.test_private_or_redefined_or_named_symbols_are_not_extras]
+KILLED  4 redefinition ignored                   test_v1_v2_fixtures_hold_on_v6[test_extras.test_private_or_redefined_or_named_symbols_are_not_extras],test_v4_fixtures_hold_on_v6[test_merged_or_moved
+KILLED  4 JS export list ignored                 test_v1_v2_fixtures_hold_on_v6[test_extras.test_removed_js_export_is_extra]
+KILLED  5 file_outside_ask off                   test_v1_v2_fixtures_hold_on_v6[test_extras.test_deterministic_order],test_v1_v2_fixtures_hold_on_v6[test_extras.test_file_outside_ask],test_v1_v2_fixt
+KILLED  5 same-directory rule dropped            test_v1_v2_fixtures_hold_on_v6[test_extras_v2.test_r5_same_directory_is_inside_and_named_paths_list_tests_of_named_files],test_v3_fixtures_hold_on_v6[
+KILLED  5 generic names match tokens             test_v1_v2_fixtures_hold_on_v6[test_extras.test_deterministic_order],test_v1_v2_fixtures_hold_on_v6[test_extras.test_file_outside_ask],test_v1_v2_fixt
+KILLED  5 abstain dropped                        test_v1_v2_fixtures_hold_on_v6[test_extras.test_no_anchor_abstains],test_v1_v2_fixtures_hold_on_v6[test_extras_v2.test_r5_package_name_directory_does_
+KILLED  5 docs not exempt                        test_v1_v2_fixtures_hold_on_v6[test_extras.test_file_outside_ask],test_v3_fixtures_hold_on_v6[test_binary_added_is_extra]
+KILLED  5 lockfiles not exempt                   test_v1_v2_fixtures_hold_on_v6[test_extras.test_file_outside_ask],test_v4_fixtures_hold_on_v6[test_lockfile_of_a_package_manager_the_repo_does_not_use
+KILLED  5d test-of-named dropped                 test_v1_v2_fixtures_hold_on_v6[test_extras_v2.test_r5_same_directory_is_inside_and_named_paths_list_tests_of_named_files]
+KILLED  5c directory tokens dropped              test_v1_v2_fixtures_hold_on_v6[test_extras.test_test_file_of_a_named_file_is_inside],test_v1_v2_fixtures_hold_on_v6[test_extras_v2.test_r5_same_direct
+KILLED  5 three-word joins dropped               test_v1_v2_fixtures_hold_on_v6[test_extras.test_prose_issue_names_files_through_words]
+KILLED  v3 version=1 not dispatched              test_versions_and_frozen_v5
+KILLED  v3 version=2 not dispatched              test_versions_and_frozen_v5
+KILLED  v4 version=3 not dispatched              test_versions_and_frozen_v5
+KILLED  v2 1 URL lines yield nothing             test_v1_v2_fixtures_hold_on_v6[test_extras_v2.test_url_and_vcs_requirements_are_extras]
+KILLED  v2 1 URL source read as version          test_v1_v2_fixtures_hold_on_v6[test_extras_v2.test_url_and_vcs_requirements_are_extras],test_v1_v2_fixtures_hold_on_v6[test_extras_v2.test_url_depende
+KILLED  v2 1 npm owner/repo not a URL            test_v1_v2_fixtures_hold_on_v6[test_extras_v2.test_url_dependency_in_pyproject_and_npm_is_extra]
+KILLED  v2 1 moved URL counted                   test_v1_v2_fixtures_hold_on_v6[test_extras_v2.test_index_dependency_unchanged_url_is_not_extra]
+KILLED  v2 1 URL mention ignored                 test_v1_v2_fixtures_hold_on_v6[test_extras_v2.test_url_dependency_in_pyproject_and_npm_is_extra]
+KILLED  v2 2 lifecycle off                       test_v1_v2_fixtures_hold_on_v6[test_extras_v2.test_npm_lifecycle_scripts_are_extras]
+KILLED  v2 2 lifecycle only new keys             test_v1_v2_fixtures_hold_on_v6[test_extras_v2.test_npm_lifecycle_scripts_are_extras]
+KILLED  v2 2 lifecycle mention ignored           test_v1_v2_fixtures_hold_on_v6[test_extras_v2.test_npm_lifecycle_scripts_are_extras]
+KILLED  v2 2 pyproject lint off                  test_v1_v2_fixtures_hold_on_v6[test_extras_v2.test_ruff_ignore_in_pyproject_is_config]
+KILLED  v2 2 lint unknown-section keys ignored   test_v1_v2_fixtures_hold_on_v6[test_extras_v2.test_ruff_ignore_in_pyproject_is_config]
+KILLED  v2 2 lint mention ignored                test_v1_v2_fixtures_hold_on_v6[test_extras_v2.test_ruff_ignore_in_pyproject_is_config]
+KILLED  v2 3a source twin dropped                test_v1_v2_fixtures_hold_on_v6[test_extras_v2.test_r3a_test_deleted_with_its_source_is_not_removed]
+KILLED  v2 3a directory rewrite dropped          test_v1_v2_fixtures_hold_on_v6[test_extras_v2.test_r3a_tests_rewritten_in_same_directory_are_not_removed]
+KILLED  v2 3a rewrite counts any directory       test_v1_v2_fixtures_hold_on_v6[test_extras_v2.test_r3a_tests_added_elsewhere_still_removed]
+KILLED  v2 5 package dir names files             test_v1_v2_fixtures_hold_on_v6[test_extras_v2.test_r5_package_name_directory_does_not_name_files]
+KILLED  v2 5 package stem names files            test_v1_v2_fixtures_hold_on_v6[test_extras_v2.test_r5_package_name_directory_does_not_name_files]
+KILLED  v3 6 stem does not name a binary         test_v3_fixtures_hold_on_v6[test_binary_under_a_named_package_is_still_extra]
+KILLED  v2 5 tests-only anchor allowed           test_v1_v2_fixtures_hold_on_v6[test_extras_v2.test_r5_tests_named_after_the_issue_do_not_anchor]
+KILLED  v2 5 two shared dirs dropped             test_the_changed_v2_fixture_on_v6
+KILLED  v2 5 test support flagged                test_v1_v2_fixtures_hold_on_v6[test_extras_v2.test_r5_tests_fixtures_and_release_notes_are_inside]
+KILLED  v2 5 fixtures not support                test_v1_v2_fixtures_hold_on_v6[test_extras_v2.test_r5_tests_fixtures_and_release_notes_are_inside]
+KILLED  v2 5 changeset not exempt                test_v1_v2_fixtures_hold_on_v6[test_extras_v2.test_r5_tests_fixtures_and_release_notes_are_inside]
+KILLED  v3 5 unplaced back to extras             test_v1_v2_fixtures_hold_on_v6[test_extras.test_deterministic_order],test_v1_v2_fixtures_hold_on_v6[test_extras.test_no_anchor_abstains],test_v1_v2_fi
+KILLED  v3 5 anchored unplaced dropped           test_v1_v2_fixtures_hold_on_v6[test_extras.test_deterministic_order],test_v1_v2_fixtures_hold_on_v6[test_extras.test_file_outside_ask],test_v1_v2_fixt
+KILLED  v3 7 mass events off                     test_v3_fixtures_hold_on_v6[test_generated_code_under_test_dir_is_not_tests],test_v3_fixtures_hold_on_v6[test_mass_config_files_added],test_v3_fixture
+KILLED  v3 7 threshold 11                        test_v3_fixtures_hold_on_v6[test_mass_config_files_added],test_v3_fixtures_hold_on_v6[test_mass_events_split_by_top_two_directories],test_v4_fixtures_
+KILLED  v3 7 threshold 9                         test_v3_fixtures_hold_on_v6[test_generated_code_under_test_dir_is_not_tests],test_v3_fixtures_hold_on_v6[test_mass_deletion_is_one_extra_per_directory
+KILLED  v3 7 pooled by first directory           test_v3_fixtures_hold_on_v6[test_mass_events_split_by_top_two_directories]
+KILLED  v3 7 detail dropped                      test_v3_fixtures_hold_on_v6[test_generated_code_under_test_dir_is_not_tests],test_v3_fixtures_hold_on_v6[test_mass_deletion_is_one_extra_per_directory
+KILLED  v3 7 modified files pooled               test_v3_fixtures_hold_on_v6[test_mass_config_files_added]
+KILLED  v3 6 binary off                          test_v3_fixtures_hold_on_v6[test_binary_added_is_extra],test_v3_fixtures_hold_on_v6[test_binary_under_a_named_package_is_still_extra],test_v3_fixtures
+KILLED  v3 6 text extensions ignored             test_v4_fixtures_hold_on_v6[test_large_patchless_added_file_with_lines],test_v4_fixtures_hold_on_v6[test_v3_fixture_v4_changes_on_purpose]
+KILLED  v3 6 named binary flagged                test_v3_fixtures_hold_on_v6[test_binary_under_a_named_package_is_still_extra],test_v4_fixtures_hold_on_v6[test_v3_fixture_v4_changes_on_purpose]
+KILLED  v3 6 any directory names a file          test_v3_fixtures_hold_on_v6[test_binary_under_a_named_package_is_still_extra],test_v3_fixtures_hold_on_v6[test_generated_code_under_test_dir_is_not_te
+KILLED  v3 6 ancestor path names a file          test_v3_fixtures_hold_on_v6[test_generated_code_under_test_dir_is_not_tests]
+KILLED  v3 6 size ignored                        test_v3_fixtures_hold_on_v6[test_large_file_added_when_size_known]
+KILLED  v3 6 GitHub binary mark ignored          test_v4_fixtures_hold_on_v6[test_large_patchless_added_file_with_lines]
+KILLED  v3 6 modified files flagged              test_v4_fixtures_hold_on_v6[test_v3_fixture_v4_changes_on_purpose]
+KILLED  v3 6 line counts ignored                 test_v4_fixtures_hold_on_v6[test_large_patchless_added_file_with_lines]
+KILLED  v3 6 binaries left unplaced              test_v3_fixtures_hold_on_v6[test_binary_added_is_extra]
+KILLED  v3 3 generated counted as tests          test_v3_fixtures_hold_on_v6[test_generated_code_under_test_dir_is_not_tests],test_v3_fixtures_hold_on_v6[test_generated_markers]
+KILLED  v3 3 generated dirs dropped              test_v3_fixtures_hold_on_v6[test_generated_code_under_test_dir_is_not_tests],test_v3_fixtures_hold_on_v6[test_generated_markers]
+KILLED  v3 3 generated names dropped             test_v3_fixtures_hold_on_v6[test_generated_markers],test_v4_fixtures_hold_on_v6[test_large_patchless_added_file_with_lines],test_v4_fixtures_hold_on_v
+KILLED  v3 3c off                                test_v3_fixtures_hold_on_v6[test_generated_code_under_test_dir_is_not_tests]
+KILLED  v3 3c churn kept                         test_v3_fixtures_hold_on_v6[test_generated_code_under_test_dir_is_not_tests]
+KILLED  v3 3c issue path ignored                 test_v3_fixtures_hold_on_v6[test_generated_code_under_test_dir_is_not_tests]
+KILLED  v3 4 generated API counted               test_v3_fixtures_hold_on_v6[test_generated_code_under_test_dir_is_not_tests]
+KILLED  v3 1 old names ignored                   test_v3_fixtures_hold_on_v6[test_dependency_already_in_the_manifest_is_not_new]
+KILLED  v3 1 go indirect not old                 test_v3_fixtures_hold_on_v6[test_dependency_already_in_the_manifest_is_not_new]
+KILLED  v3 1 unchanged lines not old             test_v3_fixtures_hold_on_v6[test_dependency_already_in_the_manifest_is_not_new]
+KILLED  v3 1 acronyms ignored                    test_v3_fixtures_hold_on_v6[test_dependency_the_issue_title_names_in_capitals_is_not_new]
+KILLED  v3 1 acronyms from the whole issue       test_v3_fixtures_hold_on_v6[test_dependency_the_issue_title_names_in_capitals_is_not_new]
+KILLED  v3 1 three-capital acronyms              test_v3_fixtures_hold_on_v6[test_dependency_the_issue_title_names_in_capitals_is_not_new]
+KILLED  v4 1 new manifest read line by line      test_v4_fixtures_hold_on_v6[test_new_manifest_is_one_package_not_one_extra_per_dependency]
+KILLED  v4 1 new package mention ignored         test_v4_fixtures_hold_on_v6[test_new_manifest_is_one_package_not_one_extra_per_dependency]
+KILLED  v4 1 tool-only manifest reported         test_v4_fixtures_hold_on_v6[test_new_manifest_is_one_package_not_one_extra_per_dependency]
+KILLED  v4 1 declared name ignored               test_v4_fixtures_hold_on_v6[test_new_manifest_is_one_package_not_one_extra_per_dependency]
+KILLED  v4 1 one-line array ignored              test_v4_fixtures_hold_on_v6[test_single_line_dependency_array_without_its_section_header]
+KILLED  v4 1 one-line array, any key             test_v4_fixtures_hold_on_v6[test_single_line_dependency_array_without_its_section_header]
+KILLED  v4 1b version_bump off                   test_v4_fixtures_hold_on_v6[test_version_bump_the_issue_did_not_ask_for],test_a_lower_version_says_so[9.0.0-8.0.115-True],test_a_lower_version_says_so
+KILLED  v4 1b version mention ignored            test_v4_fixtures_hold_on_v6[test_version_bump_the_issue_did_not_ask_for]
+KILLED  v4 1b dependency sections read           test_v4_fixtures_hold_on_v6[test_version_bump_the_issue_did_not_ask_for]
+KILLED  v4 1b __version__ ignored                test_v4_fixtures_hold_on_v6[test_version_bump_the_issue_did_not_ask_for]
+KILLED  v4 1b several files not detail           test_v4_fixtures_hold_on_v6[test_version_bump_the_issue_did_not_ask_for]
+KILLED  v4 4 context lines not head              test_v4_fixtures_hold_on_v6[test_merged_or_moved_names_and_story_helpers_are_not_api_removal]
+KILLED  v4 4 moved twin ignored                  test_v4_fixtures_hold_on_v6[test_merged_or_moved_names_and_story_helpers_are_not_api_removal]
+KILLED  v4 4 renamed twin ignored                test_v4_fixtures_hold_on_v6[test_merged_or_moved_names_and_story_helpers_are_not_api_removal]
+KILLED  v4 4 story helpers are API               test_v4_fixtures_hold_on_v6[test_merged_or_moved_names_and_story_helpers_are_not_api_removal]
+KILLED  v4 4 history is a story                  test_v4_fixtures_hold_on_v6[test_merged_or_moved_names_and_story_helpers_are_not_api_removal]
+KILLED  v4 4 mocks and fixtures are API          test_v4_fixtures_hold_on_v6[test_merged_or_moved_names_and_story_helpers_are_not_api_removal]
+KILLED  v4 6 hidden off                          test_v4_fixtures_hold_on_v6[test_large_patchless_added_file_with_lines],test_v4_fixtures_hold_on_v6[test_v3_fixture_v4_changes_on_purpose]
+KILLED  v4 6 generated hidden flagged            test_v4_fixtures_hold_on_v6[test_large_patchless_added_file_with_lines],test_v4_fixtures_hold_on_v6[test_v3_fixture_v4_changes_on_purpose]
+KILLED  v4 6 lockfile hidden flagged             test_v4_fixtures_hold_on_v6[test_lockfile_of_a_package_manager_the_repo_does_not_use],test_v5_fixtures_hold_on_v6[test_lockfile_reason_says_only_what_
+KILLED  v4 8 build output off                    test_v4_fixtures_hold_on_v6[test_build_output_is_one_extra_per_directory],test_v5_fixtures_hold_on_v6[test_a_virtual_environment_is_one_extra_named_by
+KILLED  v4 8 build threshold dropped             test_v4_fixtures_hold_on_v6[test_build_output_is_one_extra_per_directory]
+KILLED  v4 8 build files read by other rules     test_v4_fixtures_hold_on_v6[test_build_output_is_one_extra_per_directory]
+KILLED  v4 8 build files left unplaced           test_v4_fixtures_hold_on_v6[test_build_output_is_one_extra_per_directory],test_v5_fixtures_hold_on_v6[test_a_virtual_environment_is_one_extra_named_by
+KILLED  v4 8 site-packages not build output      test_v4_fixtures_hold_on_v6[test_build_output_is_one_extra_per_directory]
+KILLED  v4 9 stray off                           test_v4_fixtures_hold_on_v6[test_lockfile_of_a_package_manager_the_repo_does_not_use],test_v4_fixtures_hold_on_v6[test_stray_files_are_one_extra_and_s
+KILLED  v4 9 strays not grouped                  test_v4_fixtures_hold_on_v6[test_stray_files_are_one_extra_and_still_listed],test_v5_fixtures_hold_on_v6[test_temp_and_scratch_artefacts_are_stray_fil
+KILLED  v4 9 stray field empty                   test_v4_fixtures_hold_on_v6[test_stray_files_are_one_extra_and_still_listed],test_v5_fixtures_hold_on_v6[test_temp_and_scratch_artefacts_are_stray_fil
+KILLED  v4 9a lockfile stray off                 test_v4_fixtures_hold_on_v6[test_lockfile_of_a_package_manager_the_repo_does_not_use],test_v5_fixtures_hold_on_v6[test_lockfile_reason_says_only_what_
+KILLED  v4 9a manager mention ignored            test_v4_fixtures_hold_on_v6[test_lockfile_of_a_package_manager_the_repo_does_not_use]
+KILLED  v4 9a sibling lockfile ignored           test_v4_fixtures_hold_on_v6[test_lockfile_of_a_package_manager_the_repo_does_not_use],test_v5_fixtures_hold_on_v6[test_lockfile_reason_says_only_what_
+KILLED  v4 9a new package lockfile flagged       test_v4_fixtures_hold_on_v6[test_lockfile_of_a_package_manager_the_repo_does_not_use]
+KILLED  v4 9b backups ignored                    test_v4_fixtures_hold_on_v6[test_stray_files_are_one_extra_and_still_listed]
+KILLED  v4 9b deep files stray                   test_v1_v2_fixtures_hold_on_v6[test_extras_v2.test_r5_tests_fixtures_and_release_notes_are_inside],test_v3_fixtures_hold_on_v6[test_large_file_added_w
+KILLED  v4 9b kept top-level names stray         test_v4_fixtures_hold_on_v6[test_stray_files_are_one_extra_and_still_listed]
+KILLED  v4 9b top-level md ignored               test_v4_fixtures_hold_on_v6[test_stray_files_are_one_extra_and_still_listed]
+KILLED  v4 9b code files stray                   test_v4_fixtures_hold_on_v6[test_stray_files_are_one_extra_and_still_listed],test_v4_fixtures_hold_on_v6[test_v3_fixture_v4_changes_on_purpose]
+KILLED  v4 9b housekeeping stray                 test_v4_fixtures_hold_on_v6[test_stray_files_are_one_extra_and_still_listed],test_v4_fixtures_hold_on_v6[test_v3_fixture_v4_changes_on_purpose]
+KILLED  v4 9b references ignored                 test_v4_fixtures_hold_on_v6[test_stray_files_are_one_extra_and_still_listed]
+KILLED  v4 9b named files stray                  test_v4_fixtures_hold_on_v6[test_stray_files_are_one_extra_and_still_listed]
+KILLED  v5 version=4 not dispatched              test_versions_and_frozen_v5
+KILLED  v2 2 dependabot words dropped            test_v1_v2_fixtures_hold_on_v6[test_extras_v2.test_r2_dependabot_asked_by_kind_is_not_extra]
+KILLED  v5 2 base name does not name             test_v5_fixtures_hold_on_v6[test_names_config_reads_the_files_own_name_only]
+KILLED  v5 2 stem does not name                  test_v5_fixtures_hold_on_v6[test_names_config_reads_the_files_own_name_only]
+KILLED  v5 2 one-letter stems name               test_v5_fixtures_hold_on_v6[test_names_config_reads_the_files_own_name_only]
+KILLED  v5 2 tool suffix kept                    test_v5_fixtures_hold_on_v6[test_names_config_reads_the_files_own_name_only]
+KILLED  v5 5 named config not an anchor          test_v5_fixtures_hold_on_v6[test_config_files_the_issue_names_anchor_the_change]
+KILLED  v5 8 venv roots ignored                  test_v5_fixtures_hold_on_v6[test_a_virtual_environment_is_one_extra_named_by_its_root]
+KILLED  v5 8 activate not a marker               test_v5_fixtures_hold_on_v6[test_a_virtual_environment_is_one_extra_named_by_its_root]
+KILLED  v5 9a old wording                        test_v5_fixtures_hold_on_v6[test_lockfile_reason_says_only_what_the_cached_files_show]
+KILLED  v5 9a sibling wording                    test_v5_fixtures_hold_on_v6[test_lockfile_reason_says_only_what_the_cached_files_show]
+KILLED  v5 9a kept manifest said absent          test_v5_fixtures_hold_on_v6[test_lockfile_reason_says_only_what_the_cached_files_show]
+KILLED  v5 9c off                                test_v5_fixtures_hold_on_v6[test_temp_and_scratch_artefacts_are_stray_files]
+KILLED  v5 9c temp files off                     test_v5_fixtures_hold_on_v6[test_temp_and_scratch_artefacts_are_stray_files]
+KILLED  v5 9c temp dirs off                      test_v5_fixtures_hold_on_v6[test_temp_and_scratch_artefacts_are_stray_files]
+KILLED  v5 9c words are markers                  test_v5_fixtures_hold_on_v6[test_temp_and_scratch_artefacts_are_stray_files]
+KILLED  v5 9c partly added dir flagged           test_v5_fixtures_hold_on_v6[test_temp_and_scratch_artefacts_are_stray_files]
+KILLED  v5 9c named temp dir flagged             test_v5_fixtures_hold_on_v6[test_temp_and_scratch_artefacts_are_stray_files]
+KILLED  v5 9c ancestor names a temp file         test_v5_fixtures_hold_on_v6[test_temp_and_scratch_artefacts_are_stray_files]
+KILLED  v5 9c named temp file flagged            test_v5_fixtures_hold_on_v6[test_temp_and_scratch_artefacts_are_stray_files]
+KILLED  v5 9c test data stray                    test_v5_fixtures_hold_on_v6[test_temp_and_scratch_artefacts_are_stray_files]
+KILLED  v5 9c temp config also a config change   test_v5_fixtures_hold_on_v6[test_temp_and_scratch_artefacts_are_stray_files]
+KILLED  v5 10 off                                test_v5_fixtures_hold_on_v6[test_whitespace_only_edits_are_one_extra]
+KILLED  v5 10 threshold 4                        test_v5_fixtures_hold_on_v6[test_whitespace_only_edits_are_one_extra]
+KILLED  v5 10 threshold 2                        test_v5_fixtures_hold_on_v6[test_whitespace_only_edits_are_one_extra],test_agent_files_leave_the_other_rules
+KILLED  v5 10 format words ignored               test_v5_fixtures_hold_on_v6[test_whitespace_only_edits_are_one_extra]
+KILLED  v5 10 blank lines counted                test_v5_fixtures_hold_on_v6[test_whitespace_only_edits_are_one_extra]
+KILLED  v5 10 indentation counted                test_v5_fixtures_hold_on_v6[test_whitespace_only_edits_are_one_extra]
+KILLED  v5 10 renamed files read                 test_v5_fixtures_hold_on_v6[test_whitespace_only_edits_are_one_extra]
+KILLED  v5 10 mode-only changes read             test_v5_fixtures_hold_on_v6[test_whitespace_only_edits_are_one_extra]
+KILLED  v5 10 reported files counted again       test_v5_fixtures_hold_on_v6[test_whitespace_only_edits_are_one_extra]
+KILLED  v5 10 files left unplaced                test_v5_fixtures_hold_on_v6[test_whitespace_only_edits_are_one_extra]
+KILLED  v5 10 shared directory not the name      test_v5_fixtures_hold_on_v6[test_whitespace_only_edits_are_one_extra]
+KILLED  v5 10 every path in the reason           test_v5_fixtures_hold_on_v6[test_whitespace_only_edits_are_one_extra]
+KILLED  v5 10 detail cut to three                test_v5_fixtures_hold_on_v6[test_whitespace_only_edits_are_one_extra]
+KILLED  v6 version=5 not dispatched              test_versions_and_frozen_v5
+KILLED  v6 11 off                                test_the_changed_v2_fixture_on_v6,test_agent_instruction_files_are_one_extra_and_leave_the_stray_group,test_one_changed_instruction_file_is_named_by_i
+KILLED  v6 11 files stay in other rules          test_agent_files_leave_the_other_rules
+KILLED  v6 11 files left unplaced                test_the_changed_v2_fixture_on_v6,test_agent_instruction_files_are_one_extra_and_leave_the_stray_group,test_one_changed_instruction_file_is_named_by_i
+KILLED  v6 11 named files do not anchor          test_a_named_instruction_file_anchors_and_is_never_unplaced
+KILLED  v6 11 any depth off                      test_a_phrase_names_every_instruction_file_and_a_name_only_its_own,test_which_files_tell_agents_what_to_do[packages/core/CLAUDE.md-True],test_which_fi
+KILLED  v6 11 ** stays in one directory          test_mcp_names_the_mcp_settings_only,test_which_files_tell_agents_what_to_do[.agents/rules/deep/x.md-True],test_which_files_tell_agents_what_to_do[.cl
+KILLED  v6 11 * crosses directories              test_which_files_tell_agents_what_to_do[.github/instructions/sub/x.md-False]
+KILLED  v6 11 copilot-agent.yml missed           test_an_added_agent_permission_file_and_a_rename_are_extras,test_which_files_tell_agents_what_to_do[.github/copilot-agent.yml-True]
+KILLED  v6 11 deleted files skipped              test_one_changed_instruction_file_is_named_by_its_path[removed-deletes]
+KILLED  v6 11 old path ignored                   test_an_added_agent_permission_file_and_a_rename_are_extras
+KILLED  v6 11 issue ignored                      test_an_issue_that_asks_for_agent_instructions_keeps_them_quiet[Analyze,test_an_issue_that_asks_for_agent_instructions_keeps_them_quiet[Extract,test_a
+KILLED  v6 11 base name ignored                  test_a_phrase_names_every_instruction_file_and_a_name_only_its_own,test_a_named_instruction_file_anchors_and_is_never_unplaced
+KILLED  v6 11 phrases ignored                    test_an_issue_that_asks_for_agent_instructions_keeps_them_quiet[Extract,test_an_issue_that_asks_for_agent_instructions_keeps_them_quiet[Add,test_an_is
+KILLED  v6 11 MCP names every file               test_mcp_names_the_mcp_settings_only
+KILLED  v6 11 MCP names nothing                  test_mcp_names_the_mcp_settings_only
+KILLED  v6 11 one file grouped                   test_the_changed_v2_fixture_on_v6,test_one_changed_instruction_file_is_named_by_its_path[modified-edits],test_one_changed_instruction_file_is_named_by
+KILLED  v6 11 detail cut to three                test_agent_instruction_files_are_one_extra_and_leave_the_stray_group
+KILLED  v6 11 count missing                      test_agent_instruction_files_are_one_extra_and_leave_the_stray_group
+KILLED  v6 11 every path in the reason           test_agent_instruction_files_are_one_extra_and_leave_the_stray_group
+KILLED  v6 11 states missing                     test_agent_instruction_files_are_one_extra_and_leave_the_stray_group
+KILLED  v6 11 verb always edits                  test_one_changed_instruction_file_is_named_by_its_path[removed-deletes],test_an_added_agent_permission_file_and_a_rename_are_extras
+KILLED  v6 11 group not named by its directory   test_mcp_names_the_mcp_settings_only
+KILLED  v6 1b lower wording off                  test_a_lower_version_says_so[9.0.0-8.0.115-True],test_a_lower_version_says_so[1.10.0-1.9.0-True],test_a_lower_version_says_so[2.0-1.9.9-True]
+KILLED  v6 1b text order                         test_a_lower_version_says_so[1.10.0-1.9.0-True],test_a_lower_version_says_so[1.2.0-1.10.0-False],test_a_lower_version_says_so[1.2.0-1.2-False]
+KILLED  v6 1b not padded                         test_a_lower_version_says_so[1.2.0-1.2-False]
+KILLED  v6 1b any number is dotted               test_a_lower_version_says_so[2-1-False]
+KILLED  v6 1b prefix is enough                   test_v4_fixtures_hold_on_v6[test_version_bump_the_issue_did_not_ask_for],test_a_lower_version_says_so[2.0.0-beta-1.0.0-False]
+182/182 mutants killed

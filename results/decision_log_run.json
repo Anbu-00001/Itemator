@@ -1,0 +1,45 @@
+{
+ "window": {
+  "since": "2026-09-13T12:46:38.096050+00:00",
+  "until": "2026-10-13T12:46:38.096050+00:00",
+  "target": "main"
+ },
+ "stats": {
+  "merge_requests": 1,
+  "with_a_summary": 1,
+  "extras": 2,
+  "by_author_alone": 2,
+  "by_someone_else": 0,
+  "kept": 2,
+  "dismissed": 0,
+  "moved": 0,
+  "removed": 0
+ },
+ "merge_requests": [
+  {
+   "iid": 37,
+   "title": "Apply the findings of audit pass 2",
+   "merged_at": "2026-10-13T12:43:25.813Z",
+   "author": "anbuchelvanganesan.cse2024",
+   "summary": true,
+   "extras": [
+    {
+     "name": ".gitlab-ci.yml",
+     "decision": "kept",
+     "who": "anbuchelvanganesan.cse2024",
+     "ref": null,
+     "by_author": true
+    },
+    {
+     "name": "AGENTS.md",
+     "decision": "kept",
+     "who": "anbuchelvanganesan.cse2024",
+     "ref": null,
+     "by_author": true
+    }
+   ]
+  }
+ ],
+ "unreadable_requests": 0,
+ "note": "Artifact of CI job 17139995640 (decision-log, run by hand on main after merge request !37 was merged), saved unchanged apart from this note."
+}

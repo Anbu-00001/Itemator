@@ -117,7 +117,8 @@ def test_t42_the_one_line_edit_is_checked_with_compare_not_with_a_character_coun
     _, system = flow
     step = system[system.index("Step 5b."):system.index("Step 6.")]
     for s in ("does not appear exactly once in the whole decoded file (a comment counts)",
-              "holds a # or ends with a comma",
+              "contains a [ or a ] character, or the list holds a # or ends with a comma",
+              'must be OLD with only \', "PATH"\' or \'"PATH"\' inserted just before the ] that closes the list',
               "is left from an earlier try; delete it, then reply always again.",
               '"/api/v4/projects/<project_id>/repository/compare"', '"straight": "true"',
               'exactly one line starting with "-"', 'exactly one line starting with "+"'):

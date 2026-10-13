@@ -14,7 +14,7 @@ Standard library only. Network: the GitLab API through `glab api` (this project 
 """
 from __future__ import annotations
 
-import argparse, json, pathlib, re, subprocess, sys, time, urllib.parse
+import argparse, json, pathlib, re, statistics, subprocess, sys, time, urllib.parse
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 ISSUES = ROOT / "eval" / "field_study_issues.json"
@@ -66,6 +66,26 @@ def tool_calls(session_id: str) -> int | None:
         return None
 
 
+def session_done(issue_iid: int) -> bool:
+    notes = glab(f"projects/{PROJECT}/issues/{issue_iid}/notes?per_page=50") or []
+    return any("completed session" in (n.get("body") or "") or "failed session" in (n.get("body") or "") for n in notes)
+
+
+def recount(records: list[dict]) -> int:
+    """Read every session's checkpoints again, after all sessions have ended. The first reading (kept as
+    tool_calls_first_read) was taken while some sessions were still running."""
+    changed = 0
+    for r in records:
+        if not r.get("session_id"):
+            continue
+        n = tool_calls(r["session_id"])
+        if n is not None and n != r.get("tool_calls"):
+            r.setdefault("tool_calls_first_read", r.get("tool_calls"))
+            r["tool_calls"] = n
+            changed += 1
+    return changed
+
+
 def run_one(issue: dict) -> dict:
     t0 = time.time()
     rec = {"id": issue["id"], "kind": issue["kind"], "title": issue["title"], "started": time.strftime("%Y-%m-%dT%H:%M:%S")}
@@ -87,7 +107,7 @@ def run_one(issue: dict) -> dict:
     notes = glab(f"projects/{PROJECT}/issues/{iid}/notes?per_page=50") or []
     sess = [m.group(1) for n in notes for m in [re.search(r"agent-sessions/(\d+)", n.get("body") or "")] if m]
     rec["session_id"] = sess[0] if sess else None
-    rec["tool_calls"] = tool_calls(sess[0]) if sess else None
+    rec["session_id"] = sess[0] if sess else None
     diffs = glab(f"projects/{PROJECT}/merge_requests/{mr['iid']}/diffs?per_page=100") or []
     rec["files_changed"] = [d["new_path"] for d in diffs]
     t1, status, job = time.time(), None, None
@@ -101,6 +121,9 @@ def run_one(issue: dict) -> dict:
                 break
         time.sleep(POLL)
     rec["pipeline_status"] = status
+    while sess and time.time() - t0 < MR_WAIT + PIPELINE_WAIT and not session_done(iid):     # the MR appears before the session ends
+        time.sleep(POLL)
+    rec["tool_calls"] = tool_calls(sess[0]) if sess else None
     if job:
         try:
             art = glab(f"projects/{PROJECT}/jobs/{job['id']}/artifacts/itemator.json")
@@ -144,18 +167,19 @@ def summarize(records: list[dict]) -> dict:
     calls = [r["tool_calls"] for r in records if r.get("tool_calls") is not None]
     return {
         "what": "Real Duo Developer Flow runs on this repository, one issue each, measured by the itemator job (rules v6). Counts, not precision. Pre-registered issues: eval/field_study_issues.json.",
-        "limits": "Few runs, one repository, one agent, our own issues, our AGENTS.md and the stay-inside-the-issue skill in place. Nothing was merged.",
+        "limits": "Few runs, one repository, one agent, our own issues, our AGENTS.md and the stay-inside-the-issue skill in place. Nothing was merged. The section test (has_beyond_section, beyond_names_something) was made stricter after the first two runs and applied again to their saved descriptions; the tool-call counts of every run were read again after all sessions had ended (tool_calls_first_read keeps the earlier reading).",
         "issues_run": len(records), "merge_requests_opened": len([r for r in records if r.get("mr_iid")]),
-        "read_by_the_job": len(ok), "with_extras": len(with_extras), "extras": n_extras,
+        "read_by_the_job": len(ok), "unplaced_total": sum((r["itemator"].get("unplaced") or 0) for r in ok),
+        "descriptions_with_nothing_beyond": len([r for r in records if r.get("has_beyond_section") and not r.get("beyond_names_something")]), "with_extras": len(with_extras), "extras": n_extras,
         "extras_said": said,
         "descriptions_with_a_beyond_section": len([r for r in records if r.get("has_beyond_section")]),
         "descriptions_listing_something_under_the_heading": len([r for r in records if r.get("beyond_names_something")]),   # may list what the issue asked for
-        "tool_calls_median": sorted(calls)[len(calls) // 2] if calls else None,
+        "tool_calls_median": statistics.median(calls) if calls else None,
         "tool_calls_total": sum(calls) if calls else None,
         "per_issue": [{"id": r["id"], "kind": r["kind"], "mr_iid": r.get("mr_iid"), "files_changed": r.get("files_changed"),
                        "state": (r.get("itemator") or {}).get("state"),
                        "extras": [(e["kind"], e["name"]) for e in (r.get("itemator") or {}).get("extras", [])],
-                       "tool_calls": r.get("tool_calls"), "seconds_total": r.get("seconds_total"),
+                       "unplaced": (r.get("itemator") or {}).get("unplaced"), "tool_calls": r.get("tool_calls"), "seconds_total": r.get("seconds_total"),
                        "pipeline_status": r.get("pipeline_status")} for r in records],
     }
 
@@ -163,10 +187,13 @@ def summarize(records: list[dict]) -> dict:
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--dry-run", action="store_true"); ap.add_argument("--summarize", action="store_true")
-    ap.add_argument("--max", type=int, default=1); ap.add_argument("--credit-stop", type=float, default=0.0)
+    ap.add_argument("--recount", action="store_true"); ap.add_argument("--max", type=int, default=1); ap.add_argument("--credit-stop", type=float, default=0.0)
     a = ap.parse_args()
     spec = json.loads(ISSUES.read_text())
     records = json.loads(RAW.read_text()) if RAW.exists() else []
+    if a.recount:
+        n = recount(records)
+        RAW.write_text(json.dumps(records, indent=1) + "\n"); print(f"recounted: {n} records changed"); return 0
     if a.summarize:
         OUT.write_text(json.dumps(summarize(records), indent=1) + "\n"); print(f"wrote {OUT.relative_to(ROOT)}"); return 0
     todo = [i for i in spec["issues"] if i["id"] not in {r["id"] for r in records}]

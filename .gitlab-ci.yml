@@ -2,10 +2,21 @@
 # otherwise a branch pipeline (GitLab's documented pattern).
 workflow:
   rules:
+    - if: $CI_COMMIT_TAG
     - if: $CI_PIPELINE_SOURCE == "merge_request_event"
     - if: $CI_COMMIT_BRANCH && $CI_OPEN_MERGE_REQUESTS
       when: never
     - if: $CI_COMMIT_BRANCH
+
+# The unit tests run on every pipeline (the duckdb file only reads the AIDev data used for the evaluation).
+unit-tests:
+  image: python:3.12
+  variables:
+    GIT_DEPTH: "0"
+  script:
+    - python -m venv .venv
+    - .venv/bin/pip install -q pytest pyyaml
+    - .venv/bin/python -m pytest -q --ignore=tests/test_review_stats.py
 
 hardcode-audit:
   image: python:3.12
@@ -59,4 +70,46 @@ itemator:
     paths:
       - itemator.json
     expire_in: 30 days
+    when: always
+
+# Mutation tests (eval/mutate_extras.py and eval/mutate_ci.py): they break the rules or the job one line at a time and
+# every mutant must make a test fail. Manual, because a run takes several minutes; start it from the pipeline page.
+# The laptop that builds this project overheats on it, so it runs here. mutation.log is the evidence.
+mutation-suite:
+  image: python:3.12
+  when: manual
+  allow_failure: true
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+      when: manual
+  script:
+    - set -o pipefail
+    - python -m venv .venv
+    - .venv/bin/pip install -q pytest pyyaml
+    - .venv/bin/python -I eval/mutate_extras.py "$CI_PROJECT_DIR" /tmp/mut-extras 2>&1 | tee mutation-extras.log | tail -5
+    - .venv/bin/python -I eval/mutate_ci.py "$CI_PROJECT_DIR" /tmp/mut-ci 2>&1 | tee mutation-ci.log | tail -5
+  artifacts:
+    paths:
+      - mutation-extras.log
+      - mutation-ci.log
+    expire_in: 30 days
+    when: always
+
+# The decision log (itemator/decisions.py): who decided each extra in the merge requests merged since the last release.
+# On a tag it also writes the section into that release's description (job token, Releases API); on the default branch it
+# is a manual report for the last 30 days. It only reads merge requests and their notes.
+decision-log:
+  image: python:3.12
+  rules:
+    - if: $CI_COMMIT_TAG
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+      when: manual
+      allow_failure: true
+  script:
+    - python -E -m itemator.decisions --target "${DECISIONS_TARGET:-$CI_DEFAULT_BRANCH}" --days "${DECISIONS_DAYS:-30}"
+  artifacts:
+    paths:
+      - decisions.json
+      - decisions.md
+    expire_in: 90 days
     when: always

@@ -552,6 +552,8 @@ def test_agent_instructions_are_never_quieted():
     ('paths = []\n', False),                                          # a paths line outside any [ignore] table
     ('[ignore]\npaths = ["a",]\n', False),                            # a trailing comma would become ", ,"
     ('[ignore]\npaths = ["a", ]\n', False),
+    ('[ignore]\npaths = ["*.[ch]"]\n', False),                     # a glob class makes the closing ] ambiguous
+    ('[ignore]\npaths = ["a"]  # [x]\n', True),                    # brackets in a comment after the list are fine
     ('[ignore]\npaths = ["a" # x ]\n]\n', False),                    # a # inside the list
     ('[ignore]\npaths = []\npaths = ["a"]\n', False),                 # two lines (and invalid TOML)
     ('[other]\npaths = []\n[ignore]\nkinds = []\n', False),           # the line is in another table

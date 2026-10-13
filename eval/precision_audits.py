@@ -18,7 +18,7 @@ def wilson(k: int, n: int) -> list[float]:
     d = 1 + Z * Z / n
     c = (p + Z * Z / (2 * n)) / d
     h = Z * math.sqrt(p * (1 - p) / n + Z * Z / (4 * n * n)) / d
-    return [round(max(0.0, c - h), 3), round(min(1.0, c + h), 3)]
+    return [round(max(0.0, c - h), 4), round(min(1.0, c + h), 4)]
 
 
 # status: "development" = the rules were tuned on this sample; "held_out" = rules frozen before the sample was drawn.

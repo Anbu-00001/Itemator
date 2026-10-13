@@ -20,12 +20,12 @@
    "prs_with_real_strict": 9,
    "prs_with_real_lenient": 10,
    "pr_strict_interval_95": [
-    0.332,
+    0.3318,
     0.769
    ],
    "pr_lenient_interval_95": [
-    0.386,
-    0.815
+    0.3864,
+    0.8152
    ],
    "share_of_prs_flagged": 0.267
   },
@@ -43,12 +43,12 @@
    "prs_with_real_strict": 5,
    "prs_with_real_lenient": 8,
    "pr_strict_interval_95": [
-    0.193,
-    0.68
+    0.1933,
+    0.6805
    ],
    "pr_lenient_interval_95": [
-    0.391,
-    0.862
+    0.3906,
+    0.8619
    ],
    "share_of_prs_flagged": 0.2
   },
@@ -66,12 +66,12 @@
    "prs_with_real_strict": 3,
    "prs_with_real_lenient": 3,
    "pr_strict_interval_95": [
-    0.231,
-    0.882
+    0.2307,
+    0.8824
    ],
    "pr_lenient_interval_95": [
-    0.231,
-    0.882
+    0.2307,
+    0.8824
    ],
    "share_of_prs_flagged": 0.083
   },
@@ -89,12 +89,12 @@
    "prs_with_real_strict": 4,
    "prs_with_real_lenient": 5,
    "pr_strict_interval_95": [
-    0.215,
-    0.785
+    0.2152,
+    0.7848
    ],
    "pr_lenient_interval_95": [
-    0.306,
-    0.863
+    0.3057,
+    0.8632
    ],
    "share_of_prs_flagged": 0.133
   },
@@ -112,11 +112,11 @@
    "prs_with_real_strict": 2,
    "prs_with_real_lenient": 3,
    "pr_strict_interval_95": [
-    0.208,
-    0.939
+    0.2077,
+    0.9385
    ],
    "pr_lenient_interval_95": [
-    0.439,
+    0.4385,
     1.0
    ],
    "share_of_prs_flagged": 0.05
@@ -139,12 +139,12 @@
    "description_names_that_were_real": 0,
    "real_extras_the_description_did_not_mention": 5,
    "pr_strict_interval_95": [
-    0.215,
-    0.785
+    0.2152,
+    0.7848
    ],
    "pr_lenient_interval_95": [
-    0.215,
-    0.785
+    0.2152,
+    0.7848
    ],
    "share_of_prs_flagged": 0.133
   }
@@ -162,12 +162,12 @@
   "prs_with_real_strict": 18,
   "prs_with_real_lenient": 23,
   "strict_interval_95": [
-   0.345,
-   0.655
+   0.3447,
+   0.6553
   ],
   "lenient_interval_95": [
-   0.476,
-   0.775
+   0.4758,
+   0.7752
   ],
   "prs_scored": 300,
   "prs_flagged_share": 0.12

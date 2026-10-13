@@ -430,6 +430,7 @@ T35 = [(label, old, new, path, TS) for label, old, new, path in [
 # T40: the `always` offer (itemator/ci.py, judged by tests/test_answers.py) and the react prompt (judged by
 # tests/test_react_prompt.py)
 TA, FL, TP = "tests/test_answers.py", "flows/itemator_react.yml", "tests/test_react_prompt.py"
+LG, TL = "itemator/decisions.py", "tests/test_decisions.py"
 T40 = [(label, old, new, path, test) for label, old, new, path, test in [
  ("always: any kind", 'ALWAYS_KINDS = ("ci_or_config", "stray_file")', 'ALWAYS_KINDS = ("ci_or_config", "stray_file", "tests_removed")', CI, TA),
  ("always: stray files not offered", 'ALWAYS_KINDS = ("ci_or_config", "stray_file")', 'ALWAYS_KINDS = ("ci_or_config",)', CI, TA),
@@ -466,7 +467,7 @@ T40 = [(label, old, new, path, test) for label, old, new, path, test in [
 ]]
 T42 = [(label, old, new, path, test) for label, old, new, path, test in [
  ("t42: comment match allowed", " or OLD does not appear exactly once in the whole decoded file (a comment counts)", "", FL, TP),
- ("t42: trailing comma allowed", " or the text between the [ and its closing ] holds a # or ends with a comma", "", FL, TP),
+ ("t42: trailing comma allowed", " or any entry in the list contains a [ or a ] character, or the list holds a # or ends with a comma", "", FL, TP),
  ("t42: leftover branch ignored", " Otherwise call gitlab_api_get with endpoint \"/api/v4/projects/<project_id>/repository/branches/<BRANCH with each / written as %2F>\"; if that branch exists, reply \"Cannot remember: the branch `BRANCH` is left from an earlier try; delete it, then reply always again.\" and stop (HTTP 404 means go on).", "", FL, TP),
  ("t42: compare endpoint dropped", '"/api/v4/projects/<project_id>/repository/compare" and params {"from": TIP, "to": BRANCH, "straight": "true"}', '"/api/v4/projects/<project_id>/repository/files/.itemator.toml" and params {"ref": BRANCH}', FL, TP),
  ("t42: compare not straight", '"to": BRANCH, "straight": "true"}', '"to": BRANCH}', FL, TP),
@@ -482,16 +483,37 @@ T42 = [(label, old, new, path, test) for label, old, new, path, test in [
  ("t42: two paths lines allowed", "    if len(hits) != 1:\n        return False\n    m = _PATHS_LINE", "    if not hits:\n        return False\n    m = _PATHS_LINE", "itemator/policy.py", "tests/test_policy.py"),
  ("t42: table runs to the end of the file", '        if ln.startswith("["):\n            break\n        table.append(ln)', "        table.append(ln)", "itemator/policy.py", "tests/test_policy.py"),
  ("t42: no [ignore] table needed", "    if start is None:\n        return False\n    table = []", "    if start is None:\n        start = -1\n    table = []", "itemator/policy.py", "tests/test_policy.py"),
- ("t42: a # inside the list allowed", '_PATHS_LINE = re.compile(r" *paths = \\[([^#\\n]*)\\][^\\n]*")', '_PATHS_LINE = re.compile(r" *paths = \\[([^\\n]*)\\][^\\n]*")', "itemator/policy.py", "tests/test_policy.py"),
+ ("t42: brackets inside the list allowed", '_PATHS_LINE = re.compile(r" *paths = \\[([^#\\[\\]\\n]*)\\][^\\n]*")', '_PATHS_LINE = re.compile(r" *paths = \\[([^#\\n]*)\\][^\\n]*")', "itemator/policy.py", "tests/test_policy.py"),
+ ("t42: compare check ignores the inserted text", ', and NEW_LINE must be OLD with only \', "PATH"\' or \'"PATH"\' inserted just before the ] that closes the list', "", FL, TP),
+ ("t42: a # inside the list allowed", '_PATHS_LINE = re.compile(r" *paths = \\[([^#\\[\\]\\n]*)\\][^\\n]*")', '_PATHS_LINE = re.compile(r" *paths = \\[([^\\n]*)\\][^\\n]*")', "itemator/policy.py", "tests/test_policy.py"),
  ("t42: label added to no-issue merge request", 'or (the label "itemator::no-issue" is not on the merge request and the label "itemator::needs-names" is missing)', 'or the label "itemator::needs-names" is missing', FL, TP),
 ]]
+T43 = [(label, old, new, path, test) for label, old, new, path, test in [
+ ("t43: no marker needed", 'if not isinstance(body, str) or not MARKER.search(body):', 'if not isinstance(body, str):', LG, TL),
+ ("t43: any author believed", ' or not str((n.get("author") or {}).get("username", "")).startswith(REACT_PREFIX)', "", LG, TL),
+ ("t43: system notes believed", 'if not isinstance(n, dict) or n.get("system") or', "if not isinstance(n, dict) or", LG, TL),
+ ("t43: oldest summary wins", 'str(n.get("created_at", "")) >= best[0]', 'str(n.get("created_at", "")) <= best[0]', LG, TL),
+ ("t43: everyone is the author", 'by_author=(i["who"] == author)', 'by_author=True', LG, TL),
+ ("t43: mentions kept in titles", 'text = re.sub(r"[`<>\\[\\]()!@]", "", text)', 'text = re.sub(r"[`<>\\[\\]()!]", "", text)', LG, TL),
+ ("t43: backtick kept in names", '.replace("`", "")', "", LG, TL),
+ ("t43: release block stacked", 'existing.index(START) < existing.index(END)', "True", LG, TL),
+ ("t43: window start included", 'since < str(m.get("merged_at") or "") <= until', 'since <= str(m.get("merged_at") or "") <= until', LG, TL),
+ ("t43: window end excluded", 'since < str(m.get("merged_at") or "") <= until', 'since < str(m.get("merged_at") or "") < until', LG, TL),
+ ("t43: any host asked", 'if urllib.parse.urlsplit(url).netloc != self.host:', 'if False:', LG, TL),
+ ("t43: existing release never updated", "        if isinstance(existing, dict):", "        if False:", LG, TL),
+ ("t43: pages never stop", "            if len(data) < 100:\n                break\n", "", LG, TL),
+ ("t43: missing release counted", "if not (missing_ok and status == 404):", "if True:", LG, TL),
+ ("t43: oldest previous tag", "(older[-1] if older else", "(older[0] if older else", LG, TL),
+ ("t43: moved read as kept", '    ("moved", re.compile(r"- " + _NAME + r": moved to', '    ("kept", re.compile(r"- " + _NAME + r": moved to', LG, TL),
+ ("t43: report mode writes", 'done = publish(api, a.tag, section) if a.tag else "no release (report mode)"', 'done = publish(api, a.tag or "x", section)', LG, TL),
+]]
 SRC = {"itemator/ci.py": (REPO / "itemator/ci.py").read_text(), "itemator/registry.py": (REPO / "itemator/registry.py").read_text(),
-       "itemator/policy.py": (REPO / "itemator/policy.py").read_text(), "itemator/said.py": (REPO / "itemator/said.py").read_text(),
+       "itemator/policy.py": (REPO / "itemator/policy.py").read_text(), "itemator/said.py": (REPO / "itemator/said.py").read_text(), LG: (REPO / LG).read_text(),
        FL: (REPO / FL).read_text()}
 JOBS = ([(*m, "itemator/ci.py", "tests/test_ci.py") for m in M] + [(*m, "itemator/ci.py", "tests/test_ci_anchors.py") for m in A]
         + [(*m, "itemator/ci.py", "tests/test_registry.py") for m in RC] + [(*m, "itemator/registry.py", "tests/test_registry.py") for m in RG]
         + [(*m, "itemator/ci.py", "tests/test_policy.py") for m in PC] + [(*m, "itemator/policy.py", "tests/test_policy.py") for m in PO]
-        + T26 + T35 + T40 + T42)
+        + T26 + T35 + T40 + T42 + T43)
 for label, old, new, path, _ in JOBS:
     assert SRC[path].count(old) == 1, f"mutant {label!r}: anchor found {SRC[path].count(old)} times in {path}"
 if sys.argv[3:] == ["T17"]:
@@ -502,6 +524,8 @@ if sys.argv[3:] == ["T40"]:
     JOBS = [j for j in JOBS if j in T40]
 if sys.argv[3:] == ["T42"]:
     JOBS = [j for j in JOBS if j in T42]
+if sys.argv[3:] == ["T43"]:
+    JOBS = [j for j in JOBS if j in T43]
 def run(i, path, text, tests):
     d = WORK / f"m{i:02d}"
     if d.exists(): shutil.rmtree(d)
@@ -516,7 +540,13 @@ for target in sorted({j[4] for j in JOBS}):
         print(f"the unmutated copy fails {target}, so no mutant can be judged:\n" + base.stdout[-2000:]); sys.exit(2)
 survivors = 0
 for i, (label, old, new, path, target) in enumerate(JOBS):
-    r = run(i, path, SRC[path].replace(old, new), target)
+    mutated = SRC[path].replace(old, new)
+    if path.endswith(".py"):
+        try:
+            compile(mutated, path, "exec")
+        except SyntaxError as e:            # a mutant that does not compile is not "killed by a test": it is a bad mutant
+            print(f"INVALID  {label:46s} {e.msg}"); survivors += 1; continue
+    r = run(i, path, mutated, target)
     failed = [l.split("::")[1].split(" ")[0] for l in r.stdout.splitlines() if l.startswith("FAILED")]
     killed = r.returncode != 0
     survivors += not killed

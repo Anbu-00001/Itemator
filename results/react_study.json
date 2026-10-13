@@ -1,0 +1,11 @@
+{
+ "what": "Eight reply cases for the reaction flow (react v1.5.0), pre-registered in eval/react_study_cases.json. Counts only.",
+ "limits": "One merge request per run, eight cases written by us, one author account, one model reading. It measures how the model reads our reply tests, not how people answer.",
+ "runs": 1,
+ "cases": 8,
+ "as_expected": 8,
+ "misread": 0,
+ "misread_cases": [],
+ "settled_wrongly": 0,
+ "left_open_wrongly": 0
+}

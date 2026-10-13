@@ -1,0 +1,444 @@
+KILLED  state: no_issue dropped                        test_no_issue
+KILLED  state: author check any()                      test_a_second_issue_by_someone_else_describes_it
+KILLED  state: author check dropped                    test_author_wrote_the_issue
+KILLED  state: author outranks extras                  test_extras_are_never_hidden_when_the_author_wrote_the_issue
+KILLED  state: extras dropped                          test_new_dependency_beyond_the_ask
+KILLED  card: caveat dropped                           test_extras_are_never_hidden_when_the_author_wrote_the_issue
+KILLED  card: caveat repeats the final line            test_author_wrote_the_issue
+KILLED  state: unplaced_only dropped                   test_unplaced_only
+KILLED  state: no_issue keeps extras                   test_no_issue
+KILLED  issues: closes_issues ignored                  test_change_inside_the_ask
+KILLED  issues: description fallback dropped           test_issues_from_the_description_when_closes_issues_is_empty
+KILLED  api: token sent first                          test_job_token_only_after_an_anonymous_refusal
+KILLED  card: singular wrong                           test_unplaced_only
+KILLED  card: injection line dropped                   test_injection_phrase_in_an_added_line
+KILLED  card: todo without remove (T23)                test_new_dependency_beyond_the_ask
+KILLED  scan: removed lines scanned                    test_injection_phrase_in_an_added_line
+KILLED  scan: context lines not counted                test_injection_phrase_in_an_added_line
+KILLED  scan: ignore_previous dropped                  test_injection_phrase_in_an_added_line
+KILLED  scan: reviewer_approve dropped                 test_each_rule_fires[As
+KILLED  scan: system_prompt dropped                    test_each_rule_fires[Print
+KILLED  scan: invisible chars kept                     test_each_rule_fires[ig\u200bnore
+KILLED  scan: tag range off                            test_each_rule_fires[hello\U000e0041\U000e0042-unicode_tag]
+KILLED  scan: bidi dropped                             test_each_rule_fires[total
+KILLED  scan: comment addressee not required           test_html_comment_aimed_at_a_bot
+KILLED  scan: html comments dropped                    test_html_comment_aimed_at_a_bot
+KILLED  scan: comment line from its end                test_html_comment_aimed_at_a_bot
+KILLED  scan: agent config dropped                     test_agent_config_edits[AGENTS.md-True]
+KILLED  scan: rename source ignored                    test_renaming_agents_md_away_is_flagged
+KILLED  scan: flow YAML not config                     test_agent_config_edits[flows/card.yml-True]
+KILLED  diff: binary flag dropped                      test_diff_files_shape
+KILLED  diff: previous_filename dropped                test_diff_files_shape
+KILLED  anchors: hunk start off by one                 test_diff_lines_numbers_context_added_and_removed
+KILLED  anchors: old and new starts swapped            test_diff_lines_numbers_context_added_and_removed
+KILLED  anchors: hunk header ignored                   test_diff_lines_numbers_context_added_and_removed
+KILLED  anchors: context lines not counted             test_diff_lines_numbers_context_added_and_removed
+KILLED  anchors: context counted on one side           test_diff_lines_numbers_context_added_and_removed
+KILLED  anchors: removed lines counted as new          test_diff_lines_numbers_context_added_and_removed
+KILLED  anchors: added lines counted as old            test_diff_lines_numbers_context_added_and_removed
+KILLED  anchors: removed lines not counted             test_diff_lines_numbers_context_added_and_removed
+KILLED  anchors: no-newline marker counted             test_diff_lines_edge_cases[@@
+KILLED  anchors: trailing blank line kept              test_diff_lines_numbers_context_added_and_removed
+KILLED  anchors: context line anchored                 test_config_change_anchors_on_the_first_added_line
+KILLED  anchors: dependency not matched by name        test_new_dependency_anchors_on_the_line_that_names_the_package
+KILLED  anchors: name boundary after dropped           test_new_dependency_line_matching[req-lines2-2]
+KILLED  anchors: name boundary before dropped          test_new_dependency_line_matching[quests-lines3-2]
+KILLED  anchors: name separators exact                 test_new_dependency_line_matching[foo-bar-lines1-2]
+KILLED  anchors: name case-sensitive                   test_new_dependency_line_matching[Foo_Bar-lines0-2]
+KILLED  anchors: npm script not matched by key         test_npm_script_anchors_on_its_own_line
+KILLED  anchors: tests anchor on any removed line      test_removed_test_anchors_on_the_removed_definition_not_on_the_first_removed_line
+KILLED  anchors: assertions anchor on the definition   test_removed_assertions_anchor_on_the_removed_assertion
+KILLED  anchors: tests anchor on added lines           test_removed_test_anchors_on_the_removed_definition_not_on_the_first_removed_line
+KILLED  anchors: symbol not matched                    test_removed_symbol_anchors_on_the_line_that_defines_it
+KILLED  anchors: added kinds anchor on removed lines   test_new_dependency_anchors_on_the_line_that_names_the_package
+KILLED  anchors: no fallback to the other sign         test_added_and_deleted_config_files
+KILLED  anchors: no fallback to any line of the sign   test_new_dependency_line_matching[ghost-lines5-1]
+KILLED  anchors: mass event anchors on its directory   test_mass_event_of_config_files_anchors_on_the_first_file
+KILLED  anchors: mass event anchors on its last file   test_mass_event_of_config_files_anchors_on_the_first_file
+KILLED  anchors: rename source ignored                 test_renamed_file_keeps_both_paths
+KILLED  anchors: rename target ignored                 test_renamed_file_keeps_both_paths
+KILLED  anchors: binary flag ignored                   test_no_text_patch_means_no_anchor[f2]
+KILLED  anchors: size limit off by one                 test_large_text_file_anchors_on_its_first_line_unless_gitlab_hides_the_diff
+KILLED  anchors: size limit dropped                    test_large_text_file_anchors_on_its_first_line_unless_gitlab_hides_the_diff
+KILLED  anchors: missing file reason                   test_extra_whose_file_is_not_in_the_diff
+KILLED  anchors: extras carry none                     test_mass_event_of_config_files_anchors_on_the_first_file
+KILLED  stub: no closing full stop                     test_thread_stub_text
+KILLED  stub: double full stop                         test_thread_stub_text
+KILLED  stub: kind instead of label                    test_thread_stub_text
+KILLED  stub: remove answer dropped (T23)              test_thread_stub_text
+KILLED  stub: remove not in backticks (T23)            test_thread_stub_text
+KILLED  stub: remove after the dismissal (T23)         test_thread_stub_text
+KILLED  plain facts: detail count wrong                test_plain_facts_and_record_shape
+KILLED  log: markers not escaped                       test_a_name_cannot_spell_a_marker
+KILLED  log: size limit ignored                        test_big_report_gets_a_compact_copy_without_detail
+KILLED  log: detail kept in the compact copy           test_big_report_gets_a_compact_copy_without_detail
+KILLED  log: truncated flag missing                    test_big_report_gets_a_compact_copy_without_detail
+KILLED  log: long lists never cut                      test_compact_copy_cuts_long_lists_then_extras_only_as_far_as_it_must
+KILLED  log: plain facts never cut                     test_compact_copy_cuts_long_lists_then_extras_only_as_far_as_it_must
+KILLED  log: extras dropped all at once                test_compact_copy_cuts_long_lists_then_extras_only_as_far_as_it_must
+KILLED  log: extras total not recorded                 test_compact_copy_cuts_long_lists_then_extras_only_as_far_as_it_must
+KILLED  log: job prints no block                       test_job_prints_the_facts_between_markers_after_the_card_lines
+KILLED  group: off                                     test_six_extras_of_one_kind_from_one_manifest_are_one_line
+KILLED  group: threshold 7                             test_six_files_of_one_kind_in_one_directory_are_one_line
+KILLED  group: threshold 5                             test_six_extras_of_one_kind_from_one_manifest_are_one_line
+KILLED  group: kinds mixed                             test_six_extras_of_one_kind_from_one_manifest_are_one_line
+KILLED  group: named kinds by directory                test_six_extras_of_one_kind_from_one_manifest_are_one_line
+KILLED  group: first item not the anchor               test_six_extras_of_one_kind_from_one_manifest_are_one_line
+KILLED  group: items not in plain facts                test_six_extras_of_one_kind_from_one_manifest_are_one_line
+KILLED  group: card shows every item                   test_six_extras_of_one_kind_from_one_manifest_are_one_line
+KILLED  group: why without names                       test_six_extras_of_one_kind_from_one_manifest_are_one_line
+KILLED  label: grouped unit always files               test_six_extras_of_one_kind_from_one_manifest_are_one_line
+KILLED  label: version bump unit                       test_new_kinds_have_labels_and_a_version_bump_anchors_on_its_line
+KILLED  label: version bump unlabelled                 test_new_kinds_have_labels_and_a_version_bump_anchors_on_its_line
+KILLED  label: whitespace only unlabelled              test_new_kinds_have_labels_and_a_version_bump_anchors_on_its_line
+KILLED  label: agent instructions unlabelled (T37)     test_new_kinds_have_labels_and_a_version_bump_anchors_on_its_line
+KILLED  anchors: version not matched                   test_new_kinds_have_labels_and_a_version_bump_anchors_on_its_line
+KILLED  log: block printed before the card             test_job_prints_the_facts_between_markers_after_the_card_lines
+KILLED  stub: registry sentence dropped                test_found_on_pypi
+KILLED  stub: sentence after the replies               test_found_on_pypi
+KILLED  plain_facts: registry dropped                  test_found_on_pypi
+KILLED  job: registries not asked by default           test_the_job_asks_the_registries_by_default
+KILLED  facts: fetcher ignored                         test_found_on_pypi
+KILLED  name: backtick kept                            test_t22_untypable_characters_in_a_name[a`b-a'b]
+KILLED  name: C0 controls kept                         test_t22_untypable_characters_in_a_name[a\x00b-a'b]
+KILLED  name: C1 controls kept                         test_t22_untypable_characters_in_a_name[a\x85b-a'b]
+KILLED  name: a run becomes one apostrophe             test_t22_untypable_characters_in_a_name[``-'']
+KILLED  stub: raw name in the code span                test_t22_untypable_characters_in_a_name[a`b-a'b]
+KILLED  stub: reason keeps backticks                   test_t22_untypable_characters_in_a_name[a`b-a'b]
+KILLED  card: raw name on the final line               test_t22_untypable_characters_in_a_name[a`b-a'b]
+KILLED  json: raw_name dropped                         test_t22_untypable_characters_in_a_name[a`b-a'b]
+KILLED  json: raw name kept as name                    test_t22_untypable_characters_in_a_name[a`b-a'b]
+KILLED  plain_facts: raw name                          test_t22_untypable_characters_in_a_name[a`b-a'b]
+KILLED  names: prefix match                            test_hostile_names_are_never_sent[PyPI-x;y]
+KILLED  names: npm case-insensitive                    test_hostile_names_are_never_sent[npm-Lodash]
+KILLED  names: length cap dropped                      test_hostile_names_are_never_sent[PyPI-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+KILLED  names: length cap off by one                   test_names_at_the_limits_and_uppercase_pypi
+KILLED  url: PyPI name not normalised                  test_names_at_the_limits_and_uppercase_pypi
+KILLED  url: npm scope slash not quoted                test_scoped_npm_name
+KILLED  hosts: check dropped                           test_a_host_outside_the_four_is_never_asked
+KILLED  hosts: http allowed                            test_a_host_outside_the_four_is_never_asked
+KILLED  budget: full timeout whatever is left          test_the_total_budget
+KILLED  budget: total dropped                          test_the_total_budget
+KILLED  cap: off by one                                test_at_most_ten_packages_per_run
+KILLED  cap: six of a group                            test_a_grouped_extra_looks_up_five_and_counts_all
+KILLED  404: not a fact                                test_not_found
+KILLED  osv: pinned version not sent                   test_advisories_counted_and_pinned_version_sent
+KILLED  osv: advisories miscounted                     test_advisories_counted_and_pinned_version_sent
+KILLED  osv: aliases counted again                     test_advisories_counted_and_pinned_version_sent
+KILLED  osv: odd ids kept                              test_advisories_counted_and_pinned_version_sent
+KILLED  osv: more pages ignored                        test_advisories_counted_and_pinned_version_sent
+KILLED  osv: PyPI name not normalised                  test_names_at_the_limits_and_uppercase_pypi
+KILLED  osv: errors escape                             test_advisories_counted_and_pinned_version_sent
+KILLED  pypi: first release from the last file         test_found_on_pypi
+KILLED  pypi: name check dropped                       test_unavailable[answer7-name_differs]
+KILLED  npm: name check dropped                        test_crates_facts_and_name_must_match
+KILLED  npm: licence object kept                       test_scoped_npm_name
+KILLED  crates: name check dropped                     test_crates_facts_and_name_must_match
+KILLED  card: singular advisory                        test_advisories_counted_and_pinned_version_sent
+KILLED  card: unavailable says nothing                 test_unavailable[answer0-timeout]
+KILLED  card: unread count dropped                     test_a_grouped_extra_looks_up_five_and_counts_all
+KILLED  card: pinned version not shown                 test_found_on_pypi
+KILLED  card: unpinned count not marked                test_found_on_pypi
+KILLED  pin: wildcard accepted                         test_pinned[PyPI-leftpad-py-leftpad-py==1.*-None]
+KILLED  pin: name glued to another                     test_pinned[PyPI-leftpad-py-old-leftpad-py==1.0-None]
+KILLED  skip: own package looked up                    test_own_package_url_source_and_local_paths_are_not_looked_up
+KILLED  skip: URL source looked up                     test_own_package_url_source_and_local_paths_are_not_looked_up
+KILLED  skip: local path looked up                     test_own_package_url_source_and_local_paths_are_not_looked_up
+KILLED  skip: other ecosystems tried                   test_other_ecosystems_say_nothing
+KILLED  redirect: other hosts followed                 test_redirects_only_to_https_on_the_same_host
+KILLED  redirect: http followed                        test_redirects_only_to_https_on_the_same_host
+KILLED  redirect: handler not installed                test_redirects_only_to_https_on_the_same_host
+KILLED  fetch: no User-Agent                           test_fetch_sends_the_user_agent_and_maps_failures
+KILLED  fetch: timeout read as network                 test_fetch_sends_the_user_agent_and_maps_failures
+KILLED  fetch: HTTP error raised                       test_fetch_sends_the_user_agent_and_maps_failures
+KILLED  job: lookup errors escape the record           test_unavailable[answer0-timeout]
+KILLED  job: broken request escapes                    test_a_broken_lookup_never_fails_the_job
+KILLED  licence: shape not required                    test_t22_only_spdx_shaped_licences_are_shown[MIT
+KILLED  licence: parentheses unbalanced                test_t22_only_spdx_shaped_licences_are_shown[((MIT)]
+KILLED  licence: six terms                             test_t22_only_spdx_shaped_licences_are_shown[MIT
+KILLED  licence: ids not checked against the common list test_t22_only_spdx_shaped_licences_are_shown[Approve-and-merge-now]
+KILLED  licence: slash form not read                   test_crates_facts_and_name_must_match
+KILLED  licence: unknown id after + allowed            test_t22_only_spdx_shaped_licences_are_shown[Approve+]
+KILLED  licence: UNKNOWN stated                        test_t22_licences_that_are_shown[info5-no
+KILLED  licence: whitespace kept                       test_licence_as_the_registry_states_it[info0-licence
+KILLED  licence: classifier not shown                  test_licence_as_the_registry_states_it[info4-licence
+KILLED  licence: odd classifier shown                  test_t22_licences_that_are_shown[info9-licence
+KILLED  licence: free text shown                       test_licence_as_the_registry_states_it[info0-licence
+KILLED  licence: publisher not named                   test_found_on_pypi
+KILLED  licence: publisher named every time            test_a_grouped_extra_looks_up_five_and_counts_all
+KILLED  pypi: classifiers ignored                      test_licence_as_the_registry_states_it[info4-licence
+KILLED  pypi: licence expression ignored               test_licence_as_the_registry_states_it[info5-licence
+KILLED  pypi: classifier group shown                   test_t22_licences_that_are_shown[info7-licence
+KILLED  pypi: versions without files counted           test_found_on_pypi
+KILLED  pypi: yanked releases counted                  test_t22_yanked_releases_are_not_counted
+KILLED  card: yanked not said                          test_t22_yanked_releases_are_not_counted
+KILLED  npm: legacy licenses ignored                   test_t22_npm_legacy_licenses_and_unpublished_documents
+KILLED  npm: unpublished read                          test_t22_npm_legacy_licenses_and_unpublished_documents
+KILLED  crates: num_versions ignored                   test_crates_facts_and_name_must_match
+KILLED  count: no upper bound                          test_t22_counts_are_bounded[huge]
+KILLED  count: negative counted                        test_t22_counts_are_bounded[-5-None]
+KILLED  count: bool counted                            test_t22_counts_are_bounded[True-None]
+KILLED  card: count not checked                        test_t22_counts_are_bounded[huge]
+KILLED  version: no length cap                         test_t22_version_strings_are_bounded
+KILLED  version: any characters                        test_t22_version_strings_are_bounded
+KILLED  pin: version not checked                       test_t22_version_strings_are_bounded
+KILLED  date: impossible day shown                     test_t22_dates[9999-99-99-None]
+KILLED  date: shape not required                       test_t22_dates[2023-W01-1-None]
+KILLED  lines: pin read on a long line                 test_t22_long_manifest_lines_are_skipped_quickly
+KILLED  lines: path read on a long line                test_t22_long_manifest_lines_are_skipped_quickly
+KILLED  netloc: any port                               test_t22_ports_and_odd_network_locations_are_refused
+KILLED  netloc: user part allowed                      test_t22_ports_and_odd_network_locations_are_refused
+KILLED  netloc: bad port allowed                       test_t22_ports_and_odd_network_locations_are_refused
+KILLED  netloc: not checked on a request               test_t22_ports_and_odd_network_locations_are_refused
+KILLED  netloc: not checked on a redirect              test_t22_ports_and_odd_network_locations_are_refused
+KILLED  deadline: read waits for 64 KB                 test_t22_a_slow_server_cannot_stretch_the_budget
+KILLED  deadline: not checked while reading            test_t22_a_slow_server_cannot_stretch_the_budget
+KILLED  body: one cap for every host                   test_fetch_sends_the_user_agent_and_maps_failures
+KILLED  body: Content-Length not checked               test_t22_answers_are_capped_per_host
+KILLED  body: cap dropped                              test_fetch_sends_the_user_agent_and_maps_failures
+KILLED  honesty: registry not named                    test_not_found
+KILLED  honesty: junk advisories counted               test_t22_only_advisories_with_a_string_id_are_counted
+KILLED  policy: an edit is not an extra                test_a_merge_request_that_edits_the_policy_is_still_judged_by_the_target_branch
+KILLED  policy: an edit keeps the stray duplicate      test_a_merge_request_that_adds_or_deletes_the_policy_is_an_extra
+KILLED  policy: an edit stays unplaced                 test_a_merge_request_that_edits_the_policy_is_still_judged_by_the_target_branch
+KILLED  policy: no edit on a no-issue MR (T41)         test_a_policy_edit_asks_for_a_name_even_when_no_issue_describes_it
+KILLED  policy: rename away not seen                   test_a_merge_request_that_adds_or_deletes_the_policy_is_an_extra
+KILLED  policy: quieting ignored                       test_valid_file_quiets_kinds_and_paths_but_never_the_built_in_exceptions
+KILLED  policy: state not recomputed                   test_every_extra_quieted_is_inside_the_ask_with_one_visible_line
+KILLED  policy: read from the MR head                  test_missing_file_changes_nothing
+KILLED  names: other person ignored                    test_valid_file_quiets_kinds_and_paths_but_never_the_built_in_exceptions
+KILLED  names: other person always                     test_missing_file_changes_nothing
+KILLED  stub: sentence dropped                         test_other_person_required_puts_the_sentence_in_the_visible_stub
+KILLED  card: notes dropped                            test_valid_file_quiets_kinds_and_paths_but_never_the_built_in_exceptions
+KILLED  card: unused reason dropped                    test_a_broken_file_is_ignored_with_a_visible_reason[[names]\nother_person_required
+KILLED  card: quieted not listed                       test_valid_file_quiets_kinds_and_paths_but_never_the_built_in_exceptions
+KILLED  card: every path not said                      test_a_merge_request_that_edits_the_policy_is_still_judged_by_the_target_branch
+KILLED  card: quieted list not capped                  test_policy_lines_are_capped
+KILLED  json: ignored_extras empty                     test_valid_file_quiets_kinds_and_paths_but_never_the_built_in_exceptions
+KILLED  log: quieted list not cut                      test_the_log_copy_cuts_a_long_quieted_list_and_says_so
+KILLED  checker: caveat dropped                        test_the_card_says_where_the_checker_came_from[kw1-merge_request]
+KILLED  checker: sha not compared                      test_the_card_says_where_the_checker_came_from[kw3-merge_request]
+KILLED  checker: any value means base                  test_the_card_says_where_the_checker_came_from[kw1-merge_request]
+KILLED  schema: unknown table allowed                  test_every_schema_violation_ignores_the_whole_file[[other]\na
+KILLED  schema: non-table allowed                      test_every_schema_violation_ignores_the_whole_file[names
+KILLED  schema: unknown key allowed                    test_every_schema_violation_ignores_the_whole_file[[names]\nextra
+KILLED  schema: wrong type allowed                     test_a_broken_file_is_ignored_with_a_visible_reason[[names]\nother_person_required
+KILLED  schema: default asks for another person        test_valid_files
+KILLED  kinds: unknown kind allowed                    test_a_broken_file_is_ignored_with_a_visible_reason[[ignore]\nkinds
+KILLED  kinds: built-in exception listable             test_every_schema_violation_ignores_the_whole_file[[ignore]\nkinds
+KILLED  paths: no pattern cap                          test_every_schema_violation_ignores_the_whole_file[[ignore]\npaths
+KILLED  paths: cap off by one                          test_valid_files
+KILLED  paths: empty pattern allowed                   test_every_schema_violation_ignores_the_whole_file[[ignore]\npaths
+KILLED  paths: control characters allowed              test_every_schema_violation_ignores_the_whole_file[[ignore]\npaths
+KILLED  paths: C1 controls allowed                     test_every_schema_violation_ignores_the_whole_file[[ignore]\npaths
+KILLED  paths: no length cap                           test_every_schema_violation_ignores_the_whole_file[[ignore]\npaths
+KILLED  size: not capped in parse                      test_every_schema_violation_ignores_the_whole_file[[ignore]\npaths
+KILLED  size: read before the cap                      test_an_oversize_file_is_never_read
+KILLED  size: cap off by one                           test_an_oversize_file_is_never_read
+KILLED  file: symlink read                             test_a_symlink_or_a_directory_is_not_a_policy
+KILLED  file: missing file not recognised              test_missing_file_changes_nothing
+KILLED  sha: not checked                               test_the_sha_is_checked_before_git_runs[HEAD]
+KILLED  sha: search, not fullmatch                     test_the_sha_is_checked_before_git_runs[aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\n]
+KILLED  git: no timeout                                test_git_runs_with_a_fixed_argv_and_a_timeout
+KILLED  git: timeout not caught                        test_a_slow_or_failing_git_is_a_reason_not_a_crash
+KILLED  registry: not-found package quieted            test_valid_file_quiets_kinds_and_paths_but_never_the_built_in_exceptions
+KILLED  registry: unread package quieted               test_a_dependency_is_quieted_only_when_the_registry_knows_every_package[registry10-False]
+KILLED  registry: lookup cap not checked               test_a_dependency_is_quieted_only_when_the_registry_knows_every_package[registry12-False]
+KILLED  registry: exception dropped                    test_valid_file_quiets_kinds_and_paths_but_never_the_built_in_exceptions
+KILLED  built-in: binary quietable                     test_valid_file_quiets_kinds_and_paths_but_never_the_built_in_exceptions
+KILLED  built-in: policy edit quietable                test_a_merge_request_that_edits_the_policy_is_still_judged_by_the_target_branch
+KILLED  built-in: agent instructions quietable (T37)   test_agent_instructions_are_never_quieted
+KILLED  paths: one matching file suffices              test_every_file_of_an_extra_must_match
+KILLED  paths: case-insensitive                        test_every_file_of_an_extra_must_match
+KILLED  paths: rename source ignored                   test_every_file_of_an_extra_must_match
+KILLED  paths: group items ignored                     test_every_file_of_an_extra_must_match
+KILLED  paths: detail files ignored                    test_every_file_of_an_extra_must_match
+KILLED  every path: not reported                       test_a_merge_request_that_edits_the_policy_is_still_judged_by_the_target_branch
+KILLED  reason: backtick kept                          test_parse_reasons_are_one_safe_line
+KILLED  reason: no length cap                          test_parse_reasons_are_one_safe_line
+KILLED  attrs: text file left binary                   test_attributes_never_hide_a_removed_test[attr-source-info/attributes]
+KILLED  attrs: binary by git's word                    test_attributes_never_hide_a_removed_test[attr-source-info/attributes]
+KILLED  attrs: blob test skipped                       test_a_real_binary_is_still_binary[attr-source-]
+KILLED  attrs: NUL test misses byte 0                  test_a_real_binary_is_still_binary[attr-source-]
+KILLED  attrs: binary keeps a forced patch             test_a_real_binary_is_still_binary[old-git-*.dat
+KILLED  attrs: textconv on                             test_attributes_never_hide_a_removed_test[old-git-textconv]
+KILLED  attrs: attributes file read                    test_every_git_call_ignores_attribute_files[attr-source]
+KILLED  attrs: system file read                        test_every_git_call_ignores_attribute_files[attr-source]
+KILLED  attrs: base attributes not used                test_every_git_call_ignores_attribute_files[attr-source]
+KILLED  attrs: re-read without --text                  test_attributes_never_hide_a_removed_test[attr-source-info/attributes]
+KILLED  answers: a manifest is a config file           test_a_thread_offers_only_what_the_react_flow_accepts[e4-by_path4-offers4]
+KILLED  answers: any file is a config file             test_a_thread_offers_only_what_the_react_flow_accepts[e5-by_path5-offers5]
+KILLED  answers: dependency outside a manifest         test_a_thread_offers_only_what_the_react_flow_accepts[e10-by_path10-offers10]
+KILLED  answers: a list without its items              test_a_thread_offers_only_what_the_react_flow_accepts[e11-by_path11-offers11]
+KILLED  answers: list not capped                       test_a_grouped_thread_too_long_to_list_offers_neither
+KILLED  answers: cap off by one                        test_a_grouped_thread_too_long_to_list_offers_neither
+KILLED  answers: modified file removable               test_a_thread_offers_only_what_the_react_flow_accepts[e13-by_path13-offers13]
+KILLED  answers: a group name removable                test_a_thread_offers_only_what_the_react_flow_accepts[e15-by_path15-offers15]
+KILLED  answers: tests_removed removable               test_a_thread_offers_only_what_the_react_flow_accepts[e19-by_path19-offers19]
+KILLED  answers: agent instructions not removable (T37) test_agent_instructions_offer_remove_only_for_one_added_file[e0-by_path0-offers0]
+KILLED  stub: split always offered                     test_a_thread_offers_only_what_the_react_flow_accepts[e3-by_path3-offers3]
+KILLED  stub: remove always offered                    test_a_thread_offers_only_what_the_react_flow_accepts[e3-by_path3-offers3]
+KILLED  stub: offers not passed                        test_a_thread_offers_only_what_the_react_flow_accepts[e3-by_path3-offers3]
+KILLED  target: merge base used                        test_policy_and_checker_come_from_the_target_branch_tip
+KILLED  target: not a full sha used                    test_a_target_ref_that_is_not_a_full_sha_is_not_used[AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\n]
+KILLED  target: fallback caveat dropped                test_without_the_target_ref_the_merge_base_is_used_and_the_card_says_so
+KILLED  target: fallback says target branch            test_without_the_target_ref_the_merge_base_is_used_and_the_card_says_so
+KILLED  target: policy source kept                     test_without_the_target_ref_the_merge_base_is_used_and_the_card_says_so
+KILLED  checker: compared with the merge base          test_policy_and_checker_come_from_the_target_branch_tip
+KILLED  card: other-person sentence dropped            test_valid_file_quiets_kinds_and_paths_but_never_the_built_in_exceptions
+KILLED  card: other-person sentence, nothing to name   test_the_other_person_sentence_shows_only_while_something_needs_a_name
+KILLED  parse: deep TOML raises                        test_deep_toml_is_a_reason_not_a_crash[array]
+KILLED  reason: TOML message shown                     test_a_toml_error_shows_only_where_it_is
+KILLED  every path: one probe                          test_a_glob_that_matches_everything_is_allowed_and_reported[**/*-False]
+KILLED  every path: any probe                          test_a_glob_that_matches_everything_is_allowed_and_reported[**/*-False]
+KILLED  registry: url source quieted                   test_a_dependency_is_quieted_only_when_the_registry_knows_every_package[registry2-False]
+KILLED  registry: not_supported quieted                test_a_dependency_is_quieted_only_when_the_registry_knows_every_package[registry1-False]
+KILLED  registry: own_package not counted              test_a_dependency_is_quieted_only_when_the_registry_knows_every_package[registry4-True]
+KILLED  policy: source not reported                    test_without_the_target_ref_the_merge_base_is_used_and_the_card_says_so
+KILLED  said: listed never                             test_each_outcome_reaches_the_thread_and_plain_facts
+KILLED  said: listed tested on the rest                test_each_outcome_reaches_the_thread_and_plain_facts
+KILLED  said: weak shown as named                      test_a_path_extra_is_named_by_its_base_name_or_full_path[adds
+KILLED  said: the search stops at a weak match         test_t38_strong_and_weak_matches[Retries
+KILLED  said: title ignored                            test_the_title_counts_as_naming
+KILLED  said: cut says silent                          test_a_description_that_may_be_cut_never_says_silent
+KILLED  said: over the cap says silent                 test_hostile_descriptions[leftpadleftpadleftpadleftpadleftpadleftpadleftpadleftpadleftpadleftpadleftpadleftpadleftpadleftpadleftpadleftpadleftpadleftp
+KILLED  said: unclosed comment says silent             test_t38_comments[Note:
+KILLED  said: hidden HTML read                         test_t38_what_a_reader_does_not_see_does_not_count[##
+KILLED  said: blank text read                          test_no_description_means_no_sentence[
+KILLED  said: no text says silent                      test_no_description_means_no_sentence[]
+KILLED  said: weak shown                               test_a_path_extra_is_named_by_its_base_name_or_full_path[adds
+KILLED  said: deadline not checked per extra           test_the_work_is_bounded_by_the_deadline
+KILLED  match: deadline not checked in the search      test_the_work_is_bounded_by_the_deadline
+KILLED  match: substring                               test_whole_word_case_insensitive[leftpads-silent]
+KILLED  match: joining characters end a name           test_t38_a_name_continues_past_joining_characters[leftpad-py2-leftpad-silent]
+KILLED  match: joining characters start a name         test_t38_a_name_continues_past_joining_characters[my-leftpad-leftpad-silent]
+KILLED  match: a sentence-end dot continues            test_each_outcome_reaches_the_thread_and_plain_facts
+KILLED  match: underscore ends a word                  test_whole_word_case_insensitive[leftpad_x-silent]
+KILLED  match: base name after a slash                 test_t38_a_base_name_counts_only_when_no_slash_precedes_it
+KILLED  strong: code not strong                        test_a_description_that_may_be_cut_never_says_silent
+KILLED  strong: a full path not strong                 test_t38_strong_and_weak_matches[Adds
+KILLED  strong: ordinary words strong                  test_grouped_extras_by_directory_name_or_item
+KILLED  strong: case ignored                           test_a_path_extra_is_named_by_its_base_name_or_full_path[adds
+KILLED  ordinary: no length limit                      test_t38_strong_and_weak_matches[Adds
+KILLED  ordinary: upper case ordinary                  test_t38_strong_and_weak_matches[Adds
+KILLED  ordinary: generic directories not              test_t38_strong_and_weak_matches[Removes
+KILLED  keys: short names matched                      test_short_or_punctuation_names_are_never_matched[qs]
+KILLED  keys: punctuation names matched                test_short_or_punctuation_names_are_never_matched[---]
+KILLED  keys: control characters kept                  test_short_or_punctuation_names_are_never_matched[a\x00b]
+KILLED  keys: base flag lost                           test_t38_a_base_name_counts_only_when_no_slash_precedes_it
+KILLED  keys: a base name hides the full name          test_t38_strong_and_weak_matches[Updates
+KILLED  names: no base name                            test_a_path_extra_is_named_by_its_base_name_or_full_path[adds
+KILLED  names: no items                                test_grouped_extras_by_directory_name_or_item
+KILLED  comments: not stripped                         test_t38_comments[Note:
+KILLED  comments: stripped inside code spans           test_t38_comments[Type
+KILLED  comments: stripped inside fences               test_t38_comments[```html\n<!--\n```\nAdds
+KILLED  comments: unclosed says read                   test_t38_comments[Note:
+KILLED  links: destination and title kept              test_t38_what_a_reader_does_not_see_does_not_count[See
+KILLED  images: alt kept                               test_t38_what_a_reader_does_not_see_does_not_count[![leftpad](x.png)-silent]
+KILLED  refdefs: kept                                  test_t38_what_a_reader_does_not_see_does_not_count[##
+KILLED  tags: attributes kept                          test_t38_what_a_reader_does_not_see_does_not_count[<a
+KILLED  tags: hidden not seen                          test_t38_what_a_reader_does_not_see_does_not_count[##
+KILLED  invisible: kept                                test_hostile_descriptions[`left\u200bpad`-named]
+KILLED  code spans: none                               test_a_description_that_may_be_cut_never_says_silent
+KILLED  cap: none                                      test_hostile_descriptions[leftpadleftpadleftpadleftpadleftpadleftpadleftpadleftpadleftpadleftpadleftpadleftpadleftpadleftpadleftpadleftpadleftpadleftp
+KILLED  cap: in characters only                        test_the_text_is_capped
+KILLED  heading: level 7                               test_lines_that_are_not_that_heading[#######
+KILLED  heading: no space needed                       test_lines_that_are_not_that_heading[##Beyond
+KILLED  heading: closing hashes kept                   test_heading_variants_open_the_section[##
+KILLED  heading: case-sensitive                        test_each_outcome_reaches_the_thread_and_plain_facts
+KILLED  heading: emphasis kept                         test_heading_variants_open_the_section[##
+KILLED  section: never ends at a heading               test_each_outcome_reaches_the_thread_and_plain_facts
+KILLED  section: a rule does not end it                test_t38_listed_only_for_list_items_and_the_first_paragraph[##
+KILLED  section: a bold line does not end it           test_t38_listed_only_for_list_items_and_the_first_paragraph[##
+KILLED  section: a label does not end it               test_t38_listed_only_for_list_items_and_the_first_paragraph[##
+KILLED  section: a first-block label ends it           test_t38_listed_only_for_list_items_and_the_first_paragraph[##
+KILLED  section: an HTML block does not end it         test_t38_listed_only_for_list_items_and_the_first_paragraph[##
+KILLED  html: no HTML blocks                           test_t38_listed_only_for_list_items_and_the_first_paragraph[##
+KILLED  html: any tag is a block tag                   test_t38_listed_only_for_list_items_and_the_first_paragraph[##
+KILLED  fence: ignored                                 test_a_heading_inside_a_code_fence_is_not_a_heading
+KILLED  fence: a shorter fence closes                  test_a_heading_inside_a_code_fence_is_not_a_heading
+KILLED  fence: no $$ blocks                            test_t38_listed_only_for_list_items_and_the_first_paragraph[$$\n##
+KILLED  setext: none                                   test_heading_variants_open_the_section[Beyond
+KILLED  setext: without a blank line before            test_t38_listed_only_for_list_items_and_the_first_paragraph[Fixes
+KILLED  listed: any paragraph                          test_t38_listed_only_for_list_items_and_the_first_paragraph[##
+KILLED  listed: no list continuation                   test_t38_listed_only_for_list_items_and_the_first_paragraph[##
+KILLED  order: none                                    test_unmentioned_extras_come_first_on_the_card_and_in_the_threads
+KILLED  order: silent last                             test_unmentioned_extras_come_first_on_the_card_and_in_the_threads
+KILLED  stub: said sentence dropped                    test_each_outcome_reaches_the_thread_and_plain_facts
+KILLED  stub: sentence after the other-person one      test_the_sentence_sits_after_the_registry_sentence_and_before_the_other_person_one
+KILLED  plain_facts: said missing                      test_each_outcome_reaches_the_thread_and_plain_facts
+KILLED  facts: cut not passed                          test_a_description_that_may_be_cut_never_says_silent
+KILLED  run: the CI variable trusted                   test_the_job_reads_the_description_from_the_api_and_distrusts_the_variable[-Closes
+KILLED  facts: title not passed                        test_the_title_counts_as_naming
+KILLED  facts: names from the name only                test_grouped_extras_by_directory_name_or_item
+KILLED  always: any kind                               test_always_only_for_a_config_or_stray_file[tests_removed]
+KILLED  always: stray files not offered                test_always_only_for_a_config_or_stray_file[stray_file]
+KILLED  always: never-ignored kind offered             test_always_never_for_a_kind_the_policy_cannot_quiet
+KILLED  always: a line of a file                       test_always_never_for_a_group_a_line_or_a_manifest[e4-items4]
+KILLED  always: a group by detail                      test_always_never_for_a_group_a_line_or_a_manifest[e0-items0]
+KILLED  always: a group by items                       test_always_never_for_a_group_a_line_or_a_manifest[e1-items1]
+KILLED  always: glob characters allowed                test_always_needs_a_plain_short_path[conf/*.yml-False]
+KILLED  always: 121 characters                         test_always_needs_a_plain_short_path[xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+KILLED  always: 119 characters                         test_always_needs_a_plain_short_path[xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+KILLED  always: a prefix of the path                   test_always_needs_a_plain_short_path[xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+KILLED  always: manifests offered                      test_always_never_for_a_group_a_line_or_a_manifest[e5-items5]
+KILLED  always: policy not found                       test_always_needs_a_used_policy_file_on_the_target_branch[policy2-False]
+KILLED  always: ignored policy used                    test_always_needs_a_used_policy_file_on_the_target_branch[policy3-False]
+KILLED  always: merge-base policy used                 test_always_needs_a_used_policy_file_on_the_target_branch[policy5-False]
+KILLED  always: no room off by one                     test_always_needs_a_used_policy_file_on_the_target_branch[policy8-False]
+KILLED  always: the flag ignored                       test_a_thread_offers_only_what_the_react_flow_accepts[e0-by_path0-offers0]
+KILLED  always: offered first                          test_always_is_not_offered_unless_asked
+KILLED  always: facts offer it with any policy         test_facts_offer_always_only_with_a_used_policy
+KILLED  always: not passed to the stub                 test_facts_offer_always_only_with_a_used_policy
+KILLED  stub: always sentence dropped                  test_the_always_sentence_comes_after_split_and_remove_and_before_not_an_extra
+KILLED  stub: always sentence first                    test_the_always_sentence_comes_after_split_and_remove_and_before_not_an_extra
+KILLED  prompt: refusal list misses remember           test_every_refusal_list_carries_the_new_guard_words
+KILLED  prompt: reminder misses remember               test_every_refusal_list_carries_the_new_guard_words
+KILLED  prompt: offer sentence differs                 test_the_new_words_are_there
+KILLED  prompt: no mention step                        test_the_new_words_are_there
+KILLED  prompt: mention reopened                       test_the_mention_step_resolves_only_human_mention_threads
+KILLED  prompt: bot threads resolved                   test_the_mention_step_resolves_only_human_mention_threads
+KILLED  prompt: fork not refused                       test_the_always_replies_are_exactly_the_brief
+KILLED  prompt: description not exact                  test_the_always_replies_are_exactly_the_brief
+KILLED  prompt: kept reply without kept by             test_the_always_replies_are_exactly_the_brief
+KILLED  prompt: whole line rewritten                   test_the_always_replies_are_exactly_the_brief
+KILLED  prompt: create_merge_request dropped           test_yaml_parses_and_stays_under_40_kib
+KILLED  t42: comment match allowed                     test_t42_the_one_line_edit_is_checked_with_compare_not_with_a_character_count
+KILLED  t42: trailing comma allowed                    test_t42_the_one_line_edit_is_checked_with_compare_not_with_a_character_count
+KILLED  t42: leftover branch ignored                   test_t42_the_one_line_edit_is_checked_with_compare_not_with_a_character_count
+KILLED  t42: compare endpoint dropped                  test_t42_the_one_line_edit_is_checked_with_compare_not_with_a_character_count
+KILLED  t42: compare not straight                      test_t42_the_one_line_edit_is_checked_with_compare_not_with_a_character_count
+KILLED  t42: two plus lines allowed                    test_t42_the_one_line_edit_is_checked_with_compare_not_with_a_character_count
+KILLED  t42: mention typed with the answer             test_t42_an_answer_typed_with_the_mention_counts
+KILLED  t42: T2 keeps its spaces                       test_t42_an_answer_typed_with_the_mention_counts
+KILLED  t42: mention step resolves a person's question test_t42_the_mention_step_leaves_a_question_from_a_person_alone
+KILLED  t42: mention step resolves a mention of a person test_t42_the_mention_step_leaves_a_question_from_a_person_alone
+KILLED  t42: no-issue label swapped                    test_t42_a_no_issue_merge_request_never_swaps_its_label_and_stays_in_draft
+KILLED  t42: always offered where the flow cannot edit test_always_needs_a_used_policy_file_on_the_target_branch[policy6-False]
+KILLED  t42: paths line seen twice                     test_paths_line_ok_only_for_the_layout_the_flow_edits[#
+KILLED  t42: trailing comma allowed                    test_paths_line_ok_only_for_the_layout_the_flow_edits[[ignore]\npaths
+KILLED  t42: two paths lines allowed                   test_paths_line_ok_only_for_the_layout_the_flow_edits[[ignore]\npaths
+KILLED  t42: table runs to the end of the file         test_paths_line_ok_only_for_the_layout_the_flow_edits[[ignore]\nkinds
+KILLED  t42: no [ignore] table needed                  test_paths_line_ok_only_for_the_layout_the_flow_edits[paths
+KILLED  t42: brackets inside the list allowed          test_paths_line_ok_only_for_the_layout_the_flow_edits[[ignore]\npaths
+KILLED  t42: compare check ignores the inserted text   test_t42_the_one_line_edit_is_checked_with_compare_not_with_a_character_count
+KILLED  t42: a # inside the list allowed               test_paths_line_ok_only_for_the_layout_the_flow_edits[[ignore]\npaths
+KILLED  t42: label added to no-issue merge request     test_t42_a_no_issue_merge_request_never_swaps_its_label_and_stays_in_draft
+KILLED  t43: no marker needed                          test_a_note_that_is_not_a_summary_gives_nothing[Every
+KILLED  t43: any author believed                       test_only_the_reaction_account_is_believed
+KILLED  t43: system notes believed                     test_only_the_reaction_account_is_believed
+KILLED  t43: oldest summary wins                       test_the_newest_summary_wins
+KILLED  t43: everyone is the author                    test_an_entry_knows_who_wrote_the_merge_request
+KILLED  t43: mentions kept in titles                   test_text_from_a_merge_request_cannot_ping_link_or_close_a_code_span
+KILLED  t43: backtick kept in names                    test_text_from_a_merge_request_cannot_ping_link_or_close_a_code_span
+KILLED  t43: release block stacked                     test_the_release_description_is_replaced_not_stacked
+KILLED  t43: window start included                     test_the_window_includes_its_end_and_excludes_its_start
+KILLED  t43: window end excluded                       test_the_window_includes_its_end_and_excludes_its_start
+KILLED  t43: any host asked                            test_only_the_job_server_is_asked
+KILLED  t43: existing release never updated            test_publish_updates_an_existing_release_and_creates_a_missing_one
+KILLED  t43: pages never stop                          test_collect_reads_only_merge_requests_inside_the_window_in_order
+KILLED  t43: missing release counted                   test_a_missing_release_is_not_a_failed_request
+KILLED  t43: oldest previous tag                       test_the_window_of_a_tag_starts_at_the_previous_tag
+KILLED  t43: moved read as kept                        test_a_summary_is_read_line_by_line
+KILLED  t43: report mode writes                        test_main_writes_the_report_and_the_markdown
+443/443 mutants killed

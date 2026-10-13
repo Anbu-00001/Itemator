@@ -250,6 +250,33 @@ def test_commits_exempt_the_merge_button_commit(tmp_path):
     assert msgs(audit.check_commits, tmp_path) == []
 
 
+def test_commits_a_merge_that_carries_a_change_of_its_own_needs_a_sign_off(tmp_path):
+    repo(tmp_path, {"a.txt": "x"})
+    git(tmp_path, "checkout", "-q", "-b", "side")
+    write(tmp_path, {"b.txt": "y"})
+    git(tmp_path, "add", "-A")
+    git(tmp_path, "commit", "-q", "-m", f"Side\n\n{SIGN}\n")
+    git(tmp_path, "checkout", "-q", "main")
+    write(tmp_path, {"c.txt": "z"})
+    git(tmp_path, "add", "-A")
+    git(tmp_path, "commit", "-q", "-m", f"Main\n\n{SIGN}\n")
+    git(tmp_path, "merge", "-q", "--no-ff", "--no-commit", "side")
+    write(tmp_path, {"sneaky.txt": "not in either parent"})
+    git(tmp_path, "add", "-A")
+    git(tmp_path, "commit", "-q", "-m", "Merge branch 'side' into 'main'\n\nSee merge request group/proj!7")
+    out = msgs(audit.check_commits, tmp_path)
+    assert len(out) == 1 and "no Signed-off-by" in out[0]
+
+
+def test_commits_another_groups_service_account_is_not_exempt(tmp_path):
+    repo(tmp_path, {"a.txt": "x"})
+    write(tmp_path, {"b.txt": "y"})
+    git(tmp_path, "add", "-A")
+    git(tmp_path, "commit", "-q", "-m", "No sign-off", "--author", "Flow <service_account_group_999_0123456789abcdef0123456789abcdef@noreply.gitlab.com>")
+    out = msgs(audit.check_commits, tmp_path)
+    assert len(out) == 1 and "no Signed-off-by" in out[0]
+
+
 def test_commits_a_merge_without_the_merge_request_line_needs_a_sign_off(tmp_path):
     _merge(tmp_path, "Merge branch 'side'")
     out = msgs(audit.check_commits, tmp_path)

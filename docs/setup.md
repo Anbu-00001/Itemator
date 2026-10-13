@@ -24,6 +24,18 @@ A flow can only be started by a person's action: a bot cannot start a trigger, w
 ## 4. Make the threads a lock (optional, needs the Maintainer role)
 In **Settings** > **Merge requests**, turn on **All threads must be resolved**. Until then an unnamed extra puts the merge request in Draft but does not stop the merge button.
 
+## 5. The team policy (optional): `.itemator.toml`
+Put it at the root of the branch merge requests target; it is read from there, never from the merge request. Every key is optional and an unknown key makes the whole file ignored (the card says why).
+```toml
+[names]
+other_person_required = false   # true: only someone other than the author can name an extra
+
+[ignore]
+kinds = []   # whole kinds of extras to quiet, e.g. ["whitespace_only"]; never policy_changed, binary_or_large_added or agent_instructions
+paths = []   # file paths or shell-style patterns to quiet (`*` also crosses `/`); at most twenty entries; a package manifest only if its dependencies are known to the registries
+```
+The `always` answer edits this file for you, one line at a time, in a merge request your team reviews. It is offered only when the `[ignore]` table has exactly one line that starts with `paths = [` and ends the list on the same line (no `#` inside the list, no trailing comma); with `paths=[]`, a list over several lines, or no `[ignore]` table the policy still works but `always` is not offered.
+
 ## What to expect
 Open a merge request that links an issue. When its pipeline finishes, the card appears with one thread per extra. Answer in a thread with the extra's exact name, `split`, `remove` or `not an extra`, then mention the reaction account (or mark the merge request ready). Anything the issue already names is not an extra: to approve an extra in advance, say it in the issue.
 

@@ -162,7 +162,7 @@
   "mr_title": "Draft: Draft: Rename the CI job hardcode-audit to claims-check",
   "mr_description": "Closes https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/39194174/showcase/-/work_items/26\n\n## What changed\nRenamed the CI job `hardcode-audit` to `claims-check` in `.gitlab-ci.yml`. The script it runs (`tools/hardcode_audit.py`) is unchanged.\n\n## Other mentions of the old name\n- `eval/field_study_issues.json` contains the old name only inside the pre-registered text of this very issue (field study record). I left it alone so the record stays as registered.\n- No other file refers to the job name. Other `hardcode_audit` hits are the script's filename, not the job.\n\n## Verification\n- `pytest` is not installed in this environment, so the test suite was **not run** (unverified). The pipeline on this MR will show whether the renamed job runs.\n\n## Beyond the issue\n- `.gitlab-ci.yml`: the job key was renamed; this is the change the issue asked for.",
   "session_id": "9355205",
-  "tool_calls": 8,
+  "tool_calls": 9,
   "files_changed": [
    ".gitlab-ci.yml"
   ],
@@ -185,7 +185,8 @@
   },
   "has_beyond_section": true,
   "beyond_names_something": true,
-  "seconds_total": 111
+  "seconds_total": 111,
+  "tool_calls_first_read": 8
  },
  {
   "id": 6,
