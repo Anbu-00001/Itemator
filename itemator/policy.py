@@ -28,7 +28,7 @@ MAX_BYTES = 64 * 1024
 MAX_PATTERNS = 20
 MAX_PATTERN_CHARS = 200
 TIMEOUT = 10            # seconds per git call
-SCHEMA = {"names": {"other_person_required": bool}, "ignore": {"kinds": list, "paths": list}}
+SCHEMA = {"names": {"other_person_required": bool, "hold_until_named": bool}, "ignore": {"kinds": list, "paths": list}}
 
 # Built-in exceptions: no policy quiets these.
 # - policy_changed: the merge request edits the rules the next merge requests are judged by.
@@ -69,6 +69,7 @@ class Policy:
     found: bool = False
     ignored: str | None = None          # why the file was not used; the defaults apply
     other_person_required: bool = False
+    hold_until_named: bool = False      # T44: the itemator job fails while an extra has no name (see ci.hold)
     kinds: tuple = ()
     paths: tuple = ()
     paths_line_ok: bool = False         # T42: the react flow can extend the file with a one-line edit (see paths_line_ok)
@@ -76,7 +77,7 @@ class Policy:
     def to_dict(self) -> dict:
         return {"source": self.source, "sha": self.sha, "file": FILE, "found": self.found, "ignored": self.ignored,
                 "paths_line_ok": self.paths_line_ok,
-                "active": {"other_person_required": self.other_person_required, "ignore_kinds": list(self.kinds),
+                "active": {"other_person_required": self.other_person_required, "hold_until_named": self.hold_until_named, "ignore_kinds": list(self.kinds),
                            "ignore_paths": list(self.paths),
                            "ignores_every_path": [p for p in self.paths if matches_everything(p)]}}
 
@@ -152,7 +153,8 @@ def _parse(data: bytes):
             return "an ignore.paths pattern contains a control character"
         if len(p) > MAX_PATTERN_CHARS:
             return f"an ignore.paths pattern is longer than {MAX_PATTERN_CHARS} characters"
-    return {"other_person_required": names.get("other_person_required", False), "kinds": tuple(kinds),
+    return {"other_person_required": names.get("other_person_required", False),
+            "hold_until_named": names.get("hold_until_named", False), "kinds": tuple(kinds),
             "paths": tuple(paths)}
 
 

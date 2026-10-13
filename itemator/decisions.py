@@ -41,8 +41,9 @@ DECISIONS = ("kept", "dismissed", "moved", "removed")
 
 def clean(text, limit: int = 80) -> str:
     """Text from a merge request that is shown outside backticks (a title, a user name): one line, no links, images,
-    HTML or @mentions (nobody is notified by a release), cut to `limit` characters."""
+    HTML, bare addresses (they would autolink) or @mentions (nobody is notified by a release), cut to `limit` characters."""
     text = re.sub(r"\s+", " ", str(text or "")).strip()
+    text = re.sub(r"(?i)\b[a-z][a-z0-9+.-]*:(?://|\\\\)\S*|\bwww\.\S+", "link removed", text)     # a bare address would autolink in a release
     text = re.sub(r"[`<>\[\]()!@]", "", text)
     return text[:limit].rstrip()
 

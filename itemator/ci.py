@@ -877,12 +877,47 @@ def run(env, repo_dir: str, http, registry_fetch=None) -> dict:
     policy = POL.read(repo_dir, target)       # T20, T26 F1: from the target branch tip, never from the merge request
     if not resolved:
         policy = dataclasses.replace(policy, source="merge_base")
-    return facts(mr_iid=int(iid), mr_title=mr.get("title") or env.get("CI_MERGE_REQUEST_TITLE") or "",
+    report = facts(mr_iid=int(iid), mr_title=mr.get("title") or env.get("CI_MERGE_REQUEST_TITLE") or "",
                  mr_description=description, mr_author_id=(mr.get("author") or {}).get("id"),
                  issues=issues, issues_from=issues_from, files=files, repo=env.get("CI_PROJECT_PATH"),
                  base_sha=base, head_sha=head, warnings=warnings,
                  now=datetime.datetime.now(datetime.timezone.utc), registry_fetch=registry_fetch,
                  policy=policy, checker=checker_of(env, target, head), fallback=not resolved, description_cut=cut)
+    report["hold"] = hold(report, api, pid, iid, head)
+    if report["hold"]["blocked"]:
+        report["card"]["todo_line"] = f'{report["card"]["todo_line"]} {HOLD_LINE}'
+    return report
+
+
+REACT_PREFIX = "ai-itemator-react"
+HOLD_LINE = ("This project holds the pipeline until every extra is named: after the last name, retry the `itemator` job.")
+_NAMED_MARK = "itemator:named="
+
+
+def hold(report: dict, api, pid, iid, head: str) -> dict:
+    """T44: with `names.hold_until_named` in the target branch's policy, the job fails while a kept extra has no name, so
+    a merge armed inside the pipeline (the organisers' reference loop) cannot go through before the card exists. It
+    passes when the reaction account has posted its summary for this exact head commit (the summary is posted only
+    when every extra has an answer). Only a note by an account whose name starts with `ai-itemator-react` counts, and
+    a note that cannot be read counts as not named: the hold fails closed."""
+    if not (report.get("policy") or {}).get("active", {}).get("hold_until_named") or not report["extras"]:
+        return {"enabled": bool((report.get("policy") or {}).get("active", {}).get("hold_until_named")), "blocked": False}
+    named, why = False, "no summary note for this commit yet"
+    try:
+        for page in (1, 2, 3):
+            notes = api.get(f"/projects/{pid}/merge_requests/{iid}/notes?per_page=100&page={page}&sort=desc", missing_ok=True)
+            if not isinstance(notes, list):
+                why = "the notes could not be read"
+                break
+            for n in notes:
+                who = str((n.get("author") or {}).get("username", ""))
+                if not n.get("system") and who.startswith(REACT_PREFIX) and f"{_NAMED_MARK}{head}" in str(n.get("body", "")):
+                    named = True
+            if named or len(notes) < 100:
+                break
+    except JobError:
+        named, why = False, "the notes could not be read"
+    return {"enabled": True, "blocked": not named, "reason": None if named else why}
 
 
 def main(argv=None, env=None, registry_fetch=None) -> int:
@@ -903,6 +938,10 @@ def main(argv=None, env=None, registry_fetch=None) -> int:
     print(report["card"]["final_line"])
     print(report["card"]["todo_line"])
     print(log_block(report))
+    if report.get("hold", {}).get("blocked"):
+        print(f"itemator: held: {len(report['extras'])} extras are not named yet ({report['hold']['reason']}). "
+              f"{HOLD_LINE}", file=sys.stderr)
+        return 1
     return 0
 
 

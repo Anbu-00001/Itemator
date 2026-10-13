@@ -29,12 +29,18 @@ Put it at the root of the branch merge requests target; it is read from there, n
 ```toml
 [names]
 other_person_required = false   # true: only someone other than the author can name an extra
+hold_until_named = false        # true: the itemator job fails while an extra has no name (see below)
 
 [ignore]
 kinds = []   # whole kinds of extras to quiet, e.g. ["whitespace_only"]; never policy_changed, binary_or_large_added or agent_instructions
 paths = []   # file paths or shell-style patterns to quiet (`*` also crosses `/`); at most twenty entries; a package manifest only if its dependencies are known to the registries
 ```
 The `always` answer edits this file for you, one line at a time, in a merge request your team reviews. It is offered only when the `[ignore]` table has exactly one line that starts with `paths = [` and ends the list on the same line (no `#` inside the list, no trailing comma); with `paths=[]`, a list over several lines, or no `[ignore]` table the policy still works but `always` is not offered.
+
+`hold_until_named = true` closes the gap in loops that arm auto-merge inside the pipeline: the `itemator` job exits with an error while any kept extra has no name, so GitLab cannot merge before the card exists. The job passes again when the reaction account has posted its "Every extra has an answer" summary for the current head commit; after the last name, retry the `itemator` job (the card says so). Only a note from an account whose name starts with `ai-itemator-react` counts, the check fails closed if the notes cannot be read, and it needs the project to require a successful pipeline before merging.
+
+## 6. The decision log (optional)
+Copy the `decision-log` job from `.gitlab-ci.yml` and `itemator/decisions.py`. On a tag it reads the merge requests merged since the previous tag, takes each one's "Every extra has an answer" summary note, and writes a "Decisions in <tag>" section into that release's description (it creates the release if there is none). Run by hand on the default branch it reports the last thirty days and writes `decisions.md` and `decisions.json` as job artifacts. It uses the job token, reads merge requests and notes, and writes nothing else. Only notes from an account whose name starts with `ai-itemator-react` are believed, so name your reaction account that way.
 
 ## What to expect
 Open a merge request that links an issue. When its pipeline finishes, the card appears with one thread per extra. Answer in a thread with the extra's exact name, `split`, `remove` or `not an extra`, then mention the reaction account (or mark the merge request ready). Anything the issue already names is not an extra: to approve an extra in advance, say it in the issue.

@@ -495,6 +495,7 @@ T43 = [(label, old, new, path, test) for label, old, new, path, test in [
  ("t43: oldest summary wins", 'str(n.get("created_at", "")) >= best[0]', 'str(n.get("created_at", "")) <= best[0]', LG, TL),
  ("t43: everyone is the author", 'by_author=(i["who"] == author)', 'by_author=True', LG, TL),
  ("t43: mentions kept in titles", 'text = re.sub(r"[`<>\\[\\]()!@]", "", text)', 'text = re.sub(r"[`<>\\[\\]()!]", "", text)', LG, TL),
+ ("t43: addresses kept in titles", 'text = re.sub(r"(?i)\\b[a-z][a-z0-9+.-]*:(?://|\\\\\\\\)\\S*|\\bwww\\.\\S+", "link removed", text)', 'pass', LG, TL),
  ("t43: backtick kept in names", '.replace("`", "")', "", LG, TL),
  ("t43: release block stacked", 'existing.index(START) < existing.index(END)', "True", LG, TL),
  ("t43: window start included", 'since < str(m.get("merged_at") or "") <= until', 'since <= str(m.get("merged_at") or "") <= until', LG, TL),
@@ -507,13 +508,28 @@ T43 = [(label, old, new, path, test) for label, old, new, path, test in [
  ("t43: moved read as kept", '    ("moved", re.compile(r"- " + _NAME + r": moved to', '    ("kept", re.compile(r"- " + _NAME + r": moved to', LG, TL),
  ("t43: report mode writes", 'done = publish(api, a.tag, section) if a.tag else "no release (report mode)"', 'done = publish(api, a.tag or "x", section)', LG, TL),
 ]]
+TH = "tests/test_hold.py"
+T44 = [(label, old, new, path, test) for label, old, new, path, test in [
+ ("t44: any account's summary counts", "if not n.get(\"system\") and who.startswith(REACT_PREFIX) and f", "if not n.get(\"system\") and f", CI, TH),
+ ("t44: a system note counts", "if not n.get(\"system\") and who.startswith", "if who.startswith", CI, TH),
+ ("t44: any commit's summary counts", 'f"{_NAMED_MARK}{head}" in str(n.get("body", ""))', '_NAMED_MARK in str(n.get("body", ""))', CI, TH),
+ ("t44: never blocked", '"blocked": not named, "reason"', '"blocked": False, "reason"', CI, TH),
+ ("t44: holds when nothing is beyond the issue", ' or not report["extras"]:', ":", CI, TH),
+ ("t44: only the first page", "if named or len(notes) < 100:", "if True:", CI, TH),
+ ("t44: unreadable notes pass", '            if not isinstance(notes, list):\n                why = "the notes could not be read"\n                break', '            if not isinstance(notes, list):\n                named = True\n                break', CI, TH),
+ ("t44: a held job exits 0", "              f\"{HOLD_LINE}\", file=sys.stderr)\n        return 1", "              f\"{HOLD_LINE}\", file=sys.stderr)\n        return 0", CI, TH),
+ ("t44: the card does not say what to do", "        report[\"card\"][\"todo_line\"] = f'{report[\"card\"][\"todo_line\"]} {HOLD_LINE}'", "        pass", CI, TH),
+ ("t44: hold on by default", 'names.get("hold_until_named", False)', 'names.get("hold_until_named", True)', "itemator/policy.py", TH),
+ ("t44: hold key not in the schema", '"other_person_required": bool, "hold_until_named": bool}', '"other_person_required": bool}', "itemator/policy.py", TH),
+ ("t44: bad value accepted", 'if type(v) is not want:', 'if False:', "itemator/policy.py", TH),
+]]
 SRC = {"itemator/ci.py": (REPO / "itemator/ci.py").read_text(), "itemator/registry.py": (REPO / "itemator/registry.py").read_text(),
        "itemator/policy.py": (REPO / "itemator/policy.py").read_text(), "itemator/said.py": (REPO / "itemator/said.py").read_text(), LG: (REPO / LG).read_text(),
        FL: (REPO / FL).read_text()}
 JOBS = ([(*m, "itemator/ci.py", "tests/test_ci.py") for m in M] + [(*m, "itemator/ci.py", "tests/test_ci_anchors.py") for m in A]
         + [(*m, "itemator/ci.py", "tests/test_registry.py") for m in RC] + [(*m, "itemator/registry.py", "tests/test_registry.py") for m in RG]
         + [(*m, "itemator/ci.py", "tests/test_policy.py") for m in PC] + [(*m, "itemator/policy.py", "tests/test_policy.py") for m in PO]
-        + T26 + T35 + T40 + T42 + T43)
+        + T26 + T35 + T40 + T42 + T43 + T44)
 for label, old, new, path, _ in JOBS:
     assert SRC[path].count(old) == 1, f"mutant {label!r}: anchor found {SRC[path].count(old)} times in {path}"
 if sys.argv[3:] == ["T17"]:
@@ -526,6 +542,8 @@ if sys.argv[3:] == ["T42"]:
     JOBS = [j for j in JOBS if j in T42]
 if sys.argv[3:] == ["T43"]:
     JOBS = [j for j in JOBS if j in T43]
+if sys.argv[3:] == ["T44"]:
+    JOBS = [j for j in JOBS if j in T44]
 def run(i, path, text, tests):
     d = WORK / f"m{i:02d}"
     if d.exists(): shutil.rmtree(d)

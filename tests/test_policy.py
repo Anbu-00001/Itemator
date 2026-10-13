@@ -63,7 +63,7 @@ def test_missing_file_changes_nothing(repo, tmp_path, monkeypatch):
     assert out["state"] == "extras" and out["card"]["caveat_line"] is None
     assert out["policy"] == {"source": "target_branch", "sha": repo.base, "file": ".itemator.toml", "found": False,
                              "ignored": None, "paths_line_ok": False,
-                             "active": {"other_person_required": False, "ignore_kinds": [],
+                             "active": {"other_person_required": False, "hold_until_named": False, "ignore_kinds": [],
                                                         "ignore_paths": [], "ignores_every_path": []},
                              "ignored_extras": []}
     assert all(OTHER not in e["thread_stub"] for e in out["extras"])
@@ -81,7 +81,7 @@ def test_valid_file_quiets_kinds_and_paths_but_never_the_built_in_exceptions(rep
     assert out["card"]["todo_line"] == 'Type each name in its thread to keep it, or reply "split" to move it to its own MR, "remove" to drop it.'
     p = out["policy"]
     assert p["found"] is True and p["ignored"] is None and p["sha"] == repo.base
-    assert p["active"] == {"other_person_required": True, "ignore_kinds": ["version_bump", "new_dependency"],
+    assert p["active"] == {"other_person_required": True, "hold_until_named": False, "ignore_kinds": ["version_bump", "new_dependency"],
                            "ignore_paths": ["*.yml", "assets/**"], "ignores_every_path": []}
     assert p["ignored_extras"] == [
         {"name": ".gitlab-ci.yml", "kind": "ci_or_config", "why": "its files match ignore.paths `*.yml`"},
@@ -250,8 +250,8 @@ def test_parse_reasons_are_one_safe_line():
 
 
 def test_valid_files():
-    assert POL.parse(b"") == {"other_person_required": False, "kinds": (), "paths": ()}
-    assert POL.parse(FULL.encode()) == {"other_person_required": True, "kinds": ("version_bump", "new_dependency"),
+    assert POL.parse(b"") == {"other_person_required": False, "hold_until_named": False, "kinds": (), "paths": ()}
+    assert POL.parse(FULL.encode()) == {"other_person_required": True, "hold_until_named": False, "kinds": ("version_bump", "new_dependency"),
                                         "paths": ("*.yml", "assets/**")}
     assert POL.parse(("[ignore]\npaths = [" + ", ".join(f'"d{i}/**"' for i in range(20)) + "]\n").encode())["paths"][19] == "d19/**"
     assert POL.parse(b'[ignore]\npaths = ["' + b"a" * 200 + b'"]\n')["paths"] == ("a" * 200,)

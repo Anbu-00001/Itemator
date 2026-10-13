@@ -70,7 +70,9 @@ def test_stats_count_each_decision_once():
 
 
 def test_text_from_a_merge_request_cannot_ping_link_or_close_a_code_span():
-    assert L.clean("Fix [x](http://e.example) @bob <b>hi</b>") == "Fix xhttp://e.example bob bhi/b"
+    assert L.clean("Fix [x](http://e.example) @bob <b>hi</b>") == "Fix xlink removed bob bhi/b"
+    assert L.clean("see https://evil.example/a?b=c and www.evil.example, ftp://h/x") == "see link removed and link removed link removed"
+    assert L.clean("a:b is fine, 10:30 too") == "a:b is fine, 10:30 too"
     assert L.clean("a" * 200) == "a" * 80
     assert "`" not in L.clean_name("x`y\nz") and "\n" not in L.clean_name("x\ny")
     out = L.markdown([L.entry(mr(1, title="[click](http://e) @all"), [note(f"- `a`b`: kept, named by @x\n[//]: # (itemator:named={SHA})")])])
@@ -165,12 +167,14 @@ def test_only_the_job_server_is_asked():
 
 
 def test_a_job_without_a_token_does_nothing(monkeypatch, capsys):
-    for k in ("CI_API_V4_URL", "CI_PROJECT_ID", "CI_JOB_TOKEN"):
+    for k in ("CI_API_V4_URL", "CI_PROJECT_ID", "CI_JOB_TOKEN", "CI_COMMIT_TAG", "CI_DEFAULT_BRANCH"):
         monkeypatch.delenv(k, raising=False)
     assert L.main([]) == 0 and "nothing done" in capsys.readouterr().out
 
 
 def test_main_writes_the_report_and_the_markdown(monkeypatch, tmp_path, capsys):
+    for k in ("CI_COMMIT_TAG", "CI_DEFAULT_BRANCH"):         # a tag pipeline sets these for the whole job
+        monkeypatch.delenv(k, raising=False)
     f = Fake({("GET", "projects/7/merge_requests"): (200, [mr(2, merged="2999-01-01T00:00:00Z")]),
               ("GET", "projects/7/merge_requests/2/notes"): (200, [note(SUMMARY)])})
     monkeypatch.setattr(L.Api, "_fetch", lambda self, m, u, b=None: f(m, u, b))
@@ -184,6 +188,7 @@ def test_main_writes_the_report_and_the_markdown(monkeypatch, tmp_path, capsys):
 
 
 def test_main_in_release_mode_collects_the_window_and_updates_the_release(monkeypatch, tmp_path, capsys):
+    monkeypatch.delenv("CI_COMMIT_TAG", raising=False)
     tags = [{"name": "v1", "commit": {"created_at": "2026-10-20T00:00:00Z"}}, {"name": "v0", "commit": {"created_at": "2026-10-10T00:00:00Z"}}]
     f = Fake({("GET", "projects/7/repository/tags"): (200, tags),
               ("GET", "projects/7/merge_requests"): (200, [mr(2, merged="2026-10-13T11:00:00Z"), mr(3, merged="2026-10-09T11:00:00Z")]),

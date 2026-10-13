@@ -12,6 +12,5 @@
     "hackathon_reference_project_python": 62.83,
     "duo_ai_gateway_python": 93.54,
     "ai_catalog_component_javascript": 99.77
-  },
-  "hackathon_field": {"entries_with_code": 77, "python_led": 44, "javascript_or_typescript_led": 28, "go": 3, "rust": 2, "source": "field scan of 2026-10-10, 143 projects, about 20 README lines each"}
+  }
 }
