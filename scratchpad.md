@@ -2,11 +2,11 @@
 
 How this works: Claude writes a question here only when it cannot decide something that is yours to decide. Edit this file on GitHub, write your answer after `ANSWER:`, and commit. Claude re-reads it at every wake-up and never waits on it: it keeps building on the stated DEFAULT. Never paste tokens or passwords here (this repository is public).
 
-## Status (updated Oct 13, 19:00 IST)
-- The crons did not fire on Oct 13, so nothing ran from about 08:00 to 17:40; work resumed when you came back. Sorry.
-- Done since: second Opus audit applied (one wrong README claim fixed, plus eleven smaller fixes); the fixes went through a real merge request that Itemator itself judged (two extras, both named, merged); a decision log that touches the Release and Monitor stages (all nine stages now); 625 mutants all caught in CI; unit tests now run in every pipeline; `always` re-tested live on the tightened prompt.
-- Honest gap, now stated in the README: in the organisers' own auto-merge loop the merge is armed inside the pipeline, before the card exists, so GitLab can merge first.
-- Credits today: about 160 on the meter plus a few not yet shown; I am not spending more today. GitHub commits today: 6 of 10 after this update.
+## Status (updated Oct 13, 21:10 IST)
+- Your answers are applied: build "the person who wrote the issue decides" and "the merge box says no"; the reaction account is the approver; settings tested first.
+- Built and committed (not yet run live): `names.asker_required` (only the issue's author can keep an extra; a record on the issue; an Insights chart), and the reaction flow's approval step (approves only after every extra has an answer, only if the project has an approval rule that lists the reaction account). 1185 unit tests pass; flow v1.6.0 is published with triggers off.
+- Free checks done: the approval rule accepts the reaction account as approver (rule deleted again so nothing is blocked); the author-approval ban and "remove approvals when commits are added" are already on. GitLab will not let me turn on "Pipelines must succeed" myself.
+- Credits: about 166.9 on the meter at 19:17 (today's cap is reached; a new daily 75 starts after midnight IST). No flow runs since.
 
 ## Open questions
 
@@ -22,6 +22,12 @@ ANSWER: Will ask and let you know
 ### Q3. A commit by GitLab's Developer Flow carries your institutional email in a public project (your call)
 Facts: the flow signs its commits "Signed-off-by: <your name> <your institutional email>" on the closed merge requests !26 to !33 (the field study). They are visible in a public project; I cannot remove them. I have added a line to AGENTS.md telling agents never to sign off in a person's name, and the sign-off check now exempts only our own flow accounts.
 DEFAULT: leave the closed merge requests as they are. If you want them hidden, only a project owner can delete a merge request.
+ANSWER:
+
+### Q4. Three small things only you can do (tomorrow, before the live tests)
+(a) In the project: Settings > Merge requests > Merge checks: tick **"Pipelines must succeed"** (the API refuses me; you did the same for "All threads must be resolved").
+(b) The live test of "only the issue's author keeps an extra" needs a second person. Default: I use your second account `anbuchelvannew` through a 1-day API token you save in a chmod 600 file `~/.itemator-second-token` (never pasted here; I read it, use it only to type names in test merge requests, and delete my notes of it afterwards). ANSWER (yes / no / friend instead):
+(c) Optional message for Discord #transcend-hackathon (you chose "ask, never plan around it"): "Hi! Anbu (@anbuchelvanganesan.cse2024), project 87291130. Thank you for adding merge request settings to our Developer+ role. Could the role also get, for this project only, `manage_security_policy_link`, so a pipeline execution policy can inject our check into every merge request pipeline? One rules question: may a flow's service account be a required approver, if it approves only in a flow run that a person started?"
 ANSWER:
 
 ## Answered
