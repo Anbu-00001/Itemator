@@ -2,11 +2,18 @@
 
 How this works: Claude writes a question here only when it cannot decide something that is yours to decide. Edit this file on GitHub, write your answer after `ANSWER:`, and commit. Claude re-reads it at every wake-up and never waits on it: it keeps building on the stated DEFAULT. Never paste tokens or passwords here (this repository is public).
 
-## Status (updated Oct 14, 07:55 IST)
-- Live and proven today: the asker rule (12 of 12 replies as expected over two runs), the hold in the reference app's order (armed during the first pipeline; failed on purpose; name typed; one retry; GitLab merged by itself), a real release (v0.1.0-rc1) written by the decision-log job. Audit pass 3 fixes are in (release window time zones, exact reaction account, card read of a failed job, asker guards).
-- Held: the "approve" step (Q5 below). Dropped from the video plan.
-- Credits today: meter 190.8 at 07:12 (about 24 used today; my estimate with the second asker run about 32 of the 75).
-- Next: a bypass matrix (no credits), rerun the CI mutation job, README/Devpost/storyboard polish, one more audit around 10:00.
+## Status (updated Oct 14, 08:25 IST)
+- Done and live-proven today: the asker rule (12 of 12), the hold in the reference app's order, a real release (v0.1.0-rc1), reply study round 2 (8 of 8), bypass matrix (2 of 8 merged; stated in the README), 695 of 695 mutants caught in CI, three Opus audits applied. The `/approve` change stays held in a stash (Q5 default).
+- Credits today: meter 202.2 at 07:46 (35 used today, about 39 left of the 75). GitHub commits today: 3 of 10.
+- Next: Opus audit pass 4 at 09:50; then polish only. No credit-spending work is queued.
+
+## WHEN YOU ARE HOME (the manual work; about 10 minutes)
+1. Nothing to tick: "Pipelines must succeed" is on and I tested with it.
+2. Revoke the second account's token after the last live test: https://gitlab.com/-/user_settings/personal_access_tokens (signed in as anbuchelvannew) and tell me, so I delete `~/.itemator-second-token`.
+3. Optional: post the Discord message about `manage_security_policy_link` (it is in my chat reply from Oct 13).
+4. Decide Q5 (approve step): default is "dropped", the stash stays untouched until you say.
+5. Answer Q6 and Q7 below (defaults are safe).
+6. Stop the screen-lock inhibitor if you want the laptop to lock again: `pkill -f 'gnome-session-inhibit.*cron test'`.
 
 ## Open questions
 
@@ -36,6 +43,14 @@ UPDATE 07:50: the independent Opus audit (pass 3) recommends DROPPING the approv
 ANSWER: Default, let me know what I need to do once I get home 
 
 Extra note: If you think you got time and tokens to spare and there's no ongoing build, return questions here and based on that launch another research fleets with proper Haiku subagents and orchestrator sonnet and Opus.
+
+### Q6. Control run: give the Developer Flow the same 8 issues WITHOUT our AGENTS.md and skill? (about 25 to 30 credits, spread over two days)
+Why: our eight real runs had AGENTS.md and the skill present and found no extras; a control would show whether those two files are the reason. Risk: it needs the files removed from `main` temporarily (a commit, then a revert), which is a visible change in the history. DEFAULT: no (not worth the history noise, the limit is stated in the README).
+ANSWER:
+
+### Q7. The test release `v0.1.0-rc1`: keep it or delete it before submission?
+DEFAULT: keep it (it shows a real release written by the decision log) and cut the final tag `v1.0.0` on Oct 26 after the last commit.
+ANSWER:
 
 ## Answered
 - Q (Oct 12-13): Build Session transcript: answered by the user's paste (stored in the vault).
