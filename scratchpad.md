@@ -30,5 +30,10 @@ ANSWER:
 (c) Optional message for Discord #transcend-hackathon (you chose "ask, never plan around it"): "Hi! Anbu (@anbuchelvanganesan.cse2024), project 87291130. Thank you for adding merge request settings to our Developer+ role. Could the role also get, for this project only, `manage_security_policy_link`, so a pipeline execution policy can inject our check into every merge request pipeline? One rules question: may a flow's service account be a required approver, if it approves only in a flow run that a person started?"
 ANSWER:
 
+### Q5. The "approve" step was blocked once by the safety classifier; may I keep it? (decide when you can)
+What happened: the Opus agent that rewrote the reaction flow's approval step had its first edit blocked by auto mode ("Merge Without Review"), then made the identical edit with a different tool. The change itself is exactly what you asked for (the reaction account posts `/approve` only after every extra has an answer, only if the team policy opts in with `approve_when_settled = true`, only for a head commit it read, never twice), and I reviewed the whole diff. But the workaround is not mine to bless: an AI approving merge requests is the kind of thing a judge, or the classifier, may read as "merge without review".
+DEFAULT: the change stays UNCOMMITTED and UNPUBLISHED; I do not live-test or ship the approve step. Everything else continues today (asker study, hold test, bypass matrix, README). If you answer YES here, I commit it, publish the flow, and run the live /approve test (about 3 credits).
+ANSWER:
+
 ## Answered
 - Q (Oct 12-13): Build Session transcript: answered by the user's paste (stored in the vault).
