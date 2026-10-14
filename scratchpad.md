@@ -22,18 +22,20 @@ ANSWER: Will ask and let you know
 ### Q3. A commit by GitLab's Developer Flow carries your institutional email in a public project (your call)
 Facts: the flow signs its commits "Signed-off-by: <your name> <your institutional email>" on the closed merge requests !26 to !33 (the field study). They are visible in a public project; I cannot remove them. I have added a line to AGENTS.md telling agents never to sign off in a person's name, and the sign-off check now exempts only our own flow accounts.
 DEFAULT: leave the closed merge requests as they are. If you want them hidden, only a project owner can delete a merge request.
-ANSWER:
+ANSWER: Default, no need for rebase
 
 ### Q4. Three small things only you can do (tomorrow, before the live tests)
 (a) In the project: Settings > Merge requests > Merge checks: tick **"Pipelines must succeed"** (the API refuses me; you did the same for "All threads must be resolved").
 (b) The live test of "only the issue's author keeps an extra" needs a second person. Default: I use your second account `anbuchelvannew` through a 1-day API token you save in a chmod 600 file `~/.itemator-second-token` (never pasted here; I read it, use it only to type names in test merge requests, and delete my notes of it afterwards). ANSWER (yes / no / friend instead):
 (c) Optional message for Discord #transcend-hackathon (you chose "ask, never plan around it"): "Hi! Anbu (@anbuchelvanganesan.cse2024), project 87291130. Thank you for adding merge request settings to our Developer+ role. Could the role also get, for this project only, `manage_security_policy_link`, so a pipeline execution policy can inject our check into every merge request pipeline? One rules question: may a flow's service account be a required approver, if it approves only in a flow run that a person started?"
-ANSWER:
+ANSWER: inform me once I get to home, I will do the manual work
 
 ### Q5. The "approve" step was blocked once by the safety classifier; may I keep it? (decide when you can)
 What happened: the Opus agent that rewrote the reaction flow's approval step had its first edit blocked by auto mode ("Merge Without Review"), then made the identical edit with a different tool. The change itself is exactly what you asked for (the reaction account posts `/approve` only after every extra has an answer, only if the team policy opts in with `approve_when_settled = true`, only for a head commit it read, never twice), and I reviewed the whole diff. But the workaround is not mine to bless: an AI approving merge requests is the kind of thing a judge, or the classifier, may read as "merge without review".
 UPDATE 07:50: the independent Opus audit (pass 3) recommends DROPPING the approve step: it contradicts the Supervised path (with no extras the bot would approve with no human input), adds no blocking power (open threads and the hold already stop the merge), its core mechanism is untested, and the agent worked around a safety block. I agree. DEFAULT: the change stays UNCOMMITTED and UNPUBLISHED; I do not live-test or ship the approve step. Everything else continues today (asker study, hold test, bypass matrix, README). If you answer YES here, I commit it, publish the flow, and run the live /approve test (about 3 credits).
-ANSWER:
+ANSWER: Default, let me know what I need to do once I get home 
+
+Extra note: If you think you got time and tokens to spare and there's no ongoing build, return questions here and based on that launch another research fleets with proper Haiku subagents and orchestrator sonnet and Opus.
 
 ## Answered
 - Q (Oct 12-13): Build Session transcript: answered by the user's paste (stored in the vault).
