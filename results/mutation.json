@@ -1,8 +1,8 @@
 {
  "what": "Mutation tests run by the manual `mutation-suite` job in GitLab CI: each mutant breaks one line of the rules, the CI job, the policy file, the decision log or the reaction flow's prompt text, and at least one test must fail. A mutant that does not compile is reported as INVALID and counts as not caught.",
- "job": "https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/39194174/showcase/-/jobs/17145469008",
- "commit": "6fc8f1ec",
- "earlier_runs": "Job 17127357389 (606 mutants) counted one mutant that did not compile as caught; job 17139995639 (625 mutants) replaced it. This run adds the mutants for the hold, the asker rule and the reaction flow's new steps.",
+ "job": "https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/39194174/showcase/-/jobs/17157685229",
+ "commit": "31dcbaa97640aa8dadf88f5ca6f2ba681aab7569",
+ "earlier_runs": "Job 17127357389 (606 mutants) counted one mutant that did not compile as caught; job 17139995639 (625) replaced it; job 17145469008 (687) added the hold, asker and flow-prompt mutants. This run adds the mutants of the third audit's fixes.",
  "logs": [
   "results/mutation/mutation-extras.log",
   "results/mutation/mutation-ci.log"
@@ -14,11 +14,11 @@
   "invalid": 0
  },
  "job_and_flows": {
-  "killed": 505,
-  "mutants": 505,
+  "killed": 513,
+  "mutants": 513,
   "survived": 0,
   "invalid": 0
  },
- "total_mutants": 687,
- "total_killed": 687
+ "total_mutants": 695,
+ "total_killed": 695
 }

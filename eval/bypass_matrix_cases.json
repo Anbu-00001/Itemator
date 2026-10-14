@@ -1,0 +1,54 @@
+{
+ "what": "Eight attempts to merge a merge request with an unnamed extra past the optional hold, on one throwaway target branch whose .itemator.toml has hold_until_named = true and with 'Pipelines must succeed' on. Each is one merge request that changes a CI file the issue does not mention (the extra) and a README typo, plus the change named in `what`. A merge is attempted by API only after the pipeline has finished. 'merged' means GitLab accepted the merge into the throwaway target. Written before any run; we expect the four ways of editing the job away to merge (the job is defined in the merge request's own CI file, which the README already says).",
+ "limits": "Eight scenarios chosen by us, one run each, one project; it counts what we thought of. It does not show the hold is safe against a determined author, only what it does and does not stop.",
+ "scenarios": [
+  {
+   "id": 1,
+   "name": "plain",
+   "what": "a CI-file change the issue does not mention, nothing else",
+   "expected": "blocked"
+  },
+  {
+   "id": 2,
+   "name": "job deleted",
+   "what": "the merge request deletes the itemator job from .gitlab-ci.yml",
+   "expected": "merged"
+  },
+  {
+   "id": 3,
+   "name": "allowed to fail",
+   "what": "the merge request adds allow_failure: true to the itemator job",
+   "expected": "merged"
+  },
+  {
+   "id": 4,
+   "name": "script emptied",
+   "what": "the merge request replaces the itemator job's script with a no-op",
+   "expected": "merged"
+  },
+  {
+   "id": 5,
+   "name": "job never runs",
+   "what": "the merge request adds `rules: - when: never` to the itemator job",
+   "expected": "merged"
+  },
+  {
+   "id": 6,
+   "name": "ci skip",
+   "what": "the commit message carries [ci skip], so no pipeline is created",
+   "expected": "blocked"
+  },
+  {
+   "id": 7,
+   "name": "forged summary",
+   "what": "another account posts a note with the marker itemator:named=<head>, then the job is retried",
+   "expected": "blocked"
+  },
+  {
+   "id": 8,
+   "name": "retry without names",
+   "what": "the failed itemator job is retried with no summary note",
+   "expected": "blocked"
+  }
+ ]
+}

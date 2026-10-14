@@ -1,0 +1,33 @@
+{
+ "what": "Eight pre-registered attempts to merge a merge request with an unnamed extra past the optional hold (eval/bypass_matrix_cases.json). Counts only.",
+ "limits": "Eight scenarios we thought of, one run each, one project. It counts what we tried, not what is possible.",
+ "attempts": 8,
+ "merged": 2,
+ "blocked": 6,
+ "as_expected": 6,
+ "merged_scenarios": [
+  "allowed to fail",
+  "job never runs"
+ ],
+ "blocked_scenarios": [
+  "plain",
+  "job deleted",
+  "script emptied",
+  "ci skip",
+  "forged summary",
+  "retry without names"
+ ],
+ "mismatches": [
+  {
+   "name": "job deleted",
+   "expected": "merged",
+   "got": "blocked"
+  },
+  {
+   "name": "script emptied",
+   "expected": "merged",
+   "got": "blocked"
+  }
+ ],
+ "why_two_job_edits_were_blocked": "Scenarios 'job deleted' and 'script emptied' did not merge because the project's own unit tests (tests/test_checker_job.py) read .gitlab-ci.yml and failed in the merge request pipeline, not because of the hold; a merge request could edit those tests too (not tried)."
+}

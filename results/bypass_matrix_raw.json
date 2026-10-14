@@ -1,0 +1,121 @@
+[
+ {
+  "started": "2026-10-14T07:12:35",
+  "results": [
+   {
+    "id": 1,
+    "name": "plain",
+    "expected": "blocked",
+    "mr_iid": 47,
+    "pipeline": "failed",
+    "itemator_job": "failed",
+    "state": "opened",
+    "http_ok": false,
+    "detail": "{\"message\":\"405 Method Not Allowed\"}",
+    "status": "ci_must_pass",
+    "outcome": "blocked",
+    "match": true
+   },
+   {
+    "id": 2,
+    "name": "job deleted",
+    "expected": "merged",
+    "mr_iid": 48,
+    "pipeline": "failed",
+    "itemator_job": "absent",
+    "state": "opened",
+    "http_ok": false,
+    "detail": "{\"message\":\"405 Method Not Allowed\"}",
+    "status": "ci_must_pass",
+    "outcome": "blocked",
+    "match": false
+   },
+   {
+    "id": 3,
+    "name": "allowed to fail",
+    "expected": "merged",
+    "mr_iid": 49,
+    "pipeline": "success",
+    "itemator_job": "failed",
+    "state": "merged",
+    "http_ok": true,
+    "detail": "{\"id\":548113182,\"iid\":49,\"project_id\":87291130,\"title\":\"Bypass 3: allowed to fail\",\"description\":\"Closes #41\",\"state\":\"merged\",\"created_at\":\"2026-10-14T01:42:51",
+    "status": "not_open",
+    "outcome": "merged",
+    "match": true
+   },
+   {
+    "id": 4,
+    "name": "script emptied",
+    "expected": "merged",
+    "mr_iid": 50,
+    "pipeline": "failed",
+    "itemator_job": "success",
+    "state": "opened",
+    "http_ok": false,
+    "detail": "{\"message\":\"405 Method Not Allowed\"}",
+    "status": "unchecked",
+    "outcome": "blocked",
+    "match": false
+   },
+   {
+    "id": 5,
+    "name": "job never runs",
+    "expected": "merged",
+    "mr_iid": 51,
+    "pipeline": "success",
+    "itemator_job": "absent",
+    "state": "merged",
+    "http_ok": true,
+    "detail": "{\"id\":548113203,\"iid\":51,\"project_id\":87291130,\"title\":\"Bypass 5: job never runs\",\"description\":\"Closes #41\",\"state\":\"merged\",\"created_at\":\"2026-10-14T01:42:58.",
+    "status": "not_open",
+    "outcome": "merged",
+    "match": true
+   },
+   {
+    "id": 6,
+    "name": "ci skip",
+    "expected": "blocked",
+    "mr_iid": 52,
+    "pipeline": "skipped",
+    "itemator_job": "absent",
+    "state": "opened",
+    "http_ok": false,
+    "detail": "{\"message\":\"405 Method Not Allowed\"}",
+    "status": "unchecked",
+    "outcome": "blocked",
+    "match": true
+   },
+   {
+    "id": 7,
+    "name": "forged summary",
+    "expected": "blocked",
+    "mr_iid": 53,
+    "pipeline": "failed",
+    "itemator_job": "failed",
+    "pipeline_after_retry": "failed",
+    "state": "opened",
+    "http_ok": false,
+    "detail": "{\"message\":\"405 Method Not Allowed\"}",
+    "status": "ci_must_pass",
+    "outcome": "blocked",
+    "match": true
+   },
+   {
+    "id": 8,
+    "name": "retry without names",
+    "expected": "blocked",
+    "mr_iid": 54,
+    "pipeline": "failed",
+    "itemator_job": "failed",
+    "pipeline_after_retry": "failed",
+    "state": "opened",
+    "http_ok": false,
+    "detail": "{\"message\":\"405 Method Not Allowed\"}",
+    "status": "unchecked",
+    "outcome": "blocked",
+    "match": true
+   }
+  ]
+ }
+]
