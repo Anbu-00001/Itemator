@@ -2,11 +2,11 @@
 
 How this works: Claude writes a question here only when it cannot decide something that is yours to decide. Edit this file on GitHub, write your answer after `ANSWER:`, and commit. Claude re-reads it at every wake-up and never waits on it: it keeps building on the stated DEFAULT. Never paste tokens or passwords here (this repository is public).
 
-## Status (updated Oct 13, 21:10 IST)
-- Your answers are applied: build "the person who wrote the issue decides" and "the merge box says no"; the reaction account is the approver; settings tested first.
-- Built and committed (not yet run live): `names.asker_required` (only the issue's author can keep an extra; a record on the issue; an Insights chart), and the reaction flow's approval step (approves only after every extra has an answer, only if the project has an approval rule that lists the reaction account). 1185 unit tests pass; flow v1.6.0 is published with triggers off.
-- Free checks done: the approval rule accepts the reaction account as approver (rule deleted again so nothing is blocked); the author-approval ban and "remove approvals when commits are added" are already on. GitLab will not let me turn on "Pipelines must succeed" myself.
-- Credits: about 166.9 on the meter at 19:17 (today's cap is reached; a new daily 75 starts after midnight IST). No flow runs since.
+## Status (updated Oct 14, 07:55 IST)
+- Live and proven today: the asker rule (12 of 12 replies as expected over two runs), the hold in the reference app's order (armed during the first pipeline; failed on purpose; name typed; one retry; GitLab merged by itself), a real release (v0.1.0-rc1) written by the decision-log job. Audit pass 3 fixes are in (release window time zones, exact reaction account, card read of a failed job, asker guards).
+- Held: the "approve" step (Q5 below). Dropped from the video plan.
+- Credits today: meter 190.8 at 07:12 (about 24 used today; my estimate with the second asker run about 32 of the 75).
+- Next: a bypass matrix (no credits), rerun the CI mutation job, README/Devpost/storyboard polish, one more audit around 10:00.
 
 ## Open questions
 
@@ -32,7 +32,7 @@ ANSWER:
 
 ### Q5. The "approve" step was blocked once by the safety classifier; may I keep it? (decide when you can)
 What happened: the Opus agent that rewrote the reaction flow's approval step had its first edit blocked by auto mode ("Merge Without Review"), then made the identical edit with a different tool. The change itself is exactly what you asked for (the reaction account posts `/approve` only after every extra has an answer, only if the team policy opts in with `approve_when_settled = true`, only for a head commit it read, never twice), and I reviewed the whole diff. But the workaround is not mine to bless: an AI approving merge requests is the kind of thing a judge, or the classifier, may read as "merge without review".
-DEFAULT: the change stays UNCOMMITTED and UNPUBLISHED; I do not live-test or ship the approve step. Everything else continues today (asker study, hold test, bypass matrix, README). If you answer YES here, I commit it, publish the flow, and run the live /approve test (about 3 credits).
+UPDATE 07:50: the independent Opus audit (pass 3) recommends DROPPING the approve step: it contradicts the Supervised path (with no extras the bot would approve with no human input), adds no blocking power (open threads and the hold already stop the merge), its core mechanism is untested, and the agent worked around a safety block. I agree. DEFAULT: the change stays UNCOMMITTED and UNPUBLISHED; I do not live-test or ship the approve step. Everything else continues today (asker study, hold test, bypass matrix, README). If you answer YES here, I commit it, publish the flow, and run the live /approve test (about 3 credits).
 ANSWER:
 
 ## Answered
