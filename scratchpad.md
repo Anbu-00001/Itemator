@@ -52,5 +52,9 @@ ANSWER:
 DEFAULT: keep it (it shows a real release written by the decision log) and cut the final tag `v1.0.0` on Oct 26 after the last commit.
 ANSWER:
 
+### Q8. Name the project that will hold the lock (needed before I build the pipeline execution policy)
+The policy needs its own small public project in our group (it holds one YAML file; the organisers' answer confirms our role can link it, and a scratch test passed). Your standing rule: you name things. Criteria, not names: lowercase, 2 to 3 words joined by hyphens, says what it does, no GitLab or Anthropic trademark, no "AI" in it. Until you name it I keep building everything that does not need it.
+ANSWER:
+
 ## Answered
 - Q (Oct 12-13): Build Session transcript: answered by the user's paste (stored in the vault).
