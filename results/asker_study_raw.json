@@ -1,0 +1,236 @@
+[
+ {
+  "started": "2026-10-14T06:09:09",
+  "cases": [
+   {
+    "n": 1,
+    "name": "docker-compose.yml",
+    "label": "the second account types the exact name",
+    "author": "OTHER",
+    "sent": [
+     "docker-compose.yml"
+    ],
+    "expected": "open",
+    "got": "open",
+    "match": true,
+    "bot_notes": [],
+    "thread_resolved": false
+   },
+   {
+    "n": 2,
+    "name": "Dockerfile",
+    "label": "the asker types the exact name",
+    "author": "ASKER",
+    "sent": [
+     "Dockerfile"
+    ],
+    "expected": "kept",
+    "got": "kept",
+    "match": true,
+    "bot_notes": [
+     "Kept: `Dockerfile`, named by @anbuchelvannew."
+    ],
+    "thread_resolved": true
+   },
+   {
+    "n": 3,
+    "name": "notes.txt",
+    "label": "the asker dismisses it",
+    "author": "ASKER",
+    "sent": [
+     "not an extra"
+    ],
+    "expected": "dismissed",
+    "got": "dismissed",
+    "match": true,
+    "bot_notes": [
+     "Dismissed: `notes.txt` is not an extra, said @anbuchelvannew."
+    ],
+    "thread_resolved": true
+   },
+   {
+    "n": 4,
+    "name": "setup.cfg",
+    "label": "the asker types the name in other letter case",
+    "author": "ASKER",
+    "sent": [
+     "SETUP.CFG"
+    ],
+    "expected": "open",
+    "got": "open",
+    "match": true,
+    "bot_notes": [],
+    "thread_resolved": false
+   },
+   {
+    "n": 5,
+    "name": "tox.ini",
+    "label": "the merge request author, who is not the asker, dismisses it",
+    "author": "OTHER",
+    "sent": [
+     "not an extra"
+    ],
+    "expected": "open",
+    "got": "open",
+    "match": true,
+    "bot_notes": [],
+    "thread_resolved": false
+   },
+   {
+    "n": 6,
+    "name": ".gitlab-ci.yml",
+    "label": "always from CREW, not the asker, in a thread that offers it",
+    "author": "OTHER",
+    "sent": [
+     "always"
+    ],
+    "expected": "open",
+    "got": "open",
+    "match": true,
+    "bot_notes": [],
+    "thread_resolved": false
+   }
+  ],
+  "issue_iid": 36,
+  "asker": "anbuchelvannew",
+  "mr_iid": 42,
+  "pipeline": "success",
+  "card_done": "completed session [9414129](https://gitl",
+  "threads_found": [
+   ".gitlab-ci.yml",
+   "Dockerfile",
+   "docker-compose.yml",
+   "notes.txt",
+   "setup.cfg",
+   "tox.ini"
+  ],
+  "asker_sentence_in_every_thread": true,
+  "react_done": "completed session [9414182](https://gitl",
+  "mr_after": {
+   "state": "opened",
+   "title": "Draft: Fix a typo in the README",
+   "labels": [
+    "itemator::needs-names"
+   ],
+   "merge_status": "draft_status"
+  },
+  "receipt_on_issue": false
+ },
+ {
+  "started": "2026-10-14T06:59:52",
+  "cases": [
+   {
+    "n": 1,
+    "name": "docker-compose.yml",
+    "label": "the second account types the exact name",
+    "author": "OTHER",
+    "sent": [
+     "docker-compose.yml"
+    ],
+    "expected": "open",
+    "got": "open",
+    "match": true,
+    "bot_notes": [],
+    "thread_resolved": false
+   },
+   {
+    "n": 2,
+    "name": "Dockerfile",
+    "label": "the asker types the exact name",
+    "author": "ASKER",
+    "sent": [
+     "Dockerfile"
+    ],
+    "expected": "kept",
+    "got": "kept",
+    "match": true,
+    "bot_notes": [
+     "Kept: `Dockerfile`, named by @anbuchelvannew."
+    ],
+    "thread_resolved": true
+   },
+   {
+    "n": 3,
+    "name": "notes.txt",
+    "label": "the asker dismisses it",
+    "author": "ASKER",
+    "sent": [
+     "not an extra"
+    ],
+    "expected": "dismissed",
+    "got": "dismissed",
+    "match": true,
+    "bot_notes": [
+     "Dismissed: `notes.txt` is not an extra, said @anbuchelvannew."
+    ],
+    "thread_resolved": true
+   },
+   {
+    "n": 4,
+    "name": "setup.cfg",
+    "label": "the asker types the name in other letter case",
+    "author": "ASKER",
+    "sent": [
+     "SETUP.CFG"
+    ],
+    "expected": "open",
+    "got": "open",
+    "match": true,
+    "bot_notes": [],
+    "thread_resolved": false
+   },
+   {
+    "n": 5,
+    "name": "tox.ini",
+    "label": "the merge request author, who is not the asker, dismisses it",
+    "author": "OTHER",
+    "sent": [
+     "not an extra"
+    ],
+    "expected": "open",
+    "got": "open",
+    "match": true,
+    "bot_notes": [],
+    "thread_resolved": false
+   },
+   {
+    "n": 6,
+    "name": ".gitlab-ci.yml",
+    "label": "always from CREW, not the asker, in a thread that offers it",
+    "author": "OTHER",
+    "sent": [
+     "always"
+    ],
+    "expected": "open",
+    "got": "open",
+    "match": true,
+    "bot_notes": [],
+    "thread_resolved": false
+   }
+  ],
+  "issue_iid": 40,
+  "asker": "anbuchelvannew",
+  "mr_iid": 46,
+  "pipeline": "success",
+  "card_done": "completed session [9415253](https://gitl",
+  "threads_found": [
+   ".gitlab-ci.yml",
+   "Dockerfile",
+   "docker-compose.yml",
+   "notes.txt",
+   "setup.cfg",
+   "tox.ini"
+  ],
+  "asker_sentence_in_every_thread": true,
+  "react_done": "completed session [9415294](https://gitl",
+  "mr_after": {
+   "state": "opened",
+   "title": "Draft: Fix a typo in the README",
+   "labels": [
+    "itemator::needs-names"
+   ],
+   "merge_status": "draft_status"
+  },
+  "receipt_on_issue": false
+ }
+]

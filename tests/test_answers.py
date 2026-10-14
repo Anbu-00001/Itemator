@@ -259,6 +259,7 @@ def test_facts_offer_always_only_with_a_used_policy(monkeypatch):
 
 OWN = pathlib.Path(__file__).resolve().parent.parent / ".itemator.toml"
 OWN_TEXT = OWN.read_text() if OWN.exists() else "[names]\nother_person_required = false\n[ignore]\nkinds = []\npaths = []\n"
+OWN_TEXT = OWN_TEXT.replace("hold_until_named = true", "hold_until_named = false")     # a held job fails on purpose: not what this test is about
 
 
 @pytest.mark.parametrize("policy, want", [(OWN_TEXT, True), ("[ignore]\npaths = 3\n", False), (None, False)])

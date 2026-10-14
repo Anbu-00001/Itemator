@@ -143,8 +143,37 @@ def test_the_window_of_a_tag_starts_at_the_previous_tag():
     tags = [{"name": "v2", "commit": {"created_at": "2026-10-20T00:00:00Z"}}, {"name": "v1", "commit": {"created_at": "2026-10-10T00:00:00Z"}},
             {"name": "v0", "commit": {"created_at": "2026-10-01T00:00:00Z"}}, {"name": "v3", "commit": {"created_at": "2026-10-30T00:00:00Z"}}]
     a, _ = api({("GET", "projects/7/repository/tags"): (200, tags)})
-    assert L.window_for_tag(a, "v2") == ("2026-10-10T00:00:00Z", "2026-10-20T00:00:00Z")
-    assert L.window_for_tag(a, "v0")[0] == "1970-01-01T00:00:00Z"
+    since, until = L.window_for_tag(a, "v2")
+    assert (L._utc(since), L._utc(until)) == (L._utc("2026-10-10T00:00:00Z"), L._utc("2026-10-20T00:00:00Z"))
+    assert L._utc(L.window_for_tag(a, "v0")[0]) == L._utc("1970-01-01T00:00:00Z")
+
+
+def test_tag_dates_in_another_time_zone_are_compared_as_the_same_instant():
+    """The audit's repro: tag commit dates come back as +05:30 and merge dates as Z; strings compare wrongly, instants do not."""
+    tags = [{"name": "v2", "commit": {"created_at": "2026-10-14T10:00:00.000+05:30"}},      # 04:30Z
+            {"name": "v1", "commit": {"created_at": "2026-10-14T06:00:00.000+05:30"}}]      # 00:30Z
+    a, _ = api({("GET", "projects/7/repository/tags"): (200, tags),
+                ("GET", "projects/7/merge_requests"): (200, [mr(1, merged="2026-10-14T02:00:00Z"), mr(2, merged="2026-10-14T00:00:00Z"),
+                                                            mr(3, merged="2026-10-14T05:00:00Z")]),
+                ("GET", "projects/7/merge_requests/1/notes"): (200, [])})
+    since, until = L.window_for_tag(a, "v2")
+    assert [e["iid"] for e in L.collect(a, "main", since, until)] == [1]       # 02:00Z is after v1 (00:30Z) and before v2 (04:30Z)
+
+
+def test_only_the_exact_reaction_account_is_believed_not_a_name_that_starts_like_it():
+    body = f"- `a`: kept, named by @x\n[//]: # (itemator:named={SHA})"
+    for who in ("ai-itemator-react", "ai-itemator-react-x", "ai-itemator-react-gitlab-ai-hackathon-2", "AI-ITEMATOR-REACT-GITLAB-AI-HACKATHON"):
+        assert L.latest_summary([note(body, user=who)]) is None, who
+    assert L.latest_summary([note(body)]) is not None
+
+
+def test_a_file_name_cannot_close_the_release_block_early():
+    evil = L.clean_name("x <!-- itemator:decisions:end --> y")
+    assert "<!-- itemator" not in evil
+    once = L.merge_description("", f"## A\n- `{evil}`")
+    assert L.merge_description(once, "## B").count(L.START) == 1 and "## A" not in L.merge_description(once, "## B")
+    forced = f"{L.START}\nold\n{L.END}\nleft {L.END} over"          # an end marker that did get in: the LAST one closes the block
+    assert "old" not in L.merge_description(forced, "## B") and "left" not in L.merge_description(forced, "## B")
 
 
 def test_publish_updates_an_existing_release_and_creates_a_missing_one():

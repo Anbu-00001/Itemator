@@ -577,6 +577,8 @@ def asker_usernames(issues: list[dict]) -> list[str]:
     out = []
     for i in issues:
         u = i.get("author_username")
+        if not str(i.get("ref", "")).startswith("#"):        # an issue of another project: its author is nobody to ping here
+            continue
         if isinstance(u, str) and _USERNAME.fullmatch(u) and u not in out:
             out.append(u)
     return out[:MAX_ASKERS]
@@ -703,6 +705,8 @@ TARGET_CAVEAT = ("The target branch could not be read in this job, so the team p
                  "commit this branch started from.")
 ASKS_OTHER = "The team policy asks for someone other than the author to name each extra."
 ASKS_ASKER = "The team policy lets only the person who wrote the issue keep an extra."
+NOBODY_CAN = ("Nobody can keep an extra here: the team policy excludes the merge request's author, who also wrote the issue. "
+              "Use split or remove, or link an issue someone else wrote.")
 AT_TARGET, AT_FORK = "on the target branch", "at the commit this branch started from"
 _SHOWN_QUIETED = 10
 _SHA40 = re.compile(r"[0-9a-f]{40}")
@@ -736,7 +740,7 @@ def policy_edit(files: list[dict], at: str = AT_TARGET):
 
 
 def policy_note(policy, quieted: list, at: str = AT_TARGET, asks_other: bool = False,
-                asks_asker: bool = False) -> str | None:
+                asks_asker: bool = False, nobody_can: bool = False) -> str | None:
     """The visible sentences about the team policy: why it was not used, what it quieted, a pattern that ignores
     every path, and (T26 F8) that someone other than the author must name each extra still open."""
     if policy is None:
@@ -757,6 +761,8 @@ def policy_note(policy, quieted: list, at: str = AT_TARGET, asks_other: bool = F
         out.append(ASKS_OTHER)
     if asks_asker:          # T45: an extra still open names the issue author who alone may keep it
         out.append(ASKS_ASKER)
+    if nobody_can:          # T44 audit: other_person_required and asker_required with the author also the asker: nobody is left
+        out.append(NOBODY_CAN)
     return " ".join(out) or None
 
 
@@ -811,7 +817,8 @@ def facts(*, mr_iid: int, mr_title: str, mr_description: str, mr_author_id, issu
     notes = (CHECKER_CAVEAT if checker and checker["source"] != "base" else None,
              TARGET_CAVEAT if fallback else None,
              policy_note(policy, [e for e, _ in quieted], at, asks_other=other and bool(kept),
-                         asks_asker=bool(askers) and bool(kept)))
+                         asks_asker=bool(askers) and bool(kept),
+                         nobody_can=other and bool(askers) and bool(kept) and _author_wrote(issues, mr_author_id)))
     report = {
         "rules_version": X.RULES_VERSION,
         "mr_iid": mr_iid,
@@ -920,7 +927,7 @@ def run(env, repo_dir: str, http, registry_fetch=None) -> dict:
     return report
 
 
-REACT_PREFIX = "ai-itemator-react"
+REACT_BOT = os.environ.get("ITEMATOR_REACT_BOT") or "ai-itemator-react-gitlab-ai-hackathon"   # the exact account: the project is public and anyone can comment
 HOLD_LINE = ("This project holds the pipeline until every extra is named: after the last name, retry the `itemator` job.")
 _NAMED_MARK = "itemator:named="
 
@@ -942,7 +949,7 @@ def hold(report: dict, api, pid, iid, head: str) -> dict:
                 break
             for n in notes:
                 who = str((n.get("author") or {}).get("username", ""))
-                if not n.get("system") and who.startswith(REACT_PREFIX) and f"{_NAMED_MARK}{head}" in str(n.get("body", "")):
+                if not n.get("system") and who == REACT_BOT and f"{_NAMED_MARK}{head}" in str(n.get("body", "")):
                     named = True
             if named or len(notes) < 100:
                 break

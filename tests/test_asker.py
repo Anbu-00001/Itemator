@@ -87,7 +87,7 @@ def test_two_authors_in_issue_order_and_one_name_each(repo, tmp_path, monkeypatc
 
 
 def test_at_most_three_names():
-    issues = [{"author_username": u} for u in ("a1", "b2", "c3", "d4", "e5")]
+    issues = [{"ref": "#1", "author_username": u} for u in ("a1", "b2", "c3", "d4", "e5")]
     assert ci.asker_usernames(issues) == ["a1", "b2", "c3"]
     assert ci.asker_sentence(ci.asker_usernames(issues)) == (
         "Only the person who wrote the linked issue (@a1 or @b2 or @c3) can keep this.")
@@ -100,7 +100,7 @@ def test_at_most_three_names():
     ("alice\n", False), ("al@ice", False), ("al)ice", False), ("ålice", False), (None, False), (7, False),
     (["alice"], False)])
 def test_a_username_is_checked_before_it_is_written(username, ok):
-    assert ci.asker_usernames([{"author_username": username}]) == ([username] if ok else [])
+    assert ci.asker_usernames([{"ref": "#1", "author_username": username}]) == ([username] if ok else [])
 
 
 def test_an_invalid_username_is_dropped_and_none_left_means_no_sentence(repo, tmp_path, monkeypatch):
@@ -206,3 +206,28 @@ def test_facts_with_the_key_on_change_only_the_stub_the_plain_facts_and_the_card
     assert {**x, "thread_stub": "", "plain_facts": {}} == {**y, "thread_stub": "", "plain_facts": {}}
     assert on["card"] == {**off["card"], "caveat_line": ASKS_ASKER} and off["card"]["caveat_line"] is None
     assert on["rules_version"] == 6
+
+
+# ---- T44 audit pass 3 (fixes 6 and 7)
+def test_the_author_of_another_projects_issue_is_never_named():
+    mine = {"ref": "#5", "author_username": "alice"}
+    other = {"ref": "group/other#9", "author_username": "bob"}
+    assert ci.asker_usernames([other, mine]) == ["alice"]
+    assert ci.asker_usernames([other]) == []
+
+
+def test_the_card_says_when_nobody_can_keep_an_extra(repo, tmp_path, monkeypatch):
+    """other_person_required + asker_required + the MR author also wrote the issue: no one qualifies, and the card says so."""
+    both = "[names]\nother_person_required = true\nasker_required = true\n"
+    repo.base = repo.commit({".itemator.toml": both}, "target branch")
+    head = repo.commit({"src/parser.py": FIXED, ".gitlab-ci.yml": "test:\n  script: [pytest, ruff]\n"})
+    code, out = job(repo, head, FakeHttp(routes(mr(author_id=2), [by("alice", author_id=2)])), tmp_path, monkeypatch)
+    assert code == 0 and ci.NOBODY_CAN in " ".join(n for n in [out["card"].get("caveat_line")] if n)
+
+
+def test_no_such_warning_when_someone_else_wrote_the_issue(repo, tmp_path, monkeypatch):
+    both = "[names]\nother_person_required = true\nasker_required = true\n"
+    repo.base = repo.commit({".itemator.toml": both}, "target branch")
+    head = repo.commit({"src/parser.py": FIXED, ".gitlab-ci.yml": "test:\n  script: [pytest, ruff]\n"})
+    code, out = job(repo, head, FakeHttp(routes(mr(author_id=2), [by("alice", author_id=3)])), tmp_path, monkeypatch)
+    assert code == 0 and ci.NOBODY_CAN not in (out["card"].get("caveat_line") or "")

@@ -21,7 +21,7 @@ import urllib.error
 import urllib.parse
 import urllib.request
 
-REACT_PREFIX = "ai-itemator-react"
+REACT_BOT = os.environ.get("ITEMATOR_REACT_BOT") or "ai-itemator-react-gitlab-ai-hackathon"   # the exact account: the project is public and anyone can comment
 PAGES = 5                  # pages of 100 merge requests read per window
 NOTES_PAGES = 5            # pages of 100 notes read per merge request
 TIMEOUT = 15
@@ -50,7 +50,7 @@ def clean(text, limit: int = 80) -> str:
 
 def clean_name(text, limit: int = 120) -> str:
     """An extra's name, shown inside backticks: one line and no backtick, so it cannot close the code span."""
-    return re.sub(r"\s+", " ", str(text or "")).replace("`", "").strip()[:limit].rstrip()
+    return re.sub(r"\s+", " ", str(text or "")).replace("`", "").replace("<!--", "<!-").strip()[:limit].rstrip()
 
 
 def parse_summary(body):
@@ -73,7 +73,7 @@ def latest_summary(notes: list):
     """The newest summary note written by the reaction account, parsed, or None."""
     best = None
     for n in notes:
-        if not isinstance(n, dict) or n.get("system") or not str((n.get("author") or {}).get("username", "")).startswith(REACT_PREFIX):
+        if not isinstance(n, dict) or n.get("system") or str((n.get("author") or {}).get("username", "")) != REACT_BOT:
             continue
         parsed = parse_summary(n.get("body"))
         if parsed and (best is None or str(n.get("created_at", "")) >= best[0]):
@@ -120,8 +120,8 @@ def merge_description(existing, section: str) -> str:
     """The release description with our block replaced (or appended): running twice changes nothing."""
     block = f"{START}\n{section.strip()}\n{END}"
     existing = existing or ""
-    if START in existing and END in existing and existing.index(START) < existing.index(END):
-        return existing[:existing.index(START)] + block + existing[existing.index(END) + len(END):]
+    if START in existing and END in existing and existing.index(START) < existing.rindex(END):
+        return existing[:existing.index(START)] + block + existing[existing.rindex(END) + len(END):]
     return (existing.rstrip() + "\n\n" if existing.strip() else "") + block + "\n"
 
 
@@ -174,22 +174,31 @@ class Api:
         return out
 
 
+def _utc(value):
+    """An ISO time with any offset (tag dates come back as +05:30, merge dates as Z) as an aware UTC datetime, or None."""
+    try:
+        return datetime.datetime.fromisoformat(str(value).replace("Z", "+00:00")).astimezone(datetime.timezone.utc)
+    except (ValueError, TypeError):
+        return None
+
+
 def collect(api: Api, target: str, since: str, until: str) -> list:
     """Entries for the merge requests merged into `target` after `since` and up to `until` (ISO times), oldest first."""
     mrs = api.pages("merge_requests", PAGES, state="merged", target_branch=target, updated_after=since, order_by="updated_at", sort="asc")
     api.listed = len(mrs)
-    inside = [m for m in mrs if isinstance(m, dict) and since < str(m.get("merged_at") or "") <= until]
-    inside.sort(key=lambda m: str(m.get("merged_at")))
+    lo, hi = _utc(since), _utc(until)
+    inside = [m for m in mrs if isinstance(m, dict) and lo and hi and (t := _utc(m.get("merged_at"))) and lo < t <= hi]
+    inside.sort(key=lambda m: _utc(m.get("merged_at")))
     return [entry(m, api.pages(f"merge_requests/{m['iid']}/notes", NOTES_PAGES, sort="asc")) for m in inside if isinstance(m.get("iid"), int)]
 
 
 def window_for_tag(api: Api, tag: str):
     """(since, until) for a release: from the commit date of the previous tag (or the epoch) to the tag's own commit date."""
     tags = api.pages("repository/tags", 1, order_by="updated", sort="desc")
-    dates = {t["name"]: (t.get("commit") or {}).get("created_at") for t in tags if isinstance(t, dict) and "name" in t}
-    until = dates.get(tag) or datetime.datetime.now(datetime.timezone.utc).isoformat()
+    dates = {t["name"]: _utc((t.get("commit") or {}).get("created_at")) for t in tags if isinstance(t, dict) and "name" in t}
+    until = dates.get(tag) or datetime.datetime.now(datetime.timezone.utc)
     older = sorted(d for n, d in dates.items() if n != tag and d and d < until)
-    return (older[-1] if older else "1970-01-01T00:00:00Z"), until
+    return (older[-1] if older else datetime.datetime(1970, 1, 1, tzinfo=datetime.timezone.utc)).isoformat(), until.isoformat()
 
 
 def publish(api: Api, tag: str, section: str) -> str:

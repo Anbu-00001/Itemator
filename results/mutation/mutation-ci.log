@@ -430,6 +430,7 @@ KILLED  t43: system notes believed                     test_only_the_reaction_ac
 KILLED  t43: oldest summary wins                       test_the_newest_summary_wins
 KILLED  t43: everyone is the author                    test_an_entry_knows_who_wrote_the_merge_request
 KILLED  t43: mentions kept in titles                   test_text_from_a_merge_request_cannot_ping_link_or_close_a_code_span
+KILLED  t43: addresses kept in titles                  test_text_from_a_merge_request_cannot_ping_link_or_close_a_code_span
 KILLED  t43: backtick kept in names                    test_text_from_a_merge_request_cannot_ping_link_or_close_a_code_span
 KILLED  t43: release block stacked                     test_the_release_description_is_replaced_not_stacked
 KILLED  t43: window start included                     test_the_window_includes_its_end_and_excludes_its_start
@@ -441,4 +442,65 @@ KILLED  t43: missing release counted                   test_a_missing_release_is
 KILLED  t43: oldest previous tag                       test_the_window_of_a_tag_starts_at_the_previous_tag
 KILLED  t43: moved read as kept                        test_a_summary_is_read_line_by_line
 KILLED  t43: report mode writes                        test_main_writes_the_report_and_the_markdown
-443/443 mutants killed
+KILLED  t44: any account's summary counts              test_only_the_reaction_accounts_summary_for_this_commit_counts[<lambda>0]
+KILLED  t44: a system note counts                      test_only_the_reaction_accounts_summary_for_this_commit_counts[<lambda>2]
+KILLED  t44: any commit's summary counts               test_only_the_reaction_accounts_summary_for_this_commit_counts[<lambda>3]
+KILLED  t44: never blocked                             test_an_unnamed_extra_fails_the_job_and_says_what_to_do
+KILLED  t44: holds when nothing is beyond the issue    test_no_extras_means_nothing_to_hold
+KILLED  t44: only the first page                       test_the_summary_may_be_on_a_later_page
+KILLED  t44: unreadable notes pass                     test_unreadable_notes_fail_closed
+KILLED  t44: a held job exits 0                        test_an_unnamed_extra_fails_the_job_and_says_what_to_do
+KILLED  t44: the card does not say what to do          test_an_unnamed_extra_fails_the_job_and_says_what_to_do
+KILLED  t44: hold on by default                        test_without_the_setting_nothing_changes[[names]\nother_person_required
+KILLED  t44: hold key not in the schema                test_an_unnamed_extra_fails_the_job_and_says_what_to_do
+KILLED  t44: bad value accepted                        test_the_setting_must_be_true_or_false
+KILLED  t45: key on by default                         test_the_key_is_off_by_default_and_reported
+KILLED  t45: key not in the schema                     test_the_key_is_off_by_default_and_reported
+KILLED  t45: sentence omitted                          test_one_author_is_named_in_every_thread
+KILLED  t45: sentence added when the key is off        test_the_key_is_read_from_the_target_branch
+KILLED  t45: invalid username kept                     test_a_username_is_checked_before_it_is_written[aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+KILLED  t45: a 4th name kept                           test_at_most_three_names
+KILLED  t45: restriction claimed with no issue         test_an_invalid_username_is_dropped_and_none_left_means_no_sentence
+KILLED  t45: author_id used instead of username        test_one_author_is_named_in_every_thread
+KILLED  t45: sentence before the other-person one      test_the_sentence_follows_the_other_person_one_and_precedes_the_replies
+KILLED  t45: card line never shown                     test_one_author_is_named_in_every_thread
+KILLED  t45: plain_facts without the names             test_one_author_is_named_in_every_thread
+KILLED  t45: a name repeated                           test_two_authors_in_issue_order_and_one_name_each
+KILLED  t46: anyone's name keeps an asker thread       test_t46_only_an_asker_keeps_or_dismisses_and_split_remove_keep_the_crew_rule
+KILLED  t46: anyone's dismissal counts                 test_t46_only_an_asker_keeps_or_dismisses_and_split_remove_keep_the_crew_rule
+KILLED  t46: always from any of CREW                   test_t46_only_an_asker_keeps_or_dismisses_and_split_remove_keep_the_crew_rule
+KILLED  t46: split needs the asker too                 test_t46_only_an_asker_keeps_or_dismisses_and_split_remove_keep_the_crew_rule
+KILLED  t46: usernames compared without case           test_t46_only_an_asker_keeps_or_dismisses_and_split_remove_keep_the_crew_rule
+KILLED  t46: asker names read loosely                  test_t46_the_asker_sentence_is_read_exactly_as_the_checker_writes_it
+KILLED  t46: no ASKER_ONLY detection                   test_t46_the_asker_sentence_is_read_exactly_as_the_checker_writes_it
+KILLED  t46: detection text not the checker's          test_t46_the_asker_sentence_is_read_exactly_as_the_checker_writes_it
+KILLED  t46: first sentence trusted, not the last      test_t46_the_asker_sentence_is_read_exactly_as_the_checker_writes_it
+KILLED  t46: unreadable askers do not fail closed      test_t46_the_asker_sentence_is_read_exactly_as_the_checker_writes_it
+KILLED  t46: refusal of others not spelled out         test_t46_only_an_asker_keeps_or_dismisses_and_split_remove_keep_the_crew_rule
+KILLED  t46: reminder never names the asker            test_t46_the_reminder_names_the_asker_and_the_summary_says_who_typed
+KILLED  t46: asker reminder ignores refusals           test_t46_the_reminder_names_the_asker_and_the_summary_says_who_typed
+KILLED  t46: summary never credits the asker           test_t46_the_reminder_names_the_asker_and_the_summary_says_who_typed
+KILLED  t46: receipt without the idempotence search    test_t46_the_receipt_is_posted_once_after_the_summary_and_never_starts_a_line_with_a_slash
+KILLED  t46: receipt posted when the search fails      test_t46_the_receipt_is_posted_once_after_the_summary_and_never_starts_a_line_with_a_slash
+KILLED  t46: receipt search looks at MR notes          test_t46_the_receipt_is_posted_once_after_the_summary_and_never_starts_a_line_with_a_slash
+KILLED  t46: receipt marker without the head           test_t46_the_receipt_is_posted_once_after_the_summary_and_never_starts_a_line_with_a_slash
+KILLED  t46: receipt while names are open              test_t46_the_receipt_is_posted_once_after_the_summary_and_never_starts_a_line_with_a_slash
+KILLED  t46: receipt with no extras                    test_t46_the_receipt_is_posted_once_after_the_summary_and_never_starts_a_line_with_a_slash
+KILLED  t46: receipt without the summary               test_t46_the_receipt_is_posted_once_after_the_summary_and_never_starts_a_line_with_a_slash
+KILLED  t46: approve without a rule naming the bot     test_t46_approval_only_by_the_named_rule_once_for_the_commit_read
+KILLED  t46: approve twice                             test_t46_approval_only_by_the_named_rule_once_for_the_commit_read
+KILLED  t46: approve with names open                   test_t46_approval_only_by_the_named_rule_once_for_the_commit_read
+KILLED  t46: approve with a thread unresolved          test_t46_approval_only_by_the_named_rule_once_for_the_commit_read
+KILLED  t46: approve without the card for the head     test_t46_approval_only_by_the_named_rule_once_for_the_commit_read
+KILLED  t46: approve a clean MR the card did not clear test_t46_approval_only_by_the_named_rule_once_for_the_commit_read
+KILLED  t46: approve a head this run did not read      test_t46_approval_only_by_the_named_rule_once_for_the_commit_read
+KILLED  t46: approve note carries a marker             test_t46_approval_only_by_the_named_rule_once_for_the_commit_read
+KILLED  t46: approval retried                          test_t46_approval_only_by_the_named_rule_once_for_the_commit_read
+KILLED  t46: no rule against slash lines               test_t46_quoted_strings_that_start_with_a_slash_are_endpoints_or_the_one_approve
+KILLED  t46: the old never-approve line                test_t46_quoted_strings_that_start_with_a_slash_are_endpoints_or_the_one_approve
+KILLED  t46: early stop skips the approval             test_t46_no_extra_threads_still_reach_the_mention_step_and_the_approval
+KILLED  t46: approval needs an extra thread            test_t46_no_extra_threads_still_reach_the_mention_step_and_the_approval
+KILLED  t46: loop stops at 7b                          test_t46_steps_are_in_order_and_each_merge_request_runs_them_all
+KILLED  t46: create_issue_note dropped                 test_yaml_parses_and_stays_under_40_kib
+KILLED  t46: step 8 without the approval               test_t46_approval_only_by_the_named_rule_once_for_the_commit_read
+505/505 mutants killed

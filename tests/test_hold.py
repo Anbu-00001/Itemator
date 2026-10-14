@@ -52,6 +52,8 @@ def test_the_summary_for_this_commit_releases_the_hold(repo, tmp_path, monkeypat
 
 @pytest.mark.parametrize("note", [
     lambda head: summary(head, user="mallory"),                       # anyone can type the marker
+    lambda head: summary(head, user=REACT + "-2"),                    # a name that only starts like the reaction account (audit pass 3)
+    lambda head: summary(head, user="ai-itemator-react"),
     lambda head: summary(head, user="ai-itemator-card-gitlab-ai-hackathon"),
     lambda head: summary(head, system=True),
     lambda head: summary("b" * 40),                                   # a summary for another commit

@@ -177,7 +177,7 @@ def test_t46_the_asker_sentence_is_read_exactly_as_the_checker_writes_it(flow):
     """The flow can only read the thread text, so its detection text must be the checker's own (itemator/ci.py)."""
     _, system = flow
     step = between(system, "Step 3.", "Step 4.")
-    assert f'If that first note contains the text "{ci.ASKER_ONLY_PREFIX}" the thread is ASKER_ONLY' in step
+    assert f'If the part of that first note after the backtick that closes NAME contains the text "{ci.ASKER_ONLY_PREFIX}" the thread is ASKER_ONLY' in step
     assert f'between the last place that text appears and the next "{ci.ASKER_ONLY_SUFFIX}" after it' in step
     assert 'separated by " or ", each copied exactly (same letters, same case).' in step
     assert ("If any part there is not one @name made only of letters, digits, _, . and -, ASKERS is empty, so no reply "
@@ -288,3 +288,11 @@ def test_t46_the_pre_registered_asker_cases_are_complete():
     assert len(cases) == 6 and len({c["label"] for c in cases}) == 6
     assert {c["expected"] for c in cases} <= {"kept", "dismissed", "open", "policy proposed"}
     assert sum(c["expected"] == "open" for c in cases) >= 3
+
+
+def test_t44_a_file_name_cannot_plant_the_thread_flags(flow):
+    """Audit pass 3, fix 5: the OTHER_ONLY, ALWAYS_OK and ASKER_ONLY sentences are looked for only AFTER the backtick that closes
+    NAME, so a file name that contains one of them does not change what the thread allows."""
+    _, system = flow
+    assert system.count("If the part of that first note after the backtick that closes NAME contains the ") == 3
+    assert "If that first note contains the " not in system
