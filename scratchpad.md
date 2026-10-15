@@ -46,15 +46,15 @@ Extra note: If you think you got time and tokens to spare and there's no ongoing
 
 ### Q6. Control run: give the Developer Flow the same 8 issues WITHOUT our AGENTS.md and skill? (about 25 to 30 credits, spread over two days)
 Why: our eight real runs had AGENTS.md and the skill present and found no extras; a control would show whether those two files are the reason. Risk: it needs the files removed from `main` temporarily (a commit, then a revert), which is a visible change in the history. DEFAULT: no (not worth the history noise, the limit is stated in the README).
-ANSWER:
+ANSWER:no 
 
 ### Q7. The test release `v0.1.0-rc1`: keep it or delete it before submission?
 DEFAULT: keep it (it shows a real release written by the decision log) and cut the final tag `v1.0.0` on Oct 26 after the last commit.
-ANSWER:
+ANSWER:keep it
 
 ### Q8. Name the project that will hold the lock (needed before I build the pipeline execution policy)
 The policy needs its own small public project in our group (it holds one YAML file; the organisers' answer confirms our role can link it, and a scratch test passed). Your standing rule: you name things. Criteria, not names: lowercase, 2 to 3 words joined by hyphens, says what it does, no GitLab or Anthropic trademark, no "AI" in it. Until you name it I keep building everything that does not need it.
-ANSWER:
+ANSWER:would naming it itemator again cause issues, let's ideate once I get home. Just remind me regarding it
 
 ## Answered
 - Q (Oct 12-13): Build Session transcript: answered by the user's paste (stored in the vault).
