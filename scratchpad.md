@@ -56,5 +56,14 @@ ANSWER:keep it
 The policy needs its own small public project in our group (it holds one YAML file; the organisers' answer confirms our role can link it, and a scratch test passed). Your standing rule: you name things. Criteria, not names: lowercase, 2 to 3 words joined by hyphens, says what it does, no GitLab or Anthropic trademark, no "AI" in it. Until you name it I keep building everything that does not need it.
 ANSWER:would naming it itemator again cause issues, let's ideate once I get home. Just remind me regarding it
 
+## STATUS Oct 15 (written by Claude while you are AFK; GitLab push and a GitHub squash mirror are done)
+- Done today: the check now lives in a pipeline execution policy (project `itemator-pipeline-policy`); 0 of 11 bypass attempts merged (before the policy 2 of 8); hold re-run under the policy merged by itself after one retry; Developer Flow run under the policy ok; injection study (6 of 6 safety rules; one planned thread was never made, disclosed); deployment page live at https://showcase-3cd72e.gitlab.io/ ; README cut to a pitch, docs split; Devpost v5 and storyboard v5 drafted in the vault; judge simulations round 3: about 3.9 of 5 (J3) and 17.5 of 25 (J4). Credits used today about 20 of 75.
+- REMINDER (you asked): rename/ideate the policy project name `itemator-pipeline-policy` when you are home. Do not rename unattended: the link and the include path would change.
+- Still needs YOU: (1) two screenshots above the README's "At a glance" table (a merge request with its card and thread; the pipeline page showing the injected `itemator` job) taken with the Duo chat panel CLOSED; (2) the video from Oct 20.
+
+### Q9. Re-run the one hostile reply that never ran, with a STRANGER account (a friend's, or a new 1-day token for your second account saved as a chmod 600 file `~/.itemator-second-token`)? (about 3 credits)
+DEFAULT: no (the study says plainly that one case is untested).
+ANSWER:
+
 ## Answered
 - Q (Oct 12-13): Build Session transcript: answered by the user's paste (stored in the vault).
