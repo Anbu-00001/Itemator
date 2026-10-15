@@ -1,6 +1,7 @@
 # The job that a pipeline execution policy injects into every merge request pipeline of this project (the policy lives
-# in a separate policy project and includes this file from main), so a merge request cannot edit, delete or skip it.
-# Until the policy is linked, .gitlab-ci.yml carries a copy.
+# in a separate policy project), so a merge request cannot edit, delete or skip it. The copy that runs is the one in that policy
+# project (its main branch, which the flow accounts cannot push to); this copy is for the tests and the job `policy-job-in-sync`
+# fails the pipeline if the two differ.
 # The facts for the card: fixed rules, no model. The Duo flow reads the artifact.
 # The checker comes from the target branch (T20, T26 F1): itemator/ is exported from the tip of the target branch
 # (origin/<target>, fetched here; the merge base CI_MERGE_REQUEST_DIFF_BASE_SHA when that ref cannot be read, and
@@ -19,6 +20,7 @@ itemator:
   script:
     - |
       set -eu
+      export ITEMATOR_REACT_BOT=ai-itemator-react-gitlab-ai-hackathon     # set here, not only as a variable: no project variable can change who is believed
       base="${CI_MERGE_REQUEST_DIFF_BASE_SHA:-}"
       target="${CI_MERGE_REQUEST_TARGET_BRANCH_NAME:-}"
       tip=""

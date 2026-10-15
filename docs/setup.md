@@ -25,20 +25,20 @@ pipeline_execution_policy:
           file: ci/itemator-job.yml
     policy_scope: {}
 ```
-2. Link it: in your project, **Secure** > **Policies** > **Link existing policy project** (the documented path; we linked through the GraphQL mutation `securityPolicyProjectAssign`). You need the Owner role, or a custom role with the "link to a security policy project" ability (the organisers added it to ours).
+2. Link it: in your project, **Secure** > **Policies** > **Edit policy project** (the name GitLab's documentation gives; we did not click it) (the documented path; we linked through the GraphQL mutation `securityPolicyProjectAssign`). You need the Owner role, or a custom role with the "link to a security policy project" ability (the organisers added it to ours).
 3. Check it: open a merge request. Its pipeline must show a job called `itemator` in the stage `.pipeline-policy-post`.
 
-What we saw: the policy is read from the policy project's default branch, but GitLab's copy of it lags a few minutes behind a commit, so wait before testing a change. `suffix: never` makes a merge request that defines its own job named `itemator` fail at pipeline creation ("job names must be unique"), instead of running a fake next to the real one. A merge request that deletes your project's jobs, edits `ci/itemator-job.yml` or turns its pipeline off does not remove the injected job; we tried each of these against it in a pre-registered run; the numbers are in the README and in docs/how-it-works.md. Once a policy is linked, GitLab also requires the policy's pipeline to pass before a merge. Unlinking is a separate step that can complete later than you expect: read the link back before you rely on it.
+What we saw: the policy is read from the policy project's default branch, but GitLab's copy of it lags a few minutes behind a commit, so wait before testing a change. `suffix: never` makes a merge request that defines its own job named `itemator` fail at pipeline creation ("job names must be unique"), instead of running a fake next to the real one. A merge request that deletes your project's jobs, edits `ci/itemator-job.yml` or turns its pipeline off does not remove the injected job; we tried each of these against it in a pre-registered run; the numbers are in the README and in docs/how-it-works.md. Once a policy is linked, GitLab also requires the policy's pipeline to pass before a merge. Once, an unlink we sent took effect only the next morning: read the link back before you rely on it, and again before filming.
 
 ## 2. The two flows
 In the project, open **AI** > **Flows** > **New flow** (menu names vary by GitLab version), choose **Private**, and paste the contents of [flows/itemator_card.yml](../flows/itemator_card.yml). Do the same for [flows/itemator_react.yml](../flows/itemator_react.yml). Then **enable** each flow in your project (we enabled ours through the API, not this menu, so the exact button is untested here). GitLab creates one service account per flow, named like `ai-itemator-card-<your top-level group>` and `ai-itemator-react-<your top-level group>`; check both exist under **Manage** > **Members** before you go on.
 
-**Change two names in the reaction flow, and set one variable.** Its prompt names the two accounts exactly (`CARD_BOT` and `REACT_BOT`): replace them with the account names GitLab created in your group, so only notes from those two accounts count as cards or settled answers. Then add the CI/CD variable `ITEMATOR_REACT_BOT` (**Settings** > **CI/CD** > **Variables**) with your reaction account's username: the hold and the decision log read it. If you skip either step, no card or answer is recognised.
+**Change two names in the reaction flow, and set one variable.** Its prompt names the two accounts exactly (`CARD_BOT` and `REACT_BOT`): replace them with the account names GitLab created in your group, so only notes from those two accounts count as cards or settled answers. Then put your reaction account's username into `ci/itemator-job.yml` (two lines name it, the `variables:` entry and the `export` line: change both; the injected job ignores a project variable on purpose) and into the CI/CD variable `ITEMATOR_REACT_BOT` (**Settings** > **CI/CD** > **Variables**), which only the `decision-log` job reads. If you skip a step, no card or answer is recognised.
 
 ## 3. The triggers
 In **AI** > **Triggers** > **New flow trigger**, create two triggers. Both are off until you switch them on, and every one needs a person's action to fire (a bot cannot start a trigger, which is also why the flows cannot start each other). We created ours with a custom "Developer + AI" role; on a normal install you need Maintainer.
-- Card flow (service account: the card account): event **Pipeline** (statuses success and failed, source merge request) and event **Assign reviewer**.
-- Reaction flow (service account: the reaction account): events **Mention**, **Merge request ready**, and **Merge request** with the **Approved** action (we never tested Approved).
+- Card flow (service account: the card account): event **Pipeline** (statuses Passed and Failed, source merge request) and event **Assign reviewer**. The project must sit under a top-level group, because service accounts are created per group.
+- Reaction flow (service account: the reaction account): events **Mention**, **Merge request ready** (called **Marked ready** under **Merge request** in newer GitLab versions), and **Merge request** with the **Approved** action (we never tested Approved).
 
 ## 4. Make the threads a lock (optional, needs the Maintainer role)
 In **Settings** > **Merge requests**, turn on **All threads must be resolved**. Until then an unnamed extra puts the merge request in Draft but does not stop the merge button.
@@ -67,3 +67,14 @@ Open a merge request that links an issue. When its pipeline finishes, the card a
 
 ## What we did not test
 A second approver, a project other than this one, GitLab Self-Managed, and an organisation-wide compliance pipeline. If you do not use the policy above, the job definition itself comes from the merge request.
+
+## Names and places to change in a fork
+| Where | What to change |
+|---|---|
+| `flows/itemator_card.yml`, `flows/itemator_react.yml` | the two service account names `CARD_BOT` and `REACT_BOT` in the prompts |
+| `ci/itemator-job.yml` (and the copy in the policy project) | the reaction account's username, in the `variables:` entry and the `export` line |
+| `.gitlab-ci.yml`, job `policy-job-in-sync` | delete the job, or change the project id in its URL to your policy project's id: it compares the repository copy of the job file with the copy in our policy project and fails in a fork |
+| `.gitlab-ci.yml`, jobs `publish-package`, `shipped-page` | optional: they record deployments and publish the page of what shipped; delete them if you do not want that |
+| policy project, `policy.yml` | `project:` must name the policy project itself, and the file `ci/itemator-job.yml` must be in it |
+
+Check it worked: open a merge request, and its pipeline must show a job `itemator` in the stage `.pipeline-policy-post`.

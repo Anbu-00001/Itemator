@@ -75,6 +75,7 @@ def page(report: dict) -> str:
             tail = what if m["extras"] else ("no extras" if m["summary"] else "no Itemator summary")
             out.append(f"<li>!{e(str(m['iid']))} {e(m['title'])}: {tail}</li>")
         out.append("</ul>")
+    out.append("<p class=\"m\">Merge requests merged into the default branch are listed with the extras they had. A commit pushed straight to the default branch is a deployment too, but it has no merge request, so none is listed for it.</p>")
     out.append("</body></html>")
     return "\n".join(out) + "\n"
 

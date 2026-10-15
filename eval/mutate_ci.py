@@ -15,7 +15,7 @@ the Step 8 field), each killed by tests/test_react_prompt.py::test_the_flow_neve
 non-approval T46 mutants of the same lines with updated anchors.
 
 Usage (WORK must be outside the repository, or pytest would collect the copies):
-    .venv/bin/python -I eval/mutate_ci.py "$PWD" /tmp/itemator-ci-mutants [T17|T35|T40|T42|T43|T44|T45|T46|T51]
+    .venv/bin/python -I eval/mutate_ci.py "$PWD" /tmp/itemator-ci-mutants [T17|T35|T40|T42|T43|T44|T45|T46|T51|T52]
 With T17 (or T35, T40), only those mutants run (every anchor of every mutant is still checked first).
 Exit status 0 only when every mutant is killed.
 """
@@ -595,13 +595,25 @@ T51 = [(label, old, new, path, test) for label, old, new, path, test in [
  ("t51: early stop skips the mention step", "change nothing for this merge request except in step 7b.", "change nothing for this merge request.", FL, TP),
  ("t51: loop stops at 7b", "Do steps 2 to 7c for each IID in MRS", "Do steps 2 to 7b for each IID in MRS", FL, TP),
 ]]
+
+# T52: the deployment page (itemator/shipped.py). Each mutant breaks one line; tests/test_shipped.py must fail.
+SH, SHT = "itemator/shipped.py", "tests/test_shipped.py"
+T52 = [(label, old, new, SH, SHT) for label, old, new in [
+ ("t52: no escaping of GitLab's text", "    e = html.escape\n", "    e = str\n"),
+ ("t52: the window ignores the previous deployment", 'since = (previous or {}).get("created_at") or "1970-01-01T00:00:00Z"', 'since = "1970-01-01T00:00:00Z"'),
+ ("t52: an empty GitLab list is not a fallback", "    return mrs or None", "    return mrs if got is not None else None"),
+ ("t52: no deployment is shown", "DEPLOYMENTS = 8", "DEPLOYMENTS = 0"),
+ ("t52: refused requests are not counted", '"unreadable_requests": api.failures}', '"unreadable_requests": 0}'),
+ ("t52: one merge request is plural", "{'' if s['merge_requests'] == 1 else 's'}", "{'s'}"),
+ ("t52: no job token still runs", "if not (a.api and a.project and token):", "if False:"),
+]]
 SRC = {"itemator/ci.py": (REPO / "itemator/ci.py").read_text(), "itemator/registry.py": (REPO / "itemator/registry.py").read_text(),
        "itemator/policy.py": (REPO / "itemator/policy.py").read_text(), "itemator/said.py": (REPO / "itemator/said.py").read_text(), LG: (REPO / LG).read_text(),
-       FL: (REPO / FL).read_text()}
+       FL: (REPO / FL).read_text(), "itemator/shipped.py": (REPO / "itemator/shipped.py").read_text()}
 JOBS = ([(*m, "itemator/ci.py", "tests/test_ci.py") for m in M] + [(*m, "itemator/ci.py", "tests/test_ci_anchors.py") for m in A]
         + [(*m, "itemator/ci.py", "tests/test_registry.py") for m in RC] + [(*m, "itemator/registry.py", "tests/test_registry.py") for m in RG]
         + [(*m, "itemator/ci.py", "tests/test_policy.py") for m in PC] + [(*m, "itemator/policy.py", "tests/test_policy.py") for m in PO]
-        + T26 + T35 + T40 + T42 + T43 + T44 + T45 + T46 + T51)
+        + T26 + T35 + T40 + T42 + T43 + T44 + T45 + T46 + T51 + T52)
 for label, old, new, path, _ in JOBS:
     assert SRC[path].count(old) == 1, f"mutant {label!r}: anchor found {SRC[path].count(old)} times in {path}"
 if sys.argv[3:] == ["T17"]:
@@ -622,6 +634,8 @@ if sys.argv[3:] == ["T46"]:
     JOBS = [j for j in JOBS if j in T46]
 if sys.argv[3:] == ["T51"]:
     JOBS = [j for j in JOBS if j in T51]
+if sys.argv[3:] == ["T52"]:
+    JOBS = [j for j in JOBS if j in T52]
 def run(i, path, text, tests):
     d = WORK / f"m{i:02d}"
     if d.exists(): shutil.rmtree(d)

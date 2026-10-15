@@ -509,4 +509,11 @@ KILLED  t51: Step 8 reports an approval                test_the_flow_never_appro
 KILLED  t51: no rule against slash lines               test_t46_quoted_strings_that_start_with_a_slash_are_endpoints
 KILLED  t51: early stop skips the mention step         test_t46_no_extra_threads_still_reach_the_mention_step
 KILLED  t51: loop stops at 7b                          test_t46_steps_are_in_order_and_each_merge_request_runs_them_all
-511/511 mutants killed
+KILLED  t52: no escaping of GitLab's text              test_everything_that_came_from_gitlab_is_escaped_in_the_page
+KILLED  t52: the window ignores the previous deployment test_the_window_runs_from_the_previous_deployment_to_this_one
+KILLED  t52: an empty GitLab list is not a fallback    test_gitlabs_own_list_is_used_when_it_has_one
+KILLED  t52: no deployment is shown                    test_gitlabs_own_list_is_used_when_it_has_one
+KILLED  t52: refused requests are not counted          test_a_request_gitlab_refuses_is_counted_not_hidden
+KILLED  t52: one merge request is plural               test_one_merge_request_is_not_plural
+KILLED  t52: no job token still runs                   test_main_without_a_job_token_does_nothing
+518/518 mutants killed
