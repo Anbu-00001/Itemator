@@ -495,20 +495,18 @@ KILLED  t46: receipt marker without the head           test_t46_the_receipt_is_p
 KILLED  t46: receipt while names are open              test_t46_the_receipt_is_posted_once_after_the_summary_and_never_starts_a_line_with_a_slash
 KILLED  t46: receipt with no extras                    test_t46_the_receipt_is_posted_once_after_the_summary_and_never_starts_a_line_with_a_slash
 KILLED  t46: receipt without the summary               test_t46_the_receipt_is_posted_once_after_the_summary_and_never_starts_a_line_with_a_slash
-KILLED  t46: approve without a rule naming the bot     test_t46_approval_only_by_the_named_rule_once_for_the_commit_read
-KILLED  t46: approve twice                             test_t46_approval_only_by_the_named_rule_once_for_the_commit_read
-KILLED  t46: approve with names open                   test_t46_approval_only_by_the_named_rule_once_for_the_commit_read
-KILLED  t46: approve with a thread unresolved          test_t46_approval_only_by_the_named_rule_once_for_the_commit_read
-KILLED  t46: approve without the card for the head     test_t46_approval_only_by_the_named_rule_once_for_the_commit_read
-KILLED  t46: approve a clean MR the card did not clear test_t46_approval_only_by_the_named_rule_once_for_the_commit_read
-KILLED  t46: approve a head this run did not read      test_t46_approval_only_by_the_named_rule_once_for_the_commit_read
-KILLED  t46: approve note carries a marker             test_t46_approval_only_by_the_named_rule_once_for_the_commit_read
-KILLED  t46: approval retried                          test_t46_approval_only_by_the_named_rule_once_for_the_commit_read
-KILLED  t46: no rule against slash lines               test_t46_quoted_strings_that_start_with_a_slash_are_endpoints_or_the_one_approve
-KILLED  t46: the old never-approve line                test_t46_quoted_strings_that_start_with_a_slash_are_endpoints_or_the_one_approve
-KILLED  t46: early stop skips the approval             test_t46_no_extra_threads_still_reach_the_mention_step_and_the_approval
-KILLED  t46: approval needs an extra thread            test_t46_no_extra_threads_still_reach_the_mention_step_and_the_approval
-KILLED  t46: loop stops at 7b                          test_t46_steps_are_in_order_and_each_merge_request_runs_them_all
 KILLED  t46: create_issue_note dropped                 test_yaml_parses_and_stays_under_40_kib
-KILLED  t46: step 8 without the approval               test_t46_approval_only_by_the_named_rule_once_for_the_commit_read
-513/513 mutants killed
+KILLED  t51: /approve posted                           test_the_flow_never_approves
+KILLED  t51: approval_state read                       test_the_flow_never_approves
+KILLED  t51: approved_by read                          test_the_flow_never_approves
+KILLED  t51: eligible_approvers read                   test_the_flow_never_approves
+KILLED  t51: APPROVED field                            test_the_flow_never_approves
+KILLED  t51: approve quick action in the slash rule    test_the_flow_never_approves
+KILLED  t51: header lets the flow approve              test_the_flow_never_approves
+KILLED  t51: header drops never approve                test_the_flow_never_approves
+KILLED  t51: a Step 7d is back                         test_the_flow_never_approves
+KILLED  t51: Step 8 reports an approval                test_the_flow_never_approves
+KILLED  t51: no rule against slash lines               test_t46_quoted_strings_that_start_with_a_slash_are_endpoints
+KILLED  t51: early stop skips the mention step         test_t46_no_extra_threads_still_reach_the_mention_step
+KILLED  t51: loop stops at 7b                          test_t46_steps_are_in_order_and_each_merge_request_runs_them_all
+511/511 mutants killed

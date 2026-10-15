@@ -1,0 +1,281 @@
+[
+ {
+  "started": "2026-10-15T06:51:30",
+  "results": [
+   {
+    "id": 1,
+    "name": "plain",
+    "expected": "blocked",
+    "mr_iid": 72,
+    "pipeline": "failed",
+    "jobs": {
+     "itemator": "failed",
+     "hardcode-audit": "success",
+     "unit-tests": "success"
+    },
+    "state": "opened",
+    "http_ok": false,
+    "detail": "{\"message\":\"405 Method Not Allowed\"}",
+    "status": "ci_must_pass",
+    "outcome": "blocked",
+    "match": true,
+    "itemator_job_statuses": {
+     "itemator": "failed"
+    },
+    "itemator_job_failed": true,
+    "other_job_failed": false
+   },
+   {
+    "id": 2,
+    "name": "project jobs deleted",
+    "expected": "blocked",
+    "mr_iid": 73,
+    "pipeline": "failed",
+    "jobs": {
+     "itemator": "failed"
+    },
+    "state": "opened",
+    "http_ok": false,
+    "detail": "{\"message\":\"405 Method Not Allowed\"}",
+    "status": "ci_must_pass",
+    "outcome": "blocked",
+    "match": true,
+    "itemator_job_statuses": {
+     "itemator": "failed"
+    },
+    "itemator_job_failed": true,
+    "other_job_failed": false
+   },
+   {
+    "id": 3,
+    "name": "fake itemator allowed to fail",
+    "expected": "blocked",
+    "mr_iid": 74,
+    "pipeline": "failed",
+    "jobs": {
+     "itemator": "created",
+     "hardcode-audit": "created",
+     "unit-tests": "created"
+    },
+    "state": "opened",
+    "http_ok": false,
+    "detail": "{\"message\":\"405 Method Not Allowed\"}",
+    "status": "ci_must_pass",
+    "outcome": "blocked",
+    "match": true,
+    "itemator_job_statuses": {
+     "itemator": "created"
+    },
+    "itemator_job_failed": false,
+    "other_job_failed": false
+   },
+   {
+    "id": 4,
+    "name": "fake itemator passes",
+    "expected": "blocked",
+    "mr_iid": 75,
+    "pipeline": "failed",
+    "jobs": {
+     "itemator": "created",
+     "hardcode-audit": "created",
+     "unit-tests": "created"
+    },
+    "state": "opened",
+    "http_ok": false,
+    "detail": "{\"message\":\"405 Method Not Allowed\"}",
+    "status": "ci_must_pass",
+    "outcome": "blocked",
+    "match": true,
+    "itemator_job_statuses": {
+     "itemator": "created"
+    },
+    "itemator_job_failed": false,
+    "other_job_failed": false
+   },
+   {
+    "id": 5,
+    "name": "workflow never",
+    "expected": "blocked",
+    "mr_iid": 76,
+    "pipeline": "failed",
+    "jobs": {
+     "itemator": "failed",
+     "hardcode-audit": "success",
+     "unit-tests": "success"
+    },
+    "state": "opened",
+    "http_ok": false,
+    "detail": "{\"message\":\"405 Method Not Allowed\"}",
+    "status": "ci_must_pass",
+    "outcome": "blocked",
+    "match": true,
+    "itemator_job_statuses": {
+     "itemator": "failed"
+    },
+    "itemator_job_failed": true,
+    "other_job_failed": false
+   },
+   {
+    "id": 6,
+    "name": "ci skip",
+    "expected": "blocked",
+    "mr_iid": 77,
+    "pipeline": "failed",
+    "jobs": {
+     "itemator": "failed",
+     "hardcode-audit": "success",
+     "unit-tests": "success"
+    },
+    "state": "opened",
+    "http_ok": false,
+    "detail": "{\"message\":\"405 Method Not Allowed\"}",
+    "status": "ci_must_pass",
+    "outcome": "blocked",
+    "match": true,
+    "itemator_job_statuses": {
+     "itemator": "failed"
+    },
+    "itemator_job_failed": true,
+    "other_job_failed": false
+   },
+   {
+    "id": 7,
+    "name": "job file edited",
+    "expected": "blocked",
+    "mr_iid": 78,
+    "pipeline": "failed",
+    "jobs": {
+     "itemator": "failed",
+     "hardcode-audit": "success",
+     "unit-tests": "failed"
+    },
+    "state": "opened",
+    "http_ok": false,
+    "detail": "{\"message\":\"405 Method Not Allowed\"}",
+    "status": "ci_must_pass",
+    "outcome": "blocked",
+    "match": true,
+    "itemator_job_statuses": {
+     "itemator": "failed"
+    },
+    "itemator_job_failed": true,
+    "other_job_failed": true
+   },
+   {
+    "id": 8,
+    "name": "checker edited",
+    "expected": "blocked",
+    "mr_iid": 79,
+    "pipeline": "failed",
+    "jobs": {
+     "itemator": "failed",
+     "hardcode-audit": "success",
+     "unit-tests": "failed"
+    },
+    "state": "opened",
+    "http_ok": false,
+    "detail": "{\"message\":\"405 Method Not Allowed\"}",
+    "status": "ci_must_pass",
+    "outcome": "blocked",
+    "match": true,
+    "itemator_job_statuses": {
+     "itemator": "failed"
+    },
+    "itemator_job_failed": true,
+    "other_job_failed": true
+   },
+   {
+    "id": 9,
+    "name": "retry without names",
+    "expected": "blocked",
+    "mr_iid": 80,
+    "pipeline": "failed",
+    "jobs": {
+     "itemator": "failed",
+     "hardcode-audit": "success",
+     "unit-tests": "success"
+    },
+    "retried": true,
+    "pipeline_after_retry": "failed",
+    "jobs_after_retry": {
+     "itemator": "failed",
+     "hardcode-audit": "success",
+     "unit-tests": "success"
+    },
+    "state": "opened",
+    "http_ok": false,
+    "detail": "{\"message\":\"405 Method Not Allowed\"}",
+    "status": "ci_must_pass",
+    "outcome": "blocked",
+    "match": true,
+    "itemator_job_statuses": {
+     "itemator": "failed"
+    },
+    "itemator_job_failed": true,
+    "other_job_failed": false
+   },
+   {
+    "id": 10,
+    "name": "forged summary",
+    "expected": "blocked",
+    "mr_iid": 81,
+    "pipeline": "failed",
+    "jobs": {
+     "itemator": "failed",
+     "hardcode-audit": "success",
+     "unit-tests": "success"
+    },
+    "forged_note_posted_by": "anbuchelvanganesan.cse2024",
+    "retried": true,
+    "pipeline_after_retry": "failed",
+    "jobs_after_retry": {
+     "itemator": "failed",
+     "hardcode-audit": "success",
+     "unit-tests": "success"
+    },
+    "state": "opened",
+    "http_ok": false,
+    "detail": "{\"message\":\"405 Method Not Allowed\"}",
+    "status": "ci_must_pass",
+    "outcome": "blocked",
+    "match": true,
+    "itemator_job_statuses": {
+     "itemator": "failed"
+    },
+    "itemator_job_failed": true,
+    "other_job_failed": false
+   },
+   {
+    "id": 11,
+    "name": "bot variable overridden",
+    "expected": "blocked",
+    "mr_iid": 82,
+    "pipeline": "failed",
+    "jobs": {
+     "itemator": "failed",
+     "hardcode-audit": "success",
+     "unit-tests": "failed"
+    },
+    "forged_note_posted_by": "anbuchelvanganesan.cse2024",
+    "retried": true,
+    "pipeline_after_retry": "failed",
+    "jobs_after_retry": {
+     "itemator": "failed",
+     "hardcode-audit": "success",
+     "unit-tests": "failed"
+    },
+    "state": "opened",
+    "http_ok": false,
+    "detail": "{\"message\":\"405 Method Not Allowed\"}",
+    "status": "ci_must_pass",
+    "outcome": "blocked",
+    "match": true,
+    "itemator_job_statuses": {
+     "itemator": "failed"
+    },
+    "itemator_job_failed": true,
+    "other_job_failed": true
+   }
+  ]
+ }
+]

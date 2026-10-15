@@ -7,5 +7,28 @@
   "published": "2026-03-25",
   "read_on": "2026-10-11",
   "caveat": "Two news sites repeat the figure as 97%; the original page says 93%."
+ },
+ "anthropic_merges_per_day_may_2026": {
+  "value": 2500,
+  "quote": "In May 2026, Anthropic averaged around 2,500 code changes merged per day",
+  "source": "https://www.anthropic.com/engineering/redesigning-source-control",
+  "published": "2026-10-13",
+  "read_on": "2026-10-15",
+  "caveat": "Anthropic's own figure for its monorepo; 'around'."
+ },
+ "anthropic_merges_per_day_september_2026": {
+  "value": 30000,
+  "quote": "as of September, we merged over 30,000 per day",
+  "source": "https://www.anthropic.com/engineering/redesigning-source-control",
+  "published": "2026-10-13",
+  "read_on": "2026-10-15",
+  "caveat": "Anthropic's own figure; 'over'."
+ },
+ "anthropic_bottleneck_sentence": {
+  "quote": "The bottleneck, now, is all of the developer infrastructure built for human scale: source control, builds, and CI.",
+  "source": "https://www.anthropic.com/engineering/redesigning-source-control",
+  "published": "2026-10-13",
+  "read_on": "2026-10-15",
+  "caveat": "The page is about Anthropic's own version control system; it does not mention merge requests or approval."
  }
 }

@@ -1,8 +1,8 @@
 {
  "what": "Mutation tests run by the manual `mutation-suite` job in GitLab CI: each mutant breaks one line of the rules, the CI job, the policy file, the decision log or the reaction flow's prompt text, and at least one test must fail. A mutant that does not compile is reported as INVALID and counts as not caught.",
- "job": "https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/39194174/showcase/-/jobs/17157685229",
- "commit": "31dcbaa97640aa8dadf88f5ca6f2ba681aab7569",
- "earlier_runs": "Job 17127357389 (606 mutants) counted one mutant that did not compile as caught; job 17139995639 (625) replaced it; job 17145469008 (687) added the hold, asker and flow-prompt mutants. This run adds the mutants of the third audit's fixes.",
+ "job": "https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/39194174/showcase/-/jobs/17172287375",
+ "commit": "23878ffb3163542ca29101b88a9f1e213e6c0777",
+ "earlier_runs": "Job 17127357389 (606 mutants) counted one mutant that did not compile as caught; job 17139995639 (625) replaced it; job 17145469008 (687) added the hold, asker and flow-prompt mutants. Job 17157685229 (695) added the third audit's fixes. This run (693) is on the commit that removed the bot-approval step, which retired its two mutants.",
  "logs": [
   "results/mutation/mutation-extras.log",
   "results/mutation/mutation-ci.log"
@@ -14,11 +14,11 @@
   "invalid": 0
  },
  "job_and_flows": {
-  "killed": 513,
-  "mutants": 513,
+  "killed": 511,
+  "mutants": 511,
   "survived": 0,
   "invalid": 0
  },
- "total_mutants": 695,
- "total_killed": 695
+ "total_mutants": 693,
+ "total_killed": 693
 }

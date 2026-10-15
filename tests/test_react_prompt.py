@@ -17,11 +17,11 @@ TOOLS = ["get_merge_request", "gitlab_api_get", "reply_to_discussion", "set_disc
          "create_merge_request_note", "update_merge_request", "create_commit", "create_merge_request",
          "create_issue_note"]                                           # T46: the receipt on the issue
 GUARDS = '"Remove partly done:", "Cannot remember:" or "Remember failed:"'
-# T46: the one earlier phrase that changed on purpose (the brief adds ", approved <...>" to the Step 8 line)
-STEP8_OLD = ("Checked <number of merge requests>: <KEPT> kept, <DISMISSED> dismissed, <SPLIT> moved, <REMOVED> removed, "
-             "<number in OPEN_NAMES> open.")
-STEP8_NEW = ("Checked <number of merge requests>: <KEPT> kept, <DISMISSED> dismissed, <SPLIT> moved, <REMOVED> removed, "
-             "<number in OPEN_NAMES> open, approved <APPROVED><NOTE_A>.")
+# T51: the Step 8 line is back to its pre-T46 form (the approval field was removed with Step 7d)
+STEP8 = ("Checked <number of merge requests>: <KEPT> kept, <DISMISSED> dismissed, <SPLIT> moved, <REMOVED> removed, "
+         "<number in OPEN_NAMES> open.")
+# T51: words that only an approval step would need; none may come back
+NEVER = ("/approve", "approval_state", "approved_by", "eligible_approvers", "APPROVED")
 
 
 def parse(text: str):
@@ -52,6 +52,19 @@ def test_yaml_parses_and_stays_under_40_kib(flow):
     assert len(FLOW.read_bytes()) < 40 * 1024 and len(system.encode()) < 40 * 1024
     assert doc["components"][0]["toolset"] == TOOLS
     assert system.isascii()
+
+
+def test_the_flow_never_approves(flow):
+    """T51: the bot approval (Step 7d) was removed on GitLab staff's advice: a flow's approval counts as the person who
+    started it, so it is not independent. Placed second so that `-x` names this test for every T51 mutant."""
+    _, system = flow
+    text = FLOW.read_text()
+    for word in NEVER:
+        assert word not in text, word
+    assert ("You never decide whether a change is good, you never approve a merge request, you never merge or close "
+            "one,") in system
+    assert "Step 7d" not in text and "you approve" not in system
+    assert f'"{STEP8}" No analysis.' in system
 
 
 def test_the_new_words_are_there(flow):
@@ -114,8 +127,8 @@ def test_every_earlier_quoted_phrase_is_kept(flow):
     old = parse(r.stdout)["prompts"][0]["prompt_template"]["system"]
     quoted = set(re.findall(r'"([^"\n]{3,})"', old))
     assert len(quoted) > 60
-    assert STEP8_OLD in quoted and STEP8_NEW in system
-    assert sorted(q for q in quoted if q not in system and q != STEP8_OLD) == []
+    assert STEP8 in quoted and STEP8 in system
+    assert sorted(q for q in quoted if q not in system) == []
 
 
 def test_t42_the_one_line_edit_is_checked_with_compare_not_with_a_character_count(flow):
@@ -157,7 +170,7 @@ def test_t42_a_no_issue_merge_request_never_swaps_its_label_and_stays_in_draft(f
     assert 'and the label "itemator::no-issue" is not on the merge request (one that nobody described' in step
 
 
-# ---------------------------------------------------------------- T46: the asker rule, the receipt, the approval
+# ---------------------------------------------------------------- T46: the asker rule and the receipt (T51 removed the approval)
 def between(system: str, start: str, end: str) -> str:
     return system[system.index(start):system.index(end, system.index(start))]
 
@@ -167,10 +180,10 @@ ASK_CHECK = "in an ASKER_ONLY thread, the author's username is exactly one of AS
 
 def test_t46_steps_are_in_order_and_each_merge_request_runs_them_all(flow):
     _, system = flow
-    order = [system.index(s) for s in ("Step 7.", "Step 7b.", "Step 7c.", "Step 7d.", "Step 8.")]
+    order = [system.index(s) for s in ("Step 7.", "Step 7b.", "Step 7c.", "Step 8.")]
     assert order == sorted(order)
-    assert "Do steps 2 to 7d for each IID in MRS" in system
-    assert 'APPROVED = "no" and NOTE_A = empty.' in system
+    assert "Do steps 2 to 7c for each IID in MRS" in system
+    assert "PEOPLE = empty, OPEN_NAMES = empty and ALWAYS = empty." in system
 
 
 def test_t46_the_asker_sentence_is_read_exactly_as_the_checker_writes_it(flow):
@@ -205,11 +218,11 @@ def test_t46_only_an_asker_keeps_or_dismisses_and_split_remove_keep_the_crew_rul
     assert "In an OTHER_ONLY thread leave out every reply whose author is AUTHOR." in step     # both rules apply
 
 
-def test_t46_no_extra_threads_still_reach_the_mention_step_and_the_approval(flow):
+def test_t46_no_extra_threads_still_reach_the_mention_step(flow):
     _, system = flow
     step = between(system, "Step 3.", "Step 4.")
-    assert "If there are no extra threads, change nothing for this merge request except in steps 7b and 7d." in step
-    assert "Do this step even when there are no extra threads" in between(system, "Step 7d.", "Step 8.")
+    assert "If there are no extra threads, change nothing for this merge request except in step 7b." in step
+    assert "Do this step even when there are no extra threads" in between(system, "Step 7b.", "Step 7c.")
 
 
 def test_t46_the_reminder_names_the_asker_and_the_summary_says_who_typed(flow):
@@ -228,7 +241,7 @@ def test_t46_the_reminder_names_the_asker_and_the_summary_says_who_typed(flow):
 
 def test_t46_the_receipt_is_posted_once_after_the_summary_and_never_starts_a_line_with_a_slash(flow):
     _, system = flow
-    step = between(system, "Step 7c.", "Step 7d.")
+    step = between(system, "Step 7c.", "Step 8.")
     for s in ("Do this step only when OPEN_NAMES is empty, the merge request has at least one extra",
               "step 7 posted the summary in this run or its search found the summary already there",
               '"/api/v4/projects/<project_id>/merge_requests/<IID>/closes_issues" and params {"per_page": "20"}',
@@ -245,39 +258,12 @@ def test_t46_the_receipt_is_posted_once_after_the_summary_and_never_starts_a_lin
     assert "create_issue_note" not in system.replace(step, "")          # the issue gets nothing from any other step
 
 
-def test_t46_quoted_strings_that_start_with_a_slash_are_endpoints_or_the_one_approve(flow):
+def test_t46_quoted_strings_that_start_with_a_slash_are_endpoints(flow):
     _, system = flow
-    assert ('No line of any note, reply, title or description you write may start with "/" (GitLab runs such a line as '
-            'a command), except the one note of step 7d whose whole body is "/approve".') in system
+    assert ('No line of any note, reply, title or description you write may start with "/", with no exception (GitLab runs '
+            'such a line as a command).') in system
     slash = [q for q in re.findall(r'"([^"\n]+)"', system) if q.startswith("/")]
-    assert slash and all(q.startswith("/api/v4/") or q in ("/approve", "/", "/merge_requests/<n>") for q in slash), slash
-    assert system.count('"/approve"') == 2                               # the rule above and step 7d
-    assert "you never approve" not in system and "you approve one only in step 7d" in system
-
-
-def test_t46_approval_only_by_the_named_rule_once_for_the_commit_read(flow):
-    _, system = flow
-    step = between(system, "Step 7d.", "Step 8.")
-    for s in ("but only when OPEN_NAMES is empty, step 3 read a complete discussion list, and every "
-              "set_discussion_resolved call with resolved true in this run worked",
-              '"/api/v4/projects/<project_id>/merge_requests/<IID>/approval_state"',
-              'If no rule in its rules has a user whose username is REACT_BOT among its eligible_approvers, APPROVED = '
-              '"not required" and stop this step',
-              'If a user whose username is REACT_BOT is already in approved_by of any rule, APPROVED = "yes" and stop '
-              "this step.",
-              '{"scope": "notes", "search": "itemator:head=<HEAD2>", "per_page": "20"}',
-              "an author whose username is CARD_BOT",
-              "If there is no CARD or the search fails, stop this step.",
-              'If the merge request has no extra threads and the body of CARD does not start with "Nothing beyond ", '
-              "stop this step.",
-              "its diff_refs.head_sha is not exactly HEAD2",
-              'a body that is exactly "/approve" and nothing else (no marker)',
-              'otherwise APPROVED = "no" and NOTE_A = ", approval not recorded". Never try a second time.'):
-        assert s in step, s
-    assert step.index("eligible_approvers") < step.index("already in approved_by") < step.index("CARD_BOT") \
-        < step.index("head_sha is not exactly HEAD2") < step.index('exactly "/approve"')
-    assert "HEAD2 = diff_refs.head_sha as step 2 read it" in step
-    assert f'"{STEP8_NEW}"' in system[system.index("Step 8."):]
+    assert slash and all(q.startswith("/api/v4/") or q in ("/", "/merge_requests/<n>") for q in slash), slash
 
 
 def test_t46_the_pre_registered_asker_cases_are_complete():

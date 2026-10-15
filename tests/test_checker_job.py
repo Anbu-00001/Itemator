@@ -1,5 +1,5 @@
 """T20 item 8 and item 5: the itemator job runs the checker exported from the target branch (the job script in
-.gitlab-ci.yml, run with sh on a local fixture repository), and without a policy file the facts are byte-for-byte
+ci/itemator-job.yml, run with sh on a local fixture repository), and without a policy file the facts are byte-for-byte
 what the checker before T20 (commit 5bddaf6) wrote for every replay record in results/replay_v4_*.json,
 apart from the fourth answer (T23) in each thread stub and in the card's todo line."""
 import datetime
@@ -29,9 +29,9 @@ with open(a[a.index("--out") + 1], "w") as fh:
 
 def job_script() -> str:
     """The `- |` block under `script:` of the itemator job, dedented (no YAML library: the layout is fixed)."""
-    path = ROOT / ".gitlab-ci.yml"
+    path = ROOT / "ci" / "itemator-job.yml"
     if not path.exists():
-        pytest.skip("no .gitlab-ci.yml in this copy")
+        pytest.skip("no ci/itemator-job.yml in this copy")
     lines = path.read_text().split("\n")
     i = lines.index("itemator:")
     j = next(k for k in range(i + 1, len(lines)) if lines[k].strip() == "- |" and lines[k - 1].strip() == "script:")
@@ -226,3 +226,10 @@ def test_replay_records_pass_through_unchanged_without_a_policy(monkeypatch):
     assert seen == 240 and rewritten > 0 and offers.get(("split", "remove")) and offers.get(())
     assert with_files > 0 or not cache                  # the anchors and the scan ran on real diffs too
     print(f"{seen} replay records, {with_files} with their cached diffs, offers {offers}")
+
+
+def test_the_policy_job_runs_even_when_an_earlier_job_failed():
+    """The job is injected into the last stage: without `when: always` it is skipped when any earlier job fails, and the card gets no facts."""
+    text = (ROOT / "ci" / "itemator-job.yml").read_text()
+    assert "\n  stage: .pipeline-policy-post\n" in text
+    assert '  rules:\n    - if: $CI_PIPELINE_SOURCE == "merge_request_event"\n      when: always\n' in text

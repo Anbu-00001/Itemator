@@ -1,0 +1,42 @@
+{
+ "what": "One real Duo Developer Flow run (eval/policy_run_issues.json, written down before the run) to check that a merge request opened by an agent gets the `itemator` job from the pipeline execution policy. Not the eight-run study.",
+ "limits": "One run, one issue, one agent, started by the person who wrote the issue; the card trigger was off, so this checks the pipeline, not the card.",
+ "issues_run": 1,
+ "merge_requests_opened": 1,
+ "read_by_the_job": 1,
+ "unplaced_total": 0,
+ "descriptions_with_nothing_beyond": 1,
+ "with_extras": 0,
+ "extras": 0,
+ "extras_said": {
+  "listed": 0,
+  "named": 0,
+  "silent": 0,
+  "no_sentence": 0
+ },
+ "descriptions_with_a_beyond_section": 1,
+ "descriptions_listing_something_under_the_heading": 0,
+ "tool_calls_median": 20,
+ "tool_calls_total": 20,
+ "per_issue": [
+  {
+   "id": 101,
+   "kind": "neutral",
+   "mr_iid": 83,
+   "files_changed": [
+    "itemator/shipped.py",
+    "tests/test_shipped.py"
+   ],
+   "state": "author_wrote_issue",
+   "extras": [],
+   "unplaced": 0,
+   "tool_calls": 20,
+   "seconds_total": 194,
+   "pipeline_status": "success"
+  }
+ ],
+ "policy_job_in_agent_pipeline": true,
+ "policy_job_stage": ".pipeline-policy-post",
+ "policy_job_status": "success",
+ "checker_source": "base"
+}

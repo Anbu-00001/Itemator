@@ -1,0 +1,10 @@
+{
+ "what": "What a run costs in GitLab Duo credits, from our own account meter. The meter lags by many hours and covers one account, so these are estimates from the change in the meter divided by the tool calls the runs made, not a billing statement.",
+ "basis": "Meter readings taken before and after groups of live runs on 2026-10-11 and 2026-10-12 (about 75 tool calls for +13.2, and about 27 calls for +3.5).",
+ "credits_per_tool_call": {"low": 0.13, "high": 0.18},
+ "card_run_tool_calls": {"typical": 9},
+ "react_run_tool_calls": {"min": 4, "max": 26},
+ "developer_flow_run_tool_calls": {"min": 20, "max": 27},
+ "monthly_cap_per_user": 500,
+ "limits": "One account, one model setting, small runs. A run with more threads makes more calls."
+}

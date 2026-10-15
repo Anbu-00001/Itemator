@@ -176,7 +176,7 @@ def run(cases_doc):
 def summarize(runs):
     rows = [c for r in runs for c in r["cases"]]
     ok = [c for c in rows if c["match"]]
-    return {"what": "Eight reply cases for the reaction flow (react v1.5.0), pre-registered in eval/react_study_cases.json. Counts only.",
+    return {"what": f"Eight reply cases for the reaction flow, pre-registered in {CASES.relative_to(ROOT)}. Counts only.",
             "limits": "One merge request per run, eight cases written by us, one author account, one model reading. It measures how the model reads our reply tests, not how people answer.",
             "runs": len(runs), "cases": len(rows), "as_expected": len(ok), "misread": len(rows) - len(ok),
             "misread_cases": [{"n": c["n"], "label": c["label"], "expected": c["expected"], "got": c["got"]} for c in rows if not c["match"]],
@@ -186,7 +186,11 @@ def summarize(runs):
 
 def main():
     ap = argparse.ArgumentParser(); ap.add_argument("--credit-stop", type=float, default=0.0); ap.add_argument("--summarize", action="store_true")
+    ap.add_argument("--round2", action="store_true", help="the second round: eval/react_study_cases_round2.json, results/react_study_round2*.json")
     a = ap.parse_args()
+    global CASES, RAW, OUT
+    if a.round2:
+        CASES, RAW, OUT = ROOT / "eval" / "react_study_cases_round2.json", ROOT / "results" / "react_study_round2_raw.json", ROOT / "results" / "react_study_round2.json"
     runs = json.loads(RAW.read_text()) if RAW.exists() else []
     if a.summarize:
         OUT.write_text(json.dumps(summarize(runs), indent=1) + "\n"); print("wrote", OUT.name); return 0

@@ -1,0 +1,31 @@
+{
+ "what": "Eleven pre-registered attempts to merge a merge request with an unnamed extra past the optional hold, after the itemator job moved into a pipeline execution policy (eval/bypass_matrix_v2_cases.json). Counts only.",
+ "limits": "Eleven attempts we thought of, one run each, one project. It counts what we tried, not what is possible.",
+ "attempts": 11,
+ "merged": 0,
+ "blocked": 11,
+ "as_expected": 11,
+ "blocked_by_the_itemator_job": 9,
+ "blocked_only_by_another_job": [
+  "fake itemator allowed to fail",
+  "fake itemator passes"
+ ],
+ "merged_scenarios": [],
+ "blocked_scenarios": [
+  "plain",
+  "project jobs deleted",
+  "fake itemator allowed to fail",
+  "fake itemator passes",
+  "workflow never",
+  "ci skip",
+  "job file edited",
+  "checker edited",
+  "retry without names",
+  "forged summary",
+  "bot variable overridden"
+ ],
+ "mismatches": [],
+ "runs": "Two runs. Run 1 (job at the last stage, without `when: always`) crashed at attempt 11 and wrote no raw record; its log is results/bypass_matrix_v2_run1.log (attempts 1 to 10 blocked, but in 7 and 8 the itemator job was skipped because an earlier job had failed, which also showed that the job did not run after an earlier failure). The policy job was then changed to run `when: always`, the runner was changed to keep each attempt as it finishes, and this file counts run 2 only.",
+ "blocked_only_by_another_job_why": "The two fake-job attempts never created a pipeline: the policy has `suffix: never`, so a merge request that defines a job named itemator fails at pipeline creation ('job names must be unique').",
+ "forged_summary_note": "Attempts 10 and 11 post the forged summary from the project owner's own account, not the reaction account and not a second person."
+}

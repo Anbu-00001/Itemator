@@ -1,0 +1,11 @@
+{
+ "what": "One live run of the optional hold in the reference app's order, with the itemator job injected by the pipeline execution policy (merge request 85 on a throwaway target branch whose policy file has hold_until_named = true; 'Pipelines must succeed' on). Written as it happened; no cases file because it repeats the first hold run (merge request 45) with the job now coming from the policy.",
+ "limits": "One run. The merge went into a throwaway target branch. My script first missed the card's start note, assigned the card account as reviewer, and so started a second card run that posted the same card again (a few credits wasted); the card had in fact started by itself about a minute after the failed pipeline.",
+ "auto_merge_armed_while_pipeline_running": true,
+ "itemator_job_failed_first": true,
+ "card_started_by_itself_after_failed_pipeline": true,
+ "merge_request_kept_in_draft_with_label": true,
+ "name_typed_then_one_job_retry": true,
+ "merged_by_gitlab_by_itself_after_retry": true,
+ "retry_clicks": 1
+}

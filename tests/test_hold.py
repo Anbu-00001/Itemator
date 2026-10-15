@@ -40,7 +40,7 @@ def test_an_unnamed_extra_fails_the_job_and_says_what_to_do(repo, tmp_path, monk
     assert code == 1 and out["state"] == "extras"          # the artifact is written, so the card can still be posted
     assert out["hold"] == {"enabled": True, "blocked": True, "reason": "no summary note for this commit yet"}
     assert out["card"]["todo_line"].endswith(ci.HOLD_LINE) and out["extras"]
-    assert "held: 1 extras are not named yet" in capsys.readouterr().err
+    assert "held: 1 extra is not named yet" in capsys.readouterr().err
 
 
 def test_the_summary_for_this_commit_releases_the_hold(repo, tmp_path, monkeypatch):

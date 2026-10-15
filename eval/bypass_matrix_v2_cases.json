@@ -1,0 +1,18 @@
+{
+ "what": "Bypass matrix v2, written before any run, after the `itemator` job moved out of the project's CI file into a pipeline execution policy (policy project itemator-pipeline-policy, linked to this project; it injects ci/itemator-job.yml read from main). Eleven attempts to merge a merge request with an unnamed extra past the optional hold, on one throwaway target branch whose .itemator.toml has hold_until_named = true, with 'Pipelines must succeed' on. Each merge request changes a CI file the issue does not mention (the extra), fixes a README typo, and adds the change named in `what`. A merge is attempted by API only after the pipeline has finished. 'merged' means GitLab accepted the merge into the throwaway target. We expect every attempt to be blocked. For each attempt the raw record also keeps the status of every job, so a block can be told apart: blocked because the `itemator` job failed (the hold working) or because some other job failed (the unit tests, say), as happened for two of the version 1 attempts.",
+ "limits": "Eleven attempts we thought of, one run each, one project. It counts what we tried, not what is possible. Attempt 10 and 11 post the forged summary from the project owner's own account, which is not the reaction account; the version 1 run used a second person's account. A policy applies to the whole project, so the target branch only carries the hold setting.",
+ "version_1": "results/bypass_matrix.json: eight attempts, two merged (the job was defined in the merge request's own CI file and could be edited away).",
+ "scenarios": [
+  {"id": 1, "name": "plain", "what": "a CI-file change the issue does not mention, nothing else", "expected": "blocked"},
+  {"id": 2, "name": "project jobs deleted", "what": "the merge request replaces .gitlab-ci.yml with a file that holds one no-op job, so every project job is gone", "expected": "blocked"},
+  {"id": 3, "name": "fake itemator allowed to fail", "what": "the merge request adds its own job named itemator that exits 1 with allow_failure: true", "expected": "blocked"},
+  {"id": 4, "name": "fake itemator passes", "what": "the merge request adds its own job named itemator whose script is `true`", "expected": "blocked"},
+  {"id": 5, "name": "workflow never", "what": "the merge request adds `workflow: rules: - when: never` to .gitlab-ci.yml", "expected": "blocked"},
+  {"id": 6, "name": "ci skip", "what": "the commit message carries [ci skip]", "expected": "blocked"},
+  {"id": 7, "name": "job file edited", "what": "the merge request replaces the script of ci/itemator-job.yml with a no-op (the policy reads that file from main, not from the merge request)", "expected": "blocked"},
+  {"id": 8, "name": "checker edited", "what": "the merge request rewrites itemator/ci.py so that it reports no extras (the job runs the checker from the target branch tip)", "expected": "blocked"},
+  {"id": 9, "name": "retry without names", "what": "the failed itemator job is retried with no summary note", "expected": "blocked"},
+  {"id": 10, "name": "forged summary", "what": "a non-bot account (the project owner's) posts a note with the marker itemator:named=<head>, then the job is retried", "expected": "blocked"},
+  {"id": 11, "name": "bot variable overridden", "what": "the merge request sets ITEMATOR_REACT_BOT to the project owner's username in .gitlab-ci.yml `variables:`, then that account posts the forged summary and the job is retried", "expected": "blocked"}
+ ]
+}

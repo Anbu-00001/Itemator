@@ -25,52 +25,8 @@ hardcode-audit:
   script:
     - python tools/hardcode_audit.py
 
-# The facts for the card: fixed rules, no model. The Duo flow reads the artifact.
-# The checker comes from the target branch (T20, T26 F1): itemator/ is exported from the tip of the target branch
-# (origin/<target>, fetched here; the merge base CI_MERGE_REQUEST_DIFF_BASE_SHA when that ref cannot be read, and
-# the card then says so) into a directory outside the checkout and run from there, so a merge request that edits
-# itemator/ cannot rewrite the code that judges it. Only when that commit has no itemator/ci.py yet does the merge
-# request's own copy run, and the card says so. Limit: this job definition itself still comes from the merge request.
-itemator:
-  image: python:3.12
-  variables:
-    GIT_DEPTH: "0"
-  rules:
-    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
-  script:
-    - |
-      set -eu
-      base="${CI_MERGE_REQUEST_DIFF_BASE_SHA:-}"
-      target="${CI_MERGE_REQUEST_TARGET_BRANCH_NAME:-}"
-      tip=""
-      if [ -n "$target" ]; then
-        git fetch -q --no-tags origin "+refs/heads/$target:refs/remotes/origin/$target" 2>/dev/null || true
-        tip="$(git rev-parse -q --verify "refs/remotes/origin/$target^{commit}" 2>/dev/null || true)"
-      fi
-      case "$tip" in
-        *[!0-9a-f]*|"") tip="$base" ;;
-      esac
-      [ "${#tip}" -eq 40 ] || tip="$base"
-      checker=merge_request
-      dir="$CI_PROJECT_DIR"
-      case "$tip" in
-        *[!0-9a-f]*) ;;
-        *)
-          if [ "${#tip}" -eq 40 ] && git cat-file -e "$tip:itemator/ci.py" 2>/dev/null; then
-            dir="$(mktemp -d)"
-            git archive --format=tar -o "$dir.tar" "$tip" itemator
-            tar -x -f "$dir.tar" -C "$dir"
-            checker=base
-          fi
-          ;;
-      esac
-      cd "$dir"
-      ITEMATOR_CHECKER="$checker" ITEMATOR_CHECKER_SHA="$tip" python -E -m itemator.ci --repo "$CI_PROJECT_DIR" --out "$CI_PROJECT_DIR/itemator.json"
-  artifacts:
-    paths:
-      - itemator.json
-    expire_in: 30 days
-    when: always
+# The `itemator` job is not defined here: a pipeline execution policy injects it (ci/itemator-job.yml, read from main), so a
+# merge request cannot edit, delete or skip it.
 
 # Mutation tests (eval/mutate_extras.py and eval/mutate_ci.py): they break the rules or the job one line at a time and
 # every mutant must make a test fail. Manual, because a run takes several minutes; start it from the pipeline page.
@@ -113,3 +69,26 @@ decision-log:
       - decisions.md
     expire_in: 90 days
     when: always
+
+# The deployment page. `publish-package` is the deployment: it uploads the checker (itemator/) to this project's package
+# registry and records a deployment of the `production` environment. `shipped-page` then publishes, with GitLab Pages, the page "what shipped": for each
+# deployment, the merge requests in it, their extras and who named each (itemator/shipped.py; it only reads GitLab).
+publish-package:
+  stage: deploy
+  image: python:3.12
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+  environment:
+    name: production
+  script:
+    - tar czf itemator.tar.gz itemator
+    - 'curl --fail --silent --show-error --header "JOB-TOKEN: $CI_JOB_TOKEN" --upload-file itemator.tar.gz "$CI_API_V4_URL/projects/$CI_PROJECT_ID/packages/generic/itemator/0.1.$CI_PIPELINE_IID/itemator.tar.gz"'
+
+shipped-page:
+  stage: .post
+  image: python:3.12
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+  script:
+    - python -E -m itemator.shipped --environment production --out public
+  pages: true

@@ -936,7 +936,7 @@ def hold(report: dict, api, pid, iid, head: str) -> dict:
     """T44: with `names.hold_until_named` in the target branch's policy, the job fails while a kept extra has no name, so
     a merge armed inside the pipeline (the organisers' reference loop) cannot go through before the card exists. It
     passes when the reaction account has posted its summary for this exact head commit (the summary is posted only
-    when every extra has an answer). Only a note by an account whose name starts with `ai-itemator-react` counts, and
+    when every extra has an answer). Only a note by the exact reaction account (REACT_BOT) counts, and
     a note that cannot be read counts as not named: the hold fails closed."""
     if not (report.get("policy") or {}).get("active", {}).get("hold_until_named") or not report["extras"]:
         return {"enabled": bool((report.get("policy") or {}).get("active", {}).get("hold_until_named")), "blocked": False}
@@ -977,7 +977,7 @@ def main(argv=None, env=None, registry_fetch=None) -> int:
     print(report["card"]["todo_line"])
     print(log_block(report))
     if report.get("hold", {}).get("blocked"):
-        print(f"itemator: held: {len(report['extras'])} extras are not named yet ({report['hold']['reason']}). "
+        print(f"itemator: held: {len(report['extras'])} {'extra is' if len(report['extras']) == 1 else 'extras are'} not named yet ({report['hold']['reason']}). "
               f"{HOLD_LINE}", file=sys.stderr)
         return 1
     return 0

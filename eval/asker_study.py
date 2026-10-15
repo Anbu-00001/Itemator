@@ -132,7 +132,7 @@ def summarize(runs):
     rows = [c for r in runs for c in r["cases"]]
     ok = [c for c in rows if c["match"]]
     return {"what": "Six reply cases for names.asker_required (reaction flow), pre-registered in eval/asker_study_cases.json. Counts only.",
-            "limits": "One run, one merge request, six cases written by us, two accounts, one model reading. The cases file names the first account as ASKER; the runner (committed before the run, a86e848) used the second account as ASKER and the first as OTHER, the same swap in every case, so the outcomes stand. It shows whether the model applies the username test, not how people answer; a username that differs only in letter case cannot be produced on GitLab, so that clause is covered by unit tests only.",
+            "limits": "Two runs (on two versions of the flow), one merge request each, the same six cases, six cases written by us, two accounts, one model reading. The cases file names the first account as ASKER; the runner (committed before the run, a86e848) used the second account as ASKER and the first as OTHER, the same swap in every case, so the outcomes stand. It shows whether the model applies the username test, not how people answer; a username that differs only in letter case cannot be produced on GitLab, so that clause is covered by unit tests only.",
             "runs": len(runs), "cases": len(rows), "as_expected": len(ok), "misread": len(rows) - len(ok),
             "misread_cases": [{"n": c["n"], "label": c["label"], "expected": c["expected"], "got": c["got"]} for c in rows if not c["match"]],
             "asker_sentence_in_every_thread": all(r.get("asker_sentence_in_every_thread") for r in runs),

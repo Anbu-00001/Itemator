@@ -1,0 +1,14 @@
+{
+ "what": "One real Duo Developer Flow run, written down before it runs, to check that a merge request opened by an agent gets the `itemator` job from the pipeline execution policy (the job is no longer in the project's CI file). Run with: python3 eval/field_study.py --issues eval/policy_run_issues.json --raw results/policy_run_raw.json --out results/policy_run.json --max 1",
+ "expected": "The pipeline of the merge request the Developer Flow opens contains a job named itemator in the stage .pipeline-policy-post and it ends success or failed (not skipped, not missing). The card trigger stays off, so no card appears; this run checks the pipeline, not the card. About 3 to 5 Duo credits.",
+ "kill": "No merge request within 15 minutes, or the pipeline has no itemator job: write that in the README and fix the policy before anything else.",
+ "limits": "One run, one issue, one agent, started by the person who wrote the issue. It shows the job is injected for an agent's merge request, nothing more.",
+ "issues": [
+  {
+   "id": 101,
+   "kind": "neutral",
+   "title": "Put the environment name in the log line of the shipped page job",
+   "description": "`python -m itemator.shipped` ends with one line that starts `itemator shipped:`. Make that line say which environment it read, for example `itemator shipped: production: 3 deployments, ...`, and keep the tests passing (add one test for the new wording)."
+  }
+ ]
+}

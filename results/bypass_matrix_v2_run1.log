@@ -1,0 +1,25 @@
+ 1 plain                          expected blocked  got blocked  OK  pipeline failed  itemator {'itemator': 'failed'}
+ 2 project jobs deleted           expected blocked  got blocked  OK  pipeline failed  itemator {'itemator': 'failed'}
+ 3 fake itemator allowed to fail  expected blocked  got blocked  OK  pipeline failed  itemator {'itemator': 'created'}
+ 4 fake itemator passes           expected blocked  got blocked  OK  pipeline failed  itemator {'itemator': 'created'}
+ 5 workflow never                 expected blocked  got blocked  OK  pipeline failed  itemator {'itemator': 'failed'}
+ 6 ci skip                        expected blocked  got blocked  OK  pipeline failed  itemator {'itemator': 'failed'}
+ 7 job file edited                expected blocked  got blocked  OK  pipeline failed  itemator {'itemator': 'skipped'}
+ 8 checker edited                 expected blocked  got blocked  OK  pipeline failed  itemator {'itemator': 'skipped'}
+ 9 retry without names            expected blocked  got blocked  OK  pipeline failed  itemator {'itemator': 'failed'}
+10 forged summary                 expected blocked  got blocked  OK  pipeline failed  itemator {'itemator': 'failed'}
+Traceback (most recent call last):
+  File "/home/anbu/26_class/LifeAfterCode/work/showcase/eval/bypass_matrix_v2.py", line 142, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/home/anbu/26_class/LifeAfterCode/work/showcase/eval/bypass_matrix_v2.py", line 138, in main
+    rec = run(); runs.append(rec); RAW.write_text(json.dumps(runs, indent=1) + "\n"); return 0
+          ^^^^^
+  File "/home/anbu/26_class/LifeAfterCode/work/showcase/eval/bypass_matrix_v2.py", line 94, in run
+    row["retried"] = retry_itemator(pl)
+                     ^^^^^^^^^^^^^^^^^^
+  File "/home/anbu/26_class/LifeAfterCode/work/showcase/eval/bypass_matrix_v2.py", line 50, in retry_itemator
+    R.api(f"projects/{P}/jobs/{jid}/retry", "POST")
+  File "/home/anbu/26_class/LifeAfterCode/work/showcase/eval/react_study.py", line 35, in api
+    raise RuntimeError(f"{path}: {r.stderr.strip()[:200]}")
+RuntimeError: projects/87291130/jobs/17187227683/retry: glab: 403 Forbidden - Job is not retryable (HTTP 403)

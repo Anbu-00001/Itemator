@@ -1,0 +1,54 @@
+[
+ {
+  "id": 101,
+  "kind": "neutral",
+  "title": "Put the environment name in the log line of the shipped page job",
+  "started": "2026-10-15T07:14:36",
+  "issue_iid": 45,
+  "mr_iid": 83,
+  "branch": "duo/feature/45-environment-in-shipped-log-line",
+  "seconds_to_mr": 107,
+  "mr_title": "Draft: Name the environment in the shipped job's log line",
+  "mr_description": "Closes https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/39194174/showcase/-/work_items/45\n\n## What changed\n- `itemator/shipped.py`: the final log line is now `itemator shipped: <environment>: N deployments, ...` (for example `itemator shipped: production: 3 deployments, ...`). It uses the same cleaned environment name that the page and `shipped.json` already carry.\n- `tests/test_shipped.py`: one new test, `test_the_log_line_says_which_environment_it_read`, runs `main` with `--environment staging` and checks the wording.\n\n## Verification\n- `pytest` could not be installed in this environment (the package proxy returned 403), so `python -m pytest` was **not run**.\n- Fallback: I ran every test in `tests/test_shipped.py` (11, including the new one) with a small hand-written runner under Python 3.12. All passed. The rest of the suite was not run, so CI is the real check for it.\n\n## Beyond the issue\nNothing.",
+  "session_id": "9503562",
+  "files_changed": [
+   "itemator/shipped.py",
+   "tests/test_shipped.py"
+  ],
+  "pipeline_jobs": {
+   "itemator": {
+    "stage": ".pipeline-policy-post",
+    "status": "success"
+   },
+   "hardcode-audit": {
+    "stage": "test",
+    "status": "success"
+   },
+   "unit-tests": {
+    "stage": "test",
+    "status": "success"
+   }
+  },
+  "pipeline_status": "success",
+  "tool_calls": 20,
+  "itemator": {
+   "rules_version": 6,
+   "state": "author_wrote_issue",
+   "extras": [],
+   "unplaced": 0,
+   "card": {
+    "final_line": "No one but the author described this change.",
+    "todo_line": "A second person reads #45 before approving.",
+    "caveat_line": null,
+    "injection_line": null
+   },
+   "checker": {
+    "source": "base",
+    "sha": "256315f855b8f1bc3999be9fcd73003537841fcb"
+   }
+  },
+  "has_beyond_section": true,
+  "beyond_names_something": false,
+  "seconds_total": 194
+ }
+]

@@ -8,11 +8,14 @@ T35 mutants break itemator/said.py or its wiring in itemator/ci.py and are judge
 T40 mutants break the `always` offer in itemator/ci.py (judged by tests/test_answers.py) or the react prompt in
 flows/itemator_react.yml (judged by tests/test_react_prompt.py, which parses it with a YAML parser).
 T45 mutants break `names.asker_required` in itemator/policy.py and itemator/ci.py (judged by tests/test_asker.py).
-T46 mutants break the asker rule, the issue receipt and the approval step of flows/itemator_react.yml (judged by
-tests/test_react_prompt.py).
+T46 mutants break the asker rule and the issue receipt of flows/itemator_react.yml (judged by
+tests/test_react_prompt.py); its approval-step mutants were retired with the step itself (T51).
+T51 mutants put an approval back into the react prompt (each forbidden word, the old header, the slash exception,
+the Step 8 field), each killed by tests/test_react_prompt.py::test_the_flow_never_approves; three more are the
+non-approval T46 mutants of the same lines with updated anchors.
 
 Usage (WORK must be outside the repository, or pytest would collect the copies):
-    .venv/bin/python -I eval/mutate_ci.py "$PWD" /tmp/itemator-ci-mutants [T17|T35|T40|T42|T43|T44|T45|T46]
+    .venv/bin/python -I eval/mutate_ci.py "$PWD" /tmp/itemator-ci-mutants [T17|T35|T40|T42|T43|T44|T45|T46|T51]
 With T17 (or T35, T40), only those mutants run (every anchor of every mutant is still checked first).
 Exit status 0 only when every mutant is killed.
 """
@@ -571,22 +574,26 @@ T46 = [(label, old, new, path, test) for label, old, new, path, test in [
  ("t46: receipt while names are open", "Do this step only when OPEN_NAMES is empty, the merge request has at least one extra", "Do this step only when the merge request has at least one extra", FL, TP),
  ("t46: receipt with no extras", "only when OPEN_NAMES is empty, the merge request has at least one extra (one NAME), and step 7", "only when OPEN_NAMES is empty and step 7", FL, TP),
  ("t46: receipt without the summary", ", and step 7 posted the summary in this run or its search found the summary already there (if that search failed, skip this step).", ".", FL, TP),
- ("t46: approve without a rule naming the bot", "If no rule in its rules has a user whose username is REACT_BOT among its eligible_approvers, APPROVED", "If its rules list is empty, APPROVED", FL, TP),
- ("t46: approve twice", " If a user whose username is REACT_BOT is already in approved_by of any rule, APPROVED = \"yes\" and stop this step.", "", FL, TP),
- ("t46: approve with names open", "but only when OPEN_NAMES is empty, step 3 read a complete discussion list,", "but only when step 3 read a complete discussion list,", FL, TP),
- ("t46: approve with a thread unresolved", ", and every set_discussion_resolved call with resolved true in this run worked (no extra thread is left unresolved).", ".", FL, TP),
- ("t46: approve without the card for the head", " CARD = an entry in its data with noteable_type \"MergeRequest\", noteable_iid equal to the IID and an author whose username is CARD_BOT (the card for this exact commit). If there is no CARD or the search fails, stop this step.", "", FL, TP),
- ("t46: approve a clean MR the card did not clear", " If the merge request has no extra threads and the body of CARD does not start with \"Nothing beyond \", stop this step.", "", FL, TP),
- ("t46: approve a head this run did not read", " If its state is not \"opened\" or its diff_refs.head_sha is not exactly HEAD2 (a push, or a commit made in step 5a), stop this step: never approve a commit this run did not read.", "", FL, TP),
- ("t46: approve note carries a marker", "a body that is exactly \"/approve\" and nothing else (no marker)", "a body of \"/approve\", a blank line and MARK(itemator:approve=<HEAD2>)", FL, TP),
- ("t46: approval retried", "Never try a second time.\n", "If not, post it once more.\n", FL, TP),
- ("t46: no rule against slash lines", " No line of any note, reply, title or description you write may start with \"/\" (GitLab runs such a line as a command), except the one note of step 7d whose whole body is \"/approve\".", "", FL, TP),
- ("t46: the old never-approve line", "you never merge or close a merge request, you approve one only in step 7d and only by the one note it describes,", "you never approve, merge or close a merge request,", FL, TP),
- ("t46: early stop skips the approval", "except in steps 7b and 7d.", "except in step 7b.", FL, TP),
- ("t46: approval needs an extra thread", "Do this step even when there are no extra threads, but only when", "Do this step only when the merge request has an extra thread and only when", FL, TP),
- ("t46: loop stops at 7b", "Do steps 2 to 7d for each IID in MRS", "Do steps 2 to 7b for each IID in MRS", FL, TP),
  ("t46: create_issue_note dropped", "      - \"create_issue_note\"\n", "", FL, TP),
- ("t46: step 8 without the approval", "<number in OPEN_NAMES> open, approved <APPROVED><NOTE_A>.\"", "<number in OPEN_NAMES> open.\"", FL, TP),
+]]
+# T51: the bot approval is gone (GitLab staff: a flow's approval counts as the person who started it). Each mutant puts
+# part of it back; the first six add one forbidden word each.
+S8 = '<number in OPEN_NAMES> open." No analysis.'
+T51 = [(label, old, new, path, test) for label, old, new, path, test in [
+ ("t51: /approve posted", S8, S8 + ' Then post one note whose whole body is /approve.', FL, TP),
+ ("t51: approval_state read", S8, S8 + ' Read "/api/v4/projects/<project_id>/merge_requests/<IID>/approval_state" first.', FL, TP),
+ ("t51: approved_by read", S8, S8 + " Say whether REACT_BOT is in approved_by.", FL, TP),
+ ("t51: eligible_approvers read", S8, S8 + " Say whether REACT_BOT is among the eligible_approvers.", FL, TP),
+ ("t51: APPROVED field", S8, S8 + " APPROVED is yes or no.", FL, TP),
+ ("t51: approve quick action in the slash rule", 'may start with "/", with no exception (GitLab runs such a line as a command).', 'may start with "/" (GitLab runs such a line as a command), except the one note whose whole body is "/approve".', FL, TP),
+ ("t51: header lets the flow approve", "you never approve a merge request, you never merge or close one,", "you never merge or close a merge request, you approve one only in step 7d and only by the one note it describes,", FL, TP),
+ ("t51: header drops never approve", "you never approve a merge request, you never merge or close one,", "you never merge or close a merge request,", FL, TP),
+ ("t51: a Step 7d is back", "        Step 8. Reply with one short line:", "        Step 7d. Approval. Post a note that asks a person to approve.\n\n        Step 8. Reply with one short line:", FL, TP),
+ ("t51: Step 8 reports an approval", '<number in OPEN_NAMES> open." No analysis.', '<number in OPEN_NAMES> open, approved <yes|no>." No analysis.', FL, TP),
+ # the three T46 mutants of these lines that were not about approving, with their anchors updated (judged by older tests)
+ ("t51: no rule against slash lines", ' No line of any note, reply, title or description you write may start with "/", with no exception (GitLab runs such a line as a command).', "", FL, TP),
+ ("t51: early stop skips the mention step", "change nothing for this merge request except in step 7b.", "change nothing for this merge request.", FL, TP),
+ ("t51: loop stops at 7b", "Do steps 2 to 7c for each IID in MRS", "Do steps 2 to 7b for each IID in MRS", FL, TP),
 ]]
 SRC = {"itemator/ci.py": (REPO / "itemator/ci.py").read_text(), "itemator/registry.py": (REPO / "itemator/registry.py").read_text(),
        "itemator/policy.py": (REPO / "itemator/policy.py").read_text(), "itemator/said.py": (REPO / "itemator/said.py").read_text(), LG: (REPO / LG).read_text(),
@@ -594,7 +601,7 @@ SRC = {"itemator/ci.py": (REPO / "itemator/ci.py").read_text(), "itemator/regist
 JOBS = ([(*m, "itemator/ci.py", "tests/test_ci.py") for m in M] + [(*m, "itemator/ci.py", "tests/test_ci_anchors.py") for m in A]
         + [(*m, "itemator/ci.py", "tests/test_registry.py") for m in RC] + [(*m, "itemator/registry.py", "tests/test_registry.py") for m in RG]
         + [(*m, "itemator/ci.py", "tests/test_policy.py") for m in PC] + [(*m, "itemator/policy.py", "tests/test_policy.py") for m in PO]
-        + T26 + T35 + T40 + T42 + T43 + T44 + T45 + T46)
+        + T26 + T35 + T40 + T42 + T43 + T44 + T45 + T46 + T51)
 for label, old, new, path, _ in JOBS:
     assert SRC[path].count(old) == 1, f"mutant {label!r}: anchor found {SRC[path].count(old)} times in {path}"
 if sys.argv[3:] == ["T17"]:
@@ -613,6 +620,8 @@ if sys.argv[3:] == ["T45"]:
     JOBS = [j for j in JOBS if j in T45]
 if sys.argv[3:] == ["T46"]:
     JOBS = [j for j in JOBS if j in T46]
+if sys.argv[3:] == ["T51"]:
+    JOBS = [j for j in JOBS if j in T51]
 def run(i, path, text, tests):
     d = WORK / f"m{i:02d}"
     if d.exists(): shutil.rmtree(d)

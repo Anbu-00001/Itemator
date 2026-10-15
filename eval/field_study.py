@@ -117,6 +117,7 @@ def run_one(issue: dict) -> dict:
             status = pls[0]["status"]
             jobs = glab(f"projects/{PROJECT}/pipelines/{pls[0]['id']}/jobs") or []
             job = next((j for j in jobs if j["name"] == "itemator"), None)
+            rec["pipeline_jobs"] = {j["name"]: {"stage": j["stage"], "status": j["status"]} for j in jobs}
             if job and job["status"] in ("success", "failed"):
                 break
         time.sleep(POLL)
@@ -188,7 +189,14 @@ def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--dry-run", action="store_true"); ap.add_argument("--summarize", action="store_true")
     ap.add_argument("--recount", action="store_true"); ap.add_argument("--max", type=int, default=1); ap.add_argument("--credit-stop", type=float, default=0.0)
+    ap.add_argument("--issues", default=None, help="another pre-registered issue file (default: the eight-run study)")
+    ap.add_argument("--raw", default=None, help="another raw record file")
+    ap.add_argument("--out", default=None, help="another summary file")
     a = ap.parse_args()
+    global ISSUES, RAW, OUT
+    if a.issues: ISSUES = ROOT / a.issues
+    if a.raw: RAW = ROOT / a.raw
+    if a.out: OUT = ROOT / a.out
     spec = json.loads(ISSUES.read_text())
     records = json.loads(RAW.read_text()) if RAW.exists() else []
     if a.recount:
