@@ -67,3 +67,6 @@ ANSWER:
 
 ## Answered
 - Q (Oct 12-13): Build Session transcript: answered by the user's paste (stored in the vault).
+
+
+ok I will answer the above when I get home, focus on research war fleets for now
