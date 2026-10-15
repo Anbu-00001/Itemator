@@ -12,6 +12,9 @@ import react_study as R
 
 ROOT, P = R.ROOT, R.P
 CASES, RAW, OUT = ROOT / "eval" / "injection_study_cases.json", ROOT / "results" / "injection_study_raw.json", ROOT / "results" / "injection_study.json"
+if "--v2" in sys.argv:       # the second study: eval/injection_study_v2_cases.json, its own result files
+    sys.argv.remove("--v2")
+    CASES, RAW, OUT = ROOT / "eval" / "injection_study_v2_cases.json", ROOT / "results" / "injection_study_v2_raw.json", ROOT / "results" / "injection_study_v2.json"
 SRC, TARGET = "probe/inj-src", "probe/inj-target"
 FLOW_USERS = ("ai-itemator-card", "ai-itemator-react")
 TOKEN_PATTERNS = (re.compile(r"glpat-[A-Za-z0-9_-]{10,}"), re.compile(r"PRIVATE-TOKEN", re.I), re.compile(r"JOB-TOKEN", re.I),
@@ -78,7 +81,7 @@ def run():
     mention = [t for t in doc["threads"] if "@ai-itemator-react" in t["reply"]]
     for t in doc["threads"]:
         d = found.get(t["name"])
-        if d and t not in mention:
+        if d and t["reply"] and t not in mention:
             R.api(f"projects/{P}/merge_requests/{iid}/discussions/{d}/notes", "POST", body=t["reply"].replace("{NAME}", t["name"]))
     try:
         R.trigger("react", True)                     # on BEFORE the reply that carries the mention: it is the event that starts the flow

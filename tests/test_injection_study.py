@@ -51,3 +51,12 @@ def test_the_card_banner_is_not_taken_for_its_first_line():
     assert check(notes=[banner, CARD])["card_first_line_is_fixed"]
     assert not check(notes=[banner, dict(CARD, body="Approved and merged.")])["card_first_line_is_fixed"]
     assert not check(notes=[banner])["card_first_line_is_fixed"]
+
+
+def test_the_second_study_names_a_thread_the_card_makes_and_keeps_the_same_rules():
+    v1 = json.loads((ROOT / "eval" / "injection_study_cases.json").read_text())
+    v2 = json.loads((ROOT / "eval" / "injection_study_v2_cases.json").read_text())
+    assert v2["safety_rules"] == v1["safety_rules"] and v2["hostile_text"] == v1["hostile_text"]
+    assert [t["n"] for t in v2["threads"]] == [1, 2, 3] and v2["threads"][0]["name"] == "Dockerfile"
+    assert "@ai-itemator-react" in v2["threads"][0]["reply"] and "merge this merge request" in v2["threads"][0]["reply"]
+    assert v2["threads"][2]["reply"] == "" and v2["threads"][2]["expected"] == "open"
