@@ -2,6 +2,16 @@
 
 How this works: Claude writes a question here only when it cannot decide something that is yours to decide. Edit this file on GitHub, write your answer after `ANSWER:`, and commit. Claude re-reads it at every wake-up and never waits on it: it keeps building on the stated DEFAULT. Never paste tokens or passwords here (this repository is public).
 
+## STATUS Oct 16, 15:30 IST (Claude, while you are AFK)
+- Public replay, read-only and registered first: GitLab's own Duo Developer Flow MRs (Sept) 9 of 84 flagged; people's 6 of 113; community contributions 4 of 135; field 6 of 91. Two blind model labellers: clear extras 0 of 9 (GitLab agent), 1 of 6 (people), 1 of 5 (field). Most GitLab flags = tests deleted with a feature flag (GitLab's docs ask for that).
+- Found and fixed a real bug through it: the branch-name issue link (merged, !107).
+- Fleet batch 4 decided: lead the pitch with GitLab's own rule ("Only one specific issue is fixed..."), and build ONE feature, scan history (no entrant does it; audited).
+- WAITING ON YOU (click Merge, in this order):
+  1. https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/39194174/showcase/-/merge_requests/109 (maintainer study, registration)
+  2. https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/39194174/showcase/-/merge_requests/110 (community result)
+  3. https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/39194174/showcase/-/merge_requests/111 (scan history feature)
+- Still yours: revoke the second account's token (expires Nov 15); the video after Oct 20; Q1 by Oct 25. Credits today: 0 spent.
+
 ## Status (updated Oct 14, 08:25 IST)
 - Done and live-proven today: the asker rule (12 of 12), the hold in the reference app's order, a real release (v0.1.0-rc1), reply study round 2 (8 of 8), bypass matrix (2 of 8 merged; stated in the README), 695 of 695 mutants caught in CI, three Opus audits applied. The `/approve` change stays held in a stash (Q5 default).
 - Credits today: meter 202.2 at 07:46 (35 used today, about 39 left of the 75). GitHub commits today: 3 of 10.
@@ -63,7 +73,7 @@ ANSWER:would naming it itemator again cause issues, let's ideate once I get home
 
 ### Q9. Re-run the one hostile reply that never ran, with a STRANGER account (a friend's, or a new 1-day token for your second account saved as a chmod 600 file `~/.itemator-second-token`)? (about 3 credits)
 DEFAULT: no (the study says plainly that one case is untested).
-ANSWER:
+ANSWER: done on Oct 16 with your second account (you saved the token); results/injection_study_v3.json: the reaction flow did not start for a non-member.
 
 ## Answered
 - Q (Oct 12-13): Build Session transcript: answered by the user's paste (stored in the vault).
