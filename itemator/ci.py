@@ -263,8 +263,28 @@ def _issue(raw: dict, project_id: str) -> dict:
             "author_username": author.get("username")}       # T45: checked by asker_usernames before it is shown
 
 
-def linked_issues(api: Api, project_id: str, mr_iid: str, description: str, warnings: list):
-    """The MR's issues: GitLab's closes_issues, else closing words in the description."""
+_FLOW_BRANCH = re.compile(r"^duo/[^/]+/(\d+)-")      # GitLab's Developer Flow names its branch after the issue it was given
+
+
+def flow_branch_issue(branch) -> int | None:
+    """The issue number in a Developer Flow branch name (duo/<kind>/<issue>-<words>), else None."""
+    m = _FLOW_BRANCH.match(branch or "")
+    return int(m.group(1)) if m else None
+
+
+def mentions_issue(text: str | None, n: int, project_path: str | None = None) -> bool:
+    """Whether the text names this project's issue n: as #n (not other/project#n, not !n), or as its issue or work item URL."""
+    t = text or ""
+    if re.search(rf"(?<![\w/!#&.-])#{n}(?!\d)", t):
+        return True
+    return bool(project_path) and re.search(rf"://[^/\s]+/{re.escape(project_path)}/-/(?:issues|work_items)/{n}(?!\d)", t) is not None
+
+
+def linked_issues(api: Api, project_id: str, mr_iid: str, description: str, warnings: list, source_branch=None,
+                  project_path=None):
+    """The MR's issues: GitLab's closes_issues, else closing words in the description, else the issue the flow's branch
+    is named after, when the description names that issue too (labelling, Oct 16: in GitLab's own Developer Flow merge
+    requests a branch number was sometimes a merge request or another project's issue)."""
     closes = api.get(f"/projects/{project_id}/merge_requests/{mr_iid}/closes_issues?per_page=100")
     if closes:
         return [_issue(i, project_id) for i in closes], "closes_issues"
@@ -275,7 +295,17 @@ def linked_issues(api: Api, project_id: str, mr_iid: str, description: str, warn
             warnings.append(f"#{n} is named in the description but was not found")
             continue
         issues.append(_issue(raw, project_id))
-    return issues, ("description" if issues else "none")
+    if issues:
+        return issues, "description"
+    n = flow_branch_issue(source_branch)
+    if n is not None and not mentions_issue(description, n, project_path):
+        warnings.append(f"#{n} is named in the branch {source_branch} but not in the description, so it was not read")
+    elif n is not None:
+        raw = api.get(f"/projects/{project_id}/issues/{n}", missing_ok=True)
+        if raw is not None:
+            return [_issue(raw, project_id)], "branch"
+        warnings.append(f"#{n} is named in the branch {source_branch} but was not found")
+    return [], "none"
 
 
 # -------------------------------------------------------------- injection
@@ -910,7 +940,8 @@ def run(env, repo_dir: str, http, registry_fetch=None) -> dict:
     # characters, per GitLab's CI variable docs; not re-checked offline), so a description from it never says silent.
     cut = not mr.get("description") and bool(description)
     warnings: list[str] = []
-    issues, issues_from = linked_issues(api, pid, iid, description, warnings)
+    issues, issues_from = linked_issues(api, pid, iid, description, warnings, env.get("CI_MERGE_REQUEST_SOURCE_BRANCH_NAME"),
+                                        env.get("CI_PROJECT_PATH"))
     target, resolved = target_tip(repo_dir, env, base)
     policy = POL.read(repo_dir, target)       # T20, T26 F1: from the target branch tip, never from the merge request
     if not resolved:

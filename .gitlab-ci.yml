@@ -78,6 +78,26 @@ decision-log:
     expire_in: 90 days
     when: always
 
+# Scan history (itemator/scan.py): the same rules over the merge requests already merged into the default branch, each
+# read as it landed (its merge or squash commit), so a team sees what went beyond its issue before Itemator was there.
+# Manual; it only reads; no Duo credits. SCAN_LAST sets how many (default 50).
+scan-history:
+  image: python:3.12
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+      when: manual
+      allow_failure: true
+  variables:
+    GIT_DEPTH: "0"
+  script:
+    - python -E -m itemator.scan --target "$CI_DEFAULT_BRANCH" --last "${SCAN_LAST:-50}"
+  artifacts:
+    paths:
+      - scan.json
+      - scan.md
+    expire_in: 90 days
+    when: always
+
 # The deployment page. `publish-package` is the deployment: it uploads the checker (itemator/) to this project's package
 # registry and records a deployment of the `production` environment. `shipped-page` then publishes, with GitLab Pages, the page "what shipped": for each
 # deployment, the merge requests in it, their extras and who named each (itemator/shipped.py; it only reads GitLab).

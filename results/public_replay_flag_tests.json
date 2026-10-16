@@ -1,0 +1,10 @@
+{
+ "what": "How many of the public replay's G flags (Developer Flow merge requests, the agent's own version) are tests deleted together with a feature flag: a `tests_removed` extra whose removed lines name a flag whose definition (config/feature_flags/**/<name>.yml) the same diff deletes. Found after labelling (fleet 8, P1), not pre-registered; the rules are not changed by it. Reads only the replay's cache (eval/cache/gitlab/).",
+ "G_agent_flagged": {
+  "merge_requests": 9,
+  "deletes_a_flag_definition": 4,
+  "extras": 37,
+  "tests_removed": 34,
+  "tests_naming_a_deleted_flag": 24
+ }
+}

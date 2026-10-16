@@ -1,0 +1,17 @@
+{
+ "what": "How the extras the public replay lists are labelled, written before any label exists. Two labellers, two different models, each blind to the other's labels, read the same packet for each flagged merge request: the issue's title and text, the merge request's title and description, and for each listed extra its kind, path and diff. Labels are model readings, not a human panel, and are reported as such.",
+ "labels": {
+  "real": "the change is not asked for by the issue and is not needed to do what the issue asks: a reviewer who knows only the issue would not expect it. Whether the change is good does not matter; a sound extra is still an extra.",
+  "borderline": "a reasonable reviewer could go either way: the issue hints at it, or it is a usual companion of the asked change in this project (for example a changelog line the project requires) but is not named.",
+  "not_an_extra": "the issue asks for it, or it is a necessary part of the asked change (the test for the fix, the lockfile line for a dependency the issue names, a config file the asked feature cannot work without)."
+ },
+ "per_merge_request": {
+  "strict": "the merge request held a real extra when BOTH labellers call at least one of its listed extras 'real' (the same extra)",
+  "lenient": "when at least one labeller calls at least one listed extra 'real' or 'borderline'"
+ },
+ "agreement": "Cohen's kappa over the three labels per extra; every extra the two labellers disagree on is listed as disputed, and no third reading settles it",
+ "misses": "20 merge requests of G (agent version) that the card did NOT flag, drawn with random.Random(20261017) from the sorted references: each labeller says whether the merge request changed anything its issue did not ask for (yes / no / unsure), to estimate what the rules miss",
+ "sample": "every flagged merge request in G (agent version) and F (agent version, capped); for H, 30 flagged merge requests drawn with random.Random(20261017); if G has more than 80 flagged, 80 drawn the same way",
+ "labellers": "L1 claude-sonnet-5-5, L2 claude-opus-5-5; neither sees the other's file or this project's own results text; both are told the card's purpose and this rubric only",
+ "limits": "Two model readings of one diff each, no maintainer asked, no later outcome (revert, follow-up) looked at. A 'real' label says the change goes beyond the issue, not that it was wrong to make."
+}

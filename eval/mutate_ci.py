@@ -15,7 +15,7 @@ the Step 8 field), each killed by tests/test_react_prompt.py::test_the_flow_neve
 non-approval T46 mutants of the same lines with updated anchors.
 
 Usage (WORK must be outside the repository, or pytest would collect the copies):
-    .venv/bin/python -I eval/mutate_ci.py "$PWD" /tmp/itemator-ci-mutants [T17|T35|T40|T42|T43|T44|T45|T46|T51|T52]
+    .venv/bin/python -I eval/mutate_ci.py "$PWD" /tmp/itemator-ci-mutants [T17|T35|T40|T42|T43|T44|T45|T46|T51|T52|T53|T54|T55]
 With T17 (or T35, T40), only those mutants run (every anchor of every mutant is still checked first).
 Exit status 0 only when every mutant is killed.
 """
@@ -607,13 +607,58 @@ T52 = [(label, old, new, SH, SHT) for label, old, new in [
  ("t52: one merge request is plural", "{'' if s['merge_requests'] == 1 else 's'}", "{'s'}"),
  ("t52: no job token still runs", "if not (a.api and a.project and token):", "if False:"),
 ]]
+# T53: the Developer Flow's issue read from its branch name (itemator/ci.py), judged by tests/test_ci.py. Two mutants
+# are left out as equivalent: dropping the regex's leading ^ (re.match anchors already) and `if n is not None` -> `if n`
+# (an issue numbered 0 does not exist).
+T53 = [(label, old, new, "itemator/ci.py", "tests/test_ci.py") for label, old, new in [
+ ("t53: the branch issue reported as from the description", 'return [_issue(raw, project_id)], "branch"', 'return [_issue(raw, project_id)], "description"'),
+ ("t53: the branch outranks the description", '    if issues:\n        return issues, "description"\n    n = flow', '    if False:\n        return issues, "description"\n    n = flow'),
+ ("t53: a missing branch issue is not reported", '        warnings.append(f"#{n} is named in the branch {source_branch} but was not found")\n', ''),
+ ("t53: any digits after the kind", 're.compile(r"^duo/[^/]+/(\\d+)-")', 're.compile(r"^duo/[^/]+/(\\d+)")'),
+ ("t53: the job does not pass the branch", 'env.get("CI_MERGE_REQUEST_SOURCE_BRANCH_NAME"),', 'env.get("CI_MERGE_REQUEST_SOURCE_BRANCH"),'),
+]]
+# T54: a branch number is read only when the description names the same issue (itemator/ci.py), judged by tests/test_ci.py.
+T54 = [(label, old, new, "itemator/ci.py", "tests/test_ci.py") for label, old, new in [
+ ("t54: the description is not checked", "if n is not None and not mentions_issue(description, n, project_path):", "if False:"),
+ ("t54: the job does not pass the project path", '                                        env.get("CI_PROJECT_PATH"))', '                                        None)'),
+ ("t54: the skipped branch is not reported", '        warnings.append(f"#{n} is named in the branch {source_branch} but not in the description, so it was not read")\n', '        pass\n'),
+ ("t54: other/repo#n counts", r'rf"(?<![\w/!#&.-])#{n}(?!\d)"', r'rf"(?<![!#&.-])#{n}(?!\d)"'),
+ ("t54: #n matches #n0", r'rf"(?<![\w/!#&.-])#{n}(?!\d)"', r'rf"(?<![\w/!#&.-])#{n}"'),
+ ("t54: a merge request URL counts", "/-/(?:issues|work_items)/{n}(?!\\d)", "/-/(?:issues|work_items|merge_requests)/{n}(?!\\d)"),
+ ("t54: any project's URL counts", "{re.escape(project_path)}/-/", ".+?/-/"),
+ ("t54: the URL's host is not required", r'rf"://[^/\s]+/{re.escape', r'rf"/{re.escape'),
+ ("t54: issues/n matches issues/n0", "/-/(?:issues|work_items)/{n}(?!\\d)", "/-/(?:issues|work_items)/{n}"),
+ ("t54: no project path still reads URLs", "return bool(project_path) and re.search(", "return bool(project_path) or re.search("),
+]]
+# T55: scan history (itemator/scan.py), judged by tests/test_scan.py. Not mutated: the team policy read (the tests use none),
+# the branch passed to linked_issues (covered by T53/T54 in itemator/ci.py) and the escaping call on an extra's name (_cell is tested).
+T55 = [(label, old, new, "itemator/scan.py", "tests/test_scan.py") for label, old, new in [
+ ("t55: no first parent", 'f"{commit}^1"', 'f"{commit}"'),
+ ("t55: a squash commit is ignored", 'commit = mr.get("merge_commit_sha") or mr.get("squash_commit_sha")', 'commit = mr.get("merge_commit_sha")'),
+ ("t55: a fast-forward merge gets the clone reason", '    if not (mr.get("merge_commit_sha") or mr.get("squash_commit_sha")):\n        return', '    if False:\n        return'),
+ ("t55: listed by update time", "&order_by=merged_at&sort=desc", "&order_by=updated_at&sort=desc"),
+ ("t55: pipes not escaped", '"""Text for a markdown table cell: a pipe would start a new cell."""\n    return str(text)', '"""Text for a markdown table cell: a pipe would start a new cell."""\n    return str(text)\n    return str(text)'),
+ ("t55: the title is not escaped", "{_cell(r['title'])}", "{r['title']}"),
+ ("t55: --last 0 is accepted", "    if a.last < 1:\n", "    if False:\n"),
+ ("t55: oldest first", "reverse=True)[:last]", ")[:last]"),
+ ("t55: --last ignored", "reverse=True)[:last]", "reverse=True)"),
+ ("t55: unmerged rows kept", 'isinstance(m.get("iid"), int) and m.get("merged_at")]', 'isinstance(m.get("iid"), int)]'),
+ ("t55: one page only", "        if len(data) < 100:\n            break\n    return sorted", "        break\n    return sorted"),
+ ("t55: unreadable counted as read", 'read = [r for r in rows if r["state"] != "unreadable"]', "read = list(rows)"),
+ ("t55: no issue counted as linked", 'linked = [r for r in read if r["state"] != "no_issue"]', "linked = read"),
+ ("t55: a failed read stops the scan", '    except ci.JobError as e:\n        return {**row, "state": "unreadable", "reason": str(e)[:200]}', '    except ValueError as e:\n        return {**row, "state": "unreadable", "reason": str(e)[:200]}'),
+ ("t55: the page lists merge requests without extras", 'flagged = [r for r in report["merge_requests"] if r.get("extras")]', 'flagged = [r for r in report["merge_requests"] if r["state"] != "unreadable"]'),
+ ("t55: a list error exits 0", '        print(f"itemator scan: {e}", file=sys.stderr)\n        return 2', '        print(f"itemator scan: {e}", file=sys.stderr)\n        return 0'),
+ ("t55: the branch name is not quoted", "urllib.parse.quote(target, safe='')", "target"),
+]]
 SRC = {"itemator/ci.py": (REPO / "itemator/ci.py").read_text(), "itemator/registry.py": (REPO / "itemator/registry.py").read_text(),
        "itemator/policy.py": (REPO / "itemator/policy.py").read_text(), "itemator/said.py": (REPO / "itemator/said.py").read_text(), LG: (REPO / LG).read_text(),
-       FL: (REPO / FL).read_text(), "itemator/shipped.py": (REPO / "itemator/shipped.py").read_text()}
+       FL: (REPO / FL).read_text(), "itemator/shipped.py": (REPO / "itemator/shipped.py").read_text(),
+       "itemator/scan.py": (REPO / "itemator/scan.py").read_text()}
 JOBS = ([(*m, "itemator/ci.py", "tests/test_ci.py") for m in M] + [(*m, "itemator/ci.py", "tests/test_ci_anchors.py") for m in A]
         + [(*m, "itemator/ci.py", "tests/test_registry.py") for m in RC] + [(*m, "itemator/registry.py", "tests/test_registry.py") for m in RG]
         + [(*m, "itemator/ci.py", "tests/test_policy.py") for m in PC] + [(*m, "itemator/policy.py", "tests/test_policy.py") for m in PO]
-        + T26 + T35 + T40 + T42 + T43 + T44 + T45 + T46 + T51 + T52)
+        + T26 + T35 + T40 + T42 + T43 + T44 + T45 + T46 + T51 + T52 + T53 + T54 + T55)
 for label, old, new, path, _ in JOBS:
     assert SRC[path].count(old) == 1, f"mutant {label!r}: anchor found {SRC[path].count(old)} times in {path}"
 if sys.argv[3:] == ["T17"]:
@@ -636,6 +681,12 @@ if sys.argv[3:] == ["T51"]:
     JOBS = [j for j in JOBS if j in T51]
 if sys.argv[3:] == ["T52"]:
     JOBS = [j for j in JOBS if j in T52]
+if sys.argv[3:] == ["T53"]:
+    JOBS = [j for j in JOBS if j in T53]
+if sys.argv[3:] == ["T54"]:
+    JOBS = [j for j in JOBS if j in T54]
+if sys.argv[3:] == ["T55"]:
+    JOBS = [j for j in JOBS if j in T55]
 def run(i, path, text, tests):
     d = WORK / f"m{i:02d}"
     if d.exists(): shutil.rmtree(d)

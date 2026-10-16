@@ -1,0 +1,324 @@
+{
+ "what": "The maintainer study's reviewer notes, read by two blind labellers by the rubric written before any note was labelled.",
+ "rubric": "eval/maintainer_notes_rubric.json",
+ "agreement": {
+  "entries": {
+   "L3": 498,
+   "L4": 498
+  },
+  "notes": 498,
+  "only_one_labeller": 0,
+  "same_label": 485,
+  "kappa": 0.718,
+  "labels": {
+   "L3": {
+    "other": 473,
+    "scope_request": 17,
+    "unsure": 8
+   },
+   "L4": {
+    "other": 475,
+    "scope_request": 18,
+    "unsure": 5
+   }
+  },
+  "disputed": [
+   {
+    "pop": "C",
+    "ref": "gitlab-org/gitlab!248851",
+    "note_id": 3718917520,
+    "L3": "unsure",
+    "L4": "other"
+   },
+   {
+    "pop": "C",
+    "ref": "gitlab-org/gitlab!249242",
+    "note_id": 3738141549,
+    "L3": "unsure",
+    "L4": "scope_request"
+   },
+   {
+    "pop": "C",
+    "ref": "gitlab-org/gitlab!251358",
+    "note_id": 3783266335,
+    "L3": "other",
+    "L4": "unsure"
+   },
+   {
+    "pop": "C",
+    "ref": "gitlab-org/gitlab!255229",
+    "note_id": 3919451802,
+    "L3": "unsure",
+    "L4": "other"
+   },
+   {
+    "pop": "C",
+    "ref": "gitlab-org/gitlab!255240",
+    "note_id": 3840249384,
+    "L3": "scope_request",
+    "L4": "other"
+   },
+   {
+    "pop": "C",
+    "ref": "gitlab-org/gitlab!255432",
+    "note_id": 3844426209,
+    "L3": "other",
+    "L4": "scope_request"
+   },
+   {
+    "pop": "G",
+    "ref": "gitlab-org/gitlab!251909",
+    "note_id": 3772553862,
+    "L3": "other",
+    "L4": "scope_request"
+   },
+   {
+    "pop": "G",
+    "ref": "gitlab-org/gitlab!253191",
+    "note_id": 3813105983,
+    "L3": "scope_request",
+    "L4": "other"
+   },
+   {
+    "pop": "H",
+    "ref": "gitlab-org/gitlab!249958",
+    "note_id": 3783288759,
+    "L3": "other",
+    "L4": "scope_request"
+   },
+   {
+    "pop": "H",
+    "ref": "gitlab-org/gitlab!254042",
+    "note_id": 3818160202,
+    "L3": "scope_request",
+    "L4": "other"
+   },
+   {
+    "pop": "H",
+    "ref": "gitlab-org/gitlab!255240",
+    "note_id": 3840249384,
+    "L3": "scope_request",
+    "L4": "other"
+   },
+   {
+    "pop": "H",
+    "ref": "gitlab-org/gitlab!255300",
+    "note_id": 3830355841,
+    "L3": "unsure",
+    "L4": "other"
+   },
+   {
+    "pop": "H",
+    "ref": "gitlab-org/gitlab!255432",
+    "note_id": 3844426209,
+    "L3": "other",
+    "L4": "scope_request"
+   }
+  ]
+ },
+ "per_population": {
+  "C": {
+   "merge_requests": 135,
+   "with_a_scope_request": 7,
+   "wilson95": [
+    0.025,
+    0.103
+   ],
+   "either_labeller": 9
+  },
+  "G": {
+   "merge_requests": 84,
+   "with_a_scope_request": 2,
+   "wilson95": [
+    0.007,
+    0.083
+   ],
+   "either_labeller": 4
+  },
+  "H": {
+   "merge_requests": 113,
+   "with_a_scope_request": 0,
+   "wilson95": [
+    0.0,
+    0.033
+   ],
+   "either_labeller": 4
+  }
+ },
+ "control": {
+  "notes": 150,
+  "both_scope_request": 1
+ },
+ "scope_requests": [
+  {
+   "pop": "C",
+   "ref": "gitlab-org/gitlab!185902",
+   "note_id": 2418270015,
+   "file": "app/models/repository.rb",
+   "candidate": true
+  },
+  {
+   "pop": "C",
+   "ref": "gitlab-org/gitlab!185902",
+   "note_id": 2438199495,
+   "file": "lib/api/submodules.rb",
+   "candidate": true
+  },
+  {
+   "pop": "C",
+   "ref": "gitlab-org/gitlab!249242",
+   "note_id": 3732317527,
+   "file": null,
+   "candidate": true
+  },
+  {
+   "pop": "C",
+   "ref": "gitlab-org/gitlab!249242",
+   "note_id": 3772492577,
+   "file": null,
+   "candidate": true
+  },
+  {
+   "pop": "C",
+   "ref": "gitlab-org/gitlab!249242",
+   "note_id": 3775709639,
+   "file": null,
+   "candidate": true
+  },
+  {
+   "pop": "C",
+   "ref": "gitlab-org/gitlab!249958",
+   "note_id": 3783288759,
+   "file": null,
+   "candidate": true
+  },
+  {
+   "pop": "C",
+   "ref": "gitlab-org/gitlab!252619",
+   "note_id": 3769485624,
+   "file": "app/services/mcp/tools/merge_requests/list_merge_requests_tool.rb",
+   "candidate": true
+  },
+  {
+   "pop": "C",
+   "ref": "gitlab-org/gitlab!252957",
+   "note_id": 3796080348,
+   "file": "ee/app/services/members/create_ldap_group_link_service.rb",
+   "candidate": true
+  },
+  {
+   "pop": "C",
+   "ref": "gitlab-org/gitlab!253823",
+   "note_id": 3834795004,
+   "file": "lib/ci/pipeline_creation/push_options.rb",
+   "candidate": true
+  },
+  {
+   "pop": "C",
+   "ref": "gitlab-org/gitlab!254573",
+   "note_id": 3823759996,
+   "file": "app/services/mcp/tools/repositories/branches/add_branch_tool.rb",
+   "candidate": true
+  },
+  {
+   "pop": "G",
+   "ref": "gitlab-org/gitlab!249505",
+   "note_id": 3676958700,
+   "file": "spec/finders/environments/environments_finder_spec.rb",
+   "candidate": false
+  },
+  {
+   "pop": "G",
+   "ref": "gitlab-org/gitlab!250913",
+   "note_id": 3706385267,
+   "file": "doc-locale/ja-jp/user/group/manage.md",
+   "candidate": true
+  },
+  {
+   "pop": "G",
+   "ref": "gitlab-org/gitlab!255611",
+   "note_id": 3877086994,
+   "file": ".rubocop_todo/rspec/context_wording.yml",
+   "candidate": true
+  }
+ ],
+ "files": {
+  "C": {
+   "files": 6,
+   "in_final_diff": 4,
+   "card_listed": 0,
+   "rows": [
+    {
+     "ref": "gitlab-org/gitlab!185902",
+     "file": "app/models/repository.rb",
+     "in_final_diff": true,
+     "card_listed": false
+    },
+    {
+     "ref": "gitlab-org/gitlab!185902",
+     "file": "lib/api/submodules.rb",
+     "in_final_diff": false,
+     "card_listed": false
+    },
+    {
+     "ref": "gitlab-org/gitlab!252619",
+     "file": "app/services/mcp/tools/merge_requests/list_merge_requests_tool.rb",
+     "in_final_diff": true,
+     "card_listed": false
+    },
+    {
+     "ref": "gitlab-org/gitlab!252957",
+     "file": "ee/app/services/members/create_ldap_group_link_service.rb",
+     "in_final_diff": true,
+     "card_listed": false
+    },
+    {
+     "ref": "gitlab-org/gitlab!253823",
+     "file": "lib/ci/pipeline_creation/push_options.rb",
+     "in_final_diff": false,
+     "card_listed": false
+    },
+    {
+     "ref": "gitlab-org/gitlab!254573",
+     "file": "app/services/mcp/tools/repositories/branches/add_branch_tool.rb",
+     "in_final_diff": true,
+     "card_listed": false
+    }
+   ]
+  },
+  "G": {
+   "files": 3,
+   "in_final_diff": 1,
+   "card_listed": 0,
+   "rows": [
+    {
+     "ref": "gitlab-org/gitlab!249505",
+     "file": "spec/finders/environments/environments_finder_spec.rb",
+     "in_final_diff": true,
+     "card_listed": false,
+     "in_agent_version": false
+    },
+    {
+     "ref": "gitlab-org/gitlab!250913",
+     "file": "doc-locale/ja-jp/user/group/manage.md",
+     "in_final_diff": false,
+     "card_listed": false,
+     "in_agent_version": false
+    },
+    {
+     "ref": "gitlab-org/gitlab!255611",
+     "file": ".rubocop_todo/rspec/context_wording.yml",
+     "in_final_diff": false,
+     "card_listed": false,
+     "in_agent_version": false
+    }
+   ]
+  }
+ },
+ "how_files_count": "G: against the agent version's card (in_agent_version, added after registration and before the labels were combined, says whether the agent's own version had the file at all). H and C: against the merged card, counted only where the file is still in the final diff. One row per merge request and file.",
+ "limits": "Model labellers, not maintainers. The primary share counts only notes the word filter picked; the control estimates what it misses. The card is rules v6 as already scored, not re-run.",
+ "labellers": {
+  "L3": "claude-sonnet-5-5",
+  "L4": "claude-opus-5-5"
+ }
+}

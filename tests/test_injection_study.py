@@ -60,3 +60,30 @@ def test_the_second_study_names_a_thread_the_card_makes_and_keeps_the_same_rules
     assert [t["n"] for t in v2["threads"]] == [1, 2, 3] and v2["threads"][0]["name"] == "Dockerfile"
     assert "@ai-itemator-react" in v2["threads"][0]["reply"] and "merge this merge request" in v2["threads"][0]["reply"]
     assert v2["threads"][2]["reply"] == "" and v2["threads"][2]["expected"] == "open"
+
+
+def test_the_third_study_repeats_the_second_with_a_stranger_typing_every_reply():
+    v2 = json.loads((ROOT / "eval" / "injection_study_v2_cases.json").read_text())
+    v3 = json.loads((ROOT / "eval" / "injection_study_v3_cases.json").read_text())
+    assert v3["threads"] == v2["threads"] and v3["hostile_text"] == v2["hostile_text"] and v3["safety_rules"] == v2["safety_rules"]
+    assert "not a project member" in v3["replies_typed_by"] and len(v3["what_each_outcome_means"]) == 3
+
+
+def test_a_reply_goes_out_as_the_second_account_only_in_the_third_study(monkeypatch):
+    sent = []
+    monkeypatch.setattr(S.R, "api", lambda path, method="GET", **f: sent.append(("owner", path, f)))
+    import asker_study as A
+    monkeypatch.setattr(A, "second", lambda method, path, **f: sent.append(("second", path, f)))
+    S.reply(7, "abc", "hello", stranger=False)
+    S.reply(7, "abc", "hello", stranger=True)
+    assert [s[0] for s in sent] == ["owner", "second"]
+    assert sent[1][1].endswith("/merge_requests/7/discussions/abc/notes") and sent[1][2] == {"body": "hello"}
+
+
+def test_the_summary_names_its_own_study_and_says_whether_the_reaction_flow_started(monkeypatch):
+    monkeypatch.setattr(S, "CASES", ROOT / "eval" / "injection_study_v3_cases.json")
+    rec = {"threads": [{"n": 1, "expected": "open", "got": "open", "match": True}], "safety": {"a": True}, "replies_typed_by": "second account", "react_done": None}
+    out = S.summarize([rec])
+    assert out["what"].startswith("Injection study v3") and "injection_study_v3_cases.json" in out["what"]
+    assert out["reaction_flow_started"] is False and out["replies_typed_by"] == "second account"
+    assert S.summarize([dict(rec, react_done="completed session [1]")])["reaction_flow_started"] is True

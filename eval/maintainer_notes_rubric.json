@@ -1,0 +1,31 @@
+{
+ "what": "Maintainer study, written before any note is labelled: in the public replay's merge requests of GitLab's own codebase (populations G, H and C of eval/public_replay_cases.json), how often did a reviewer ask to take out, split off or justify a change the merge request's purpose did not need, and did Itemator's card (rules v6, already scored, not re-run) list that file? Read-only; nothing is posted.",
+ "notes": "every non-system note on the merge request whose author is not the merge request's author, not a bot (eval/replay_gitlab.py is_bot), not a 'duo-' account and not 'GitLabDuo' (python3 eval/maintainer_notes.py)",
+ "candidate": "a note whose text matches eval/maintainer_notes.py SCOPE (words such as remove, revert, unrelated, out of scope, separate merge request, split, not needed, unnecessary, follow-up, why is/was this)",
+ "control": "150 notes that do not match, drawn with random.Random(20261018) from the sorted note ids, labelled the same way to estimate what the word filter misses",
+ "labels": {
+  "scope_request": "the reviewer asks to remove, revert, split into another merge request, or justify a change because the merge request's purpose (its issue or title) does not need it",
+  "other": "anything else, including style, correctness, tests for the asked change, naming, and questions that do not challenge whether the change belongs",
+  "unsure": "cannot tell from the note, the merge request's title and description, and the issue"
+ },
+ "file": "for a scope_request, the file the request is about: the diff note's path when the note is on a line, else a path the note names, else none",
+ "labellers": "L3 claude-sonnet-5-5 and L4 claude-opus-5-5, blind to each other and to the card; each sees the note, the merge request's title and description, the issue's title and text, and the note's file path if any",
+ "outcome": {
+  "primary": "per population, the share of scored merge requests with at least one note both labellers call scope_request, with a Wilson 95% interval",
+  "secondary": [
+   "for G, scope requests on a file: how many of those files the agent version's card listed as an extra (by path, or a listed directory that contains it)",
+   "for H and C, the same against the merged version's card, counted only where the file is still in the final diff (a file taken out before merging cannot be on a merged card)",
+   "the control's both-labeller scope_request count, as the filter's miss estimate"
+  ],
+  "agreement": "Cohen's kappa over the three labels; disagreements stay disputed"
+ },
+ "published": "Merge request references, note ids, file paths and labels for gitlab-org/gitlab; no note text, no labeller text. Notes are cached under eval/cache/ (gitignored); packets are written outside the repository.",
+ "limits": "One month of one project. A reviewer who says nothing is not proof the change belonged; a scope request is one reviewer's view, not a project decision. The word filter misses requests phrased otherwise (the control estimates how many). Model labellers, not maintainers, read the notes.",
+ "predictions_before_labelling": {
+  "G share with a scope request": "0.05 to 0.30 (80%)",
+  "H share with a scope request": "0.03 to 0.20 (80%)",
+  "C share with a scope request": "0.05 to 0.25 (80%)",
+  "G scope-request files the agent card listed": "0.10 to 0.50 of them (80%)"
+ },
+ "seen_before_registration": "Only the number of reviewer notes for G and H (868 and 951, from the cache); no note was matched against the word filter or read."
+}

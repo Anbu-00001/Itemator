@@ -1,0 +1,611 @@
+{
+ "what": "The public replay's listed extras, read by two labellers by the rubric written before any label existed.",
+ "rubric": "eval/public_replay_label_rubric.json",
+ "labellers": {
+  "L1": "claude-sonnet-5-5",
+  "L2": "claude-opus-5-5"
+ },
+ "agreement": {
+  "entries": {
+   "L1": 54,
+   "L2": 54
+  },
+  "extras": 52,
+  "only_one_labeller": 0,
+  "same_label": 48,
+  "kappa": 0.783,
+  "disputed": [
+   {
+    "group": "F_flagged",
+    "kind": "ci_or_config",
+    "L1": "borderline",
+    "L2": "real"
+   },
+   {
+    "group": "F_flagged",
+    "kind": "new_dependency",
+    "L1": "borderline",
+    "L2": "real"
+   },
+   {
+    "ref": "gitlab-org/gitlab!250220",
+    "path": "ee/spec/services/ee/merge_requests/post_merge_service_spec.rb",
+    "group": "G_flagged",
+    "kind": "tests_removed",
+    "L1": "real",
+    "L2": "borderline"
+   },
+   {
+    "ref": "gitlab-org/gitlab!250220",
+    "path": "ee/spec/workers/ai/catalog/flows/execute_merge_request_merged_workflow_triggers_worker_spec.rb",
+    "group": "G_flagged",
+    "kind": "tests_removed",
+    "L1": "real",
+    "L2": "borderline"
+   }
+  ]
+ },
+ "per_merge_request": {
+  "F_flagged": {
+   "merge_requests": 5,
+   "strict": 1,
+   "lenient": 3,
+   "strict_wilson95": [
+    0.036,
+    0.624
+   ],
+   "lenient_wilson95": [
+    0.231,
+    0.882
+   ]
+  },
+  "G_flagged": {
+   "merge_requests": 9,
+   "strict": 0,
+   "lenient": 2,
+   "strict_wilson95": [
+    0.0,
+    0.299
+   ],
+   "lenient_wilson95": [
+    0.063,
+    0.547
+   ]
+  },
+  "H_flagged": {
+   "merge_requests": 6,
+   "strict": 1,
+   "lenient": 2,
+   "strict_wilson95": [
+    0.03,
+    0.564
+   ],
+   "lenient_wilson95": [
+    0.097,
+    0.7
+   ]
+  }
+ },
+ "G_flagged_issue_named_in_description": {
+  "gitlab-org/gitlab!242496": true,
+  "gitlab-org/gitlab!250220": false,
+  "gitlab-org/gitlab!250913": true,
+  "gitlab-org/gitlab!251030": true,
+  "gitlab-org/gitlab!251222": true,
+  "gitlab-org/gitlab!252905": true,
+  "gitlab-org/gitlab!252912": true,
+  "gitlab-org/gitlab!253320": true,
+  "gitlab-org/gitlab!257202": true
+ },
+ "labels_by_kind": {
+  "agent_instructions": {
+   "borderline": 4
+  },
+  "ci_or_config": {
+   "real": 3,
+   "borderline": 3,
+   "not_an_extra": 4
+  },
+  "new_dependency": {
+   "borderline": 3,
+   "real": 1,
+   "not_an_extra": 4
+  },
+  "public_api_removed": {
+   "not_an_extra": 4,
+   "real": 2
+  },
+  "tests_removed": {
+   "not_an_extra": 70,
+   "real": 2,
+   "borderline": 2
+  },
+  "version_bump": {
+   "borderline": 2
+  }
+ },
+ "extras": [
+  {
+   "ref": "gitlab-org/gitlab!242496",
+   "path": "ee/spec/lib/gitlab/duo/chat/step_executor_spec.rb",
+   "group": "G_flagged",
+   "kind": "tests_removed",
+   "L1": "not_an_extra",
+   "L2": "not_an_extra"
+  },
+  {
+   "ref": "gitlab-org/gitlab!250220",
+   "path": "ee/spec/services/ee/merge_requests/post_merge_service_spec.rb",
+   "group": "G_flagged",
+   "kind": "tests_removed",
+   "L1": "real",
+   "L2": "borderline"
+  },
+  {
+   "ref": "gitlab-org/gitlab!250220",
+   "path": "ee/spec/workers/ai/catalog/flows/execute_merge_request_merged_workflow_triggers_worker_spec.rb",
+   "group": "G_flagged",
+   "kind": "tests_removed",
+   "L1": "real",
+   "L2": "borderline"
+  },
+  {
+   "ref": "gitlab-org/gitlab!250913",
+   "path": "spec/controllers/projects_controller_spec.rb",
+   "group": "G_flagged",
+   "kind": "tests_removed",
+   "L1": "not_an_extra",
+   "L2": "not_an_extra"
+  },
+  {
+   "ref": "gitlab-org/gitlab!250913",
+   "path": "spec/features/groups/settings/advanced_spec.rb",
+   "group": "G_flagged",
+   "kind": "tests_removed",
+   "L1": "not_an_extra",
+   "L2": "not_an_extra"
+  },
+  {
+   "ref": "gitlab-org/gitlab!250913",
+   "path": "spec/features/projects/settings/user_transfers_a_project_spec.rb",
+   "group": "G_flagged",
+   "kind": "tests_removed",
+   "L1": "not_an_extra",
+   "L2": "not_an_extra"
+  },
+  {
+   "ref": "gitlab-org/gitlab!250913",
+   "path": "spec/graphql/mutations/groups/transfer_spec.rb",
+   "group": "G_flagged",
+   "kind": "tests_removed",
+   "L1": "not_an_extra",
+   "L2": "not_an_extra"
+  },
+  {
+   "ref": "gitlab-org/gitlab!250913",
+   "path": "spec/graphql/mutations/projects/transfer_spec.rb",
+   "group": "G_flagged",
+   "kind": "tests_removed",
+   "L1": "not_an_extra",
+   "L2": "not_an_extra"
+  },
+  {
+   "ref": "gitlab-org/gitlab!250913",
+   "path": "spec/requests/api/graphql/mutations/groups/transfer_spec.rb",
+   "group": "G_flagged",
+   "kind": "tests_removed",
+   "L1": "not_an_extra",
+   "L2": "not_an_extra"
+  },
+  {
+   "ref": "gitlab-org/gitlab!250913",
+   "path": "spec/requests/api/graphql/mutations/projects/transfer_spec.rb",
+   "group": "G_flagged",
+   "kind": "tests_removed",
+   "L1": "not_an_extra",
+   "L2": "not_an_extra"
+  },
+  {
+   "ref": "gitlab-org/gitlab!250913",
+   "path": "spec/requests/api/groups_spec.rb",
+   "group": "G_flagged",
+   "kind": "tests_removed",
+   "L1": "not_an_extra",
+   "L2": "not_an_extra"
+  },
+  {
+   "ref": "gitlab-org/gitlab!250913",
+   "path": "spec/requests/api/projects_spec.rb",
+   "group": "G_flagged",
+   "kind": "tests_removed",
+   "L1": "not_an_extra",
+   "L2": "not_an_extra"
+  },
+  {
+   "ref": "gitlab-org/gitlab!250913",
+   "path": "spec/requests/groups_controller_spec.rb",
+   "group": "G_flagged",
+   "kind": "tests_removed",
+   "L1": "not_an_extra",
+   "L2": "not_an_extra"
+  },
+  {
+   "ref": "gitlab-org/gitlab!250913",
+   "path": "spec/requests/projects_controller_spec.rb",
+   "group": "G_flagged",
+   "kind": "tests_removed",
+   "L1": "not_an_extra",
+   "L2": "not_an_extra"
+  },
+  {
+   "ref": "gitlab-org/gitlab!251030",
+   "path": "ee/spec/policies/ai/catalog/item_consumer_policy_spec.rb",
+   "group": "G_flagged",
+   "kind": "tests_removed",
+   "L1": "not_an_extra",
+   "L2": "not_an_extra"
+  },
+  {
+   "ref": "gitlab-org/gitlab!251030",
+   "path": "ee/spec/policies/ai/catalog/item_policy_spec.rb",
+   "group": "G_flagged",
+   "kind": "tests_removed",
+   "L1": "not_an_extra",
+   "L2": "not_an_extra"
+  },
+  {
+   "ref": "gitlab-org/gitlab!251030",
+   "path": "ee/spec/services/ai/catalog/execute_workflow_service_spec.rb",
+   "group": "G_flagged",
+   "kind": "tests_removed",
+   "L1": "not_an_extra",
+   "L2": "not_an_extra"
+  },
+  {
+   "ref": "gitlab-org/gitlab!251030",
+   "path": "ee/spec/support/shared_examples/requests/api/graphql/mutations/ai/catalog/item_visibility_argument_shared_examples.rb",
+   "group": "G_flagged",
+   "kind": "tests_removed",
+   "L1": "not_an_extra",
+   "L2": "not_an_extra"
+  },
+  {
+   "ref": "gitlab-org/gitlab!251222",
+   "path": "ee/spec/features/groups/settings/repository_spec.rb",
+   "group": "G_flagged",
+   "kind": "tests_removed",
+   "L1": "not_an_extra",
+   "L2": "not_an_extra"
+  },
+  {
+   "ref": "gitlab-org/gitlab!251222",
+   "path": "ee/spec/helpers/ee/projects/settings/branch_rules_helper_spec.rb",
+   "group": "G_flagged",
+   "kind": "tests_removed",
+   "L1": "not_an_extra",
+   "L2": "not_an_extra"
+  },
+  {
+   "ref": "gitlab-org/gitlab!251222",
+   "path": "ee/spec/requests/api/graphql/mutations/branch_rules/update_spec.rb",
+   "group": "G_flagged",
+   "kind": "tests_removed",
+   "L1": "not_an_extra",
+   "L2": "not_an_extra"
+  },
+  {
+   "ref": "gitlab-org/gitlab!251222",
+   "path": "ee/spec/requests/api/graphql/project/branch_rules/branch_protection_spec.rb",
+   "group": "G_flagged",
+   "kind": "tests_removed",
+   "L1": "not_an_extra",
+   "L2": "not_an_extra"
+  },
+  {
+   "ref": "gitlab-org/gitlab!251222",
+   "path": "ee/spec/requests/api/group_protected_branches_spec.rb",
+   "group": "G_flagged",
+   "kind": "tests_removed",
+   "L1": "not_an_extra",
+   "L2": "not_an_extra"
+  },
+  {
+   "ref": "gitlab-org/gitlab!251222",
+   "path": "ee/spec/requests/api/protected_branches_spec.rb",
+   "group": "G_flagged",
+   "kind": "tests_removed",
+   "L1": "not_an_extra",
+   "L2": "not_an_extra"
+  },
+  {
+   "ref": "gitlab-org/gitlab!251222",
+   "path": "ee/spec/services/ee/branch_rules/update_service_spec.rb",
+   "group": "G_flagged",
+   "kind": "tests_removed",
+   "L1": "not_an_extra",
+   "L2": "not_an_extra"
+  },
+  {
+   "ref": "gitlab-org/gitlab!251222",
+   "path": "ee/spec/support/shared_examples/models/concerns/protected_branch_access_shared_examples.rb",
+   "group": "G_flagged",
+   "kind": "tests_removed",
+   "L1": "not_an_extra",
+   "L2": "not_an_extra"
+  },
+  {
+   "ref": "gitlab-org/gitlab!252905",
+   "path": "app/assets/javascripts/lib/utils/path_helpers/wiki.js",
+   "group": "G_flagged",
+   "kind": "public_api_removed",
+   "L1": "not_an_extra",
+   "L2": "not_an_extra"
+  },
+  {
+   "ref": "gitlab-org/gitlab!252905",
+   "path": "spec/support/shared_examples/controllers/wiki_actions_shared_examples.rb",
+   "group": "G_flagged",
+   "kind": "tests_removed",
+   "L1": "not_an_extra",
+   "L2": "not_an_extra"
+  },
+  {
+   "ref": "gitlab-org/gitlab!252905",
+   "path": "spec/support/shared_examples/features/wiki/user_git_access_wiki_page_shared_examples.rb",
+   "group": "G_flagged",
+   "kind": "tests_removed",
+   "L1": "not_an_extra",
+   "L2": "not_an_extra"
+  },
+  {
+   "ref": "gitlab-org/gitlab!252912",
+   "path": "ee/spec/frontend/work_items/components/work_item_detail_spec.js",
+   "group": "G_flagged",
+   "kind": "tests_removed",
+   "L1": "not_an_extra",
+   "L2": "not_an_extra"
+  },
+  {
+   "ref": "gitlab-org/gitlab!253320",
+   "path": "ee/spec/lib/gitlab/audit/auditor_spec.rb",
+   "group": "G_flagged",
+   "kind": "tests_removed",
+   "L1": "not_an_extra",
+   "L2": "not_an_extra"
+  },
+  {
+   "ref": "gitlab-org/gitlab!253320",
+   "path": "spec/lib/gitlab/audit/auditor_spec.rb",
+   "group": "G_flagged",
+   "kind": "tests_removed",
+   "L1": "not_an_extra",
+   "L2": "not_an_extra"
+  },
+  {
+   "ref": "gitlab-org/gitlab!253320",
+   "path": "spec/services/audit_events/processor_spec.rb",
+   "group": "G_flagged",
+   "kind": "tests_removed",
+   "L1": "not_an_extra",
+   "L2": "not_an_extra"
+  },
+  {
+   "ref": "gitlab-org/gitlab!257202",
+   "path": "spec/tooling/ai_harness/doctor/integration_spec.rb",
+   "group": "G_flagged",
+   "kind": "tests_removed",
+   "L1": "not_an_extra",
+   "L2": "not_an_extra"
+  },
+  {
+   "ref": "gitlab-org/gitlab!257202",
+   "path": "spec/tooling/ai_harness/doctor/steps/perform_doctor_checks/main_spec.rb",
+   "group": "G_flagged",
+   "kind": "tests_removed",
+   "L1": "not_an_extra",
+   "L2": "not_an_extra"
+  },
+  {
+   "ref": "gitlab-org/gitlab!257202",
+   "path": "tooling/ai_harness/doctor/",
+   "group": "G_flagged",
+   "kind": "agent_instructions",
+   "L1": "borderline",
+   "L2": "borderline"
+  },
+  {
+   "ref": "gitlab-org/gitlab!252609",
+   "path": "app/assets/javascripts/blob/utils.js",
+   "group": "H_flagged",
+   "kind": "public_api_removed",
+   "L1": "real",
+   "L2": "real"
+  },
+  {
+   "ref": "gitlab-org/gitlab!252765",
+   "path": "Gemfile",
+   "group": "H_flagged",
+   "kind": "new_dependency",
+   "L1": "not_an_extra",
+   "L2": "not_an_extra"
+  },
+  {
+   "ref": "gitlab-org/gitlab!252765",
+   "path": "gems/gitlab-mfe/.rubocop.yml",
+   "group": "H_flagged",
+   "kind": "ci_or_config",
+   "L1": "borderline",
+   "L2": "borderline"
+  },
+  {
+   "ref": "gitlab-org/gitlab!252765",
+   "path": "gems/gitlab-mfe/Gemfile",
+   "group": "H_flagged",
+   "kind": "new_dependency",
+   "L1": "not_an_extra",
+   "L2": "not_an_extra"
+  },
+  {
+   "ref": "gitlab-org/gitlab!253454",
+   "path": "ee/spec/services/vulnerability_exports/export_service_spec.rb",
+   "group": "H_flagged",
+   "kind": "tests_removed",
+   "L1": "not_an_extra",
+   "L2": "not_an_extra"
+  },
+  {
+   "ref": "gitlab-org/gitlab!256108",
+   "path": "spec/requests/api/usage_data_queries_spec.rb",
+   "group": "H_flagged",
+   "kind": "tests_removed",
+   "L1": "not_an_extra",
+   "L2": "not_an_extra"
+  },
+  {
+   "ref": "gitlab-org/gitlab!256983",
+   "path": "spec/controllers/projects/commits_controller_spec.rb",
+   "group": "H_flagged",
+   "kind": "tests_removed",
+   "L1": "not_an_extra",
+   "L2": "not_an_extra"
+  },
+  {
+   "ref": "gitlab-org/gitlab!258240",
+   "path": "app/assets/javascripts/repository/log_tree.js",
+   "group": "H_flagged",
+   "kind": "public_api_removed",
+   "L1": "not_an_extra",
+   "L2": "not_an_extra"
+  }
+ ],
+ "misses": {
+  "sampled": 20,
+  "both_yes": 5,
+  "either_yes": 6,
+  "both_yes_with_the_issue_not_named_in_the_description": 4,
+  "rows": [
+   {
+    "ref": "gitlab-org/gitlab!247906",
+    "L1": "no",
+    "L2": "no",
+    "issue_named_in_description": true
+   },
+   {
+    "ref": "gitlab-org/gitlab!249505",
+    "L1": "no",
+    "L2": "no",
+    "issue_named_in_description": true
+   },
+   {
+    "ref": "gitlab-org/gitlab!251441",
+    "L1": "no",
+    "L2": "no",
+    "issue_named_in_description": true
+   },
+   {
+    "ref": "gitlab-org/gitlab!251909",
+    "L1": "yes",
+    "L2": "yes",
+    "issue_named_in_description": true
+   },
+   {
+    "ref": "gitlab-org/gitlab!252643",
+    "L1": "no",
+    "L2": "no",
+    "issue_named_in_description": true
+   },
+   {
+    "ref": "gitlab-org/gitlab!252699",
+    "L1": "yes",
+    "L2": "yes",
+    "issue_named_in_description": false
+   },
+   {
+    "ref": "gitlab-org/gitlab!252879",
+    "L1": "no",
+    "L2": "no",
+    "issue_named_in_description": true
+   },
+   {
+    "ref": "gitlab-org/gitlab!253191",
+    "L1": "unsure",
+    "L2": "yes",
+    "issue_named_in_description": true
+   },
+   {
+    "ref": "gitlab-org/gitlab!253471",
+    "L1": "no",
+    "L2": "no",
+    "issue_named_in_description": true
+   },
+   {
+    "ref": "gitlab-org/gitlab!253472",
+    "L1": "no",
+    "L2": "no",
+    "issue_named_in_description": true
+   },
+   {
+    "ref": "gitlab-org/gitlab!253728",
+    "L1": "no",
+    "L2": "no",
+    "issue_named_in_description": true
+   },
+   {
+    "ref": "gitlab-org/gitlab!254268",
+    "L1": "no",
+    "L2": "no",
+    "issue_named_in_description": true
+   },
+   {
+    "ref": "gitlab-org/gitlab!255602",
+    "L1": "no",
+    "L2": "no",
+    "issue_named_in_description": true
+   },
+   {
+    "ref": "gitlab-org/gitlab!255862",
+    "L1": "yes",
+    "L2": "yes",
+    "issue_named_in_description": false
+   },
+   {
+    "ref": "gitlab-org/gitlab!256066",
+    "L1": "yes",
+    "L2": "yes",
+    "issue_named_in_description": false
+   },
+   {
+    "ref": "gitlab-org/gitlab!256133",
+    "L1": "no",
+    "L2": "no",
+    "issue_named_in_description": true
+   },
+   {
+    "ref": "gitlab-org/gitlab!256498",
+    "L1": "no",
+    "L2": "no",
+    "issue_named_in_description": true
+   },
+   {
+    "ref": "gitlab-org/gitlab!256577",
+    "L1": "yes",
+    "L2": "yes",
+    "issue_named_in_description": false
+   },
+   {
+    "ref": "gitlab-org/gitlab!256775",
+    "L1": "no",
+    "L2": "no",
+    "issue_named_in_description": true
+   },
+   {
+    "ref": "gitlab-org/gitlab!258217",
+    "L1": "no",
+    "L2": "no",
+    "issue_named_in_description": true
+   }
+  ]
+ },
+ "found_after_labelling": "Not in the rubric. For the replay's G rows the issue came from the flow's note or the number in its branch name; issue_named_in_description says whether the merge request's description names that issue of gitlab-org/gitlab (as #N or its URL). Where it does not, the labellers may have read the merge request against an unrelated issue, so a 'yes' there is a linking error of the replay more than a missed extra. The CI job reads a branch's issue only when the description names it too (itemator.ci.mentions_issue).",
+ "limits": "Model readings, not maintainers; one diff each; the rules were not changed after reading these labels."
+}

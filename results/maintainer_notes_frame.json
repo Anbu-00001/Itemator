@@ -1,0 +1,3509 @@
+{
+ "what": "Maintainer study frame (eval/maintainer_notes_rubric.json): counts only.",
+ "counts": {
+  "G": {
+   "merge_requests": 84,
+   "reviewer_notes": 783,
+   "candidates": 94
+  },
+  "H": {
+   "merge_requests": 113,
+   "reviewer_notes": 951,
+   "candidates": 83
+  },
+  "C": {
+   "merge_requests": 135,
+   "reviewer_notes": 1697,
+   "candidates": 171
+  }
+ },
+ "control": 150,
+ "notes": [
+  {
+   "ref": "gitlab-org/gitlab!185902",
+   "note_id": 2418269999,
+   "path": "app/models/repository.rb",
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!185902",
+   "note_id": 2418270015,
+   "path": "app/models/repository.rb",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!185902",
+   "note_id": 2418270024,
+   "path": "lib/gitlab/git/repository.rb",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!185902",
+   "note_id": 2438199495,
+   "path": "lib/api/submodules.rb",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!185902",
+   "note_id": 2715664144,
+   "path": "app/services/submodules/update_service.rb",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!185902",
+   "note_id": 2715664288,
+   "path": "spec/requests/api/submodules_spec.rb",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!185902",
+   "note_id": 2715664322,
+   "path": "spec/requests/api/submodules_spec.rb",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!185902",
+   "note_id": 3131468636,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!241192",
+   "note_id": 3467265375,
+   "path": "lib/gitlab/background_migration/nullify_personal_namespace_id_on_group_wiki_events.rb",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!242496",
+   "note_id": 3492802686,
+   "path": null,
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!243466",
+   "note_id": 3517389388,
+   "path": "app/models/concerns/integrations/base/chat_notification.rb",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!243466",
+   "note_id": 3519474535,
+   "path": "app/models/concerns/integrations/base/chat_notification.rb",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!243466",
+   "note_id": 3521022316,
+   "path": "app/models/integrations/chat_message/merge_message.rb",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!243466",
+   "note_id": 3539676541,
+   "path": "app/models/integrations/chat_message/merge_message.rb",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!243466",
+   "note_id": 3566965769,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!247190",
+   "note_id": 3608381189,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!246493",
+   "note_id": 3624520899,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!243466",
+   "note_id": 3627707452,
+   "path": null,
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!232585",
+   "note_id": 3628793444,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!246493",
+   "note_id": 3637972603,
+   "path": null,
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!248574",
+   "note_id": 3643935137,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!248574",
+   "note_id": 3643935137,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!248851",
+   "note_id": 3650175597,
+   "path": "ee/spec/lib/gitlab/auth/saml/user_spec.rb",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!248851",
+   "note_id": 3650175597,
+   "path": "ee/spec/lib/gitlab/auth/saml/user_spec.rb",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!247146",
+   "note_id": 3656108151,
+   "path": "ee/lib/ee/gitlab/auth/ldap/access.rb",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!247146",
+   "note_id": 3656108151,
+   "path": "ee/lib/ee/gitlab/auth/ldap/access.rb",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!249169",
+   "note_id": 3659036361,
+   "path": null,
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!249242",
+   "note_id": 3662862651,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!248574",
+   "note_id": 3666206118,
+   "path": "spec/requests/projects/commit_controller_spec.rb",
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!248574",
+   "note_id": 3666206132,
+   "path": "app/controllers/projects/commit_controller.rb",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!248574",
+   "note_id": 3666206132,
+   "path": "app/controllers/projects/commit_controller.rb",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!249242",
+   "note_id": 3668939824,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!249505",
+   "note_id": 3670412231,
+   "path": "spec/models/clusters/cluster_spec.rb",
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!249242",
+   "note_id": 3674617842,
+   "path": "ee/app/views/groups/saml_providers/show.html.haml",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!249242",
+   "note_id": 3674617883,
+   "path": null,
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!249505",
+   "note_id": 3676958700,
+   "path": "spec/finders/environments/environments_finder_spec.rb",
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!249505",
+   "note_id": 3676984886,
+   "path": "spec/services/clusters/agents/authorizations/ci_access/refresh_service_spec.rb",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!248851",
+   "note_id": 3679224260,
+   "path": null,
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!248851",
+   "note_id": 3681597711,
+   "path": "ee/spec/helpers/users_helper_spec.rb",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!248851",
+   "note_id": 3681597711,
+   "path": "ee/spec/helpers/users_helper_spec.rb",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!248851",
+   "note_id": 3681597863,
+   "path": null,
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!248155",
+   "note_id": 3694668473,
+   "path": "app/services/mcp/tools/branches/list_branches_tool.rb",
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!249242",
+   "note_id": 3694791459,
+   "path": "ee/app/views/groups/saml_providers/show.html.haml",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!249797",
+   "note_id": 3695565129,
+   "path": null,
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!249939",
+   "note_id": 3697421119,
+   "path": "app/services/organizations/transfer/user_agent_details_service.rb",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!247146",
+   "note_id": 3698363808,
+   "path": "ee/lib/ee/gitlab/auth/ldap/access.rb",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!247146",
+   "note_id": 3698363808,
+   "path": "ee/lib/ee/gitlab/auth/ldap/access.rb",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!249939",
+   "note_id": 3700123265,
+   "path": "app/services/organizations/transfer/groups_service.rb",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!248851",
+   "note_id": 3700194821,
+   "path": "ee/lib/ee/gitlab/auth/saml/user.rb",
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!248851",
+   "note_id": 3700197997,
+   "path": "ee/config/audit_events/types/user_blocked_by_scim_deprovisioning.yml",
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!250674",
+   "note_id": 3700519352,
+   "path": "ee/app/models/package_metadata/license.rb",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!250674",
+   "note_id": 3700519578,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!250288",
+   "note_id": 3702613205,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!250316",
+   "note_id": 3706167728,
+   "path": null,
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!250316",
+   "note_id": 3706203066,
+   "path": "ee/app/services/mcp/tools/duo_workflows/get_duo_session_tool.rb",
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!250913",
+   "note_id": 3706385267,
+   "path": "doc-locale/ja-jp/user/group/manage.md",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!250889",
+   "note_id": 3706488183,
+   "path": null,
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!250889",
+   "note_id": 3706614897,
+   "path": null,
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!250316",
+   "note_id": 3707371543,
+   "path": null,
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!250978",
+   "note_id": 3707864557,
+   "path": null,
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!251030",
+   "note_id": 3708889831,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!249242",
+   "note_id": 3709004529,
+   "path": "ee/spec/requests/groups/saml_providers_controller_spec.rb",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!249242",
+   "note_id": 3709935169,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!250674",
+   "note_id": 3710081309,
+   "path": "ee/app/models/package_metadata/sync_configuration.rb",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!247190",
+   "note_id": 3711102566,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!250291",
+   "note_id": 3711621492,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!250622",
+   "note_id": 3711700196,
+   "path": null,
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!250220",
+   "note_id": 3711782652,
+   "path": "ee/app/models/ai/catalog/foundational_flow/definitions/developer.rb",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!250220",
+   "note_id": 3711789008,
+   "path": "ee/spec/services/ee/merge_requests/post_merge_service_spec.rb",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!250622",
+   "note_id": 3713473499,
+   "path": "ee/app/views/groups/group_members/_ldap_sync.html.haml",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!248155",
+   "note_id": 3714080177,
+   "path": "app/services/mcp/tools/concerns/argument_validation.rb",
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!251243",
+   "note_id": 3714275806,
+   "path": null,
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!251307",
+   "note_id": 3715826512,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!251307",
+   "note_id": 3716989636,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!250622",
+   "note_id": 3717492663,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!251401",
+   "note_id": 3717507549,
+   "path": null,
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!251401",
+   "note_id": 3717683674,
+   "path": "app/models/application_setting.rb",
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!248851",
+   "note_id": 3718917520,
+   "path": "ee/lib/ee/gitlab/auth/saml/user.rb",
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!248574",
+   "note_id": 3721364388,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!248574",
+   "note_id": 3721364388,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!246493",
+   "note_id": 3723689978,
+   "path": "doc/integration/saml.md",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!249939",
+   "note_id": 3724266869,
+   "path": "app/services/organizations/transfer/groups_service.rb",
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!250288",
+   "note_id": 3726177465,
+   "path": "db/migrate/20260814000001_remove_organization_fk_from_snippet_repositories.rb",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!250288",
+   "note_id": 3726178583,
+   "path": "spec/lib/gitlab/database/sharding_key_foreign_key_strength_spec.rb",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!232585",
+   "note_id": 3726384795,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!251227",
+   "note_id": 3726473952,
+   "path": null,
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!232585",
+   "note_id": 3726567106,
+   "path": null,
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!251227",
+   "note_id": 3726605927,
+   "path": null,
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!251307",
+   "note_id": 3727001897,
+   "path": "app/services/mcp/tools/releases/list_releases_service.rb",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!250979",
+   "note_id": 3727247360,
+   "path": null,
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!250220",
+   "note_id": 3730933377,
+   "path": "ee/app/models/ai/catalog/foundational_flow/definitions/developer.rb",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!250316",
+   "note_id": 3731859729,
+   "path": "ee/app/services/mcp/tools/duo_workflows/get_duo_session_tool.rb",
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!249242",
+   "note_id": 3732317527,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!250288",
+   "note_id": 3732491648,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!251307",
+   "note_id": 3733409764,
+   "path": "app/models/release.rb",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!250288",
+   "note_id": 3733441827,
+   "path": "spec/lib/gitlab/database/sharding_key_foreign_key_strength_spec.rb",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!251307",
+   "note_id": 3733869675,
+   "path": "app/services/mcp/tools/releases/list_releases_service.rb",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!251917",
+   "note_id": 3735289364,
+   "path": null,
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!251884",
+   "note_id": 3735378439,
+   "path": null,
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!251307",
+   "note_id": 3737104055,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!249242",
+   "note_id": 3738141549,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!249242",
+   "note_id": 3738142138,
+   "path": "ee/app/assets/javascripts/saml_providers/scim_token/components/scim_token.vue",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!251307",
+   "note_id": 3738880244,
+   "path": null,
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!251227",
+   "note_id": 3739260101,
+   "path": "doc/administration/backup_restore/restore_gitlab.md",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!251307",
+   "note_id": 3740167395,
+   "path": "app/services/mcp/tools/releases/list_releases_service.rb",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!250978",
+   "note_id": 3740262546,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!250754",
+   "note_id": 3741269604,
+   "path": "ee/app/services/test_hooks/group_service.rb",
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!251227",
+   "note_id": 3744384967,
+   "path": "lib/backup/targets/repositories.rb",
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!251227",
+   "note_id": 3744385132,
+   "path": "doc/administration/backup_restore/restore_gitlab.md",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!252187",
+   "note_id": 3745140759,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!251307",
+   "note_id": 3745273250,
+   "path": "app/models/release.rb",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!252331",
+   "note_id": 3747773483,
+   "path": null,
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!252050",
+   "note_id": 3748568446,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!249939",
+   "note_id": 3750323014,
+   "path": "app/services/organizations/transfer/user_agent_details_service.rb",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!252427",
+   "note_id": 3750638992,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!251455",
+   "note_id": 3751192747,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!252444",
+   "note_id": 3751220136,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!246552",
+   "note_id": 3754082455,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!250288",
+   "note_id": 3754156173,
+   "path": "db/migrate/20260814000001_remove_organization_fk_from_snippet_repositories.rb",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!231623",
+   "note_id": 3754483853,
+   "path": "doc/ci/yaml/signing_self_hosted.md",
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!247146",
+   "note_id": 3754630972,
+   "path": null,
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!249242",
+   "note_id": 3756906309,
+   "path": "ee/spec/frontend/saml_providers/scim_token/components/scim_token_spec.js",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!249242",
+   "note_id": 3756906318,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!249242",
+   "note_id": 3757692135,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!252609",
+   "note_id": 3757745822,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!252609",
+   "note_id": 3757745822,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!252609",
+   "note_id": 3757797363,
+   "path": null,
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!252616",
+   "note_id": 3761571661,
+   "path": "doc/user/application_security/vulnerabilities/validity_check.md",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!252616",
+   "note_id": 3761571661,
+   "path": "doc/user/application_security/vulnerabilities/validity_check.md",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!251030",
+   "note_id": 3761728047,
+   "path": "doc/user/duo_agent_platform/agents/custom.md",
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!252616",
+   "note_id": 3761768470,
+   "path": "doc/user/application_security/vulnerabilities/validity_check.md",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!252616",
+   "note_id": 3761768470,
+   "path": "doc/user/application_security/vulnerabilities/validity_check.md",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!243466",
+   "note_id": 3762010243,
+   "path": "app/models/concerns/integrations/base/chat_notification.rb",
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!252616",
+   "note_id": 3762010702,
+   "path": "doc/user/application_security/vulnerabilities/validity_check.md",
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!250288",
+   "note_id": 3762568422,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!252727",
+   "note_id": 3762613418,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!252619",
+   "note_id": 3763270175,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!252691",
+   "note_id": 3763469195,
+   "path": "doc/user/glql/data_sources/projects.md",
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!248977",
+   "note_id": 3763899495,
+   "path": null,
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!248155",
+   "note_id": 3764191566,
+   "path": null,
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!252619",
+   "note_id": 3764281813,
+   "path": "app/services/mcp/tools/merge_requests/list_merge_requests_tool.rb",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!251917",
+   "note_id": 3764379684,
+   "path": "ee/spec/services/ee/integrations/slack_events/app_mentioned_service_spec.rb",
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!248155",
+   "note_id": 3764489247,
+   "path": null,
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!250889",
+   "note_id": 3764768129,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!250889",
+   "note_id": 3764768129,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!250913",
+   "note_id": 3765584867,
+   "path": "doc/user/group/manage.md",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!250913",
+   "note_id": 3765584913,
+   "path": "doc/user/project/working_with_projects.md",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!250913",
+   "note_id": 3765584962,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!252616",
+   "note_id": 3765657079,
+   "path": "doc/user/application_security/vulnerabilities/validity_check.md",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!252616",
+   "note_id": 3765657079,
+   "path": "doc/user/application_security/vulnerabilities/validity_check.md",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!252331",
+   "note_id": 3766402052,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!252905",
+   "note_id": 3767025844,
+   "path": null,
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!252616",
+   "note_id": 3767316402,
+   "path": "doc/user/application_security/vulnerabilities/validity_check.md",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!252616",
+   "note_id": 3767316402,
+   "path": "doc/user/application_security/vulnerabilities/validity_check.md",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!252912",
+   "note_id": 3768739469,
+   "path": null,
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!250978",
+   "note_id": 3768903116,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!252691",
+   "note_id": 3769271516,
+   "path": null,
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!252619",
+   "note_id": 3769485624,
+   "path": "app/services/mcp/tools/merge_requests/list_merge_requests_tool.rb",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!250889",
+   "note_id": 3769756040,
+   "path": null,
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!252616",
+   "note_id": 3770128032,
+   "path": null,
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!252912",
+   "note_id": 3770144149,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!253025",
+   "note_id": 3770710492,
+   "path": null,
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!252765",
+   "note_id": 3770844266,
+   "path": "config/initializers/mfe.rb",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!252765",
+   "note_id": 3770844390,
+   "path": "gems/gitlab-mfe/README.md",
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!252765",
+   "note_id": 3770844484,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!253025",
+   "note_id": 3770905474,
+   "path": null,
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!246552",
+   "note_id": 3770990790,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!246552",
+   "note_id": 3771150144,
+   "path": null,
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!252905",
+   "note_id": 3771439434,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!252609",
+   "note_id": 3772172699,
+   "path": "app/assets/javascripts/snippets/components/snippet_blob_edit.vue",
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!252609",
+   "note_id": 3772195759,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!252609",
+   "note_id": 3772195759,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!250978",
+   "note_id": 3772198308,
+   "path": "ee/app/models/package_metadata/license.rb",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!248851",
+   "note_id": 3772370325,
+   "path": null,
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!252609",
+   "note_id": 3772392084,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!252609",
+   "note_id": 3772392084,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!249242",
+   "note_id": 3772492577,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!251909",
+   "note_id": 3772553862,
+   "path": "doc/user/application_security/policies/pipeline_execution_policies.md",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!247146",
+   "note_id": 3772819124,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!247146",
+   "note_id": 3772819124,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!252765",
+   "note_id": 3775095728,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!250220",
+   "note_id": 3775297013,
+   "path": "ee/app/models/ai/catalog/foundational_flow/definitions/developer.rb",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!253195",
+   "note_id": 3775350606,
+   "path": null,
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!250754",
+   "note_id": 3775366224,
+   "path": "ee/app/services/test_hooks/group_service.rb",
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!249242",
+   "note_id": 3775709639,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!247190",
+   "note_id": 3775842431,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!250979",
+   "note_id": 3776536429,
+   "path": "ee/app/models/package_metadata/license.rb",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!250220",
+   "note_id": 3776999230,
+   "path": "ee/lib/gitlab/event_store/subscriptions/ai_subscriptions.rb",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!250622",
+   "note_id": 3777222283,
+   "path": null,
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!248851",
+   "note_id": 3777410141,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!248851",
+   "note_id": 3777410141,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!253025",
+   "note_id": 3777567375,
+   "path": null,
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!250622",
+   "note_id": 3777739551,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!252727",
+   "note_id": 3778058060,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!253320",
+   "note_id": 3778616668,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!252727",
+   "note_id": 3778678437,
+   "path": "ee/app/assets/javascripts/work_items/components/ai_widget/work_plan.vue",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!252812",
+   "note_id": 3781151970,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!253454",
+   "note_id": 3782712589,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!253461",
+   "note_id": 3782991374,
+   "path": null,
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!253461",
+   "note_id": 3783001042,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!251358",
+   "note_id": 3783266335,
+   "path": "app/services/mcp/tools/repositories/tags/list_tags_service.rb",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!249958",
+   "note_id": 3783288759,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!249958",
+   "note_id": 3783288759,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!253113",
+   "note_id": 3783552408,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!250316",
+   "note_id": 3783664606,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!250316",
+   "note_id": 3783664606,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!252444",
+   "note_id": 3784584505,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!250316",
+   "note_id": 3785600374,
+   "path": null,
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!252884",
+   "note_id": 3785656217,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!251316",
+   "note_id": 3786837725,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!251316",
+   "note_id": 3786837725,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!252444",
+   "note_id": 3787079909,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!252957",
+   "note_id": 3787435970,
+   "path": "ee/app/services/members/create_ldap_group_link_service.rb",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!252727",
+   "note_id": 3787722439,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!252621",
+   "note_id": 3789011485,
+   "path": null,
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!248574",
+   "note_id": 3789130117,
+   "path": null,
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!253485",
+   "note_id": 3789182696,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!251455",
+   "note_id": 3789890313,
+   "path": "app/services/mcp/tools/work_items/create_work_item_tool.rb",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!252618",
+   "note_id": 3794224768,
+   "path": null,
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!252154",
+   "note_id": 3795151757,
+   "path": "lib/api/work_items/notes.rb",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!250316",
+   "note_id": 3795559321,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!250316",
+   "note_id": 3795559321,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!252957",
+   "note_id": 3796080348,
+   "path": "ee/app/services/members/create_ldap_group_link_service.rb",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!250316",
+   "note_id": 3796281970,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!250316",
+   "note_id": 3796281970,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!253877",
+   "note_id": 3796402817,
+   "path": null,
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!252883",
+   "note_id": 3796749375,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!251030",
+   "note_id": 3796939485,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!252331",
+   "note_id": 3797660742,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!251455",
+   "note_id": 3797753696,
+   "path": "app/services/mcp/tools/work_items/create_work_item_tool.rb",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!253475",
+   "note_id": 3797979916,
+   "path": "doc/releases/19/gitlab-19-4-released/mcp-repository-tools.md",
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!251455",
+   "note_id": 3798025997,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!251030",
+   "note_id": 3798180217,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!253471",
+   "note_id": 3798433382,
+   "path": "doc/releases/19/gitlab-19-4-released/mcp-work-item-tools.md",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!253823",
+   "note_id": 3798680324,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!253113",
+   "note_id": 3798690117,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!252957",
+   "note_id": 3800099272,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!252957",
+   "note_id": 3800099315,
+   "path": "ee/app/services/members/create_ldap_group_link_service.rb",
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!252957",
+   "note_id": 3800104924,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!252957",
+   "note_id": 3800106846,
+   "path": ".rubocop_todo/gitlab/authz/permission_check.yml",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!253589",
+   "note_id": 3800629825,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!253600",
+   "note_id": 3802362907,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!185902",
+   "note_id": 3803437297,
+   "path": "lib/gitlab/gitaly_client/operation_service.rb",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!254005",
+   "note_id": 3803775188,
+   "path": null,
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!243466",
+   "note_id": 3803790377,
+   "path": null,
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!251909",
+   "note_id": 3803947958,
+   "path": "doc/user/application_security/policies/merge_request_approval_policies.md",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!252899",
+   "note_id": 3804364100,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!253823",
+   "note_id": 3804436127,
+   "path": null,
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!253664",
+   "note_id": 3804763929,
+   "path": null,
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!253120",
+   "note_id": 3804817125,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!253792",
+   "note_id": 3805063566,
+   "path": null,
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!248574",
+   "note_id": 3805335177,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!248574",
+   "note_id": 3805335177,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!249457",
+   "note_id": 3805500685,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!254154",
+   "note_id": 3807026360,
+   "path": "ee/app/services/ai/catalog/item_consumers/create_service.rb",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!254154",
+   "note_id": 3807026394,
+   "path": "ee/app/services/ai/catalog/item_consumers/create_service.rb",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!185902",
+   "note_id": 3807305561,
+   "path": "lib/gitlab/gitaly_client/operation_service.rb",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!253828",
+   "note_id": 3807998130,
+   "path": "spec/services/merge_requests/build_service_spec.rb",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!253823",
+   "note_id": 3808215188,
+   "path": null,
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!253120",
+   "note_id": 3808778636,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!254504",
+   "note_id": 3809438883,
+   "path": null,
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!253808",
+   "note_id": 3810896172,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!253828",
+   "note_id": 3811263210,
+   "path": null,
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!254598",
+   "note_id": 3812012810,
+   "path": null,
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!253963",
+   "note_id": 3812449465,
+   "path": "spec/features/projects/files/user_creates_files_spec.rb",
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!253191",
+   "note_id": 3813105983,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!253828",
+   "note_id": 3813212919,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!253479",
+   "note_id": 3813818283,
+   "path": "doc/releases/19/gitlab-19-4-released/mcp-semantic-search.md",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!254026",
+   "note_id": 3814142993,
+   "path": "ee/app/graphql/queries/mcp/security/save_vulnerability_update_severity.mutation.graphql",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!254026",
+   "note_id": 3814717416,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!251441",
+   "note_id": 3815649164,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!254504",
+   "note_id": 3816335589,
+   "path": null,
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!253816",
+   "note_id": 3816385473,
+   "path": "ee/spec/lib/gitlab/auth/ldap/adapter_spec.rb",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!254871",
+   "note_id": 3818100461,
+   "path": null,
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!254042",
+   "note_id": 3818160202,
+   "path": "doc/topics/offline/quick_start_guide.md",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!254026",
+   "note_id": 3818497764,
+   "path": "ee/app/services/mcp/tools/security/save_vulnerability_service.rb",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!254231",
+   "note_id": 3818537815,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!254231",
+   "note_id": 3818537815,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!254769",
+   "note_id": 3819609906,
+   "path": "lib/gitlab/diff/lines_unfolder.rb",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!254769",
+   "note_id": 3819609918,
+   "path": "lib/gitlab/diff/lines_unfolder.rb",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!254939",
+   "note_id": 3819743568,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!253828",
+   "note_id": 3819903271,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!254080",
+   "note_id": 3819941177,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!254026",
+   "note_id": 3819956925,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!254939",
+   "note_id": 3820123561,
+   "path": null,
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!253816",
+   "note_id": 3820274316,
+   "path": null,
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!185902",
+   "note_id": 3821257746,
+   "path": "lib/gitlab/gitaly_client/operation_service.rb",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!254231",
+   "note_id": 3821299442,
+   "path": null,
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!249958",
+   "note_id": 3821656918,
+   "path": null,
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!254570",
+   "note_id": 3821776718,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!255004",
+   "note_id": 3821981637,
+   "path": null,
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!254026",
+   "note_id": 3822003356,
+   "path": "ee/app/services/mcp/tools/security/save_vulnerability_tool.rb",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!254026",
+   "note_id": 3822003606,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!255146",
+   "note_id": 3823419600,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!254573",
+   "note_id": 3823759996,
+   "path": "app/services/mcp/tools/repositories/branches/add_branch_tool.rb",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!254573",
+   "note_id": 3823760068,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!255149",
+   "note_id": 3824428773,
+   "path": null,
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!255147",
+   "note_id": 3824435558,
+   "path": null,
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!255234",
+   "note_id": 3826439084,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!255236",
+   "note_id": 3826451098,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!255237",
+   "note_id": 3826733133,
+   "path": null,
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!255234",
+   "note_id": 3827689828,
+   "path": null,
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!255247",
+   "note_id": 3828215206,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!255143",
+   "note_id": 3828365024,
+   "path": "app/services/mcp/tools/repositories/branches/add_branch_tool.rb",
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!255110",
+   "note_id": 3828544280,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!249505",
+   "note_id": 3828862189,
+   "path": null,
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!255236",
+   "note_id": 3829085575,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!255143",
+   "note_id": 3829108857,
+   "path": "app/services/mcp/tools/repositories/branches/add_branch_tool.rb",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!255300",
+   "note_id": 3829199657,
+   "path": null,
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!255143",
+   "note_id": 3829304371,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!255112",
+   "note_id": 3829312625,
+   "path": null,
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!255148",
+   "note_id": 3829376910,
+   "path": "scripts/cells/check_router_routes_sync.rb",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!255218",
+   "note_id": 3829908431,
+   "path": null,
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!254482",
+   "note_id": 3830017936,
+   "path": null,
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!255229",
+   "note_id": 3830099238,
+   "path": "app/graphql/types/repositories/tag_sort_enum.rb",
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!255300",
+   "note_id": 3830264781,
+   "path": "doc/user/project/repository/signed_commits/gpg.md",
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!255300",
+   "note_id": 3830355841,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!255300",
+   "note_id": 3830355841,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!255111",
+   "note_id": 3830758524,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!255111",
+   "note_id": 3831349845,
+   "path": null,
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!255142",
+   "note_id": 3831868158,
+   "path": null,
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!255147",
+   "note_id": 3832004063,
+   "path": "ee/app/assets/javascripts/protected_environments/store/edit/actions.js",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!255111",
+   "note_id": 3832238640,
+   "path": "lib/api/mcp/handlers/list_tools.rb",
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!253728",
+   "note_id": 3832398717,
+   "path": "ee/app/models/ai/duo_workflows/workflow.rb",
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!252331",
+   "note_id": 3832857696,
+   "path": "ee/lib/gitlab/duo_workflow/sandbox.rb",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!254268",
+   "note_id": 3833158769,
+   "path": "db/post_migrate/20260908184215_retry_add_repair_dual_sharding_key_trigger_to_notes.rb",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!255486",
+   "note_id": 3833386804,
+   "path": null,
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!255490",
+   "note_id": 3833472840,
+   "path": null,
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!254827",
+   "note_id": 3833642053,
+   "path": "qa/qa/specs/spec_helper.rb",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!254352",
+   "note_id": 3834095471,
+   "path": "ee/app/models/security/policy.rb",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!254352",
+   "note_id": 3834095499,
+   "path": "ee/app/models/security/policy.rb",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!254922",
+   "note_id": 3834426682,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!253823",
+   "note_id": 3834795004,
+   "path": "lib/ci/pipeline_creation/push_options.rb",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!254859",
+   "note_id": 3835777099,
+   "path": "app/views/notify/access_token_about_to_expire_email.text.erb",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!254859",
+   "note_id": 3835777148,
+   "path": "spec/mailers/emails/profile_spec.rb",
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!255432",
+   "note_id": 3836499162,
+   "path": null,
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!255432",
+   "note_id": 3836499394,
+   "path": "spec/lib/import/offline/common/pipelines/members_pipeline_spec.rb",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!255432",
+   "note_id": 3836499394,
+   "path": "spec/lib/import/offline/common/pipelines/members_pipeline_spec.rb",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!255638",
+   "note_id": 3836705642,
+   "path": null,
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!255143",
+   "note_id": 3836987997,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!255112",
+   "note_id": 3837222883,
+   "path": "ee/app/services/security/vulnerability_scanning/sbom_scan_result_caching_service.rb",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!255112",
+   "note_id": 3837224114,
+   "path": "ee/app/services/security/vulnerability_scanning/sbom_scan_result_caching_service.rb",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!255112",
+   "note_id": 3837225428,
+   "path": "ee/app/services/security/vulnerability_scanning/sbom_scan_result_caching_service.rb",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!255112",
+   "note_id": 3837226963,
+   "path": "ee/spec/services/security/vulnerability_scanning/sbom_scan_result_caching_service_spec.rb",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!255112",
+   "note_id": 3837233209,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!255503",
+   "note_id": 3837268734,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!255112",
+   "note_id": 3837339845,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!255230",
+   "note_id": 3837376806,
+   "path": "app/graphql/types/terraform/state_type.rb",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!255142",
+   "note_id": 3837507690,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!255223",
+   "note_id": 3838011318,
+   "path": null,
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!254827",
+   "note_id": 3839708693,
+   "path": null,
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!255230",
+   "note_id": 3839757284,
+   "path": "app/graphql/types/terraform/state_type.rb",
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!255112",
+   "note_id": 3840066967,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!255638",
+   "note_id": 3840218146,
+   "path": "ee/app/views/notify/user_auto_banned_email.text.erb",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!255638",
+   "note_id": 3840218208,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!255240",
+   "note_id": 3840249384,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!255240",
+   "note_id": 3840249384,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!255515",
+   "note_id": 3840415344,
+   "path": "ee/app/assets/javascripts/packages_and_registries/artifact_registry/repositories/detail/upstream_repositories_table.vue",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!255515",
+   "note_id": 3840415404,
+   "path": "ee/app/assets/javascripts/packages_and_registries/artifact_registry/repositories/detail/upstream_repositories_table.vue",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!255515",
+   "note_id": 3840415422,
+   "path": "ee/app/assets/javascripts/packages_and_registries/artifact_registry/repositories/detail/repository_detail.vue",
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!255515",
+   "note_id": 3840415430,
+   "path": "ee/app/assets/javascripts/packages_and_registries/artifact_registry/repositories/detail/repository_detail.vue",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!255515",
+   "note_id": 3840415509,
+   "path": "ee/spec/frontend/packages_and_registries/artifact_registry/repositories/detail/repository_detail_spec.js",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!255515",
+   "note_id": 3840415546,
+   "path": "ee/spec/frontend/packages_and_registries/artifact_registry/mock_data.js",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!255515",
+   "note_id": 3840415555,
+   "path": "ee/spec/frontend/packages_and_registries/artifact_registry/repositories/detail/upstream_repositories_table_spec.js",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!255803",
+   "note_id": 3840465826,
+   "path": "app/models/terraform/state.rb",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!255229",
+   "note_id": 3840871118,
+   "path": "app/graphql/types/repositories/tag_sort_enum.rb",
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!255486",
+   "note_id": 3841403455,
+   "path": null,
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!255803",
+   "note_id": 3842616967,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!254005",
+   "note_id": 3843078931,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!255231",
+   "note_id": 3843218754,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!254843",
+   "note_id": 3843219654,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!255679",
+   "note_id": 3843666201,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!251441",
+   "note_id": 3843965451,
+   "path": null,
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!255432",
+   "note_id": 3844426209,
+   "path": "app/models/bulk_imports/file_transfer/group_config.rb",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!255432",
+   "note_id": 3844426209,
+   "path": "app/models/bulk_imports/file_transfer/group_config.rb",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!255229",
+   "note_id": 3845366358,
+   "path": null,
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!255236",
+   "note_id": 3845661560,
+   "path": "ee/app/assets/javascripts/oncall_schedules/components/oncall_schedule.vue",
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!241192",
+   "note_id": 3846058438,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!255799",
+   "note_id": 3847716989,
+   "path": "ee/spec/frontend/packages_and_registries/artifact_registry/repositories/versions/detail/version_detail_spec.js",
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!255799",
+   "note_id": 3847716997,
+   "path": "ee/spec/frontend/packages_and_registries/artifact_registry/repositories/versions/detail/version_detail_spec.js",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!255799",
+   "note_id": 3847717001,
+   "path": "ee/spec/frontend/packages_and_registries/artifact_registry/repositories/versions/detail/version_detail_spec.js",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!256066",
+   "note_id": 3847907973,
+   "path": null,
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!255888",
+   "note_id": 3848185223,
+   "path": null,
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!254573",
+   "note_id": 3850386060,
+   "path": "spec/services/mcp/tools/repositories/branches/add_branch_tool_spec.rb",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!254573",
+   "note_id": 3850386095,
+   "path": "app/services/mcp/tools/repositories/branches/add_branch_tool.rb",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!254573",
+   "note_id": 3850386227,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!252604",
+   "note_id": 3850413541,
+   "path": "spec/services/projects/detect_repository_languages_service_spec.rb",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!252604",
+   "note_id": 3850413573,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!256108",
+   "note_id": 3850454167,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!256108",
+   "note_id": 3850574303,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!241192",
+   "note_id": 3851217104,
+   "path": "lib/gitlab/background_migration/nullify_personal_namespace_id_on_group_wiki_events.rb",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!241192",
+   "note_id": 3851221603,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!255223",
+   "note_id": 3851486873,
+   "path": null,
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!255803",
+   "note_id": 3855445091,
+   "path": "app/models/terraform/state.rb",
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!255803",
+   "note_id": 3855445802,
+   "path": null,
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!252643",
+   "note_id": 3855921517,
+   "path": "doc/administration/gitlab_duo/model_selection.md",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!252643",
+   "note_id": 3855921523,
+   "path": "doc/user/duo_agent_platform/model_selection.md",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!255796",
+   "note_id": 3856246449,
+   "path": "ee/app/assets/javascripts/packages_and_registries/artifact_registry/repositories/detail/upstream_repository_actions.vue",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!253728",
+   "note_id": 3856790519,
+   "path": "ee/app/models/ai/duo_workflows/workflow.rb",
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!252765",
+   "note_id": 3857543250,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!256175",
+   "note_id": 3858021288,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!253160",
+   "note_id": 3858076180,
+   "path": "ee/lib/search/elastic/merge_request_query_builder.rb",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!255111",
+   "note_id": 3860062369,
+   "path": "spec/requests/api/mcp/handlers/list_tools_spec.rb",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!255490",
+   "note_id": 3861272957,
+   "path": null,
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!256554",
+   "note_id": 3872403118,
+   "path": null,
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!256498",
+   "note_id": 3873626496,
+   "path": "app/models/event.rb",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!256577",
+   "note_id": 3874236035,
+   "path": "doc/releases/19/gitlab-19-4-released/vulnerability-tools-added-to-the-gitlab-mcp-server.md",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!256577",
+   "note_id": 3874236046,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!253120",
+   "note_id": 3875041716,
+   "path": "app/models/ci/build_dependencies.rb",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!256405",
+   "note_id": 3875067728,
+   "path": null,
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!256293",
+   "note_id": 3875880498,
+   "path": null,
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!254769",
+   "note_id": 3876053044,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!252604",
+   "note_id": 3876667133,
+   "path": "app/services/projects/detect_repository_languages_service.rb",
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!256268",
+   "note_id": 3876682579,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!255611",
+   "note_id": 3877086994,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!254871",
+   "note_id": 3877631231,
+   "path": "doc/user/profile/personal_access_tokens.md",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!254570",
+   "note_id": 3878707271,
+   "path": "lib/gitlab/etag_caching/router/graphql.rb",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!256757",
+   "note_id": 3879463187,
+   "path": null,
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!255143",
+   "note_id": 3879534183,
+   "path": "app/services/mcp/tools/repositories/branches/add_branch_tool.rb",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!255143",
+   "note_id": 3879534297,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!256734",
+   "note_id": 3879697764,
+   "path": "ee/spec/frontend/security_dashboard/components/shared/vulnerability_report/vulnerability_list_graphql_spec.js",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!256734",
+   "note_id": 3879697764,
+   "path": "ee/spec/frontend/security_dashboard/components/shared/vulnerability_report/vulnerability_list_graphql_spec.js",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!256734",
+   "note_id": 3879700389,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!256734",
+   "note_id": 3879700389,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!256838",
+   "note_id": 3881095966,
+   "path": "app/services/work_items/saved_views/update_service.rb",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!253120",
+   "note_id": 3882130090,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!256603",
+   "note_id": 3882189470,
+   "path": null,
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!253728",
+   "note_id": 3882611944,
+   "path": "ee/spec/models/ai/duo_workflows/workflow_spec.rb",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!253728",
+   "note_id": 3882611974,
+   "path": "ee/lib/api/ai/duo_workflows/workflows.rb",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!253728",
+   "note_id": 3882611999,
+   "path": "ee/app/services/ai/duo_workflows/create_workflow_service.rb",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!254268",
+   "note_id": 3882743688,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!256730",
+   "note_id": 3883187424,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!256730",
+   "note_id": 3883187424,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!253191",
+   "note_id": 3884770861,
+   "path": "ee/lib/elastic/latest/git_class_proxy.rb",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!253191",
+   "note_id": 3884783671,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!256268",
+   "note_id": 3884818439,
+   "path": "app/services/mcp/tools/repositories/get_repository_file_tool.rb",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!256268",
+   "note_id": 3884818473,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!254871",
+   "note_id": 3885253470,
+   "path": "doc/user/profile/personal_access_tokens.md",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!256381",
+   "note_id": 3887406879,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!252643",
+   "note_id": 3889520890,
+   "path": "doc/user/gitlab_duo_chat/agentic_chat.md",
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!252643",
+   "note_id": 3889520912,
+   "path": "doc/administration/gitlab_duo/model_selection.md",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!252643",
+   "note_id": 3889520925,
+   "path": "doc/user/duo_agent_platform/model_selection.md",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!253728",
+   "note_id": 3889719592,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!255149",
+   "note_id": 3889851559,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!256498",
+   "note_id": 3891905790,
+   "path": null,
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!256718",
+   "note_id": 3892466988,
+   "path": "app/models/ci/runner.rb",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!253191",
+   "note_id": 3892943450,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!254871",
+   "note_id": 3892947409,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!255219",
+   "note_id": 3893645978,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!253191",
+   "note_id": 3893762795,
+   "path": "ee/spec/lib/elastic/latest/git_class_proxy_spec.rb",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!253191",
+   "note_id": 3893763925,
+   "path": "spec/support/shared_contexts/policies/project_policy_table_shared_context.rb",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!255432",
+   "note_id": 3894576128,
+   "path": "app/models/bulk_imports/file_transfer/base_config.rb",
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!256752",
+   "note_id": 3894994856,
+   "path": null,
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!253830",
+   "note_id": 3895056298,
+   "path": "spec/workers/ci/schedule_unlock_pipelines_in_queue_cron_worker_spec.rb",
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!253830",
+   "note_id": 3895056310,
+   "path": "spec/workers/ci/schedule_unlock_pipelines_in_queue_cron_worker_spec.rb",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!253830",
+   "note_id": 3895056310,
+   "path": "spec/workers/ci/schedule_unlock_pipelines_in_queue_cron_worker_spec.rb",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!253830",
+   "note_id": 3895327468,
+   "path": null,
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!257202",
+   "note_id": 3896693805,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!252643",
+   "note_id": 3897795799,
+   "path": "doc/administration/gitlab_duo/model_selection.md",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!257360",
+   "note_id": 3898256804,
+   "path": null,
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!251401",
+   "note_id": 3900400420,
+   "path": null,
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!255219",
+   "note_id": 3900621466,
+   "path": "spec/services/issuable/callbacks/labels_spec.rb",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!257360",
+   "note_id": 3902334503,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!257360",
+   "note_id": 3902335588,
+   "path": "spec/requests/api/features_spec.rb",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!255110",
+   "note_id": 3903390514,
+   "path": "app/services/users/update_service.rb",
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!256551",
+   "note_id": 3905212296,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!256551",
+   "note_id": 3905212296,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!251401",
+   "note_id": 3906656433,
+   "path": null,
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!256201",
+   "note_id": 3907084920,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!256791",
+   "note_id": 3915060457,
+   "path": "spec/frontend/work_items/components/work_item_description_rendered_spec.js",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!253120",
+   "note_id": 3915239541,
+   "path": "app/models/ci/build_dependencies.rb",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!257702",
+   "note_id": 3917633200,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!258248",
+   "note_id": 3918225252,
+   "path": null,
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!256554",
+   "note_id": 3918664137,
+   "path": "ee/app/models/ee/project.rb",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!256554",
+   "note_id": 3918664137,
+   "path": "ee/app/models/ee/project.rb",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!256554",
+   "note_id": 3918664188,
+   "path": "ee/app/services/security/inventory_filters/triage_capabilities_update_service.rb",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!256554",
+   "note_id": 3918664188,
+   "path": "ee/app/services/security/inventory_filters/triage_capabilities_update_service.rb",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!258248",
+   "note_id": 3918764894,
+   "path": "doc/user/application_security/dependency_scanning/migration_guide_to_sbom_based_scans.md",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!255229",
+   "note_id": 3919451802,
+   "path": "spec/requests/api/graphql/project/repository_spec.rb",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!255229",
+   "note_id": 3919477831,
+   "path": "spec/requests/api/graphql/project/repository_spec.rb",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!255229",
+   "note_id": 3921901632,
+   "path": "spec/requests/api/graphql/project/repository_spec.rb",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!256554",
+   "note_id": 3922462856,
+   "path": "ee/spec/support/shared_examples/replicators/upload_replicator_behavior_shared_examples.rb",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!256554",
+   "note_id": 3922462856,
+   "path": "ee/spec/support/shared_examples/replicators/upload_replicator_behavior_shared_examples.rb",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!256554",
+   "note_id": 3922462921,
+   "path": "ee/spec/support/shared_examples/replicators/upload_replicator_behavior_shared_examples.rb",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!256554",
+   "note_id": 3922462921,
+   "path": "ee/spec/support/shared_examples/replicators/upload_replicator_behavior_shared_examples.rb",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!256554",
+   "note_id": 3922462935,
+   "path": "ee/spec/support/shared_examples/replicators/upload_replicator_behavior_shared_examples.rb",
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!256554",
+   "note_id": 3922462968,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!256554",
+   "note_id": 3922462968,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!256554",
+   "note_id": 3922784442,
+   "path": "ee/app/models/geo/upload_registry.rb",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!256554",
+   "note_id": 3922784442,
+   "path": "ee/app/models/geo/upload_registry.rb",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!256554",
+   "note_id": 3922784480,
+   "path": "ee/spec/models/geo/upload_registry_spec.rb",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!256554",
+   "note_id": 3922784480,
+   "path": "ee/spec/models/geo/upload_registry_spec.rb",
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!256554",
+   "note_id": 3922784513,
+   "path": "ee/app/replicators/geo/concerns/upload_replicator_behavior.rb",
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!254871",
+   "note_id": 3923617790,
+   "path": null,
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!255229",
+   "note_id": 3924588253,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!258253",
+   "note_id": 3925008564,
+   "path": null,
+   "candidate": true,
+   "control": false
+  },
+  {
+   "ref": "gitlab-org/gitlab!256554",
+   "note_id": 3928833755,
+   "path": null,
+   "candidate": false,
+   "control": true
+  },
+  {
+   "ref": "gitlab-org/gitlab!258220",
+   "note_id": 3933106273,
+   "path": null,
+   "candidate": false,
+   "control": true
+  }
+ ]
+}

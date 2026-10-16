@@ -516,4 +516,36 @@ KILLED  t52: no deployment is shown                    test_gitlabs_own_list_is_
 KILLED  t52: refused requests are not counted          test_a_request_gitlab_refuses_is_counted_not_hidden
 KILLED  t52: one merge request is plural               test_one_merge_request_is_not_plural
 KILLED  t52: no job token still runs                   test_main_without_a_job_token_does_nothing
-518/518 mutants killed
+KILLED  t53: the branch issue reported as from the description test_issue_from_the_developer_flows_branch_when_nothing_else_names_one
+KILLED  t53: the branch outranks the description       test_issues_from_the_description_when_closes_issues_is_empty
+KILLED  t53: a missing branch issue is not reported    test_the_branch_is_read_only_when_no_closing_link_names_an_issue
+KILLED  t53: any digits after the kind                 test_flow_branch_issue
+KILLED  t53: the job does not pass the branch          test_issue_from_the_developer_flows_branch_when_nothing_else_names_one
+KILLED  t54: the description is not checked            test_a_branch_number_the_description_does_not_name_is_not_read
+KILLED  t54: the job does not pass the project path    test_issue_from_the_developer_flows_branch_when_nothing_else_names_one
+KILLED  t54: the skipped branch is not reported        test_a_branch_number_the_description_does_not_name_is_not_read
+KILLED  t54: other/repo#n counts                       test_a_branch_number_the_description_does_not_name_is_not_read
+KILLED  t54: #n matches #n0                            test_mentions_issue
+KILLED  t54: a merge request URL counts                test_a_branch_number_the_description_does_not_name_is_not_read
+KILLED  t54: any project's URL counts                  test_mentions_issue
+KILLED  t54: the URL's host is not required            test_mentions_issue
+KILLED  t54: issues/n matches issues/n0                test_mentions_issue
+KILLED  t54: no project path still reads URLs          test_a_branch_number_the_description_does_not_name_is_not_read
+KILLED  t55: no first parent                           test_scan_reads_each_merge_request_as_it_landed
+KILLED  t55: a squash commit is ignored                test_scan_reads_each_merge_request_as_it_landed
+KILLED  t55: a fast-forward merge gets the clone reason test_scan_reads_each_merge_request_as_it_landed
+KILLED  t55: listed by update time                     test_scan_reads_each_merge_request_as_it_landed
+KILLED  t55: pipes not escaped                         test_a_pipe_in_a_title_or_name_stays_in_its_cell
+KILLED  t55: the title is not escaped                  test_a_pipe_in_a_title_or_name_stays_in_its_cell
+KILLED  t55: --last 0 is accepted                      test_last_must_be_at_least_one
+KILLED  t55: oldest first                              test_scan_reads_each_merge_request_as_it_landed
+KILLED  t55: --last ignored                            test_scan_takes_the_last_n_and_counts_a_failed_read
+KILLED  t55: unmerged rows kept                        test_scan_reads_each_merge_request_as_it_landed
+KILLED  t55: one page only                             test_merged_reads_pages_until_a_short_one
+KILLED  t55: unreadable counted as read                test_scan_reads_each_merge_request_as_it_landed
+KILLED  t55: no issue counted as linked                test_scan_reads_each_merge_request_as_it_landed
+KILLED  t55: a failed read stops the scan              test_scan_takes_the_last_n_and_counts_a_failed_read
+KILLED  t55: the page lists merge requests without extras test_scan_reads_each_merge_request_as_it_landed
+KILLED  t55: a list error exits 0                      test_scan_stops_when_the_list_cannot_be_read
+KILLED  t55: the branch name is not quoted             test_merged_reads_pages_until_a_short_one
+550/550 mutants killed

@@ -1,0 +1,2326 @@
+[
+ {
+  "pop": "C",
+  "ref": "gitlab-org/gitlab!246493",
+  "project": 278964,
+  "created_at": "2026-07-20T07:10:38.073Z",
+  "state_mr": "merged",
+  "issues_from": "closing_link_confirmed",
+  "issue_refs": [
+   "#496518"
+  ],
+  "version": "merged",
+  "files": 6,
+  "withheld": 0,
+  "state": "inside_ask",
+  "extras": [],
+  "unplaced": 0
+ },
+ {
+  "pop": "C",
+  "ref": "gitlab-org/gitlab!250889",
+  "project": 278964,
+  "created_at": "2026-08-19T14:11:02.078Z",
+  "state_mr": "merged",
+  "issues_from": "closing_link_confirmed",
+  "issue_refs": [
+   "#616115"
+  ],
+  "version": "merged",
+  "files": 3,
+  "withheld": 0,
+  "state": "author_wrote_issue",
+  "extras": [],
+  "unplaced": 3
+ },
+ {
+  "pop": "C",
+  "ref": "gitlab-org/gitlab!252691",
+  "project": 278964,
+  "created_at": "2026-08-31T10:00:04.097Z",
+  "state_mr": "merged",
+  "issues_from": "closing_link_confirmed",
+  "issue_refs": [
+   "#611400"
+  ],
+  "version": "merged",
+  "files": 10,
+  "withheld": 0,
+  "state": "inside_ask",
+  "extras": [],
+  "unplaced": 0
+ },
+ {
+  "pop": "C",
+  "ref": "gitlab-org/gitlab!252616",
+  "project": 278964,
+  "created_at": "2026-08-30T13:19:36.882Z",
+  "state_mr": "merged",
+  "issues_from": "closing_link_confirmed",
+  "issue_refs": [
+   "#619506"
+  ],
+  "version": "merged",
+  "files": 3,
+  "withheld": 0,
+  "state": "unplaced_only",
+  "extras": [],
+  "unplaced": 1
+ },
+ {
+  "pop": "C",
+  "ref": "gitlab-org/gitlab!251307",
+  "project": 278964,
+  "created_at": "2026-08-21T10:24:51.983Z",
+  "state_mr": "merged",
+  "issues_from": "closing_link_confirmed",
+  "issue_refs": [
+   "#618494"
+  ],
+  "version": "merged",
+  "files": 11,
+  "withheld": 0,
+  "state": "inside_ask",
+  "extras": [],
+  "unplaced": 0
+ },
+ {
+  "pop": "C",
+  "ref": "gitlab-org/gitlab!247146",
+  "project": 278964,
+  "created_at": "2026-07-27T14:58:54.409Z",
+  "state_mr": "merged",
+  "issues_from": "closing_link_confirmed",
+  "issue_refs": [
+   "#592315"
+  ],
+  "version": "merged",
+  "files": 5,
+  "withheld": 0,
+  "state": "inside_ask",
+  "extras": [],
+  "unplaced": 0
+ },
+ {
+  "pop": "C",
+  "ref": "gitlab-org/gitlab!248155",
+  "project": 278964,
+  "created_at": "2026-07-31T20:39:18.750Z",
+  "state_mr": "merged",
+  "issues_from": "closing_link_confirmed",
+  "issue_refs": [
+   "#605849"
+  ],
+  "version": "merged",
+  "files": 7,
+  "withheld": 0,
+  "state": "inside_ask",
+  "extras": [],
+  "unplaced": 0
+ },
+ {
+  "pop": "C",
+  "ref": "gitlab-org/gitlab!252609",
+  "project": 278964,
+  "created_at": "2026-08-30T00:21:18.630Z",
+  "state_mr": "merged",
+  "issues_from": "closing_link_confirmed",
+  "issue_refs": [
+   "#625426"
+  ],
+  "version": "merged",
+  "files": 6,
+  "withheld": 0,
+  "state": "extras",
+  "extras": [
+   {
+    "name": "hasMarkdownExtension",
+    "kind": "public_api_removed",
+    "path": "app/assets/javascripts/blob/utils.js"
+   }
+  ],
+  "unplaced": 0
+ },
+ {
+  "pop": "C",
+  "ref": "gitlab-org/gitlab!253126",
+  "project": 278964,
+  "created_at": "2026-09-02T03:18:27.997Z",
+  "state_mr": "merged",
+  "issues_from": "closing_link_confirmed",
+  "issue_refs": [
+   "#616115"
+  ],
+  "version": "merged",
+  "files": 1,
+  "withheld": 0,
+  "state": "author_wrote_issue",
+  "extras": [],
+  "unplaced": 1
+ },
+ {
+  "pop": "C",
+  "ref": "gitlab-org/gitlab!250622",
+  "project": 278964,
+  "created_at": "2026-08-18T10:48:33.262Z",
+  "state_mr": "merged",
+  "issues_from": "closing_link_confirmed",
+  "issue_refs": [
+   "#348226"
+  ],
+  "version": "merged",
+  "files": 5,
+  "withheld": 0,
+  "state": "unplaced_only",
+  "extras": [],
+  "unplaced": 1
+ },
+ {
+  "pop": "C",
+  "ref": "gitlab-org/gitlab!252947",
+  "project": 278964,
+  "created_at": "2026-09-01T10:27:24.567Z",
+  "state_mr": "merged",
+  "issues_from": "closing_link_confirmed",
+  "issue_refs": [
+   "#342598"
+  ],
+  "version": "merged",
+  "files": 1,
+  "withheld": 0,
+  "state": "inside_ask",
+  "extras": [],
+  "unplaced": 0
+ },
+ {
+  "pop": "C",
+  "ref": "gitlab-org/gitlab!251358",
+  "project": 278964,
+  "created_at": "2026-08-21T14:13:31.003Z",
+  "state_mr": "merged",
+  "issues_from": "closing_link_confirmed",
+  "issue_refs": [
+   "#618493"
+  ],
+  "version": "merged",
+  "files": 8,
+  "withheld": 0,
+  "state": "inside_ask",
+  "extras": [],
+  "unplaced": 0
+ },
+ {
+  "pop": "C",
+  "ref": "gitlab-org/gitlab!252812",
+  "project": 278964,
+  "created_at": "2026-08-31T17:54:30.428Z",
+  "state_mr": "merged",
+  "issues_from": "closing_link_confirmed",
+  "issue_refs": [
+   "#613520"
+  ],
+  "version": "merged",
+  "files": 5,
+  "withheld": 0,
+  "state": "inside_ask",
+  "extras": [],
+  "unplaced": 0
+ },
+ {
+  "pop": "C",
+  "ref": "gitlab-org/gitlab!251316",
+  "project": 278964,
+  "created_at": "2026-08-21T10:59:20.295Z",
+  "state_mr": "merged",
+  "issues_from": "closing_link_confirmed",
+  "issue_refs": [
+   "#619249"
+  ],
+  "version": "merged",
+  "files": 2,
+  "withheld": 0,
+  "state": "inside_ask",
+  "extras": [],
+  "unplaced": 0
+ },
+ {
+  "pop": "C",
+  "ref": "gitlab-org/gitlab!250316",
+  "project": 278964,
+  "created_at": "2026-08-15T15:19:03.837Z",
+  "state_mr": "merged",
+  "issues_from": "closing_link_confirmed",
+  "issue_refs": [
+   "#607634"
+  ],
+  "version": "merged",
+  "files": 10,
+  "withheld": 0,
+  "state": "inside_ask",
+  "extras": [],
+  "unplaced": 0
+ },
+ {
+  "pop": "C",
+  "ref": "gitlab-org/gitlab!252621",
+  "project": 278964,
+  "created_at": "2026-08-30T20:35:09.726Z",
+  "state_mr": "merged",
+  "issues_from": "closing_link_confirmed",
+  "issue_refs": [
+   "#543710"
+  ],
+  "version": "merged",
+  "files": 3,
+  "withheld": 0,
+  "state": "unplaced_only",
+  "extras": [],
+  "unplaced": 1
+ },
+ {
+  "pop": "C",
+  "ref": "gitlab-org/gitlab!253081",
+  "project": 278964,
+  "created_at": "2026-09-01T19:49:00.635Z",
+  "state_mr": "merged",
+  "issues_from": "closing_link_confirmed",
+  "issue_refs": [
+   "#463791"
+  ],
+  "version": "merged",
+  "files": 2,
+  "withheld": 0,
+  "state": "inside_ask",
+  "extras": [],
+  "unplaced": 0
+ },
+ {
+  "pop": "C",
+  "ref": "gitlab-org/gitlab!252619",
+  "project": 278964,
+  "created_at": "2026-08-30T18:21:37.318Z",
+  "state_mr": "merged",
+  "issues_from": "closing_link_confirmed",
+  "issue_refs": [
+   "#606934"
+  ],
+  "version": "merged",
+  "files": 8,
+  "withheld": 0,
+  "state": "inside_ask",
+  "extras": [],
+  "unplaced": 0
+ },
+ {
+  "pop": "C",
+  "ref": "gitlab-org/gitlab!252050",
+  "project": 278964,
+  "created_at": "2026-08-26T14:28:10.554Z",
+  "state_mr": "merged",
+  "issues_from": "closing_link_confirmed",
+  "issue_refs": [
+   "#623394"
+  ],
+  "version": "merged",
+  "files": 7,
+  "withheld": 0,
+  "state": "author_wrote_issue",
+  "extras": [],
+  "unplaced": 1
+ },
+ {
+  "pop": "C",
+  "ref": "gitlab-org/gitlab!252618",
+  "project": 278964,
+  "created_at": "2026-08-30T14:03:52.565Z",
+  "state_mr": "merged",
+  "issues_from": "closing_link_confirmed",
+  "issue_refs": [
+   "#623192"
+  ],
+  "version": "merged",
+  "files": 3,
+  "withheld": 0,
+  "state": "inside_ask",
+  "extras": [],
+  "unplaced": 0
+ },
+ {
+  "pop": "C",
+  "ref": "gitlab-org/gitlab!248851",
+  "project": 278964,
+  "created_at": "2026-08-05T22:27:47.925Z",
+  "state_mr": "merged",
+  "issues_from": "closing_link_confirmed",
+  "issue_refs": [
+   "#578102"
+  ],
+  "version": "merged",
+  "files": 7,
+  "withheld": 0,
+  "state": "unplaced_only",
+  "extras": [],
+  "unplaced": 2
+ },
+ {
+  "pop": "C",
+  "ref": "gitlab-org/gitlab!252957",
+  "project": 278964,
+  "created_at": "2026-09-01T11:07:22.117Z",
+  "state_mr": "merged",
+  "issues_from": "closing_link_confirmed",
+  "issue_refs": [
+   "#8072"
+  ],
+  "version": "merged",
+  "files": 16,
+  "withheld": 0,
+  "state": "unplaced_only",
+  "extras": [],
+  "unplaced": 1
+ },
+ {
+  "pop": "C",
+  "ref": "gitlab-org/gitlab!253025",
+  "project": 278964,
+  "created_at": "2026-09-01T16:19:08.567Z",
+  "state_mr": "merged",
+  "issues_from": "closing_link_confirmed",
+  "issue_refs": [
+   "#619238"
+  ],
+  "version": "merged",
+  "files": 5,
+  "withheld": 0,
+  "state": "author_wrote_issue",
+  "extras": [],
+  "unplaced": 5
+ },
+ {
+  "pop": "C",
+  "ref": "gitlab-org/gitlab!254113",
+  "project": 278964,
+  "created_at": "2026-09-08T09:19:18.841Z",
+  "state_mr": "merged",
+  "issues_from": "closing_link_confirmed",
+  "issue_refs": [
+   "#621994"
+  ],
+  "version": "merged",
+  "files": 2,
+  "withheld": 0,
+  "state": "inside_ask",
+  "extras": [],
+  "unplaced": 0
+ },
+ {
+  "pop": "C",
+  "ref": "gitlab-org/gitlab!253792",
+  "project": 278964,
+  "created_at": "2026-09-04T21:37:29.874Z",
+  "state_mr": "merged",
+  "issues_from": "closing_link_confirmed",
+  "issue_refs": [
+   "#605636"
+  ],
+  "version": "merged",
+  "files": 2,
+  "withheld": 0,
+  "state": "inside_ask",
+  "extras": [],
+  "unplaced": 0
+ },
+ {
+  "pop": "C",
+  "ref": "gitlab-org/gitlab!248574",
+  "project": 278964,
+  "created_at": "2026-08-04T18:32:56.775Z",
+  "state_mr": "merged",
+  "issues_from": "closing_link_confirmed",
+  "issue_refs": [
+   "#608074"
+  ],
+  "version": "merged",
+  "files": 13,
+  "withheld": 0,
+  "state": "author_wrote_issue",
+  "extras": [],
+  "unplaced": 1
+ },
+ {
+  "pop": "C",
+  "ref": "gitlab-org/gitlab!253826",
+  "project": 278964,
+  "created_at": "2026-09-06T14:46:58.572Z",
+  "state_mr": "merged",
+  "issues_from": "closing_link_confirmed",
+  "issue_refs": [
+   "#627648"
+  ],
+  "version": "merged",
+  "files": 2,
+  "withheld": 0,
+  "state": "inside_ask",
+  "extras": [],
+  "unplaced": 0
+ },
+ {
+  "pop": "C",
+  "ref": "gitlab-org/gitlab!253963",
+  "project": 278964,
+  "created_at": "2026-09-07T14:39:31.924Z",
+  "state_mr": "merged",
+  "issues_from": "closing_link_confirmed",
+  "issue_refs": [
+   "#15501"
+  ],
+  "version": "merged",
+  "files": 4,
+  "withheld": 0,
+  "state": "unplaced_only",
+  "extras": [],
+  "unplaced": 4
+ },
+ {
+  "pop": "C",
+  "ref": "gitlab-org/gitlab!253828",
+  "project": 278964,
+  "created_at": "2026-09-06T16:52:47.269Z",
+  "state_mr": "merged",
+  "issues_from": "closing_link_confirmed",
+  "issue_refs": [
+   "#365266"
+  ],
+  "version": "merged",
+  "files": 5,
+  "withheld": 0,
+  "state": "inside_ask",
+  "extras": [],
+  "unplaced": 0
+ },
+ {
+  "pop": "C",
+  "ref": "gitlab-org/gitlab!253816",
+  "project": 278964,
+  "created_at": "2026-09-05T23:37:58.664Z",
+  "state_mr": "merged",
+  "issues_from": "closing_link_confirmed",
+  "issue_refs": [
+   "#334"
+  ],
+  "version": "merged",
+  "files": 6,
+  "withheld": 0,
+  "state": "unplaced_only",
+  "extras": [],
+  "unplaced": 1
+ },
+ {
+  "pop": "C",
+  "ref": "gitlab-org/gitlab!254243",
+  "project": 278964,
+  "created_at": "2026-09-08T17:32:19.931Z",
+  "state_mr": "merged",
+  "issues_from": "closing_link_confirmed",
+  "issue_refs": [
+   "#628128"
+  ],
+  "version": "merged",
+  "files": 2,
+  "withheld": 0,
+  "state": "author_wrote_issue",
+  "extras": [],
+  "unplaced": 0
+ },
+ {
+  "pop": "C",
+  "ref": "gitlab-org/gitlab!185902",
+  "project": 278964,
+  "created_at": "2025-03-26T07:17:48.593Z",
+  "state_mr": "merged",
+  "issues_from": "closing_link_confirmed",
+  "issue_refs": [
+   "#384021"
+  ],
+  "version": "merged",
+  "files": 6,
+  "withheld": 0,
+  "state": "unplaced_only",
+  "extras": [],
+  "unplaced": 2
+ },
+ {
+  "pop": "C",
+  "ref": "gitlab-org/gitlab!254231",
+  "project": 278964,
+  "created_at": "2026-09-08T16:41:33.298Z",
+  "state_mr": "merged",
+  "issues_from": "closing_link_confirmed",
+  "issue_refs": [
+   "#627715"
+  ],
+  "version": "merged",
+  "files": 4,
+  "withheld": 0,
+  "state": "inside_ask",
+  "extras": [],
+  "unplaced": 0
+ },
+ {
+  "pop": "C",
+  "ref": "gitlab-org/gitlab!254928",
+  "project": 278964,
+  "created_at": "2026-09-11T02:40:59.755Z",
+  "state_mr": "merged",
+  "issues_from": "closing_link_confirmed",
+  "issue_refs": [
+   "#628655"
+  ],
+  "version": "merged",
+  "files": 2,
+  "withheld": 0,
+  "state": "author_wrote_issue",
+  "extras": [],
+  "unplaced": 0
+ },
+ {
+  "pop": "C",
+  "ref": "gitlab-org/gitlab!252603",
+  "project": 278964,
+  "created_at": "2026-08-29T17:55:50.145Z",
+  "state_mr": "merged",
+  "issues_from": "closing_link_confirmed",
+  "issue_refs": [
+   "#625050"
+  ],
+  "version": "merged",
+  "files": 2,
+  "withheld": 0,
+  "state": "inside_ask",
+  "extras": [],
+  "unplaced": 0
+ },
+ {
+  "pop": "C",
+  "ref": "gitlab-org/gitlab!254916",
+  "project": 278964,
+  "created_at": "2026-09-11T00:12:20.730Z",
+  "state_mr": "merged",
+  "issues_from": "closing_link_confirmed",
+  "issue_refs": [
+   "#619356"
+  ],
+  "version": "merged",
+  "files": 17,
+  "withheld": 0,
+  "state": "inside_ask",
+  "extras": [],
+  "unplaced": 0
+ },
+ {
+  "pop": "C",
+  "ref": "gitlab-org/gitlab!254932",
+  "project": 278964,
+  "created_at": "2026-09-11T04:10:17.775Z",
+  "state_mr": "merged",
+  "issues_from": "closing_link_confirmed",
+  "issue_refs": [
+   "#628602"
+  ],
+  "version": "merged",
+  "files": 2,
+  "withheld": 0,
+  "state": "inside_ask",
+  "extras": [],
+  "unplaced": 0
+ },
+ {
+  "pop": "C",
+  "ref": "gitlab-org/gitlab!254709",
+  "project": 278964,
+  "created_at": "2026-09-10T10:52:59.877Z",
+  "state_mr": "merged",
+  "issues_from": "closing_link_confirmed",
+  "issue_refs": [
+   "#628441"
+  ],
+  "version": "merged",
+  "files": 3,
+  "withheld": 0,
+  "state": "author_wrote_issue",
+  "extras": [],
+  "unplaced": 0
+ },
+ {
+  "pop": "C",
+  "ref": "gitlab-org/gitlab!254784",
+  "project": 278964,
+  "created_at": "2026-09-10T14:57:05.631Z",
+  "state_mr": "merged",
+  "issues_from": "closing_link_confirmed",
+  "issue_refs": [
+   "#628448"
+  ],
+  "version": "merged",
+  "files": 2,
+  "withheld": 0,
+  "state": "unplaced_only",
+  "extras": [],
+  "unplaced": 2
+ },
+ {
+  "pop": "C",
+  "ref": "gitlab-org/gitlab!254939",
+  "project": 278964,
+  "created_at": "2026-09-11T05:22:37.151Z",
+  "state_mr": "merged",
+  "issues_from": "closing_link_confirmed",
+  "issue_refs": [
+   "#624126"
+  ],
+  "version": "merged",
+  "files": 2,
+  "withheld": 0,
+  "state": "inside_ask",
+  "extras": [],
+  "unplaced": 0
+ },
+ {
+  "pop": "C",
+  "ref": "gitlab-org/gitlab!254825",
+  "project": 278964,
+  "created_at": "2026-09-10T17:23:06.812Z",
+  "state_mr": "merged",
+  "issues_from": "closing_link_confirmed",
+  "issue_refs": [
+   "#627907"
+  ],
+  "version": "merged",
+  "files": 1,
+  "withheld": 0,
+  "state": "inside_ask",
+  "extras": [],
+  "unplaced": 0
+ },
+ {
+  "pop": "C",
+  "ref": "gitlab-org/gitlab!255148",
+  "project": 278964,
+  "created_at": "2026-09-11T19:40:03.642Z",
+  "state_mr": "merged",
+  "issues_from": "closing_link_confirmed",
+  "issue_refs": [
+   "#628656"
+  ],
+  "version": "merged",
+  "files": 1,
+  "withheld": 0,
+  "state": "inside_ask",
+  "extras": [],
+  "unplaced": 0
+ },
+ {
+  "pop": "C",
+  "ref": "gitlab-org/gitlab!254504",
+  "project": 278964,
+  "created_at": "2026-09-09T14:07:36.901Z",
+  "state_mr": "merged",
+  "issues_from": "closing_link_confirmed",
+  "issue_refs": [
+   "#627984"
+  ],
+  "version": "merged",
+  "files": 6,
+  "withheld": 0,
+  "state": "inside_ask",
+  "extras": [],
+  "unplaced": 0
+ },
+ {
+  "pop": "C",
+  "ref": "gitlab-org/gitlab!255109",
+  "project": 278964,
+  "created_at": "2026-09-11T18:30:17.078Z",
+  "state_mr": "merged",
+  "issues_from": "closing_link_confirmed",
+  "issue_refs": [
+   "#628376"
+  ],
+  "version": "merged",
+  "files": 5,
+  "withheld": 0,
+  "state": "inside_ask",
+  "extras": [],
+  "unplaced": 0
+ },
+ {
+  "pop": "C",
+  "ref": "gitlab-org/gitlab!255145",
+  "project": 278964,
+  "created_at": "2026-09-11T19:39:21.902Z",
+  "state_mr": "merged",
+  "issues_from": "closing_link_confirmed",
+  "issue_refs": [
+   "#622344"
+  ],
+  "version": "merged",
+  "files": 2,
+  "withheld": 0,
+  "state": "inside_ask",
+  "extras": [],
+  "unplaced": 0
+ },
+ {
+  "pop": "C",
+  "ref": "gitlab-org/gitlab!253808",
+  "project": 278964,
+  "created_at": "2026-09-05T15:09:01.263Z",
+  "state_mr": "merged",
+  "issues_from": "closing_link_confirmed",
+  "issue_refs": [
+   "#624141"
+  ],
+  "version": "merged",
+  "files": 2,
+  "withheld": 0,
+  "state": "inside_ask",
+  "extras": [],
+  "unplaced": 0
+ },
+ {
+  "pop": "C",
+  "ref": "gitlab-org/gitlab!254734",
+  "project": 278964,
+  "created_at": "2026-09-10T12:02:29.469Z",
+  "state_mr": "merged",
+  "issues_from": "closing_link_confirmed",
+  "issue_refs": [
+   "#618237"
+  ],
+  "version": "merged",
+  "files": 2,
+  "withheld": 0,
+  "state": "inside_ask",
+  "extras": [],
+  "unplaced": 0
+ },
+ {
+  "pop": "C",
+  "ref": "gitlab-org/gitlab!254827",
+  "project": 278964,
+  "created_at": "2026-09-10T17:30:33.926Z",
+  "state_mr": "merged",
+  "issues_from": "closing_link_confirmed",
+  "issue_refs": [
+   "#622080"
+  ],
+  "version": "merged",
+  "files": 1,
+  "withheld": 0,
+  "state": "unplaced_only",
+  "extras": [],
+  "unplaced": 1
+ },
+ {
+  "pop": "C",
+  "ref": "gitlab-org/gitlab!254598",
+  "project": 278964,
+  "created_at": "2026-09-09T20:49:24.001Z",
+  "state_mr": "merged",
+  "issues_from": "closing_link_confirmed",
+  "issue_refs": [
+   "#628311"
+  ],
+  "version": "merged",
+  "files": 3,
+  "withheld": 0,
+  "state": "unplaced_only",
+  "extras": [],
+  "unplaced": 1
+ },
+ {
+  "pop": "C",
+  "ref": "gitlab-org/gitlab!243466",
+  "project": 278964,
+  "created_at": "2026-07-02T12:53:58.931Z",
+  "state_mr": "merged",
+  "issues_from": "closing_link_confirmed",
+  "issue_refs": [
+   "#517047"
+  ],
+  "version": "merged",
+  "files": 5,
+  "withheld": 0,
+  "state": "unplaced_only",
+  "extras": [],
+  "unplaced": 1
+ },
+ {
+  "pop": "C",
+  "ref": "gitlab-org/gitlab!255218",
+  "project": 278964,
+  "created_at": "2026-09-12T20:34:42.473Z",
+  "state_mr": "merged",
+  "issues_from": "closing_link_confirmed",
+  "issue_refs": [
+   "#628859"
+  ],
+  "version": "merged",
+  "files": 3,
+  "withheld": 0,
+  "state": "author_wrote_issue",
+  "extras": [],
+  "unplaced": 0
+ },
+ {
+  "pop": "C",
+  "ref": "gitlab-org/gitlab!255231",
+  "project": 278964,
+  "created_at": "2026-09-13T10:38:51.930Z",
+  "state_mr": "merged",
+  "issues_from": "closing_link_confirmed",
+  "issue_refs": [
+   "#383062"
+  ],
+  "version": "merged",
+  "files": 3,
+  "withheld": 0,
+  "state": "inside_ask",
+  "extras": [],
+  "unplaced": 0
+ },
+ {
+  "pop": "C",
+  "ref": "gitlab-org/gitlab!254532",
+  "project": 278964,
+  "created_at": "2026-09-09T16:02:31.237Z",
+  "state_mr": "merged",
+  "issues_from": "closing_link_confirmed",
+  "issue_refs": [
+   "#628295"
+  ],
+  "version": "merged",
+  "files": 2,
+  "withheld": 0,
+  "state": "author_wrote_issue",
+  "extras": [],
+  "unplaced": 0
+ },
+ {
+  "pop": "C",
+  "ref": "gitlab-org/gitlab!255146",
+  "project": 278964,
+  "created_at": "2026-09-11T19:39:31.081Z",
+  "state_mr": "merged",
+  "issues_from": "closing_link_confirmed",
+  "issue_refs": [
+   "#618758"
+  ],
+  "version": "merged",
+  "files": 4,
+  "withheld": 0,
+  "state": "inside_ask",
+  "extras": [],
+  "unplaced": 0
+ },
+ {
+  "pop": "C",
+  "ref": "gitlab-org/gitlab!250329",
+  "project": 278964,
+  "created_at": "2026-08-16T08:54:52.566Z",
+  "state_mr": "merged",
+  "issues_from": "closing_link_confirmed",
+  "issue_refs": [
+   "#613586"
+  ],
+  "version": "merged",
+  "files": 2,
+  "withheld": 0,
+  "state": "inside_ask",
+  "extras": [],
+  "unplaced": 0
+ },
+ {
+  "pop": "C",
+  "ref": "gitlab-org/gitlab!255147",
+  "project": 278964,
+  "created_at": "2026-09-11T19:39:49.412Z",
+  "state_mr": "merged",
+  "issues_from": "closing_link_confirmed",
+  "issue_refs": [
+   "#627557"
+  ],
+  "version": "merged",
+  "files": 3,
+  "withheld": 0,
+  "state": "inside_ask",
+  "extras": [],
+  "unplaced": 0
+ },
+ {
+  "pop": "C",
+  "ref": "gitlab-org/gitlab!255004",
+  "project": 278964,
+  "created_at": "2026-09-11T11:03:53.322Z",
+  "state_mr": "merged",
+  "issues_from": "closing_link_confirmed",
+  "issue_refs": [
+   "#619238"
+  ],
+  "version": "merged",
+  "files": 2,
+  "withheld": 0,
+  "state": "author_wrote_issue",
+  "extras": [],
+  "unplaced": 2
+ },
+ {
+  "pop": "C",
+  "ref": "gitlab-org/gitlab!255223",
+  "project": 278964,
+  "created_at": "2026-09-13T05:57:08.111Z",
+  "state_mr": "merged",
+  "issues_from": "closing_link_confirmed",
+  "issue_refs": [
+   "#628829"
+  ],
+  "version": "merged",
+  "files": 3,
+  "withheld": 0,
+  "state": "unplaced_only",
+  "extras": [],
+  "unplaced": 1
+ },
+ {
+  "pop": "C",
+  "ref": "gitlab-org/gitlab!255240",
+  "project": 278964,
+  "created_at": "2026-09-13T20:53:01.241Z",
+  "state_mr": "merged",
+  "issues_from": "closing_link_confirmed",
+  "issue_refs": [
+   "#590143"
+  ],
+  "version": "merged",
+  "files": 1,
+  "withheld": 0,
+  "state": "inside_ask",
+  "extras": [],
+  "unplaced": 0
+ },
+ {
+  "pop": "C",
+  "ref": "gitlab-org/gitlab!250317",
+  "project": 278964,
+  "created_at": "2026-08-15T16:29:35.557Z",
+  "state_mr": "merged",
+  "issues_from": "closing_link_confirmed",
+  "issue_refs": [
+   "#614850"
+  ],
+  "version": "merged",
+  "files": 2,
+  "withheld": 0,
+  "state": "author_wrote_issue",
+  "extras": [],
+  "unplaced": 0
+ },
+ {
+  "pop": "C",
+  "ref": "gitlab-org/gitlab!255112",
+  "project": 278964,
+  "created_at": "2026-09-11T18:30:58.586Z",
+  "state_mr": "merged",
+  "issues_from": "closing_link_confirmed",
+  "issue_refs": [
+   "#616888"
+  ],
+  "version": "merged",
+  "files": 2,
+  "withheld": 0,
+  "state": "inside_ask",
+  "extras": [],
+  "unplaced": 0
+ },
+ {
+  "pop": "C",
+  "ref": "gitlab-org/gitlab!249958",
+  "project": 278964,
+  "created_at": "2026-08-13T06:14:14.924Z",
+  "state_mr": "merged",
+  "issues_from": "closing_link_confirmed",
+  "issue_refs": [
+   "#613269"
+  ],
+  "version": "merged",
+  "files": 12,
+  "withheld": 0,
+  "state": "author_wrote_issue",
+  "extras": [],
+  "unplaced": 4
+ },
+ {
+  "pop": "C",
+  "ref": "gitlab-org/gitlab!255234",
+  "project": 278964,
+  "created_at": "2026-09-13T10:55:26.183Z",
+  "state_mr": "merged",
+  "issues_from": "closing_link_confirmed",
+  "issue_refs": [
+   "#616255"
+  ],
+  "version": "merged",
+  "files": 1,
+  "withheld": 0,
+  "state": "inside_ask",
+  "extras": [],
+  "unplaced": 0
+ },
+ {
+  "pop": "C",
+  "ref": "gitlab-org/gitlab!255486",
+  "project": 278964,
+  "created_at": "2026-09-14T23:49:15.844Z",
+  "state_mr": "merged",
+  "issues_from": "closing_link_confirmed",
+  "issue_refs": [
+   "#628908"
+  ],
+  "version": "merged",
+  "files": 1,
+  "withheld": 0,
+  "state": "inside_ask",
+  "extras": [],
+  "unplaced": 0
+ },
+ {
+  "pop": "C",
+  "ref": "gitlab-org/gitlab!254573",
+  "project": 278964,
+  "created_at": "2026-09-09T18:57:21.994Z",
+  "state_mr": "merged",
+  "issues_from": "closing_link_confirmed",
+  "issue_refs": [
+   "#628334"
+  ],
+  "version": "merged",
+  "files": 2,
+  "withheld": 0,
+  "state": "author_wrote_issue",
+  "extras": [],
+  "unplaced": 0
+ },
+ {
+  "pop": "C",
+  "ref": "gitlab-org/gitlab!255490",
+  "project": 278964,
+  "created_at": "2026-09-15T00:23:13.003Z",
+  "state_mr": "merged",
+  "issues_from": "closing_link_confirmed",
+  "issue_refs": [
+   "#629053"
+  ],
+  "version": "merged",
+  "files": 4,
+  "withheld": 0,
+  "state": "author_wrote_issue",
+  "extras": [],
+  "unplaced": 0
+ },
+ {
+  "pop": "C",
+  "ref": "gitlab-org/gitlab!255803",
+  "project": 278964,
+  "created_at": "2026-09-16T05:12:42.010Z",
+  "state_mr": "merged",
+  "issues_from": "closing_link_confirmed",
+  "issue_refs": [
+   "#621466"
+  ],
+  "version": "merged",
+  "files": 9,
+  "withheld": 0,
+  "state": "unplaced_only",
+  "extras": [],
+  "unplaced": 3
+ },
+ {
+  "pop": "C",
+  "ref": "gitlab-org/gitlab!256286",
+  "project": 278964,
+  "created_at": "2026-09-18T02:09:38.548Z",
+  "state_mr": "merged",
+  "issues_from": "closing_link_confirmed",
+  "issue_refs": [
+   "#629602"
+  ],
+  "version": "merged",
+  "files": 1,
+  "withheld": 0,
+  "state": "inside_ask",
+  "extras": [],
+  "unplaced": 0
+ },
+ {
+  "pop": "C",
+  "ref": "gitlab-org/gitlab!254005",
+  "project": 278964,
+  "created_at": "2026-09-07T18:45:48.868Z",
+  "state_mr": "merged",
+  "issues_from": "closing_link_confirmed",
+  "issue_refs": [
+   "#599442"
+  ],
+  "version": "merged",
+  "files": 4,
+  "withheld": 0,
+  "state": "unplaced_only",
+  "extras": [],
+  "unplaced": 4
+ },
+ {
+  "pop": "C",
+  "ref": "gitlab-org/gitlab!256264",
+  "project": 278964,
+  "created_at": "2026-09-17T22:03:38.583Z",
+  "state_mr": "merged",
+  "issues_from": "closing_link_confirmed",
+  "issue_refs": [
+   "#590125"
+  ],
+  "version": "merged",
+  "files": 1,
+  "withheld": 0,
+  "state": "inside_ask",
+  "extras": [],
+  "unplaced": 0
+ },
+ {
+  "pop": "C",
+  "ref": "gitlab-org/gitlab!255237",
+  "project": 278964,
+  "created_at": "2026-09-13T11:21:29.696Z",
+  "state_mr": "merged",
+  "issues_from": "closing_link_confirmed",
+  "issue_refs": [
+   "#370844"
+  ],
+  "version": "merged",
+  "files": 9,
+  "withheld": 0,
+  "state": "inside_ask",
+  "extras": [],
+  "unplaced": 0
+ },
+ {
+  "pop": "C",
+  "ref": "gitlab-org/gitlab!235309",
+  "project": 278964,
+  "created_at": "2026-05-09T13:16:04.301Z",
+  "state_mr": "merged",
+  "issues_from": "closing_link_confirmed",
+  "issue_refs": [
+   "#598996"
+  ],
+  "version": "merged",
+  "files": 2,
+  "withheld": 0,
+  "state": "unplaced_only",
+  "extras": [],
+  "unplaced": 2
+ },
+ {
+  "pop": "C",
+  "ref": "gitlab-org/gitlab!255230",
+  "project": 278964,
+  "created_at": "2026-09-13T10:33:25.851Z",
+  "state_mr": "merged",
+  "issues_from": "closing_link_confirmed",
+  "issue_refs": [
+   "#353592"
+  ],
+  "version": "merged",
+  "files": 8,
+  "withheld": 0,
+  "state": "inside_ask",
+  "extras": [],
+  "unplaced": 0
+ },
+ {
+  "pop": "C",
+  "ref": "gitlab-org/gitlab!256727",
+  "project": 278964,
+  "created_at": "2026-09-21T15:27:59.217Z",
+  "state_mr": "merged",
+  "issues_from": "closing_link_confirmed",
+  "issue_refs": [
+   "#586180"
+  ],
+  "version": "merged",
+  "files": 1,
+  "withheld": 0,
+  "state": "inside_ask",
+  "extras": [],
+  "unplaced": 0
+ },
+ {
+  "pop": "C",
+  "ref": "gitlab-org/gitlab!256730",
+  "project": 278964,
+  "created_at": "2026-09-21T15:29:17.714Z",
+  "state_mr": "merged",
+  "issues_from": "closing_link_confirmed",
+  "issue_refs": [
+   "#630116"
+  ],
+  "version": "merged",
+  "files": 3,
+  "withheld": 0,
+  "state": "inside_ask",
+  "extras": [],
+  "unplaced": 0
+ },
+ {
+  "pop": "C",
+  "ref": "gitlab-org/gitlab!256757",
+  "project": 278964,
+  "created_at": "2026-09-21T17:23:48.441Z",
+  "state_mr": "merged",
+  "issues_from": "closing_link_confirmed",
+  "issue_refs": [
+   "#629992"
+  ],
+  "version": "merged",
+  "files": 2,
+  "withheld": 0,
+  "state": "inside_ask",
+  "extras": [],
+  "unplaced": 0
+ },
+ {
+  "pop": "C",
+  "ref": "gitlab-org/gitlab!255111",
+  "project": 278964,
+  "created_at": "2026-09-11T18:30:48.400Z",
+  "state_mr": "merged",
+  "issues_from": "closing_link_confirmed",
+  "issue_refs": [
+   "#618876"
+  ],
+  "version": "merged",
+  "files": 3,
+  "withheld": 0,
+  "state": "inside_ask",
+  "extras": [],
+  "unplaced": 0
+ },
+ {
+  "pop": "C",
+  "ref": "gitlab-org/gitlab!254859",
+  "project": 278964,
+  "created_at": "2026-09-10T19:36:17.621Z",
+  "state_mr": "merged",
+  "issues_from": "closing_link_confirmed",
+  "issue_refs": [
+   "#591110"
+  ],
+  "version": "merged",
+  "files": 9,
+  "withheld": 0,
+  "state": "unplaced_only",
+  "extras": [],
+  "unplaced": 9
+ },
+ {
+  "pop": "C",
+  "ref": "gitlab-org/gitlab!256421",
+  "project": 278964,
+  "created_at": "2026-09-18T15:53:03.751Z",
+  "state_mr": "merged",
+  "issues_from": "closing_link_confirmed",
+  "issue_refs": [
+   "#590126"
+  ],
+  "version": "merged",
+  "files": 1,
+  "withheld": 0,
+  "state": "inside_ask",
+  "extras": [],
+  "unplaced": 0
+ },
+ {
+  "pop": "C",
+  "ref": "gitlab-org/gitlab!256547",
+  "project": 278964,
+  "created_at": "2026-09-20T12:08:50.188Z",
+  "state_mr": "merged",
+  "issues_from": "closing_link_confirmed",
+  "issue_refs": [
+   "#630004"
+  ],
+  "version": "merged",
+  "files": 3,
+  "withheld": 0,
+  "state": "author_wrote_issue",
+  "extras": [],
+  "unplaced": 0
+ },
+ {
+  "pop": "C",
+  "ref": "gitlab-org/gitlab!253043",
+  "project": 278964,
+  "created_at": "2026-09-01T17:27:57.185Z",
+  "state_mr": "merged",
+  "issues_from": "closing_link_confirmed",
+  "issue_refs": [
+   "#623022"
+  ],
+  "version": "merged",
+  "files": 2,
+  "withheld": 0,
+  "state": "inside_ask",
+  "extras": [],
+  "unplaced": 0
+ },
+ {
+  "pop": "C",
+  "ref": "gitlab-org/gitlab!255236",
+  "project": 278964,
+  "created_at": "2026-09-13T11:10:05.125Z",
+  "state_mr": "merged",
+  "issues_from": "closing_link_confirmed",
+  "issue_refs": [
+   "#338914"
+  ],
+  "version": "merged",
+  "files": 7,
+  "withheld": 0,
+  "state": "unplaced_only",
+  "extras": [],
+  "unplaced": 1
+ },
+ {
+  "pop": "C",
+  "ref": "gitlab-org/gitlab!255300",
+  "project": 278964,
+  "created_at": "2026-09-14T09:54:58.576Z",
+  "state_mr": "merged",
+  "issues_from": "closing_link_confirmed",
+  "issue_refs": [
+   "#24572"
+  ],
+  "version": "merged",
+  "files": 11,
+  "withheld": 0,
+  "state": "inside_ask",
+  "extras": [],
+  "unplaced": 0
+ },
+ {
+  "pop": "C",
+  "ref": "gitlab-org/gitlab!256268",
+  "project": 278964,
+  "created_at": "2026-09-17T22:44:04.911Z",
+  "state_mr": "merged",
+  "issues_from": "closing_link_confirmed",
+  "issue_refs": [
+   "#629556"
+  ],
+  "version": "merged",
+  "files": 4,
+  "withheld": 0,
+  "state": "inside_ask",
+  "extras": [],
+  "unplaced": 0
+ },
+ {
+  "pop": "C",
+  "ref": "gitlab-org/gitlab!256734",
+  "project": 278964,
+  "created_at": "2026-09-21T15:33:00.238Z",
+  "state_mr": "merged",
+  "issues_from": "closing_link_confirmed",
+  "issue_refs": [
+   "#630135"
+  ],
+  "version": "merged",
+  "files": 4,
+  "withheld": 0,
+  "state": "inside_ask",
+  "extras": [],
+  "unplaced": 0
+ },
+ {
+  "pop": "C",
+  "ref": "gitlab-org/gitlab!256381",
+  "project": 278964,
+  "created_at": "2026-09-18T13:01:01.178Z",
+  "state_mr": "merged",
+  "issues_from": "closing_link_confirmed",
+  "issue_refs": [
+   "#629789"
+  ],
+  "version": "merged",
+  "files": 8,
+  "withheld": 0,
+  "state": "author_wrote_issue",
+  "extras": [],
+  "unplaced": 6
+ },
+ {
+  "pop": "C",
+  "ref": "gitlab-org/gitlab!254570",
+  "project": 278964,
+  "created_at": "2026-09-09T18:29:43.142Z",
+  "state_mr": "merged",
+  "issues_from": "closing_link_confirmed",
+  "issue_refs": [
+   "#628512"
+  ],
+  "version": "merged",
+  "files": 4,
+  "withheld": 0,
+  "state": "inside_ask",
+  "extras": [],
+  "unplaced": 0
+ },
+ {
+  "pop": "C",
+  "ref": "gitlab-org/gitlab!256718",
+  "project": 278964,
+  "created_at": "2026-09-21T14:59:31.674Z",
+  "state_mr": "merged",
+  "issues_from": "closing_link_confirmed",
+  "issue_refs": [
+   "#630129"
+  ],
+  "version": "merged",
+  "files": 2,
+  "withheld": 0,
+  "state": "author_wrote_issue",
+  "extras": [],
+  "unplaced": 0
+ },
+ {
+  "pop": "C",
+  "ref": "gitlab-org/gitlab!256271",
+  "project": 278964,
+  "created_at": "2026-09-17T23:23:45.680Z",
+  "state_mr": "merged",
+  "issues_from": "closing_link_confirmed",
+  "issue_refs": [
+   "#590113"
+  ],
+  "version": "merged",
+  "files": 1,
+  "withheld": 0,
+  "state": "inside_ask",
+  "extras": [],
+  "unplaced": 0
+ },
+ {
+  "pop": "C",
+  "ref": "gitlab-org/gitlab!256380",
+  "project": 278964,
+  "created_at": "2026-09-18T12:59:55.761Z",
+  "state_mr": "merged",
+  "issues_from": "closing_link_confirmed",
+  "issue_refs": [
+   "#590178"
+  ],
+  "version": "merged",
+  "files": 1,
+  "withheld": 0,
+  "state": "inside_ask",
+  "extras": [],
+  "unplaced": 0
+ },
+ {
+  "pop": "C",
+  "ref": "gitlab-org/gitlab!256603",
+  "project": 278964,
+  "created_at": "2026-09-21T08:43:38.017Z",
+  "state_mr": "merged",
+  "issues_from": "closing_link_confirmed",
+  "issue_refs": [
+   "#627648"
+  ],
+  "version": "merged",
+  "files": 1,
+  "withheld": 0,
+  "state": "inside_ask",
+  "extras": [],
+  "unplaced": 0
+ },
+ {
+  "pop": "C",
+  "ref": "gitlab-org/gitlab!252604",
+  "project": 278964,
+  "created_at": "2026-08-29T19:33:09.042Z",
+  "state_mr": "merged",
+  "issues_from": "closing_link_confirmed",
+  "issue_refs": [
+   "#614143"
+  ],
+  "version": "merged",
+  "files": 4,
+  "withheld": 0,
+  "state": "inside_ask",
+  "extras": [],
+  "unplaced": 0
+ },
+ {
+  "pop": "C",
+  "ref": "gitlab-org/gitlab!256983",
+  "project": 278964,
+  "created_at": "2026-09-22T13:23:13.928Z",
+  "state_mr": "merged",
+  "issues_from": "closing_link_confirmed",
+  "issue_refs": [
+   "#630185"
+  ],
+  "version": "merged",
+  "files": 2,
+  "withheld": 0,
+  "state": "extras",
+  "extras": [
+   {
+    "name": "spec/controllers/projects/commits_controller_spec.rb",
+    "kind": "tests_removed",
+    "path": "spec/controllers/projects/commits_controller_spec.rb"
+   }
+  ],
+  "unplaced": 2
+ },
+ {
+  "pop": "C",
+  "ref": "gitlab-org/gitlab!256752",
+  "project": 278964,
+  "created_at": "2026-09-21T16:53:06.481Z",
+  "state_mr": "merged",
+  "issues_from": "closing_link_confirmed",
+  "issue_refs": [
+   "#590103"
+  ],
+  "version": "merged",
+  "files": 1,
+  "withheld": 0,
+  "state": "inside_ask",
+  "extras": [],
+  "unplaced": 0
+ },
+ {
+  "pop": "C",
+  "ref": "gitlab-org/gitlab!255143",
+  "project": 278964,
+  "created_at": "2026-09-11T19:39:03.040Z",
+  "state_mr": "merged",
+  "issues_from": "closing_link_confirmed",
+  "issue_refs": [
+   "#611539"
+  ],
+  "version": "merged",
+  "files": 3,
+  "withheld": 0,
+  "state": "inside_ask",
+  "extras": [],
+  "unplaced": 0
+ },
+ {
+  "pop": "C",
+  "ref": "gitlab-org/gitlab!255232",
+  "project": 278964,
+  "created_at": "2026-09-13T10:43:16.734Z",
+  "state_mr": "merged",
+  "issues_from": "closing_link_confirmed",
+  "issue_refs": [
+   "#616251"
+  ],
+  "version": "merged",
+  "files": 3,
+  "withheld": 0,
+  "state": "inside_ask",
+  "extras": [],
+  "unplaced": 0
+ },
+ {
+  "pop": "C",
+  "ref": "gitlab-org/gitlab!254769",
+  "project": 278964,
+  "created_at": "2026-09-10T14:08:23.780Z",
+  "state_mr": "merged",
+  "issues_from": "closing_link_confirmed",
+  "issue_refs": [
+   "#607083"
+  ],
+  "version": "merged",
+  "files": 2,
+  "withheld": 0,
+  "state": "inside_ask",
+  "extras": [],
+  "unplaced": 0
+ },
+ {
+  "pop": "C",
+  "ref": "gitlab-org/gitlab!255149",
+  "project": 278964,
+  "created_at": "2026-09-11T19:40:13.116Z",
+  "state_mr": "merged",
+  "issues_from": "closing_link_confirmed",
+  "issue_refs": [
+   "#628504"
+  ],
+  "version": "merged",
+  "files": 2,
+  "withheld": 0,
+  "state": "inside_ask",
+  "extras": [],
+  "unplaced": 0
+ },
+ {
+  "pop": "C",
+  "ref": "gitlab-org/gitlab!256735",
+  "project": 278964,
+  "created_at": "2026-09-21T15:35:15.505Z",
+  "state_mr": "merged",
+  "issues_from": "closing_link_confirmed",
+  "issue_refs": [
+   "#630103"
+  ],
+  "version": "merged",
+  "files": 3,
+  "withheld": 0,
+  "state": "unplaced_only",
+  "extras": [],
+  "unplaced": 2
+ },
+ {
+  "pop": "C",
+  "ref": "gitlab-org/gitlab!255142",
+  "project": 278964,
+  "created_at": "2026-09-11T19:38:54.691Z",
+  "state_mr": "merged",
+  "issues_from": "closing_link_confirmed",
+  "issue_refs": [
+   "#626647"
+  ],
+  "version": "merged",
+  "files": 2,
+  "withheld": 0,
+  "state": "inside_ask",
+  "extras": [],
+  "unplaced": 0
+ },
+ {
+  "pop": "C",
+  "ref": "gitlab-org/gitlab!251401",
+  "project": 278964,
+  "created_at": "2026-08-21T17:30:15.831Z",
+  "state_mr": "merged",
+  "issues_from": "closing_link_confirmed",
+  "issue_refs": [
+   "#565373"
+  ],
+  "version": "merged",
+  "files": 18,
+  "withheld": 0,
+  "state": "unplaced_only",
+  "extras": [],
+  "unplaced": 8
+ },
+ {
+  "pop": "C",
+  "ref": "gitlab-org/gitlab!256979",
+  "project": 278964,
+  "created_at": "2026-09-22T13:18:41.681Z",
+  "state_mr": "merged",
+  "issues_from": "closing_link_confirmed",
+  "issue_refs": [
+   "#630254"
+  ],
+  "version": "merged",
+  "files": 1,
+  "withheld": 0,
+  "state": "unplaced_only",
+  "extras": [],
+  "unplaced": 1
+ },
+ {
+  "pop": "C",
+  "ref": "gitlab-org/gitlab!255638",
+  "project": 278964,
+  "created_at": "2026-09-15T13:21:53.817Z",
+  "state_mr": "merged",
+  "issues_from": "closing_link_confirmed",
+  "issue_refs": [
+   "#629139"
+  ],
+  "version": "merged",
+  "files": 6,
+  "withheld": 0,
+  "state": "author_wrote_issue",
+  "extras": [],
+  "unplaced": 0
+ },
+ {
+  "pop": "C",
+  "ref": "gitlab-org/gitlab!253830",
+  "project": 278964,
+  "created_at": "2026-09-06T18:14:10.777Z",
+  "state_mr": "merged",
+  "issues_from": "closing_link_confirmed",
+  "issue_refs": [
+   "#627775"
+  ],
+  "version": "merged",
+  "files": 2,
+  "withheld": 0,
+  "state": "author_wrote_issue",
+  "extras": [],
+  "unplaced": 0
+ },
+ {
+  "pop": "C",
+  "ref": "gitlab-org/gitlab!253120",
+  "project": 278964,
+  "created_at": "2026-09-02T02:10:40.747Z",
+  "state_mr": "merged",
+  "issues_from": "closing_link_confirmed",
+  "issue_refs": [
+   "#349538"
+  ],
+  "version": "merged",
+  "files": 14,
+  "withheld": 0,
+  "state": "unplaced_only",
+  "extras": [],
+  "unplaced": 4
+ },
+ {
+  "pop": "C",
+  "ref": "gitlab-org/gitlab!256712",
+  "project": 278964,
+  "created_at": "2026-09-21T14:46:42.417Z",
+  "state_mr": "merged",
+  "issues_from": "closing_link_confirmed",
+  "issue_refs": [
+   "#629379"
+  ],
+  "version": "merged",
+  "files": 8,
+  "withheld": 0,
+  "state": "inside_ask",
+  "extras": [],
+  "unplaced": 0
+ },
+ {
+  "pop": "C",
+  "ref": "gitlab-org/gitlab!253823",
+  "project": 278964,
+  "created_at": "2026-09-06T09:17:57.894Z",
+  "state_mr": "merged",
+  "issues_from": "closing_link_confirmed",
+  "issue_refs": [
+   "#627531"
+  ],
+  "version": "merged",
+  "files": 4,
+  "withheld": 0,
+  "state": "unplaced_only",
+  "extras": [],
+  "unplaced": 1
+ },
+ {
+  "pop": "C",
+  "ref": "gitlab-org/gitlab!255224",
+  "project": 278964,
+  "created_at": "2026-09-13T05:57:15.802Z",
+  "state_mr": "merged",
+  "issues_from": "closing_link_confirmed",
+  "issue_refs": [
+   "#628838"
+  ],
+  "version": "merged",
+  "files": 1,
+  "withheld": 0,
+  "state": "unplaced_only",
+  "extras": [],
+  "unplaced": 1
+ },
+ {
+  "pop": "C",
+  "ref": "gitlab-org/gitlab!255219",
+  "project": 278964,
+  "created_at": "2026-09-12T21:04:20.318Z",
+  "state_mr": "merged",
+  "issues_from": "closing_link_confirmed",
+  "issue_refs": [
+   "#628860"
+  ],
+  "version": "merged",
+  "files": 6,
+  "withheld": 0,
+  "state": "author_wrote_issue",
+  "extras": [],
+  "unplaced": 0
+ },
+ {
+  "pop": "C",
+  "ref": "gitlab-org/gitlab!256838",
+  "project": 278964,
+  "created_at": "2026-09-21T23:03:24.379Z",
+  "state_mr": "merged",
+  "issues_from": "closing_link_confirmed",
+  "issue_refs": [
+   "#630217"
+  ],
+  "version": "merged",
+  "files": 2,
+  "withheld": 0,
+  "state": "author_wrote_issue",
+  "extras": [],
+  "unplaced": 0
+ },
+ {
+  "pop": "C",
+  "ref": "gitlab-org/gitlab!255110",
+  "project": 278964,
+  "created_at": "2026-09-11T18:30:36.984Z",
+  "state_mr": "merged",
+  "issues_from": "closing_link_confirmed",
+  "issue_refs": [
+   "#628443"
+  ],
+  "version": "merged",
+  "files": 2,
+  "withheld": 0,
+  "state": "inside_ask",
+  "extras": [],
+  "unplaced": 0
+ },
+ {
+  "pop": "C",
+  "ref": "gitlab-org/gitlab!258191",
+  "project": 278964,
+  "created_at": "2026-09-28T14:32:34.828Z",
+  "state_mr": "merged",
+  "issues_from": "closing_link_confirmed",
+  "issue_refs": [
+   "#612312"
+  ],
+  "version": "merged",
+  "files": 3,
+  "withheld": 0,
+  "state": "unplaced_only",
+  "extras": [],
+  "unplaced": 1
+ },
+ {
+  "pop": "C",
+  "ref": "gitlab-org/gitlab!249242",
+  "project": 278964,
+  "created_at": "2026-08-08T21:19:26.128Z",
+  "state_mr": "merged",
+  "issues_from": "closing_link_confirmed",
+  "issue_refs": [
+   "#602492"
+  ],
+  "version": "merged",
+  "files": 13,
+  "withheld": 0,
+  "state": "unplaced_only",
+  "extras": [],
+  "unplaced": 1
+ },
+ {
+  "pop": "C",
+  "ref": "gitlab-org/gitlab!258391",
+  "project": 278964,
+  "created_at": "2026-09-29T09:25:55.310Z",
+  "state_mr": "merged",
+  "issues_from": "closing_link_confirmed",
+  "issue_refs": [
+   "#630945"
+  ],
+  "version": "merged",
+  "files": 3,
+  "withheld": 0,
+  "state": "inside_ask",
+  "extras": [],
+  "unplaced": 0
+ },
+ {
+  "pop": "C",
+  "ref": "gitlab-org/gitlab!258225",
+  "project": 278964,
+  "created_at": "2026-09-28T16:06:33.079Z",
+  "state_mr": "merged",
+  "issues_from": "closing_link_confirmed",
+  "issue_refs": [
+   "#631098"
+  ],
+  "version": "merged",
+  "files": 2,
+  "withheld": 0,
+  "state": "inside_ask",
+  "extras": [],
+  "unplaced": 0
+ },
+ {
+  "pop": "C",
+  "ref": "gitlab-org/gitlab!256551",
+  "project": 278964,
+  "created_at": "2026-09-20T15:10:26.736Z",
+  "state_mr": "merged",
+  "issues_from": "closing_link_confirmed",
+  "issue_refs": [
+   "#592138"
+  ],
+  "version": "merged",
+  "files": 11,
+  "withheld": 0,
+  "state": "inside_ask",
+  "extras": [],
+  "unplaced": 0
+ },
+ {
+  "pop": "C",
+  "ref": "gitlab-org/gitlab!258009",
+  "project": 278964,
+  "created_at": "2026-09-27T07:27:12.024Z",
+  "state_mr": "merged",
+  "issues_from": "closing_link_confirmed",
+  "issue_refs": [
+   "#630360"
+  ],
+  "version": "merged",
+  "files": 3,
+  "withheld": 0,
+  "state": "inside_ask",
+  "extras": [],
+  "unplaced": 0
+ },
+ {
+  "pop": "C",
+  "ref": "gitlab-org/gitlab!254871",
+  "project": 278964,
+  "created_at": "2026-09-10T20:22:15.300Z",
+  "state_mr": "merged",
+  "issues_from": "closing_link_confirmed",
+  "issue_refs": [
+   "#628548"
+  ],
+  "version": "merged",
+  "files": 3,
+  "withheld": 0,
+  "state": "author_wrote_issue",
+  "extras": [],
+  "unplaced": 0
+ },
+ {
+  "pop": "C",
+  "ref": "gitlab-org/gitlab!257702",
+  "project": 278964,
+  "created_at": "2026-09-25T02:36:10.296Z",
+  "state_mr": "merged",
+  "issues_from": "closing_link_confirmed",
+  "issue_refs": [
+   "#630030"
+  ],
+  "version": "merged",
+  "files": 6,
+  "withheld": 0,
+  "state": "inside_ask",
+  "extras": [],
+  "unplaced": 0
+ },
+ {
+  "pop": "C",
+  "ref": "gitlab-org/gitlab!258585",
+  "project": 278964,
+  "created_at": "2026-09-29T22:12:55.133Z",
+  "state_mr": "merged",
+  "issues_from": "closing_link_confirmed",
+  "issue_refs": [
+   "#609193"
+  ],
+  "version": "merged",
+  "files": 1,
+  "withheld": 0,
+  "state": "inside_ask",
+  "extras": [],
+  "unplaced": 0
+ },
+ {
+  "pop": "C",
+  "ref": "gitlab-org/gitlab!258032",
+  "project": 278964,
+  "created_at": "2026-09-27T22:19:58.441Z",
+  "state_mr": "merged",
+  "issues_from": "closing_link_confirmed",
+  "issue_refs": [
+   "#630934"
+  ],
+  "version": "merged",
+  "files": 3,
+  "withheld": 0,
+  "state": "extras",
+  "extras": [
+   {
+    "name": "spec/frontend/repository/utils/dom_spec.js",
+    "kind": "tests_removed",
+    "path": "spec/frontend/repository/utils/dom_spec.js"
+   }
+  ],
+  "unplaced": 0
+ },
+ {
+  "pop": "C",
+  "ref": "gitlab-org/gitlab!257360",
+  "project": 278964,
+  "created_at": "2026-09-23T18:35:03.570Z",
+  "state_mr": "merged",
+  "issues_from": "closing_link_confirmed",
+  "issue_refs": [
+   "#629413"
+  ],
+  "version": "merged",
+  "files": 3,
+  "withheld": 0,
+  "state": "inside_ask",
+  "extras": [],
+  "unplaced": 0
+ },
+ {
+  "pop": "C",
+  "ref": "gitlab-org/gitlab!255432",
+  "project": 278964,
+  "created_at": "2026-09-14T18:10:37.654Z",
+  "state_mr": "merged",
+  "issues_from": "closing_link_confirmed",
+  "issue_refs": [
+   "#538356"
+  ],
+  "version": "merged",
+  "files": 24,
+  "withheld": 0,
+  "state": "inside_ask",
+  "extras": [],
+  "unplaced": 0
+ },
+ {
+  "pop": "C",
+  "ref": "gitlab-org/gitlab!258253",
+  "project": 278964,
+  "created_at": "2026-09-28T17:49:15.821Z",
+  "state_mr": "merged",
+  "issues_from": "closing_link_confirmed",
+  "issue_refs": [
+   "#630939"
+  ],
+  "version": "merged",
+  "files": 1,
+  "withheld": 0,
+  "state": "inside_ask",
+  "extras": [],
+  "unplaced": 0
+ },
+ {
+  "pop": "C",
+  "ref": "gitlab-org/gitlab!256554",
+  "project": 278964,
+  "created_at": "2026-09-20T15:45:31.077Z",
+  "state_mr": "merged",
+  "issues_from": "closing_link_confirmed",
+  "issue_refs": [
+   "#628305"
+  ],
+  "version": "merged",
+  "files": 2,
+  "withheld": 0,
+  "state": "inside_ask",
+  "extras": [],
+  "unplaced": 0
+ },
+ {
+  "pop": "C",
+  "ref": "gitlab-org/gitlab!256791",
+  "project": 278964,
+  "created_at": "2026-09-21T19:28:22.419Z",
+  "state_mr": "merged",
+  "issues_from": "closing_link_confirmed",
+  "issue_refs": [
+   "#627414"
+  ],
+  "version": "merged",
+  "files": 2,
+  "withheld": 0,
+  "state": "inside_ask",
+  "extras": [],
+  "unplaced": 0
+ },
+ {
+  "pop": "C",
+  "ref": "gitlab-org/gitlab!258413",
+  "project": 278964,
+  "created_at": "2026-09-29T11:03:15.578Z",
+  "state_mr": "merged",
+  "issues_from": "closing_link_confirmed",
+  "issue_refs": [
+   "#471748"
+  ],
+  "version": "merged",
+  "files": 2,
+  "withheld": 0,
+  "state": "inside_ask",
+  "extras": [],
+  "unplaced": 0
+ },
+ {
+  "pop": "C",
+  "ref": "gitlab-org/gitlab!257701",
+  "project": 278964,
+  "created_at": "2026-09-25T02:13:12.449Z",
+  "state_mr": "merged",
+  "issues_from": "closing_link_confirmed",
+  "issue_refs": [
+   "#630032"
+  ],
+  "version": "merged",
+  "files": 3,
+  "withheld": 0,
+  "state": "inside_ask",
+  "extras": [],
+  "unplaced": 0
+ },
+ {
+  "pop": "C",
+  "ref": "gitlab-org/gitlab!257784",
+  "project": 278964,
+  "created_at": "2026-09-25T10:47:16.149Z",
+  "state_mr": "merged",
+  "issues_from": "closing_link_confirmed",
+  "issue_refs": [
+   "#479161"
+  ],
+  "version": "merged",
+  "files": 1,
+  "withheld": 0,
+  "state": "inside_ask",
+  "extras": [],
+  "unplaced": 0
+ },
+ {
+  "pop": "C",
+  "ref": "gitlab-org/gitlab!258231",
+  "project": 278964,
+  "created_at": "2026-09-28T16:18:54.224Z",
+  "state_mr": "merged",
+  "issues_from": "closing_link_confirmed",
+  "issue_refs": [
+   "#630935"
+  ],
+  "version": "merged",
+  "files": 1,
+  "withheld": 0,
+  "state": "inside_ask",
+  "extras": [],
+  "unplaced": 0
+ },
+ {
+  "pop": "C",
+  "ref": "gitlab-org/gitlab!257594",
+  "project": 278964,
+  "created_at": "2026-09-24T14:54:54.069Z",
+  "state_mr": "merged",
+  "issues_from": "closing_link_confirmed",
+  "issue_refs": [
+   "#459889"
+  ],
+  "version": "merged",
+  "files": 1,
+  "withheld": 0,
+  "state": "inside_ask",
+  "extras": [],
+  "unplaced": 0
+ },
+ {
+  "pop": "C",
+  "ref": "gitlab-org/gitlab!255229",
+  "project": 278964,
+  "created_at": "2026-09-13T10:27:45.751Z",
+  "state_mr": "merged",
+  "issues_from": "closing_link_confirmed",
+  "issue_refs": [
+   "#332144"
+  ],
+  "version": "merged",
+  "files": 9,
+  "withheld": 0,
+  "state": "inside_ask",
+  "extras": [],
+  "unplaced": 0
+ },
+ {
+  "pop": "C",
+  "ref": "gitlab-org/gitlab!258248",
+  "project": 278964,
+  "created_at": "2026-09-28T17:15:35.861Z",
+  "state_mr": "merged",
+  "issues_from": "closing_link_confirmed",
+  "issue_refs": [
+   "#631016"
+  ],
+  "version": "merged",
+  "files": 3,
+  "withheld": 0,
+  "state": "inside_ask",
+  "extras": [],
+  "unplaced": 0
+ },
+ {
+  "pop": "C",
+  "ref": "gitlab-org/gitlab!258220",
+  "project": 278964,
+  "created_at": "2026-09-28T15:47:32.688Z",
+  "state_mr": "merged",
+  "issues_from": "closing_link_confirmed",
+  "issue_refs": [
+   "#630943"
+  ],
+  "version": "merged",
+  "files": 2,
+  "withheld": 0,
+  "state": "inside_ask",
+  "extras": [],
+  "unplaced": 0
+ },
+ {
+  "pop": "C",
+  "ref": "gitlab-org/gitlab!258240",
+  "project": 278964,
+  "created_at": "2026-09-28T16:48:16.115Z",
+  "state_mr": "merged",
+  "issues_from": "closing_link_confirmed",
+  "issue_refs": [
+   "#630946"
+  ],
+  "version": "merged",
+  "files": 8,
+  "withheld": 0,
+  "state": "extras",
+  "extras": [
+   {
+    "name": "fetchLogsTree",
+    "kind": "public_api_removed",
+    "path": "app/assets/javascripts/repository/log_tree.js"
+   },
+   {
+    "name": "resolveCommit",
+    "kind": "public_api_removed",
+    "path": "app/assets/javascripts/repository/log_tree.js"
+   }
+  ],
+  "unplaced": 1
+ }
+]

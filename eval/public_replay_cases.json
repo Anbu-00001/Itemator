@@ -1,0 +1,98 @@
+{
+ "what": "Public replay, written before the run: Itemator's card logic (itemator.ci.facts with rules v6, no team policy, no registry look-up, no model, no Duo credits) run read-only on public merge requests that GitLab Duo's Developer Flow opened from an issue, and on merged merge requests people wrote in the same project. Nothing is posted anywhere.",
+ "rules_version": 6,
+ "populations": {
+  "G": {
+   "label": "GitLab Duo Developer Flow merge requests in GitLab's own codebase",
+   "project": "gitlab-org/gitlab",
+   "select": "state merged, merged_at from 2026-09-01T00:00:00Z to before 2026-10-01T00:00:00Z, source_branch starts with 'duo/', and at least one system note by the account 'duo-developer-gitlab-org' on the merge request (a branch name alone is not enough: some people name their own branches duo/)",
+   "versions": [
+    "agent",
+    "merged"
+   ]
+  },
+  "F": {
+   "label": "GitLab Duo Developer Flow merge requests in the hackathon field (other entrants' public projects)",
+   "group": "gitlab-ai-hackathon/transcend-october-2026 (group id 142538134), all projects except ours (87291130, 87623122)",
+   "select": "any state, created before 2026-10-16T00:00:00Z, source_branch starts with 'duo/', and at least one system note by 'duo-developer-gitlab-ai-hackathon'",
+   "versions": [
+    "agent",
+    "merged_or_latest"
+   ],
+   "per_project_cap": 5,
+   "cap_rule": "for the capped figure, take each project's first five by created_at; the uncapped figure is reported as well",
+   "anonymised": true
+  },
+  "H": {
+   "label": "Merged merge requests people wrote in GitLab's own codebase, same month (the comparison)",
+   "project": "gitlab-org/gitlab",
+   "select": "state merged, merged_at in the same September window, source_branch does NOT start with 'duo/', author not a bot (username contains 'bot' or starts with 'project_' or 'group_'), no system note by any 'duo-' service account, and a closing link in the description to an issue of the same project that lists this merge request in issues/:iid/closed_by",
+   "versions": [
+    "merged"
+   ]
+  },
+  "C": {
+   "label": "Community contributions to GitLab's own codebase (people outside GitLab, the open-source contribution path)",
+   "project": "gitlab-org/gitlab",
+   "select": "amendment 2: merged in the same September window, labelled 'Community contribution', source branch not duo/, author not a bot, no system note by any duo- account, and a closing word followed by a same-project issue (as #N or as the issue's URL) whose issues/:iid/closed_by lists this merge request; the first such issue is the one the card reads",
+   "versions": [
+    "merged"
+   ],
+   "overlap": "a community merge request that closes its issue as #N is also in H; C is reported on its own, never added to H"
+  }
+ },
+ "linked_issue": {
+  "order": [
+   "closes_issues (GitLab's own list, as the CI job reads it)",
+   "closing words in the description (itemator.ci.closing_refs, as the CI job reads them)",
+   "for G and F only, when both are empty: the issue the flow was started from, from a system note by the flow account 'mentioned in issue #N' or else the number in the branch name duo/<kind>/<N>-..."
+  ],
+  "unreadable": "an issue the API does not return (404, confidential) is dropped; a merge request with no readable issue is excluded and counted",
+  "report_both": "every figure is also given for the merge requests the CI job itself would link (the first two sources only)"
+ },
+ "version_rule": {
+  "agent": "of the merge request's diff versions (merge_requests/:iid/versions, oldest first), the newest one whose commits are all authored by the flow (author_name 'Duo Developer' or an author email containing 'service_account'), with at least one changed file; a merge request with no such version is excluded from the agent figure and counted",
+  "merged": "the merge request's final diff (merge_requests/:iid/diffs)",
+  "merged_or_latest": "the final diff, whatever the state (field merge requests may be open or closed)"
+ },
+ "exclusions": [
+  "more than 300 changed files",
+  "a diff GitLab withholds (too_large or collapsed) is scored as a file without a patch and counted"
+ ],
+ "outcome": {
+  "primary": "share of merge requests in G (agent version) whose card would list at least one extra, with a Wilson 95% interval",
+  "secondary": [
+   "the same share for G merged, F agent (capped and uncapped), H merged",
+   "extras per flagged merge request, by kind",
+   "how many merge requests the CI job would link to an issue by itself"
+  ],
+  "not_measured_here": "whether a listed extra is real: that is the labelling step, with its own rubric, written before it runs"
+ },
+ "published": "For G and H: merge request references, paths and the rules' output (no diff text). For F: counts only, projects replaced by a short hash; the references stay outside the repository. No diff text from any project is committed; diffs are cached under eval/cache/ (gitignored).",
+ "limits": "One month of one large project for G and H; one hackathon field for F; the flow's agent is one agent; the rules are fixed rules with known false positives (results/precision_audits.json). A flag means the card would ask a person to name something, not that the agent did something wrong: an extra is often a sound change the issue simply did not name. The API gives no file sizes, so the rule for an added file over 1 MB cannot fire, and a diff GitLab withholds counts as a file with no lines; the CI job reads git itself and has both.",
+ "predictions_before_the_run": {
+  "G agent-version share flagged": "0.15 to 0.60 (80%)",
+  "H share flagged": "0.15 to 0.60 (80%)",
+  "G agent share higher than H": "probability 0.45",
+  "G merge requests scored on the agent version": "60 to 140 (80%)"
+ },
+ "smoke_check": "Before this file was committed, the scorer ran on our own merge request !94 (outside every population): it gave the one extra the live card gave (.gitlab-ci.yml).",
+ "amendment_1": {
+  "written": "2026-10-16, after the first run and before amendment 1 ran",
+  "why": "The first run (results/public_replay.json, kept unchanged) could score the agent's own version for only 21 of the 96 linked merge requests in G: for a superseded diff version GitLab's API returns the commits but no diff, so 75 were excluded as having no version with only the flow's commits. A check on three of them showed the repository still holds both commits.",
+  "change": "When a version's diff is not served, it is rebuilt with repository/compare from that version's base commit to its head commit (straight). Nothing else changes: the same frame, rules, linking, version choice, exclusions and summary. Results go to results/public_replay_a1.json and results/public_replay_a1_raw.json; the first run's files stay as they are and both are reported.",
+  "predictions_before_amendment_1_ran": {
+   "G agent-version merge requests scored": "70 to 100 (80%)",
+   "G agent-version share flagged": "0.03 to 0.20 (80%)"
+  }
+ },
+ "amendment_2": {
+  "written": "2026-10-16, after amendment 1 ran and before C's frame was built",
+  "why": "The user asked to test Itemator on GitLab's open-source contribution side. In the cached September list, 267 merged merge requests carry the 'Community contribution' label (92 authors, 250 from forks); counting them looked at labels and closing words only, not at any card.",
+  "change": "Adds population C (above) with python3 eval/replay_gitlab.py --frame-c, then --amendment 2 --score and --amendment 2 --summarize (results/public_replay_a2.json and _raw). G, F and H are not re-scored. C reads the issue its frame confirmed, because GitLab's closes_issues is empty for a merged merge request (seen in G and in D1's check of 100).",
+  "predictions_before_amendment_2_ran": {
+   "C merge requests selected": "90 to 150 (80%)",
+   "C share flagged": "0.03 to 0.15 (80%)"
+  }
+ }
+}

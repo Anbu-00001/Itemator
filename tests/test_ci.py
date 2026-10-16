@@ -221,6 +221,55 @@ def test_issues_from_the_description_when_closes_issues_is_empty(repo, tmp_path,
     assert out["state"] == "inside_ask" and out["warnings"] == ["#6 is named in the description but was not found"]
 
 
+def test_issue_from_the_developer_flows_branch_when_nothing_else_names_one(repo, tmp_path, monkeypatch):
+    head = repo.commit({"src/parser.py": FIXED})
+    _, out = job(repo, head, FakeHttp(routes(mr("Keeps the comma.\n\nReferences: https://gitlab.com/grp/showcase/-/work_items/4"), [],
+                 issue(4))), tmp_path, monkeypatch, CI_MERGE_REQUEST_SOURCE_BRANCH_NAME="duo/fix/4-keep-trailing-comma")
+    assert out["issues_from"] == "branch" and out["issue_iids"] == [4] and out["state"] == "inside_ask"
+
+
+def test_a_branch_number_the_description_does_not_name_is_not_read(repo, tmp_path, monkeypatch):
+    head = repo.commit({"src/parser.py": FIXED})
+    http = FakeHttp(routes(mr("Follows up https://gitlab.com/grp/showcase/-/merge_requests/4 and other/repo#4."), [], issue(4)))
+    _, out = job(repo, head, http, tmp_path, monkeypatch, CI_MERGE_REQUEST_SOURCE_BRANCH_NAME="duo/fix/4-keep-trailing-comma")
+    assert out["issues_from"] == "none" and out["state"] == "no_issue"
+    assert out["warnings"] == ["#4 is named in the branch duo/fix/4-keep-trailing-comma but not in the description, so it was not read"]
+
+
+def test_the_branch_is_read_only_when_no_closing_link_names_an_issue(repo, tmp_path, monkeypatch):
+    head = repo.commit({"src/parser.py": FIXED})
+    flow = {"CI_MERGE_REQUEST_SOURCE_BRANCH_NAME": "duo/fix/4-keep-trailing-comma"}
+    _, out = job(repo, head, FakeHttp(routes(mr(), [issue()], issue(4))), tmp_path, monkeypatch, **flow)
+    assert out["issues_from"] == "closes_issues" and out["issue_iids"] == [12]
+    _, out = job(repo, head, FakeHttp(routes(mr("Fixes #12"), [], issue(), issue(4))), tmp_path, monkeypatch, **flow)
+    assert out["issues_from"] == "description" and out["issue_iids"] == [12]
+    _, out = job(repo, head, FakeHttp(routes(mr("See #4."), [])), tmp_path, monkeypatch, **flow)
+    assert out["issues_from"] == "none" and out["state"] == "no_issue"
+    assert out["warnings"] == ["#4 is named in the branch duo/fix/4-keep-trailing-comma but was not found"]
+    _, out = job(repo, head, FakeHttp(routes(mr("No link."), [], issue(4))), tmp_path, monkeypatch,
+                 CI_MERGE_REQUEST_SOURCE_BRANCH_NAME="feature/4-keep-trailing-comma")
+    assert out["issues_from"] == "none" and out["warnings"] == []
+
+
+def test_flow_branch_issue():
+    assert ci.flow_branch_issue("duo/feature/45-environment-in-shipped-log-line") == 45
+    assert ci.flow_branch_issue("duo/fix/623243-bump-websocket-driver") == 623243
+    for name in ("duo/ai-instructions-mr-template-selection", "duo/fix/12x-y", "xduo/fix/1-a", "duo/1-a", "", None):
+        assert ci.flow_branch_issue(name) is None
+
+
+def test_mentions_issue():
+    p = "gitlab-org/gitlab"
+    for text in ("Relates to #45.", "#45", "(#45)", "https://gitlab.com/gitlab-org/gitlab/-/issues/45",
+                 "References\n- https://gitlab.com/gitlab-org/gitlab/-/work_items/45#note_1"):
+        assert ci.mentions_issue(text, 45, p), text
+    for text in ("#450", "!45", "other/repo#45", "&#45;", "https://gitlab.com/gitlab-org/gitlab/-/merge_requests/45",
+                 "https://gitlab.com/gitlab-org/quality/x/-/work_items/45", "https://gitlab.com/gitlab-org/gitlab/-/issues/450",
+                 "https://gitlab.com/x/gitlab-org/gitlab/-/issues/45", "", None):
+        assert not ci.mentions_issue(text, 45, p), text
+    assert not ci.mentions_issue("https://gitlab.com/gitlab-org/gitlab/-/issues/45", 45, None)
+
+
 def test_closing_refs():
     assert ci.closing_refs("Closes #1, #2 and #3. fixes: #9\nClosing #7, resolves #1") == [1, 2, 3, 9, 7]
     assert ci.closing_refs("Resolves other/proj#4, see #5, prefix#6, Implements #8") == [8]

@@ -1,8 +1,8 @@
 {
  "what": "Mutation tests run by the manual `mutation-suite` job in GitLab CI: each mutant breaks one line of the rules, the CI job, the policy file, the decision log or the reaction flow's prompt text, and at least one test must fail. A mutant that does not compile is reported as INVALID and counts as not caught.",
- "job": "https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/39194174/showcase/-/jobs/17190449456",
- "commit": "8ae838fba26da8d9bcc86311a01f9b0536a1b2cd",
- "earlier_runs": "Job 17127357389 (606 mutants) counted one mutant that did not compile as caught; job 17139995639 (625) replaced it; job 17145469008 (687) added the hold, asker and flow-prompt mutants. Job 17157685229 (695) added the third audit's fixes. This run (693) is on the commit that removed the bot-approval step, which retired its two mutants. Job 17172287375 (693) was the run after the bot-approval step was removed. This run (700) adds the seven mutants of the deployment page and covers the policy-injected job file.",
+ "job": "https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/39194174/showcase/-/jobs/17231250571",
+ "commit": "c78f47d45c6685614efbf6a682f7a90b52710c3a",
+ "earlier_runs": "Job 17127357389 (606 mutants) counted one mutant that did not compile as caught; job 17139995639 (625) replaced it; job 17145469008 (687) added the hold, asker and flow-prompt mutants. Job 17157685229 (695) added the third audit's fixes. This run (693) is on the commit that removed the bot-approval step, which retired its two mutants. Job 17172287375 (693) was the run after the bot-approval step was removed. Job 17190449456 (700) added the seven mutants of the deployment page and covered the policy-injected job file. This run (732) adds the mutants of the flow branch's issue link and of scan history.",
  "logs": [
   "results/mutation/mutation-extras.log",
   "results/mutation/mutation-ci.log"
@@ -14,11 +14,11 @@
   "invalid": 0
  },
  "job_and_flows": {
-  "killed": 518,
-  "mutants": 518,
+  "killed": 550,
+  "mutants": 550,
   "survived": 0,
   "invalid": 0
  },
- "total_mutants": 700,
- "total_killed": 700
+ "total_mutants": 732,
+ "total_killed": 732
 }

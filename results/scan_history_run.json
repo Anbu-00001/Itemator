@@ -1,0 +1,305 @@
+{
+ "how": "The manual scan-history job on main (job 17231250573, commit c78f47d), its scan.json artifact as written: https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/39194174/showcase/-/jobs/17231250573",
+ "rules_version": 6,
+ "target": "main",
+ "generated_at": "2026-10-16T12:04:43Z",
+ "summary": {
+  "merge_requests": 21,
+  "unreadable": 0,
+  "no_issue": 6,
+  "with_an_issue": 15,
+  "with_extras": 3,
+  "extras": 5,
+  "extras_by_kind": {
+   "agent_instructions": 1,
+   "binary_or_large_added": 2,
+   "ci_or_config": 2
+  }
+ },
+ "merge_requests": [
+  {
+   "iid": 112,
+   "title": "Lead the README with GitLab's own rule and the public replay",
+   "merged_at": "2026-10-16T12:01:13.631Z",
+   "state": "no_issue",
+   "issue_iids": [],
+   "issues_from": "none",
+   "extras": [],
+   "unplaced": 0,
+   "warnings": []
+  },
+  {
+   "iid": 111,
+   "title": "Add scan history: the rules over merge requests already merged",
+   "merged_at": "2026-10-16T12:00:36.854Z",
+   "state": "no_issue",
+   "issue_iids": [],
+   "issues_from": "none",
+   "extras": [],
+   "unplaced": 0,
+   "warnings": []
+  },
+  {
+   "iid": 110,
+   "title": "Record the public replay's amendment 2 community contributions",
+   "merged_at": "2026-10-16T12:00:13.625Z",
+   "state": "no_issue",
+   "issue_iids": [],
+   "issues_from": "none",
+   "extras": [],
+   "unplaced": 0,
+   "warnings": []
+  },
+  {
+   "iid": 109,
+   "title": "Register the maintainer study reviewers' scope requests",
+   "merged_at": "2026-10-16T11:59:55.380Z",
+   "state": "no_issue",
+   "issue_iids": [],
+   "issues_from": "none",
+   "extras": [],
+   "unplaced": 0,
+   "warnings": []
+  },
+  {
+   "iid": 108,
+   "title": "Record the two labellers' readings of the public replay's extras",
+   "merged_at": "2026-10-16T09:22:34.066Z",
+   "state": "no_issue",
+   "issue_iids": [],
+   "issues_from": "none",
+   "extras": [],
+   "unplaced": 0,
+   "warnings": []
+  },
+  {
+   "iid": 107,
+   "title": "Read a flow branch's issue only when the description names it too",
+   "merged_at": "2026-10-16T09:22:13.984Z",
+   "state": "no_issue",
+   "issue_iids": [],
+   "issues_from": "none",
+   "extras": [],
+   "unplaced": 0,
+   "warnings": []
+  },
+  {
+   "iid": 106,
+   "title": "Record replay amendment 1; register amendment 2 community contributions to GitLab",
+   "merged_at": "2026-10-16T09:21:53.216Z",
+   "state": "author_wrote_issue",
+   "issue_iids": [
+    67
+   ],
+   "issues_from": "closes_issues",
+   "extras": [],
+   "unplaced": 2,
+   "warnings": []
+  },
+  {
+   "iid": 105,
+   "title": "Read the Developer Flow's issue from its branch name when nothing else names one",
+   "merged_at": "2026-10-16T08:40:05.471Z",
+   "state": "author_wrote_issue",
+   "issue_iids": [
+    66
+   ],
+   "issues_from": "closes_issues",
+   "extras": [],
+   "unplaced": 3,
+   "warnings": []
+  },
+  {
+   "iid": 104,
+   "title": "Record the public replay's first run; register amendment 1 and the labelling rubric",
+   "merged_at": "2026-10-16T08:39:14.786Z",
+   "state": "author_wrote_issue",
+   "issue_iids": [
+    65
+   ],
+   "issues_from": "closes_issues",
+   "extras": [],
+   "unplaced": 3,
+   "warnings": []
+  },
+  {
+   "iid": 103,
+   "title": "Pre-register the public replay: the card's logic on GitLab Duo agent merge requests",
+   "merged_at": "2026-10-16T06:33:48.571Z",
+   "state": "author_wrote_issue",
+   "issue_iids": [
+    64
+   ],
+   "issues_from": "closes_issues",
+   "extras": [],
+   "unplaced": 0,
+   "warnings": []
+  },
+  {
+   "iid": 102,
+   "title": "Record injection study v3: a non-member's hostile replies did not start the reaction flow",
+   "merged_at": "2026-10-16T06:33:13.065Z",
+   "state": "author_wrote_issue",
+   "issue_iids": [
+    63
+   ],
+   "issues_from": "closes_issues",
+   "extras": [],
+   "unplaced": 0,
+   "warnings": []
+  },
+  {
+   "iid": 101,
+   "title": "Add two screenshots to the README",
+   "merged_at": "2026-10-16T05:43:19.656Z",
+   "state": "extras",
+   "issue_iids": [
+    62
+   ],
+   "issues_from": "closes_issues",
+   "extras": [
+    {
+     "kind": "binary_or_large_added",
+     "name": "docs/images/card-and-thread.png"
+    },
+    {
+     "kind": "binary_or_large_added",
+     "name": "docs/images/policy-job-in-pipeline.png"
+    }
+   ],
+   "unplaced": 0,
+   "warnings": []
+  },
+  {
+   "iid": 99,
+   "title": "Pre-register injection study v3: a stranger account types the hostile replies",
+   "merged_at": "2026-10-16T05:33:43.577Z",
+   "state": "author_wrote_issue",
+   "issue_iids": [
+    60
+   ],
+   "issues_from": "closes_issues",
+   "extras": [],
+   "unplaced": 0,
+   "warnings": []
+  },
+  {
+   "iid": 98,
+   "title": "Record the second injection study result",
+   "merged_at": "2026-10-15T10:31:34.798Z",
+   "state": "author_wrote_issue",
+   "issue_iids": [
+    59
+   ],
+   "issues_from": "closes_issues",
+   "extras": [],
+   "unplaced": 0,
+   "warnings": []
+  },
+  {
+   "iid": 96,
+   "title": "Write down the second injection study before running it",
+   "merged_at": "2026-10-15T10:21:53.035Z",
+   "state": "author_wrote_issue",
+   "issue_iids": [
+    57
+   ],
+   "issues_from": "closes_issues",
+   "extras": [],
+   "unplaced": 0,
+   "warnings": []
+  },
+  {
+   "iid": 95,
+   "title": "Show a run that starts from an agent's merge request",
+   "merged_at": "2026-10-15T09:27:40.066Z",
+   "state": "author_wrote_issue",
+   "issue_iids": [
+    56
+   ],
+   "issues_from": "closes_issues",
+   "extras": [],
+   "unplaced": 1,
+   "warnings": []
+  },
+  {
+   "iid": 91,
+   "title": "Let a reader see one real run without running a flow",
+   "merged_at": "2026-10-15T07:29:10.352Z",
+   "state": "author_wrote_issue",
+   "issue_iids": [
+    53
+   ],
+   "issues_from": "closes_issues",
+   "extras": [],
+   "unplaced": 1,
+   "warnings": []
+  },
+  {
+   "iid": 90,
+   "title": "Record the mutation run on the current code",
+   "merged_at": "2026-10-15T05:39:41.515Z",
+   "state": "author_wrote_issue",
+   "issue_iids": [
+    51
+   ],
+   "issues_from": "closes_issues",
+   "extras": [],
+   "unplaced": 0,
+   "warnings": []
+  },
+  {
+   "iid": 89,
+   "title": "Make the setup guide work in a fork",
+   "merged_at": "2026-10-15T05:18:09.990Z",
+   "state": "author_wrote_issue",
+   "issue_iids": [
+    50
+   ],
+   "issues_from": "closes_issues",
+   "extras": [],
+   "unplaced": 0,
+   "warnings": []
+  },
+  {
+   "iid": 88,
+   "title": "Fix the findings of audit pass 5",
+   "merged_at": "2026-10-15T04:14:59.325Z",
+   "state": "extras",
+   "issue_iids": [
+    49
+   ],
+   "issues_from": "closes_issues",
+   "extras": [
+    {
+     "kind": "ci_or_config",
+     "name": ".gitlab-ci.yml"
+    }
+   ],
+   "unplaced": 1,
+   "warnings": []
+  },
+  {
+   "iid": 37,
+   "title": "Apply the findings of audit pass 2",
+   "merged_at": "2026-10-13T12:43:25.813Z",
+   "state": "extras",
+   "issue_iids": [
+    32
+   ],
+   "issues_from": "closes_issues",
+   "extras": [
+    {
+     "kind": "ci_or_config",
+     "name": ".gitlab-ci.yml"
+    },
+    {
+     "kind": "agent_instructions",
+     "name": "AGENTS.md"
+    }
+   ],
+   "unplaced": 10,
+   "warnings": []
+  }
+ ]
+}

@@ -1,0 +1,181 @@
+{
+ "what": "Public replay, written before the run: Itemator's card logic (itemator.ci.facts with rules v6, no team policy, no registry look-up, no model, no Duo credits) run read-only on public merge requests that GitLab Duo's Developer Flow opened from an issue, and on merged merge requests people wrote in the same project. Nothing is posted anywhere.",
+ "limits": "One month of one large project for G and H; one hackathon field for F; the flow's agent is one agent; the rules are fixed rules with known false positives (results/precision_audits.json). A flag means the card would ask a person to name something, not that the agent did something wrong: an extra is often a sound change the issue simply did not name. The API gives no file sizes, so the rule for an added file over 1 MB cannot fire, and a diff GitLab withholds counts as a file with no lines; the CI job reads git itself and has both.",
+ "rules_version": 6,
+ "G": {
+  "merge_requests": 149,
+  "excluded": {
+   "no readable issue": 53,
+   "no version with only the flow's commits": 75
+  },
+  "agent": {
+   "scored": 21,
+   "flagged": 2,
+   "share": 0.095,
+   "wilson95": [
+    0.027,
+    0.289
+   ],
+   "extras": 2,
+   "extras_by_kind": {
+    "tests_removed": 2
+   },
+   "linked_by_the_ci_job_itself": 0,
+   "flagged_among_those": 0
+  },
+  "merged": {
+   "scored": 96,
+   "flagged": 9,
+   "share": 0.094,
+   "wilson95": [
+    0.05,
+    0.169
+   ],
+   "extras": 36,
+   "extras_by_kind": {
+    "agent_instructions": 1,
+    "public_api_removed": 2,
+    "tests_removed": 33
+   },
+   "linked_by_the_ci_job_itself": 4,
+   "flagged_among_those": 1
+  }
+ },
+ "F": {
+  "merge_requests": 118,
+  "excluded": {
+   "no readable issue": 22,
+   "no version with only the flow's commits": 14
+  },
+  "agent": {
+   "scored": 82,
+   "flagged": 4,
+   "share": 0.049,
+   "wilson95": [
+    0.019,
+    0.119
+   ],
+   "extras": 7,
+   "extras_by_kind": {
+    "agent_instructions": 1,
+    "ci_or_config": 3,
+    "new_dependency": 2,
+    "version_bump": 1
+   },
+   "linked_by_the_ci_job_itself": 69,
+   "flagged_among_those": 4
+  },
+  "agent_capped": {
+   "scored": 43,
+   "flagged": 3,
+   "share": 0.07,
+   "wilson95": [
+    0.024,
+    0.186
+   ],
+   "extras": 6,
+   "extras_by_kind": {
+    "agent_instructions": 1,
+    "ci_or_config": 2,
+    "new_dependency": 2,
+    "version_bump": 1
+   },
+   "linked_by_the_ci_job_itself": 39,
+   "flagged_among_those": 3
+  },
+  "latest": {
+   "scored": 20,
+   "flagged": 3,
+   "share": 0.15,
+   "wilson95": [
+    0.052,
+    0.36
+   ],
+   "extras": 7,
+   "extras_by_kind": {
+    "agent_instructions": 2,
+    "binary_or_large_added": 1,
+    "ci_or_config": 2,
+    "new_dependency": 2
+   },
+   "linked_by_the_ci_job_itself": 16,
+   "flagged_among_those": 3
+  },
+  "latest_capped": {
+   "scored": 20,
+   "flagged": 3,
+   "share": 0.15,
+   "wilson95": [
+    0.052,
+    0.36
+   ],
+   "extras": 7,
+   "extras_by_kind": {
+    "agent_instructions": 2,
+    "binary_or_large_added": 1,
+    "ci_or_config": 2,
+    "new_dependency": 2
+   },
+   "linked_by_the_ci_job_itself": 16,
+   "flagged_among_those": 3
+  },
+  "merged": {
+   "scored": 76,
+   "flagged": 6,
+   "share": 0.079,
+   "wilson95": [
+    0.037,
+    0.162
+   ],
+   "extras": 9,
+   "extras_by_kind": {
+    "agent_instructions": 1,
+    "ci_or_config": 3,
+    "new_dependency": 3,
+    "version_bump": 2
+   },
+   "linked_by_the_ci_job_itself": 66,
+   "flagged_among_those": 6
+  },
+  "merged_capped": {
+   "scored": 34,
+   "flagged": 5,
+   "share": 0.147,
+   "wilson95": [
+    0.064,
+    0.301
+   ],
+   "extras": 8,
+   "extras_by_kind": {
+    "agent_instructions": 1,
+    "ci_or_config": 2,
+    "new_dependency": 3,
+    "version_bump": 2
+   },
+   "linked_by_the_ci_job_itself": 33,
+   "flagged_among_those": 5
+  }
+ },
+ "H": {
+  "merge_requests": 113,
+  "excluded": {},
+  "merged": {
+   "scored": 113,
+   "flagged": 6,
+   "share": 0.053,
+   "wilson95": [
+    0.025,
+    0.111
+   ],
+   "extras": 9,
+   "extras_by_kind": {
+    "ci_or_config": 1,
+    "new_dependency": 2,
+    "public_api_removed": 3,
+    "tests_removed": 3
+   },
+   "linked_by_the_ci_job_itself": 113,
+   "flagged_among_those": 6
+  }
+ }
+}

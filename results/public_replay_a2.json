@@ -1,0 +1,25 @@
+{
+ "what": "Public replay, written before the run: Itemator's card logic (itemator.ci.facts with rules v6, no team policy, no registry look-up, no model, no Duo credits) run read-only on public merge requests that GitLab Duo's Developer Flow opened from an issue, and on merged merge requests people wrote in the same project. Nothing is posted anywhere.",
+ "limits": "One month of one large project for G and H; one hackathon field for F; the flow's agent is one agent; the rules are fixed rules with known false positives (results/precision_audits.json). A flag means the card would ask a person to name something, not that the agent did something wrong: an extra is often a sound change the issue simply did not name. The API gives no file sizes, so the rule for an added file over 1 MB cannot fire, and a diff GitLab withholds counts as a file with no lines; the CI job reads git itself and has both.",
+ "rules_version": 6,
+ "C": {
+  "merge_requests": 135,
+  "excluded": {},
+  "merged": {
+   "scored": 135,
+   "flagged": 4,
+   "share": 0.03,
+   "wilson95": [
+    0.012,
+    0.074
+   ],
+   "extras": 5,
+   "extras_by_kind": {
+    "public_api_removed": 3,
+    "tests_removed": 2
+   },
+   "linked_by_the_ci_job_itself": 0,
+   "flagged_among_those": 0
+  }
+ }
+}
