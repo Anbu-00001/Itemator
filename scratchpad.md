@@ -94,10 +94,15 @@ Q (Oct 17, win-hook bank 6 of 8): What do developers from before the AI era beli
 DEFAULT: that a reviewer's job is to understand intent and risk, not to find typos; I will frame the card around "what was not asked for", which is what R6's quotes show reviewers lacking.
 ANSWER:
 
-## Merge status (Oct 18, 23:40 IST)
+## Merge status (Oct 17, 23:40 IST)
 Everything so far is merged by me (!127-!130, !134-!136); you told me to merge myself. Nothing needs you tonight.
 
-## Open (Oct 18, 00:00 IST) - one question, answer when you can
+## Open (Oct 17, 23:40 IST) - one question, answer when you can
 Q (the win-hook bank 7 of 8): Which sentence in our entry would you be afraid to say aloud to a GitLab engineer's face?
 DEFAULT: the line that says rules, not a model, do the checking: a GitLab engineer would ask why a product built on Duo does not let the model look. I will keep it, but put the answer next to it (the model reads only what the rules found; the rules are what you can re-run).
 ANSWER:
+
+Q (the win-hook bank 8 of 8): If every other entry looks the same after the first minute, what is the one thing about ours a judge would still remember tomorrow?
+DEFAULT: the picture of one change moving file by file through the checks into four bins, with the honest bin ("ordinary: read it yourself") shown on screen; I will open the video on it.
+ANSWER:
+
