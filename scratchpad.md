@@ -85,3 +85,7 @@ ok I will answer the above when I get home, focus on research war fleets for now
 Q (the win-hook bank question): Which idea did you drop because it felt too ordinary, boring or small, though a tired engineer would want it?
 DEFAULT: none needed; fleet 15 agent R6 is collecting real quotes from engineers on exactly this and I will pick from them.
 ANSWER:
+
+Q (Oct 17, win-hook bank 5 of 8): What failure of ours would you be willing to show on camera because it proves we are honest?
+DEFAULT: the refactor check proved only 1 of 102 agent-changed Python files (results/neutral_spike_v1.json); I will use that as the honest-failure shot unless you pick another.
+ANSWER:
