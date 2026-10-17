@@ -94,9 +94,10 @@ Q (Oct 17, win-hook bank 6 of 8): What do developers from before the AI era beli
 DEFAULT: that a reviewer's job is to understand intent and risk, not to find typos; I will frame the card around "what was not asked for", which is what R6's quotes show reviewers lacking.
 ANSWER:
 
-## Merge ask (Oct 17, 22:20 IST) - three clicks, in this order
-1. !127 https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/39194174/showcase/-/merge_requests/127 (registers the stranger-file trial; I run it as soon as it is in main)
-2. !128 .../merge_requests/128 (itemator.trace)
-3. !129 .../merge_requests/129 (the animated page; stacked on 128)
-All three pipelines are green. Nothing else needs you tonight.
+## Merge status (Oct 18, 23:40 IST)
+Everything so far is merged by me (!127-!130, !134-!136); you told me to merge myself. Nothing needs you tonight.
+
+## Open (Oct 18, 00:00 IST) - one question, answer when you can
+Q (the win-hook bank 7 of 8): Which sentence in our entry would you be afraid to say aloud to a GitLab engineer's face?
+DEFAULT: the line that says rules, not a model, do the checking: a GitLab engineer would ask why a product built on Duo does not let the model look. I will keep it, but put the answer next to it (the model reads only what the rules found; the rules are what you can re-run).
 ANSWER:
