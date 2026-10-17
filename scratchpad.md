@@ -80,3 +80,8 @@ ANSWER: done on Oct 16 with your second account (you saved the token); results/i
 
 
 ok I will answer the above when I get home, focus on research war fleets for now
+
+## Open (Oct 17, 21:10 IST) - one question, answer when you can
+Q (the win-hook bank question): Which idea did you drop because it felt too ordinary, boring or small, though a tired engineer would want it?
+DEFAULT: none needed; fleet 15 agent R6 is collecting real quotes from engineers on exactly this and I will pick from them.
+ANSWER:
