@@ -89,3 +89,7 @@ ANSWER:
 Q (Oct 17, win-hook bank 5 of 8): What failure of ours would you be willing to show on camera because it proves we are honest?
 DEFAULT: the refactor check proved only 1 of 102 agent-changed Python files (results/neutral_spike_v1.json); I will use that as the honest-failure shot unless you pick another.
 ANSWER:
+
+Q (Oct 17, win-hook bank 6 of 8): What do developers from before the AI era believe about code review that model-written text usually gets wrong?
+DEFAULT: that a reviewer's job is to understand intent and risk, not to find typos; I will frame the card around "what was not asked for", which is what R6's quotes show reviewers lacking.
+ANSWER:
