@@ -93,3 +93,10 @@ ANSWER:
 Q (Oct 17, win-hook bank 6 of 8): What do developers from before the AI era believe about code review that model-written text usually gets wrong?
 DEFAULT: that a reviewer's job is to understand intent and risk, not to find typos; I will frame the card around "what was not asked for", which is what R6's quotes show reviewers lacking.
 ANSWER:
+
+## Merge ask (Oct 17, 22:20 IST) - three clicks, in this order
+1. !127 https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/39194174/showcase/-/merge_requests/127 (registers the stranger-file trial; I run it as soon as it is in main)
+2. !128 .../merge_requests/128 (itemator.trace)
+3. !129 .../merge_requests/129 (the animated page; stacked on 128)
+All three pipelines are green. Nothing else needs you tonight.
+ANSWER:
