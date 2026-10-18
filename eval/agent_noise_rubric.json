@@ -1,0 +1,16 @@
+{
+ "what": "Written before the new checks are run on this data. How often do the card's newest added-line checks speak on commits that AI coding agents made in real pull requests? Read-only; local files only; nothing is posted and nothing is fetched.",
+ "data": "The AIDev dataset (https://huggingface.co/datasets/hao-li/AIDev, public) as already cached in eval/cache/aidev/commit_details.json by earlier runs: file-level rows (commit sha, pull request id, author, file name, status, patch) of commits in 477 agent pull requests. Those pull requests were picked earlier because they carry human review comments, so they are not a random sample of agent work.",
+ "unit": "One commit: all of its file rows, as the unified hunks, in the shape the CI job reads from GitLab. Commits with no file row that has a patch are left out and counted.",
+ "checks": ["itemator/moving.py", "itemator/shapes.py", "itemator/untrusted.py"],
+ "rule": "Per check: met only if the share of commits on which the check speaks is at most 3% and the upper end of its Wilson 95% interval is at most 5%. Otherwise published as 'not met' with the examples. Constants of the checks are not changed after seeing results. Reported without a bar: the shares among commits that touch a file the check can read (CI files and Dockerfiles for moving; CI files and shell scripts for untrusted; any non-test non-doc file for shapes), and the share per agent.",
+ "also_reported": ["counts: commits, commits with a patch, file rows", "up to 10 firing commits per check (sha prefix, pull request id, agent, file path, line, kind) which the builder reads and labels 'looks right' or 'looks wrong' (a model's judgement, stated as such)"],
+ "published": "Commit id prefixes, pull request ids, agent names, file paths, line numbers, kinds, counts, intervals. No diff text, no commit messages.",
+ "limits": "Pull requests with human review comments are probably larger and riskier than the average agent pull request. Commit-level rows may split one change over several commits. Not a measure of whether a check finds real problems.",
+ "predictions_before_run": {
+  "moving": "speaks on at most 3% of agent commits: 85%",
+  "shapes": "speaks on at most 3% of agent commits: 92%",
+  "untrusted": "speaks on at most 3% of agent commits: 95%"
+ },
+ "seen_before_registration": "The file rows were read earlier for other checks (listing and layout-only trials). The three checks named here had not been run on them."
+}

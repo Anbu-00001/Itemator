@@ -3,6 +3,7 @@
 The change is made up for this demonstration (an "agent" asked to change one greeting also tidies a file, adds a
 dependency and an image, hides a program inside a .pdf name, edits the CI file and a README). It is not a real merge
 request. The trace is what `python -m itemator.trace` writes for it, so anyone can run this and get the same file."""
+import os
 import pathlib
 import subprocess
 import sys
@@ -15,9 +16,13 @@ from itemator import trace as T  # noqa: E402
 REQUEST = "Greet the user by name in greeting.py instead of printing Hello."
 
 
+# A fixed date, so the commit ids (named on the card's fence line) are the same on every run.
+DATES = {"GIT_AUTHOR_DATE": "2026-01-01T00:00:00+00:00", "GIT_COMMITTER_DATE": "2026-01-01T00:00:00+00:00"}
+
+
 def git(repo, *args):
     subprocess.run(["git", "-C", str(repo), "-c", "user.email=demo@example.invalid", "-c", "user.name=demo", "-c", "commit.gpgsign=false", *args],
-                   check=True, capture_output=True)
+                   check=True, capture_output=True, env={**os.environ, **DATES})
 
 
 def build(repo: pathlib.Path) -> None:

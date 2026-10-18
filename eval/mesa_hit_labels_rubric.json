@@ -1,0 +1,10 @@
+{
+ "what": "Written before any hit is read. When the revert check and the copy check speak on real Mesa reverts and real Mesa backports, is what they say right? The Mesa noise run (results/mesa_noise_v1.json) counted 160 of 1000 reverts and 57 of 1000 backports and read none of them.",
+ "data": "The same commits as the noise run: the seeded shuffle (seed 20261018) of all commits whose message has 'This reverts commit' (first 1000 whose cited commit exists) or 'cherry picked from commit' (first 1000). eval/mesa_hits.py lists every commit on which the check speaks.",
+ "sample": "Up to 25 hits per check, chosen by the same seeded shuffle of the hit list (seed 20261018). All hits are listed in the results file; only the sample is labelled.",
+ "labels": "For each sampled hit the builder reads the diff of the revert (or backport), the diff of the commit it cites, and what the check said, and assigns one of: 'right' (the check names a real difference: a part of the cited change that the revert or backport does not undo or copy, or a file it touches that the cited change did not), 'artifact' (the named difference is not a real one: only a renamed or moved file, a generated file, whitespace or a line that the cited commit changed again later, or the check misread), 'unclear' (the builder cannot tell from the diffs). The labeller is a language model (Claude), not a person, and says so wherever the labels are quoted. A person may re-label.",
+ "published": "Commit id prefixes, paths, counts, the label and a one-sentence reason in plain words. No diff text and no commit messages.",
+ "rule": "Per check: the share of labelled hits that are 'right', with a Wilson 95% interval, reported with no bar. The README may say 'of N hits read, M named a real difference' only with these numbers and 'read by a model'.",
+ "predictions_before_run": {"revert_right_share": "interval 0.3 to 0.8", "copy_right_share": "interval 0.3 to 0.8"},
+ "limits": "A model reading, 25 hits per check, one project (Mesa). 'Right' says the named difference exists, not that the revert or backport was wrong: a deliberate adaptation is a real difference and is still 'right'."
+}

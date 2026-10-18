@@ -1,0 +1,24 @@
+{
+ "what": "Written before any Mesa history is read by this script. Does a commit that the fence check or the stranger check flags get repaired or reverted later more often than a commit it does not flag? Read-only; nothing is posted.",
+ "repository": "Mesa (https://gitlab.com/mesa3d/mesa mirror at https://gitlab.freedesktop.org/mesa/mesa.git), a bare clone made on 2026-10-18 (about 232,000 commits). We only read its history; its licence is not ours to choose and nothing from it is copied into the entry.",
+ "outcome": "A later commit, within 365 days of the sampled commit's author date, that either carries a line 'Fixes: <hash>' whose hash starts the sampled commit's id (7 or more hex digits), or carries the line 'This reverts commit <hash>' naming it. Those lines are written by Mesa's developers, not by our checker or a model.",
+ "sample": "Non-merge commits dated 2019-01-01 to 2023-06-30 (so every one has a full year of later history). The list of ids is sorted, then shuffled with Python's random.Random(20261018); the first 1000 are read. A commit that touches more than 40 files or more than 300 files in total is skipped before the labels are read. If fewer than 40 flagged commits result for a check, the next 1000 of the same shuffle are added, once, up to 3000.",
+ "fence_flag": "itemator/fence.py as merged, run on the commit's diff against its first parent, blame at the parent (-w -M -C): flagged when it lists at least one deleted run whose adding commit's subject says it fixes something. Commits with no non-test, non-doc modified file are not eligible.",
+ "stranger_flag": "itemator/cochange.py as merged, history read at the parent: eligible when 3 to 40 files are modified; flagged when at least one modified file is a stranger.",
+ "bands": "Commits are compared inside bands of the number of changed files: 1, 2 to 3, 4 to 10, 11 to 40. The ratio is the Mantel-Haenszel risk ratio over the bands.",
+ "rule": "Fixed now, per check: met only if the ratio is at least 1.5, the 2.5th percentile of 2000 bootstrap resamples (resampling commits inside each band, seed 20261018) is above 1, and at least 40 flagged commits were read. Otherwise the result is published as 'not met' (or 'too few flagged') and the README keeps saying there is no outside measure. Constants are not changed after seeing results.",
+ "also_reported": [
+  "counts: sampled, skipped (too many files), timed out, eligible, flagged, with an outcome, by band",
+  "the share of flagged and of unflagged commits that were later repaired or reverted, with Wilson 95% intervals",
+  "how many of the later repairs name the flagged commit through a fix that the fence check itself pointed at"
+ ],
+ "time_limit": "A commit whose blame or history reads take more than 120 seconds is counted as timed out and left out of both groups; the count is published.",
+ "reading_rule": "Counts in plain words first. No 'catches X percent' sentence. A later fix is not proof that the flag was right; it is the outside signal we have. A flagged commit that is later fixed is not a bug the check found; it is a commit the check pointed at.",
+ "published": "Commit ids, labels, counts, ratios. No diff text, no commit messages.",
+ "limits": "Mesa is C and C++ graphics code with one review culture; it may not carry over to Python application code. Fixes: tags are written for some repairs and not others, so the outcome is undercounted for both groups. The sample is commits, not merge requests. One run; constants chosen before reading any label.",
+ "predictions_before_run": {
+  "ana a1e92a": "fence rule met: 30%",
+  "ana 738e25": "stranger rule met: 40%"
+ },
+ "seen_before_registration": "Counts only: 67028 non-merge commits in the window and 6290 of them carry a Fixes: line (git log --grep on the bare clone). No label, no flag and no outcome for any sampled commit had been read."
+}

@@ -137,7 +137,32 @@ shipped-page:
     - python -E examples/make_example.py staged.json
     - python -E -m itemator.trace --commits --base HEAD~1 --head HEAD --out latest.json || true
     - python -E -m itemator.mapview --out public/map --skip-missing --label "Latest merge to main (a real run)" --label "Staged example (made up for this demonstration)" --staged staged.json latest.json staged.json
+    # The page where a visitor pastes a diff and three checks run in the browser, with the numbers read from results/.
+    - python -E -m itemator.tryit --out public/try
   pages: true
+
+# Deploy: every merge request gets its own preview of the reviewer's map for exactly that change (a GitLab Pages parallel deployment,
+# `Pages MR <n>` in the environment list; GitLab puts the `mr-<n>` prefix into CI_PAGES_URL itself, so the link is that variable alone). Each preview is a real run of the trace on the request's own commits, expires after a week and
+# is deleted when the request closes.
+map-preview:
+  stage: deploy
+  image: python:3.12
+  variables:
+    GIT_DEPTH: "0"
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+  script:
+    - python -E -m itemator.trace --commits --base "$CI_MERGE_REQUEST_DIFF_BASE_SHA" --head "$CI_COMMIT_SHA" --out mr-trace.json
+    - python -E -m itemator.mapview --out public --label "This merge request" mr-trace.json
+  pages:
+    path_prefix: "mr-$CI_MERGE_REQUEST_IID"
+    expire_in: 7 days
+  environment:
+    name: "Pages MR $CI_MERGE_REQUEST_IID"
+    url: "$CI_PAGES_URL"
+  artifacts:
+    paths:
+      - public
 
 # Monitor: after each deployment of the page, fetch it from the internet and fail loudly if it, or the map page, is not served.
 # GitLab Pages needs a little time after the job ends, so the check waits and tries again.
@@ -149,4 +174,4 @@ pages-smoke-check:
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
   allow_failure: true
   script:
-    - python -E tools/smoke_check.py "$CI_PAGES_URL" "$CI_PAGES_URL/map/"
+    - python -E tools/smoke_check.py "$CI_PAGES_URL" "$CI_PAGES_URL/map/" "$CI_PAGES_URL/try/"

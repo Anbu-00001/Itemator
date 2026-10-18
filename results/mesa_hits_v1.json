@@ -1,0 +1,4265 @@
+{
+ "rubric": "eval/mesa_hit_labels_rubric.json",
+ "seed": 20261018,
+ "reverts": {
+  "read": 1000,
+  "spoke": 160,
+  "sample": [
+   "33565d67641142a68d537023e181b6dcd587e551",
+   "65c719228766265fffd3fe2dc4dce296f0bc889d",
+   "fc0d1aab505fc9214842a7f10e2f1b040be9edc2",
+   "c84be162a1eb3375ea068facabe4257eb74a4181",
+   "4541ee5343df7c3ca937e088a85ec3f62970d318",
+   "15ce70252c5357081a61f3494261c7e343174301",
+   "d49d092259829ad9e33d0d9fc8eef9759d9fe56e",
+   "476c771e34fefaf2aab12ca3417d04a5be4ce46d",
+   "0b31126ba9c57876a2ec57540a3ec243703e5002",
+   "5798f5d05f239a26a554a69e2efe8158c973b632",
+   "be18be9deb0d22dfdc34e830e44df0d62a01f22e",
+   "646cff13bca8a92b846984d782ef00e57d34d7a1",
+   "314a40c902c6e92b9d6ba0e9b43708d7e1fa9f00",
+   "2fa1bf60d63ed5d08e296a6ecfc4122d4c3dcb71",
+   "70bf937c894d79e7a4a5e61f270bb2482e785869",
+   "d9ee96ba69c0265d80c35c891ab82c9f80b6cf83",
+   "fe8be81b4a525fec355e2f80c254711981ce0dbd",
+   "c34dc4bebf3213b6ceaef713fdb9b0c4f8adc42c",
+   "c2c639ecf667b4b7cf17cfe33dfe710432f2c43a",
+   "cb21190b24ba329a98078a5a3b274c8b76c48400",
+   "c4e47ab971f8a7ee5e6c34e3e29a6fc3d06d4414",
+   "115598022a67581e57c220a0672347323d065cd8",
+   "9ca6711faa03a9527c0946f2489e42cd9a62235c",
+   "68fece9af5a9ffb2ff0ec2f925c314d660f6d412",
+   "07473321a2b09283ac819e014b89c3535cee756b"
+  ],
+  "hits": [
+   {
+    "commit": "68fece9af5a9ffb2ff0ec2f925c314d660f6d412",
+    "said": {
+     "left": [],
+     "beyond": [
+      "src/intel/vulkan/anv_acceleration_structure.c"
+     ]
+    }
+   },
+   {
+    "commit": "7ef94c6a0b7d2f7a8c6d03b12262b0b9e57e414c",
+    "said": {
+     "left": [
+      {
+       "id": "275ac7e5c1fd",
+       "files": [
+        {
+         "path": "src/mesa/drivers/osmesa/osmesa.pc.in",
+         "missing": 11,
+         "of": 11
+        }
+       ]
+      }
+     ],
+     "beyond": [
+      "src/mesa/osmesa.pc.in"
+     ]
+    }
+   },
+   {
+    "commit": "667126cc82a78b69d61ffd99ba251edf210bc7a6",
+    "said": {
+     "left": [
+      {
+       "id": "e2a7436dd10d",
+       "files": [
+        {
+         "path": "src/gallium/auxiliary/gallivm/lp_bld_conv.c",
+         "missing": 4,
+         "of": 8
+        },
+        {
+         "path": "src/gallium/auxiliary/gallivm/lp_bld_type.c",
+         "missing": 8,
+         "of": 20
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "9ca6711faa03a9527c0946f2489e42cd9a62235c",
+    "said": {
+     "left": [
+      {
+       "id": "25cc889004aa",
+       "files": [
+        {
+         "path": "src/egl/drivers/dri2/platform_wayland.c",
+         "missing": 26,
+         "of": 30
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "859fcc3b74f831bbb9151f06d055ddfd45cc6e50",
+    "said": {
+     "left": [],
+     "beyond": [
+      "src/panfrost/compiler/bifrost/bifrost_nir.c"
+     ]
+    }
+   },
+   {
+    "commit": "58fb613a51994d111ee77a65bc7f3d60b155c687",
+    "said": {
+     "left": [
+      {
+       "id": "f5e8b13f78a0",
+       "files": [
+        {
+         "path": "src/mesa/drivers/dri/i965/intel_tiled_memcpy.c",
+         "missing": 5,
+         "of": 10
+        }
+       ]
+      },
+      {
+       "id": "d21c086d819d",
+       "files": [
+        {
+         "path": "src/mesa/drivers/dri/i965/intel_tiled_memcpy.c",
+         "missing": 5,
+         "of": 55
+        },
+        {
+         "path": "src/mesa/drivers/dri/i965/meson.build",
+         "missing": 4,
+         "of": 13
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "6784cea646b0d5f7dde4827b52ea269f53210d67",
+    "said": {
+     "left": [
+      {
+       "id": "98eb00face93",
+       "files": [
+        {
+         "path": "src/gallium/drivers/r600/sfn/sfn_shader_base.cpp",
+         "missing": 7,
+         "of": 33
+        }
+       ]
+      }
+     ],
+     "beyond": [
+      "src/gallium/drivers/r600/sfn/sfn_value.cpp"
+     ]
+    }
+   },
+   {
+    "commit": "e2dadda35f87af08358f0ea43a12434c1626ea82",
+    "said": {
+     "left": [
+      {
+       "id": "35d82ecf1ee1",
+       "files": [
+        {
+         "path": "src/compiler/nir/nir_lower_shader_calls.c",
+         "missing": 8,
+         "of": 60
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "23a4aef14ad309c4d023c929f52739e16d7f9b75",
+    "said": {
+     "left": [
+      {
+       "id": "4346210ae622",
+       "files": [
+        {
+         "path": "src/intel/compiler/brw_nir_lower_texture.c",
+         "missing": 2,
+         "of": 109
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "9e454408335d7b4b465ea17590f06426dffe0211",
+    "said": {
+     "left": [
+      {
+       "id": "ef1e87e6cdbd",
+       "files": [
+        {
+         "path": "src/mapi/glapi/registry/gl.xml",
+         "missing": 2,
+         "of": 260
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "a1a0974401c467cb86ef818f22df67c21774a38c",
+    "said": {
+     "left": [
+      {
+       "id": "60bf0f05b472",
+       "files": [
+        {
+         "path": "src/gallium/drivers/r600/evergreen_state.c",
+         "missing": 6,
+         "of": 6
+        },
+        {
+         "path": "src/gallium/drivers/r600/evergreend.h",
+         "missing": 43,
+         "of": 43
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "af895692b3b52599e456f14e08a3beaa32b5a4c8",
+    "said": {
+     "left": [
+      {
+       "id": "9e67d3f23780",
+       "files": [
+        {
+         "path": "docs/features.txt",
+         "missing": 2,
+         "of": 2
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "387e43b52fa2c17ae1cd3f95c7578407d9c4ef95",
+    "said": {
+     "left": [
+      {
+       "id": "2be60e0c73ed",
+       "files": [
+        {
+         "path": "src/intel/genxml/gen11.xml",
+         "missing": 4,
+         "of": 4
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "2fa1bf60d63ed5d08e296a6ecfc4122d4c3dcb71",
+    "said": {
+     "left": [
+      {
+       "id": "79790e276f61",
+       "files": [
+        {
+         "path": "src/gallium/drivers/zink/zink_query.c",
+         "missing": 3,
+         "of": 17
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "4e0f9c36e0068f7596c2cbd6a9742544561e9d7b",
+    "said": {
+     "left": [
+      {
+       "id": "35d82ecf1ee1",
+       "files": [
+        {
+         "path": "src/compiler/nir/nir_lower_shader_calls.c",
+         "missing": 8,
+         "of": 60
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "957ec00243ec8ccc0a94f68106d079b54685fe5a",
+    "said": {
+     "left": [],
+     "beyond": [
+      "src/compiler/glsl/ir.h",
+      "src/compiler/glsl/link_varyings.cpp",
+      "src/compiler/glsl/linker.cpp"
+     ]
+    }
+   },
+   {
+    "commit": "5dbbc0f0a824e4addffeb115631a9c5bcb426c29",
+    "said": {
+     "left": [
+      {
+       "id": "a27f2d991b17",
+       "files": [
+        {
+         "path": "src/glx/glxcmds.c",
+         "missing": 4,
+         "of": 4
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "5798f5d05f239a26a554a69e2efe8158c973b632",
+    "said": {
+     "left": [
+      {
+       "id": "1cc2c738bbf7",
+       "files": [
+        {
+         "path": ".gitlab-ci/setup-test-env.sh",
+         "missing": 4,
+         "of": 55
+        }
+       ]
+      }
+     ],
+     "beyond": [
+      "bin/ci/update_tag.py"
+     ]
+    }
+   },
+   {
+    "commit": "2ced8eb136528914e1bf4e000dea06a9d53c7e04",
+    "said": {
+     "left": [
+      {
+       "id": "05f36435ef11",
+       "files": [
+        {
+         "path": "src/intel/vulkan/intel_icd.json.in",
+         "missing": 2,
+         "of": 2
+        }
+       ]
+      },
+      {
+       "id": "a2ae67aa47df",
+       "files": [
+        {
+         "path": "src/intel/vulkan/intel_icd.json.in",
+         "missing": 4,
+         "of": 4
+        }
+       ]
+      }
+     ],
+     "beyond": [
+      "src/intel/vulkan/intel_icd.json"
+     ]
+    }
+   },
+   {
+    "commit": "d858388bfc3d0496bee53b567e5c5d407f79a36a",
+    "said": {
+     "left": [
+      {
+       "id": "74470baebbda",
+       "files": [
+        {
+         "path": "src/amd/common/ac_nir_to_llvm.c",
+         "missing": 4,
+         "of": 45
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "83495533b00d30d4dca3ebcc2d35546401e19ecd",
+    "said": {
+     "left": [
+      {
+       "id": "9696df413275",
+       "files": [
+        {
+         "path": "src/gallium/drivers/zink/zink_screen.c",
+         "missing": 2,
+         "of": 15
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "0b31126ba9c57876a2ec57540a3ec243703e5002",
+    "said": {
+     "left": [
+      {
+       "id": "ee57b15ec764",
+       "files": [
+        {
+         "path": "src/mesa/drivers/dri/i965/intel_mipmap_tree.c",
+         "missing": 2,
+         "of": 54
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "b96d50da8b56010a040c93027b4c4eb35f922d51",
+    "said": {
+     "left": [
+      {
+       "id": "abbe96cb6e75",
+       "files": [
+        {
+         "path": "src/mesa/Makefile",
+         "missing": 3,
+         "of": 3
+        },
+        {
+         "path": "src/mesa/sources.mak",
+         "missing": 26,
+         "of": 26
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "f873ee506fa1cee87ea316853c82dea72e5418cb",
+    "said": {
+     "left": [
+      {
+       "id": "92235280595e",
+       "files": [
+        {
+         "path": "src/gallium/winsys/amdgpu/drm/amdgpu_winsys.h",
+         "missing": 2,
+         "of": 6
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "70bf937c894d79e7a4a5e61f270bb2482e785869",
+    "said": {
+     "left": [],
+     "beyond": [
+      "src/intel/ci/iris-glk-flakes.txt"
+     ]
+    }
+   },
+   {
+    "commit": "0e9549e2bd57168086421468cbf1db0821c36730",
+    "said": {
+     "left": [
+      {
+       "id": "c9db037dc999",
+       "files": [
+        {
+         "path": "src/mesa/drivers/dri/i965/intel_context.c",
+         "missing": 5,
+         "of": 13
+        },
+        {
+         "path": "src/mesa/drivers/dri/i965/intel_context.h",
+         "missing": 2,
+         "of": 2
+        }
+       ]
+      }
+     ],
+     "beyond": [
+      "src/mesa/drivers/dri/i965/brw_context.h"
+     ]
+    }
+   },
+   {
+    "commit": "09dfdcd476db9791fd2fd62c985109a474553fc5",
+    "said": {
+     "left": [
+      {
+       "id": "ad862c36e5e1",
+       "files": [
+        {
+         "path": "meson.build",
+         "missing": 2,
+         "of": 3
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "7c690da29c9eb78f1f61c0aed6582065b8ff9775",
+    "said": {
+     "left": [
+      {
+       "id": "8a0c85b25853",
+       "files": [
+        {
+         "path": "src/mesa/drivers/dri/i965/brw_clear.c",
+         "missing": 2,
+         "of": 2
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "c4e47ab971f8a7ee5e6c34e3e29a6fc3d06d4414",
+    "said": {
+     "left": [
+      {
+       "id": "644e015f0b92",
+       "files": [
+        {
+         "path": "src/mesa/drivers/dri/i965/brw_tcs.c",
+         "missing": 3,
+         "of": 5
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "e7c14088707d0bd4dd8fceaec5d3fc529917a7df",
+    "said": {
+     "left": [
+      {
+       "id": "d180de35320e",
+       "files": [
+        {
+         "path": "src/gallium/state_trackers/vdpau/output.c",
+         "missing": 3,
+         "of": 3
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "7b968757840873ee3bbc3605c68e27da63932720",
+    "said": {
+     "left": [
+      {
+       "id": "a3418105b916",
+       "files": [
+        {
+         "path": "docs/_static/specs/OLD/WL_create_wayland_buffer_from_image.spec",
+         "missing": 66,
+         "of": 66
+        }
+       ]
+      }
+     ],
+     "beyond": [
+      "docs/_static/specs/WL_create_wayland_buffer_from_image.spec"
+     ]
+    }
+   },
+   {
+    "commit": "eac8f1d4602cb1e44793b959c5680c92c9854be7",
+    "said": {
+     "left": [
+      {
+       "id": "fc30fe5bc5e7",
+       "files": [
+        {
+         "path": "src/panfrost/lib/pan_util.h",
+         "missing": 2,
+         "of": 2
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "c2c639ecf667b4b7cf17cfe33dfe710432f2c43a",
+    "said": {
+     "left": [
+      {
+       "id": "a6860100b874",
+       "files": [
+        {
+         "path": "src/mesa/drivers/dri/i965/brw_fs_visitor.cpp",
+         "missing": 2,
+         "of": 10
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "8ae4cec95faacc07a9747a550d20ccebb79920a8",
+    "said": {
+     "left": [
+      {
+       "id": "d6bc0f26c918",
+       "files": [
+        {
+         "path": "src/amd/vulkan/radv_cmd_buffer.c",
+         "missing": 11,
+         "of": 38
+        },
+        {
+         "path": "src/amd/vulkan/si_cmd_buffer.c",
+         "missing": 9,
+         "of": 26
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "ebc75245032f58bbd8d24900c1471e74eb768077",
+    "said": {
+     "left": [
+      {
+       "id": "20be3ff57670",
+       "files": [
+        {
+         "path": "src/mesa/drivers/dri/i965/brw_eu.h",
+         "missing": 9,
+         "of": 10
+        },
+        {
+         "path": "src/mesa/drivers/dri/i965/brw_eu_emit.c",
+         "missing": 3,
+         "of": 11
+        }
+       ]
+      }
+     ],
+     "beyond": [
+      "src/mesa/drivers/dri/i965/brw_reg.h"
+     ]
+    }
+   },
+   {
+    "commit": "8fdb8974c74fce9522213aef31ee8b9d837320dc",
+    "said": {
+     "left": [],
+     "beyond": [
+      "src/amd/ci/radv-navi10-aco-fails.txt",
+      "src/amd/ci/radv-navi21-aco-fails.txt",
+      "src/amd/ci/radv-navi31-aco-fails.txt",
+      "src/amd/ci/radv-polaris10-aco-fails.txt",
+      "src/amd/ci/radv-raven-fails.txt"
+     ]
+    }
+   },
+   {
+    "commit": "2c855c1f4caee401ca64894bf7e47570e6d7b760",
+    "said": {
+     "left": [
+      {
+       "id": "f93a48e4e346",
+       "files": [
+        {
+         "path": "src/panfrost/ci/panfrost-g52-fails.txt",
+         "missing": 2,
+         "of": 2
+        },
+        {
+         "path": "src/panfrost/ci/panfrost-g610-fails.txt",
+         "missing": 2,
+         "of": 2
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "5ec65a4378bce32eda2abf9c5af365d4117e3616",
+    "said": {
+     "left": [
+      {
+       "id": "f21d0f2cbeaf",
+       "files": [
+        {
+         "path": "meson.build",
+         "missing": 2,
+         "of": 3
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "d49d092259829ad9e33d0d9fc8eef9759d9fe56e",
+    "said": {
+     "left": [
+      {
+       "id": "ba2fa1ceaf4c",
+       "files": [
+        {
+         "path": "src/intel/compiler/brw_fs.cpp",
+         "missing": 3,
+         "of": 8
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "dcc0e23438f3e5929c2ef74d57e8207be25ecb41",
+    "said": {
+     "left": [
+      {
+       "id": "e871abe452ad",
+       "files": [
+        {
+         "path": "src/gallium/drivers/etnaviv/etnaviv_screen.c",
+         "missing": 1,
+         "of": 1
+        },
+        {
+         "path": "src/gallium/drivers/freedreno/freedreno_screen.c",
+         "missing": 1,
+         "of": 1
+        },
+        {
+         "path": "src/gallium/drivers/i915/i915_screen.c",
+         "missing": 1,
+         "of": 1
+        },
+        {
+         "path": "src/gallium/drivers/llvmpipe/lp_screen.c",
+         "missing": 2,
+         "of": 2
+        },
+        {
+         "path": "src/gallium/drivers/nouveau/nv30/nv30_screen.c",
+         "missing": 1,
+         "of": 1
+        }
+       ]
+      }
+     ],
+     "beyond": [
+      "src/gallium/auxiliary/util/u_screen.c"
+     ]
+    }
+   },
+   {
+    "commit": "314a40c902c6e92b9d6ba0e9b43708d7e1fa9f00",
+    "said": {
+     "left": [
+      {
+       "id": "f50400cc8040",
+       "files": [
+        {
+         "path": "src/compiler/nir/nir_opt_algebraic.py",
+         "missing": 2,
+         "of": 11
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "2901f78257e97497cae06fc93aebae5171d77662",
+    "said": {
+     "left": [],
+     "beyond": [
+      "src/amd/common/ac_gpu_info.h"
+     ]
+    }
+   },
+   {
+    "commit": "61626296f2d76d4cafcd94ddae31b97c60d8f633",
+    "said": {
+     "left": [],
+     "beyond": [
+      "src/gallium/drivers/virgl/ci/traces-virgl.yml"
+     ]
+    }
+   },
+   {
+    "commit": "e566cd6addd3cf49c9d8bf03b7487b8a4af1f9ab",
+    "said": {
+     "left": [
+      {
+       "id": "2569215f43f6",
+       "files": [
+        {
+         "path": "src/glx/glxext.c",
+         "missing": 3,
+         "of": 22
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "fed482f5e30ea6b230ed20982551b340570dc3e9",
+    "said": {
+     "left": [
+      {
+       "id": "5af46e836073",
+       "files": [
+        {
+         "path": "src/mesa/main/es_generator.py",
+         "missing": 3,
+         "of": 3
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "9f23116bfa4dc61b77e31361b2fe3aa2ce052611",
+    "said": {
+     "left": [],
+     "beyond": [
+      "src/glsl/nir/spirv/vtn_glsl450.c"
+     ]
+    }
+   },
+   {
+    "commit": "cb21190b24ba329a98078a5a3b274c8b76c48400",
+    "said": {
+     "left": [
+      {
+       "id": "a1af90253112",
+       "files": [
+        {
+         "path": "src/freedreno/ci/traces-freedreno.yml",
+         "missing": 4,
+         "of": 26
+        },
+        {
+         "path": "src/gallium/drivers/llvmpipe/ci/traces-llvmpipe.yml",
+         "missing": 2,
+         "of": 2
+        },
+        {
+         "path": "src/gallium/drivers/panfrost/ci/traces-panfrost.yml",
+         "missing": 8,
+         "of": 8
+        },
+        {
+         "path": "src/gallium/drivers/radeonsi/ci/traces-radeonsi.yml",
+         "missing": 2,
+         "of": 16
+        },
+        {
+         "path": "src/gallium/drivers/virgl/ci/traces-virgl.yml",
+         "missing": 8,
+         "of": 8
+        }
+       ]
+      }
+     ],
+     "beyond": [
+      "src/panfrost/ci/traces-panfrost.yml"
+     ]
+    }
+   },
+   {
+    "commit": "142e51da08f76122176db412941972ca52b2ef7b",
+    "said": {
+     "left": [
+      {
+       "id": "82607f8a9007",
+       "files": [
+        {
+         "path": "src/egl/drivers/dri2/platform_x11.c",
+         "missing": 26,
+         "of": 86
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "03e93f6079a0f87902b3ec3926dad46045b4b185",
+    "said": {
+     "left": [
+      {
+       "id": "a6860100b874",
+       "files": [
+        {
+         "path": "src/mesa/drivers/dri/i965/brw_fs_visitor.cpp",
+         "missing": 2,
+         "of": 10
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "7df7071bf574b98d925b1d5f3dd6e87b2b52d555",
+    "said": {
+     "left": [
+      {
+       "id": "da1c49171d0d",
+       "files": [
+        {
+         "path": "src/compiler/spirv/vtn_glsl450.c",
+         "missing": 13,
+         "of": 19
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "28558d05250adecbb54705afb36272f2ddca1f0d",
+    "said": {
+     "left": [
+      {
+       "id": "f21d0f2cbeaf",
+       "files": [
+        {
+         "path": "meson.build",
+         "missing": 2,
+         "of": 3
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "22606815722fdc36ecb8afb4a21a825f1b459e1f",
+    "said": {
+     "left": [
+      {
+       "id": "c9a8e1f49a3c",
+       "files": [
+        {
+         "path": ".gitlab-ci/image-tags.yml",
+         "missing": 2,
+         "of": 2
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "311c82e1923f63070b198881d90c1098f4ff7a08",
+    "said": {
+     "left": [
+      {
+       "id": "35fc7bdf0e6a",
+       "files": [
+        {
+         "path": "src/glx/glxconfig.c",
+         "missing": 2,
+         "of": 60
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "65c719228766265fffd3fe2dc4dce296f0bc889d",
+    "said": {
+     "left": [
+      {
+       "id": "ab5605aab324",
+       "files": [
+        {
+         "path": ".gitlab-ci/image-tags.yml",
+         "missing": 2,
+         "of": 2
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "062d464c4c194d874c5ce19a5eac997a2f340bde",
+    "said": {
+     "left": [
+      {
+       "id": "1aa5738e666a",
+       "files": [
+        {
+         "path": "src/glsl/link_varyings.cpp",
+         "missing": 2,
+         "of": 2
+        }
+       ]
+      }
+     ],
+     "beyond": [
+      "src/compiler/glsl/link_varyings.cpp"
+     ]
+    }
+   },
+   {
+    "commit": "1ce0c521cd8d017ceb252fd682e626bcc9bd7813",
+    "said": {
+     "left": [
+      {
+       "id": "bc65dcab3bc4",
+       "files": [
+        {
+         "path": "src/gallium/drivers/radeonsi/si_fence.c",
+         "missing": 9,
+         "of": 62
+        },
+        {
+         "path": "src/gallium/drivers/radeonsi/si_hw_context.c",
+         "missing": 2,
+         "of": 2
+        }
+       ]
+      }
+     ],
+     "beyond": [
+      "src/gallium/drivers/radeonsi/si_gfx_cs.c"
+     ]
+    }
+   },
+   {
+    "commit": "80e4d18f84748f903cea07b9bba2d519cfa4163a",
+    "said": {
+     "left": [
+      {
+       "id": "734792e83fdc",
+       "files": [
+        {
+         "path": "src/gallium/drivers/r600/evergreen_hw_context.c",
+         "missing": 5,
+         "of": 13
+        },
+        {
+         "path": "src/gallium/drivers/r600/evergreen_state.c",
+         "missing": 7,
+         "of": 27
+        },
+        {
+         "path": "src/gallium/drivers/r600/r600_pipe.h",
+         "missing": 2,
+         "of": 7
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "c34dc4bebf3213b6ceaef713fdb9b0c4f8adc42c",
+    "said": {
+     "left": [],
+     "beyond": [
+      "src/gallium/drivers/zink/ci/traces-zink-restricted.yml",
+      "src/gallium/drivers/zink/ci/traces-zink.yml"
+     ]
+    }
+   },
+   {
+    "commit": "ddc8ab9e4322bed0ce7e47c986d54c852fb56852",
+    "said": {
+     "left": [
+      {
+       "id": "23e5b910c571",
+       "files": [
+        {
+         "path": "src/gallium/drivers/radeon/radeon_efc.h",
+         "missing": 40142,
+         "of": 40142
+        },
+        {
+         "path": "src/gallium/drivers/radeon/radeon_vcn_enc.c",
+         "missing": 80,
+         "of": 80
+        },
+        {
+         "path": "src/gallium/drivers/radeon/radeon_vcn_enc.h",
+         "missing": 47,
+         "of": 47
+        },
+        {
+         "path": "src/gallium/drivers/radeon/radeon_vcn_enc_1_2.c",
+         "missing": 4,
+         "of": 4
+        },
+        {
+         "path": "src/gallium/drivers/radeon/radeon_vcn_enc_2_0.c",
+         "missing": 87,
+         "of": 87
+        }
+       ]
+      }
+     ],
+     "beyond": [
+      "src/gallium/drivers/radeonsi/meson.build",
+      "src/gallium/drivers/radeonsi/radeon_efc.h",
+      "src/gallium/drivers/radeonsi/radeon_vcn_enc.c",
+      "src/gallium/drivers/radeonsi/radeon_vcn_enc.h",
+      "src/gallium/drivers/radeonsi/radeon_vcn_enc_1_2.c"
+     ]
+    }
+   },
+   {
+    "commit": "7244dc1e0651958b62222cafb15e34487851a6cd",
+    "said": {
+     "left": [
+      {
+       "id": "c1107cec44ab",
+       "files": [
+        {
+         "path": "src/mesa/drivers/dri/i965/brw_fs_copy_propagation.cpp",
+         "missing": 5,
+         "of": 8
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "be18be9deb0d22dfdc34e830e44df0d62a01f22e",
+    "said": {
+     "left": [
+      {
+       "id": "dcc4e1b4d78b",
+       "files": [
+        {
+         "path": ".gitlab-ci/image-tags.yml",
+         "missing": 8,
+         "of": 8
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "218b619ab2541f0271f38d8af923f1be8a94fd6d",
+    "said": {
+     "left": [
+      {
+       "id": "f348103fce44",
+       "files": [
+        {
+         "path": "src/intel/vulkan/gfx7_cmd_buffer.c",
+         "missing": 4,
+         "of": 68
+        },
+        {
+         "path": "src/intel/vulkan/gfx8_cmd_buffer.c",
+         "missing": 3,
+         "of": 99
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "ebffa7b6af879d9475b2e9de9b7fa03e65fda6a8",
+    "said": {
+     "left": [
+      {
+       "id": "675719817e7b",
+       "files": [
+        {
+         "path": "src/egl/drivers/dri2/egl_dri2.c",
+         "missing": 2,
+         "of": 63
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "4cb8ecd47cf157b7045701ec34d1a035fb9a950f",
+    "said": {
+     "left": [],
+     "beyond": [
+      "src/gallium/frontends/lavapipe/ci/lvp-fails.txt"
+     ]
+    }
+   },
+   {
+    "commit": "78dad275646b720511dac31ca6ba0535568af81f",
+    "said": {
+     "left": [
+      {
+       "id": "fc7f92478286",
+       "files": [
+        {
+         "path": "scons/gallium.py",
+         "missing": 5,
+         "of": 19
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "2b688942c1b1f5ca4f3e4d33231579149aeb8fdb",
+    "said": {
+     "left": [
+      {
+       "id": "94706601fa2f",
+       "files": [
+        {
+         "path": "src/amd/vulkan/radv_pipeline.c",
+         "missing": 5,
+         "of": 10
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "dd9b8881e0ad84ab1e74d972a8233f5c03e7b37a",
+    "said": {
+     "left": [
+      {
+       "id": "a545b6eda040",
+       "files": [
+        {
+         "path": ".gitlab-ci.yml",
+         "missing": 2,
+         "of": 2
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "e894f1a4b159b25993df4c16da3ba4ab12eae3d1",
+    "said": {
+     "left": [
+      {
+       "id": "0a3f3fd193d0",
+       "files": [
+        {
+         "path": "src/gallium/drivers/iris/iris_program.c",
+         "missing": 1,
+         "of": 1
+        },
+        {
+         "path": "src/intel/compiler/brw/brw_compiler.h",
+         "missing": 3,
+         "of": 3
+        },
+        {
+         "path": "src/intel/vulkan/anv_shader_compile.c",
+         "missing": 7,
+         "of": 7
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "115598022a67581e57c220a0672347323d065cd8",
+    "said": {
+     "left": [],
+     "beyond": [
+      "src/nouveau/winsys/nouveau_device.c",
+      "src/nouveau/winsys/nouveau_device.h"
+     ]
+    }
+   },
+   {
+    "commit": "70c565478988229251ee368aae930675fe272a4e",
+    "said": {
+     "left": [
+      {
+       "id": "d68344bffe89",
+       "files": [
+        {
+         "path": "src/imagination/vulkan/pvr_blit.c",
+         "missing": 3,
+         "of": 3
+        }
+       ]
+      }
+     ],
+     "beyond": [
+      "src/imagination/vulkan/rogue/pvr_blit.c"
+     ]
+    }
+   },
+   {
+    "commit": "8b6d3f2c782b1e6559b49f106f24d2d586f0d71d",
+    "said": {
+     "left": [
+      {
+       "id": "999c2aed8826",
+       "files": [
+        {
+         "path": "src/glx/glxcurrent.c",
+         "missing": 2,
+         "of": 158
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "dda03a21d67d8f5a7bd756a9893f52b66c7fb602",
+    "said": {
+     "left": [],
+     "beyond": [
+      "src/amd/ci/radv-navi10-aco-fails.txt",
+      "src/amd/ci/radv-navi21-aco-fails.txt",
+      "src/amd/ci/radv-navi31-aco-fails.txt",
+      "src/amd/ci/radv-polaris10-aco-fails.txt",
+      "src/amd/ci/radv-raven-fails.txt"
+     ]
+    }
+   },
+   {
+    "commit": "5b3eb7538cd9ceb967b6e9e765896183e7c2c4d4",
+    "said": {
+     "left": [
+      {
+       "id": "7ce6517f3ac4",
+       "files": [
+        {
+         "path": "src/mesa/drivers/dri/intel/intel_tex_image.c",
+         "missing": 2,
+         "of": 109
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "5c246e21b71a1676705440bce767535dc502d748",
+    "said": {
+     "left": [
+      {
+       "id": "2dfebf34874b",
+       "files": [
+        {
+         "path": "src/gallium/drivers/freedreno/a5xx/fd5_program.c",
+         "missing": 3,
+         "of": 4
+        }
+       ]
+      }
+     ],
+     "beyond": [
+      "src/freedreno/ci/freedreno-a530-fails.txt"
+     ]
+    }
+   },
+   {
+    "commit": "476c771e34fefaf2aab12ca3417d04a5be4ce46d",
+    "said": {
+     "left": [
+      {
+       "id": "dda85cf94bdd",
+       "files": [
+        {
+         "path": "src/virtio/vulkan/vn_instance.c",
+         "missing": 8,
+         "of": 59
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "6343fbd8e53d6d34b7e382e1b9ffd3d8806b657c",
+    "said": {
+     "left": [
+      {
+       "id": "2ee6b4d96e02",
+       "files": [
+        {
+         "path": "src/intel/vulkan/meson.build",
+         "missing": 2,
+         "of": 6
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "00da41e6c930e08e2de0c683c0be6393c03db647",
+    "said": {
+     "left": [],
+     "beyond": [
+      "src/amd/ci/radeonsi-raven-fails.txt"
+     ]
+    }
+   },
+   {
+    "commit": "594e8685559215833a3da751314b0b606c3fa65f",
+    "said": {
+     "left": [
+      {
+       "id": "41c7912d0411",
+       "files": [
+        {
+         "path": "src/gallium/auxiliary/Makefile.am",
+         "missing": 2,
+         "of": 14
+        },
+        {
+         "path": "src/gallium/auxiliary/nir/tgsi_to_nir.c",
+         "missing": 3,
+         "of": 3
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "c63bd15f81cecfb421ff798a3e2d0f82b90331db",
+    "said": {
+     "left": [
+      {
+       "id": "6a40d1e9d96f",
+       "files": [
+        {
+         "path": "src/gallium/winsys/drm/radeon/core/radeon_r300.h",
+         "missing": 3,
+         "of": 3
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "1d257834ffdb8057f2476b86641f8c6be6f78acc",
+    "said": {
+     "left": [],
+     "beyond": [
+      "src/broadcom/ci/traces-broadcom.yml"
+     ]
+    }
+   },
+   {
+    "commit": "802fabdaa4be7fd1847ec35920663064689a253c",
+    "said": {
+     "left": [
+      {
+       "id": "87dc3106b077",
+       "files": [
+        {
+         "path": "src/intel/vulkan/genX_cmd_buffer.c",
+         "missing": 2,
+         "of": 9
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "48f8188985e3b2f4da7b8ef2c0e450e18867a00d",
+    "said": {
+     "left": [
+      {
+       "id": "80b67a3b444f",
+       "files": [
+        {
+         "path": "src/glx/glxcurrent.c",
+         "missing": 2,
+         "of": 158
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "c64875ec6893ae761e5fb7148007d3498a784d74",
+    "said": {
+     "left": [
+      {
+       "id": "017f64745138",
+       "files": [
+        {
+         "path": "src/mesa/drivers/common/meta_tex_subimage.c",
+         "missing": 2,
+         "of": 24
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "0c7896deef8c161ca332ad901fa4ffaab58b362b",
+    "said": {
+     "left": [
+      {
+       "id": "45319cb2535e",
+       "files": [
+        {
+         "path": "src/amd/vulkan/radv_device_generated_commands.c",
+         "missing": 3,
+         "of": 33
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "0cee008fee1dc0365cfb767ff7acf03f2127a03b",
+    "said": {
+     "left": [],
+     "beyond": [
+      "src/amd/ci/radeonsi-raven-fails.txt",
+      "src/amd/ci/radeonsi-stoney-fails.txt"
+     ]
+    }
+   },
+   {
+    "commit": "0aa63c31ca807e8aaa01a75d918830ac87fc070c",
+    "said": {
+     "left": [
+      {
+       "id": "54f7545cd792",
+       "files": [
+        {
+         "path": "src/gallium/auxiliary/util/u_upload_mgr.c",
+         "missing": 13,
+         "of": 28
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "0ae880c08cf83739d9f042e4729eb33328be107e",
+    "said": {
+     "left": [
+      {
+       "id": "f5805bcb8e02",
+       "files": [
+        {
+         "path": "src/amd/vulkan/radv_image_view.c",
+         "missing": 5,
+         "of": 25
+        },
+        {
+         "path": "src/gallium/drivers/zink/ci/zink-radv-navi10-fails.txt",
+         "missing": 83,
+         "of": 83
+        },
+        {
+         "path": "src/gallium/drivers/zink/ci/zink-radv-navi31-fails.txt",
+         "missing": 83,
+         "of": 83
+        },
+        {
+         "path": "src/gallium/drivers/zink/ci/zink-radv-vangogh-fails.txt",
+         "missing": 83,
+         "of": 83
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "c84be162a1eb3375ea068facabe4257eb74a4181",
+    "said": {
+     "left": [],
+     "beyond": [
+      "src/broadcom/ci/traces-broadcom.yml"
+     ]
+    }
+   },
+   {
+    "commit": "f8e2c4c57c329f79b939b20a434acc3cf89faef8",
+    "said": {
+     "left": [
+      {
+       "id": "4bdad9faddc8",
+       "files": [
+        {
+         "path": "src/amd/vulkan/radv_cmd_buffer.c",
+         "missing": 8,
+         "of": 29
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "cbb02ebd7411636ba5b07b8a19bdab7790a8b56f",
+    "said": {
+     "left": [
+      {
+       "id": "c1107cec44ab",
+       "files": [
+        {
+         "path": "src/mesa/drivers/dri/i965/brw_fs_copy_propagation.cpp",
+         "missing": 5,
+         "of": 8
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "95ec433d59be234cf2695ae091cee4ace3314d21",
+    "said": {
+     "left": [
+      {
+       "id": "7db2402a8009",
+       "files": [
+        {
+         "path": "tests/055-define-chain-obj-to-func-parens-in-text.c",
+         "missing": 3,
+         "of": 3
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "ec55a6c3292235aa56750989ee4a5bbd62fca61d",
+    "said": {
+     "left": [
+      {
+       "id": "ad862c36e5e1",
+       "files": [
+        {
+         "path": "meson.build",
+         "missing": 2,
+         "of": 3
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "3306ed6fd7b804e25976d990d02ec14628968a73",
+    "said": {
+     "left": [
+      {
+       "id": "7b0067d23a6f",
+       "files": [
+        {
+         "path": "src/gallium/drivers/r600/sb/sb_bc_finalize.cpp",
+         "missing": 2,
+         "of": 42
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "65c337e29be884680e380b34b7542dca93824e00",
+    "said": {
+     "left": [
+      {
+       "id": "5726f2f1b8c6",
+       "files": [
+        {
+         "path": "src/glx/x11/apple/Makefile",
+         "missing": 6,
+         "of": 9
+        },
+        {
+         "path": "src/glx/x11/apple/gen_funcs.tcl",
+         "missing": 9,
+         "of": 13
+        },
+        {
+         "path": "src/glx/x11/apple/gen_gl_h.sh",
+         "missing": 21,
+         "of": 21
+        },
+        {
+         "path": "src/glx/x11/apple/include/GL/gl.h.template",
+         "missing": 96,
+         "of": 96
+        }
+       ]
+      },
+      {
+       "id": "2d5c596ca45b",
+       "files": [
+        {
+         "path": "src/glx/x11/apple/Makefile",
+         "missing": 70,
+         "of": 157
+        }
+       ]
+      },
+      {
+       "id": "48ea93eb88e9",
+       "files": [
+        {
+         "path": "src/glx/x11/apple/apple_xgl_api_read.c",
+         "missing": 3,
+         "of": 6
+        },
+        {
+         "path": "src/glx/x11/apple/apple_xgl_api_stereo.c",
+         "missing": 2,
+         "of": 4
+        },
+        {
+         "path": "src/glx/x11/apple/apple_xgl_api_viewport.c",
+         "missing": 2,
+         "of": 4
+        },
+        {
+         "path": "src/glx/x11/compsize.c",
+         "missing": 2,
+         "of": 2
+        },
+        {
+         "path": "src/glx/x11/glx_pbuffer.c",
+         "missing": 3,
+         "of": 11
+        }
+       ]
+      }
+     ],
+     "beyond": [
+      "src/glx/x11/apple/GL_extensions",
+      "src/glx/x11/apple/GL_noop",
+      "src/glx/x11/apple/GL_promoted",
+      "src/glx/x11/apple/OVERALL_DESIGN",
+      "src/glx/x11/apple/README_UPDATING"
+     ]
+    }
+   },
+   {
+    "commit": "967ae12931e0dc12855de903851222b2f0607878",
+    "said": {
+     "left": [
+      {
+       "id": "040a2643c08d",
+       "files": [
+        {
+         "path": "src/gallium/state_trackers/dri/drisw.c",
+         "missing": 2,
+         "of": 2
+        }
+       ]
+      }
+     ],
+     "beyond": [
+      "src/gallium/frontends/dri/drisw.c"
+     ]
+    }
+   },
+   {
+    "commit": "4f5e18cb3e062223ee874af47214f34d0d8a346a",
+    "said": {
+     "left": [
+      {
+       "id": "c9db037dc999",
+       "files": [
+        {
+         "path": "src/mesa/drivers/dri/i965/intel_context.c",
+         "missing": 5,
+         "of": 13
+        },
+        {
+         "path": "src/mesa/drivers/dri/i965/intel_context.h",
+         "missing": 2,
+         "of": 2
+        }
+       ]
+      }
+     ],
+     "beyond": [
+      "src/mesa/drivers/dri/i965/brw_context.h"
+     ]
+    }
+   },
+   {
+    "commit": "45df4bad9fc0379f05197bee10c03fd351f24094",
+    "said": {
+     "left": [
+      {
+       "id": "a05fdbcb719a",
+       "files": [
+        {
+         "path": "src/mesa/shader/prog_execute.c",
+         "missing": 3,
+         "of": 11
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "538c3ee6c7a419d5c55bef2294ca10166f8d9af4",
+    "said": {
+     "left": [
+      {
+       "id": "039bb4e68c38",
+       "files": [
+        {
+         "path": "src/panfrost/bifrost/ISA.xml",
+         "missing": 32,
+         "of": 32
+        }
+       ]
+      }
+     ],
+     "beyond": [
+      "src/panfrost/compiler/bifrost/bifrost/ISA.xml"
+     ]
+    }
+   },
+   {
+    "commit": "adae777f24fd84d3a0c074c5f2c01a31d9f63cce",
+    "said": {
+     "left": [
+      {
+       "id": "567394112d90",
+       "files": [
+        {
+         "path": "src/gallium/winsys/radeon/drm/radeon_drm_winsys.c",
+         "missing": 2,
+         "of": 10
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "f887e1fdf65533b72261ab79c8300ca9e69bc14c",
+    "said": {
+     "left": [],
+     "beyond": [
+      "src/nouveau/winsys/nouveau_device.c",
+      "src/nouveau/winsys/nouveau_device.h"
+     ]
+    }
+   },
+   {
+    "commit": "57cdaa3dcc0f0b9dd89bf8586a95b5f3f99b6eb9",
+    "said": {
+     "left": [
+      {
+       "id": "b3e48a07c0bb",
+       "files": [
+        {
+         "path": "bin/.cherry-ignore",
+         "missing": 2,
+         "of": 3
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "8bffd601ede40f259b3f9239e3d67393e47138e9",
+    "said": {
+     "left": [],
+     "beyond": [
+      "src/gallium/drivers/llvmpipe/ci/llvmpipe-fails.txt",
+      "src/intel/ci/iris-amly-fails.txt",
+      "src/intel/ci/iris-apl-fails.txt",
+      "src/intel/ci/iris-cml-fails.txt",
+      "src/intel/ci/iris-glk-fails.txt"
+     ]
+    }
+   },
+   {
+    "commit": "d6978b1af2749f521c8371ba19526f56f1e5d42d",
+    "said": {
+     "left": [],
+     "beyond": [
+      "src/gallium/drivers/zink/ci/traces-zink-restricted.yml",
+      "src/gallium/drivers/zink/ci/traces-zink.yml"
+     ]
+    }
+   },
+   {
+    "commit": "0a2afcb754c9d291f13650732a6a40aac1a019f2",
+    "said": {
+     "left": [
+      {
+       "id": "569bde1fa7d0",
+       "files": [
+        {
+         "path": "src/gallium/state_trackers/dri/sw/dri_drawable.c",
+         "missing": 189,
+         "of": 190
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "bc4b9467af170dc5bce3335d9766bc95613bd544",
+    "said": {
+     "left": [
+      {
+       "id": "2dfbbeca50b9",
+       "files": [
+        {
+         "path": "src/mesa/drivers/dri/i965/brw_vec4_visitor.cpp",
+         "missing": 5,
+         "of": 19
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "4541ee5343df7c3ca937e088a85ec3f62970d318",
+    "said": {
+     "left": [
+      {
+       "id": "dec60d33b257",
+       "files": [
+        {
+         "path": "src/mesa/drivers/dri/intel_winsys/intel_winsys_i915.c",
+         "missing": 12,
+         "of": 24
+        }
+       ]
+      },
+      {
+       "id": "90dd0cb822f2",
+       "files": [
+        {
+         "path": "src/mesa/drivers/dri/intel_winsys/intel_winsys_i915.c",
+         "missing": 13,
+         "of": 46
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "15ce70252c5357081a61f3494261c7e343174301",
+    "said": {
+     "left": [
+      {
+       "id": "1fa7245c348c",
+       "files": [
+        {
+         "path": "src/gallium/drivers/r600/r600_state.c",
+         "missing": 82,
+         "of": 194
+        },
+        {
+         "path": "src/gallium/winsys/r600/drm/radeon_state.c",
+         "missing": 2,
+         "of": 49
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "15e77504461a30038a054c87cc53a694171c9cf4",
+    "said": {
+     "left": [
+      {
+       "id": "7253e61d9d1a",
+       "files": [
+        {
+         "path": "src/virtio/vulkan/vn_device.h",
+         "missing": 4,
+         "of": 4
+        }
+       ]
+      }
+     ],
+     "beyond": [
+      "src/virtio/vulkan/vn_instance.h"
+     ]
+    }
+   },
+   {
+    "commit": "c7eaf274a9b7e3e5f4b060be2320eb605464ba5c",
+    "said": {
+     "left": [
+      {
+       "id": "597fd6dc8c42",
+       "files": [
+        {
+         "path": "src/gallium/drivers/r600/r600_state.c",
+         "missing": 2,
+         "of": 19
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "f9cc2c5ba443c8b809df03dde9f053f5339b1139",
+    "said": {
+     "left": [
+      {
+       "id": "2dcd12f38be6",
+       "files": [
+        {
+         "path": "src/amd/vulkan/radv_shader.c",
+         "missing": 2,
+         "of": 9
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "1aac47db69d5cf40329ccd26acfea8f615db3415",
+    "said": {
+     "left": [],
+     "beyond": [
+      "meson.build",
+      "src/util/half_float.h",
+      "src/util/softfloat.c",
+      "src/util/softfloat.h"
+     ]
+    }
+   },
+   {
+    "commit": "bc11dc72c10c68bf7254d4a21f1c6e7d8d4f96a9",
+    "said": {
+     "left": [
+      {
+       "id": "46d5926d8384",
+       "files": [
+        {
+         "path": "src/gallium/drivers/radeonsi/radeon_vcn_dec.c",
+         "missing": 5,
+         "of": 9
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "52d83efdbc4735d721e6fc9b44f29bdd432d4d73",
+    "said": {
+     "left": [],
+     "beyond": [
+      "src/mesa/state_tracker/st_framebuffer.c"
+     ]
+    }
+   },
+   {
+    "commit": "7824ab807050c03c6df01c44774914dcbef88248",
+    "said": {
+     "left": [],
+     "beyond": [
+      "src/gallium/auxiliary/Makefile.am"
+     ]
+    }
+   },
+   {
+    "commit": "b9f0586b8d690fe036d5342cdde00386e3dc1fdd",
+    "said": {
+     "left": [
+      {
+       "id": "480793be9847",
+       "files": [
+        {
+         "path": ".gitlab-ci/build/gitlab-ci.yml",
+         "missing": 2,
+         "of": 10
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "1defcf02b49975a92e20997e5c5bd41e7794677f",
+    "said": {
+     "left": [
+      {
+       "id": "35fc7bdf0e6a",
+       "files": [
+        {
+         "path": "src/glx/glxconfig.c",
+         "missing": 2,
+         "of": 60
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "f84e9d749fbb6da73a60fb70e6725db773c9b8f8",
+    "said": {
+     "left": [
+      {
+       "id": "513fccdfb68e",
+       "files": [
+        {
+         "path": "src/gallium/drivers/radeon/radeon_setup_tgsi_llvm.c",
+         "missing": 4,
+         "of": 135
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "e03994bf47f9741a7a3a6181eb4f4d0cf286f70f",
+    "said": {
+     "left": [
+      {
+       "id": "a4bf7f6b6e61",
+       "files": [
+        {
+         "path": "src/mesa/drivers/dri/i965/intel_batchbuffer.c",
+         "missing": 2,
+         "of": 6
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "ac18e931fa78822722c1de36daf546cb0d940837",
+    "said": {
+     "left": [],
+     "beyond": [
+      "src/amd/ci/radeonsi-raven-fails.txt",
+      "src/amd/ci/radeonsi-stoney-fails.txt"
+     ]
+    }
+   },
+   {
+    "commit": "c96e73aa9355c4254475e3fe2f246a0dd85f92c9",
+    "said": {
+     "left": [
+      {
+       "id": "2ee6b4d96e02",
+       "files": [
+        {
+         "path": "src/intel/vulkan/meson.build",
+         "missing": 2,
+         "of": 6
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "64e6e043b3ca2d428b92bd08a6b42cc1d69c155b",
+    "said": {
+     "left": [
+      {
+       "id": "96e9c3fe77a3",
+       "files": [
+        {
+         "path": "src/amd/vulkan/radv_cmd_buffer.c",
+         "missing": 3,
+         "of": 4
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "fc0d1aab505fc9214842a7f10e2f1b040be9edc2",
+    "said": {
+     "left": [
+      {
+       "id": "e25a3e21f833",
+       "files": [
+        {
+         "path": ".gitlab-ci/meson-build.sh",
+         "missing": 1,
+         "of": 1
+        },
+        {
+         "path": ".gitlab-ci/windows/mesa_build.ps1",
+         "missing": 2,
+         "of": 2
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "056775eb40f313b0719402cdde744198be1c350d",
+    "said": {
+     "left": [
+      {
+       "id": "f93a48e4e346",
+       "files": [
+        {
+         "path": "src/panfrost/ci/panfrost-g52-fails.txt",
+         "missing": 2,
+         "of": 2
+        },
+        {
+         "path": "src/panfrost/ci/panfrost-g610-fails.txt",
+         "missing": 2,
+         "of": 2
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "9c297c5487bf5464f75ffd5e11ad6aaad92915a9",
+    "said": {
+     "left": [
+      {
+       "id": "d180de35320e",
+       "files": [
+        {
+         "path": "src/gallium/state_trackers/vdpau/output.c",
+         "missing": 3,
+         "of": 3
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "342a5ba44e8784ed9b4a3736ee19e985857a9d3f",
+    "said": {
+     "left": [
+      {
+       "id": "f21d0f2cbeaf",
+       "files": [
+        {
+         "path": "meson.build",
+         "missing": 2,
+         "of": 3
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "4bd7d5bc0686d2ab0a80b5f0c4d38da0ccdb49c8",
+    "said": {
+     "left": [
+      {
+       "id": "0a3f3fd193d0",
+       "files": [
+        {
+         "path": "src/gallium/drivers/iris/iris_program.c",
+         "missing": 1,
+         "of": 1
+        },
+        {
+         "path": "src/intel/compiler/brw/brw_compiler.h",
+         "missing": 3,
+         "of": 3
+        },
+        {
+         "path": "src/intel/vulkan/anv_shader_compile.c",
+         "missing": 7,
+         "of": 7
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "115203281cf791221f586f03c14cfe4e0a44dd7a",
+    "said": {
+     "left": [
+      {
+       "id": "69ea4e7718ef",
+       "files": [
+        {
+         "path": "src/glx/apple/Makefile",
+         "missing": 6,
+         "of": 9
+        },
+        {
+         "path": "src/glx/apple/gen_funcs.tcl",
+         "missing": 9,
+         "of": 13
+        },
+        {
+         "path": "src/glx/apple/gen_gl_h.sh",
+         "missing": 21,
+         "of": 21
+        },
+        {
+         "path": "src/glx/apple/include/GL/gl.h.template",
+         "missing": 96,
+         "of": 96
+        }
+       ]
+      },
+      {
+       "id": "dbe8b013936d",
+       "files": [
+        {
+         "path": "src/glx/apple/Makefile",
+         "missing": 70,
+         "of": 157
+        }
+       ]
+      }
+     ],
+     "beyond": [
+      "progs/xdemos/Makefile",
+      "src/glx/XF86dri.c",
+      "src/glx/apple/GL_extensions",
+      "src/glx/apple/GL_noop",
+      "src/glx/apple/GL_promoted"
+     ]
+    }
+   },
+   {
+    "commit": "33565d67641142a68d537023e181b6dcd587e551",
+    "said": {
+     "left": [
+      {
+       "id": "b449366587b5",
+       "files": [
+        {
+         "path": "src/mesa/drivers/dri/i965/brw_fs.cpp",
+         "missing": 4,
+         "of": 21
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "06bf5428cfb5e367ead9bf498fe58041894525b9",
+    "said": {
+     "left": [
+      {
+       "id": "7acc86522682",
+       "files": [
+        {
+         "path": "src/compiler/nir/nir_opt_algebraic.py",
+         "missing": 2,
+         "of": 2
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "25ed79d8303afabd873132569d6dc282886ad7d6",
+    "said": {
+     "left": [
+      {
+       "id": "021a68b7e832",
+       "files": [
+        {
+         "path": "src/egl/main/egldriver.c",
+         "missing": 5,
+         "of": 17
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "0f976b92f8eb0d946781d8ff06f7eb063f087142",
+    "said": {
+     "left": [
+      {
+       "id": "1aa5738e666a",
+       "files": [
+        {
+         "path": "src/glsl/link_varyings.cpp",
+         "missing": 2,
+         "of": 2
+        }
+       ]
+      }
+     ],
+     "beyond": [
+      "src/compiler/glsl/link_varyings.cpp"
+     ]
+    }
+   },
+   {
+    "commit": "40ddd8b659db1224ce6a0fe6db786b1551ce88ee",
+    "said": {
+     "left": [
+      {
+       "id": "94d05bf87a21",
+       "files": [
+        {
+         "path": "src/gallium/drivers/llvmpipe/SConscript",
+         "missing": 2,
+         "of": 7
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "9be2f6ea579d52848ece1a9a9469766f70228ff8",
+    "said": {
+     "left": [
+      {
+       "id": "97391328a38b",
+       "files": [
+        {
+         "path": "src/amd/vulkan/00-radv-defaults.conf",
+         "missing": 259,
+         "of": 259
+        },
+        {
+         "path": "src/asahi/vulkan/00-hk-defaults.conf",
+         "missing": 34,
+         "of": 34
+        },
+        {
+         "path": "src/freedreno/vulkan/00-turnip-defaults.conf",
+         "missing": 83,
+         "of": 83
+        },
+        {
+         "path": "src/gallium/drivers/asahi/00-asahi-defaults.conf",
+         "missing": 81,
+         "of": 81
+        },
+        {
+         "path": "src/gallium/drivers/crocus/00-crocus-defaults.conf",
+         "missing": 14,
+         "of": 14
+        }
+       ]
+      }
+     ],
+     "beyond": [
+      "src/intel/vulkan/meson.build",
+      "src/util/00-anv-defaults.conf",
+      "src/util/00-asahi-defaults.conf",
+      "src/util/00-crocus-defaults.conf",
+      "src/util/00-d3d12-defaults.conf"
+     ]
+    }
+   },
+   {
+    "commit": "07473321a2b09283ac819e014b89c3535cee756b",
+    "said": {
+     "left": [
+      {
+       "id": "aca67a555c01",
+       "files": [
+        {
+         "path": "src/mesa/main/context.h",
+         "missing": 2,
+         "of": 3
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "646cff13bca8a92b846984d782ef00e57d34d7a1",
+    "said": {
+     "left": [
+      {
+       "id": "f9d8d9acbb6a",
+       "files": [
+        {
+         "path": "src/gallium/drivers/iris/iris_batch.c",
+         "missing": 2,
+         "of": 3
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "9dd433dfa72b9ce95881d97a3184c6db5e8b0629",
+    "said": {
+     "left": [],
+     "beyond": [
+      "src/gallium/drivers/freedreno/a2xx/ir2_nir.c"
+     ]
+    }
+   },
+   {
+    "commit": "810518fda7628811adb2dc274ed11d125fbd3cd9",
+    "said": {
+     "left": [
+      {
+       "id": "f348103fce44",
+       "files": [
+        {
+         "path": "src/intel/vulkan/gfx7_cmd_buffer.c",
+         "missing": 4,
+         "of": 68
+        },
+        {
+         "path": "src/intel/vulkan/gfx8_cmd_buffer.c",
+         "missing": 3,
+         "of": 99
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "61d55940644b31624b5960527da1c832cf2103a3",
+    "said": {
+     "left": [
+      {
+       "id": "89c94502b665",
+       "files": [
+        {
+         "path": "src/mesa/main/teximage.c",
+         "missing": 5,
+         "of": 27
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "796af8e799a4417e7e3854918b1c9c82bdc79a3e",
+    "said": {
+     "left": [],
+     "beyond": [
+      "src/amd/ci/radeonsi-raven-fails.txt"
+     ]
+    }
+   },
+   {
+    "commit": "cdc009f5aaaaedc22df9f8fdf5a98218c7a30a51",
+    "said": {
+     "left": [
+      {
+       "id": "90faabc0ee54",
+       "files": [
+        {
+         "path": ".gitlab-ci/windows/mesa_build.ps1",
+         "missing": 2,
+         "of": 2
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "cbfe31ccbe3eafcb5aeb74457e3b67641fd54ae1",
+    "said": {
+     "left": [],
+     "beyond": [
+      "src/compiler/spirv/spirv_to_nir.c"
+     ]
+    }
+   },
+   {
+    "commit": "8c2b4b33c583401e2efe02db859d5af31872921d",
+    "said": {
+     "left": [
+      {
+       "id": "62688f11355c",
+       "files": [
+        {
+         "path": "src/glx/x11/glxext.c",
+         "missing": 2,
+         "of": 94
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "ca9e30e002db87946e93fe58118a740e6438d342",
+    "said": {
+     "left": [],
+     "beyond": [
+      "src/mesa/drivers/dri/i965/brw_cfg.cpp"
+     ]
+    }
+   },
+   {
+    "commit": "6ad0b59cc8241d2dceecd7c9c6b8edb3ca18c942",
+    "said": {
+     "left": [
+      {
+       "id": "97efa57531b8",
+       "files": [
+        {
+         "path": "docs/features.txt",
+         "missing": 2,
+         "of": 2
+        },
+        {
+         "path": "src/imagination/vulkan/pvr_device.c",
+         "missing": 2,
+         "of": 60
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "2f745476f0a3dd09147e4f8c9b974ac8426a0c95",
+    "said": {
+     "left": [
+      {
+       "id": "ad862c36e5e1",
+       "files": [
+        {
+         "path": "meson.build",
+         "missing": 2,
+         "of": 3
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "7c8ea0899aab2c39f5194031837503982a2f769c",
+    "said": {
+     "left": [
+      {
+       "id": "03970183fc99",
+       "files": [
+        {
+         "path": "debian/changelog",
+         "missing": 5,
+         "of": 5
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "40487b8e146c865b077457fe7f0b4ac3cdcb3f67",
+    "said": {
+     "left": [
+      {
+       "id": "ef0d92459c3f",
+       "files": [
+        {
+         "path": "src/gallium/auxiliary/vl/vl_compositor_cs.c",
+         "missing": 3,
+         "of": 3
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "114666733c4b7766952e8c0acbb837067e3ad540",
+    "said": {
+     "left": [
+      {
+       "id": "ece0d4f998d1",
+       "files": [
+        {
+         "path": ".gitlab-ci/conditional-build-image-tags.yml",
+         "missing": 2,
+         "of": 6
+        },
+        {
+         "path": ".gitlab-ci/container/baremetal_build.sh",
+         "missing": 2,
+         "of": 2
+        },
+        {
+         "path": ".gitlab-ci/container/build-android-x86_64-llvm.sh",
+         "missing": 4,
+         "of": 8
+        },
+        {
+         "path": ".gitlab-ci/image-tags.yml",
+         "missing": 4,
+         "of": 4
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "368878cc5f9a09afc6c254bcb73c2267633a5d6d",
+    "said": {
+     "left": [
+      {
+       "id": "3cff45fdb182",
+       "files": [
+        {
+         "path": "src/gallium/drivers/i915/i915_state.c",
+         "missing": 2,
+         "of": 4
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "fe8be81b4a525fec355e2f80c254711981ce0dbd",
+    "said": {
+     "left": [
+      {
+       "id": "3d81e11b4936",
+       "files": [
+        {
+         "path": "src/mesa/main/extensions.c",
+         "missing": 11,
+         "of": 38
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "15b58d8c2233f0e67257cb907c7d90fa23c723a5",
+    "said": {
+     "left": [
+      {
+       "id": "abaebcee787e",
+       "files": [
+        {
+         "path": "src/mesa/drivers/dri/intel/intel_tex_image.c",
+         "missing": 4,
+         "of": 8
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "4b61ad372d51681a3fb41b2dc21d2d58eb2becac",
+    "said": {
+     "left": [
+      {
+       "id": "089c8f0b8da8",
+       "files": [
+        {
+         "path": ".gitlab-ci/lava-gitlab-ci.yml",
+         "missing": 2,
+         "of": 2
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "fc5a87715ab9a10d32c7d6fb03c28a9129775e93",
+    "said": {
+     "left": [
+      {
+       "id": "c9bebae2877e",
+       "files": [
+        {
+         "path": "src/panfrost/midgard/midgard_schedule.c",
+         "missing": 2,
+         "of": 51
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "0a84c595c21ab95eb6f2110472afdff3666a73c5",
+    "said": {
+     "left": [
+      {
+       "id": "f4d861696dfb",
+       "files": [
+        {
+         "path": "src/amd/vulkan/radv_cmd_buffer.c",
+         "missing": 2,
+         "of": 15
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "ddf994791fe63d7a7092067fb938bc231e803539",
+    "said": {
+     "left": [
+      {
+       "id": "aca67a555c01",
+       "files": [
+        {
+         "path": "src/mesa/main/context.h",
+         "missing": 2,
+         "of": 3
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "2ad0ed63497f27b77be49cb04a6dc9df21fe75f2",
+    "said": {
+     "left": [
+      {
+       "id": "dbf94d105a48",
+       "files": [
+        {
+         "path": "src/glsl/builtins/glsl/determinant.glsl",
+         "missing": 8,
+         "of": 62
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "5a267b1cf9c69175c1432aa73d647e6e3f14af1e",
+    "said": {
+     "left": [
+      {
+       "id": "23e5b910c571",
+       "files": [
+        {
+         "path": "src/gallium/drivers/radeon/radeon_efc.h",
+         "missing": 40142,
+         "of": 40142
+        },
+        {
+         "path": "src/gallium/drivers/radeon/radeon_vcn_enc.c",
+         "missing": 80,
+         "of": 80
+        },
+        {
+         "path": "src/gallium/drivers/radeon/radeon_vcn_enc.h",
+         "missing": 47,
+         "of": 47
+        },
+        {
+         "path": "src/gallium/drivers/radeon/radeon_vcn_enc_1_2.c",
+         "missing": 4,
+         "of": 4
+        },
+        {
+         "path": "src/gallium/drivers/radeon/radeon_vcn_enc_2_0.c",
+         "missing": 87,
+         "of": 87
+        }
+       ]
+      }
+     ],
+     "beyond": [
+      "src/gallium/drivers/radeonsi/meson.build",
+      "src/gallium/drivers/radeonsi/radeon_efc.h",
+      "src/gallium/drivers/radeonsi/radeon_vcn_enc.c",
+      "src/gallium/drivers/radeonsi/radeon_vcn_enc.h",
+      "src/gallium/drivers/radeonsi/radeon_vcn_enc_1_2.c"
+     ]
+    }
+   },
+   {
+    "commit": "c5c0e0172fc42fcce317f960ef36e5591c38005e",
+    "said": {
+     "left": [
+      {
+       "id": "a09e46c72461",
+       "files": [
+        {
+         "path": "src/gallium/auxiliary/gallivm/lp_bld_swizzle.c",
+         "missing": 11,
+         "of": 16
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "d9ee96ba69c0265d80c35c891ab82c9f80b6cf83",
+    "said": {
+     "left": [
+      {
+       "id": "35fc7bdf0e6a",
+       "files": [
+        {
+         "path": "src/glx/glxconfig.c",
+         "missing": 2,
+         "of": 60
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "83b014996eab64d71ae9cd0fc2259eefd47428e3",
+    "said": {
+     "left": [
+      {
+       "id": "74bec42b4591",
+       "files": [
+        {
+         "path": "src/mesa/main/texparam.c",
+         "missing": 4,
+         "of": 6
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   }
+  ]
+ },
+ "backports": {
+  "read": 1000,
+  "spoke": 57,
+  "sample": [
+   "cab809afc1dec161f67e047e5ab622f8719659ab",
+   "26c1926a4a080fc055a10516782ae884990111cd",
+   "8a4dc04589f2967bf26c59bb146ef2c6a1c20ee3",
+   "5aab597ecb019e841cf14b6775991a7ff4fd1530",
+   "b51ea6a445b4c1f386e992c894f85f262456db26",
+   "fe9eef31b4089632771ae8ce5e345807c9d19b98",
+   "37a750db501cdad549588f4bb613ee7ff3c243cd",
+   "ae633fa0ef0985ef239e6f7f0fcf772bac5c02ad",
+   "8f89aef6c6fd01a384fed001bc0af32b31ab2b80",
+   "6fa04b176706a343119337ea4e1256d17f29bc9b",
+   "9d5c3fc12b05d944508ef4e3b1f2ddc4f23c0a82",
+   "62fad6cb302cfb2cb4e0af102486ae8e567047d1",
+   "7c6ea9011b2740c2e74f0893a1dc7061c03df65f",
+   "8a95d7d869570c4f06dfd09772af5f75f7898d9c",
+   "33f8d25fa4ccfcf9263e7abc58d2af58c0e59d3a",
+   "0c6be6e146c094da7f3172be91f3565a9ec6a308",
+   "67509f57a3cb4e2aef6bd8c5e3394e04f0d54085",
+   "1ef6511564d2beb57083a80b95655c90dbc0bc1d",
+   "7afd8e495ad94e97861fe86ea3ee6582be0ce536",
+   "ef9457d1196f2d81ba9f4ec5563d5be1427be604",
+   "7d3f6f79950636a83753797b85e7f6af01fd6824",
+   "0124b9a342c43e81e5f1d45d31e9265ba4a04e3e",
+   "b7412eb5402d1f370894eb0c553f0ac86a657c15",
+   "724d031758608246e6f0e55fb29e26320af5cf13",
+   "e8997c0183dbdb59884cc02af81d2faab1beaba1"
+  ],
+  "hits": [
+   {
+    "commit": "26c1926a4a080fc055a10516782ae884990111cd",
+    "said": {
+     "left": [
+      {
+       "id": "37dfa4e3f3c6",
+       "files": [
+        {
+         "path": "src/amd/ci/radv-bonaire-aco-fails.txt",
+         "missing": 1,
+         "of": 1
+        },
+        {
+         "path": "src/amd/ci/radv-fiji-aco-fails.txt",
+         "missing": 1,
+         "of": 1
+        },
+        {
+         "path": "src/amd/ci/radv-navi10-aco-fails.txt",
+         "missing": 1,
+         "of": 1
+        },
+        {
+         "path": "src/amd/ci/radv-navi14-aco-fails.txt",
+         "missing": 1,
+         "of": 1
+        },
+        {
+         "path": "src/amd/ci/radv-navi21-aco-fails.txt",
+         "missing": 1,
+         "of": 1
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "0124b9a342c43e81e5f1d45d31e9265ba4a04e3e",
+    "said": {
+     "left": [
+      {
+       "id": "06e8db646ac0",
+       "files": [
+        {
+         "path": "src/gallium/drivers/nouveau/nvc0/nvc0_state_validate.c",
+         "missing": 3,
+         "of": 5
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "67509f57a3cb4e2aef6bd8c5e3394e04f0d54085",
+    "said": {
+     "left": [
+      {
+       "id": "c97aee426ec6",
+       "files": [
+        {
+         "path": "src/gallium/drivers/zink/zink_context.c",
+         "missing": 2,
+         "of": 7
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "bca113e89028e9290bc9b2c0e791e03fcac9ff11",
+    "said": {
+     "left": [
+      {
+       "id": "8dd578e2a4ea",
+       "files": [
+        {
+         "path": "docs/features.txt",
+         "missing": 2,
+         "of": 2
+        },
+        {
+         "path": "docs/relnotes/new_features.txt",
+         "missing": 1,
+         "of": 1
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "8a95d7d869570c4f06dfd09772af5f75f7898d9c",
+    "said": {
+     "left": [
+      {
+       "id": "023277173ce1",
+       "files": [
+        {
+         "path": "src/gallium/frontends/va/picture_av1_enc.c",
+         "missing": 8,
+         "of": 54
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "724d031758608246e6f0e55fb29e26320af5cf13",
+    "said": {
+     "left": [
+      {
+       "id": "70afad3b3064",
+       "files": [
+        {
+         "path": "src/intel/vulkan/anv_drirc_gen.py",
+         "missing": 3,
+         "of": 3
+        },
+        {
+         "path": "src/intel/vulkan/anv_shader_compile.c",
+         "missing": 2,
+         "of": 6
+        }
+       ]
+      }
+     ],
+     "beyond": [
+      "src/intel/vulkan/anv_instance.c",
+      "src/intel/vulkan/anv_private.h",
+      "src/util/driconf.h"
+     ]
+    }
+   },
+   {
+    "commit": "4f5ac1af44285551ca4dd9e7c8b5bd4d301ffdde",
+    "said": {
+     "left": [
+      {
+       "id": "ccef88173b0e",
+       "files": [
+        {
+         "path": "src/intel/vulkan/anv_shader_compile.c",
+         "missing": 2,
+         "of": 68
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "86e036ca4a5cbd7d0c591541c0e073b0d5b16a9a",
+    "said": {
+     "left": [
+      {
+       "id": "9a77ee629d75",
+       "files": [
+        {
+         "path": "src/amd/vulkan/radv_cmd_buffer.c",
+         "missing": 2,
+         "of": 8
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "8f630dc7c5483a75fe8fd890be03586dfa79779b",
+    "said": {
+     "left": [
+      {
+       "id": "1886dbfe7362",
+       "files": [
+        {
+         "path": "src/util/format/u_format_parse.py",
+         "missing": 19,
+         "of": 19
+        }
+       ]
+      }
+     ],
+     "beyond": [
+      "src/gallium/auxiliary/util/u_format_parse.py"
+     ]
+    }
+   },
+   {
+    "commit": "37a750db501cdad549588f4bb613ee7ff3c243cd",
+    "said": {
+     "left": [
+      {
+       "id": "b4209581664d",
+       "files": [
+        {
+         "path": "src/intel/genxml/xe2.xml",
+         "missing": 2,
+         "of": 2
+        }
+       ]
+      }
+     ],
+     "beyond": [
+      "src/intel/genxml/gen200.xml"
+     ]
+    }
+   },
+   {
+    "commit": "11d6ddf55951f962fc7e3b9c7f715bc10bf4f04a",
+    "said": {
+     "left": [
+      {
+       "id": "09b4ba27a320",
+       "files": [
+        {
+         "path": "src/compiler/nir/nir_lower_array_deref_of_vec.c",
+         "missing": 2,
+         "of": 5
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "e7dd2637a5b02cc3a5cdd5e1503c68f1c10b5b37",
+    "said": {
+     "left": [
+      {
+       "id": "d434a127f9df",
+       "files": [
+        {
+         "path": "src/compiler/nir/nir_opt_move_discards_to_top.c",
+         "missing": 2,
+         "of": 42
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "fe9eef31b4089632771ae8ce5e345807c9d19b98",
+    "said": {
+     "left": [
+      {
+       "id": "ebfb9e181737",
+       "files": [
+        {
+         "path": "src/amd/compiler/aco_instruction_selection.cpp",
+         "missing": 2,
+         "of": 6
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "7f33a0b9973fb100d073953a772574f4e65773b5",
+    "said": {
+     "left": [
+      {
+       "id": "be570cd32254",
+       "files": [
+        {
+         "path": "src/gallium/drivers/r600/sfn/sfn_nir.cpp",
+         "missing": 3,
+         "of": 19
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "b362b71c68d285e4f807fc7ea25a5d8a0018888b",
+    "said": {
+     "left": [
+      {
+       "id": "a4cbc903a80f",
+       "files": [
+        {
+         "path": "src/intel/vulkan/anv_buffer.c",
+         "missing": 12,
+         "of": 12
+        }
+       ]
+      }
+     ],
+     "beyond": [
+      "src/intel/vulkan/anv_device.c"
+     ]
+    }
+   },
+   {
+    "commit": "e26c08622be963dad6e1486c925a7c25e9a6605a",
+    "said": {
+     "left": [
+      {
+       "id": "da6d0e3facfe",
+       "files": [
+        {
+         "path": "src/panfrost/lib/pan_blit.c",
+         "missing": 1,
+         "of": 1
+        }
+       ]
+      }
+     ],
+     "beyond": [
+      "src/panfrost/encoder/pan_blit.c"
+     ]
+    }
+   },
+   {
+    "commit": "dca5ddf4718cf05858c9da5cc29417228cf8ca73",
+    "said": {
+     "left": [
+      {
+       "id": "42a805700039",
+       "files": [
+        {
+         "path": "src/mesa/drivers/dri/i965/gen6_urb.c",
+         "missing": 13,
+         "of": 27
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "44ddb884c89366f963d262812f33b6e658c74ea9",
+    "said": {
+     "left": [
+      {
+       "id": "b58e5fb6f317",
+       "files": [
+        {
+         "path": "src/gallium/drivers/radeonsi/si_compute_blit.c",
+         "missing": 2,
+         "of": 8
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "ae633fa0ef0985ef239e6f7f0fcf772bac5c02ad",
+    "said": {
+     "left": [
+      {
+       "id": "c6f59fcd0010",
+       "files": [
+        {
+         "path": "configure.ac",
+         "missing": 5,
+         "of": 8
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "b7412eb5402d1f370894eb0c553f0ac86a657c15",
+    "said": {
+     "left": [
+      {
+       "id": "1fe244236728",
+       "files": [
+        {
+         "path": "src/gallium/frontends/rusticl/core/program.rs",
+         "missing": 8,
+         "of": 43
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "45e0a5ddb432ab384d4bd0ce43e75ab8cb54bab8",
+    "said": {
+     "left": [
+      {
+       "id": "9c49550163ff",
+       "files": [
+        {
+         "path": "src/gallium/drivers/radeonsi/ci/traces-radeonsi.yml",
+         "missing": 6,
+         "of": 102
+        },
+        {
+         "path": "src/gallium/drivers/radeonsi/ci/vega20-piglit-quick-fail.csv",
+         "missing": 4,
+         "of": 4
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "38c645b60a49899e58edce4a2b47ed19b25c3b08",
+    "said": {
+     "left": [
+      {
+       "id": "b1a83b5d1b67",
+       "files": [
+        {
+         "path": "src/mesa/drivers/dri/i965/brw_inst.h",
+         "missing": 2,
+         "of": 4
+        }
+       ]
+      },
+      {
+       "id": "9d703de85a7b",
+       "files": [
+        {
+         "path": "src/mesa/drivers/dri/i965/brw_inst.h",
+         "missing": 2,
+         "of": 4
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "d2db7a5aab4574cc8fd23bc0f6dc92cae06330f0",
+    "said": {
+     "left": [
+      {
+       "id": "0833edefbea9",
+       "files": [
+        {
+         "path": "src/gallium/drivers/etnaviv/etnaviv_context.c",
+         "missing": 50,
+         "of": 54
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "e8997c0183dbdb59884cc02af81d2faab1beaba1",
+    "said": {
+     "left": [
+      {
+       "id": "2af613e0b8e6",
+       "files": [
+        {
+         "path": "src/mesa/drivers/dri/i915/i830_vtbl.c",
+         "missing": 43,
+         "of": 43
+        }
+       ]
+      }
+     ],
+     "beyond": [
+      "src/mesa/drivers/dri/i915tex/i830_vtbl.c"
+     ]
+    }
+   },
+   {
+    "commit": "b75deed85a7c05ffa5637568428d91da5aafeabc",
+    "said": {
+     "left": [],
+     "beyond": [
+      "src/gallium/drivers/zink/ci/zink-lvp-fails.txt"
+     ]
+    }
+   },
+   {
+    "commit": "2a0948fb066fce7de32a0da09f7ef6f78a40f64c",
+    "said": {
+     "left": [
+      {
+       "id": "ac021d175341",
+       "files": [
+        {
+         "path": "subprojects/libc-0.2-rs.wrap",
+         "missing": 2,
+         "of": 2
+        },
+        {
+         "path": "subprojects/rustix-1-rs.wrap",
+         "missing": 2,
+         "of": 2
+        },
+        {
+         "path": "subprojects/xml-rs.wrap",
+         "missing": 2,
+         "of": 2
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "0c6be6e146c094da7f3172be91f3565a9ec6a308",
+    "said": {
+     "left": [
+      {
+       "id": "1337da51152d",
+       "files": [
+        {
+         "path": "src/gallium/drivers/r600/r600_shader.c",
+         "missing": 2,
+         "of": 47
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "8f89aef6c6fd01a384fed001bc0af32b31ab2b80",
+    "said": {
+     "left": [
+      {
+       "id": "763539ed0176",
+       "files": [
+        {
+         "path": "src/freedreno/ci/freedreno-a530-fails.txt",
+         "missing": 6,
+         "of": 2072
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "ee57c9df396f2bb10dffa7132295e6d45bf5188e",
+    "said": {
+     "left": [
+      {
+       "id": "f2b7c4ce29b3",
+       "files": [
+        {
+         "path": "src/amd/common/ac_shader_util.c",
+         "missing": 1,
+         "of": 1
+        }
+       ]
+      }
+     ],
+     "beyond": [
+      "src/amd/vulkan/radv_shader.c",
+      "src/gallium/drivers/radeonsi/si_get.c"
+     ]
+    }
+   },
+   {
+    "commit": "7c6ea9011b2740c2e74f0893a1dc7061c03df65f",
+    "said": {
+     "left": [
+      {
+       "id": "1d7c38a5def7",
+       "files": [
+        {
+         "path": "src/intel/blorp/blorp_genX_exec_brw.h",
+         "missing": 16,
+         "of": 16
+        },
+        {
+         "path": "src/intel/blorp/blorp_genX_exec_elk.h",
+         "missing": 8,
+         "of": 8
+        }
+       ]
+      }
+     ],
+     "beyond": [
+      "src/intel/blorp/blorp_genX_exec.h"
+     ]
+    }
+   },
+   {
+    "commit": "6ee5bb45efbb27ec191ebb1eb942753c1540f2bb",
+    "said": {
+     "left": [
+      {
+       "id": "7e636d52f17c",
+       "files": [
+        {
+         "path": "src/asahi/ci/asahi-g13g-fails.txt",
+         "missing": 1008,
+         "of": 1008
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "1ef6511564d2beb57083a80b95655c90dbc0bc1d",
+    "said": {
+     "left": [
+      {
+       "id": "995727e57501",
+       "files": [
+        {
+         "path": "src/gallium/drivers/zink/ci/zink-tu-a750-fails.txt",
+         "missing": 3,
+         "of": 3
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "0ebb3263f4054cac4cb5dfe36536ea1405d3902a",
+    "said": {
+     "left": [
+      {
+       "id": "5922d57a184f",
+       "files": [
+        {
+         "path": ".gitlab-ci/piglit/quick_shader.txt",
+         "missing": 6,
+         "of": 6
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "b51ea6a445b4c1f386e992c894f85f262456db26",
+    "said": {
+     "left": [
+      {
+       "id": "212d57f7e670",
+       "files": [
+        {
+         "path": "src/gallium/targets/dri/meson.build",
+         "missing": 2,
+         "of": 32
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "9fd4deead38279f291a046449c84130b7cdbf991",
+    "said": {
+     "left": [
+      {
+       "id": "bb44052ee95d",
+       "files": [
+        {
+         "path": "src/gallium/drivers/r600/r600_pipe.c",
+         "missing": 4,
+         "of": 8
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "62fad6cb302cfb2cb4e0af102486ae8e567047d1",
+    "said": {
+     "left": [
+      {
+       "id": "ee8d182426d4",
+       "files": [
+        {
+         "path": "src/mesa/drivers/dri/intel/intel_chipset.h",
+         "missing": 2,
+         "of": 12
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "71e14df4f9f7dcb0fb0ff5545de1514bf35467a0",
+    "said": {
+     "left": [
+      {
+       "id": "dd508b2bed30",
+       "files": [
+        {
+         "path": "src/gallium/drivers/iris/iris_resource.c",
+         "missing": 2,
+         "of": 18
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "521819f29c852634814aba45fe10b4378e7b343e",
+    "said": {
+     "left": [
+      {
+       "id": "a04f8c361211",
+       "files": [
+        {
+         "path": "src/gallium/drivers/r300/r300_texture.c",
+         "missing": 2,
+         "of": 17
+        },
+        {
+         "path": "src/gallium/drivers/r300/r300_texture_desc.c",
+         "missing": 2,
+         "of": 19
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "5aab597ecb019e841cf14b6775991a7ff4fd1530",
+    "said": {
+     "left": [
+      {
+       "id": "0444d057ae6b",
+       "files": [
+        {
+         "path": "src/gallium/drivers/zink/ci/zink-anv-tgl-fails.txt",
+         "missing": 2,
+         "of": 2
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "6fa04b176706a343119337ea4e1256d17f29bc9b",
+    "said": {
+     "left": [
+      {
+       "id": "566e6abd6d70",
+       "files": [
+        {
+         "path": "src/intel/compiler/brw_shader.cpp",
+         "missing": 2,
+         "of": 3
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "e1800b20f44670829ce4d3ec9c0df2f9f2d87976",
+    "said": {
+     "left": [
+      {
+       "id": "b5116d3cb7b6",
+       "files": [
+        {
+         "path": "src/amd/vulkan/radv_meta_clear.c",
+         "missing": 2,
+         "of": 2
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "9d5c3fc12b05d944508ef4e3b1f2ddc4f23c0a82",
+    "said": {
+     "left": [
+      {
+       "id": "a5e88e66e633",
+       "files": [
+        {
+         "path": "src/mesa/drivers/dri/i965/brw_vec4_gs_visitor.cpp",
+         "missing": 3,
+         "of": 3
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "d0121cdfd2ecc3d0834ee6be3fea6c3f222ad430",
+    "said": {
+     "left": [
+      {
+       "id": "8617cf46d675",
+       "files": [
+        {
+         "path": "src/gallium/frontends/rusticl/mesa/pipe/fence.rs",
+         "missing": 2,
+         "of": 10
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "cab809afc1dec161f67e047e5ab622f8719659ab",
+    "said": {
+     "left": [
+      {
+       "id": "3bbd404457e6",
+       "files": [
+        {
+         "path": "src/gallium/frontends/lavapipe/ci/lvp-fails.txt",
+         "missing": 4,
+         "of": 4
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "38d3342583f0053ff736388c33ac0926c280f04d",
+    "said": {
+     "left": [
+      {
+       "id": "87f924d91faf",
+       "files": [
+        {
+         "path": "src/panfrost/compiler/bifrost/bifrost_compile.c",
+         "missing": 11,
+         "of": 11
+        }
+       ]
+      }
+     ],
+     "beyond": [
+      "src/panfrost/compiler/bifrost_compile.c"
+     ]
+    }
+   },
+   {
+    "commit": "2edbc666ba7bfbe2b5461e6e3002d1efa9fb72c9",
+    "said": {
+     "left": [
+      {
+       "id": "18c736bcfc55",
+       "files": [
+        {
+         "path": "src/gallium/drivers/radeonsi/si_state.c",
+         "missing": 2,
+         "of": 6
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "9c7e1b054da5df93643156ab26dd313836a43752",
+    "said": {
+     "left": [
+      {
+       "id": "355944087365",
+       "files": [
+        {
+         "path": "src/mesa/main/dlist.c",
+         "missing": 6,
+         "of": 22
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "33f8d25fa4ccfcf9263e7abc58d2af58c0e59d3a",
+    "said": {
+     "left": [
+      {
+       "id": "ae2d0457679d",
+       "files": [
+        {
+         "path": "docs/releasing.rst",
+         "missing": 2,
+         "of": 2
+        }
+       ]
+      }
+     ],
+     "beyond": [
+      "docs/releasing.html"
+     ]
+    }
+   },
+   {
+    "commit": "dcee59713fadcd3dd5c75c7eff1956a5f9b97538",
+    "said": {
+     "left": [
+      {
+       "id": "c184059005d3",
+       "files": [
+        {
+         "path": "src/panfrost/vulkan/jm/panvk_vX_meta_copy.c",
+         "missing": 3,
+         "of": 3
+        }
+       ]
+      }
+     ],
+     "beyond": [
+      "src/panfrost/vulkan/panvk_vX_meta_copy.c"
+     ]
+    }
+   },
+   {
+    "commit": "0d224336f781b0ad8956c2def650f5caf0cb2f4f",
+    "said": {
+     "left": [
+      {
+       "id": "81162265b1d7",
+       "files": [
+        {
+         "path": "src/amd/compiler/aco_form_hard_clauses.cpp",
+         "missing": 8,
+         "of": 13
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "8a4dc04589f2967bf26c59bb146ef2c6a1c20ee3",
+    "said": {
+     "left": [
+      {
+       "id": "4e4207e63944",
+       "files": [
+        {
+         "path": "src/gallium/drivers/zink/ci/zink-radv-cezanne-flakes.txt",
+         "missing": 117,
+         "of": 315
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "7afd8e495ad94e97861fe86ea3ee6582be0ce536",
+    "said": {
+     "left": [
+      {
+       "id": "e3d123b7a67a",
+       "files": [
+        {
+         "path": "src/panfrost/ci/panfrost-g52-fails.txt",
+         "missing": 1,
+         "of": 1
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "7d3f6f79950636a83753797b85e7f6af01fd6824",
+    "said": {
+     "left": [
+      {
+       "id": "711623f7c811",
+       "files": [
+        {
+         "path": "src/gallium/drivers/radeonsi/si_pipe.c",
+         "missing": 2,
+         "of": 2
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "58f3ddadf11cd62e0ebf2cc6e49284e563a2133e",
+    "said": {
+     "left": [
+      {
+       "id": "38b58e286fa5",
+       "files": [
+        {
+         "path": "src/intel/compiler/brw_from_nir.cpp",
+         "missing": 4,
+         "of": 4
+        }
+       ]
+      }
+     ],
+     "beyond": [
+      "src/intel/compiler/brw_fs_nir.cpp"
+     ]
+    }
+   },
+   {
+    "commit": "a1c1a606307d8a8c8cb5cd53ca94257a3dfe0146",
+    "said": {
+     "left": [
+      {
+       "id": "83280b8e23e7",
+       "files": [
+        {
+         "path": "src/microsoft/compiler/dxil_nir.c",
+         "missing": 21,
+         "of": 33
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "ef9457d1196f2d81ba9f4ec5563d5be1427be604",
+    "said": {
+     "left": [
+      {
+       "id": "6c3ed74ed27c",
+       "files": [
+        {
+         "path": "src/freedreno/vulkan/tu_pass.cc",
+         "missing": 8,
+         "of": 14
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   },
+   {
+    "commit": "e05c9c3a1a15a37888e911c22662cca60896869c",
+    "said": {
+     "left": [
+      {
+       "id": "985527987ae3",
+       "files": [
+        {
+         "path": "src/gallium/drivers/zink/ci/zink-venus-lavapipe-fails.txt",
+         "missing": 9,
+         "of": 9
+        },
+        {
+         "path": "src/virtio/ci/venus-fails.txt",
+         "missing": 6,
+         "of": 6
+        }
+       ]
+      }
+     ],
+     "beyond": []
+    }
+   }
+  ]
+ }
+}

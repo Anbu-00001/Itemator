@@ -1,0 +1,25 @@
+{
+ "what": "Written before the checks are run on these changes. Does the untrusted-text check name the vulnerable line of real, published advisories about GitHub Actions workflows, when that line is shown to it as an added line? These nine cases were found by a research agent (fleet 29, report A1) and each fixing commit was opened and checked by the builder; the rules of the check were NOT written from them (they were written from the Nx, Ultralytics and Cline cases and GitLab's and GitHub's documentation lists), but the builder knows the family of advisories, so this is not blind.",
+ "cases": [
+  {"advisory": "GHSA-rg3q-prf8-qxmp", "repo": "embano1/wip", "fix": "c25450f77ed02c20d00b76ee3b33ff43838739a2"},
+  {"advisory": "GHSL-2023-106", "repo": "Textualize/rich", "fix": "68224905f5dc7a3c765e04aba0460b75a95f5004"},
+  {"advisory": "GHSL-2024-044", "repo": "simple-icons/simple-icons", "fix": "a41a8897b99c3a9ced5f4077b64e70522af37232"},
+  {"advisory": "GHSA-c3xh-98xp-6qhf", "repo": "gouef/githubtoplanguages", "fix": "157840482e592bd4f8e0617539e73cdbef26f1ac"},
+  {"advisory": "GHSA-phf6-hm3h-x8qp", "repo": "broadinstitute/cromwell", "fix": "dc2c26abd31149e296f73ce4e43a36c0c0317b0d"},
+  {"advisory": "GHSA-c5pc-mf2f-xq8h", "repo": "nextcloud/cookbook", "fix": "a46d98559e2c64292da9ffb06138cccc2e50ae1b"},
+  {"advisory": "GHSA-w9cj-mg3x-qjm4", "repo": "js-recon/js-recon", "fix": "447876c4bfa9ec5bc98cbc65d7a3e5f889412491"},
+  {"advisory": "GHSA-cg2g-xgg7-3xxq", "repo": "VowpalWabbit/vowpal_wabbit", "fix": "998e390e80a7e8192d7849b7784bc113dbd190ad"}
+ ],
+ "left_out": "GHSL-2023-109 (Tencent/tdesign-vue-next): a pull request, not a commit, and its diff reading was inferred by the agent; six other advisories of report A1 have no fix link that opens. Eight cases remain, not nine.",
+ "unit": "One fixing commit. Its diff is fetched from the GitHub API at run time (public, read only) and is not stored.",
+ "reverse": "The fix removes the vulnerable lines. The diff is turned round (what the fix removes becomes an added line, what it adds becomes a removed line, hunk ranges swapped, a deleted file becomes an added file), so the check sees the vulnerable change as the commit that introduced it would have looked. Only the three added-line checks are run: moving, shapes, untrusted.",
+ "measures": [
+  "caught: the untrusted check names at least one line of the turned-round diff, and that line is one of the lines the fix removed (all added lines of the turned-round diff are such lines)",
+  "silent on the fix: the untrusted check names nothing on the fix as committed (the safer code, e.g. an env: variable)",
+  "also reported: what shapes and moving say on both, as counts"
+ ],
+ "rule": "No bar: the count is the result, with the cases it misses listed with the reason in plain words. Misses are not explained away and the check's constants are not changed after seeing the result; a change made afterwards is a new version with its own registration.",
+ "published": "Advisory ids, repository names, commit ids, file paths, line numbers, kinds and counts. No diff text.",
+ "predictions_before_run": {"caught_of_8_interval": "3 to 7", "fix_silent_of_8_at_least_7": "85%"},
+ "limits": "Eight cases. Every case is a vulnerable one; the false-alarm control is the Mesa and agent-commit runs (results/mesa_noise_v1.json, results/agent_noise_v1.json). The cases were chosen because an advisory exists, so they are the famous ones. The turned-round diff shows the check the vulnerable lines but not the surrounding context that a real introducing commit would carry."
+}

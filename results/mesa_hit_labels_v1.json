@@ -1,0 +1,285 @@
+{
+ "rubric": "eval/mesa_hit_labels_rubric.json",
+ "labeller": "Claude (a language model), not a person; a person may re-label",
+ "note": "'right' means the named difference exists in the diffs; it does not say the revert or backport was wrong. Reasons are the builder's short reading.",
+ "parts": {
+  "reverts": {
+   "hits_in_run": 160,
+   "read": 25,
+   "right": 21,
+   "artifact": 3,
+   "unclear": 1,
+   "share_right": 0.84,
+   "wilson": [
+    0.653,
+    0.936
+   ],
+   "labels": [
+    {
+     "commit": "33565d676411",
+     "label": "right",
+     "reason": "four lines of the original are not undone"
+    },
+    {
+     "commit": "65c719228766",
+     "label": "right",
+     "reason": "the tag value restored differs from the original"
+    },
+    {
+     "commit": "fc0d1aab505f",
+     "label": "right",
+     "reason": "one file's lines are not undone (the other named file no longer exists at that path)"
+    },
+    {
+     "commit": "c84be162a1eb",
+     "label": "right",
+     "reason": "the revert also edits a CI list the original did not touch"
+    },
+    {
+     "commit": "4541ee5343df",
+     "label": "right",
+     "reason": "half the original's lines are not undone"
+    },
+    {
+     "commit": "15ce70252c53",
+     "label": "right",
+     "reason": "large part of the original not undone"
+    },
+    {
+     "commit": "d49d09225982",
+     "label": "right",
+     "reason": "three lines of the original not undone"
+    },
+    {
+     "commit": "476c771e34fe",
+     "label": "unclear",
+     "reason": "moved function; only short lines and one call named"
+    },
+    {
+     "commit": "0b31126ba9c5",
+     "label": "artifact",
+     "reason": "one line only moved within the file"
+    },
+    {
+     "commit": "5798f5d05f23",
+     "label": "right",
+     "reason": "four lines not undone and one extra file"
+    },
+    {
+     "commit": "be18be9deb0d",
+     "label": "right",
+     "reason": "tag lines of the original not restored"
+    },
+    {
+     "commit": "646cff13bca8",
+     "label": "right",
+     "reason": "the restored condition differs"
+    },
+    {
+     "commit": "314a40c902c6",
+     "label": "right",
+     "reason": "two algebra rules differ"
+    },
+    {
+     "commit": "2fa1bf60d63e",
+     "label": "right",
+     "reason": "three long lines differ"
+    },
+    {
+     "commit": "70bf937c894d",
+     "label": "right",
+     "reason": "the revert also edits a CI list the original did not touch"
+    },
+    {
+     "commit": "d9ee96ba69c0",
+     "label": "artifact",
+     "reason": "one line only moved within the file"
+    },
+    {
+     "commit": "fe8be81b4a52",
+     "label": "right",
+     "reason": "eleven lines of the original not undone"
+    },
+    {
+     "commit": "c34dc4bebf32",
+     "label": "right",
+     "reason": "the revert also edits CI trace lists the original did not touch"
+    },
+    {
+     "commit": "c2c639ecf667",
+     "label": "artifact",
+     "reason": "one line only moved within the file"
+    },
+    {
+     "commit": "cb21190b24ba",
+     "label": "right",
+     "reason": "checksum lines differ and one trace file moved"
+    },
+    {
+     "commit": "c4e47ab971f8",
+     "label": "right",
+     "reason": "three lines not undone"
+    },
+    {
+     "commit": "115598022a67",
+     "label": "right",
+     "reason": "the revert also edits two files the original did not touch"
+    },
+    {
+     "commit": "9ca6711faa03",
+     "label": "right",
+     "reason": "most of the original not undone"
+    },
+    {
+     "commit": "68fece9af5a9",
+     "label": "right",
+     "reason": "the revert also edits a file the original did not touch"
+    },
+    {
+     "commit": "07473321a2b0",
+     "label": "right",
+     "reason": "one line of the original not undone"
+    }
+   ]
+  },
+  "backports": {
+   "hits_in_run": 57,
+   "read": 25,
+   "right": 19,
+   "artifact": 6,
+   "unclear": 0,
+   "share_right": 0.76,
+   "wilson": [
+    0.566,
+    0.885
+   ],
+   "labels": [
+    {
+     "commit": "cab809afc1de",
+     "label": "right",
+     "reason": "a CI expectation file of the original is not touched here"
+    },
+    {
+     "commit": "26c1926a4a08",
+     "label": "right",
+     "reason": "CI expectation files of the original are not touched here"
+    },
+    {
+     "commit": "8a4dc04589f2",
+     "label": "right",
+     "reason": "a long list of flaky-test lines is not copied"
+    },
+    {
+     "commit": "5aab597ecb01",
+     "label": "right",
+     "reason": "a CI expectation file of the original is not touched here"
+    },
+    {
+     "commit": "b51ea6a445b4",
+     "label": "right",
+     "reason": "the build line differs from the original"
+    },
+    {
+     "commit": "fe9eef31b408",
+     "label": "right",
+     "reason": "the constant is written differently"
+    },
+    {
+     "commit": "37a750db501c",
+     "label": "artifact",
+     "reason": "the file was renamed on this branch"
+    },
+    {
+     "commit": "ae633fa0ef09",
+     "label": "right",
+     "reason": "build-file lines differ"
+    },
+    {
+     "commit": "8f89aef6c6fd",
+     "label": "right",
+     "reason": "a few expectation lines are not copied"
+    },
+    {
+     "commit": "6fa04b176706",
+     "label": "right",
+     "reason": "a condition is written differently"
+    },
+    {
+     "commit": "9d5c3fc12b05",
+     "label": "right",
+     "reason": "a condition is written differently"
+    },
+    {
+     "commit": "62fad6cb302c",
+     "label": "right",
+     "reason": "macro lines differ"
+    },
+    {
+     "commit": "7c6ea9011b27",
+     "label": "artifact",
+     "reason": "the file is split differently on this branch"
+    },
+    {
+     "commit": "8a95d7d86957",
+     "label": "right",
+     "reason": "eight lines differ"
+    },
+    {
+     "commit": "33f8d25fa4cc",
+     "label": "artifact",
+     "reason": "the document is a different file on this branch"
+    },
+    {
+     "commit": "0c6be6e146c0",
+     "label": "artifact",
+     "reason": "one line only moved within the file"
+    },
+    {
+     "commit": "67509f57a3cb",
+     "label": "right",
+     "reason": "a brace differs"
+    },
+    {
+     "commit": "1ef6511564d2",
+     "label": "artifact",
+     "reason": "the file does not exist on this branch"
+    },
+    {
+     "commit": "7afd8e495ad9",
+     "label": "right",
+     "reason": "an expectation line is not copied"
+    },
+    {
+     "commit": "ef9457d1196f",
+     "label": "right",
+     "reason": "eight lines differ"
+    },
+    {
+     "commit": "7d3f6f799506",
+     "label": "right",
+     "reason": "two lines are not copied"
+    },
+    {
+     "commit": "0124b9a342c4",
+     "label": "right",
+     "reason": "three lines differ"
+    },
+    {
+     "commit": "b7412eb5402d",
+     "label": "right",
+     "reason": "eight lines differ"
+    },
+    {
+     "commit": "724d03175860",
+     "label": "right",
+     "reason": "a code line differs (and a generated file is not present on this branch)"
+    },
+    {
+     "commit": "e8997c0183db",
+     "label": "artifact",
+     "reason": "the file lives in a different folder on this branch"
+    }
+   ]
+  }
+ }
+}

@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; base-uri 'none'; form-action 'none'">
+<title>Itemator: try a diff</title>
+<style>
+:root{--bg:#fbfbfa;--fg:#1c1c1a;--muted:#5d5d58;--line:#d9d8d2;--card:#fff;--code:#f1f0ec;--hit:#b3261e;--ok:#1d7a4b;--accent:#4b3fa8}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#151514;--fg:#ecebe6;--muted:#a6a59d;--line:#3a3a36;--card:#1d1d1b;--code:#262622;--hit:#ff8a80;--ok:#7fd6a2;--accent:#b7aef5}}
+:root[data-theme="dark"]{--bg:#151514;--fg:#ecebe6;--muted:#a6a59d;--line:#3a3a36;--card:#1d1d1b;--code:#262622;--hit:#ff8a80;--ok:#7fd6a2;--accent:#b7aef5}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.55 system-ui,sans-serif}
+main{max-width:880px;margin:0 auto;padding:28px 16px 72px}
+h1{font-size:1.6rem;line-height:1.25;margin:0 0 6px}
+h2{font-size:1.05rem;margin:32px 0 8px}
+p{margin:.45em 0}
+.muted{color:var(--muted)}
+.lock{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:2px 12px;font-size:.88rem;color:var(--muted);background:var(--card)}
+textarea{width:100%;min-height:200px;font:13px/1.45 ui-monospace,Menlo,Consolas,monospace;color:var(--fg);background:var(--code);border:1px solid var(--line);border-radius:8px;padding:10px;resize:vertical}
+textarea:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible+label{outline:2px solid var(--accent);outline-offset:2px}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:10px 0}
+button,.file{font:inherit;font-size:.92rem;color:var(--fg);background:var(--card);border:1px solid var(--line);border-radius:6px;padding:5px 12px;cursor:pointer}
+button:hover,.file:hover{border-color:var(--accent)}
+input[type=file]{position:absolute;opacity:0;width:1px;height:1px}
+#summary{font-size:1.15rem;font-weight:650;margin:20px 0 8px}
+.hit{border:1px solid var(--line);border-left:5px solid var(--hit);border-radius:8px;background:var(--card);padding:10px 14px;margin:10px 0}
+.hit .where{font-weight:650}
+.hit .path{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.9rem;word-break:break-all}
+pre{margin:8px 0;padding:8px 10px;background:var(--code);border-radius:6px;overflow-x:auto;font:13px/1.45 ui-monospace,Menlo,Consolas,monospace;white-space:pre-wrap;word-break:break-all}
+.why{color:var(--muted);font-size:.92rem;margin:2px 0}
+.none{border:1px solid var(--line);border-left:5px solid var(--ok);border-radius:8px;background:var(--card);padding:10px 14px}
+table{border-collapse:collapse;width:100%;font-size:.92rem}
+th,td{text-align:left;padding:7px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-weight:650}
+td.n{white-space:nowrap}
+.scroll{overflow-x:auto}
+details{margin:8px 0}
+summary{cursor:pointer}
+a{color:var(--accent)}
+footer{margin-top:36px;font-size:.85rem;color:var(--muted);word-break:break-word}
+</style>
+</head>
+<body>
+<main>
+<h1>Paste a diff. See what Itemator would name.</h1>
+<p>Three of Itemator's checks, on your own change, in this tab. <span class="lock" title="This page carries a Content-Security-Policy that forbids it to make any network request.">Nothing you paste can leave this page</span></p>
+
+<div class="row" id="examples" aria-label="Examples"></div>
+<label for="diff" class="muted">A unified diff, for example the output of <code>git diff origin/main...HEAD</code>. A GitHub pull request URL with <code>.diff</code> added gives the same text.</label>
+<textarea id="diff" spellcheck="false" placeholder="diff --git a/scripts/package.ts b/scripts/package.ts&#10;…"></textarea>
+<div class="row">
+<input type="file" id="file" accept=".diff,.patch,text/plain"><label for="file" class="file">Open a .diff file</label>
+<button type="button" id="clear">Clear</button>
+</div>
+
+<div id="summary" aria-live="polite"></div>
+<div id="results"></div>
+
+<h2>How often does each one speak, and does it catch anything?</h2>
+<p class="muted">The numbers come from files in the repository (links below). A check that speaks rarely on ordinary changes is one a reviewer will still read when it does.</p>
+<div class="scroll"><table id="evidence"><thead><tr><th>Check</th><th>Reads</th><th>Ordinary commits</th><th>Agent-written commits</th><th>Public incident diffs</th></tr></thead><tbody></tbody></table></div>
+<p class="muted" id="evnote"></p>
+
+<h2>What this page does not do</h2>
+<p>These three checks read only the lines a change adds, so they work from a diff alone. The others need the project's history and run in the merge request job, where their result goes on the card: files that never changed together, deleted lines a bug fix added, lines that put back what a revert removed, reverts and copies that do not match the commit they cite, a missing change record, the layout-only proof, and opened binary files. A result here is a fact about the added text, not a finding that the change is wrong, and an empty result is not a statement that the change is fine.</p>
+
+<footer id="foot"></footer>
+</main>
+<script id="payload" type="application/json">/*PAYLOAD*/</script>
+<script>/*CHECKS*/</script>
+<script>
+(function () {
+  "use strict";
+  var P = JSON.parse(document.getElementById("payload").textContent);
+  var $ = function (id) { return document.getElementById(id); };
+  function el(tag, text, cls) { var e = document.createElement(tag); if (text != null) e.textContent = text; if (cls) e.className = cls; return e; }
+  var WHY = {
+    "decode-and-run": "Hides what runs. Seen in the tj-actions/changed-files and reviewdog action payloads.",
+    "env-to-network": "Sends secrets out of the build. The Codecov bash uploader did this.",
+    "download-over-source": "A build step that rewrites source code after review. The Amazon Q extension, version 1.84.0.",
+    "github-expression": "A stranger controls this text. The Nx workflow (August 2025) was attacked through a pull request title.",
+    "interpreter": "A stranger controls this text, and an interpreter runs it.",
+    "agent-prompt": "A stranger controls this text, and an AI tool obeys it. A triage workflow of the Cline project was attacked this way.",
+    "image-latest": "Can change under you. GitLab's own advice is to pin by digest.",
+    "image-untagged": "Can change under you. GitLab's own advice is to pin by digest.",
+    "include-branch": "Can change under you. Pin an include to a commit.",
+    "remote-branch": "Can change under you. Pin an include to a commit.",
+    "component-branch": "Can change under you. Pin a component to a version.",
+    "pipe-to-shell": "Runs whatever the address serves today."
+  };
+  var CHECK_OF = { "decode-and-run": "shapes", "env-to-network": "shapes", "download-over-source": "shapes", "github-expression": "untrusted", "interpreter": "untrusted", "agent-prompt": "untrusted" };
+
+  function hits(files) {
+    var r = Itemator.run(files), out = [];
+    ["shapes", "untrusted", "moving"].forEach(function (c) { r[c].forEach(function (d) { d.check = c; out.push(d); }); });
+    return out;
+  }
+
+  function render() {
+    var text = $("diff").value, res = $("results"), sum = $("summary");
+    res.textContent = ""; sum.textContent = "";
+    if (!text.trim()) return;
+    var files = Itemator.parseDiff(text);
+    if (!files.length) { sum.textContent = "That does not look like a git diff."; res.appendChild(el("p", "It should start with a line like \"diff --git a/file b/file\".", "muted")); return; }
+    var lines = 0;
+    files.forEach(function (f) { lines += Itemator.added(f.patch).length; });
+    var found = hits(files);
+    sum.textContent = files.length + (files.length === 1 ? " file" : " files") + ", " + lines + " added " + (lines === 1 ? "line" : "lines") + " read. " +
+      (found.length ? found.length + (found.length === 1 ? " thing named." : " things named.") : "Nothing named.");
+    if (!found.length) {
+      var n = el("div", null, "none");
+      n.appendChild(el("p", "None of the three checks has anything to say about the lines this change adds."));
+      n.appendChild(el("p", "That is not a statement that the change is fine. Read it yourself.", "why"));
+      res.appendChild(n); return;
+    }
+    found.forEach(function (d) {
+      var c = el("div", null, "hit"), t = el("div", null, "where");
+      t.appendChild(el("span", d.path, "path"));
+      t.appendChild(document.createTextNode((d.line ? ", line " + d.line : "") + ": " + Itemator.WHAT[d.kind]));
+      c.appendChild(t);
+      c.appendChild(el("pre", d.text));
+      c.appendChild(el("p", WHY[d.kind] || "", "why"));
+      c.appendChild(el("p", "check: " + d.check + " (" + d.kind + ")", "why"));
+      res.appendChild(c);
+    });
+  }
+
+  P.examples.forEach(function (ex) {
+    var b = el("button", ex.title); b.type = "button"; b.title = ex.note;
+    b.addEventListener("click", function () { $("diff").value = ex.diff; render(); $("summary").appendChild(el("p", ex.note, "why")); });
+    $("examples").appendChild(b);
+  });
+
+  $("diff").addEventListener("input", render);
+  $("clear").addEventListener("click", function () { $("diff").value = ""; render(); });
+  $("file").addEventListener("change", function () {
+    var f = this.files && this.files[0]; if (!f) return;
+    var r = new FileReader(); r.onload = function () { $("diff").value = String(r.result); render(); }; r.readAsText(f);
+  });
+
+  var tb = document.querySelector("#evidence tbody");
+  P.evidence.rows.forEach(function (row) {
+    var tr = el("tr"); tr.appendChild(el("td", row.check)); tr.appendChild(el("td", row.reads));
+    ["ordinary", "agents", "incidents"].forEach(function (k) { tr.appendChild(el("td", row[k], "n")); });
+    tb.appendChild(tr);
+  });
+  var note = $("evnote"), links = el("span");
+  P.evidence.notes.forEach(function (n) {
+    if (n.href) {
+      if (links.childNodes.length) links.appendChild(document.createTextNode(" \u00b7 "));
+      var a = el("a", n.text); a.href = n.href; a.rel = "noopener"; links.appendChild(a);
+    } else { note.appendChild(document.createTextNode(n.text)); note.appendChild(document.createElement("br")); }
+  });
+  note.appendChild(links);
+  $("foot").textContent = P.footer;
+})();
+</script>
+</body>
+</html>

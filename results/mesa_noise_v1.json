@@ -1,0 +1,535 @@
+{
+ "rubric": "eval/mesa_noise_rubric.json",
+ "seed": 20261018,
+ "limit_trial": null,
+ "ordinary": {
+  "sampled": 1500,
+  "skipped_too_many_files": 1,
+  "checks": {
+   "moving": {
+    "spoke": 0,
+    "read": 1499,
+    "readable": 4,
+    "readable_spoke": 0,
+    "examples": [],
+    "share": 0.0,
+    "wilson": [
+     0.0,
+     0.0026
+    ],
+    "share_of_readable": 0.0,
+    "wilson_readable": [
+     0.0,
+     0.4899
+    ],
+    "rule": "met"
+   },
+   "shapes": {
+    "spoke": 0,
+    "read": 1499,
+    "readable": 1490,
+    "readable_spoke": 0,
+    "examples": [],
+    "share": 0.0,
+    "wilson": [
+     0.0,
+     0.0026
+    ],
+    "share_of_readable": 0.0,
+    "wilson_readable": [
+     0.0,
+     0.0026
+    ],
+    "rule": "met"
+   },
+   "untrusted": {
+    "spoke": 0,
+    "read": 1499,
+    "readable": 41,
+    "readable_spoke": 0,
+    "examples": [],
+    "share": 0.0,
+    "wilson": [
+     0.0,
+     0.0026
+    ],
+    "share_of_readable": 0.0,
+    "wilson_readable": [
+     0.0,
+     0.0857
+    ],
+    "rule": "met"
+   },
+   "record": {
+    "spoke": 0,
+    "read": 1499,
+    "readable": 1490,
+    "readable_spoke": 0,
+    "examples": [],
+    "share": 0.0,
+    "wilson": [
+     0.0,
+     0.0026
+    ],
+    "share_of_readable": 0.0,
+    "wilson_readable": [
+     0.0,
+     0.0026
+    ],
+    "rule": "met"
+   }
+  }
+ },
+ "reverts": {
+  "sampled": 1000,
+  "skipped_too_many_files": 0,
+  "checks": {
+   "revert": {
+    "spoke": 160,
+    "read": 1000,
+    "readable": 955,
+    "readable_spoke": 160,
+    "examples": [
+     {
+      "commit": "68fece9af5a9",
+      "said": {
+       "left": [],
+       "beyond": [
+        "src/intel/vulkan/anv_acceleration_structure.c"
+       ]
+      }
+     },
+     {
+      "commit": "7ef94c6a0b7d",
+      "said": {
+       "left": [
+        {
+         "id": "275ac7e5c1fd",
+         "files": [
+          {
+           "path": "src/mesa/drivers/osmesa/osmesa.pc.in",
+           "missing": 11,
+           "of": 11
+          }
+         ]
+        }
+       ],
+       "beyond": [
+        "src/mesa/osmesa.pc.in"
+       ]
+      }
+     },
+     {
+      "commit": "667126cc82a7",
+      "said": {
+       "left": [
+        {
+         "id": "e2a7436dd10d",
+         "files": [
+          {
+           "path": "src/gallium/auxiliary/gallivm/lp_bld_conv.c",
+           "missing": 4,
+           "of": 8
+          },
+          {
+           "path": "src/gallium/auxiliary/gallivm/lp_bld_type.c",
+           "missing": 8,
+           "of": 20
+          }
+         ]
+        }
+       ],
+       "beyond": []
+      }
+     },
+     {
+      "commit": "9ca6711faa03",
+      "said": {
+       "left": [
+        {
+         "id": "25cc889004aa",
+         "files": [
+          {
+           "path": "src/egl/drivers/dri2/platform_wayland.c",
+           "missing": 26,
+           "of": 30
+          }
+         ]
+        }
+       ],
+       "beyond": []
+      }
+     },
+     {
+      "commit": "859fcc3b74f8",
+      "said": {
+       "left": [],
+       "beyond": [
+        "src/panfrost/compiler/bifrost/bifrost_nir.c"
+       ]
+      }
+     },
+     {
+      "commit": "58fb613a5199",
+      "said": {
+       "left": [
+        {
+         "id": "f5e8b13f78a0",
+         "files": [
+          {
+           "path": "src/mesa/drivers/dri/i965/intel_tiled_memcpy.c",
+           "missing": 5,
+           "of": 10
+          }
+         ]
+        },
+        {
+         "id": "d21c086d819d",
+         "files": [
+          {
+           "path": "src/mesa/drivers/dri/i965/intel_tiled_memcpy.c",
+           "missing": 5,
+           "of": 55
+          },
+          {
+           "path": "src/mesa/drivers/dri/i965/meson.build",
+           "missing": 4,
+           "of": 13
+          }
+         ]
+        }
+       ],
+       "beyond": []
+      }
+     },
+     {
+      "commit": "6784cea646b0",
+      "said": {
+       "left": [
+        {
+         "id": "98eb00face93",
+         "files": [
+          {
+           "path": "src/gallium/drivers/r600/sfn/sfn_shader_base.cpp",
+           "missing": 7,
+           "of": 33
+          }
+         ]
+        }
+       ],
+       "beyond": [
+        "src/gallium/drivers/r600/sfn/sfn_value.cpp"
+       ]
+      }
+     },
+     {
+      "commit": "e2dadda35f87",
+      "said": {
+       "left": [
+        {
+         "id": "35d82ecf1ee1",
+         "files": [
+          {
+           "path": "src/compiler/nir/nir_lower_shader_calls.c",
+           "missing": 8,
+           "of": 60
+          }
+         ]
+        }
+       ],
+       "beyond": []
+      }
+     },
+     {
+      "commit": "23a4aef14ad3",
+      "said": {
+       "left": [
+        {
+         "id": "4346210ae622",
+         "files": [
+          {
+           "path": "src/intel/compiler/brw_nir_lower_texture.c",
+           "missing": 2,
+           "of": 109
+          }
+         ]
+        }
+       ],
+       "beyond": []
+      }
+     },
+     {
+      "commit": "9e454408335d",
+      "said": {
+       "left": [
+        {
+         "id": "ef1e87e6cdbd",
+         "files": [
+          {
+           "path": "src/mapi/glapi/registry/gl.xml",
+           "missing": 2,
+           "of": 260
+          }
+         ]
+        }
+       ],
+       "beyond": []
+      }
+     }
+    ],
+    "share": 0.16,
+    "wilson": [
+     0.1386,
+     0.184
+    ],
+    "share_of_readable": 0.1675,
+    "wilson_readable": [
+     0.1452,
+     0.1925
+    ]
+   }
+  }
+ },
+ "backports": {
+  "sampled": 1000,
+  "skipped_too_many_files": 0,
+  "checks": {
+   "copy": {
+    "spoke": 57,
+    "read": 1000,
+    "readable": 1000,
+    "readable_spoke": 57,
+    "examples": [
+     {
+      "commit": "26c1926a4a08",
+      "said": {
+       "left": [
+        {
+         "id": "37dfa4e3f3c6",
+         "files": [
+          {
+           "path": "src/amd/ci/radv-bonaire-aco-fails.txt",
+           "missing": 1,
+           "of": 1
+          },
+          {
+           "path": "src/amd/ci/radv-fiji-aco-fails.txt",
+           "missing": 1,
+           "of": 1
+          },
+          {
+           "path": "src/amd/ci/radv-navi10-aco-fails.txt",
+           "missing": 1,
+           "of": 1
+          },
+          {
+           "path": "src/amd/ci/radv-navi14-aco-fails.txt",
+           "missing": 1,
+           "of": 1
+          },
+          {
+           "path": "src/amd/ci/radv-navi21-aco-fails.txt",
+           "missing": 1,
+           "of": 1
+          }
+         ]
+        }
+       ],
+       "beyond": []
+      }
+     },
+     {
+      "commit": "0124b9a342c4",
+      "said": {
+       "left": [
+        {
+         "id": "06e8db646ac0",
+         "files": [
+          {
+           "path": "src/gallium/drivers/nouveau/nvc0/nvc0_state_validate.c",
+           "missing": 3,
+           "of": 5
+          }
+         ]
+        }
+       ],
+       "beyond": []
+      }
+     },
+     {
+      "commit": "67509f57a3cb",
+      "said": {
+       "left": [
+        {
+         "id": "c97aee426ec6",
+         "files": [
+          {
+           "path": "src/gallium/drivers/zink/zink_context.c",
+           "missing": 2,
+           "of": 7
+          }
+         ]
+        }
+       ],
+       "beyond": []
+      }
+     },
+     {
+      "commit": "bca113e89028",
+      "said": {
+       "left": [
+        {
+         "id": "8dd578e2a4ea",
+         "files": [
+          {
+           "path": "docs/features.txt",
+           "missing": 2,
+           "of": 2
+          },
+          {
+           "path": "docs/relnotes/new_features.txt",
+           "missing": 1,
+           "of": 1
+          }
+         ]
+        }
+       ],
+       "beyond": []
+      }
+     },
+     {
+      "commit": "8a95d7d86957",
+      "said": {
+       "left": [
+        {
+         "id": "023277173ce1",
+         "files": [
+          {
+           "path": "src/gallium/frontends/va/picture_av1_enc.c",
+           "missing": 8,
+           "of": 54
+          }
+         ]
+        }
+       ],
+       "beyond": []
+      }
+     },
+     {
+      "commit": "724d03175860",
+      "said": {
+       "left": [
+        {
+         "id": "70afad3b3064",
+         "files": [
+          {
+           "path": "src/intel/vulkan/anv_drirc_gen.py",
+           "missing": 3,
+           "of": 3
+          },
+          {
+           "path": "src/intel/vulkan/anv_shader_compile.c",
+           "missing": 2,
+           "of": 6
+          }
+         ]
+        }
+       ],
+       "beyond": [
+        "src/intel/vulkan/anv_instance.c",
+        "src/intel/vulkan/anv_private.h",
+        "src/util/driconf.h"
+       ]
+      }
+     },
+     {
+      "commit": "4f5ac1af4428",
+      "said": {
+       "left": [
+        {
+         "id": "ccef88173b0e",
+         "files": [
+          {
+           "path": "src/intel/vulkan/anv_shader_compile.c",
+           "missing": 2,
+           "of": 68
+          }
+         ]
+        }
+       ],
+       "beyond": []
+      }
+     },
+     {
+      "commit": "86e036ca4a5c",
+      "said": {
+       "left": [
+        {
+         "id": "9a77ee629d75",
+         "files": [
+          {
+           "path": "src/amd/vulkan/radv_cmd_buffer.c",
+           "missing": 2,
+           "of": 8
+          }
+         ]
+        }
+       ],
+       "beyond": []
+      }
+     },
+     {
+      "commit": "8f630dc7c548",
+      "said": {
+       "left": [
+        {
+         "id": "1886dbfe7362",
+         "files": [
+          {
+           "path": "src/util/format/u_format_parse.py",
+           "missing": 19,
+           "of": 19
+          }
+         ]
+        }
+       ],
+       "beyond": [
+        "src/gallium/auxiliary/util/u_format_parse.py"
+       ]
+      }
+     },
+     {
+      "commit": "37a750db501c",
+      "said": {
+       "left": [
+        {
+         "id": "b4209581664d",
+         "files": [
+          {
+           "path": "src/intel/genxml/xe2.xml",
+           "missing": 2,
+           "of": 2
+          }
+         ]
+        }
+       ],
+       "beyond": [
+        "src/intel/genxml/gen200.xml"
+       ]
+      }
+     }
+    ],
+    "share": 0.057,
+    "wilson": [
+     0.0443,
+     0.0731
+    ],
+    "share_of_readable": 0.057,
+    "wilson_readable": [
+     0.0443,
+     0.0731
+    ]
+   }
+  }
+ }
+}
