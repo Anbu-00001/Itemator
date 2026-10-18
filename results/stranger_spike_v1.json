@@ -1,0 +1,6768 @@
+{
+ "rubric": "eval/stranger_spike_rubric.json",
+ "summary": {
+  "commented_files": 611,
+  "by_status": {
+   "read": 330,
+   "not_modified": 135,
+   "unreadable": 105,
+   "too_many_files": 41
+  },
+  "by_label": {
+   "partnered": 157,
+   "not_enough_files": 87,
+   "too_new": 34,
+   "stranger": 52
+  },
+  "eligible_pull_requests": 173,
+  "eligible_commented_files": 209,
+  "commented_files_that_are_strangers": {
+   "k": 52,
+   "n": 209,
+   "wilson95": [
+    0.195,
+    0.312
+   ]
+  },
+  "other_files_that_are_strangers": {
+   "k": 144,
+   "n": 1480,
+   "wilson95": [
+    0.083,
+    0.113
+   ]
+  },
+  "strangers_singled_out": {
+   "k": 8,
+   "n": 209,
+   "wilson95": [
+    0.02,
+    0.074
+   ]
+  },
+  "mean_share_of_files_flagged_per_pull_request": 0.2325
+ },
+ "rows": [
+  {
+   "comment_id": 1902008597,
+   "pr": "https://github.com/whitphx/vscode-emacs-mcx/pull/2145",
+   "path": "src/emulator.ts",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 1,
+    "partnered": 5
+   }
+  },
+  {
+   "comment_id": 1903117618,
+   "pr": "https://github.com/whitphx/vscode-emacs-mcx/pull/2149",
+   "path": "src/commands/registers.ts",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 1,
+    "partnered": 3
+   }
+  },
+  {
+   "comment_id": 1910718703,
+   "pr": "https://github.com/box/box-ui-elements/pull/3832",
+   "path": "src/elements/content-picker/selectionCellRenderer.tsx",
+   "status": "not_modified",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 1912360849,
+   "pr": "https://github.com/whitphx/stlite/pull/1259",
+   "path": "packages/kernel/src/react-helpers/CustomComponentIFrame/index.tsx",
+   "status": "unreadable",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 1919923106,
+   "pr": "https://github.com/appsmithorg/appsmith/pull/38690",
+   "path": "app/client/cypress/e2e/Regression/ClientSide/Autocomplete/Autocomplete_setters_spec.ts",
+   "status": "too_many_files",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 1921146895,
+   "pr": "https://github.com/modal-labs/modal-client/pull/2781",
+   "path": "modal/runner.py",
+   "status": "read",
+   "label": "not_enough_files",
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 1929255884,
+   "pr": "https://github.com/crewAIInc/crewAI/pull/1966",
+   "path": "src/crewai/cli/crew_chat.py",
+   "status": "read",
+   "label": "not_enough_files",
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 1929908003,
+   "pr": "https://github.com/goat-sdk/goat/pull/284",
+   "path": "typescript/examples/virtuals-game/viem/README.md",
+   "status": "read",
+   "label": "not_enough_files",
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 1939049753,
+   "pr": "https://github.com/appsmithorg/appsmith/pull/38957",
+   "path": "app/server/appsmith-server/src/main/java/com/appsmith/server/domains/ce/ApplicationCE.java",
+   "status": "read",
+   "label": "too_new",
+   "others": {
+    "stranger": 6,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 1942189312,
+   "pr": "https://github.com/box/box-ui-elements/pull/3892",
+   "path": "src/elements/content-sidebar/activity-feed/comment/components/BaseCommentMenu.tsx",
+   "status": "not_modified",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 1943437527,
+   "pr": "https://github.com/box/box-ui-elements/pull/3893",
+   "path": "src/elements/content-sidebar/activity-feed/annotations/AnnotationActivityMenu.tsx",
+   "status": "unreadable",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 1955626898,
+   "pr": "https://github.com/liam-hq/liam/pull/726",
+   "path": "frontend/packages/erd-core/src/features/reactflow/hooks/useCustomReactflow.ts",
+   "status": "read",
+   "label": "stranger",
+   "others": {
+    "stranger": 1,
+    "partnered": 6
+   }
+  },
+  {
+   "comment_id": 1956956905,
+   "pr": "https://github.com/airbytehq/airbyte/pull/53606",
+   "path": "airbyte-ci/connectors/pipelines/pipelines/airbyte_ci/connectors/publish/pipeline.py",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 0,
+    "partnered": 4
+   }
+  },
+  {
+   "comment_id": 1964827745,
+   "pr": "https://github.com/liam-hq/liam/pull/762",
+   "path": ".changeset/dry-yaks-jump.md",
+   "status": "not_modified",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 1976530463,
+   "pr": "https://github.com/vlm-run/vlmrun-hub/pull/122",
+   "path": "vlmrun/hub/schemas/contrib/food/__init__.py",
+   "status": "not_modified",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 1983218946,
+   "pr": "https://github.com/ensdomains/governance-contracts/pull/34",
+   "path": "deploy/test/00_deploy_test_dependencies.js",
+   "status": "not_modified",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 1984642339,
+   "pr": "https://github.com/stack-auth/stack-auth/pull/503",
+   "path": "packages/template/src/components-page/cli-auth-confirm.tsx",
+   "status": "not_modified",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 1993475520,
+   "pr": "https://github.com/whitphx/streamlit-webrtc/pull/1930",
+   "path": "streamlit_webrtc/frontend/package.json",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 1,
+    "partnered": 4
+   }
+  },
+  {
+   "comment_id": 2005944297,
+   "pr": "https://github.com/near/nearcore/pull/13171",
+   "path": "core/primitives/src/utils.rs",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 0,
+    "partnered": 4
+   }
+  },
+  {
+   "comment_id": 2026676021,
+   "pr": "https://github.com/liam-hq/liam/pull/1084",
+   "path": "frontend/packages/jobs/package.json",
+   "status": "unreadable",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2026785779,
+   "pr": "https://github.com/liam-hq/liam/pull/1084",
+   "path": "frontend/packages/jobs/trigger.config.ts",
+   "status": "unreadable",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2035360051,
+   "pr": "https://github.com/calcom/cal.com/pull/20632",
+   "path": "packages/features/ee/teams/lib/removeMember.ts",
+   "status": "read",
+   "label": "not_enough_files",
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2037041592,
+   "pr": "https://github.com/liam-hq/liam/pull/1296",
+   "path": "frontend/apps/app/app/(app)/app/projects/new/page.tsx",
+   "status": "unreadable",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2037087706,
+   "pr": "https://github.com/liam-hq/liam/pull/1302",
+   "path": "frontend/packages/jobs/src/trigger/jobs.ts",
+   "status": "read",
+   "label": "not_enough_files",
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2038637962,
+   "pr": "https://github.com/liam-hq/liam/pull/1296",
+   "path": "frontend/apps/app/app/(app)/app/organizations/[organizationId]/projects/page.tsx",
+   "status": "unreadable",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2039315754,
+   "pr": "https://github.com/liam-hq/liam/pull/1304",
+   "path": "frontend/packages/db/supabase/migrations/20250410121418_add_project_table_rls.sql",
+   "status": "not_modified",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2058557132,
+   "pr": "https://github.com/neondatabase/neon/pull/11698",
+   "path": "test_runner/fixtures/neon_fixtures.py",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 0,
+    "partnered": 4
+   }
+  },
+  {
+   "comment_id": 2067752920,
+   "pr": "https://github.com/liam-hq/liam/pull/1550",
+   "path": ".github/workflows/notify_supabase_failure.yml",
+   "status": "not_modified",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2078846644,
+   "pr": "https://github.com/liam-hq/liam/pull/1610",
+   "path": "frontend/packages/db/supabase/tests/database/03-organization_members_rls.test.sql",
+   "status": "not_modified",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2084987338,
+   "pr": "https://github.com/formancehq/ledger/pull/894",
+   "path": "internal/controller/system/controller_test.go",
+   "status": "unreadable",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2087123597,
+   "pr": "https://github.com/calcom/cal.com/pull/21152",
+   "path": "packages/features/insights/server/__tests__/routing-events.test.ts",
+   "status": "read",
+   "label": "too_new",
+   "others": {
+    "stranger": 0,
+    "partnered": 7
+   }
+  },
+  {
+   "comment_id": 2089462811,
+   "pr": "https://github.com/airbytehq/airbyte/pull/60253",
+   "path": "airbyte-integrations/connectors/source-mongodb-v2/build.gradle",
+   "status": "read",
+   "label": "stranger",
+   "others": {
+    "stranger": 2,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2096187846,
+   "pr": "https://github.com/sakaiproject/sakai/pull/13754",
+   "path": "kernel/kernel-impl/src/main/java/org/sakaiproject/user/impl/JpaPreferencesService.java",
+   "status": "not_modified",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2096279440,
+   "pr": "https://github.com/primer/react/pull/6069",
+   "path": "packages/react/src/CounterLabel/CounterLabel.test.tsx",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 1,
+    "partnered": 2
+   }
+  },
+  {
+   "comment_id": 2096574182,
+   "pr": "https://github.com/dotnet/maui/pull/29580",
+   "path": "src/Essentials/test/DeviceTests/Tests/Permissions_Tests.cs",
+   "status": "read",
+   "label": "stranger",
+   "others": {
+    "stranger": 2,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2097438139,
+   "pr": "https://github.com/microsoft/playwright/pull/36014",
+   "path": "packages/playwright/src/plugins/gitCommitInfoPlugin.ts",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 0,
+    "partnered": 3
+   }
+  },
+  {
+   "comment_id": 2097610780,
+   "pr": "https://github.com/dotnet/runtime/pull/115761",
+   "path": "src/libraries/System.Net.Http.WinHttpHandler/tests/UnitTests/FakeX509Certificates.cs",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 0,
+    "partnered": 4
+   }
+  },
+  {
+   "comment_id": 2099437282,
+   "pr": "https://github.com/dotnet/orleans/pull/9510",
+   "path": "src/Orleans.Core/Core/DefaultClientServices.cs",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 0,
+    "partnered": 3
+   }
+  },
+  {
+   "comment_id": 2100979289,
+   "pr": "https://github.com/Azure/azure-sdk-for-net/pull/50182",
+   "path": "doc/Migration_Candidates.md",
+   "status": "not_modified",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2101053895,
+   "pr": "https://github.com/dotnet/orleans/pull/9513",
+   "path": "src/Orleans.Server/README.md",
+   "status": "unreadable",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2101165585,
+   "pr": "https://github.com/dotnet/runtime/pull/115762",
+   "path": "src/libraries/System.Private.CoreLib/src/System/Globalization/CompareInfo.cs",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 0,
+    "partnered": 3
+   }
+  },
+  {
+   "comment_id": 2101225197,
+   "pr": "https://github.com/hotovo/aider-desk/pull/163",
+   "path": "src/main/ipc-handlers.ts",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 0,
+    "partnered": 2
+   }
+  },
+  {
+   "comment_id": 2101614391,
+   "pr": "https://github.com/dotnet/runtime/pull/115857",
+   "path": "src/coreclr/tools/Common/TypeSystem/Common/Utilities/CustomAttributeTypeNameParser.cs",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 0,
+    "partnered": 5
+   }
+  },
+  {
+   "comment_id": 2101690232,
+   "pr": "https://github.com/dotnet/runtime/pull/115857",
+   "path": "src/tools/illink/src/linker/Linker/TypeNameResolver.cs",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 0,
+    "partnered": 6
+   }
+  },
+  {
+   "comment_id": 2101985049,
+   "pr": "https://github.com/microsoft/git/pull/754",
+   "path": "t/t9210-scalar.sh",
+   "status": "unreadable",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2102184435,
+   "pr": "https://github.com/microsoft/git/pull/754",
+   "path": "scalar.c",
+   "status": "unreadable",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2102184505,
+   "pr": "https://github.com/pulumi/pulumi/pull/19622",
+   "path": "tests/testdata/codegen/aws-native-0.13.0.json",
+   "status": "unreadable",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2102418219,
+   "pr": "https://github.com/mlflow/mlflow/pull/15839",
+   "path": "tests/tracing/test_fluent_classmethod.py",
+   "status": "unreadable",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2102420663,
+   "pr": "https://github.com/microsoft/git/pull/755",
+   "path": "t/t8015-blame-rename-detection.sh",
+   "status": "not_modified",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2103469896,
+   "pr": "https://github.com/vapourismo/knx-go/pull/108",
+   "path": ".github/workflows/check.yaml",
+   "status": "read",
+   "label": "not_enough_files",
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2103940598,
+   "pr": "https://github.com/giselles-ai/giselle/pull/940",
+   "path": "packages/github-tool/src/index.ts",
+   "status": "read",
+   "label": "stranger",
+   "others": {
+    "stranger": 3,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2104122338,
+   "pr": "https://github.com/openops-cloud/openops/pull/671",
+   "path": "packages/server/api/src/app/flows/flow/flow.service.ts",
+   "status": "read",
+   "label": "stranger",
+   "others": {
+    "stranger": 2,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2105460805,
+   "pr": "https://github.com/dotnet/aspire/pull/9494",
+   "path": "src/Aspire.Hosting/ApplicationModel/ResourceExtensions.cs",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 0,
+    "partnered": 4
+   }
+  },
+  {
+   "comment_id": 2105463215,
+   "pr": "https://github.com/dotnet/aspire/pull/9494",
+   "path": "tests/Aspire.Hosting.Tests/ResourceExtensionsTests.cs",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 0,
+    "partnered": 4
+   }
+  },
+  {
+   "comment_id": 2105772360,
+   "pr": "https://github.com/tokens-studio/figma-plugin/pull/3374",
+   "path": "packages/tokens-studio-for-figma/src/types/AsyncMessages.ts",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 0,
+    "partnered": 8
+   }
+  },
+  {
+   "comment_id": 2105830322,
+   "pr": "https://github.com/novuhq/novu/pull/8374",
+   "path": "package.json",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 0,
+    "partnered": 10
+   }
+  },
+  {
+   "comment_id": 2106107147,
+   "pr": "https://github.com/mlflow/mlflow/pull/15839",
+   "path": "mlflow/tracing/fluent.py",
+   "status": "unreadable",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2106175585,
+   "pr": "https://github.com/novuhq/novu/pull/8378",
+   "path": "apps/dashboard/src/utils/code-snippets.ts",
+   "status": "read",
+   "label": "not_enough_files",
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2106175734,
+   "pr": "https://github.com/novuhq/novu/pull/8378",
+   "path": "apps/web/src/utils/codeSnippets.ts",
+   "status": "read",
+   "label": "not_enough_files",
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2106816105,
+   "pr": "https://github.com/logancyang/obsidian-copilot/pull/1497",
+   "path": ".github/workflows/node.js.yml",
+   "status": "unreadable",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2108051587,
+   "pr": "https://github.com/mlflow/mlflow/pull/15889",
+   "path": ".github/workflows/cross-version-tests.yml",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 1,
+    "partnered": 27
+   }
+  },
+  {
+   "comment_id": 2108363342,
+   "pr": "https://github.com/frenck/spook/pull/975",
+   "path": "documentation/integrations/script.md",
+   "status": "read",
+   "label": "not_enough_files",
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2109040280,
+   "pr": "https://github.com/pyth-network/pyth-crosschain/pull/2676",
+   "path": "target_chains/ethereum/contracts/forge-test/PulseScheduler.t.sol",
+   "status": "read",
+   "label": "not_enough_files",
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2109676371,
+   "pr": "https://github.com/novuhq/novu/pull/8391",
+   "path": "apps/dashboard/src/components/subscribers/subscriber-tabs.tsx",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 0,
+    "partnered": 3
+   }
+  },
+  {
+   "comment_id": 2110890872,
+   "pr": "https://github.com/spcl/dace/pull/2019",
+   "path": "tests/undefined_symbol_in_sdfg_test.py",
+   "status": "not_modified",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2112350977,
+   "pr": "https://github.com/microsoft/msquic/pull/5127",
+   "path": "src/core/library.c",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 0,
+    "partnered": 7
+   }
+  },
+  {
+   "comment_id": 2112364730,
+   "pr": "https://github.com/microsoft/msquic/pull/5127",
+   "path": "src/tools/execution/execution_windows.cpp",
+   "status": "read",
+   "label": "too_new",
+   "others": {
+    "stranger": 0,
+    "partnered": 8
+   }
+  },
+  {
+   "comment_id": 2114167875,
+   "pr": "https://github.com/github/docs/pull/38603",
+   "path": "content/search-github/getting-started-with-searching-on-github/sorting-search-results.md",
+   "status": "read",
+   "label": "not_enough_files",
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2115485327,
+   "pr": "https://github.com/calcom/cal.com/pull/21523",
+   "path": "packages/trpc/server/routers/viewer/filterSegments/preference.handler.ts",
+   "status": "not_modified",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2116090663,
+   "pr": "https://github.com/zeroc-ice/ice-demos/pull/490",
+   "path": "swift/Ice/context/Sources/Client/main.swift",
+   "status": "not_modified",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2117357300,
+   "pr": "https://github.com/wvlet/airframe/pull/3940",
+   "path": "docs/airframe-walkthrough.md",
+   "status": "not_modified",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2121681598,
+   "pr": "https://github.com/dotnet/efcore/pull/36176",
+   "path": "test/Microsoft.Data.Sqlite.Tests/SqliteConnectionTest.cs",
+   "status": "read",
+   "label": "not_enough_files",
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2122203758,
+   "pr": "https://github.com/mlflow/mlflow/pull/15987",
+   "path": "mlflow/R/mlflow/R/project-param.R",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 0,
+    "partnered": 5
+   }
+  },
+  {
+   "comment_id": 2123749092,
+   "pr": "https://github.com/reown-com/appkit/pull/4437",
+   "path": "packages/appkit/src/client/appkit-base-client.ts",
+   "status": "too_many_files",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2127444832,
+   "pr": "https://github.com/dotnet/android/pull/10172",
+   "path": "Directory.Build.props",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 1,
+    "partnered": 2
+   }
+  },
+  {
+   "comment_id": 2127444979,
+   "pr": "https://github.com/dotnet/android/pull/10172",
+   "path": "external/xamarin-android-tools.override.props",
+   "status": "read",
+   "label": "stranger",
+   "others": {
+    "stranger": 0,
+    "partnered": 3
+   }
+  },
+  {
+   "comment_id": 2127742742,
+   "pr": "https://github.com/rainbow-me/rainbowkit/pull/2419",
+   "path": "packages/rainbowkit/src/components/ConnectOptions/ConnectDetails.tsx",
+   "status": "unreadable",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2127941557,
+   "pr": "https://github.com/alchemy-run/alchemy/pull/278",
+   "path": "alchemy/src/neon/database.ts",
+   "status": "unreadable",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2127942260,
+   "pr": "https://github.com/alchemy-run/alchemy/pull/278",
+   "path": "alchemy/src/neon/endpoint.ts",
+   "status": "unreadable",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2127942936,
+   "pr": "https://github.com/alchemy-run/alchemy/pull/278",
+   "path": "alchemy/src/neon/role.ts",
+   "status": "unreadable",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2131886793,
+   "pr": "https://github.com/yurkinh/Plugin.Maui.Calendar/pull/185",
+   "path": "samples/SampleApp/SampleApp.csproj",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 0,
+    "partnered": 5
+   }
+  },
+  {
+   "comment_id": 2132835811,
+   "pr": "https://github.com/Azure/azure-sdk-for-python/pull/41352",
+   "path": "sdk/servicebus/azure-servicebus/TROUBLESHOOTING.md",
+   "status": "not_modified",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2132892123,
+   "pr": "https://github.com/celestiaorg/celestia-core/pull/1938",
+   "path": ".gitignore",
+   "status": "read",
+   "label": "not_enough_files",
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2133019002,
+   "pr": "https://github.com/microsoft/Olive/pull/1897",
+   "path": "docs/source/conf.py",
+   "status": "unreadable",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2133929537,
+   "pr": "https://github.com/novuhq/novu/pull/8470",
+   "path": "apps/dashboard/src/components/variable/constants.ts",
+   "status": "read",
+   "label": "stranger",
+   "others": {
+    "stranger": 1,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2134565460,
+   "pr": "https://github.com/microsoft/testfx/pull/5705",
+   "path": "src/Platform/Microsoft.Testing.Platform/CommandLine/PlatformCommandLineProvider.cs",
+   "status": "read",
+   "label": "stranger",
+   "others": {
+    "stranger": 2,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2134565497,
+   "pr": "https://github.com/microsoft/testfx/pull/5705",
+   "path": "src/Platform/Microsoft.Testing.Platform/Hosts/TestHostBuilder.cs",
+   "status": "read",
+   "label": "stranger",
+   "others": {
+    "stranger": 2,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2135242679,
+   "pr": "https://github.com/liam-hq/liam/pull/1890",
+   "path": "CONTRIBUTING.md",
+   "status": "too_many_files",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2137087652,
+   "pr": "https://github.com/liam-hq/liam/pull/1909",
+   "path": "frontend/packages/pglite-server/src/PGliteInstanceManager.ts",
+   "status": "not_modified",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2137253877,
+   "pr": "https://github.com/liam-hq/liam/pull/1909",
+   "path": ".gitignore",
+   "status": "too_many_files",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2138380339,
+   "pr": "https://github.com/microsoft/qdk/pull/2511",
+   "path": "language_service/src/code_lens.rs",
+   "status": "unreadable",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2138400100,
+   "pr": "https://github.com/roboflow/inference/pull/1350",
+   "path": "inference/core/workflows/core_steps/models/foundation/perception_encoder/v1.py",
+   "status": "not_modified",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2138452194,
+   "pr": "https://github.com/Azure/azure-sdk-tools/pull/10842",
+   "path": "tools/fxlister/Program.cs",
+   "status": "read",
+   "label": "not_enough_files",
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2138579753,
+   "pr": "https://github.com/microsoft/typescript-go/pull/1138",
+   "path": "internal/outputpaths/outputpaths.go",
+   "status": "read",
+   "label": "too_new",
+   "others": {
+    "stranger": 0,
+    "partnered": 4
+   }
+  },
+  {
+   "comment_id": 2139772967,
+   "pr": "https://github.com/microsoft/react-native-windows/pull/14764",
+   "path": "vnext/Microsoft.ReactNative/Fabric/platform/react/renderer/textlayoutmanager/WindowsTextLayoutManager.cpp",
+   "status": "read",
+   "label": "too_new",
+   "others": {
+    "stranger": 1,
+    "partnered": 2
+   }
+  },
+  {
+   "comment_id": 2139776169,
+   "pr": "https://github.com/microsoft/react-native-windows/pull/14764",
+   "path": "vnext/codegen/rnwcoreJSI-generated.cpp",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 1,
+    "partnered": 1
+   }
+  },
+  {
+   "comment_id": 2139776812,
+   "pr": "https://github.com/microsoft/react-native-windows/pull/14764",
+   "path": "vnext/codegen/rnwcoreJSI.h",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 1,
+    "partnered": 1
+   }
+  },
+  {
+   "comment_id": 2140561917,
+   "pr": "https://github.com/Azure-Samples/serverless-chat-langchainjs/pull/114",
+   "path": ".github/workflows/auto-issue-labeller.yaml",
+   "status": "not_modified",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2141293103,
+   "pr": "https://github.com/a16z/halmos/pull/541",
+   "path": "src/halmos/processes.py",
+   "status": "read",
+   "label": "stranger",
+   "others": {
+    "stranger": 2,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2141303063,
+   "pr": "https://github.com/a16z/halmos/pull/541",
+   "path": "tests/test_solver_integration.py",
+   "status": "not_modified",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2141550811,
+   "pr": "https://github.com/lostintangent/gistpad/pull/396",
+   "path": "src/autoSave.ts",
+   "status": "not_modified",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2141968823,
+   "pr": "https://github.com/sequinstream/sequin/pull/1795",
+   "path": "test/sequin/s2_client_test.exs",
+   "status": "unreadable",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2142117128,
+   "pr": "https://github.com/documentdb/documentdb/pull/204",
+   "path": ".github/workflows/build_rpm_packages.yml",
+   "status": "not_modified",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2143048651,
+   "pr": "https://github.com/Azure/azure-container-networking/pull/3688",
+   "path": "cns/service/main.go",
+   "status": "read",
+   "label": "stranger",
+   "others": {
+    "stranger": 1,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2143600179,
+   "pr": "https://github.com/microsoft/react-native-windows/pull/14767",
+   "path": "packages/e2e-test-app-fabric/test/TextInputComponentTest.test.ts",
+   "status": "read",
+   "label": "not_enough_files",
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2143645826,
+   "pr": "https://github.com/dotnet/machinelearning/pull/7482",
+   "path": "src/Microsoft.Data.Analysis.Interactive/Microsoft.Data.Analysis.Interactive.csproj",
+   "status": "too_many_files",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2145286093,
+   "pr": "https://github.com/dotnet/android/pull/10194",
+   "path": "src/Xamarin.Android.Build.Tasks/Tests/Xamarin.Android.Build.Tests/Tasks/Aapt2Tests.cs",
+   "status": "unreadable",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2145696396,
+   "pr": "https://github.com/forntoh/LcdMenu/pull/374",
+   "path": "src/BaseItemManyWidgets.h",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 0,
+    "partnered": 15
+   }
+  },
+  {
+   "comment_id": 2146399610,
+   "pr": "https://github.com/gofiber/fiber/pull/3518",
+   "path": "middleware/timeout/timeout.go",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 0,
+    "partnered": 3
+   }
+  },
+  {
+   "comment_id": 2148249160,
+   "pr": "https://github.com/reeze/php-leveldb/pull/54",
+   "path": "leveldb.c",
+   "status": "read",
+   "label": "not_enough_files",
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2148910024,
+   "pr": "https://github.com/dotnet/macios/pull/23052",
+   "path": "src/arkit.cs",
+   "status": "read",
+   "label": "not_enough_files",
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2150802018,
+   "pr": "https://github.com/dotnet/sdk/pull/49328",
+   "path": "src/Tasks/Microsoft.NET.Build.Tasks/targets/Microsoft.NET.Sdk.props",
+   "status": "read",
+   "label": "not_enough_files",
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2150947013,
+   "pr": "https://github.com/microsoft/testfx/pull/5790",
+   "path": "src/TestFramework/TestFramework/Assertions/Assert.IComparable.cs",
+   "status": "not_modified",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2151784944,
+   "pr": "https://github.com/dotnet/dotnet-api-docs/pull/11458",
+   "path": "xml/System.Reflection.Metadata/TypeName.xml",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 0,
+    "partnered": 9
+   }
+  },
+  {
+   "comment_id": 2152879695,
+   "pr": "https://github.com/RevenueCat/purchases-ios/pull/5296",
+   "path": "RevenueCatUI/Templates/V2/EnvironmentObjects/PromotionalOfferEligibilityContext.swift",
+   "status": "unreadable",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2153345684,
+   "pr": "https://github.com/dotnet/dotnet-api-docs/pull/11458",
+   "path": "xml/System.Collections.Frozen/FrozenSet`1+AlternateLookup`1.xml",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 0,
+    "partnered": 9
+   }
+  },
+  {
+   "comment_id": 2153345838,
+   "pr": "https://github.com/dotnet/dotnet-api-docs/pull/11458",
+   "path": "xml/System.Collections.Frozen/FrozenSet`1.xml",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 0,
+    "partnered": 9
+   }
+  },
+  {
+   "comment_id": 2153345926,
+   "pr": "https://github.com/dotnet/dotnet-api-docs/pull/11458",
+   "path": "xml/System.Collections.Generic/OrderedDictionary`2.xml",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 0,
+    "partnered": 9
+   }
+  },
+  {
+   "comment_id": 2153559498,
+   "pr": "https://github.com/microsoft/react-native-windows/pull/14793",
+   "path": "vnext/codegen/rnwcoreJSI-generated.cpp",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 0,
+    "partnered": 7
+   }
+  },
+  {
+   "comment_id": 2153559648,
+   "pr": "https://github.com/microsoft/react-native-windows/pull/14793",
+   "path": "vnext/codegen/rnwcoreJSI.h",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 0,
+    "partnered": 7
+   }
+  },
+  {
+   "comment_id": 2153559951,
+   "pr": "https://github.com/microsoft/react-native-windows/pull/14794",
+   "path": "vnext/codegen/rnwcoreJSI-generated.cpp",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 0,
+    "partnered": 5
+   }
+  },
+  {
+   "comment_id": 2153559998,
+   "pr": "https://github.com/microsoft/react-native-windows/pull/14794",
+   "path": "vnext/codegen/rnwcoreJSI.h",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 0,
+    "partnered": 5
+   }
+  },
+  {
+   "comment_id": 2153757091,
+   "pr": "https://github.com/microsoft/react-native-windows/pull/14796",
+   "path": "vnext/codegen/rnwcoreJSI-generated.cpp",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 0,
+    "partnered": 8
+   }
+  },
+  {
+   "comment_id": 2153757596,
+   "pr": "https://github.com/microsoft/react-native-windows/pull/14796",
+   "path": "vnext/codegen/rnwcoreJSI.h",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 0,
+    "partnered": 8
+   }
+  },
+  {
+   "comment_id": 2153994772,
+   "pr": "https://github.com/liam-hq/liam/pull/2047",
+   "path": "frontend/internal-packages/agent/src/chat/workflow/nodes/generateDDLNode.ts",
+   "status": "not_modified",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2154458189,
+   "pr": "https://github.com/truenas/webui/pull/12147",
+   "path": "src/app/pages/credentials/new-users/all-users/user-list/user-access-cell/user-access-cell.component.html",
+   "status": "too_many_files",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2155387132,
+   "pr": "https://github.com/microsoft/onnxscript/pull/2392",
+   "path": "onnxscript/rewriter/_rewrite_rule.py",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 0,
+    "partnered": 3
+   }
+  },
+  {
+   "comment_id": 2156677671,
+   "pr": "https://github.com/tomhrr/cosh/pull/181",
+   "path": "tests/tests.rs",
+   "status": "read",
+   "label": "not_enough_files",
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2158322202,
+   "pr": "https://github.com/dotnet/dotnet-api-docs/pull/11490",
+   "path": "snippets/visualbasic/REORGANIZATION.md",
+   "status": "not_modified",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2159990459,
+   "pr": "https://github.com/mlflow/mlflow/pull/16367",
+   "path": "dev/clint/src/clint/linter.py",
+   "status": "read",
+   "label": "not_enough_files",
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2160678339,
+   "pr": "https://github.com/mlflow/mlflow/pull/16385",
+   "path": ".github/workflows/autoformat.js",
+   "status": "read",
+   "label": "not_enough_files",
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2161425789,
+   "pr": "https://github.com/celestiaorg/celestia-app/pull/5029",
+   "path": "pkg/appconsts/versioned_consts.go",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 1,
+    "partnered": 22
+   }
+  },
+  {
+   "comment_id": 2161426956,
+   "pr": "https://github.com/celestiaorg/celestia-app/pull/5029",
+   "path": "test/txsim/run_test.go",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 1,
+    "partnered": 22
+   }
+  },
+  {
+   "comment_id": 2161427105,
+   "pr": "https://github.com/celestiaorg/celestia-app/pull/5029",
+   "path": "test/util/genesis/modifier.go",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 1,
+    "partnered": 22
+   }
+  },
+  {
+   "comment_id": 2161427472,
+   "pr": "https://github.com/celestiaorg/celestia-app/pull/5029",
+   "path": "x/signal/integration_test.go",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 1,
+    "partnered": 22
+   }
+  },
+  {
+   "comment_id": 2161427643,
+   "pr": "https://github.com/celestiaorg/celestia-app/pull/5029",
+   "path": "x/signal/keeper_test.go",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 1,
+    "partnered": 22
+   }
+  },
+  {
+   "comment_id": 2162734334,
+   "pr": "https://github.com/LLFourn/secp256kfun/pull/217",
+   "path": "secp256kfun/src/point.rs",
+   "status": "unreadable",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2164800277,
+   "pr": "https://github.com/microsoft/typescript-go/pull/1268",
+   "path": "internal/tsoptions/tsconfigparsing_test.go",
+   "status": "read",
+   "label": "not_enough_files",
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2166041731,
+   "pr": "https://github.com/liam-hq/liam/pull/2079",
+   "path": "frontend/internal-packages/agent/src/chat/workflow/workflow.test.ts",
+   "status": "too_many_files",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2166596634,
+   "pr": "https://github.com/liam-hq/liam/pull/2200",
+   "path": "frontend/internal-packages/schema-bench/src/workspace/benchmark.ts",
+   "status": "not_modified",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2166596905,
+   "pr": "https://github.com/liam-hq/liam/pull/2200",
+   "path": "frontend/internal-packages/schema-bench/src/workspace/setup.ts",
+   "status": "not_modified",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2167949620,
+   "pr": "https://github.com/liam-hq/liam/pull/2208",
+   "path": ".github/workflows/claude.yml",
+   "status": "read",
+   "label": "stranger",
+   "others": {
+    "stranger": 4,
+    "partnered": 10
+   }
+  },
+  {
+   "comment_id": 2169039389,
+   "pr": "https://github.com/firecrawl/firecrawl/pull/1714",
+   "path": "apps/api/src/controllers/v1/search.ts",
+   "status": "unreadable",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2169591356,
+   "pr": "https://github.com/microsoft/typespec/pull/7755",
+   "path": "packages/http-client-csharp/eng/scripts/Submit-AzureSdkForNetPr.ps1",
+   "status": "read",
+   "label": "not_enough_files",
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2170322904,
+   "pr": "https://github.com/Azure/azure-sdk-for-net/pull/50921",
+   "path": "sdk/core/System.ClientModel/src/Message/BinaryContent.cs",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 0,
+    "partnered": 3
+   }
+  },
+  {
+   "comment_id": 2172074260,
+   "pr": "https://github.com/php-llm/llm-chain/pull/350",
+   "path": "src/Platform/Bridge/Azure/OpenAI/WhisperModelClient.php",
+   "status": "unreadable",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2172249319,
+   "pr": "https://github.com/mysql-net/MySqlConnector/pull/1575",
+   "path": "src/MySqlConnector/Core/ServerSession.cs",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 0,
+    "partnered": 3
+   }
+  },
+  {
+   "comment_id": 2172899357,
+   "pr": "https://github.com/mysql-net/MySqlConnector/pull/1575",
+   "path": "tests/MySqlConnector.Tests/ServerIdentificationTests.cs",
+   "status": "not_modified",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2173407324,
+   "pr": "https://github.com/microsoft/genaiscript/pull/1679",
+   "path": "docs/src/content/docs/reference/scripts/github.mdx",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 0,
+    "partnered": 3
+   }
+  },
+  {
+   "comment_id": 2173518802,
+   "pr": "https://github.com/faros-ai/airbyte-connectors/pull/2143",
+   "path": "sources/gitlab-source/src/streams/faros_commits.ts",
+   "status": "too_many_files",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2173673158,
+   "pr": "https://github.com/torchgeo/torchgeo/pull/2861",
+   "path": "torchgeo/datamodules/treesatai.py",
+   "status": "unreadable",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2173673453,
+   "pr": "https://github.com/torchgeo/torchgeo/pull/2861",
+   "path": "torchgeo/datamodules/vhr10.py",
+   "status": "unreadable",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2174500196,
+   "pr": "https://github.com/microsoft/testfx/pull/5792",
+   "path": "test/IntegrationTests/Microsoft.Testing.Platform.Acceptance.IntegrationTests/MSBuildTests.Test.cs",
+   "status": "too_many_files",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2174820680,
+   "pr": "https://github.com/dotnet/razor/pull/11994",
+   "path": "src/Razor/src/Microsoft.VisualStudio.LanguageServices.Razor/LanguageClient/Cohost/CohostWrapWithTagEndpoint.cs",
+   "status": "not_modified",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2176059009,
+   "pr": "https://github.com/ElectNewt/Distribt/pull/48",
+   "path": "src/Services/Products/Distribt.Services.Products.BusinessLogic/Outbox/OutboxProcessor.cs",
+   "status": "not_modified",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2178669207,
+   "pr": "https://github.com/pyth-network/pyth-crosschain/pull/2827",
+   "path": "apps/fortuna/src/command/run.rs",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 1,
+    "partnered": 3
+   }
+  },
+  {
+   "comment_id": 2179457111,
+   "pr": "https://github.com/mlflow/mlflow/pull/16526",
+   "path": "docs/api_reference/theme/mlflow/static/css/theme.css",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 0,
+    "partnered": 5
+   }
+  },
+  {
+   "comment_id": 2179495848,
+   "pr": "https://github.com/invoke-ai/InvokeAI/pull/8177",
+   "path": "invokeai/frontend/web/src/app/store/middleware/listenerMiddleware/listeners/modelSelected.ts",
+   "status": "read",
+   "label": "not_enough_files",
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2179806302,
+   "pr": "https://github.com/getsentry/sentry-docs/pull/14232",
+   "path": "docs/platforms/javascript/common/tracing/distributed-tracing/dealing-with-cors-issues/index.mdx",
+   "status": "read",
+   "label": "not_enough_files",
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2179842095,
+   "pr": "https://github.com/cartography-cncf/cartography/pull/1664",
+   "path": "cartography/intel/entra/users.py",
+   "status": "unreadable",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2180023029,
+   "pr": "https://github.com/Project-MONAI/tutorials/pull/2005",
+   "path": "2d_classification/monai_101.ipynb",
+   "status": "read",
+   "label": "stranger",
+   "others": {
+    "stranger": 0,
+    "partnered": 2
+   }
+  },
+  {
+   "comment_id": 2180601941,
+   "pr": "https://github.com/getsentry/sentry/pull/94573",
+   "path": "static/app/utils/replays/hooks/useActiveReplayTab.spec.tsx",
+   "status": "too_many_files",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2181192623,
+   "pr": "https://github.com/microsoft/ApplicationInsights-JS/pull/2595",
+   "path": "extensions/applicationinsights-analytics-js/src/JavaScriptSDK/AnalyticsPlugin.ts",
+   "status": "read",
+   "label": "stranger",
+   "others": {
+    "stranger": 2,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2182652011,
+   "pr": "https://github.com/valkey-io/valkey-glide/pull/4287",
+   "path": ".github/workflows/codeql.yml",
+   "status": "read",
+   "label": "stranger",
+   "others": {
+    "stranger": 1,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2183476318,
+   "pr": "https://github.com/temporalio/temporal/pull/8003",
+   "path": "common/persistence/cassandra/metadata_store.go",
+   "status": "read",
+   "label": "not_enough_files",
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2184911946,
+   "pr": "https://github.com/apolloconfig/apollo/pull/5419",
+   "path": "apollo-portal/src/main/java/com/ctrip/framework/apollo/portal/controller/ItemController.java",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 0,
+    "partnered": 7
+   }
+  },
+  {
+   "comment_id": 2184985276,
+   "pr": "https://github.com/dotnet/aspnetcore/pull/62559",
+   "path": "src/Components/Components/src/PersistentStateValueProvider.cs",
+   "status": "read",
+   "label": "too_new",
+   "others": {
+    "stranger": 0,
+    "partnered": 8
+   }
+  },
+  {
+   "comment_id": 2185409116,
+   "pr": "https://github.com/celestiaorg/celestia-core/pull/2124",
+   "path": "light/provider/http/http_test.go",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 0,
+    "partnered": 34
+   }
+  },
+  {
+   "comment_id": 2185957984,
+   "pr": "https://github.com/tesseract-ocr/tesseract/pull/4435",
+   "path": "src/ccutil/unicharset.cpp",
+   "status": "read",
+   "label": "not_enough_files",
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2186017767,
+   "pr": "https://github.com/dalathegreat/Battery-Emulator/pull/1290",
+   "path": "Software/USER_SETTINGS.h",
+   "status": "read",
+   "label": "not_enough_files",
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2190213564,
+   "pr": "https://github.com/dotnet/aspire/pull/10253",
+   "path": "src/Aspire.Hosting/api/Aspire.Hosting.cs",
+   "status": "unreadable",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2192088044,
+   "pr": "https://github.com/justtrackio/gosoline/pull/1253",
+   "path": "pkg/stream/input_sqs.go",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 5,
+    "partnered": 6
+   }
+  },
+  {
+   "comment_id": 2194260903,
+   "pr": "https://github.com/Fraunhofer-AISEC/cpg/pull/2385",
+   "path": "cpg-concepts/src/main/kotlin/de/fraunhofer/aisec/cpg/graph/concepts/simple/EnhancedDataClassExamples.kt",
+   "status": "not_modified",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2194623111,
+   "pr": "https://github.com/pannous/wasp/pull/7",
+   "path": "source/Angle.cpp",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 0,
+    "partnered": 5
+   }
+  },
+  {
+   "comment_id": 2203809301,
+   "pr": "https://github.com/microsoft/typescript-go/pull/1401",
+   "path": "internal/format/api_test.go",
+   "status": "read",
+   "label": "not_enough_files",
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2204992874,
+   "pr": "https://github.com/actions/toolkit/pull/2100",
+   "path": ".gitignore",
+   "status": "read",
+   "label": "stranger",
+   "others": {
+    "stranger": 0,
+    "partnered": 6
+   }
+  },
+  {
+   "comment_id": 2205212682,
+   "pr": "https://github.com/microsoft/openvmm/pull/1661",
+   "path": "vm/devices/user_driver/src/vfio.rs",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 0,
+    "partnered": 5
+   }
+  },
+  {
+   "comment_id": 2205871019,
+   "pr": "https://github.com/AzureAD/microsoft-identity-web/pull/3413",
+   "path": "src/Microsoft.Identity.Web.DownstreamApi/DownstreamApi.cs",
+   "status": "read",
+   "label": "stranger",
+   "others": {
+    "stranger": 8,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2205954873,
+   "pr": "https://github.com/AzureAD/microsoft-identity-web/pull/3414",
+   "path": "tests/Microsoft.Identity.Web.Test/OidcIdpSignedAssertionLoaderTests.cs",
+   "status": "not_modified",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2206016647,
+   "pr": "https://github.com/AzureAD/microsoft-identity-web/pull/3413",
+   "path": "tests/Microsoft.Identity.Web.Test/DownstreamWebApiSupport/ExtraParametersTests.cs",
+   "status": "not_modified",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2208144390,
+   "pr": "https://github.com/prebid/Prebid.js/pull/13597",
+   "path": "modules/gptPreAuction.ts",
+   "status": "too_many_files",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2208830833,
+   "pr": "https://github.com/Azure/azure-cosmos-dotnet-v3/pull/5289",
+   "path": ".github/copilot-instructions.md",
+   "status": "not_modified",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2208846313,
+   "pr": "https://github.com/Azure/azure-cosmos-dotnet-v3/pull/5287",
+   "path": "Microsoft.Azure.Cosmos/tests/Microsoft.Azure.Cosmos.Tests/ConfigurationManagerTests.cs",
+   "status": "not_modified",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2208847998,
+   "pr": "https://github.com/Azure/azure-cosmos-dotnet-v3/pull/5287",
+   "path": "Microsoft.Azure.Cosmos/tests/Microsoft.Azure.Cosmos.Tests/PartitionKeyRangeFailoverTests/GlobalPartitionEndpointManagerTests.cs",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 0,
+    "partnered": 8
+   }
+  },
+  {
+   "comment_id": 2209137450,
+   "pr": "https://github.com/camunda/camunda/pull/35374",
+   "path": "zeebe/gateway-rest/src/main/java/io/camunda/zeebe/gateway/rest/controller/BatchOperationController.java",
+   "status": "unreadable",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2210087712,
+   "pr": "https://github.com/keepassxreboot/keepassxc/pull/12244",
+   "path": "src/gui/entry/attachments/TextAttachmentsPreviewWidget.cpp",
+   "status": "unreadable",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2210931230,
+   "pr": "https://github.com/dotnet/docs-aspire/pull/4057",
+   "path": "docs/app-host/persistent-containers.md",
+   "status": "not_modified",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2211759869,
+   "pr": "https://github.com/valkey-io/valkey-glide/pull/4353",
+   "path": ".github/workflows/dependabot-management.yml",
+   "status": "not_modified",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2211848376,
+   "pr": "https://github.com/AzureAD/microsoft-identity-web/pull/3414",
+   "path": "src/Microsoft.Identity.Web.OidcFIC/OidcIdpSignedAssertionLoader.cs",
+   "status": "read",
+   "label": "too_new",
+   "others": {
+    "stranger": 9,
+    "partnered": 1
+   }
+  },
+  {
+   "comment_id": 2211925311,
+   "pr": "https://github.com/Azure/azure-cosmos-dotnet-v3/pull/5295",
+   "path": "Microsoft.Azure.Cosmos/src/Batch/BatchConfiguration.cs",
+   "status": "not_modified",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2212510499,
+   "pr": "https://github.com/etna-team/etna/pull/676",
+   "path": "etna/transforms/embeddings/models/ts2vec.py",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 3,
+    "partnered": 3
+   }
+  },
+  {
+   "comment_id": 2212693392,
+   "pr": "https://github.com/doodlum/skyrim-community-shaders/pull/1277",
+   "path": "BuildRelease.bat",
+   "status": "read",
+   "label": "stranger",
+   "others": {
+    "stranger": 0,
+    "partnered": 4
+   }
+  },
+  {
+   "comment_id": 2212709119,
+   "pr": "https://github.com/shivammathur/setup-php/pull/974",
+   "path": "src/tools.ts",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 0,
+    "partnered": 4
+   }
+  },
+  {
+   "comment_id": 2212710301,
+   "pr": "https://github.com/shivammathur/setup-php/pull/974",
+   "path": "src/scripts/run.sh",
+   "status": "not_modified",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2213141159,
+   "pr": "https://github.com/docker/hello-genai/pull/8",
+   "path": "py-genai/docker-compose.yml",
+   "status": "not_modified",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2213141945,
+   "pr": "https://github.com/docker/hello-genai/pull/8",
+   "path": "rust-genai/docker-compose.yaml",
+   "status": "not_modified",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2213762881,
+   "pr": "https://github.com/microsoft/onnxscript/pull/2459",
+   "path": "onnxscript/rewriter/_rewrite_rule.py",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 1,
+    "partnered": 1
+   }
+  },
+  {
+   "comment_id": 2214159901,
+   "pr": "https://github.com/Azure/azure-mcp/pull/639",
+   "path": "docs/azmcp-commands.md",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 0,
+    "partnered": 4
+   }
+  },
+  {
+   "comment_id": 2214170753,
+   "pr": "https://github.com/Azure/azure-mcp/pull/639",
+   "path": "src/Areas/Storage/Services/IStorageService.cs",
+   "status": "read",
+   "label": "too_new",
+   "others": {
+    "stranger": 0,
+    "partnered": 5
+   }
+  },
+  {
+   "comment_id": 2214331240,
+   "pr": "https://github.com/openai/codex/pull/1601",
+   "path": "codex-rs/core/src/model_provider_info.rs",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 0,
+    "partnered": 21
+   }
+  },
+  {
+   "comment_id": 2214615324,
+   "pr": "https://github.com/Azure/azure-mcp/pull/647",
+   "path": "src/Areas/Storage/Services/StorageService.cs",
+   "status": "read",
+   "label": "too_new",
+   "others": {
+    "stranger": 2,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2214627130,
+   "pr": "https://github.com/Azure/azure-mcp/pull/647",
+   "path": "src/Areas/Storage/Commands/DataLake/Directory/DirectoryCreateCommand.cs",
+   "status": "read",
+   "label": "too_new",
+   "others": {
+    "stranger": 2,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2214627763,
+   "pr": "https://github.com/Azure/azure-mcp/pull/647",
+   "path": "src/Areas/Storage/Services/IStorageService.cs",
+   "status": "read",
+   "label": "too_new",
+   "others": {
+    "stranger": 2,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2214627927,
+   "pr": "https://github.com/Azure/azure-mcp/pull/647",
+   "path": "tests/Areas/Storage/LiveTests/StorageCommandTests.cs",
+   "status": "read",
+   "label": "stranger",
+   "others": {
+    "stranger": 1,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2214628056,
+   "pr": "https://github.com/Azure/azure-mcp/pull/647",
+   "path": "tests/Areas/Storage/UnitTests/DataLake/Directory/DirectoryCreateCommandTests.cs",
+   "status": "read",
+   "label": "too_new",
+   "others": {
+    "stranger": 2,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2215654643,
+   "pr": "https://github.com/getsentry/sentry-cli/pull/2619",
+   "path": "src/utils/mobile_app/ipa.rs",
+   "status": "not_modified",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2215715783,
+   "pr": "https://github.com/getsentry/sentry-cli/pull/2619",
+   "path": "src/utils/mobile_app/validation.rs",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 0,
+    "partnered": 11
+   }
+  },
+  {
+   "comment_id": 2215932529,
+   "pr": "https://github.com/onflow/flow-go/pull/7601",
+   "path": "engine/access/rpc/backend/backend_block_headers.go",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 1,
+    "partnered": 13
+   }
+  },
+  {
+   "comment_id": 2216639075,
+   "pr": "https://github.com/ipsilon/evmone/pull/1266",
+   "path": "lib/evmone/instructions_traits.hpp",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 0,
+    "partnered": 5
+   }
+  },
+  {
+   "comment_id": 2216921666,
+   "pr": "https://github.com/cartography-cncf/cartography/pull/1697",
+   "path": "cartography/models/aws/rds/subnet_group.py",
+   "status": "not_modified",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2217057131,
+   "pr": "https://github.com/microsoft/playwright-mcp/pull/715",
+   "path": ".github/copilot/agent.yml",
+   "status": "not_modified",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2217143756,
+   "pr": "https://github.com/Azure/azure-functions-host/pull/11115",
+   "path": "src/WebJobs.Script.WebHost/WebJobs.Script.WebHost.csproj",
+   "status": "too_many_files",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2217143895,
+   "pr": "https://github.com/Azure/azure-functions-host/pull/11115",
+   "path": "src/WebJobs.Script/WebJobs.Script.csproj",
+   "status": "too_many_files",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2217988976,
+   "pr": "https://github.com/OrchardCMS/OrchardCore/pull/18184",
+   "path": "src/OrchardCore/OrchardCore.ContentManagement.Abstractions/IContentDefinitionManager.cs",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 1,
+    "partnered": 6
+   }
+  },
+  {
+   "comment_id": 2218215111,
+   "pr": "https://github.com/Arize-ai/phoenix/pull/8660",
+   "path": "src/phoenix/server/api/mutations/project_mutations.py",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 0,
+    "partnered": 2
+   }
+  },
+  {
+   "comment_id": 2218713389,
+   "pr": "https://github.com/operaton/operaton/pull/1001",
+   "path": "engine-plugins/identity-ldap/src/test/java/org/operaton/bpm/identity/ldap/util/LdapTestEnvironmentRule.java",
+   "status": "unreadable",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2222841758,
+   "pr": "https://github.com/dotnet/core/pull/9991",
+   "path": "release-notes/RunApiDiff.ps1",
+   "status": "read",
+   "label": "not_enough_files",
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2223066787,
+   "pr": "https://github.com/calcom/cal.com/pull/22311",
+   "path": "apps/web/lib/plain/plainChat.tsx",
+   "status": "too_many_files",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2223697639,
+   "pr": "https://github.com/microsoft/SqlScriptDOM/pull/147",
+   "path": "Test/SqlDom/ParserErrorsTests.cs",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 0,
+    "partnered": 6
+   }
+  },
+  {
+   "comment_id": 2224509064,
+   "pr": "https://github.com/shopware/shopware/pull/11395",
+   "path": "src/Core/DevOps/StaticAnalyze/PHPStan/Rules/PublicServiceDecoratorRule.php",
+   "status": "unreadable",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2224750632,
+   "pr": "https://github.com/RevenueCat/purchases-ios/pull/5296",
+   "path": "Sources/Paywalls/PaywallPromoOfferCache.swift",
+   "status": "unreadable",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2224937350,
+   "pr": "https://github.com/RevenueCat/purchases-ios/pull/5296",
+   "path": "RevenueCatUI/Templates/V2/ViewModelHelpers/PackageValidator.swift",
+   "status": "unreadable",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2225057871,
+   "pr": "https://github.com/web-infra-dev/rspack/pull/11142",
+   "path": "crates/node_binding/scripts/build.js",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 0,
+    "partnered": 22
+   }
+  },
+  {
+   "comment_id": 2225905461,
+   "pr": "https://github.com/modelcontextprotocol/csharp-sdk/pull/645",
+   "path": "dotnet-install.sh",
+   "status": "not_modified",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2226509077,
+   "pr": "https://github.com/FirelyTeam/firely-net-sdk/pull/3218",
+   "path": "src/Hl7.Fhir.Base/Serialization/BaseFhirJsonPocoSerializer.cs",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 0,
+    "partnered": 6
+   }
+  },
+  {
+   "comment_id": 2227035919,
+   "pr": "https://github.com/vllm-project/vllm/pull/21146",
+   "path": "vllm/v1/worker/gpu_model_runner.py",
+   "status": "too_many_files",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2228146137,
+   "pr": "https://github.com/camunda/camunda/pull/35888",
+   "path": "clients/java/pom.xml",
+   "status": "unreadable",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2228204479,
+   "pr": "https://github.com/camunda/camunda/pull/35888",
+   "path": "clients/java/src/main/java/io/camunda/client/api/search/response/DecisionInstance.java",
+   "status": "unreadable",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2228204979,
+   "pr": "https://github.com/camunda/camunda/pull/35888",
+   "path": "clients/java/src/main/java/io/camunda/client/api/search/response/Job.java",
+   "status": "unreadable",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2228205107,
+   "pr": "https://github.com/camunda/camunda/pull/35888",
+   "path": "clients/java/src/main/java/io/camunda/client/api/search/response/MessageSubscription.java",
+   "status": "unreadable",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2228207763,
+   "pr": "https://github.com/camunda/camunda/pull/35888",
+   "path": "clients/java/src/main/java/io/camunda/client/impl/search/response/BatchOperationItemsImpl.java",
+   "status": "unreadable",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2228208044,
+   "pr": "https://github.com/camunda/camunda/pull/35888",
+   "path": "clients/java/src/main/java/io/camunda/client/impl/search/response/DecisionInstanceImpl.java",
+   "status": "unreadable",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2228212938,
+   "pr": "https://github.com/camunda/camunda/pull/35888",
+   "path": "clients/java/src/main/java/io/camunda/client/impl/search/response/ElementInstanceImpl.java",
+   "status": "unreadable",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2228324277,
+   "pr": "https://github.com/Verified-zkEVM/clean/pull/227",
+   "path": "Clean/Utils/Tactics/SplitPairEq.lean",
+   "status": "unreadable",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2230319025,
+   "pr": "https://github.com/camunda/camunda/pull/35632",
+   "path": "authentication/src/main/java/io/camunda/authentication/service/PrincipalExtractionHelper.java",
+   "status": "unreadable",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2231877853,
+   "pr": "https://github.com/LayerZero-Labs/devtools/pull/1539",
+   "path": "examples/oft-solana/tasks/common/utils.ts",
+   "status": "too_many_files",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2236285401,
+   "pr": "https://github.com/microsoft/genaiscript/pull/1798",
+   "path": "genaisrc/llmstxt-optimizer.genai.mts",
+   "status": "not_modified",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2237606926,
+   "pr": "https://github.com/weecology/DeepForest/pull/1089",
+   "path": "tests/test_main.py",
+   "status": "unreadable",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2237692789,
+   "pr": "https://github.com/MetaMask/metamask-mobile/pull/17579",
+   "path": "app/component-library/components-temp/Buttons/ButtonHero/ButtonHero.tsx",
+   "status": "not_modified",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2237765762,
+   "pr": "https://github.com/microsoft/ApplicationInsights-JS/pull/2632",
+   "path": "shared/AppInsightsCore/src/JavaScriptSDK/CookieMgr.ts",
+   "status": "read",
+   "label": "not_enough_files",
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2238496000,
+   "pr": "https://github.com/taiga-family/taiga-ui/pull/11432",
+   "path": "projects/addon-table/components/table/directives/table.directive.ts",
+   "status": "unreadable",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2239117585,
+   "pr": "https://github.com/celestiaorg/celestia-core/pull/2261",
+   "path": "mempool/cat/reactor_test.go",
+   "status": "read",
+   "label": "stranger",
+   "others": {
+    "stranger": 2,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2239177696,
+   "pr": "https://github.com/liam-hq/liam/pull/2745",
+   "path": "frontend/internal-packages/agent/src/chat/workflow/shared/langGraphUtils.ts",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 0,
+    "partnered": 6
+   }
+  },
+  {
+   "comment_id": 2239188325,
+   "pr": "https://github.com/liam-hq/liam/pull/2745",
+   "path": "frontend/internal-packages/agent/src/langchain/agents/dmlGenerationAgent/agent.ts",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 0,
+    "partnered": 6
+   }
+  },
+  {
+   "comment_id": 2241385673,
+   "pr": "https://github.com/liam-hq/liam/pull/2759",
+   "path": ".coderabbit.yaml",
+   "status": "read",
+   "label": "not_enough_files",
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2241919348,
+   "pr": "https://github.com/Brooooooklyn/canvas/pull/1091",
+   "path": "src/lib.rs",
+   "status": "read",
+   "label": "not_enough_files",
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2243651473,
+   "pr": "https://github.com/Azure/azure-cosmos-dotnet-v3/pull/5326",
+   "path": "Microsoft.Azure.Cosmos/src/Resource/Settings/CosmosAccountServiceConfiguration.cs",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 0,
+    "partnered": 3
+   }
+  },
+  {
+   "comment_id": 2244801563,
+   "pr": "https://github.com/taiga-family/taiga-ui/pull/11485",
+   "path": "projects/kit/components/combo-box/combo-box.directive.ts",
+   "status": "read",
+   "label": "not_enough_files",
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2244914988,
+   "pr": "https://github.com/dotnet/aspire/pull/10717",
+   "path": "tests/Aspire.Hosting.Tests/Utils/TestDistributedApplicationBuilder.cs",
+   "status": "unreadable",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2245091583,
+   "pr": "https://github.com/RevenueCat/purchases-ios/pull/5296",
+   "path": "RevenueCatUI/Templates/V2/Components/Carousel/CarouselComponentView.swift",
+   "status": "too_many_files",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2245107117,
+   "pr": "https://github.com/RevenueCat/purchases-ios/pull/5296",
+   "path": "RevenueCatUI/Templates/V2/Components/Stack/StackComponentView.swift",
+   "status": "too_many_files",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2245438930,
+   "pr": "https://github.com/obophenotype/cell-ontology/pull/3204",
+   "path": "src/ontology/cl-edit.owl",
+   "status": "too_many_files",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2245751319,
+   "pr": "https://github.com/microsoft/testfx/pull/6174",
+   "path": "src/Platform/Microsoft.Testing.Platform/OutputDevice/Terminal/TerminalTestReporter.cs",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 0,
+    "partnered": 10
+   }
+  },
+  {
+   "comment_id": 2245924010,
+   "pr": "https://github.com/Azure/awesome-azd/pull/630",
+   "path": "website/src/theme/Navbar/Layout/index.js",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 1,
+    "partnered": 4
+   }
+  },
+  {
+   "comment_id": 2246732380,
+   "pr": "https://github.com/dotnet/runtime/pull/118256",
+   "path": "src/libraries/System.Private.CoreLib/src/System/Threading/WaitHandle.Windows.cs",
+   "status": "read",
+   "label": "stranger",
+   "others": {
+    "stranger": 2,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2247148669,
+   "pr": "https://github.com/vitejs/vite/pull/20522",
+   "path": "packages/vite/src/node/__tests__/plugins/terser.spec.ts",
+   "status": "read",
+   "label": "too_new",
+   "others": {
+    "stranger": 0,
+    "partnered": 3
+   }
+  },
+  {
+   "comment_id": 2248039274,
+   "pr": "https://github.com/vitejs/vite/pull/20468",
+   "path": "packages/create-vite/src/index.ts",
+   "status": "read",
+   "label": "not_enough_files",
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2248910657,
+   "pr": "https://github.com/NVIDIA/spark-rapids/pull/13234",
+   "path": "sql-plugin/src/main/spark320/scala/com/nvidia/spark/rapids/shims/Spark320PlusShims.scala",
+   "status": "read",
+   "label": "not_enough_files",
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2249221023,
+   "pr": "https://github.com/lasa01/Plumber/pull/203",
+   "path": "plumber/asset/model.py",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 0,
+    "partnered": 6
+   }
+  },
+  {
+   "comment_id": 2249272428,
+   "pr": "https://github.com/microsoft/genaiscript/pull/1818",
+   "path": "packages/core/src/host.ts",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 0,
+    "partnered": 3
+   }
+  },
+  {
+   "comment_id": 2249272481,
+   "pr": "https://github.com/microsoft/genaiscript/pull/1818",
+   "path": "packages/runtime/src/nodehost.ts",
+   "status": "read",
+   "label": "too_new",
+   "others": {
+    "stranger": 0,
+    "partnered": 4
+   }
+  },
+  {
+   "comment_id": 2249272556,
+   "pr": "https://github.com/microsoft/genaiscript/pull/1818",
+   "path": "packages/vscode/src/vshost.ts",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 0,
+    "partnered": 3
+   }
+  },
+  {
+   "comment_id": 2249737675,
+   "pr": "https://github.com/tphakala/birdnet-go/pull/1077",
+   "path": "frontend/src/lib/desktop/features/settings/pages/MainSettingsPage.svelte",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 0,
+    "partnered": 13
+   }
+  },
+  {
+   "comment_id": 2250255111,
+   "pr": "https://github.com/primer/react/pull/6360",
+   "path": "packages/react/src/DialogV1/Dialog.test.tsx",
+   "status": "too_many_files",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2250575183,
+   "pr": "https://github.com/camunda/camunda/pull/35632",
+   "path": "qa/acceptance-tests/src/test/java/io/camunda/it/nodb/NoSecondaryStorageAuthenticationIT.java",
+   "status": "unreadable",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2250979847,
+   "pr": "https://github.com/dotnet/fsharp/pull/18803",
+   "path": "azure-pipelines-regression-test.yml",
+   "status": "not_modified",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2251527263,
+   "pr": "https://github.com/dotnet/fsharp/pull/18803",
+   "path": "azure-pipelines-PR.yml",
+   "status": "read",
+   "label": "not_enough_files",
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2252604490,
+   "pr": "https://github.com/dotnet/aspnetcore/pull/63075",
+   "path": "src/Validation/gen/Extensions/ITypeSymbolExtensions.cs",
+   "status": "read",
+   "label": "too_new",
+   "others": {
+    "stranger": 0,
+    "partnered": 2
+   }
+  },
+  {
+   "comment_id": 2253647287,
+   "pr": "https://github.com/dotnet/aspnetcore/pull/63125",
+   "path": "src/Components/Components/src/PersistentState/PersistentValueProviderComponentSubscription.cs",
+   "status": "read",
+   "label": "not_enough_files",
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2254120261,
+   "pr": "https://github.com/microsoft/vscode/pull/258847",
+   "path": "src/vs/workbench/contrib/terminalContrib/suggest/test/browser/terminalSuggestAddon.test.ts",
+   "status": "read",
+   "label": "not_enough_files",
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2256509137,
+   "pr": "https://github.com/cloudflare/workers-sdk/pull/10242",
+   "path": "packages/wrangler/src/core/CommandRegistry.ts",
+   "status": "unreadable",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2256726047,
+   "pr": "https://github.com/novuhq/novu/pull/8867",
+   "path": ".github/workflows/prod-deploy-web.yml",
+   "status": "read",
+   "label": "not_enough_files",
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2256971265,
+   "pr": "https://github.com/dotnet/sdk/pull/50083",
+   "path": "src/RazorSdk/EmbeddedContent/EmbeddedAttribute.cs",
+   "status": "unreadable",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2258307681,
+   "pr": "https://github.com/rqlite/rqlite/pull/2202",
+   "path": "cmd/rqlite/main_test.go",
+   "status": "not_modified",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2258702369,
+   "pr": "https://github.com/mlflow/mlflow/pull/17098",
+   "path": "mlflow/ml_package_versions.py",
+   "status": "read",
+   "label": "not_enough_files",
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2259397717,
+   "pr": "https://github.com/oxc-project/oxc/pull/12847",
+   "path": "crates/oxc_codegen/src/lib.rs",
+   "status": "read",
+   "label": "not_enough_files",
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2260348351,
+   "pr": "https://github.com/cloudflare/workers-sdk/pull/10269",
+   "path": "packages/devprod-status-bot/wrangler.jsonc",
+   "status": "read",
+   "label": "not_enough_files",
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2261679391,
+   "pr": "https://github.com/project-dalec/dalec/pull/727",
+   "path": "frontend/debug/handle_resolve.go",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 1,
+    "partnered": 6
+   }
+  },
+  {
+   "comment_id": 2261798171,
+   "pr": "https://github.com/microsoft/fabric-cicd/pull/478",
+   "path": "src/fabric_cicd/_common/_validate_input.py",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 0,
+    "partnered": 4
+   }
+  },
+  {
+   "comment_id": 2264140835,
+   "pr": "https://github.com/dotnet/runtime/pull/118549",
+   "path": "src/libraries/System.Private.DataContractSerialization/src/System/Runtime/Serialization/Globals.cs",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 0,
+    "partnered": 13
+   }
+  },
+  {
+   "comment_id": 2264517670,
+   "pr": "https://github.com/sveltejs/kit/pull/14131",
+   "path": "packages/kit/src/runtime/server/cookie.js",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 0,
+    "partnered": 4
+   }
+  },
+  {
+   "comment_id": 2265132970,
+   "pr": "https://github.com/machinewrapped/llm-subtrans/pull/250",
+   "path": "PySubtitle/Helpers/Localization.py",
+   "status": "read",
+   "label": "not_enough_files",
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2265347928,
+   "pr": "https://github.com/arl/gitmux/pull/138",
+   "path": "tmux/formater_test.go",
+   "status": "read",
+   "label": "not_enough_files",
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2265539265,
+   "pr": "https://github.com/Azure/azure-service-operator/pull/4864",
+   "path": "v2/tools/generator/internal/config/configuration_merge_usage_example_test.go",
+   "status": "not_modified",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2268101524,
+   "pr": "https://github.com/microsoft/typescript-go/pull/1559",
+   "path": "internal/ls/completions.go",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 0,
+    "partnered": 5
+   }
+  },
+  {
+   "comment_id": 2268101597,
+   "pr": "https://github.com/microsoft/typescript-go/pull/1559",
+   "path": "internal/ls/signaturehelp.go",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 0,
+    "partnered": 5
+   }
+  },
+  {
+   "comment_id": 2268406639,
+   "pr": "https://github.com/doukutsu-rs/doukutsu-rs/pull/331",
+   "path": "src/engine_constants/mod.rs",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 0,
+    "partnered": 4
+   }
+  },
+  {
+   "comment_id": 2268492416,
+   "pr": "https://github.com/microsoft/openvmm/pull/1840",
+   "path": "support/pal/src/windows/alpc.rs",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 4,
+    "partnered": 12
+   }
+  },
+  {
+   "comment_id": 2268535718,
+   "pr": "https://github.com/microsoft/fabric-cicd/pull/471",
+   "path": "src/fabric_cicd/publish.py",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 0,
+    "partnered": 12
+   }
+  },
+  {
+   "comment_id": 2269731501,
+   "pr": "https://github.com/dotnet/xharness/pull/1458",
+   "path": "docs/localization.md",
+   "status": "not_modified",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2271102848,
+   "pr": "https://github.com/dotnet/docs/pull/47938",
+   "path": "docs/core/whats-new/dotnet-10/runtime.md",
+   "status": "read",
+   "label": "stranger",
+   "others": {
+    "stranger": 3,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2272791651,
+   "pr": "https://github.com/element-hq/element-x-ios/pull/4394",
+   "path": "ElementX/Sources/Screens/HomeScreen/HomeScreenViewModel.swift",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 0,
+    "partnered": 13
+   }
+  },
+  {
+   "comment_id": 2272875398,
+   "pr": "https://github.com/electric-sql/electric/pull/2970",
+   "path": "examples/nextjs/README.md",
+   "status": "too_many_files",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2272991136,
+   "pr": "https://github.com/githubnext/gh-aw/pull/25",
+   "path": "pkg/workflow/metrics.go",
+   "status": "not_modified",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2274185637,
+   "pr": "https://github.com/dotnet/docs/pull/47938",
+   "path": "docs/core/whats-new/dotnet-10/libraries.md",
+   "status": "read",
+   "label": "stranger",
+   "others": {
+    "stranger": 3,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2274587822,
+   "pr": "https://github.com/Azure/azure-sdk-for-python/pull/42406",
+   "path": "sdk/cosmos/azure-cosmos/pyproject.toml",
+   "status": "read",
+   "label": "not_enough_files",
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2274741617,
+   "pr": "https://github.com/dotnet/msbuild/pull/12339",
+   "path": ".github/copilot-instructions.md",
+   "status": "not_modified",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2274796612,
+   "pr": "https://github.com/Azure/azure-sdk-for-python/pull/42404",
+   "path": "sdk/identity/azure-identity/pyproject.toml",
+   "status": "too_many_files",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2274893521,
+   "pr": "https://github.com/microsoft/typespec/pull/7651",
+   "path": "packages/http-specs/specs/payload/pageable/main.tsp",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 1,
+    "partnered": 1
+   }
+  },
+  {
+   "comment_id": 2276057806,
+   "pr": "https://github.com/Homebrew/brew/pull/20455",
+   "path": "Library/Homebrew/cask/audit.rb",
+   "status": "read",
+   "label": "not_enough_files",
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2277801513,
+   "pr": "https://github.com/Azure/azure-cosmos-dotnet-v3/pull/5331",
+   "path": "Microsoft.Azure.Cosmos/src/Tracing/Trace.cs",
+   "status": "too_many_files",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2277930591,
+   "pr": "https://github.com/microsoft/wassette/pull/143",
+   "path": "build.rs",
+   "status": "read",
+   "label": "too_new",
+   "others": {
+    "stranger": 0,
+    "partnered": 5
+   }
+  },
+  {
+   "comment_id": 2278427559,
+   "pr": "https://github.com/Dimillian/IceCubesApp/pull/2292",
+   "path": "IceCubesApp/App/Router/AppRegistry.swift",
+   "status": "read",
+   "label": "too_new",
+   "others": {
+    "stranger": 0,
+    "partnered": 5
+   }
+  },
+  {
+   "comment_id": 2279323413,
+   "pr": "https://github.com/Azure/azure-sdk-for-net/pull/51992",
+   "path": "eng/packages/http-client-csharp/ci.yml",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 1,
+    "partnered": 10
+   }
+  },
+  {
+   "comment_id": 2280028909,
+   "pr": "https://github.com/microsoft/wassette/pull/164",
+   "path": "docs/development/go.md",
+   "status": "not_modified",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2280031902,
+   "pr": "https://github.com/microsoft/wassette/pull/162",
+   "path": "docs/development/python.md",
+   "status": "not_modified",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2280032916,
+   "pr": "https://github.com/microsoft/wassette/pull/158",
+   "path": "docs/development/rust.md",
+   "status": "not_modified",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2280079217,
+   "pr": "https://github.com/microsoft/wassette/pull/132",
+   "path": "docs/faq.md",
+   "status": "not_modified",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2280988045,
+   "pr": "https://github.com/theachoem/storypad/pull/454",
+   "path": "analysis_options.yaml",
+   "status": "read",
+   "label": "not_enough_files",
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2281017154,
+   "pr": "https://github.com/machinewrapped/llm-subtrans/pull/280",
+   "path": "PySubtitle/SubtitleLine.py",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 0,
+    "partnered": 4
+   }
+  },
+  {
+   "comment_id": 2282066152,
+   "pr": "https://github.com/fancy-regex/fancy-regex/pull/181",
+   "path": "playground/web/index.html",
+   "status": "not_modified",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2283924456,
+   "pr": "https://github.com/microsoft/wassette/pull/141",
+   "path": "docs/cli.md",
+   "status": "unreadable",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2284142318,
+   "pr": "https://github.com/liam-hq/liam/pull/3011",
+   "path": "frontend/packages/schema/src/parser/drizzle/__tests__/unified.test.ts",
+   "status": "too_many_files",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2284264980,
+   "pr": "https://github.com/opf/openproject/pull/19925",
+   "path": "app/services/work_packages/activities_tab/comment_attachments_claims/set_attributes_service.rb",
+   "status": "read",
+   "label": "stranger",
+   "others": {
+    "stranger": 1,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2284730516,
+   "pr": "https://github.com/gluesql/gluesql/pull/1743",
+   "path": ".github/workflows/coverage.yml",
+   "status": "read",
+   "label": "not_enough_files",
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2285358962,
+   "pr": "https://github.com/dotnet/docs/pull/47994",
+   "path": "docs/csharp/language-reference/operators/snippets/shared/CollectionExpressionExamples.cs",
+   "status": "read",
+   "label": "not_enough_files",
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2286270940,
+   "pr": "https://github.com/infection/infection/pull/2376",
+   "path": ".github/copilot-instructions.md",
+   "status": "not_modified",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2287262771,
+   "pr": "https://github.com/dotnet/aspire/pull/11008",
+   "path": "tests/Aspire.Hosting.Tests/Dcp/DcpHostNotificationTests.cs",
+   "status": "not_modified",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2287670906,
+   "pr": "https://github.com/cli/cli/pull/11536",
+   "path": "pkg/cmd/repo/delete/delete_test.go",
+   "status": "read",
+   "label": "not_enough_files",
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2288463771,
+   "pr": "https://github.com/githubnext/gh-aw/pull/147",
+   "path": "pkg/workflow/js/create_pull_request.js",
+   "status": "not_modified",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2288964003,
+   "pr": "https://github.com/libwww-perl/libwww-perl/pull/480",
+   "path": "lib/LWP/UserAgent.pm",
+   "status": "read",
+   "label": "not_enough_files",
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2289664760,
+   "pr": "https://github.com/NVIDIA/cuda-python/pull/873",
+   "path": "ci/tools/download-wheels",
+   "status": "not_modified",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2289740776,
+   "pr": "https://github.com/liam-hq/liam/pull/3088",
+   "path": "CLAUDE.md",
+   "status": "read",
+   "label": "not_enough_files",
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2289792074,
+   "pr": "https://github.com/NVIDIA/cuda-python/pull/874",
+   "path": "cuda_python/docs/environment-docs.yml",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 1,
+    "partnered": 6
+   }
+  },
+  {
+   "comment_id": 2291837847,
+   "pr": "https://github.com/NVIDIA/cuda-python/pull/882",
+   "path": "cuda_bindings/docs/source/release/13.0.1-notes.rst",
+   "status": "read",
+   "label": "not_enough_files",
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2291872303,
+   "pr": "https://github.com/NVIDIA/cuda-python/pull/884",
+   "path": "cuda_pathfinder/docs/source/_static/images/Nsight-Compute-CLI-625x473.png",
+   "status": "not_modified",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2291872450,
+   "pr": "https://github.com/NVIDIA/cuda-python/pull/884",
+   "path": "cuda_pathfinder/docs/source/_static/logo-dark-mode.png",
+   "status": "not_modified",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2291872588,
+   "pr": "https://github.com/NVIDIA/cuda-python/pull/884",
+   "path": "cuda_pathfinder/docs/source/_static/logo-light-mode.png",
+   "status": "not_modified",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2291874875,
+   "pr": "https://github.com/NVIDIA/cuda-python/pull/884",
+   "path": "cuda_pathfinder/docs/source/conf.py",
+   "status": "not_modified",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2291876982,
+   "pr": "https://github.com/NVIDIA/cuda-python/pull/884",
+   "path": "cuda_pathfinder/docs/source/support.rst",
+   "status": "not_modified",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2292054471,
+   "pr": "https://github.com/dotnet/aspire/pull/11040",
+   "path": ".github/workflows/update-ai-foundry-models.yml",
+   "status": "not_modified",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2293471741,
+   "pr": "https://github.com/k3nsei/ng-in-viewport/pull/1558",
+   "path": ".vscode/extensions.json",
+   "status": "read",
+   "label": "stranger",
+   "others": {
+    "stranger": 2,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2293478146,
+   "pr": "https://github.com/k3nsei/ng-in-viewport/pull/1558",
+   "path": "docs/MCP_SETUP.md",
+   "status": "not_modified",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2293479716,
+   "pr": "https://github.com/k3nsei/ng-in-viewport/pull/1558",
+   "path": "package.json",
+   "status": "read",
+   "label": "stranger",
+   "others": {
+    "stranger": 2,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2293706143,
+   "pr": "https://github.com/safedep/vet/pull/574",
+   "path": "mcp/driver.go",
+   "status": "read",
+   "label": "too_new",
+   "others": {
+    "stranger": 0,
+    "partnered": 2
+   }
+  },
+  {
+   "comment_id": 2294121496,
+   "pr": "https://github.com/MetaMask/metamask-extension/pull/35221",
+   "path": "privacy-snapshot.json",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 0,
+    "partnered": 19
+   }
+  },
+  {
+   "comment_id": 2294632752,
+   "pr": "https://github.com/NVIDIA/cuda-python/pull/876",
+   "path": "cuda_core/cuda/core/experimental/_memory.pyx",
+   "status": "unreadable",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2295063690,
+   "pr": "https://github.com/deepmodeling/deepmd-kit/pull/4904",
+   "path": "source/api_cc/CMakeLists.txt",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 0,
+    "partnered": 6
+   }
+  },
+  {
+   "comment_id": 2296259013,
+   "pr": "https://github.com/tphakala/birdnet-go/pull/1201",
+   "path": "frontend/src/lib/stores/settings.species.test.ts",
+   "status": "unreadable",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2296577190,
+   "pr": "https://github.com/tphakala/birdnet-go/pull/1201",
+   "path": "internal/api/v2/settings.go",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 0,
+    "partnered": 6
+   }
+  },
+  {
+   "comment_id": 2296720428,
+   "pr": "https://github.com/novuhq/novu/pull/8965",
+   "path": "test-internal-import.js",
+   "status": "not_modified",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2296848473,
+   "pr": "https://github.com/radius-project/radius/pull/10239",
+   "path": "build/test-cli-download.sh",
+   "status": "not_modified",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2296879899,
+   "pr": "https://github.com/NVIDIA/cuda-python/pull/890",
+   "path": "cuda_core/tests/test_module.py",
+   "status": "read",
+   "label": "not_enough_files",
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2297411055,
+   "pr": "https://github.com/shopware/shopware/pull/11873",
+   "path": "src/Core/Checkout/Customer/Validation/Constraint/CustomerEmailUnique.php",
+   "status": "unreadable",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2299410704,
+   "pr": "https://github.com/microsoft/typespec/pull/8169",
+   "path": "packages/http-client-csharp/generator/Microsoft.TypeSpec.Generator.ClientModel/src/Providers/RestClientProvider.cs",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 0,
+    "partnered": 3
+   }
+  },
+  {
+   "comment_id": 2300548537,
+   "pr": "https://github.com/google/clusterfuzz/pull/4923",
+   "path": "configs/test/bot/setup/android.bash",
+   "status": "unreadable",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2300924970,
+   "pr": "https://github.com/unoplatform/uno/pull/21250",
+   "path": ".github/copilot-instructions.md",
+   "status": "not_modified",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2301428982,
+   "pr": "https://github.com/MetaMask/metamask-extension/pull/34098",
+   "path": "ui/components/app/flask/experimental-area/experimental-area.js",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 0,
+    "partnered": 8
+   }
+  },
+  {
+   "comment_id": 2303518303,
+   "pr": "https://github.com/mlflow/mlflow/pull/17440",
+   "path": "tests/deployments/openai/test_openai.py",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 0,
+    "partnered": 28
+   }
+  },
+  {
+   "comment_id": 2305414977,
+   "pr": "https://github.com/open-telemetry/opentelemetry-rust/pull/3139",
+   "path": "opentelemetry-sdk/src/trace/span_processor.rs",
+   "status": "read",
+   "label": "not_enough_files",
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2305450271,
+   "pr": "https://github.com/dotnet/efcore/pull/36665",
+   "path": "test/EFCore.Relational.Tests/RelationalConnectionTest.cs",
+   "status": "unreadable",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2306912245,
+   "pr": "https://github.com/dotnet/sdk/pull/50525",
+   "path": "test/TestPackages/cgmanifest.json",
+   "status": "read",
+   "label": "too_new",
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2308141985,
+   "pr": "https://github.com/cartography-cncf/cartography/pull/1828",
+   "path": "cartography/intel/entra/applications.py",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 0,
+    "partnered": 5
+   }
+  },
+  {
+   "comment_id": 2308974091,
+   "pr": "https://github.com/kurotu/VRCQuestTools/pull/121",
+   "path": "TESTING_INSTRUCTIONS.md",
+   "status": "not_modified",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2309551977,
+   "pr": "https://github.com/kurotu/VRCQuestTools/pull/127",
+   "path": "Packages/com.github.kurotu.vrc-quest-tools/Editor/Inspector/AvatarConverterSettingsEditor.cs",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 1,
+    "partnered": 6
+   }
+  },
+  {
+   "comment_id": 2309616006,
+   "pr": "https://github.com/Chrisimx/ScanBridge/pull/82",
+   "path": "app/src/main/java/io/github/chrisimx/scanbridge/data/ui/ScanningScreenViewModel.kt",
+   "status": "unreadable",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2309663188,
+   "pr": "https://github.com/Chrisimx/ScanBridge/pull/82",
+   "path": "app/src/test/java/org/github/chrisimx/scanbridge/ScanSettingsStoreTest.kt",
+   "status": "unreadable",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2309853506,
+   "pr": "https://github.com/deepmodeling/dpdata/pull/881",
+   "path": "tests/test_xyz.py",
+   "status": "read",
+   "label": "not_enough_files",
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2310591230,
+   "pr": "https://github.com/anatawa12/AvatarOptimizer/pull/1512",
+   "path": "Test~/Basic/AutoFreezeBlendShapeTest.cs",
+   "status": "unreadable",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2310629122,
+   "pr": "https://github.com/anatawa12/AvatarOptimizer/pull/1512",
+   "path": "Test~/Basic/CheckForUpdateVersion.cs",
+   "status": "unreadable",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2310629801,
+   "pr": "https://github.com/anatawa12/AvatarOptimizer/pull/1512",
+   "path": "Internal/MeshInfo2/MeshInfo2.cs",
+   "status": "unreadable",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2310757111,
+   "pr": "https://github.com/metabase/metabase/pull/62569",
+   "path": "frontend/src/metabase/querying/drills/utils/fk-filter-drill.ts",
+   "status": "unreadable",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2311699392,
+   "pr": "https://github.com/dotnet/docs/pull/48191",
+   "path": "docs/core/tools/dotnet-new-sdk-templates.md",
+   "status": "read",
+   "label": "not_enough_files",
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2311704950,
+   "pr": "https://github.com/kurotu/VRCQuestTools/pull/121",
+   "path": "Packages/com.github.kurotu.vrc-quest-tools/Editor/ViewModels/PhysBonesRemoveViewModel.cs",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 3,
+    "partnered": 11
+   }
+  },
+  {
+   "comment_id": 2311769974,
+   "pr": "https://github.com/kurotu/VRCQuestTools/pull/131",
+   "path": "PREVIEW_IMPLEMENTATION.md",
+   "status": "not_modified",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2311770650,
+   "pr": "https://github.com/kurotu/VRCQuestTools/pull/131",
+   "path": "Packages/com.github.kurotu.vrc-quest-tools/Editor/Utils/PreviewServiceValidation.cs",
+   "status": "not_modified",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2311779246,
+   "pr": "https://github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit/pull/3908",
+   "path": "build/BuildNugets.ps1",
+   "status": "read",
+   "label": "stranger",
+   "others": {
+    "stranger": 2,
+    "partnered": 2
+   }
+  },
+  {
+   "comment_id": 2311937619,
+   "pr": "https://github.com/deepmodeling/deepmd-kit/pull/4943",
+   "path": "deepmd/pt/model/descriptor/dpa1.py",
+   "status": "too_many_files",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2311937811,
+   "pr": "https://github.com/deepmodeling/deepmd-kit/pull/4943",
+   "path": "deepmd/pt/model/descriptor/dpa2.py",
+   "status": "too_many_files",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2311937902,
+   "pr": "https://github.com/deepmodeling/deepmd-kit/pull/4943",
+   "path": "deepmd/pt/model/descriptor/dpa3.py",
+   "status": "too_many_files",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2311938066,
+   "pr": "https://github.com/deepmodeling/deepmd-kit/pull/4943",
+   "path": "deepmd/pt/model/descriptor/repflows.py",
+   "status": "too_many_files",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2311938126,
+   "pr": "https://github.com/deepmodeling/deepmd-kit/pull/4943",
+   "path": "deepmd/pt/model/descriptor/repformers.py",
+   "status": "too_many_files",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2311971509,
+   "pr": "https://github.com/texstudio-org/texstudio/pull/4163",
+   "path": "src/qcodeedit/lib/qeditor.cpp",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 0,
+    "partnered": 5
+   }
+  },
+  {
+   "comment_id": 2312025690,
+   "pr": "https://github.com/go-vikunja/vikunja/pull/1358",
+   "path": "example-force-availability.yml",
+   "status": "not_modified",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2312399470,
+   "pr": "https://github.com/kurotu/VRCQuestTools/pull/131",
+   "path": "Packages/com.github.kurotu.vrc-quest-tools/Editor/Services/AvatarDynamicsPreviewService.cs",
+   "status": "not_modified",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2312425678,
+   "pr": "https://github.com/dotnet/runtime/pull/119229",
+   "path": "src/libraries/System.Numerics.Tensors/tests/TensorTests.cs",
+   "status": "read",
+   "label": "stranger",
+   "others": {
+    "stranger": 2,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2312550031,
+   "pr": "https://github.com/DarkflameUniverse/DarkflameServer/pull/1859",
+   "path": "dDatabase/CDClientDatabase/CDClientTables/CDComponentsRegistryTable.cpp",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 0,
+    "partnered": 6
+   }
+  },
+  {
+   "comment_id": 2312589734,
+   "pr": "https://github.com/rqlite/rqlite/pull/2292",
+   "path": "system_test/e2e/cdc.py",
+   "status": "read",
+   "label": "not_enough_files",
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2313973663,
+   "pr": "https://github.com/a2aproject/a2a-dotnet/pull/172",
+   "path": "src/A2A/Models/A2AResponse.cs",
+   "status": "read",
+   "label": "stranger",
+   "others": {
+    "stranger": 2,
+    "partnered": 3
+   }
+  },
+  {
+   "comment_id": 2314039724,
+   "pr": "https://github.com/BenLorantfy/nestjs-zod/pull/192",
+   "path": "packages/nestjs-zod/src/dto.ts",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 0,
+    "partnered": 17
+   }
+  },
+  {
+   "comment_id": 2317623660,
+   "pr": "https://github.com/liam-hq/liam/pull/3286",
+   "path": "frontend/internal-packages/agent/src/shared/jsonSchema.ts",
+   "status": "read",
+   "label": "too_new",
+   "others": {
+    "stranger": 1,
+    "partnered": 19
+   }
+  },
+  {
+   "comment_id": 2320626496,
+   "pr": "https://github.com/liam-hq/liam/pull/3304",
+   "path": "frontend/apps/app/app/api/chat/stream/route.ts",
+   "status": "read",
+   "label": "not_enough_files",
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2324388954,
+   "pr": "https://github.com/microsoft/react-native-windows/pull/15118",
+   "path": "packages/@rnw-scripts/beachball-config/package.json",
+   "status": "read",
+   "label": "stranger",
+   "others": {
+    "stranger": 0,
+    "partnered": 4
+   }
+  },
+  {
+   "comment_id": 2325862772,
+   "pr": "https://github.com/ProvableHQ/snarkOS/pull/3825",
+   "path": "node/rest/src/routes.rs",
+   "status": "read",
+   "label": "not_enough_files",
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2327567162,
+   "pr": "https://github.com/CherryHQ/cherry-studio/pull/9992",
+   "path": "PR_TEMPLATE.md",
+   "status": "not_modified",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2327768010,
+   "pr": "https://github.com/mlflow/mlflow/pull/17570",
+   "path": "dev/clint/tests/rules/conftest.py",
+   "status": "read",
+   "label": "stranger",
+   "others": {
+    "stranger": 2,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2328708365,
+   "pr": "https://github.com/deepmodeling/dpgen/pull/1794",
+   "path": "doc/overview/supported-software.md",
+   "status": "not_modified",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2330970913,
+   "pr": "https://github.com/celestiaorg/celestia-core/pull/2428",
+   "path": ".gitignore",
+   "status": "unreadable",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2331996975,
+   "pr": "https://github.com/microsoft/react-native-windows/pull/15113",
+   "path": "vnext/Microsoft.ReactNative/QuirkSettings.cpp",
+   "status": "unreadable",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2333923681,
+   "pr": "https://github.com/githubnext/gh-aw/pull/615",
+   "path": "pkg/workflow/js/sanitize_output.cjs",
+   "status": "read",
+   "label": "not_enough_files",
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2334427597,
+   "pr": "https://github.com/tambo-ai/tambo/pull/1023",
+   "path": "showcase/tsconfig.json",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 1,
+    "partnered": 2
+   }
+  },
+  {
+   "comment_id": 2335333944,
+   "pr": "https://github.com/Comfy-Org/ComfyUI_frontend/pull/5290",
+   "path": "src/composables/usePopoverSizing.ts",
+   "status": "unreadable",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2337352374,
+   "pr": "https://github.com/element-hq/element-x-ios/pull/4427",
+   "path": "ElementX/Sources/Mocks/InvitedRoomProxyMock.swift",
+   "status": "unreadable",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2337352547,
+   "pr": "https://github.com/element-hq/element-x-ios/pull/4427",
+   "path": "ElementX/Sources/Other/Logging/TraceLogPack.swift",
+   "status": "unreadable",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2338058539,
+   "pr": "https://github.com/epicweb-dev/epicshop/pull/337",
+   "path": "packages/workshop-mcp/src/resources.ts",
+   "status": "read",
+   "label": "not_enough_files",
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2339966470,
+   "pr": "https://github.com/elastic/terraform-provider-elasticstack/pull/1298",
+   "path": "internal/elasticsearch/cluster/script/schema.go",
+   "status": "not_modified",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2342840918,
+   "pr": "https://github.com/dotnet/aspire/pull/11360",
+   "path": "src/Aspire.Cli/Utils/SdkInstallHelper.cs",
+   "status": "read",
+   "label": "too_new",
+   "others": {
+    "stranger": 2,
+    "partnered": 20
+   }
+  },
+  {
+   "comment_id": 2344181178,
+   "pr": "https://github.com/dsccommunity/SqlServerDsc/pull/2108",
+   "path": "source/Public/Get-SqlDscManagedComputerInstance.ps1",
+   "status": "not_modified",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2344796549,
+   "pr": "https://github.com/epicweb-dev/epic-stack/pull/1040",
+   "path": "app/routes/users+/index.tsx",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 0,
+    "partnered": 12
+   }
+  },
+  {
+   "comment_id": 2345258904,
+   "pr": "https://github.com/githubnext/gh-aw/pull/629",
+   "path": "pkg/workflow/claude_engine.go",
+   "status": "too_many_files",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2346371194,
+   "pr": "https://github.com/ClickHouse/ClickHouse/pull/87093",
+   "path": "tests/queries/0_stateless/03233_workload_config_loading.reference",
+   "status": "not_modified",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2346878700,
+   "pr": "https://github.com/ClickHouse/ClickHouse/pull/87093",
+   "path": "programs/server/Server.cpp",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 0,
+    "partnered": 9
+   }
+  },
+  {
+   "comment_id": 2346901490,
+   "pr": "https://github.com/ClickHouse/ClickHouse/pull/87093",
+   "path": "src/Common/Scheduler/Workload/WorkloadEntityConfigStorage.cpp",
+   "status": "not_modified",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2346910381,
+   "pr": "https://github.com/ClickHouse/ClickHouse/pull/87093",
+   "path": "src/Common/Scheduler/Workload/WorkloadEntityDiskStorage.h",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 0,
+    "partnered": 9
+   }
+  },
+  {
+   "comment_id": 2347372856,
+   "pr": "https://github.com/wled/WLED/pull/4930",
+   "path": "wled00/wled_server.cpp",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 2,
+    "partnered": 2
+   }
+  },
+  {
+   "comment_id": 2349178809,
+   "pr": "https://github.com/dotnet/maui/pull/31618",
+   "path": "src/Templates/src/cgmanifest.json",
+   "status": "read",
+   "label": "stranger",
+   "others": {
+    "stranger": 0,
+    "partnered": 8
+   }
+  },
+  {
+   "comment_id": 2349179307,
+   "pr": "https://github.com/dotnet/maui/pull/31618",
+   "path": "src/Templates/src/templates/maui-blazor-solution/.template.config/localize/templatestrings.json",
+   "status": "read",
+   "label": "too_new",
+   "others": {
+    "stranger": 1,
+    "partnered": 8
+   }
+  },
+  {
+   "comment_id": 2349180121,
+   "pr": "https://github.com/dotnet/maui/pull/31618",
+   "path": "src/Templates/src/templates/maui-blazor/.template.config/localize/templatestrings.json",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 1,
+    "partnered": 7
+   }
+  },
+  {
+   "comment_id": 2349180586,
+   "pr": "https://github.com/dotnet/maui/pull/31618",
+   "path": "src/Templates/src/templates/maui-contentpage-csharp/.template.config/localize/templatestrings.json",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 1,
+    "partnered": 7
+   }
+  },
+  {
+   "comment_id": 2349180940,
+   "pr": "https://github.com/dotnet/maui/pull/31618",
+   "path": "src/Templates/src/templates/maui-contentpage-xaml/.template.config/localize/templatestrings.json",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 1,
+    "partnered": 7
+   }
+  },
+  {
+   "comment_id": 2349181352,
+   "pr": "https://github.com/dotnet/maui/pull/31618",
+   "path": "src/Templates/src/templates/maui-contentview-csharp/.template.config/localize/templatestrings.json",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 1,
+    "partnered": 7
+   }
+  },
+  {
+   "comment_id": 2349181666,
+   "pr": "https://github.com/dotnet/maui/pull/31618",
+   "path": "src/Templates/src/templates/maui-contentview-xaml/.template.config/localize/templatestrings.json",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 1,
+    "partnered": 7
+   }
+  },
+  {
+   "comment_id": 2349181972,
+   "pr": "https://github.com/dotnet/maui/pull/31618",
+   "path": "src/Templates/src/templates/maui-lib/.template.config/localize/templatestrings.json",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 1,
+    "partnered": 7
+   }
+  },
+  {
+   "comment_id": 2349182338,
+   "pr": "https://github.com/dotnet/maui/pull/31618",
+   "path": "src/Templates/src/templates/maui-mobile/.template.config/localize/templatestrings.json",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 1,
+    "partnered": 7
+   }
+  },
+  {
+   "comment_id": 2349182724,
+   "pr": "https://github.com/dotnet/maui/pull/31618",
+   "path": "src/Templates/src/templates/maui-multiproject/.template.config/localize/templatestrings.json",
+   "status": "read",
+   "label": "too_new",
+   "others": {
+    "stranger": 1,
+    "partnered": 8
+   }
+  },
+  {
+   "comment_id": 2349183007,
+   "pr": "https://github.com/dotnet/maui/pull/31618",
+   "path": "src/Templates/src/templates/maui-resourcedictionary-xaml/.template.config/localize/templatestrings.json",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 1,
+    "partnered": 7
+   }
+  },
+  {
+   "comment_id": 2349183265,
+   "pr": "https://github.com/dotnet/maui/pull/31618",
+   "path": "src/Templates/src/templates/maui-window-csharp/.template.config/localize/templatestrings.json",
+   "status": "read",
+   "label": "too_new",
+   "others": {
+    "stranger": 1,
+    "partnered": 8
+   }
+  },
+  {
+   "comment_id": 2349183533,
+   "pr": "https://github.com/dotnet/maui/pull/31618",
+   "path": "src/Templates/src/templates/maui-window-xaml/.template.config/localize/templatestrings.json",
+   "status": "read",
+   "label": "too_new",
+   "others": {
+    "stranger": 1,
+    "partnered": 8
+   }
+  },
+  {
+   "comment_id": 2350253960,
+   "pr": "https://github.com/epicweb-dev/epicshop/pull/338",
+   "path": "packages/workshop-utils/src/epic-api.server.ts",
+   "status": "read",
+   "label": "not_enough_files",
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2353324084,
+   "pr": "https://github.com/a2aproject/a2a-dotnet/pull/184",
+   "path": "src/A2A/A2AJsonConverter.cs",
+   "status": "read",
+   "label": "too_new",
+   "others": {
+    "stranger": 0,
+    "partnered": 4
+   }
+  },
+  {
+   "comment_id": 2354274837,
+   "pr": "https://github.com/mlflow/mlflow/pull/17783",
+   "path": "dev/clint/src/clint/index.py",
+   "status": "read",
+   "label": "stranger",
+   "others": {
+    "stranger": 1,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2354652584,
+   "pr": "https://github.com/albertorestifo/node-dijkstra/pull/44",
+   "path": "RELEASE.md",
+   "status": "not_modified",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2354727973,
+   "pr": "https://github.com/safedep/vet/pull/598",
+   "path": "pkg/malysis/ossf.go",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 0,
+    "partnered": 2
+   }
+  },
+  {
+   "comment_id": 2354836415,
+   "pr": "https://github.com/shakacode/react_on_rails/pull/1786",
+   "path": "lib/generators/react_on_rails/install_generator.rb",
+   "status": "unreadable",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2355204854,
+   "pr": "https://github.com/dotnet/razor/pull/12234",
+   "path": "src/Razor/src/Microsoft.VisualStudio.RazorExtension/SyntaxVisualizer/SyntaxVisualizerControl.xaml.cs",
+   "status": "read",
+   "label": "not_enough_files",
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2355686764,
+   "pr": "https://github.com/mui/mui-x/pull/19334",
+   "path": "docs/data/charts/hooks/use-series.md",
+   "status": "not_modified",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2355726485,
+   "pr": "https://github.com/githubnext/gh-aw/pull/879",
+   "path": ".github/workflows/dev.lock.yml",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 0,
+    "partnered": 5
+   }
+  },
+  {
+   "comment_id": 2356261598,
+   "pr": "https://github.com/wled/WLED/pull/4930",
+   "path": "tools/cdata.js",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 2,
+    "partnered": 2
+   }
+  },
+  {
+   "comment_id": 2356261951,
+   "pr": "https://github.com/wled/WLED/pull/4930",
+   "path": "pio-scripts/build_ui.py",
+   "status": "read",
+   "label": "stranger",
+   "others": {
+    "stranger": 1,
+    "partnered": 3
+   }
+  },
+  {
+   "comment_id": 2356723122,
+   "pr": "https://github.com/githubnext/gh-aw/pull/888",
+   "path": "Makefile",
+   "status": "read",
+   "label": "stranger",
+   "others": {
+    "stranger": 2,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2357005654,
+   "pr": "https://github.com/dotnet/sdk/pull/50027",
+   "path": "src/Cli/dotnet/Commands/Tool/Install/ToolInstallGlobalOrToolPathCommand.cs",
+   "status": "too_many_files",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2357154699,
+   "pr": "https://github.com/rocicorp/mono/pull/4908",
+   "path": "apps/otel-proxy/package.json",
+   "status": "too_many_files",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2360117932,
+   "pr": "https://github.com/ohcnetwork/care_fe/pull/13764",
+   "path": "src/pages/Facility/settings/chargeItemDefinitions/ChargeItemDefinitionForm.tsx",
+   "status": "read",
+   "label": "not_enough_files",
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2361423943,
+   "pr": "https://github.com/marin-community/marin/pull/1610",
+   "path": "tests/test_uncheatable_eval_download.py",
+   "status": "not_modified",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2362197439,
+   "pr": "https://github.com/dotnet/fsharp/pull/18584",
+   "path": "tests/FSharp.Compiler.Service.Tests/Symbols.fs",
+   "status": "too_many_files",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2362385784,
+   "pr": "https://github.com/dotnet/fsharp/pull/18801",
+   "path": "tests/FSharp.Compiler.ComponentTests/EmittedIL/Misc/DuplicateCctorFix.fs",
+   "status": "not_modified",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2363589457,
+   "pr": "https://github.com/betaflight/betaflight/pull/14672",
+   "path": "src/main/build/version.c",
+   "status": "read",
+   "label": "stranger",
+   "others": {
+    "stranger": 1,
+    "partnered": 3
+   }
+  },
+  {
+   "comment_id": 2363753747,
+   "pr": "https://github.com/514-labs/moosestack/pull/2767",
+   "path": "packages/ts-moose-lib/src/streaming-functions/runner.ts",
+   "status": "unreadable",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2366676110,
+   "pr": "https://github.com/betaflight/betaflight/pull/14672",
+   "path": "src/main/io/beeper.h",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 0,
+    "partnered": 7
+   }
+  },
+  {
+   "comment_id": 2366730108,
+   "pr": "https://github.com/Homebrew/brew/pull/20718",
+   "path": "Library/Homebrew/test/cask/download_spec.rb",
+   "status": "unreadable",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2366925036,
+   "pr": "https://github.com/mlflow/mlflow/pull/17874",
+   "path": ".vscode/settings.json",
+   "status": "read",
+   "label": "not_enough_files",
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2367458064,
+   "pr": "https://github.com/github/codeql-action/pull/3094",
+   "path": "pr-checks/test_sync_back.py",
+   "status": "not_modified",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2367663513,
+   "pr": "https://github.com/elastic/ecs-logging-java/pull/357",
+   "path": "log4j2-ecs-layout/src/test/java/co/elastic/logging/log4j2/EcsLayoutWithCustomMdcSerializerTest.java",
+   "status": "read",
+   "label": "too_new",
+   "others": {
+    "stranger": 0,
+    "partnered": 4
+   }
+  },
+  {
+   "comment_id": 2370225699,
+   "pr": "https://github.com/AzureAD/microsoft-identity-web/pull/3486",
+   "path": "global.json",
+   "status": "read",
+   "label": "stranger",
+   "others": {
+    "stranger": 2,
+    "partnered": 2
+   }
+  },
+  {
+   "comment_id": 2371614443,
+   "pr": "https://github.com/camunda/camunda/pull/38598",
+   "path": "zeebe/broker/src/test/java/io/camunda/zeebe/broker/system/configuration/FeatureFlagsCfgTest.java",
+   "status": "read",
+   "label": "not_enough_files",
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2371688164,
+   "pr": "https://github.com/dadoonet/fscrawler/pull/2150",
+   "path": "static-metadata-example.md",
+   "status": "not_modified",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2371696081,
+   "pr": "https://github.com/github/codeql-action/pull/3094",
+   "path": ".github/workflows/pr-checks.yml",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 0,
+    "partnered": 7
+   }
+  },
+  {
+   "comment_id": 2371723068,
+   "pr": "https://github.com/github/codeql-action/pull/3094",
+   "path": "pr-checks/readme.md",
+   "status": "read",
+   "label": "too_new",
+   "others": {
+    "stranger": 0,
+    "partnered": 8
+   }
+  },
+  {
+   "comment_id": 2372448518,
+   "pr": "https://github.com/pola-rs/r-polars/pull/1559",
+   "path": ".github/workflows/copilot-setup-steps.yml",
+   "status": "not_modified",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2373378665,
+   "pr": "https://github.com/actualbudget/actual/pull/5782",
+   "path": "packages/sync-server/src/load-config.js",
+   "status": "read",
+   "label": "not_enough_files",
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2373766545,
+   "pr": "https://github.com/githubnext/gh-aw/pull/979",
+   "path": "pkg/parser/schemas/main_workflow_schema.json",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 1,
+    "partnered": 10
+   }
+  },
+  {
+   "comment_id": 2375067166,
+   "pr": "https://github.com/githubnext/gh-aw/pull/983",
+   "path": ".github/workflows/dev.lock.yml",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 1,
+    "partnered": 9
+   }
+  },
+  {
+   "comment_id": 2375120111,
+   "pr": "https://github.com/githubnext/gh-aw/pull/983",
+   "path": "pkg/workflow/compiler.go",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 1,
+    "partnered": 12
+   }
+  },
+  {
+   "comment_id": 2375153024,
+   "pr": "https://github.com/mlflow/mlflow/pull/17914",
+   "path": ".github/workflows/sync.js",
+   "status": "not_modified",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2381358531,
+   "pr": "https://github.com/dotnet/docs-aspire/pull/4810",
+   "path": "docs/deployment/aspire-deploy/aca-deployment-aspire-cli.md",
+   "status": "read",
+   "label": "not_enough_files",
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2381669111,
+   "pr": "https://github.com/liam-hq/liam/pull/3610",
+   "path": "frontend/apps/app/app/api/chat/replay/route.ts",
+   "status": "unreadable",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2382147574,
+   "pr": "https://github.com/mlflow/mlflow/pull/17972",
+   "path": "tests/server/job/test_endpoint.py",
+   "status": "read",
+   "label": "not_enough_files",
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2382346157,
+   "pr": "https://github.com/microsoft/vscode-pull-request-github/pull/7867",
+   "path": "src/issues/issuesView.ts",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 0,
+    "partnered": 5
+   }
+  },
+  {
+   "comment_id": 2382405133,
+   "pr": "https://github.com/mlflow/mlflow/pull/17973",
+   "path": "tests/server/job/test_endpoint.py",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 0,
+    "partnered": 10
+   }
+  },
+  {
+   "comment_id": 2382696844,
+   "pr": "https://github.com/dotnet/sdk/pull/51013",
+   "path": "src/Compatibility/ApiDiff/Microsoft.DotNet.ApiDiff/MemoryOutputDiffGenerator.cs",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 0,
+    "partnered": 2
+   }
+  },
+  {
+   "comment_id": 2382741079,
+   "pr": "https://github.com/dotnet/docs-aspire/pull/4812",
+   "path": "docs/deployment/overview.md",
+   "status": "read",
+   "label": "not_enough_files",
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2383434651,
+   "pr": "https://github.com/projectcalico/calico/pull/11086",
+   "path": "manifests/tigera-operator-ocp-upgrade.yaml",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 0,
+    "partnered": 26
+   }
+  },
+  {
+   "comment_id": 2383436330,
+   "pr": "https://github.com/projectcalico/calico/pull/11086",
+   "path": "goldmane/proto/api.pb.go",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 0,
+    "partnered": 26
+   }
+  },
+  {
+   "comment_id": 2383471237,
+   "pr": "https://github.com/usesend/useSend/pull/259",
+   "path": "apps/web/src/types/domain.ts",
+   "status": "not_modified",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2383472478,
+   "pr": "https://github.com/projectcalico/calico/pull/11086",
+   "path": "goldmane/pkg/client/mocks/FlowsClient.go",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 0,
+    "partnered": 27
+   }
+  },
+  {
+   "comment_id": 2383514568,
+   "pr": "https://github.com/MetaMask/metamask-mobile/pull/20483",
+   "path": "app/components/UI/Perps/Views/PerpsTabView/PerpsTabView.tsx",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 0,
+    "partnered": 2
+   }
+  },
+  {
+   "comment_id": 2383575787,
+   "pr": "https://github.com/dotnet/EntityFramework.Docs/pull/5113",
+   "path": "entity-framework/core/performance/advanced-performance-topics.md",
+   "status": "read",
+   "label": "not_enough_files",
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2383712516,
+   "pr": "https://github.com/microsoft/service-fabric-services-and-actors-dotnet/pull/480",
+   "path": "test/Microsoft.ServiceFabric.Actors.Tests/Diagnostics/ActorFrameworkEventSourceTest.cs",
+   "status": "unreadable",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2384091288,
+   "pr": "https://github.com/mikro-orm/mikro-orm/pull/6887",
+   "path": "tests/features/optimistic-lock/mongodb-optimistic-lock.test.ts",
+   "status": "not_modified",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2384114004,
+   "pr": "https://github.com/dotnet/sdk/pull/51039",
+   "path": "test/Microsoft.NET.Sdk.StaticWebAssets.Tests/ComputeStaticWebAssetsTargetPathsTest.cs",
+   "status": "unreadable",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2384114074,
+   "pr": "https://github.com/dotnet/sdk/pull/51039",
+   "path": "test/Microsoft.NET.Sdk.StaticWebAssets.Tests/JsModulesIntegrationTest.cs",
+   "status": "unreadable",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2384114158,
+   "pr": "https://github.com/dotnet/sdk/pull/51039",
+   "path": "test/Microsoft.NET.Sdk.StaticWebAssets.Tests/LegacyStaticWebAssetsV1IntegrationTest.cs",
+   "status": "unreadable",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2384114326,
+   "pr": "https://github.com/dotnet/sdk/pull/51039",
+   "path": "test/Microsoft.NET.Sdk.StaticWebAssets.Tests/StaticWebAssetEndpointsIntegrationTest.cs",
+   "status": "unreadable",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2384114421,
+   "pr": "https://github.com/dotnet/sdk/pull/51039",
+   "path": "test/Microsoft.NET.Sdk.StaticWebAssets.Tests/StaticWebAssets/DefineStaticWebAssetEndpointsTest.cs",
+   "status": "unreadable",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2384114528,
+   "pr": "https://github.com/dotnet/sdk/pull/51039",
+   "path": "test/Microsoft.NET.Sdk.StaticWebAssets.Tests/StaticWebAssets/DiscoverPrecompressedAssetsTest.cs",
+   "status": "unreadable",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2384114756,
+   "pr": "https://github.com/dotnet/sdk/pull/51039",
+   "path": "test/Microsoft.NET.Sdk.StaticWebAssets.Tests/StaticWebAssets/DiscoverStaticWebAssetsTest.cs",
+   "status": "unreadable",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2384114868,
+   "pr": "https://github.com/dotnet/sdk/pull/51039",
+   "path": "test/Microsoft.NET.Sdk.StaticWebAssets.Tests/StaticWebAssets/FilterStaticWebAssetEndpointsTest.cs",
+   "status": "unreadable",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2384114880,
+   "pr": "https://github.com/dotnet/sdk/pull/51039",
+   "path": "test/Microsoft.NET.Sdk.StaticWebAssets.Tests/StaticWebAssets/GenerateStaticWebAssetEndpointsManifestTest.cs",
+   "status": "unreadable",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2384115005,
+   "pr": "https://github.com/dotnet/sdk/pull/51039",
+   "path": "test/Microsoft.NET.Sdk.StaticWebAssets.Tests/StaticWebAssets/GenerateStaticWebAssetEndpointsPropsFileTest.cs",
+   "status": "unreadable",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2384115095,
+   "pr": "https://github.com/dotnet/sdk/pull/51039",
+   "path": "test/Microsoft.NET.Sdk.StaticWebAssets.Tests/StaticWebAssets/Globbing/StaticWebAssetGlobMatcherTest.cs",
+   "status": "unreadable",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2384115134,
+   "pr": "https://github.com/dotnet/sdk/pull/51039",
+   "path": "test/Microsoft.NET.Sdk.StaticWebAssets.Tests/StaticWebAssets/OverrideHtmlAssetPlaceholdersTest.cs",
+   "status": "unreadable",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2384115300,
+   "pr": "https://github.com/dotnet/sdk/pull/51039",
+   "path": "test/Microsoft.NET.Sdk.StaticWebAssets.Tests/StaticWebAssets/ResolveCompressedAssetsTest.cs",
+   "status": "unreadable",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2384115346,
+   "pr": "https://github.com/dotnet/sdk/pull/51039",
+   "path": "test/Microsoft.NET.Sdk.StaticWebAssets.Tests/StaticWebAssets/ResolveFingerprintedStaticWebAssetEndpointsForAssetsTest.cs",
+   "status": "unreadable",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2384115394,
+   "pr": "https://github.com/dotnet/sdk/pull/51039",
+   "path": "test/Microsoft.NET.Sdk.StaticWebAssets.Tests/StaticWebAssets/UpdateExternallyDefinedStaticWebAssetsTest.cs",
+   "status": "unreadable",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2384115444,
+   "pr": "https://github.com/dotnet/sdk/pull/51039",
+   "path": "test/Microsoft.NET.Sdk.StaticWebAssets.Tests/StaticWebAssets/UpdateStaticWebAssetEndpointsTest.cs",
+   "status": "unreadable",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2384115535,
+   "pr": "https://github.com/dotnet/sdk/pull/51039",
+   "path": "test/Microsoft.NET.Sdk.StaticWebAssets.Tests/StaticWebAssetsBaselineFactory.cs",
+   "status": "unreadable",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2384115584,
+   "pr": "https://github.com/dotnet/sdk/pull/51039",
+   "path": "test/Microsoft.NET.Sdk.StaticWebAssets.Tests/StaticWebAssetsCompressionIntegrationTest.cs",
+   "status": "unreadable",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2384115614,
+   "pr": "https://github.com/dotnet/sdk/pull/51039",
+   "path": "test/Microsoft.NET.Sdk.StaticWebAssets.Tests/StaticWebAssetsFingerprintingTest.cs",
+   "status": "unreadable",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2384115654,
+   "pr": "https://github.com/dotnet/sdk/pull/51039",
+   "path": "test/Microsoft.NET.Sdk.StaticWebAssets.Tests/StaticWebAssetsIntegrationTest.cs",
+   "status": "unreadable",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2384776065,
+   "pr": "https://github.com/Agoric/agoric-sdk/pull/11967",
+   "path": "services/ymax-planner/src/resolver.ts",
+   "status": "read",
+   "label": "stranger",
+   "others": {
+    "stranger": 1,
+    "partnered": 5
+   }
+  },
+  {
+   "comment_id": 2385306651,
+   "pr": "https://github.com/mikro-orm/mikro-orm/pull/6887",
+   "path": "packages/mongodb/src/MongoDriver.ts",
+   "status": "read",
+   "label": "not_enough_files",
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2386520257,
+   "pr": "https://github.com/highperformancecoder/minsky/pull/564",
+   "path": "test/testCanvasGtest.cc",
+   "status": "not_modified",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2386540947,
+   "pr": "https://github.com/mlflow/mlflow/pull/17973",
+   "path": "tests/server/jobs/test_endpoint.py",
+   "status": "too_many_files",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2389531267,
+   "pr": "https://github.com/dotnet/aspire/pull/11724",
+   "path": ".github/workflows/run-tests.yml",
+   "status": "read",
+   "label": "stranger",
+   "others": {
+    "stranger": 1,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2390469233,
+   "pr": "https://github.com/vaadin/flow/pull/21824",
+   "path": ".gitignore",
+   "status": "too_many_files",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2390642459,
+   "pr": "https://github.com/liam-hq/liam/pull/3610",
+   "path": "frontend/internal-packages/agent/src/db-agent/dbAgentReplayStream.ts",
+   "status": "not_modified",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2391951016,
+   "pr": "https://github.com/getsentry/sentry-docs/pull/14503",
+   "path": "src/remark-image-resize.js",
+   "status": "not_modified",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2392408111,
+   "pr": "https://github.com/dotnet/aspire/pull/11454",
+   "path": "src/Aspire.Hosting/Publishing/DockerContainerRuntime.cs",
+   "status": "read",
+   "label": "not_enough_files",
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2392572867,
+   "pr": "https://github.com/altair-graphql/altair/pull/2883",
+   "path": "packages/altair-docs/docs/features/accessibility.md",
+   "status": "not_modified",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2392605769,
+   "pr": "https://github.com/open-telemetry/opentelemetry-java-instrumentation/pull/14843",
+   "path": "instrumentation/log4j/log4j-appender-2.17/testing/src/main/java/io/opentelemetry/instrumentation/log4j/appender/v2_17/AbstractLog4j2Test.java",
+   "status": "not_modified",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2392609126,
+   "pr": "https://github.com/altair-graphql/altair/pull/2883",
+   "path": "packages/altair-docs/docs/integrations/index.md",
+   "status": "read",
+   "label": "too_new",
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2392968708,
+   "pr": "https://github.com/dotnet/aspire/pull/10786",
+   "path": "src/Shared/Workload.targets",
+   "status": "too_many_files",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2393465431,
+   "pr": "https://github.com/microsoft/agent-lightning/pull/120",
+   "path": "agentlightning/store/client_server.py",
+   "status": "read",
+   "label": "too_new",
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2393844965,
+   "pr": "https://github.com/mouse07410/asn1c/pull/281",
+   "path": "skeletons/asn_codecs.h",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 0,
+    "partnered": 3
+   }
+  },
+  {
+   "comment_id": 2395186323,
+   "pr": "https://github.com/livepeer/go-livepeer/pull/3767",
+   "path": "ai/worker/docker.go",
+   "status": "read",
+   "label": "not_enough_files",
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2396290882,
+   "pr": "https://github.com/microsoft/agent-framework/pull/1089",
+   "path": "python/samples/getting_started/agents/openai/openai_responses_client_with_hosted_mcp.py",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 1,
+    "partnered": 5
+   }
+  },
+  {
+   "comment_id": 2397288771,
+   "pr": "https://github.com/techpivot/terraform-module-releaser/pull/283",
+   "path": "src/wiki.ts",
+   "status": "unreadable",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2398232778,
+   "pr": "https://github.com/vaadin/flow/pull/21823",
+   "path": "flow-test-generic/src/main/java/com/vaadin/flow/testutil/ClassesSerializableTest.java",
+   "status": "unreadable",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2398951091,
+   "pr": "https://github.com/githubnext/gh-aw/pull/1152",
+   "path": "pkg/workflow/sh/checkout_pr.sh",
+   "status": "not_modified",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2399349903,
+   "pr": "https://github.com/dotnet/arcade/pull/16035",
+   "path": "src/Microsoft.DotNet.SignTool/src/SignTool.cs",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 0,
+    "partnered": 9
+   }
+  },
+  {
+   "comment_id": 2399902656,
+   "pr": "https://github.com/dotnet/aspire/pull/11778",
+   "path": "playground/orleans/OrleansServiceDefaults/OrleansServiceDefaults.csproj",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 0,
+    "partnered": 14
+   }
+  },
+  {
+   "comment_id": 2399984293,
+   "pr": "https://github.com/githubnext/gh-aw/pull/1172",
+   "path": "pkg/workflow/threat_detection.go",
+   "status": "read",
+   "label": "stranger",
+   "others": {
+    "stranger": 0,
+    "partnered": 3
+   }
+  },
+  {
+   "comment_id": 2400664292,
+   "pr": "https://github.com/open-telemetry/opentelemetry-java-instrumentation/pull/14869",
+   "path": "conventions/src/main/kotlin/io.opentelemetry.instrumentation.base.gradle.kts",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 1,
+    "partnered": 10
+   }
+  },
+  {
+   "comment_id": 2401337840,
+   "pr": "https://github.com/dotnet/extensions/pull/6885",
+   "path": "test/Libraries/Microsoft.Extensions.AI.Abstractions.Tests/ChatCompletion/ChatResponseUpdateExtensionsTests.cs",
+   "status": "read",
+   "label": "not_enough_files",
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2401345635,
+   "pr": "https://github.com/databricks/cli/pull/3713",
+   "path": "bundle/deploy/terraform/import.go",
+   "status": "read",
+   "label": "not_enough_files",
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2401956137,
+   "pr": "https://github.com/wp-media/wp-rocket/pull/7762",
+   "path": "inc/Engine/Admin/Settings/Page.php",
+   "status": "read",
+   "label": "stranger",
+   "others": {
+    "stranger": 2,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2401957387,
+   "pr": "https://github.com/wp-media/wp-rocket/pull/7762",
+   "path": "views/settings/sections/addons-container.php",
+   "status": "read",
+   "label": "stranger",
+   "others": {
+    "stranger": 2,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2402051904,
+   "pr": "https://github.com/vllm-project/semantic-router/pull/322",
+   "path": "TRACING_FEATURE.md",
+   "status": "not_modified",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2402100124,
+   "pr": "https://github.com/hazzik/DelegateDecompiler/pull/282",
+   "path": "src/DelegateDecompiler/Processors/ThrowProcessor.cs",
+   "status": "not_modified",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2403910558,
+   "pr": "https://github.com/githubnext/gh-aw/pull/1228",
+   "path": "pkg/workflow/step.go",
+   "status": "not_modified",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2404243531,
+   "pr": "https://github.com/teilomillet/gollm/pull/44",
+   "path": "llm/validate.go",
+   "status": "unreadable",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2404243717,
+   "pr": "https://github.com/teilomillet/gollm/pull/44",
+   "path": "config/config.go",
+   "status": "unreadable",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2404309797,
+   "pr": "https://github.com/SwitchbackTech/compass/pull/1059",
+   "path": "packages/web/src/views/Forms/EventForm/DateControlsSection/RecurrenceSection/components/WeekDays.tsx",
+   "status": "not_modified",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2405160121,
+   "pr": "https://github.com/eclipse-rdf4j/rdf4j/pull/5478",
+   "path": "core/rio/api/src/test/java/org/eclipse/rdf4j/rio/helpers/AbstractRDFParserTest.java",
+   "status": "read",
+   "label": "stranger",
+   "others": {
+    "stranger": 2,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2405297376,
+   "pr": "https://github.com/liam-hq/liam/pull/3696",
+   "path": ".changeset/shorten-members-search-bar.md",
+   "status": "not_modified",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2406155486,
+   "pr": "https://github.com/software-mansion/scarb/pull/2712",
+   "path": "website/docs/extensions/oracles/overview.md",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 0,
+    "partnered": 7
+   }
+  },
+  {
+   "comment_id": 2409279159,
+   "pr": "https://github.com/Kiln-AI/Kiln/pull/648",
+   "path": "libs/server/kiln_server/mcp/tool_selection.py",
+   "status": "not_modified",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2409309278,
+   "pr": "https://github.com/Kiln-AI/Kiln/pull/648",
+   "path": "libs/server/kiln_server/mcp/README.md",
+   "status": "not_modified",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2411055454,
+   "pr": "https://github.com/microsoft/perfview/pull/2308",
+   "path": "src/TraceParserGen.Tests/TraceParserGen.Tests.csproj",
+   "status": "not_modified",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2411083966,
+   "pr": "https://github.com/microsoft/perfview/pull/2308",
+   "path": "src/TraceParserGen.Tests/TestBase.cs",
+   "status": "not_modified",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2411121183,
+   "pr": "https://github.com/cloudposse/atmos/pull/1607",
+   "path": "cmd/describe_component_test.go",
+   "status": "too_many_files",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2411294411,
+   "pr": "https://github.com/rolldown/rolldown/pull/6451",
+   "path": "crates/rolldown/src/bundler.rs",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 0,
+    "partnered": 2
+   }
+  },
+  {
+   "comment_id": 2411965590,
+   "pr": "https://github.com/Azure/azure-sdk-for-python/pull/43269",
+   "path": "sdk/cosmos/azure-cosmos/azure/cosmos/cosmos_client.py",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 0,
+    "partnered": 3
+   }
+  },
+  {
+   "comment_id": 2413936717,
+   "pr": "https://github.com/masslight/ottehr/pull/4301",
+   "path": "apps/ehr/src/features/visits/shared/hooks/useDebounceNotesField.ts",
+   "status": "not_modified",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2413954305,
+   "pr": "https://github.com/masslight/ottehr/pull/4301",
+   "path": "packages/zambdas/src/ehr/save-chart-data/index.ts",
+   "status": "too_many_files",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2415389646,
+   "pr": "https://github.com/oxc-project/oxc/pull/14277",
+   "path": "crates/oxc_transformer/src/es2020/export_namespace_from.rs",
+   "status": "not_modified",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2415850392,
+   "pr": "https://github.com/microsoft/wassette/pull/371",
+   "path": "rust-toolchain.toml",
+   "status": "unreadable",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2415920206,
+   "pr": "https://github.com/actualbudget/actual/pull/5874",
+   "path": "packages/desktop-client/src/components/mobile/payees/PayeesListItem.tsx",
+   "status": "too_many_files",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2417388489,
+   "pr": "https://github.com/dotnet/aspire/pull/11929",
+   "path": "tests/Aspire.Hosting.Azure.Tests/AzureContainerAppsTests.cs",
+   "status": "read",
+   "label": "not_enough_files",
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2417782008,
+   "pr": "https://github.com/Azure/azure-sdk-for-rust/pull/3169",
+   "path": "AGENTS.md",
+   "status": "not_modified",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2419422994,
+   "pr": "https://github.com/open-metadata/OpenMetadata/pull/23202",
+   "path": "ingestion/src/metadata/ingestion/source/dashboard/grafana/models.py",
+   "status": "too_many_files",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2420503317,
+   "pr": "https://github.com/microsoft/sqlmanagementobjects/pull/208",
+   "path": "src/Microsoft/SqlServer/Management/Smo/SqlSmoObject.cs",
+   "status": "read",
+   "label": "too_new",
+   "others": {
+    "stranger": 0,
+    "partnered": 2
+   }
+  },
+  {
+   "comment_id": 2421822051,
+   "pr": "https://github.com/algorand/go-algorand/pull/6457",
+   "path": "network/p2p/capabilities_test.go",
+   "status": "read",
+   "label": "stranger",
+   "others": {
+    "stranger": 1,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2422062254,
+   "pr": "https://github.com/typedclojure/typedclojure/pull/188",
+   "path": "example-projects/clj-kondo-hooks/clj-kondo-bug-reproduction/README.md",
+   "status": "not_modified",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2422123874,
+   "pr": "https://github.com/typedclojure/typedclojure/pull/188",
+   "path": "example-projects/clj-kondo-hooks/clj-kondo-bug-reproduction/reproduction.clj",
+   "status": "not_modified",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2422446520,
+   "pr": "https://github.com/manusa/electronim/pull/563",
+   "path": "src/chrome-tabs/__tests__/check-for-updates.test.js",
+   "status": "read",
+   "label": "too_new",
+   "others": {
+    "stranger": 2,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2423090808,
+   "pr": "https://github.com/cloudposse/atmos/pull/1599",
+   "path": "errors/formatter.go",
+   "status": "not_modified",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2423110835,
+   "pr": "https://github.com/dotnet/runtime/pull/120632",
+   "path": "src/libraries/Microsoft.Extensions.Hosting/tests/UnitTests/BackgroundServiceExceptionBehaviorTests.cs",
+   "status": "not_modified",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2423138013,
+   "pr": "https://github.com/dotnet/runtime/pull/120630",
+   "path": "src/libraries/System.Runtime.InteropServices.JavaScript/src/System/Runtime/InteropServices/JavaScript/JSHostImplementation.cs",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 1,
+    "partnered": 12
+   }
+  },
+  {
+   "comment_id": 2424300450,
+   "pr": "https://github.com/dotnet/roslyn/pull/80664",
+   "path": "src/VisualStudio/CSharp/Impl/Options/AdvancedOptionPageControl.xaml",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 0,
+    "partnered": 30
+   }
+  },
+  {
+   "comment_id": 2425735761,
+   "pr": "https://github.com/Shelf-nu/shelf.nu/pull/2100",
+   "path": "app/utils/env.ts",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 0,
+    "partnered": 8
+   }
+  },
+  {
+   "comment_id": 2425737032,
+   "pr": "https://github.com/Shelf-nu/shelf.nu/pull/2100",
+   "path": "app/modules/editor-v2/feature-flag.ts",
+   "status": "not_modified",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2425923067,
+   "pr": "https://github.com/dotnet/razor/pull/12324",
+   "path": "src/Razor/src/Microsoft.CodeAnalysis.Razor.Workspaces/Completion/BlazorDataAttributeCompletionItemProvider.cs",
+   "status": "not_modified",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2426709644,
+   "pr": "https://github.com/databricks/cli/pull/3755",
+   "path": "tools/go.mod",
+   "status": "read",
+   "label": "too_new",
+   "others": {
+    "stranger": 1,
+    "partnered": 14
+   }
+  },
+  {
+   "comment_id": 2427008921,
+   "pr": "https://github.com/dotnet/roslyn/pull/80672",
+   "path": "src/Workspaces/CSharp/Portable/Classification/SyntaxClassification/DocCommentCodeBlockClassifier.cs",
+   "status": "unreadable",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2427500855,
+   "pr": "https://github.com/dotnet/roslyn/pull/80681",
+   "path": "src/Compilers/CSharp/Test/Semantic/Semantics/AccessCheckTests.cs",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 0,
+    "partnered": 3
+   }
+  },
+  {
+   "comment_id": 2427648180,
+   "pr": "https://github.com/ethereumclassic/ethereumclassic.github.io/pull/1645",
+   "path": "DEAD_LINKS_ANALYSIS.md",
+   "status": "not_modified",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2427648433,
+   "pr": "https://github.com/ethereumclassic/ethereumclassic.github.io/pull/1645",
+   "path": "FINAL_SUMMARY.md",
+   "status": "not_modified",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2427648725,
+   "pr": "https://github.com/ethereumclassic/ethereumclassic.github.io/pull/1645",
+   "path": "LINK_CHECKING_STATUS.md",
+   "status": "not_modified",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2427649378,
+   "pr": "https://github.com/ethereumclassic/ethereumclassic.github.io/pull/1645",
+   "path": "NEXT_STEPS.md",
+   "status": "not_modified",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2427649759,
+   "pr": "https://github.com/ethereumclassic/ethereumclassic.github.io/pull/1645",
+   "path": "README_DEAD_LINKS.md",
+   "status": "not_modified",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2427650331,
+   "pr": "https://github.com/ethereumclassic/ethereumclassic.github.io/pull/1645",
+   "path": "scripts/check-dead-links.js",
+   "status": "not_modified",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2427822168,
+   "pr": "https://github.com/liam-hq/liam/pull/3744",
+   "path": "frontend/apps/app/components/SessionDetailPage/SessionDetailPageClient.tsx",
+   "status": "unreadable",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2428446989,
+   "pr": "https://github.com/elastic/kibana/pull/238365",
+   "path": "src/platform/packages/shared/kbn-esql-composer/README.md",
+   "status": "read",
+   "label": "too_new",
+   "others": {
+    "stranger": 0,
+    "partnered": 6
+   }
+  },
+  {
+   "comment_id": 2428859939,
+   "pr": "https://github.com/artsploit/yaml-payload/pull/13",
+   "path": ".gitignore",
+   "status": "read",
+   "label": "not_enough_files",
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2430227003,
+   "pr": "https://github.com/dotnet/fsharp/pull/18929",
+   "path": "src/FSharp.Build/Microsoft.FSharp.NetSdk.targets",
+   "status": "too_many_files",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2430851973,
+   "pr": "https://github.com/pjsip/pjproject/pull/4631",
+   "path": "pjsip/include/pjsua-lib/pjsua.h",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 0,
+    "partnered": 3
+   }
+  },
+  {
+   "comment_id": 2431518731,
+   "pr": "https://github.com/gitbutlerapp/gitbutler/pull/10654",
+   "path": "apps/desktop/src/lib/forge/github/githubPrService.test.ts",
+   "status": "read",
+   "label": "stranger",
+   "others": {
+    "stranger": 2,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2431518751,
+   "pr": "https://github.com/liam-hq/liam/pull/3777",
+   "path": "frontend/packages/db-structure/src/parser/tbls/schema.generated.ts",
+   "status": "not_modified",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2431736665,
+   "pr": "https://github.com/liam-hq/liam/pull/3783",
+   "path": "frontend/apps/app/components/OrganizationMembersPage/components/DeleteInvitationModal/DeleteInvitationModal.stories.tsx",
+   "status": "not_modified",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2433327995,
+   "pr": "https://github.com/dotnet/roslyn/pull/80704",
+   "path": "src/Compilers/CSharp/Test/Symbol/Symbols/Source/MethodTests.cs",
+   "status": "read",
+   "label": "not_enough_files",
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2433834415,
+   "pr": "https://github.com/MarimerLLC/csla/pull/4737",
+   "path": "Source/Csla/Reflection/ServiceProviderMethodCaller.cs",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 0,
+    "partnered": 9
+   }
+  },
+  {
+   "comment_id": 2434078650,
+   "pr": "https://github.com/dotnet/docs/pull/49283",
+   "path": "docs/core/whats-new/dotnet-10/sdk.md",
+   "status": "read",
+   "label": "stranger",
+   "others": {
+    "stranger": 1,
+    "partnered": 2
+   }
+  },
+  {
+   "comment_id": 2434197619,
+   "pr": "https://github.com/dotnet/roslyn/pull/80744",
+   "path": "src/LanguageServer/Microsoft.CodeAnalysis.LanguageServer/FileBasedPrograms/FileBasedProgramsProjectSystem.cs",
+   "status": "read",
+   "label": "not_enough_files",
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2434217281,
+   "pr": "https://github.com/dotnet/sdk/pull/51216",
+   "path": "src/Microsoft.CodeAnalysis.NetAnalyzers/src/Microsoft.CodeAnalysis.NetAnalyzers/Microsoft.NetCore.Analyzers/Performance/PreferReadOnlySpanOverSpan.cs",
+   "status": "unreadable",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2434258739,
+   "pr": "https://github.com/airbytehq/airbyte/pull/68130",
+   "path": "docs/integrations/sources/datagen.md",
+   "status": "read",
+   "label": "not_enough_files",
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2436101533,
+   "pr": "https://github.com/Lightning-AI/lightning-thunder/pull/2665",
+   "path": "thunder/core/transforms.py",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 0,
+    "partnered": 6
+   }
+  },
+  {
+   "comment_id": 2436360632,
+   "pr": "https://github.com/LearningCircuit/local-deep-research/pull/924",
+   "path": "src/local_deep_research/notifications/service.py",
+   "status": "not_modified",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2436627571,
+   "pr": "https://github.com/openshift-pipelines/pipelines-as-code/pull/2290",
+   "path": "pkg/adapter/incoming.go",
+   "status": "unreadable",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2437278590,
+   "pr": "https://github.com/githubnext/gh-aw/pull/1818",
+   "path": ".github/workflows/shared/mcp/drain3.md",
+   "status": "not_modified",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2437479298,
+   "pr": "https://github.com/Azure/azure-sdk-for-js/pull/36250",
+   "path": "sdk/eventhub/event-hubs/src/batchingPartitionChannel.ts",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 0,
+    "partnered": 7
+   }
+  },
+  {
+   "comment_id": 2439127056,
+   "pr": "https://github.com/microsoft/fluentui/pull/35307",
+   "path": "packages/charts/react-charting/src/components/TreeChart/TreeChart.test.tsx",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 1,
+    "partnered": 20
+   }
+  },
+  {
+   "comment_id": 2441344537,
+   "pr": "https://github.com/dotnet/msbuild/pull/12662",
+   "path": "src/Build/BackEnd/Components/Communications/NodeProviderOutOfProcTaskHost.cs",
+   "status": "unreadable",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2441558266,
+   "pr": "https://github.com/highperformancecoder/minsky/pull/571",
+   "path": "schema/zStream.h",
+   "status": "read",
+   "label": "stranger",
+   "others": {
+    "stranger": 1,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2443836992,
+   "pr": "https://github.com/liam-hq/liam/pull/3822",
+   "path": "frontend/apps/app/components/SessionDetailPage/components/Chat/components/ChatInput/ChatInput.tsx",
+   "status": "not_modified",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2444456180,
+   "pr": "https://github.com/anandnet/Harmony-Music/pull/692",
+   "path": "lib/ui/screens/Playlist/playlist_screen_controller.dart",
+   "status": "read",
+   "label": "stranger",
+   "others": {
+    "stranger": 2,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2444461255,
+   "pr": "https://github.com/dotnet/razor/pull/12368",
+   "path": "src/Razor/src/Microsoft.AspNetCore.Razor.ExternalAccess.LegacyEditor/RazorWrapperFactory.cs",
+   "status": "read",
+   "label": "not_enough_files",
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2444871147,
+   "pr": "https://github.com/liam-hq/liam/pull/3796",
+   "path": "frontend/apps/app/components/SessionDetailPage/SessionDetailPageClient.tsx",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 0,
+    "partnered": 5
+   }
+  },
+  {
+   "comment_id": 2446127646,
+   "pr": "https://github.com/dotnet/roslyn/pull/80770",
+   "path": "src/Compilers/CSharp/Test/Symbol/Symbols/GenericConstraintTests.cs",
+   "status": "read",
+   "label": "stranger",
+   "others": {
+    "stranger": 2,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2447957231,
+   "pr": "https://github.com/githubnext/gh-aw/pull/2082",
+   "path": "go.mod",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 0,
+    "partnered": 4
+   }
+  },
+  {
+   "comment_id": 2448231025,
+   "pr": "https://github.com/vitejs/vite-plugin-react/pull/933",
+   "path": "packages/plugin-rsc/examples/browser-mode2/src/framework/entry.browser.tsx",
+   "status": "not_modified",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2449035574,
+   "pr": "https://github.com/dotnet/runtime/pull/120328",
+   "path": "src/libraries/System.IO.Pipes/tests/NamedPipeTests/NamedPipeTest.CreateClient.cs",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 0,
+    "partnered": 7
+   }
+  },
+  {
+   "comment_id": 2449463716,
+   "pr": "https://github.com/MetaMask/metamask-extension/pull/37022",
+   "path": "ui/pages/permissions-connect/connect-page/connect-page.tsx",
+   "status": "read",
+   "label": "stranger",
+   "others": {
+    "stranger": 0,
+    "partnered": 2
+   }
+  },
+  {
+   "comment_id": 2449490996,
+   "pr": "https://github.com/dotnet/aspire/pull/12086",
+   "path": "src/Aspire.Hosting.Python/PythonAppResourceBuilderExtensions.cs",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 2,
+    "partnered": 1
+   }
+  },
+  {
+   "comment_id": 2450469884,
+   "pr": "https://github.com/NethermindEth/nethermind/pull/9530",
+   "path": "src/Nethermind/Nethermind.Network/PeerManager.cs",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 0,
+    "partnered": 8
+   }
+  },
+  {
+   "comment_id": 2450618880,
+   "pr": "https://github.com/dotnet/diagnostics/pull/5609",
+   "path": "AGENTS.md",
+   "status": "not_modified",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2450864922,
+   "pr": "https://github.com/lancedb/lance/pull/5031",
+   "path": "rust/lance-encoding/src/encodings/physical/block.rs",
+   "status": "read",
+   "label": "not_enough_files",
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2452001238,
+   "pr": "https://github.com/Mic92/nix-fast-build/pull/239",
+   "path": "tests/test_github_summary.py",
+   "status": "not_modified",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2452598459,
+   "pr": "https://github.com/microsoft/mcp/pull/907",
+   "path": "tools/Azure.Mcp.Tools.Kusto/tests/Azure.Mcp.Tools.Kusto.UnitTests/KustoClientTests.cs",
+   "status": "not_modified",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2453220103,
+   "pr": "https://github.com/microsoft/typescript-go/pull/1933",
+   "path": "internal/scanner/scanner.go",
+   "status": "read",
+   "label": "stranger",
+   "others": {
+    "stranger": 1,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2453251157,
+   "pr": "https://github.com/dotnet/runtime/pull/120916",
+   "path": "src/libraries/System.Text.RegularExpressions/gen/RegexGenerator.Emitter.cs",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 0,
+    "partnered": 3
+   }
+  },
+  {
+   "comment_id": 2453643112,
+   "pr": "https://github.com/datalayer/jupyter-mcp-server/pull/138",
+   "path": "validate_fixes.py",
+   "status": "not_modified",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2455629202,
+   "pr": "https://github.com/dotnet/razor/pull/12380",
+   "path": "src/Razor/src/Microsoft.CodeAnalysis.Razor.Workspaces/DocumentMapping/AbstractDocumentMappingService.cs",
+   "status": "read",
+   "label": "not_enough_files",
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2457903274,
+   "pr": "https://github.com/thedotmack/claude-mem/pull/14",
+   "path": "plugin/scripts/worker-service.cjs",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 0,
+    "partnered": 4
+   }
+  },
+  {
+   "comment_id": 2460954083,
+   "pr": "https://github.com/dotnet/roslyn/pull/80890",
+   "path": "src/VisualStudio/Core/Def/InheritanceMargin/InheritanceMarginHelpers.cs",
+   "status": "read",
+   "label": "not_enough_files",
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2461422767,
+   "pr": "https://github.com/microsoft/typescript-go/pull/1490",
+   "path": "internal/ls/definition_link_support_test.go",
+   "status": "not_modified",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2461728658,
+   "pr": "https://github.com/dotnet/roslyn/pull/80891",
+   "path": "src/LanguageServer/ProtocolUnitTests/Rename/RenameTests.cs",
+   "status": "read",
+   "label": "stranger",
+   "others": {
+    "stranger": 2,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2464100057,
+   "pr": "https://github.com/Significant-Gravitas/AutoGPT/pull/11243",
+   "path": "autogpt_platform/backend/backend/server/v2/library/db.py",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 0,
+    "partnered": 21
+   }
+  },
+  {
+   "comment_id": 2464687305,
+   "pr": "https://github.com/openshift-pipelines/pipelines-as-code/pull/2298",
+   "path": "pkg/pipelineascode/pipelineascode_startpr_test.go",
+   "status": "unreadable",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2468139416,
+   "pr": "https://github.com/openshift-pipelines/pipelines-as-code/pull/2292",
+   "path": "pkg/llm/analyzer.go",
+   "status": "unreadable",
+   "label": null,
+   "others": {
+    "stranger": 0,
+    "partnered": 0
+   }
+  },
+  {
+   "comment_id": 2470727536,
+   "pr": "https://github.com/PowerShell/PowerShell/pull/26281",
+   "path": "tools/packaging/packaging.psm1",
+   "status": "read",
+   "label": "partnered",
+   "others": {
+    "stranger": 0,
+    "partnered": 27
+   }
+  }
+ ]
+}

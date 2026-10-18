@@ -27,3 +27,13 @@ def test_no_place_still_demands_success_alone():
 
 def test_the_pipeline_status_gate_already_accepts_failed():
     assert 'neither "success" nor "failed"' in text()
+
+
+def test_every_line_of_the_card_is_copied_by_the_flow():
+    """The flow prints each card line it knows by name; a line the CI job adds and the flow does not name never reaches the merge request."""
+    from itemator import ci
+    t = text()
+    card = ci.card_lines("extras", [{"ref": "#1"}], [], [], [])
+    for key in (*card, "checked_line"):
+        assert f"FACTS.card.{key}, copied character for character" in t, key
+    assert "only if the key is present and its value is not null" in t

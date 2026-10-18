@@ -1,0 +1,26 @@
+{
+ "what": "Written before any history is read: the human reviewers' scope comments on agent pull requests in AIDev name a file; is that file more often one that has never changed together with the other files of the pull request (itemator/cochange.py) than the other files are? Read-only; nothing is posted.",
+ "dataset": "hao-li/AIDev (CC-BY-4.0), the same 710 comments as eval/aidev_recall_cases.json (leg 1), selected before any scoring by phrase, nobody read their text to build the list. History is read from GitHub's public commit API.",
+ "unit": "one distinct commented file of one pull request (611 of them; repeated comments on the same file count once)",
+ "files": "the pull request's modified files as they stood at the commit of the comment (eval/aidev_recall.net_files). A commented file that was added, removed or renamed has no earlier history and is counted apart.",
+ "history": "for each modified file, up to 100 commit ids that touched that path on the repository's default branch before the pull request was created (commits API with path and until). A pull request with more than 40 modified files is counted apart and not read. A file whose history GitHub will not give makes its pull request 'history_unavailable'.",
+ "definition": "itemator/cochange.py as merged: a file with at least 3 earlier commits that shares no commit with any other file of the pull request, after dropping commits found in more than half of the files' histories, is a stranger. Fewer than 3 earlier commits is too_new; fewer than three files with any history is not_enough_files. Constants are not changed after seeing results.",
+ "outcome": {
+  "primary": "among eligible commented files (label stranger or partnered), the share that are strangers, beside the share of the other eligible files in the same pull requests that are strangers (counts and Wilson 95% intervals)",
+  "also_reported": [
+   "pull requests where the commented file is the only stranger (singled out)",
+   "the mean share of a pull request's files that would be flagged",
+   "counts of every status (unreadable, not_modified, too_many_files, history_unavailable) and of every label"
+  ]
+ },
+ "usefulness_rule": "Fixed now: the stranger flag is worth a line on the card only if the commented files' stranger share is at least twice the other files' share, at least 0.15, and the mean share of files flagged per pull request is at most 0.35. If any part fails the result is published as 'not useful as defined' and nothing is added to the card.",
+ "reading_rule": "Report the counts in plain words first. No 'catches X percent' sentence is written. A reviewer's phrase is not a verdict that the file did not belong.",
+ "published": "Comment ids, pull request addresses, file paths, labels and counts. No comment text, no patch text.",
+ "limits": "Co-change is read from at most 100 commits per file, so a busy file's partners may be missed and it can look like a stranger. A rename breaks history. Squash-merged repositories hide which files moved together. The commit API cannot say how many files a commit touched, so the sweep rule is an approximation (the half-of-files rule). Only comments that matched the leg-1 phrases are in the sample. One run; the constants were chosen before reading any label.",
+ "predictions_before_run": {
+  "ana 66a1e1": "commented files that are strangers: 0.08 to 0.55 (80%)",
+  "ana 071609": "other eligible files that are strangers: 0.05 to 0.45 (80%)",
+  "ana 95362f": "usefulness rule met: 30%"
+ },
+ "seen_before_registration": "A count without labels: of 611 distinct commented files, 330 are modified files of readable pull requests with at most 40 modified files (2106 history reads), 135 are not modified files, 105 unreadable, 41 in pull requests with more than 40 modified files. No history and no label had been read. Per-comment rows of results/aidev_recall_v6.json were not opened. Note: eval mutants once passed spuriously through a stale .pyc (same-size edit within one second); re-run with PYTHONDONTWRITEBYTECODE=1."
+}

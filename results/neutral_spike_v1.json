@@ -1,0 +1,930 @@
+{
+ "rubric": "eval/neutral_spike_rubric.json",
+ "summary": {
+  "pull_requests_examined": 154,
+  "pull_requests_with_a_modified_py_file": 40,
+  "pull_requests_fetched": 30,
+  "py_files": 102,
+  "py_files_unfetched": 0,
+  "py_files_read": 102,
+  "by_level": {
+   "same_syntax": 0,
+   "comments_or_docstrings_only": 1,
+   "reordered_functions": 0,
+   "not_proved": 101,
+   "unreadable": 0
+  },
+  "py_files_proved": 1,
+  "share_of_read_files_proved": 0.0098,
+  "pull_requests_where_every_read_file_is_proved": 0,
+  "same_syntax_checked_against_compiled_code": {
+   "files": 0,
+   "compiled_same": 0,
+   "not_same": 0
+  },
+  "by_agent": {
+   "Claude_Code": {
+    "pull_requests": 1,
+    "read_files": 6,
+    "proved": 0
+   },
+   "Copilot": {
+    "pull_requests": 7,
+    "read_files": 28,
+    "proved": 0
+   },
+   "Cursor": {
+    "pull_requests": 1,
+    "read_files": 2,
+    "proved": 0
+   },
+   "OpenAI_Codex": {
+    "pull_requests": 21,
+    "read_files": 66,
+    "proved": 1
+   }
+  }
+ },
+ "pull_requests": [
+  {
+   "pr_id": 3206820600,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/oraios/serena/pull/286",
+   "fetched": true,
+   "py_files_changed": 8,
+   "py_files_read": 8,
+   "files": [
+    {
+     "path": "src/solidlsp/language_servers/clangd_language_server.py",
+     "level": "not_proved",
+     "compiled_same": null
+    },
+    {
+     "path": "src/solidlsp/language_servers/clojure_lsp.py",
+     "level": "not_proved",
+     "compiled_same": null
+    },
+    {
+     "path": "src/solidlsp/language_servers/csharp_language_server.py",
+     "level": "not_proved",
+     "compiled_same": null
+    },
+    {
+     "path": "src/solidlsp/language_servers/dart_language_server.py",
+     "level": "not_proved",
+     "compiled_same": null
+    },
+    {
+     "path": "src/solidlsp/language_servers/intelephense.py",
+     "level": "not_proved",
+     "compiled_same": null
+    },
+    {
+     "path": "src/solidlsp/language_servers/rust_analyzer.py",
+     "level": "not_proved",
+     "compiled_same": null
+    },
+    {
+     "path": "src/solidlsp/language_servers/terraform_ls.py",
+     "level": "not_proved",
+     "compiled_same": null
+    },
+    {
+     "path": "src/solidlsp/language_servers/typescript_language_server.py",
+     "level": "not_proved",
+     "compiled_same": null
+    }
+   ]
+  },
+  {
+   "pr_id": 3303829613,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/Arbuzov/home_assistant_delonghi_primadonna/pull/194",
+   "fetched": true,
+   "py_files_changed": 5,
+   "py_files_read": 5,
+   "files": [
+    {
+     "path": "custom_components/delonghi_primadonna/ble_client.py",
+     "level": "not_proved",
+     "compiled_same": null
+    },
+    {
+     "path": "custom_components/delonghi_primadonna/button.py",
+     "level": "not_proved",
+     "compiled_same": null
+    },
+    {
+     "path": "custom_components/delonghi_primadonna/const.py",
+     "level": "not_proved",
+     "compiled_same": null
+    },
+    {
+     "path": "custom_components/delonghi_primadonna/message_parser.py",
+     "level": "not_proved",
+     "compiled_same": null
+    },
+    {
+     "path": "custom_components/delonghi_primadonna/statistics.py",
+     "level": "not_proved",
+     "compiled_same": null
+    }
+   ]
+  },
+  {
+   "pr_id": 3072072922,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/jaseci-labs/jaseci/pull/1888",
+   "fetched": true,
+   "py_files_changed": 4,
+   "py_files_read": 4,
+   "files": [
+    {
+     "path": "jac/jaclang/compiler/unitree.py",
+     "level": "not_proved",
+     "compiled_same": null
+    },
+    {
+     "path": "jac/jaclang/runtimelib/importer.py",
+     "level": "not_proved",
+     "compiled_same": null
+    },
+    {
+     "path": "jac/jaclang/runtimelib/machine.py",
+     "level": "not_proved",
+     "compiled_same": null
+    },
+    {
+     "path": "jac/jaclang/utils/__init__.py",
+     "level": "not_proved",
+     "compiled_same": null
+    }
+   ]
+  },
+  {
+   "pr_id": 3351710798,
+   "agent": "Copilot",
+   "html_url": "https://github.com/gerlero/foamlib/pull/445",
+   "fetched": true,
+   "py_files_changed": 1,
+   "py_files_read": 1,
+   "files": [
+    {
+     "path": "foamlib/_files/_parsing.py",
+     "level": "not_proved",
+     "compiled_same": null
+    }
+   ]
+  },
+  {
+   "pr_id": 3169728295,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/tinygrad/tinygrad/pull/10941",
+   "fetched": true,
+   "py_files_changed": 15,
+   "py_files_read": 12,
+   "files": [
+    {
+     "path": "examples/handcode_opt.py",
+     "level": "not_proved",
+     "compiled_same": null
+    },
+    {
+     "path": "examples/llm.c/export.py",
+     "level": "not_proved",
+     "compiled_same": null
+    },
+    {
+     "path": "extra/gemm/amd_matmul.py",
+     "level": "not_proved",
+     "compiled_same": null
+    },
+    {
+     "path": "extra/gemm/max_matmul.py",
+     "level": "not_proved",
+     "compiled_same": null
+    },
+    {
+     "path": "extra/gemm/tinygrad_nv_matmul.py",
+     "level": "not_proved",
+     "compiled_same": null
+    },
+    {
+     "path": "extra/gemm/tvm_gemm.py",
+     "level": "not_proved",
+     "compiled_same": null
+    },
+    {
+     "path": "extra/mcts_search.py",
+     "level": "not_proved",
+     "compiled_same": null
+    },
+    {
+     "path": "extra/optimization/helpers.py",
+     "level": "not_proved",
+     "compiled_same": null
+    },
+    {
+     "path": "extra/replay_pkl.py",
+     "level": "not_proved",
+     "compiled_same": null
+    },
+    {
+     "path": "test/test_linearizer_overflows.py",
+     "level": "not_proved",
+     "compiled_same": null
+    },
+    {
+     "path": "test/test_uops.py",
+     "level": "not_proved",
+     "compiled_same": null
+    },
+    {
+     "path": "test/test_winograd.py",
+     "level": "not_proved",
+     "compiled_same": null
+    }
+   ]
+  },
+  {
+   "pr_id": 3294132432,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/MihaiCristianCondrea/Smart-Cleaner-for-Android/pull/311",
+   "fetched": false,
+   "files": []
+  },
+  {
+   "pr_id": 3368880720,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/MihaiCristianCondrea/Smart-Cleaner-for-Android/pull/480",
+   "fetched": false,
+   "files": []
+  },
+  {
+   "pr_id": 3374156980,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/VRSEN/agency-swarm/pull/323",
+   "fetched": true,
+   "py_files_changed": 3,
+   "py_files_read": 3,
+   "files": [
+    {
+     "path": "src/agency_swarm/agent/attachment_manager.py",
+     "level": "not_proved",
+     "compiled_same": null
+    },
+    {
+     "path": "tests/integration/test_file_handling.py",
+     "level": "not_proved",
+     "compiled_same": null
+    },
+    {
+     "path": "tests/test_agent_modules/test_attachment_manager.py",
+     "level": "not_proved",
+     "compiled_same": null
+    }
+   ]
+  },
+  {
+   "pr_id": 3420432943,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/vkgo/OCRAutoScore/pull/15",
+   "fetched": true,
+   "py_files_changed": 1,
+   "py_files_read": 1,
+   "files": [
+    {
+     "path": "segmentation/blankSegmentation/blank_segmentation.py",
+     "level": "not_proved",
+     "compiled_same": null
+    }
+   ]
+  },
+  {
+   "pr_id": 3494509197,
+   "agent": "Copilot",
+   "html_url": "https://github.com/CravateRouge/bloodyAD/pull/82",
+   "fetched": true,
+   "py_files_changed": 5,
+   "py_files_read": 5,
+   "files": [
+    {
+     "path": "bloodyAD/cli_modules/add.py",
+     "level": "not_proved",
+     "compiled_same": null
+    },
+    {
+     "path": "bloodyAD/cli_modules/get.py",
+     "level": "not_proved",
+     "compiled_same": null
+    },
+    {
+     "path": "bloodyAD/cli_modules/remove.py",
+     "level": "not_proved",
+     "compiled_same": null
+    },
+    {
+     "path": "bloodyAD/network/config.py",
+     "level": "not_proved",
+     "compiled_same": null
+    },
+    {
+     "path": "bloodyAD/network/ldap.py",
+     "level": "not_proved",
+     "compiled_same": null
+    }
+   ]
+  },
+  {
+   "pr_id": 3472166363,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/hjyssg/ShiguReader/pull/330",
+   "fetched": true,
+   "py_files_changed": 1,
+   "py_files_read": 1,
+   "files": [
+    {
+     "path": "packages/backend/etc/pkg/one_click_pkg.py",
+     "level": "not_proved",
+     "compiled_same": null
+    }
+   ]
+  },
+  {
+   "pr_id": 3295993936,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/MihaiCristianCondrea/Smart-Cleaner-for-Android/pull/328",
+   "fetched": false,
+   "files": []
+  },
+  {
+   "pr_id": 3386239146,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/cartography-cncf/cartography/pull/1878",
+   "fetched": true,
+   "py_files_changed": 3,
+   "py_files_read": 3,
+   "files": [
+    {
+     "path": "cartography/intel/gcp/storage.py",
+     "level": "not_proved",
+     "compiled_same": null
+    },
+    {
+     "path": "tests/integration/cartography/intel/gcp/test_storage.py",
+     "level": "not_proved",
+     "compiled_same": null
+    },
+    {
+     "path": "tests/unit/cartography/intel/gcp/test_storage.py",
+     "level": "not_proved",
+     "compiled_same": null
+    }
+   ]
+  },
+  {
+   "pr_id": 3072025282,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/jrkropp/open-webui-developer-toolkit/pull/129",
+   "fetched": true,
+   "py_files_changed": 4,
+   "py_files_read": 4,
+   "files": [
+    {
+     "path": "scripts/publish_to_webui.py",
+     "level": "comments_or_docstrings_only",
+     "compiled_same": null
+    },
+    {
+     "path": "tests/conftest.py",
+     "level": "not_proved",
+     "compiled_same": null
+    },
+    {
+     "path": "tests/test_pipeline.py",
+     "level": "not_proved",
+     "compiled_same": null
+    },
+    {
+     "path": "tests/test_publish.py",
+     "level": "not_proved",
+     "compiled_same": null
+    }
+   ]
+  },
+  {
+   "pr_id": 3495392952,
+   "agent": "Copilot",
+   "html_url": "https://github.com/acados/acados/pull/1656",
+   "fetched": true,
+   "py_files_changed": 9,
+   "py_files_read": 9,
+   "files": [
+    {
+     "path": "interfaces/acados_template/acados_template/acados_model.py",
+     "level": "not_proved",
+     "compiled_same": null
+    },
+    {
+     "path": "interfaces/acados_template/acados_template/acados_ocp.py",
+     "level": "not_proved",
+     "compiled_same": null
+    },
+    {
+     "path": "interfaces/acados_template/acados_template/acados_ocp_batch_solver.py",
+     "level": "not_proved",
+     "compiled_same": null
+    },
+    {
+     "path": "interfaces/acados_template/acados_template/acados_ocp_options.py",
+     "level": "not_proved",
+     "compiled_same": null
+    },
+    {
+     "path": "interfaces/acados_template/acados_template/acados_ocp_solver.py",
+     "level": "not_proved",
+     "compiled_same": null
+    },
+    {
+     "path": "interfaces/acados_template/acados_template/acados_sim.py",
+     "level": "not_proved",
+     "compiled_same": null
+    },
+    {
+     "path": "interfaces/acados_template/acados_template/acados_sim_batch_solver.py",
+     "level": "not_proved",
+     "compiled_same": null
+    },
+    {
+     "path": "interfaces/acados_template/acados_template/acados_sim_solver.py",
+     "level": "not_proved",
+     "compiled_same": null
+    },
+    {
+     "path": "interfaces/acados_template/acados_template/utils.py",
+     "level": "not_proved",
+     "compiled_same": null
+    }
+   ]
+  },
+  {
+   "pr_id": 3271587224,
+   "agent": "Copilot",
+   "html_url": "https://github.com/langchain-ai/langgraph/pull/5697",
+   "fetched": true,
+   "py_files_changed": 1,
+   "py_files_read": 1,
+   "files": [
+    {
+     "path": "libs/prebuilt/langgraph/prebuilt/chat_agent_executor.py",
+     "level": "not_proved",
+     "compiled_same": null
+    }
+   ]
+  },
+  {
+   "pr_id": 3428599956,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/manaflow-ai/cmux/pull/337",
+   "fetched": true,
+   "py_files_changed": 1,
+   "py_files_read": 1,
+   "files": [
+    {
+     "path": "tests/cmux.py",
+     "level": "not_proved",
+     "compiled_same": null
+    }
+   ]
+  },
+  {
+   "pr_id": 3207137504,
+   "agent": "Claude_Code",
+   "html_url": "https://github.com/shutootaki/bookwith/pull/34",
+   "fetched": true,
+   "py_files_changed": 6,
+   "py_files_read": 6,
+   "files": [
+    {
+     "path": "apps/api/src/config/app_config.py",
+     "level": "not_proved",
+     "compiled_same": null
+    },
+    {
+     "path": "apps/api/src/infrastructure/memory/book_content_store.py",
+     "level": "not_proved",
+     "compiled_same": null
+    },
+    {
+     "path": "apps/api/src/main.py",
+     "level": "not_proved",
+     "compiled_same": null
+    },
+    {
+     "path": "apps/api/src/usecase/message/ai_response_generator.py",
+     "level": "not_proved",
+     "compiled_same": null
+    },
+    {
+     "path": "apps/api/src/usecase/message/create_message_usecase.py",
+     "level": "not_proved",
+     "compiled_same": null
+    },
+    {
+     "path": "apps/api/src/usecase/message/highlight_searcher.py",
+     "level": "not_proved",
+     "compiled_same": null
+    }
+   ]
+  },
+  {
+   "pr_id": 3133919091,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/DannyMac180/meta-agent/pull/178",
+   "fetched": true,
+   "py_files_changed": 1,
+   "py_files_read": 1,
+   "files": [
+    {
+     "path": "src/meta_agent/registry.py",
+     "level": "not_proved",
+     "compiled_same": null
+    }
+   ]
+  },
+  {
+   "pr_id": 3432213749,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/manaflow-ai/cmux/pull/349",
+   "fetched": false,
+   "files": []
+  },
+  {
+   "pr_id": 3346580990,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/MihaiCristianCondrea/Smart-Cleaner-for-Android/pull/461",
+   "fetched": false,
+   "files": []
+  },
+  {
+   "pr_id": 3268107797,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/PyLabRobot/pylabrobot/pull/626",
+   "fetched": true,
+   "py_files_changed": 7,
+   "py_files_read": 7,
+   "files": [
+    {
+     "path": "pylabrobot/thermocycling/backend.py",
+     "level": "not_proved",
+     "compiled_same": null
+    },
+    {
+     "path": "pylabrobot/thermocycling/chatterbox.py",
+     "level": "not_proved",
+     "compiled_same": null
+    },
+    {
+     "path": "pylabrobot/thermocycling/opentrons_backend.py",
+     "level": "not_proved",
+     "compiled_same": null
+    },
+    {
+     "path": "pylabrobot/thermocycling/opentrons_backend_tests.py",
+     "level": "not_proved",
+     "compiled_same": null
+    },
+    {
+     "path": "pylabrobot/thermocycling/standard.py",
+     "level": "not_proved",
+     "compiled_same": null
+    },
+    {
+     "path": "pylabrobot/thermocycling/thermocycler.py",
+     "level": "not_proved",
+     "compiled_same": null
+    },
+    {
+     "path": "pylabrobot/thermocycling/thermocycler_tests.py",
+     "level": "not_proved",
+     "compiled_same": null
+    }
+   ]
+  },
+  {
+   "pr_id": 3335683333,
+   "agent": "Copilot",
+   "html_url": "https://github.com/plasma-umass/scalene/pull/939",
+   "fetched": true,
+   "py_files_changed": 2,
+   "py_files_read": 2,
+   "files": [
+    {
+     "path": "scalene/scalene_analysis.py",
+     "level": "not_proved",
+     "compiled_same": null
+    },
+    {
+     "path": "scalene/scalene_profiler.py",
+     "level": "not_proved",
+     "compiled_same": null
+    }
+   ]
+  },
+  {
+   "pr_id": 3104374135,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/jaseci-labs/jaseci/pull/1981",
+   "fetched": true,
+   "py_files_changed": 3,
+   "py_files_read": 3,
+   "files": [
+    {
+     "path": "jac/jaclang/compiler/parser.py",
+     "level": "not_proved",
+     "compiled_same": null
+    },
+    {
+     "path": "jac/jaclang/compiler/passes/main/pyast_gen_pass.py",
+     "level": "not_proved",
+     "compiled_same": null
+    },
+    {
+     "path": "jac/jaclang/compiler/unitree.py",
+     "level": "not_proved",
+     "compiled_same": null
+    }
+   ]
+  },
+  {
+   "pr_id": 3125364714,
+   "agent": "Cursor",
+   "html_url": "https://github.com/Metta-AI/metta/pull/831",
+   "fetched": false,
+   "files": []
+  },
+  {
+   "pr_id": 3461852864,
+   "agent": "Copilot",
+   "html_url": "https://github.com/pymc-devs/pytensor/pull/1622",
+   "fetched": true,
+   "py_files_changed": 6,
+   "py_files_read": 6,
+   "files": [
+    {
+     "path": "pytensor/link/jax/dispatch/subtensor.py",
+     "level": "not_proved",
+     "compiled_same": null
+    },
+    {
+     "path": "pytensor/link/numba/dispatch/subtensor.py",
+     "level": "not_proved",
+     "compiled_same": null
+    },
+    {
+     "path": "pytensor/link/pytorch/dispatch/subtensor.py",
+     "level": "not_proved",
+     "compiled_same": null
+    },
+    {
+     "path": "pytensor/tensor/rewriting/subtensor.py",
+     "level": "not_proved",
+     "compiled_same": null
+    },
+    {
+     "path": "pytensor/tensor/subtensor.py",
+     "level": "not_proved",
+     "compiled_same": null
+    },
+    {
+     "path": "pytensor/tensor/variable.py",
+     "level": "not_proved",
+     "compiled_same": null
+    }
+   ]
+  },
+  {
+   "pr_id": 3367452927,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mfat/sshpilot/pull/121",
+   "fetched": true,
+   "py_files_changed": 2,
+   "py_files_read": 2,
+   "files": [
+    {
+     "path": "sshpilot/main.py",
+     "level": "not_proved",
+     "compiled_same": null
+    },
+    {
+     "path": "sshpilot/window.py",
+     "level": "not_proved",
+     "compiled_same": null
+    }
+   ]
+  },
+  {
+   "pr_id": 3437688833,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/finite-sample/rmcp/pull/6",
+   "fetched": true,
+   "py_files_changed": 2,
+   "py_files_read": 2,
+   "files": [
+    {
+     "path": "tests/integration/test_mcp_interface.py",
+     "level": "not_proved",
+     "compiled_same": null
+    },
+    {
+     "path": "tests/integration/test_new_features_integration.py",
+     "level": "not_proved",
+     "compiled_same": null
+    }
+   ]
+  },
+  {
+   "pr_id": 3320989313,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/MihaiCristianCondrea/Smart-Cleaner-for-Android/pull/385",
+   "fetched": false,
+   "files": []
+  },
+  {
+   "pr_id": 3124191467,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/EricLBuehler/mistral.rs/pull/1439",
+   "fetched": true,
+   "py_files_changed": 1,
+   "py_files_read": 1,
+   "files": [
+    {
+     "path": "examples/python/plain.py",
+     "level": "not_proved",
+     "compiled_same": null
+    }
+   ]
+  },
+  {
+   "pr_id": 3414118652,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mfat/sshpilot/pull/317",
+   "fetched": true,
+   "py_files_changed": 1,
+   "py_files_read": 1,
+   "files": [
+    {
+     "path": "sshpilot/terminal.py",
+     "level": "not_proved",
+     "compiled_same": null
+    }
+   ]
+  },
+  {
+   "pr_id": 3111793219,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/jaseci-labs/jaseci/pull/2051",
+   "fetched": true,
+   "py_files_changed": 1,
+   "py_files_read": 1,
+   "files": [
+    {
+     "path": "jac/jaclang/compiler/parser.py",
+     "level": "not_proved",
+     "compiled_same": null
+    }
+   ]
+  },
+  {
+   "pr_id": 3105801842,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/jaseci-labs/jaseci/pull/2003",
+   "fetched": true,
+   "py_files_changed": 3,
+   "py_files_read": 3,
+   "files": [
+    {
+     "path": "jac/jaclang/compiler/parser.py",
+     "level": "not_proved",
+     "compiled_same": null
+    },
+    {
+     "path": "jac/jaclang/compiler/passes/main/pyast_gen_pass.py",
+     "level": "not_proved",
+     "compiled_same": null
+    },
+    {
+     "path": "jac/jaclang/compiler/unitree.py",
+     "level": "not_proved",
+     "compiled_same": null
+    }
+   ]
+  },
+  {
+   "pr_id": 3343260575,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/MihaiCristianCondrea/Smart-Cleaner-for-Android/pull/435",
+   "fetched": false,
+   "files": []
+  },
+  {
+   "pr_id": 3317008206,
+   "agent": "Cursor",
+   "html_url": "https://github.com/ucbepic/docetl/pull/407",
+   "fetched": true,
+   "py_files_changed": 2,
+   "py_files_read": 2,
+   "files": [
+    {
+     "path": "docetl/operations/sample.py",
+     "level": "not_proved",
+     "compiled_same": null
+    },
+    {
+     "path": "tests/basic/test_cluster_and_sample.py",
+     "level": "not_proved",
+     "compiled_same": null
+    }
+   ]
+  },
+  {
+   "pr_id": 3421299908,
+   "agent": "Cursor",
+   "html_url": "https://github.com/readlite/readlite-plugin/pull/31",
+   "fetched": false,
+   "files": []
+  },
+  {
+   "pr_id": 3338122618,
+   "agent": "Copilot",
+   "html_url": "https://github.com/vllm-project/vllm/pull/23257",
+   "fetched": true,
+   "py_files_changed": 4,
+   "py_files_read": 4,
+   "files": [
+    {
+     "path": "tests/compile/piecewise/test_multiple_graphs.py",
+     "level": "not_proved",
+     "compiled_same": null
+    },
+    {
+     "path": "tests/compile/piecewise/test_simple.py",
+     "level": "not_proved",
+     "compiled_same": null
+    },
+    {
+     "path": "tests/compile/piecewise/test_toy_llama.py",
+     "level": "not_proved",
+     "compiled_same": null
+    },
+    {
+     "path": "tests/compile/test_decorator.py",
+     "level": "not_proved",
+     "compiled_same": null
+    }
+   ]
+  },
+  {
+   "pr_id": 3154970783,
+   "agent": "Devin",
+   "html_url": "https://github.com/faros-ai/airbyte-connectors/pull/2098",
+   "fetched": false,
+   "files": []
+  },
+  {
+   "pr_id": 3077764769,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/Skyvern-AI/skyvern/pull/2399",
+   "fetched": true,
+   "py_files_changed": 1,
+   "py_files_read": 1,
+   "files": [
+    {
+     "path": "skyvern/cli/commands.py",
+     "level": "not_proved",
+     "compiled_same": null
+    }
+   ]
+  },
+  {
+   "pr_id": 3089986549,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/jrkropp/open-webui-developer-toolkit/pull/401",
+   "fetched": true,
+   "py_files_changed": 2,
+   "py_files_read": 2,
+   "files": [
+    {
+     "path": ".tests/test_openai_pipeline.py",
+     "level": "not_proved",
+     "compiled_same": null
+    },
+    {
+     "path": "functions/pipes/openai_responses_api_pipeline.py",
+     "level": "not_proved",
+     "compiled_same": null
+    }
+   ]
+  }
+ ]
+}

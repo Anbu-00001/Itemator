@@ -1,0 +1,4806 @@
+{
+ "seed": 20261018,
+ "table_rows": 71677,
+ "cases": [
+  {
+   "pr_id": 3126347883,
+   "number": 22,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/retrage/svc-hook/pull/22"
+  },
+  {
+   "pr_id": 3483587456,
+   "number": 164,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/vinhnx/vtcode/pull/164"
+  },
+  {
+   "pr_id": 3230076518,
+   "number": 63290,
+   "agent": "Devin",
+   "html_url": "https://github.com/airbytehq/airbyte/pull/63290"
+  },
+  {
+   "pr_id": 3358806288,
+   "number": 20311,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mochilang/mochi/pull/20311"
+  },
+  {
+   "pr_id": 3495679840,
+   "number": 1356,
+   "agent": "Copilot",
+   "html_url": "https://github.com/githubnext/gh-aw/pull/1356"
+  },
+  {
+   "pr_id": 3465114764,
+   "number": 6966,
+   "agent": "Cursor",
+   "html_url": "https://github.com/trpc/trpc/pull/6966"
+  },
+  {
+   "pr_id": 3334233953,
+   "number": 3071,
+   "agent": "Claude_Code",
+   "html_url": "https://github.com/liam-hq/liam/pull/3071"
+  },
+  {
+   "pr_id": 3366150925,
+   "number": 12217,
+   "agent": "Copilot",
+   "html_url": "https://github.com/UI5/webcomponents/pull/12217"
+  },
+  {
+   "pr_id": 3051560458,
+   "number": 997,
+   "agent": "Devin",
+   "html_url": "https://github.com/pdfme/pdfme/pull/997"
+  },
+  {
+   "pr_id": 3421592657,
+   "number": 2,
+   "agent": "Cursor",
+   "html_url": "https://github.com/adysec/IP_database/pull/2"
+  },
+  {
+   "pr_id": 3293285311,
+   "number": 16983,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mochilang/mochi/pull/16983"
+  },
+  {
+   "pr_id": 3520095836,
+   "number": 51299,
+   "agent": "Copilot",
+   "html_url": "https://github.com/dotnet/sdk/pull/51299"
+  },
+  {
+   "pr_id": 3093826815,
+   "number": 101,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/DannyMac180/meta-agent/pull/101"
+  },
+  {
+   "pr_id": 3380751416,
+   "number": 2252,
+   "agent": "Copilot",
+   "html_url": "https://github.com/clappr/clappr/pull/2252"
+  },
+  {
+   "pr_id": 3131654800,
+   "number": 1132,
+   "agent": "Copilot",
+   "html_url": "https://github.com/microsoft/typescript-go/pull/1132"
+  },
+  {
+   "pr_id": 3216734967,
+   "number": 6942,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mochilang/mochi/pull/6942"
+  },
+  {
+   "pr_id": 3516637760,
+   "number": 588,
+   "agent": "Copilot",
+   "html_url": "https://github.com/manusa/electronim/pull/588"
+  },
+  {
+   "pr_id": 3387578924,
+   "number": 6069,
+   "agent": "Copilot",
+   "html_url": "https://github.com/web-infra-dev/rsbuild/pull/6069"
+  },
+  {
+   "pr_id": 2861748481,
+   "number": 3938,
+   "agent": "Devin",
+   "html_url": "https://github.com/box/box-ui-elements/pull/3938"
+  },
+  {
+   "pr_id": 3217394798,
+   "number": 13807,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/hmislk/hmis/pull/13807"
+  },
+  {
+   "pr_id": 3426603104,
+   "number": 2243,
+   "agent": "Copilot",
+   "html_url": "https://github.com/OWASP/wrongsecrets/pull/2243"
+  },
+  {
+   "pr_id": 3075728562,
+   "number": 2980,
+   "agent": "Devin",
+   "html_url": "https://github.com/vdaas/vald/pull/2980"
+  },
+  {
+   "pr_id": 3466002098,
+   "number": 102,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/vinhnx/vtcode/pull/102"
+  },
+  {
+   "pr_id": 3248537334,
+   "number": 11381,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mochilang/mochi/pull/11381"
+  },
+  {
+   "pr_id": 3177715945,
+   "number": 22046,
+   "agent": "Devin",
+   "html_url": "https://github.com/calcom/cal.com/pull/22046"
+  },
+  {
+   "pr_id": 3276707217,
+   "number": 14496,
+   "agent": "Cursor",
+   "html_url": "https://github.com/getsentry/sentry-docs/pull/14496"
+  },
+  {
+   "pr_id": 3234001460,
+   "number": 7777,
+   "agent": "Copilot",
+   "html_url": "https://github.com/shader-slang/slang/pull/7777"
+  },
+  {
+   "pr_id": 3370240838,
+   "number": 217,
+   "agent": "Copilot",
+   "html_url": "https://github.com/kingstinct/react-native-healthkit/pull/217"
+  },
+  {
+   "pr_id": 3293566337,
+   "number": 17154,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mochilang/mochi/pull/17154"
+  },
+  {
+   "pr_id": 3295224869,
+   "number": 17427,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mochilang/mochi/pull/17427"
+  },
+  {
+   "pr_id": 3539392549,
+   "number": 561,
+   "agent": "Copilot",
+   "html_url": "https://github.com/Anxcye/anx-reader/pull/561"
+  },
+  {
+   "pr_id": 3460418637,
+   "number": 764,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/gramps-project/gramps-web/pull/764"
+  },
+  {
+   "pr_id": 3316242155,
+   "number": 1087,
+   "agent": "Copilot",
+   "html_url": "https://github.com/bryanedds/Nu/pull/1087"
+  },
+  {
+   "pr_id": 3279666000,
+   "number": 15381,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mochilang/mochi/pull/15381"
+  },
+  {
+   "pr_id": 3078500498,
+   "number": 24,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/elixr-games/elics/pull/24"
+  },
+  {
+   "pr_id": 3153915546,
+   "number": 1385,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mochilang/mochi/pull/1385"
+  },
+  {
+   "pr_id": 3198587968,
+   "number": 294,
+   "agent": "Cursor",
+   "html_url": "https://github.com/RSamaium/RPG-JS/pull/294"
+  },
+  {
+   "pr_id": 3219778765,
+   "number": 7449,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mochilang/mochi/pull/7449"
+  },
+  {
+   "pr_id": 3084682430,
+   "number": 34530,
+   "agent": "Copilot",
+   "html_url": "https://github.com/Azure/azure-sdk-for-js/pull/34530"
+  },
+  {
+   "pr_id": 3210482456,
+   "number": 51110,
+   "agent": "Copilot",
+   "html_url": "https://github.com/Azure/azure-sdk-for-net/pull/51110"
+  },
+  {
+   "pr_id": 3344302261,
+   "number": 4,
+   "agent": "Copilot",
+   "html_url": "https://github.com/HeroIsUseless/bondma/pull/4"
+  },
+  {
+   "pr_id": 3334928419,
+   "number": 77,
+   "agent": "Copilot",
+   "html_url": "https://github.com/niieani/gpt-tokenizer/pull/77"
+  },
+  {
+   "pr_id": 3150279571,
+   "number": 3012,
+   "agent": "Devin",
+   "html_url": "https://github.com/crewAIInc/crewAI/pull/3012"
+  },
+  {
+   "pr_id": 3345001921,
+   "number": 1113,
+   "agent": "Copilot",
+   "html_url": "https://github.com/envoyproxy/ai-gateway/pull/1113"
+  },
+  {
+   "pr_id": 3163126935,
+   "number": 2307,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mochilang/mochi/pull/2307"
+  },
+  {
+   "pr_id": 3196681289,
+   "number": 2594,
+   "agent": "Cursor",
+   "html_url": "https://github.com/nrwl/nx-console/pull/2594"
+  },
+  {
+   "pr_id": 3206511139,
+   "number": 91,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/nagisa77/OpenIsle/pull/91"
+  },
+  {
+   "pr_id": 3271858651,
+   "number": 14393,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mochilang/mochi/pull/14393"
+  },
+  {
+   "pr_id": 3387820275,
+   "number": 8708,
+   "agent": "Copilot",
+   "html_url": "https://github.com/nextcloud/desktop/pull/8708"
+  },
+  {
+   "pr_id": 3529911501,
+   "number": 1295,
+   "agent": "Copilot",
+   "html_url": "https://github.com/AtsushiSakai/PythonRobotics/pull/1295"
+  },
+  {
+   "pr_id": 3134136665,
+   "number": 94,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/luminal-ai/luminal/pull/94"
+  },
+  {
+   "pr_id": 3456843062,
+   "number": 433,
+   "agent": "Copilot",
+   "html_url": "https://github.com/swingerman/ha-dual-smart-thermostat/pull/433"
+  },
+  {
+   "pr_id": 3336840052,
+   "number": 127,
+   "agent": "Copilot",
+   "html_url": "https://github.com/algolia/sup3rS3cretMes5age/pull/127"
+  },
+  {
+   "pr_id": 3285426353,
+   "number": 212,
+   "agent": "Copilot",
+   "html_url": "https://github.com/expressobits/inventory-system/pull/212"
+  },
+  {
+   "pr_id": 3135315114,
+   "number": 144,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/boldsoftware/sketch/pull/144"
+  },
+  {
+   "pr_id": 3224640198,
+   "number": 7870,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mochilang/mochi/pull/7870"
+  },
+  {
+   "pr_id": 3254645443,
+   "number": 12213,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mochilang/mochi/pull/12213"
+  },
+  {
+   "pr_id": 3502169802,
+   "number": 18240,
+   "agent": "Copilot",
+   "html_url": "https://github.com/mlflow/mlflow/pull/18240"
+  },
+  {
+   "pr_id": 3302201001,
+   "number": 9100,
+   "agent": "Copilot",
+   "html_url": "https://github.com/NethermindEth/nethermind/pull/9100"
+  },
+  {
+   "pr_id": 3299619536,
+   "number": 17925,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mochilang/mochi/pull/17925"
+  },
+  {
+   "pr_id": 3331761448,
+   "number": 416,
+   "agent": "Copilot",
+   "html_url": "https://github.com/cschleiden/go-workflows/pull/416"
+  },
+  {
+   "pr_id": 3390838652,
+   "number": 498,
+   "agent": "Copilot",
+   "html_url": "https://github.com/githubnext/gh-aw/pull/498"
+  },
+  {
+   "pr_id": 2818857108,
+   "number": 3831,
+   "agent": "Devin",
+   "html_url": "https://github.com/onyx-dot-app/onyx/pull/3831"
+  },
+  {
+   "pr_id": 3230678306,
+   "number": 233,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/wwood/singlem/pull/233"
+  },
+  {
+   "pr_id": 3146326809,
+   "number": 862,
+   "agent": "Copilot",
+   "html_url": "https://github.com/vltpkg/vltpkg/pull/862"
+  },
+  {
+   "pr_id": 3512423700,
+   "number": 3306,
+   "agent": "Claude_Code",
+   "html_url": "https://github.com/instructure/canvas-android/pull/3306"
+  },
+  {
+   "pr_id": 3118998296,
+   "number": 34685,
+   "agent": "Copilot",
+   "html_url": "https://github.com/Azure/azure-sdk-for-js/pull/34685"
+  },
+  {
+   "pr_id": 3217333196,
+   "number": 1144,
+   "agent": "Cursor",
+   "html_url": "https://github.com/AgentOps-AI/agentops/pull/1144"
+  },
+  {
+   "pr_id": 3481582777,
+   "number": 144,
+   "agent": "Copilot",
+   "html_url": "https://github.com/yogeshpaliyal/Deepr/pull/144"
+  },
+  {
+   "pr_id": 3403213374,
+   "number": 17415,
+   "agent": "Devin",
+   "html_url": "https://github.com/ethereum-optimism/optimism/pull/17415"
+  },
+  {
+   "pr_id": 3293430258,
+   "number": 17073,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mochilang/mochi/pull/17073"
+  },
+  {
+   "pr_id": 3134668584,
+   "number": 9802,
+   "agent": "Copilot",
+   "html_url": "https://github.com/dotnet/aspire/pull/9802"
+  },
+  {
+   "pr_id": 3391346131,
+   "number": 264,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/hjyssg/ShiguReader/pull/264"
+  },
+  {
+   "pr_id": 3197289456,
+   "number": 253761,
+   "agent": "Copilot",
+   "html_url": "https://github.com/microsoft/vscode/pull/253761"
+  },
+  {
+   "pr_id": 3181266064,
+   "number": 3592,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mochilang/mochi/pull/3592"
+  },
+  {
+   "pr_id": 3205968233,
+   "number": 3011,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/MontrealAI/AGI-Alpha-Agent-v0/pull/3011"
+  },
+  {
+   "pr_id": 3172687847,
+   "number": 78,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/simpleanalytics/scripts/pull/78"
+  },
+  {
+   "pr_id": 3261868679,
+   "number": 12926,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mochilang/mochi/pull/12926"
+  },
+  {
+   "pr_id": 3539865152,
+   "number": 2113,
+   "agent": "Copilot",
+   "html_url": "https://github.com/githubnext/gh-aw/pull/2113"
+  },
+  {
+   "pr_id": 3395124730,
+   "number": 5960,
+   "agent": "Copilot",
+   "html_url": "https://github.com/transloadit/uppy/pull/5960"
+  },
+  {
+   "pr_id": 3115674523,
+   "number": 1516,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/MontrealAI/AGI-Alpha-Agent-v0/pull/1516"
+  },
+  {
+   "pr_id": 3510148006,
+   "number": 1098,
+   "agent": "Copilot",
+   "html_url": "https://github.com/xynehq/xyne/pull/1098"
+  },
+  {
+   "pr_id": 3090122904,
+   "number": 79,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/OpenHFT/Chronicle-Values/pull/79"
+  },
+  {
+   "pr_id": 3152808680,
+   "number": 1199,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/elixir-lsp/elixir-ls/pull/1199"
+  },
+  {
+   "pr_id": 3205192516,
+   "number": 5276,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mochilang/mochi/pull/5276"
+  },
+  {
+   "pr_id": 3510694557,
+   "number": 1640,
+   "agent": "Copilot",
+   "html_url": "https://github.com/githubnext/gh-aw/pull/1640"
+  },
+  {
+   "pr_id": 3225134841,
+   "number": 323,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/amantus-ai/vibetunnel/pull/323"
+  },
+  {
+   "pr_id": 3177517230,
+   "number": 3346,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mochilang/mochi/pull/3346"
+  },
+  {
+   "pr_id": 3474608719,
+   "number": 4975,
+   "agent": "Copilot",
+   "html_url": "https://github.com/dotnet/docs-aspire/pull/4975"
+  },
+  {
+   "pr_id": 3381976554,
+   "number": 344,
+   "agent": "Copilot",
+   "html_url": "https://github.com/kelleyma49/PSFzf/pull/344"
+  },
+  {
+   "pr_id": 3114336946,
+   "number": 1493,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/MontrealAI/AGI-Alpha-Agent-v0/pull/1493"
+  },
+  {
+   "pr_id": 3240438361,
+   "number": 34,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/simonw/tools/pull/34"
+  },
+  {
+   "pr_id": 3415211261,
+   "number": 30,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/l5yth/potato-mesh/pull/30"
+  },
+  {
+   "pr_id": 3295011811,
+   "number": 17213,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mochilang/mochi/pull/17213"
+  },
+  {
+   "pr_id": 3496609026,
+   "number": 8271,
+   "agent": "Copilot",
+   "html_url": "https://github.com/OpenMS/OpenMS/pull/8271"
+  },
+  {
+   "pr_id": 3081358745,
+   "number": 815,
+   "agent": "Copilot",
+   "html_url": "https://github.com/microsoft/live-share-sdk/pull/815"
+  },
+  {
+   "pr_id": 3077103096,
+   "number": 1574,
+   "agent": "Devin",
+   "html_url": "https://github.com/firecrawl/firecrawl/pull/1574"
+  },
+  {
+   "pr_id": 3501287565,
+   "number": 11936,
+   "agent": "Copilot",
+   "html_url": "https://github.com/dotnet/aspire/pull/11936"
+  },
+  {
+   "pr_id": 3070728841,
+   "number": 32,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/MontrealAI/AGI-Alpha-Agent-v0/pull/32"
+  },
+  {
+   "pr_id": 3362018893,
+   "number": 3213,
+   "agent": "Devin",
+   "html_url": "https://github.com/liam-hq/liam/pull/3213"
+  },
+  {
+   "pr_id": 3200812173,
+   "number": 1706,
+   "agent": "Copilot",
+   "html_url": "https://github.com/microsoft/genaiscript/pull/1706"
+  },
+  {
+   "pr_id": 3226434312,
+   "number": 3340,
+   "agent": "Google_Jules",
+   "html_url": "https://github.com/bmaltais/kohya_ss/pull/3340"
+  },
+  {
+   "pr_id": 3163805126,
+   "number": 55,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/waldzellai/waldzell-mcp/pull/55"
+  },
+  {
+   "pr_id": 3195487250,
+   "number": 486,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/wieslawsoltes/Dock/pull/486"
+  },
+  {
+   "pr_id": 3089550655,
+   "number": 275,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/OpenHFT/Chronicle-Threads/pull/275"
+  },
+  {
+   "pr_id": 3253139531,
+   "number": 12077,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mochilang/mochi/pull/12077"
+  },
+  {
+   "pr_id": 3131851537,
+   "number": 1058,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/AgentOps-AI/agentops/pull/1058"
+  },
+  {
+   "pr_id": 3077396942,
+   "number": 676,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/theosanderson/taxonium/pull/676"
+  },
+  {
+   "pr_id": 3307690112,
+   "number": 12968,
+   "agent": "Copilot",
+   "html_url": "https://github.com/oxc-project/oxc/pull/12968"
+  },
+  {
+   "pr_id": 3542979851,
+   "number": 586,
+   "agent": "Copilot",
+   "html_url": "https://github.com/OpShin/opshin/pull/586"
+  },
+  {
+   "pr_id": 3119386328,
+   "number": 83,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/miguel5612/MQSensorsLib/pull/83"
+  },
+  {
+   "pr_id": 3436174433,
+   "number": 149,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/Fr1ngg/remnawave-bedolaga-telegram-bot/pull/149"
+  },
+  {
+   "pr_id": 3489836732,
+   "number": 43,
+   "agent": "Devin",
+   "html_url": "https://github.com/timoncool/videosos/pull/43"
+  },
+  {
+   "pr_id": 3189251981,
+   "number": 4308,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mochilang/mochi/pull/4308"
+  },
+  {
+   "pr_id": 3146619471,
+   "number": 476,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/charlesvestal/extending-move/pull/476"
+  },
+  {
+   "pr_id": 3158136553,
+   "number": 10228,
+   "agent": "Copilot",
+   "html_url": "https://github.com/dotnet/android/pull/10228"
+  },
+  {
+   "pr_id": 3292254327,
+   "number": 16823,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mochilang/mochi/pull/16823"
+  },
+  {
+   "pr_id": 3092112519,
+   "number": 171,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/wieslawsoltes/Xaml.Behaviors/pull/171"
+  },
+  {
+   "pr_id": 2923735518,
+   "number": 2386,
+   "agent": "Devin",
+   "html_url": "https://github.com/crewAIInc/crewAI/pull/2386"
+  },
+  {
+   "pr_id": 3479079159,
+   "number": 15518,
+   "agent": "Copilot",
+   "html_url": "https://github.com/elastic/integrations/pull/15518"
+  },
+  {
+   "pr_id": 3258943677,
+   "number": 12579,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mochilang/mochi/pull/12579"
+  },
+  {
+   "pr_id": 3409458401,
+   "number": 93,
+   "agent": "Copilot",
+   "html_url": "https://github.com/kesha-antonov/react-native-background-downloader/pull/93"
+  },
+  {
+   "pr_id": 3397483701,
+   "number": 20,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/thomasjjj/Telegram-Snowball-Sampling/pull/20"
+  },
+  {
+   "pr_id": 3181362963,
+   "number": 3609,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mochilang/mochi/pull/3609"
+  },
+  {
+   "pr_id": 3368899196,
+   "number": 20863,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mochilang/mochi/pull/20863"
+  },
+  {
+   "pr_id": 3245641273,
+   "number": 2928,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/parse-community/parse-dashboard/pull/2928"
+  },
+  {
+   "pr_id": 3121901648,
+   "number": 1615,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/MontrealAI/AGI-Alpha-Agent-v0/pull/1615"
+  },
+  {
+   "pr_id": 3152700757,
+   "number": 2048,
+   "agent": "Devin",
+   "html_url": "https://github.com/liam-hq/liam/pull/2048"
+  },
+  {
+   "pr_id": 3127976847,
+   "number": 21,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/phellipeandrade/rbac/pull/21"
+  },
+  {
+   "pr_id": 3243693891,
+   "number": 222,
+   "agent": "Copilot",
+   "html_url": "https://github.com/haydenbleasel/ultracite/pull/222"
+  },
+  {
+   "pr_id": 3323138376,
+   "number": 13098,
+   "agent": "Copilot",
+   "html_url": "https://github.com/oxc-project/oxc/pull/13098"
+  },
+  {
+   "pr_id": 3476717265,
+   "number": 44,
+   "agent": "Copilot",
+   "html_url": "https://github.com/ajnart/dcm/pull/44"
+  },
+  {
+   "pr_id": 3113149474,
+   "number": 2062,
+   "agent": "Copilot",
+   "html_url": "https://github.com/celestiaorg/docs/pull/2062"
+  },
+  {
+   "pr_id": 3468297163,
+   "number": 113,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/selcukorkmaz/fastml/pull/113"
+  },
+  {
+   "pr_id": 3433649823,
+   "number": 2134,
+   "agent": "Copilot",
+   "html_url": "https://github.com/hackiftekhar/IQKeyboardManager/pull/2134"
+  },
+  {
+   "pr_id": 3358397313,
+   "number": 146,
+   "agent": "Cursor",
+   "html_url": "https://github.com/Mr-Quin/danmaku-anywhere/pull/146"
+  },
+  {
+   "pr_id": 3148512814,
+   "number": 165,
+   "agent": "Copilot",
+   "html_url": "https://github.com/ctolkien/Slugify/pull/165"
+  },
+  {
+   "pr_id": 3523616418,
+   "number": 80782,
+   "agent": "Copilot",
+   "html_url": "https://github.com/dotnet/roslyn/pull/80782"
+  },
+  {
+   "pr_id": 3158931902,
+   "number": 372,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/jdereg/json-io/pull/372"
+  },
+  {
+   "pr_id": 3368898443,
+   "number": 20838,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mochilang/mochi/pull/20838"
+  },
+  {
+   "pr_id": 3338303963,
+   "number": 304,
+   "agent": "Copilot",
+   "html_url": "https://github.com/gookit/validate/pull/304"
+  },
+  {
+   "pr_id": 3467412237,
+   "number": 328,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/hjyssg/ShiguReader/pull/328"
+  },
+  {
+   "pr_id": 3348296385,
+   "number": 19487,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mochilang/mochi/pull/19487"
+  },
+  {
+   "pr_id": 3235943369,
+   "number": 8919,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mochilang/mochi/pull/8919"
+  },
+  {
+   "pr_id": 3065695363,
+   "number": 1682,
+   "agent": "Devin",
+   "html_url": "https://github.com/liam-hq/liam/pull/1682"
+  },
+  {
+   "pr_id": 3229710961,
+   "number": 81,
+   "agent": "Claude_Code",
+   "html_url": "https://github.com/typedef-ai/fenic/pull/81"
+  },
+  {
+   "pr_id": 3271883970,
+   "number": 265,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/nagisa77/OpenIsle/pull/265"
+  },
+  {
+   "pr_id": 3176063203,
+   "number": 173,
+   "agent": "Copilot",
+   "html_url": "https://github.com/haydenbleasel/ultracite/pull/173"
+  },
+  {
+   "pr_id": 3490466111,
+   "number": 1894,
+   "agent": "Cursor",
+   "html_url": "https://github.com/mfts/papermark/pull/1894"
+  },
+  {
+   "pr_id": 3307744032,
+   "number": 22,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/cogscides/obsidian-keyboard-analyzer/pull/22"
+  },
+  {
+   "pr_id": 3400168306,
+   "number": 993,
+   "agent": "Copilot",
+   "html_url": "https://github.com/microsoft/vscode-copilot-chat/pull/993"
+  },
+  {
+   "pr_id": 3185379935,
+   "number": 30298,
+   "agent": "Copilot",
+   "html_url": "https://github.com/dotnet/maui/pull/30298"
+  },
+  {
+   "pr_id": 3070916634,
+   "number": 211,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/zenml-io/zenml-projects/pull/211"
+  },
+  {
+   "pr_id": 3081841597,
+   "number": 510,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/MontrealAI/AGI-Alpha-Agent-v0/pull/510"
+  },
+  {
+   "pr_id": 2854640179,
+   "number": 2132,
+   "agent": "Devin",
+   "html_url": "https://github.com/crewAIInc/crewAI/pull/2132"
+  },
+  {
+   "pr_id": 3441761187,
+   "number": 3707,
+   "agent": "Copilot",
+   "html_url": "https://github.com/binarywang/WxJava/pull/3707"
+  },
+  {
+   "pr_id": 3251693154,
+   "number": 176,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/KenYu910645/MapleStoryAutoLevelUp/pull/176"
+  },
+  {
+   "pr_id": 3328009196,
+   "number": 19249,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mochilang/mochi/pull/19249"
+  },
+  {
+   "pr_id": 3123997500,
+   "number": 4915,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/ktorio/ktor/pull/4915"
+  },
+  {
+   "pr_id": 2868448806,
+   "number": 14,
+   "agent": "Devin",
+   "html_url": "https://github.com/jina-ai/deepsearch-ui/pull/14"
+  },
+  {
+   "pr_id": 3294491798,
+   "number": 87,
+   "agent": "Copilot",
+   "html_url": "https://github.com/microsoft/wassette/pull/87"
+  },
+  {
+   "pr_id": 3055011716,
+   "number": 546,
+   "agent": "Devin",
+   "html_url": "https://github.com/yamadashy/repomix/pull/546"
+  },
+  {
+   "pr_id": 3318910959,
+   "number": 363,
+   "agent": "Devin",
+   "html_url": "https://github.com/antiwork/gumboard/pull/363"
+  },
+  {
+   "pr_id": 3134312388,
+   "number": 389,
+   "agent": "Copilot",
+   "html_url": "https://github.com/lostintangent/gistpad/pull/389"
+  },
+  {
+   "pr_id": 2830759283,
+   "number": 14,
+   "agent": "Devin",
+   "html_url": "https://github.com/vlm-run/vlmrun-cookbook/pull/14"
+  },
+  {
+   "pr_id": 3412220449,
+   "number": 36772,
+   "agent": "Copilot",
+   "html_url": "https://github.com/dotnet/efcore/pull/36772"
+  },
+  {
+   "pr_id": 3356251684,
+   "number": 48121,
+   "agent": "Copilot",
+   "html_url": "https://github.com/dotnet/docs/pull/48121"
+  },
+  {
+   "pr_id": 3484818524,
+   "number": 562,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/StockSharp/StockSharp/pull/562"
+  },
+  {
+   "pr_id": 3098774049,
+   "number": 1096,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/MontrealAI/AGI-Alpha-Agent-v0/pull/1096"
+  },
+  {
+   "pr_id": 3224532813,
+   "number": 7737,
+   "agent": "Copilot",
+   "html_url": "https://github.com/shader-slang/slang/pull/7737"
+  },
+  {
+   "pr_id": 3501882194,
+   "number": 471,
+   "agent": "Copilot",
+   "html_url": "https://github.com/docker/cagent/pull/471"
+  },
+  {
+   "pr_id": 3240006087,
+   "number": 636,
+   "agent": "Copilot",
+   "html_url": "https://github.com/Azure/azure-mcp/pull/636"
+  },
+  {
+   "pr_id": 3209701955,
+   "number": 6139,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mochilang/mochi/pull/6139"
+  },
+  {
+   "pr_id": 3483250519,
+   "number": 1206,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/selfxyz/self/pull/1206"
+  },
+  {
+   "pr_id": 3529240186,
+   "number": 104,
+   "agent": "Copilot",
+   "html_url": "https://github.com/paralleldrive/cuid2/pull/104"
+  },
+  {
+   "pr_id": 3074962133,
+   "number": 8339,
+   "agent": "Devin",
+   "html_url": "https://github.com/novuhq/novu/pull/8339"
+  },
+  {
+   "pr_id": 3275931138,
+   "number": 14836,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mochilang/mochi/pull/14836"
+  },
+  {
+   "pr_id": 3171141121,
+   "number": 2823,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mochilang/mochi/pull/2823"
+  },
+  {
+   "pr_id": 3185493165,
+   "number": 2729,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/MontrealAI/AGI-Alpha-Agent-v0/pull/2729"
+  },
+  {
+   "pr_id": 3335298520,
+   "number": 17,
+   "agent": "Copilot",
+   "html_url": "https://github.com/spaansba/ForesightJS/pull/17"
+  },
+  {
+   "pr_id": 3163243464,
+   "number": 128,
+   "agent": "Claude_Code",
+   "html_url": "https://github.com/ryoppippi/ccusage/pull/128"
+  },
+  {
+   "pr_id": 3146309996,
+   "number": 3,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/gkamradt/MultiTerminalCodeViz/pull/3"
+  },
+  {
+   "pr_id": 3347650953,
+   "number": 19436,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mochilang/mochi/pull/19436"
+  },
+  {
+   "pr_id": 3070086530,
+   "number": 215,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/terkelg/awesome-creative-coding/pull/215"
+  },
+  {
+   "pr_id": 3152155952,
+   "number": 1256,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mochilang/mochi/pull/1256"
+  },
+  {
+   "pr_id": 3286887000,
+   "number": 21,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/Z-Zheng/pytorch-change-models/pull/21"
+  },
+  {
+   "pr_id": 3261131982,
+   "number": 2539,
+   "agent": "Cursor",
+   "html_url": "https://github.com/browser-use/browser-use/pull/2539"
+  },
+  {
+   "pr_id": 3428841294,
+   "number": 15154,
+   "agent": "Copilot",
+   "html_url": "https://github.com/microsoft/react-native-windows/pull/15154"
+  },
+  {
+   "pr_id": 3283730946,
+   "number": 1110,
+   "agent": "Copilot",
+   "html_url": "https://github.com/twilio/twilio-node/pull/1110"
+  },
+  {
+   "pr_id": 3395648730,
+   "number": 336,
+   "agent": "Copilot",
+   "html_url": "https://github.com/telerik/blazor-ui/pull/336"
+  },
+  {
+   "pr_id": 3097273504,
+   "number": 24,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/meilisearch/meilisearch-mcp/pull/24"
+  },
+  {
+   "pr_id": 3511613921,
+   "number": 800,
+   "agent": "Claude_Code",
+   "html_url": "https://github.com/ruvnet/claude-flow/pull/800"
+  },
+  {
+   "pr_id": 3505613042,
+   "number": 14,
+   "agent": "Copilot",
+   "html_url": "https://github.com/wzshiming/socks5/pull/14"
+  },
+  {
+   "pr_id": 3368704455,
+   "number": 20787,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mochilang/mochi/pull/20787"
+  },
+  {
+   "pr_id": 3070982748,
+   "number": 53,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/Automattic/wp-feature-api/pull/53"
+  },
+  {
+   "pr_id": 3120029246,
+   "number": 34,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/charlesvestal/extending-move/pull/34"
+  },
+  {
+   "pr_id": 3497307239,
+   "number": 360,
+   "agent": "Copilot",
+   "html_url": "https://github.com/microsoft/wassette/pull/360"
+  },
+  {
+   "pr_id": 3104500134,
+   "number": 1233,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/MontrealAI/AGI-Alpha-Agent-v0/pull/1233"
+  },
+  {
+   "pr_id": 3186922750,
+   "number": 4029,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mochilang/mochi/pull/4029"
+  },
+  {
+   "pr_id": 3277107479,
+   "number": 15091,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mochilang/mochi/pull/15091"
+  },
+  {
+   "pr_id": 3077212751,
+   "number": 1461,
+   "agent": "Devin",
+   "html_url": "https://github.com/langbot-app/LangBot/pull/1461"
+  },
+  {
+   "pr_id": 3127635850,
+   "number": 726,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/pterm/pterm/pull/726"
+  },
+  {
+   "pr_id": 3220972210,
+   "number": 16918,
+   "agent": "Cursor",
+   "html_url": "https://github.com/getsentry/sentry-javascript/pull/16918"
+  },
+  {
+   "pr_id": 3499394624,
+   "number": 101245,
+   "agent": "Cursor",
+   "html_url": "https://github.com/getsentry/sentry/pull/101245"
+  },
+  {
+   "pr_id": 3214153074,
+   "number": 6517,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mochilang/mochi/pull/6517"
+  },
+  {
+   "pr_id": 3220223180,
+   "number": 86,
+   "agent": "Claude_Code",
+   "html_url": "https://github.com/Deep-Learning-Profiling-Tools/triton-viz/pull/86"
+  },
+  {
+   "pr_id": 3490449266,
+   "number": 47,
+   "agent": "Devin",
+   "html_url": "https://github.com/timoncool/videosos/pull/47"
+  },
+  {
+   "pr_id": 3530282391,
+   "number": 3994,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/codenameone/CodenameOne/pull/3994"
+  },
+  {
+   "pr_id": 3177325038,
+   "number": 3299,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mochilang/mochi/pull/3299"
+  },
+  {
+   "pr_id": 3299304767,
+   "number": 223,
+   "agent": "Copilot",
+   "html_url": "https://github.com/eiriktsarpalis/PolyType/pull/223"
+  },
+  {
+   "pr_id": 3245893836,
+   "number": 447,
+   "agent": "Copilot",
+   "html_url": "https://github.com/jamesmh/coravel/pull/447"
+  },
+  {
+   "pr_id": 3370322376,
+   "number": 1767,
+   "agent": "Copilot",
+   "html_url": "https://github.com/rnwood/smtp4dev/pull/1767"
+  },
+  {
+   "pr_id": 3380372081,
+   "number": 323,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/machinewrapped/llm-subtrans/pull/323"
+  },
+  {
+   "pr_id": 3480849652,
+   "number": 282,
+   "agent": "Copilot",
+   "html_url": "https://github.com/hazzik/DelegateDecompiler/pull/282"
+  },
+  {
+   "pr_id": 3292589310,
+   "number": 3049,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/KomodoPlatform/komodo-wallet/pull/3049"
+  },
+  {
+   "pr_id": 3250855016,
+   "number": 11722,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mochilang/mochi/pull/11722"
+  },
+  {
+   "pr_id": 3171610719,
+   "number": 2843,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mochilang/mochi/pull/2843"
+  },
+  {
+   "pr_id": 3521506299,
+   "number": 39,
+   "agent": "Copilot",
+   "html_url": "https://github.com/flohoss/gocron/pull/39"
+  },
+  {
+   "pr_id": 3158712848,
+   "number": 2017,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mochilang/mochi/pull/2017"
+  },
+  {
+   "pr_id": 2785728592,
+   "number": 3845,
+   "agent": "Devin",
+   "html_url": "https://github.com/box/box-ui-elements/pull/3845"
+  },
+  {
+   "pr_id": 2973573072,
+   "number": 757,
+   "agent": "Devin",
+   "html_url": "https://github.com/dcSpark/shinkai-local-ai-agents/pull/757"
+  },
+  {
+   "pr_id": 3520817941,
+   "number": 6,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/jjziets/vasttools/pull/6"
+  },
+  {
+   "pr_id": 3137636027,
+   "number": 12953,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/hmislk/hmis/pull/12953"
+  },
+  {
+   "pr_id": 3021061661,
+   "number": 202,
+   "agent": "Devin",
+   "html_url": "https://github.com/antiwork/flexile/pull/202"
+  },
+  {
+   "pr_id": 3295900186,
+   "number": 17535,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mochilang/mochi/pull/17535"
+  },
+  {
+   "pr_id": 3340952598,
+   "number": 7210,
+   "agent": "Copilot",
+   "html_url": "https://github.com/microsoft/CCF/pull/7210"
+  },
+  {
+   "pr_id": 3419622919,
+   "number": 3532,
+   "agent": "Copilot",
+   "html_url": "https://github.com/tensorzero/tensorzero/pull/3532"
+  },
+  {
+   "pr_id": 3266640617,
+   "number": 13639,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mochilang/mochi/pull/13639"
+  },
+  {
+   "pr_id": 3219881751,
+   "number": 3186,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/MontrealAI/AGI-Alpha-Agent-v0/pull/3186"
+  },
+  {
+   "pr_id": 3145213441,
+   "number": 2120,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/MontrealAI/AGI-Alpha-Agent-v0/pull/2120"
+  },
+  {
+   "pr_id": 3367432665,
+   "number": 120,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mfat/sshpilot/pull/120"
+  },
+  {
+   "pr_id": 3155876789,
+   "number": 324,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/elixir-lsp/elixir_sense/pull/324"
+  },
+  {
+   "pr_id": 3392215095,
+   "number": 16952,
+   "agent": "Copilot",
+   "html_url": "https://github.com/microsoft/vscode-jupyter/pull/16952"
+  },
+  {
+   "pr_id": 3530672031,
+   "number": 5358,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/openai/codex/pull/5358"
+  },
+  {
+   "pr_id": 3245288845,
+   "number": 10224,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mochilang/mochi/pull/10224"
+  },
+  {
+   "pr_id": 3506163609,
+   "number": 120633,
+   "agent": "Copilot",
+   "html_url": "https://github.com/dotnet/runtime/pull/120633"
+  },
+  {
+   "pr_id": 3230534182,
+   "number": 8692,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mochilang/mochi/pull/8692"
+  },
+  {
+   "pr_id": 3328176961,
+   "number": 28400,
+   "agent": "Copilot",
+   "html_url": "https://github.com/Azure/azure-powershell/pull/28400"
+  },
+  {
+   "pr_id": 3453217367,
+   "number": 1939,
+   "agent": "Copilot",
+   "html_url": "https://github.com/microsoft/genaiscript/pull/1939"
+  },
+  {
+   "pr_id": 3135355668,
+   "number": 13355,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/prebid/Prebid.js/pull/13355"
+  },
+  {
+   "pr_id": 3502868566,
+   "number": 2284,
+   "agent": "Claude_Code",
+   "html_url": "https://github.com/openshift-pipelines/pipelines-as-code/pull/2284"
+  },
+  {
+   "pr_id": 3271093474,
+   "number": 3862,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/MontrealAI/AGI-Alpha-Agent-v0/pull/3862"
+  },
+  {
+   "pr_id": 3363934370,
+   "number": 20697,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mochilang/mochi/pull/20697"
+  },
+  {
+   "pr_id": 3253485868,
+   "number": 744,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/OpenHD/QOpenHD/pull/744"
+  },
+  {
+   "pr_id": 3166490081,
+   "number": 1007,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/marin-community/levanter/pull/1007"
+  },
+  {
+   "pr_id": 3150992717,
+   "number": 262,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/jdereg/java-util/pull/262"
+  },
+  {
+   "pr_id": 3297041797,
+   "number": 17684,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mochilang/mochi/pull/17684"
+  },
+  {
+   "pr_id": 3244980687,
+   "number": 10039,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mochilang/mochi/pull/10039"
+  },
+  {
+   "pr_id": 3098640773,
+   "number": 1086,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/MontrealAI/AGI-Alpha-Agent-v0/pull/1086"
+  },
+  {
+   "pr_id": 3219919222,
+   "number": 7473,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mochilang/mochi/pull/7473"
+  },
+  {
+   "pr_id": 3500086991,
+   "number": 3119,
+   "agent": "Devin",
+   "html_url": "https://github.com/pyth-network/pyth-crosschain/pull/3119"
+  },
+  {
+   "pr_id": 3354923980,
+   "number": 841,
+   "agent": "Copilot",
+   "html_url": "https://github.com/jendrikseipp/rednotebook/pull/841"
+  },
+  {
+   "pr_id": 3265278926,
+   "number": 103,
+   "agent": "Copilot",
+   "html_url": "https://github.com/jamdotdev/jam-dev-utilities/pull/103"
+  },
+  {
+   "pr_id": 3243339690,
+   "number": 348,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/wieslawsoltes/Svg.Skia/pull/348"
+  },
+  {
+   "pr_id": 3154214511,
+   "number": 1424,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mochilang/mochi/pull/1424"
+  },
+  {
+   "pr_id": 3494005190,
+   "number": 916,
+   "agent": "Copilot",
+   "html_url": "https://github.com/vitejs/vite-plugin-react/pull/916"
+  },
+  {
+   "pr_id": 3359902280,
+   "number": 3282,
+   "agent": "Copilot",
+   "html_url": "https://github.com/operately/operately/pull/3282"
+  },
+  {
+   "pr_id": 3147583509,
+   "number": 2199,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/MontrealAI/AGI-Alpha-Agent-v0/pull/2199"
+  },
+  {
+   "pr_id": 3243802062,
+   "number": 9774,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mochilang/mochi/pull/9774"
+  },
+  {
+   "pr_id": 3236591950,
+   "number": 419,
+   "agent": "Cursor",
+   "html_url": "https://github.com/epicweb-dev/react-fundamentals/pull/419"
+  },
+  {
+   "pr_id": 3535248944,
+   "number": 4510,
+   "agent": "Copilot",
+   "html_url": "https://github.com/PaddlePaddle/FastDeploy/pull/4510"
+  },
+  {
+   "pr_id": 3303098132,
+   "number": 21227,
+   "agent": "Copilot",
+   "html_url": "https://github.com/unoplatform/uno/pull/21227"
+  },
+  {
+   "pr_id": 3135251551,
+   "number": 370,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mochilang/mochi/pull/370"
+  },
+  {
+   "pr_id": 3373036635,
+   "number": 5576,
+   "agent": "Copilot",
+   "html_url": "https://github.com/telerik/kendo-themes/pull/5576"
+  },
+  {
+   "pr_id": 3504424902,
+   "number": 1854,
+   "agent": "Copilot",
+   "html_url": "https://github.com/microsoft/finops-toolkit/pull/1854"
+  },
+  {
+   "pr_id": 3528070634,
+   "number": 63,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/simonw/tools/pull/63"
+  },
+  {
+   "pr_id": 3310552163,
+   "number": 18453,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mochilang/mochi/pull/18453"
+  },
+  {
+   "pr_id": 3091989106,
+   "number": 309,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/jdereg/json-io/pull/309"
+  },
+  {
+   "pr_id": 3470443177,
+   "number": 8627,
+   "agent": "Copilot",
+   "html_url": "https://github.com/microsoft/typespec/pull/8627"
+  },
+  {
+   "pr_id": 3472203161,
+   "number": 609,
+   "agent": "Copilot",
+   "html_url": "https://github.com/ofkm/arcane/pull/609"
+  },
+  {
+   "pr_id": 3253582273,
+   "number": 953,
+   "agent": "Claude_Code",
+   "html_url": "https://github.com/recallnet/js-recall/pull/953"
+  },
+  {
+   "pr_id": 3335129807,
+   "number": 114,
+   "agent": "Copilot",
+   "html_url": "https://github.com/d2learn/xlings/pull/114"
+  },
+  {
+   "pr_id": 3194549869,
+   "number": 51005,
+   "agent": "Copilot",
+   "html_url": "https://github.com/Azure/azure-sdk-for-net/pull/51005"
+  },
+  {
+   "pr_id": 3121801030,
+   "number": 57,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/charlesvestal/extending-move/pull/57"
+  },
+  {
+   "pr_id": 3138629099,
+   "number": 986,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/dcSpark/shinkai-local-ai-agents/pull/986"
+  },
+  {
+   "pr_id": 3453705208,
+   "number": 8229,
+   "agent": "Copilot",
+   "html_url": "https://github.com/OpenMS/OpenMS/pull/8229"
+  },
+  {
+   "pr_id": 3448910147,
+   "number": 92,
+   "agent": "Copilot",
+   "html_url": "https://github.com/feincms/django-tree-queries/pull/92"
+  },
+  {
+   "pr_id": 3194335316,
+   "number": 726,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/selfxyz/self/pull/726"
+  },
+  {
+   "pr_id": 3150694787,
+   "number": 1157,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mochilang/mochi/pull/1157"
+  },
+  {
+   "pr_id": 3290826060,
+   "number": 259673,
+   "agent": "Copilot",
+   "html_url": "https://github.com/microsoft/vscode/pull/259673"
+  },
+  {
+   "pr_id": 3271687852,
+   "number": 14333,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mochilang/mochi/pull/14333"
+  },
+  {
+   "pr_id": 3245288991,
+   "number": 10226,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mochilang/mochi/pull/10226"
+  },
+  {
+   "pr_id": 3070197658,
+   "number": 513,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/VerisimilitudeX/DNAnalyzer/pull/513"
+  },
+  {
+   "pr_id": 3286555936,
+   "number": 253,
+   "agent": "Cursor",
+   "html_url": "https://github.com/ryokun6/ryos/pull/253"
+  },
+  {
+   "pr_id": 3417650868,
+   "number": 61,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/l5yth/potato-mesh/pull/61"
+  },
+  {
+   "pr_id": 3103340693,
+   "number": 1087,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/OpenHFT/Chronicle-Wire/pull/1087"
+  },
+  {
+   "pr_id": 3265929092,
+   "number": 3793,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/MontrealAI/AGI-Alpha-Agent-v0/pull/3793"
+  },
+  {
+   "pr_id": 3540733373,
+   "number": 1062,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/davidmerfield/blot/pull/1062"
+  },
+  {
+   "pr_id": 3297635853,
+   "number": 2168,
+   "agent": "Copilot",
+   "html_url": "https://github.com/sebastienros/jint/pull/2168"
+  },
+  {
+   "pr_id": 3072108400,
+   "number": 162,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/jrkropp/open-webui-developer-toolkit/pull/162"
+  },
+  {
+   "pr_id": 3207381879,
+   "number": 3063,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/MontrealAI/AGI-Alpha-Agent-v0/pull/3063"
+  },
+  {
+   "pr_id": 3324176587,
+   "number": 18965,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mochilang/mochi/pull/18965"
+  },
+  {
+   "pr_id": 3145258265,
+   "number": 2124,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/MontrealAI/AGI-Alpha-Agent-v0/pull/2124"
+  },
+  {
+   "pr_id": 3081858960,
+   "number": 93,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/cablehead/xs/pull/93"
+  },
+  {
+   "pr_id": 3159392806,
+   "number": 2087,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mochilang/mochi/pull/2087"
+  },
+  {
+   "pr_id": 3458994074,
+   "number": 5117,
+   "agent": "Copilot",
+   "html_url": "https://github.com/dotnet/EntityFramework.Docs/pull/5117"
+  },
+  {
+   "pr_id": 3539289911,
+   "number": 168,
+   "agent": "Copilot",
+   "html_url": "https://github.com/andrewlock/NetEscapades.EnumGenerators/pull/168"
+  },
+  {
+   "pr_id": 3287068214,
+   "number": 2194,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/asynkron/protoactor-dotnet/pull/2194"
+  },
+  {
+   "pr_id": 3346694376,
+   "number": 1378,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/gofiber/contrib/pull/1378"
+  },
+  {
+   "pr_id": 3506835364,
+   "number": 954,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/calcitem/Sanmill/pull/954"
+  },
+  {
+   "pr_id": 3182711712,
+   "number": 3829,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mochilang/mochi/pull/3829"
+  },
+  {
+   "pr_id": 3224388880,
+   "number": 195,
+   "agent": "Cursor",
+   "html_url": "https://github.com/mediar-ai/terminator/pull/195"
+  },
+  {
+   "pr_id": 2839377784,
+   "number": 53238,
+   "agent": "Devin",
+   "html_url": "https://github.com/airbytehq/airbyte/pull/53238"
+  },
+  {
+   "pr_id": 3432549154,
+   "number": 17821,
+   "agent": "Copilot",
+   "html_url": "https://github.com/mlflow/mlflow/pull/17821"
+  },
+  {
+   "pr_id": 3153634298,
+   "number": 5403,
+   "agent": "Copilot",
+   "html_url": "https://github.com/remotion-dev/remotion/pull/5403"
+  },
+  {
+   "pr_id": 3165424218,
+   "number": 230,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/wieslawsoltes/Xaml.Behaviors/pull/230"
+  },
+  {
+   "pr_id": 3352661122,
+   "number": 19709,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mochilang/mochi/pull/19709"
+  },
+  {
+   "pr_id": 3385132794,
+   "number": 1898,
+   "agent": "Copilot",
+   "html_url": "https://github.com/containers/ramalama/pull/1898"
+  },
+  {
+   "pr_id": 3281051522,
+   "number": 12690,
+   "agent": "Copilot",
+   "html_url": "https://github.com/oxc-project/oxc/pull/12690"
+  },
+  {
+   "pr_id": 3504123034,
+   "number": 4699,
+   "agent": "Copilot",
+   "html_url": "https://github.com/microsoft/AzureTRE/pull/4699"
+  },
+  {
+   "pr_id": 3528213152,
+   "number": 279,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/vinhnx/vtcode/pull/279"
+  },
+  {
+   "pr_id": 3451368342,
+   "number": 1632,
+   "agent": "Copilot",
+   "html_url": "https://github.com/activerecord-hackery/ransack/pull/1632"
+  },
+  {
+   "pr_id": 3349380975,
+   "number": 717,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/SMEWebify/WebErpMesv2/pull/717"
+  },
+  {
+   "pr_id": 3142539176,
+   "number": 1911,
+   "agent": "Copilot",
+   "html_url": "https://github.com/specmatic/specmatic/pull/1911"
+  },
+  {
+   "pr_id": 3466234672,
+   "number": 2411,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/sei-protocol/sei-chain/pull/2411"
+  },
+  {
+   "pr_id": 3077312135,
+   "number": 2746,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/AMICI-dev/AMICI/pull/2746"
+  },
+  {
+   "pr_id": 3173368111,
+   "number": 30178,
+   "agent": "Copilot",
+   "html_url": "https://github.com/dotnet/maui/pull/30178"
+  },
+  {
+   "pr_id": 3392806051,
+   "number": 3384,
+   "agent": "Devin",
+   "html_url": "https://github.com/liam-hq/liam/pull/3384"
+  },
+  {
+   "pr_id": 3385341711,
+   "number": 607,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/PLhery/node-twitter-api-v2/pull/607"
+  },
+  {
+   "pr_id": 3164486875,
+   "number": 86,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/featureform/enrichmcp/pull/86"
+  },
+  {
+   "pr_id": 3298789693,
+   "number": 17858,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mochilang/mochi/pull/17858"
+  },
+  {
+   "pr_id": 3242170664,
+   "number": 9502,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mochilang/mochi/pull/9502"
+  },
+  {
+   "pr_id": 3203564559,
+   "number": 109,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/MihaiCristianCondrea/Smart-Cleaner-for-Android/pull/109"
+  },
+  {
+   "pr_id": 3480429014,
+   "number": 6852,
+   "agent": "Copilot",
+   "html_url": "https://github.com/bndtools/bnd/pull/6852"
+  },
+  {
+   "pr_id": 3164989143,
+   "number": 1648,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/gluesql/gluesql/pull/1648"
+  },
+  {
+   "pr_id": 3273855235,
+   "number": 14657,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mochilang/mochi/pull/14657"
+  },
+  {
+   "pr_id": 3369723237,
+   "number": 20961,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mochilang/mochi/pull/20961"
+  },
+  {
+   "pr_id": 3291416560,
+   "number": 16626,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mochilang/mochi/pull/16626"
+  },
+  {
+   "pr_id": 3092991223,
+   "number": 361,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/eigenwallet/core/pull/361"
+  },
+  {
+   "pr_id": 3349977000,
+   "number": 418,
+   "agent": "Cursor",
+   "html_url": "https://github.com/ucbepic/docetl/pull/418"
+  },
+  {
+   "pr_id": 3521439151,
+   "number": 80754,
+   "agent": "Copilot",
+   "html_url": "https://github.com/dotnet/roslyn/pull/80754"
+  },
+  {
+   "pr_id": 3269084536,
+   "number": 14223,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mochilang/mochi/pull/14223"
+  },
+  {
+   "pr_id": 3128960984,
+   "number": 222,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mochilang/mochi/pull/222"
+  },
+  {
+   "pr_id": 3422261504,
+   "number": 355,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/xssnick/tonutils-go/pull/355"
+  },
+  {
+   "pr_id": 3523218798,
+   "number": 414,
+   "agent": "Copilot",
+   "html_url": "https://github.com/microsoft/Generative-AI-for-beginners-dotnet/pull/414"
+  },
+  {
+   "pr_id": 3131139832,
+   "number": 257,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mochilang/mochi/pull/257"
+  },
+  {
+   "pr_id": 3362176113,
+   "number": 20588,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mochilang/mochi/pull/20588"
+  },
+  {
+   "pr_id": 3245131623,
+   "number": 10105,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mochilang/mochi/pull/10105"
+  },
+  {
+   "pr_id": 3230603903,
+   "number": 1698,
+   "agent": "Copilot",
+   "html_url": "https://github.com/microsoft/openvmm/pull/1698"
+  },
+  {
+   "pr_id": 3158562650,
+   "number": 1982,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mochilang/mochi/pull/1982"
+  },
+  {
+   "pr_id": 3522787186,
+   "number": 1816,
+   "agent": "Copilot",
+   "html_url": "https://github.com/githubnext/gh-aw/pull/1816"
+  },
+  {
+   "pr_id": 3449652792,
+   "number": 95,
+   "agent": "Copilot",
+   "html_url": "https://github.com/activerecord-hackery/ransack_demo/pull/95"
+  },
+  {
+   "pr_id": 2886653082,
+   "number": 764,
+   "agent": "Devin",
+   "html_url": "https://github.com/pdfme/pdfme/pull/764"
+  },
+  {
+   "pr_id": 2949364196,
+   "number": 2476,
+   "agent": "Devin",
+   "html_url": "https://github.com/crewAIInc/crewAI/pull/2476"
+  },
+  {
+   "pr_id": 3546569297,
+   "number": 8807,
+   "agent": "Copilot",
+   "html_url": "https://github.com/shader-slang/slang/pull/8807"
+  },
+  {
+   "pr_id": 3352657538,
+   "number": 19708,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mochilang/mochi/pull/19708"
+  },
+  {
+   "pr_id": 3153314282,
+   "number": 5400,
+   "agent": "Copilot",
+   "html_url": "https://github.com/remotion-dev/remotion/pull/5400"
+  },
+  {
+   "pr_id": 3547099681,
+   "number": 259,
+   "agent": "Copilot",
+   "html_url": "https://github.com/nikita-volkov/hasql/pull/259"
+  },
+  {
+   "pr_id": 3285557371,
+   "number": 15683,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mochilang/mochi/pull/15683"
+  },
+  {
+   "pr_id": 3267166337,
+   "number": 84,
+   "agent": "Copilot",
+   "html_url": "https://github.com/web-infra-dev/rslint/pull/84"
+  },
+  {
+   "pr_id": 3422471794,
+   "number": 7961,
+   "agent": "Copilot",
+   "html_url": "https://github.com/QwikDev/qwik/pull/7961"
+  },
+  {
+   "pr_id": 3196256006,
+   "number": 1194,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/PaloAltoNetworks/docusaurus-openapi-docs/pull/1194"
+  },
+  {
+   "pr_id": 3317673574,
+   "number": 18765,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mochilang/mochi/pull/18765"
+  },
+  {
+   "pr_id": 3086427872,
+   "number": 1959,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/temporalio/sdk-go/pull/1959"
+  },
+  {
+   "pr_id": 3496104473,
+   "number": 14444,
+   "agent": "Copilot",
+   "html_url": "https://github.com/oxc-project/oxc/pull/14444"
+  },
+  {
+   "pr_id": 2768257624,
+   "number": 175,
+   "agent": "Devin",
+   "html_url": "https://github.com/crewAIInc/crewAI-tools/pull/175"
+  },
+  {
+   "pr_id": 3340056217,
+   "number": 2742,
+   "agent": "Cursor",
+   "html_url": "https://github.com/browser-use/browser-use/pull/2742"
+  },
+  {
+   "pr_id": 3483428251,
+   "number": 160,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/vinhnx/vtcode/pull/160"
+  },
+  {
+   "pr_id": 3154463442,
+   "number": 1498,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mochilang/mochi/pull/1498"
+  },
+  {
+   "pr_id": 3312435002,
+   "number": 18543,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mochilang/mochi/pull/18543"
+  },
+  {
+   "pr_id": 3319119090,
+   "number": 5563,
+   "agent": "Copilot",
+   "html_url": "https://github.com/MicrosoftDocs/windows-dev-docs/pull/5563"
+  },
+  {
+   "pr_id": 3331804300,
+   "number": 2655,
+   "agent": "Cursor",
+   "html_url": "https://github.com/514-labs/moosestack/pull/2655"
+  },
+  {
+   "pr_id": 3294451958,
+   "number": 2240,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/asynkron/protoactor-dotnet/pull/2240"
+  },
+  {
+   "pr_id": 3164689591,
+   "number": 2447,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/MontrealAI/AGI-Alpha-Agent-v0/pull/2447"
+  },
+  {
+   "pr_id": 3537870527,
+   "number": 4110,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/tensorzero/tensorzero/pull/4110"
+  },
+  {
+   "pr_id": 3323956833,
+   "number": 13639,
+   "agent": "Cursor",
+   "html_url": "https://github.com/BerriAI/litellm/pull/13639"
+  },
+  {
+   "pr_id": 3199871502,
+   "number": 976,
+   "agent": "Copilot",
+   "html_url": "https://github.com/vltpkg/vltpkg/pull/976"
+  },
+  {
+   "pr_id": 3328333341,
+   "number": 19295,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mochilang/mochi/pull/19295"
+  },
+  {
+   "pr_id": 3225576716,
+   "number": 8105,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mochilang/mochi/pull/8105"
+  },
+  {
+   "pr_id": 3433600491,
+   "number": 129,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/l5yth/potato-mesh/pull/129"
+  },
+  {
+   "pr_id": 3330490707,
+   "number": 5970,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/rsyslog/rsyslog/pull/5970"
+  },
+  {
+   "pr_id": 3186167455,
+   "number": 3964,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mochilang/mochi/pull/3964"
+  },
+  {
+   "pr_id": 3433040196,
+   "number": 1211,
+   "agent": "Cursor",
+   "html_url": "https://github.com/SuperteamDAO/earn/pull/1211"
+  },
+  {
+   "pr_id": 3147348594,
+   "number": 828,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mochilang/mochi/pull/828"
+  },
+  {
+   "pr_id": 3054504406,
+   "number": 878,
+   "agent": "Devin",
+   "html_url": "https://github.com/dcSpark/shinkai-local-ai-agents/pull/878"
+  },
+  {
+   "pr_id": 3348457992,
+   "number": 511,
+   "agent": "Copilot",
+   "html_url": "https://github.com/Cosmian/kms/pull/511"
+  },
+  {
+   "pr_id": 3200722272,
+   "number": 254005,
+   "agent": "Copilot",
+   "html_url": "https://github.com/microsoft/vscode/pull/254005"
+  },
+  {
+   "pr_id": 3239092308,
+   "number": 3463,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/MontrealAI/AGI-Alpha-Agent-v0/pull/3463"
+  },
+  {
+   "pr_id": 3165213002,
+   "number": 3044,
+   "agent": "Devin",
+   "html_url": "https://github.com/crewAIInc/crewAI/pull/3044"
+  },
+  {
+   "pr_id": 3123528512,
+   "number": 2791,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/markuplint/markuplint/pull/2791"
+  },
+  {
+   "pr_id": 3328628845,
+   "number": 5396,
+   "agent": "Claude_Code",
+   "html_url": "https://github.com/Effect-TS/effect/pull/5396"
+  },
+  {
+   "pr_id": 3466483357,
+   "number": 706,
+   "agent": "Copilot",
+   "html_url": "https://github.com/qoomon/actions--access-token/pull/706"
+  },
+  {
+   "pr_id": 3449410394,
+   "number": 32,
+   "agent": "Copilot",
+   "html_url": "https://github.com/ami-iit/amp-rsl-rl/pull/32"
+  },
+  {
+   "pr_id": 3358807792,
+   "number": 20327,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mochilang/mochi/pull/20327"
+  },
+  {
+   "pr_id": 3330308182,
+   "number": 7624,
+   "agent": "Copilot",
+   "html_url": "https://github.com/microsoft/vscode-pull-request-github/pull/7624"
+  },
+  {
+   "pr_id": 3124534759,
+   "number": 99,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/badtuxx/girus-cli/pull/99"
+  },
+  {
+   "pr_id": 3480512391,
+   "number": 2088,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/Shelf-nu/shelf.nu/pull/2088"
+  },
+  {
+   "pr_id": 3434602870,
+   "number": 194,
+   "agent": "Copilot",
+   "html_url": "https://github.com/bodo-run/yek/pull/194"
+  },
+  {
+   "pr_id": 3506170636,
+   "number": 120635,
+   "agent": "Copilot",
+   "html_url": "https://github.com/dotnet/runtime/pull/120635"
+  },
+  {
+   "pr_id": 3276295357,
+   "number": 14964,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mochilang/mochi/pull/14964"
+  },
+  {
+   "pr_id": 3539095243,
+   "number": 2099,
+   "agent": "Copilot",
+   "html_url": "https://github.com/githubnext/gh-aw/pull/2099"
+  },
+  {
+   "pr_id": 3319797253,
+   "number": 5578,
+   "agent": "Copilot",
+   "html_url": "https://github.com/MicrosoftDocs/windows-dev-docs/pull/5578"
+  },
+  {
+   "pr_id": 3299520881,
+   "number": 2256,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/asynkron/protoactor-dotnet/pull/2256"
+  },
+  {
+   "pr_id": 3538452421,
+   "number": 1683,
+   "agent": "Copilot",
+   "html_url": "https://github.com/pymc-devs/pytensor/pull/1683"
+  },
+  {
+   "pr_id": 3244290139,
+   "number": 4352,
+   "agent": "Copilot",
+   "html_url": "https://github.com/microsoft/ApplicationInsights-Java/pull/4352"
+  },
+  {
+   "pr_id": 3548139204,
+   "number": 1071,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/davidmerfield/blot/pull/1071"
+  },
+  {
+   "pr_id": 3319466834,
+   "number": 1201,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/asynkron/protoactor-go/pull/1201"
+  },
+  {
+   "pr_id": 3393152041,
+   "number": 6098,
+   "agent": "Cursor",
+   "html_url": "https://github.com/getsentry/sentry-cocoa/pull/6098"
+  },
+  {
+   "pr_id": 3436649764,
+   "number": 414,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mfat/sshpilot/pull/414"
+  },
+  {
+   "pr_id": 3284812996,
+   "number": 191,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/marin-community/haliax/pull/191"
+  },
+  {
+   "pr_id": 2958369170,
+   "number": 3524,
+   "agent": "Devin",
+   "html_url": "https://github.com/GlareDB/glaredb/pull/3524"
+  },
+  {
+   "pr_id": 3496946043,
+   "number": 1212,
+   "agent": "Claude_Code",
+   "html_url": "https://github.com/databricks/dbt-databricks/pull/1212"
+  },
+  {
+   "pr_id": 3245015405,
+   "number": 10066,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mochilang/mochi/pull/10066"
+  },
+  {
+   "pr_id": 3235853229,
+   "number": 8910,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mochilang/mochi/pull/8910"
+  },
+  {
+   "pr_id": 3363700357,
+   "number": 10520,
+   "agent": "Copilot",
+   "html_url": "https://github.com/pylint-dev/pylint/pull/10520"
+  },
+  {
+   "pr_id": 3118710799,
+   "number": 1014,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/Embucket/embucket/pull/1014"
+  },
+  {
+   "pr_id": 3157539817,
+   "number": 3853,
+   "agent": "Copilot",
+   "html_url": "https://github.com/dotnet/docs-aspire/pull/3853"
+  },
+  {
+   "pr_id": 3293481335,
+   "number": 17130,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mochilang/mochi/pull/17130"
+  },
+  {
+   "pr_id": 3544856353,
+   "number": 237,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/Fannon/search-bookmarks-history-and-tabs/pull/237"
+  },
+  {
+   "pr_id": 3480024484,
+   "number": 508,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/willmiao/ComfyUI-Lora-Manager/pull/508"
+  },
+  {
+   "pr_id": 3177877287,
+   "number": 152,
+   "agent": "Cursor",
+   "html_url": "https://github.com/567-labs/kura/pull/152"
+  },
+  {
+   "pr_id": 3071158231,
+   "number": 53,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/jrkropp/open-webui-developer-toolkit/pull/53"
+  },
+  {
+   "pr_id": 3350116582,
+   "number": 19630,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mochilang/mochi/pull/19630"
+  },
+  {
+   "pr_id": 3302064943,
+   "number": 730,
+   "agent": "Copilot",
+   "html_url": "https://github.com/reqnroll/Reqnroll/pull/730"
+  },
+  {
+   "pr_id": 3449588538,
+   "number": 1596,
+   "agent": "Copilot",
+   "html_url": "https://github.com/activerecord-hackery/ransack/pull/1596"
+  },
+  {
+   "pr_id": 3521213165,
+   "number": 932,
+   "agent": "Claude_Code",
+   "html_url": "https://github.com/reown-com/web-examples/pull/932"
+  },
+  {
+   "pr_id": 3536117776,
+   "number": 3393,
+   "agent": "Copilot",
+   "html_url": "https://github.com/obophenotype/cell-ontology/pull/3393"
+  },
+  {
+   "pr_id": 3201428116,
+   "number": 123,
+   "agent": "Cursor",
+   "html_url": "https://github.com/PrimeIntellect-ai/verifiers/pull/123"
+  },
+  {
+   "pr_id": 3475711050,
+   "number": 1143,
+   "agent": "Copilot",
+   "html_url": "https://github.com/githubnext/gh-aw/pull/1143"
+  },
+  {
+   "pr_id": 3090771403,
+   "number": 155,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/OpenHFT/Java-Runtime-Compiler/pull/155"
+  },
+  {
+   "pr_id": 3291119039,
+   "number": 5323,
+   "agent": "Copilot",
+   "html_url": "https://github.com/microsoft/msquic/pull/5323"
+  },
+  {
+   "pr_id": 3362755621,
+   "number": 57,
+   "agent": "Copilot",
+   "html_url": "https://github.com/kesha-antonov/react-native-background-downloader/pull/57"
+  },
+  {
+   "pr_id": 3088609545,
+   "number": 10033,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/Significant-Gravitas/AutoGPT/pull/10033"
+  },
+  {
+   "pr_id": 3429220943,
+   "number": 838,
+   "agent": "Copilot",
+   "html_url": "https://github.com/Vector35/debugger/pull/838"
+  },
+  {
+   "pr_id": 3248123021,
+   "number": 135,
+   "agent": "Copilot",
+   "html_url": "https://github.com/alexandear/import-gitlab-commits/pull/135"
+  },
+  {
+   "pr_id": 3520451916,
+   "number": 1187,
+   "agent": "Copilot",
+   "html_url": "https://github.com/dr5hn/countries-states-cities-database/pull/1187"
+  },
+  {
+   "pr_id": 3460160069,
+   "number": 5799,
+   "agent": "Cursor",
+   "html_url": "https://github.com/actualbudget/actual/pull/5799"
+  },
+  {
+   "pr_id": 3530376890,
+   "number": 251,
+   "agent": "Copilot",
+   "html_url": "https://github.com/majorsilence/My-FyiReporting/pull/251"
+  },
+  {
+   "pr_id": 3216455571,
+   "number": 6850,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mochilang/mochi/pull/6850"
+  },
+  {
+   "pr_id": 3285846942,
+   "number": 15858,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mochilang/mochi/pull/15858"
+  },
+  {
+   "pr_id": 3246458632,
+   "number": 10895,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mochilang/mochi/pull/10895"
+  },
+  {
+   "pr_id": 3221328642,
+   "number": 658,
+   "agent": "Copilot",
+   "html_url": "https://github.com/mosecorg/mosec/pull/658"
+  },
+  {
+   "pr_id": 3148240492,
+   "number": 2227,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/MontrealAI/AGI-Alpha-Agent-v0/pull/2227"
+  },
+  {
+   "pr_id": 3255708290,
+   "number": 14108,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/hmislk/hmis/pull/14108"
+  },
+  {
+   "pr_id": 3218934577,
+   "number": 7343,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mochilang/mochi/pull/7343"
+  },
+  {
+   "pr_id": 3176895873,
+   "number": 237,
+   "agent": "Copilot",
+   "html_url": "https://github.com/wcandillon/react-native-webgpu/pull/237"
+  },
+  {
+   "pr_id": 3549116470,
+   "number": 191,
+   "agent": "Copilot",
+   "html_url": "https://github.com/casdoor/casdoor-go-sdk/pull/191"
+  },
+  {
+   "pr_id": 3266407818,
+   "number": 14217,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/hmislk/hmis/pull/14217"
+  },
+  {
+   "pr_id": 3459175280,
+   "number": 83,
+   "agent": "Cursor",
+   "html_url": "https://github.com/inspirer/textmapper/pull/83"
+  },
+  {
+   "pr_id": 3254584375,
+   "number": 205,
+   "agent": "Copilot",
+   "html_url": "https://github.com/AIDotNet/OpenDeepWiki/pull/205"
+  },
+  {
+   "pr_id": 3167632069,
+   "number": 541,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/charlesvestal/extending-move/pull/541"
+  },
+  {
+   "pr_id": 3206603382,
+   "number": 3027,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/MontrealAI/AGI-Alpha-Agent-v0/pull/3027"
+  },
+  {
+   "pr_id": 2771428959,
+   "number": 3824,
+   "agent": "Devin",
+   "html_url": "https://github.com/box/box-ui-elements/pull/3824"
+  },
+  {
+   "pr_id": 3150333617,
+   "number": 2249,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/MontrealAI/AGI-Alpha-Agent-v0/pull/2249"
+  },
+  {
+   "pr_id": 3496721717,
+   "number": 8094,
+   "agent": "Copilot",
+   "html_url": "https://github.com/epam/ketcher/pull/8094"
+  },
+  {
+   "pr_id": 3090117167,
+   "number": 61,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/OpenHFT/Chronicle-Values/pull/61"
+  },
+  {
+   "pr_id": 3267211349,
+   "number": 228,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/ikamensh/flynt/pull/228"
+  },
+  {
+   "pr_id": 2782413167,
+   "number": 9653,
+   "agent": "Devin",
+   "html_url": "https://github.com/toeverything/AFFiNE/pull/9653"
+  },
+  {
+   "pr_id": 3078686219,
+   "number": 1407,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/swarmauri/swarmauri-sdk/pull/1407"
+  },
+  {
+   "pr_id": 3124927666,
+   "number": 742,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/bruin-data/bruin/pull/742"
+  },
+  {
+   "pr_id": 3342893703,
+   "number": 30,
+   "agent": "Copilot",
+   "html_url": "https://github.com/ericschmar/moribito/pull/30"
+  },
+  {
+   "pr_id": 3185386141,
+   "number": 2722,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/MontrealAI/AGI-Alpha-Agent-v0/pull/2722"
+  },
+  {
+   "pr_id": 3439663118,
+   "number": 2052,
+   "agent": "Cursor",
+   "html_url": "https://github.com/Qovery/console/pull/2052"
+  },
+  {
+   "pr_id": 3260521313,
+   "number": 2463,
+   "agent": "Copilot",
+   "html_url": "https://github.com/microsoft/onnxscript/pull/2463"
+  },
+  {
+   "pr_id": 3321108563,
+   "number": 46400,
+   "agent": "Copilot",
+   "html_url": "https://github.com/Azure/azure-sdk-for-java/pull/46400"
+  },
+  {
+   "pr_id": 3293430213,
+   "number": 17072,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mochilang/mochi/pull/17072"
+  },
+  {
+   "pr_id": 3347804448,
+   "number": 19477,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mochilang/mochi/pull/19477"
+  },
+  {
+   "pr_id": 3124980922,
+   "number": 1682,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/MontrealAI/AGI-Alpha-Agent-v0/pull/1682"
+  },
+  {
+   "pr_id": 3303156025,
+   "number": 18047,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mochilang/mochi/pull/18047"
+  },
+  {
+   "pr_id": 3512519873,
+   "number": 2341,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/Dimillian/IceCubesApp/pull/2341"
+  },
+  {
+   "pr_id": 3047699666,
+   "number": 1610,
+   "agent": "Claude_Code",
+   "html_url": "https://github.com/liam-hq/liam/pull/1610"
+  },
+  {
+   "pr_id": 3372723005,
+   "number": 21294,
+   "agent": "Copilot",
+   "html_url": "https://github.com/ravendb/ravendb/pull/21294"
+  },
+  {
+   "pr_id": 3271492406,
+   "number": 3867,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/MontrealAI/AGI-Alpha-Agent-v0/pull/3867"
+  },
+  {
+   "pr_id": 3180226094,
+   "number": 556,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/charlesvestal/extending-move/pull/556"
+  },
+  {
+   "pr_id": 3346690505,
+   "number": 262985,
+   "agent": "Copilot",
+   "html_url": "https://github.com/microsoft/vscode/pull/262985"
+  },
+  {
+   "pr_id": 3261727113,
+   "number": 12867,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mochilang/mochi/pull/12867"
+  },
+  {
+   "pr_id": 3492565454,
+   "number": 5639,
+   "agent": "Cursor",
+   "html_url": "https://github.com/onyx-dot-app/onyx/pull/5639"
+  },
+  {
+   "pr_id": 3437403817,
+   "number": 1466,
+   "agent": "Copilot",
+   "html_url": "https://github.com/luxonis/depthai-core/pull/1466"
+  },
+  {
+   "pr_id": 3131949977,
+   "number": 1955,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/MontrealAI/AGI-Alpha-Agent-v0/pull/1955"
+  },
+  {
+   "pr_id": 3224544970,
+   "number": 3234,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/MontrealAI/AGI-Alpha-Agent-v0/pull/3234"
+  },
+  {
+   "pr_id": 3133724182,
+   "number": 339,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mochilang/mochi/pull/339"
+  },
+  {
+   "pr_id": 3129110273,
+   "number": 266,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/synth-inc/onit/pull/266"
+  },
+  {
+   "pr_id": 3076852490,
+   "number": 337,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/eigenwallet/core/pull/337"
+  },
+  {
+   "pr_id": 3085005456,
+   "number": 1514,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/LayerZero-Labs/devtools/pull/1514"
+  },
+  {
+   "pr_id": 3132622672,
+   "number": 7602,
+   "agent": "Copilot",
+   "html_url": "https://github.com/microsoft/typespec/pull/7602"
+  },
+  {
+   "pr_id": 3174139798,
+   "number": 3103,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mochilang/mochi/pull/3103"
+  },
+  {
+   "pr_id": 3346788232,
+   "number": 2729,
+   "agent": "Devin",
+   "html_url": "https://github.com/onlook-dev/onlook/pull/2729"
+  },
+  {
+   "pr_id": 3213779460,
+   "number": 1215,
+   "agent": "Cursor",
+   "html_url": "https://github.com/iterative/datachain/pull/1215"
+  },
+  {
+   "pr_id": 3160235278,
+   "number": 2365,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/MontrealAI/AGI-Alpha-Agent-v0/pull/2365"
+  },
+  {
+   "pr_id": 3205923231,
+   "number": 5442,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mochilang/mochi/pull/5442"
+  },
+  {
+   "pr_id": 3189972179,
+   "number": 45,
+   "agent": "Copilot",
+   "html_url": "https://github.com/microsoft/Spartan2/pull/45"
+  },
+  {
+   "pr_id": 3466075872,
+   "number": 1830,
+   "agent": "Copilot",
+   "html_url": "https://github.com/dotnet/docker-tools/pull/1830"
+  },
+  {
+   "pr_id": 3515807078,
+   "number": 271412,
+   "agent": "Copilot",
+   "html_url": "https://github.com/microsoft/vscode/pull/271412"
+  },
+  {
+   "pr_id": 3328114060,
+   "number": 19289,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mochilang/mochi/pull/19289"
+  },
+  {
+   "pr_id": 3125845944,
+   "number": 505,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/jrkropp/open-webui-developer-toolkit/pull/505"
+  },
+  {
+   "pr_id": 3446184500,
+   "number": 73,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/immisterio/Lampac/pull/73"
+  },
+  {
+   "pr_id": 3444686824,
+   "number": 3479,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/operately/operately/pull/3479"
+  },
+  {
+   "pr_id": 3302765478,
+   "number": 2237,
+   "agent": "Copilot",
+   "html_url": "https://github.com/LeelaChessZero/lc0/pull/2237"
+  },
+  {
+   "pr_id": 3247652894,
+   "number": 11144,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mochilang/mochi/pull/11144"
+  },
+  {
+   "pr_id": 3275238289,
+   "number": 3901,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/MontrealAI/AGI-Alpha-Agent-v0/pull/3901"
+  },
+  {
+   "pr_id": 3295224359,
+   "number": 17415,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mochilang/mochi/pull/17415"
+  },
+  {
+   "pr_id": 3221338905,
+   "number": 175,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/nagisa77/OpenIsle/pull/175"
+  },
+  {
+   "pr_id": 3190001523,
+   "number": 2822,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/MontrealAI/AGI-Alpha-Agent-v0/pull/2822"
+  },
+  {
+   "pr_id": 3308683498,
+   "number": 840,
+   "agent": "Copilot",
+   "html_url": "https://github.com/redmine-git-hosting/redmine_git_hosting/pull/840"
+  },
+  {
+   "pr_id": 3336227840,
+   "number": 1688,
+   "agent": "Copilot",
+   "html_url": "https://github.com/bdunderscore/modular-avatar/pull/1688"
+  },
+  {
+   "pr_id": 3291921061,
+   "number": 16750,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mochilang/mochi/pull/16750"
+  },
+  {
+   "pr_id": 3433112036,
+   "number": 375,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mfat/sshpilot/pull/375"
+  },
+  {
+   "pr_id": 3252857669,
+   "number": 12013,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mochilang/mochi/pull/12013"
+  },
+  {
+   "pr_id": 3508767903,
+   "number": 17834,
+   "agent": "Devin",
+   "html_url": "https://github.com/ethereum-optimism/optimism/pull/17834"
+  },
+  {
+   "pr_id": 3202330170,
+   "number": 5395,
+   "agent": "Cursor",
+   "html_url": "https://github.com/elizaOS/eliza/pull/5395"
+  },
+  {
+   "pr_id": 3143682198,
+   "number": 251386,
+   "agent": "Copilot",
+   "html_url": "https://github.com/microsoft/vscode/pull/251386"
+  },
+  {
+   "pr_id": 3126348410,
+   "number": 23,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/retrage/svc-hook/pull/23"
+  },
+  {
+   "pr_id": 3072041221,
+   "number": 307,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/MontrealAI/AGI-Alpha-Agent-v0/pull/307"
+  },
+  {
+   "pr_id": 3105305807,
+   "number": 2538,
+   "agent": "Cursor",
+   "html_url": "https://github.com/nrwl/nx-console/pull/2538"
+  },
+  {
+   "pr_id": 3090965439,
+   "number": 21527,
+   "agent": "Devin",
+   "html_url": "https://github.com/calcom/cal.com/pull/21527"
+  },
+  {
+   "pr_id": 3245291953,
+   "number": 10235,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mochilang/mochi/pull/10235"
+  },
+  {
+   "pr_id": 3437579995,
+   "number": 9082,
+   "agent": "Copilot",
+   "html_url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/pull/9082"
+  },
+  {
+   "pr_id": 3137519332,
+   "number": 423,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mochilang/mochi/pull/423"
+  },
+  {
+   "pr_id": 3471279055,
+   "number": 11754,
+   "agent": "Copilot",
+   "html_url": "https://github.com/dotnet/aspire/pull/11754"
+  },
+  {
+   "pr_id": 3234154333,
+   "number": 3411,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/MontrealAI/AGI-Alpha-Agent-v0/pull/3411"
+  },
+  {
+   "pr_id": 3270567388,
+   "number": 2632,
+   "agent": "Copilot",
+   "html_url": "https://github.com/Azure-Samples/azure-search-openai-demo/pull/2632"
+  },
+  {
+   "pr_id": 3327294624,
+   "number": 119,
+   "agent": "Copilot",
+   "html_url": "https://github.com/Puchaczov/Musoq/pull/119"
+  },
+  {
+   "pr_id": 3266023044,
+   "number": 3797,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/MontrealAI/AGI-Alpha-Agent-v0/pull/3797"
+  },
+  {
+   "pr_id": 3338130586,
+   "number": 541,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/Rello/analytics/pull/541"
+  },
+  {
+   "pr_id": 3142605320,
+   "number": 937,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/go-vikunja/vikunja/pull/937"
+  },
+  {
+   "pr_id": 3216288233,
+   "number": 85,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/jscarle/LightResults/pull/85"
+  },
+  {
+   "pr_id": 3512456356,
+   "number": 1557,
+   "agent": "Copilot",
+   "html_url": "https://github.com/DaveSkender/Stock.Indicators/pull/1557"
+  },
+  {
+   "pr_id": 3319130385,
+   "number": 2054,
+   "agent": "Copilot",
+   "html_url": "https://github.com/microsoft/vscode-loc/pull/2054"
+  },
+  {
+   "pr_id": 2990759653,
+   "number": 346,
+   "agent": "Devin",
+   "html_url": "https://github.com/ai-shifu/ai-shifu/pull/346"
+  },
+  {
+   "pr_id": 3348117279,
+   "number": 15088,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/hmislk/hmis/pull/15088"
+  },
+  {
+   "pr_id": 3291579479,
+   "number": 3118,
+   "agent": "Copilot",
+   "html_url": "https://github.com/open-telemetry/opentelemetry-rust/pull/3118"
+  },
+  {
+   "pr_id": 3346661535,
+   "number": 463,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/MihaiCristianCondrea/Smart-Cleaner-for-Android/pull/463"
+  },
+  {
+   "pr_id": 3074441251,
+   "number": 194,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/jrkropp/open-webui-developer-toolkit/pull/194"
+  },
+  {
+   "pr_id": 3478446203,
+   "number": 1167,
+   "agent": "Copilot",
+   "html_url": "https://github.com/githubnext/gh-aw/pull/1167"
+  },
+  {
+   "pr_id": 3244481077,
+   "number": 305,
+   "agent": "Copilot",
+   "html_url": "https://github.com/luizfonseca/proksi/pull/305"
+  },
+  {
+   "pr_id": 3238853538,
+   "number": 7323,
+   "agent": "Copilot",
+   "html_url": "https://github.com/microsoft/vscode-pull-request-github/pull/7323"
+  },
+  {
+   "pr_id": 3278076808,
+   "number": 3930,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/MontrealAI/AGI-Alpha-Agent-v0/pull/3930"
+  },
+  {
+   "pr_id": 3284108350,
+   "number": 1788,
+   "agent": "Copilot",
+   "html_url": "https://github.com/microsoft/finops-toolkit/pull/1788"
+  },
+  {
+   "pr_id": 3081626326,
+   "number": 108,
+   "agent": "Copilot",
+   "html_url": "https://github.com/ShaunLawrie/PwshSpectreConsole/pull/108"
+  },
+  {
+   "pr_id": 3081857693,
+   "number": 512,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/MontrealAI/AGI-Alpha-Agent-v0/pull/512"
+  },
+  {
+   "pr_id": 3309167112,
+   "number": 693,
+   "agent": "Copilot",
+   "html_url": "https://github.com/posva/unplugin-vue-router/pull/693"
+  },
+  {
+   "pr_id": 3176887903,
+   "number": 41780,
+   "agent": "Copilot",
+   "html_url": "https://github.com/Azure/azure-sdk-for-python/pull/41780"
+  },
+  {
+   "pr_id": 3403158208,
+   "number": 2035,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/rainbow-me/browser-extension/pull/2035"
+  },
+  {
+   "pr_id": 3377713712,
+   "number": 10823,
+   "agent": "Cursor",
+   "html_url": "https://github.com/vercel/turborepo/pull/10823"
+  },
+  {
+   "pr_id": 3076065678,
+   "number": 102,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/jonhadfield/soba/pull/102"
+  },
+  {
+   "pr_id": 3150201670,
+   "number": 115,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/passsy/spot/pull/115"
+  },
+  {
+   "pr_id": 3147246196,
+   "number": 209,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/jdereg/java-util/pull/209"
+  },
+  {
+   "pr_id": 3504637499,
+   "number": 15431,
+   "agent": "Copilot",
+   "html_url": "https://github.com/BerriAI/litellm/pull/15431"
+  },
+  {
+   "pr_id": 3462297448,
+   "number": 38,
+   "agent": "Copilot",
+   "html_url": "https://github.com/SkBlaz/py3plex/pull/38"
+  },
+  {
+   "pr_id": 3101787546,
+   "number": 4247,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/promptfoo/promptfoo/pull/4247"
+  },
+  {
+   "pr_id": 3363930871,
+   "number": 1375,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/kuberhealthy/kuberhealthy/pull/1375"
+  },
+  {
+   "pr_id": 3384283058,
+   "number": 3318,
+   "agent": "Copilot",
+   "html_url": "https://github.com/operately/operately/pull/3318"
+  },
+  {
+   "pr_id": 3299624632,
+   "number": 17926,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mochilang/mochi/pull/17926"
+  },
+  {
+   "pr_id": 3131240866,
+   "number": 2123,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/onlook-dev/onlook/pull/2123"
+  },
+  {
+   "pr_id": 3151841894,
+   "number": 590,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/jrkropp/open-webui-developer-toolkit/pull/590"
+  },
+  {
+   "pr_id": 3159480794,
+   "number": 2099,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mochilang/mochi/pull/2099"
+  },
+  {
+   "pr_id": 3070115595,
+   "number": 5287,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/PRQL/prql/pull/5287"
+  },
+  {
+   "pr_id": 3425224295,
+   "number": 187,
+   "agent": "Copilot",
+   "html_url": "https://github.com/bodo-run/yek/pull/187"
+  },
+  {
+   "pr_id": 3227213254,
+   "number": 3333,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/MontrealAI/AGI-Alpha-Agent-v0/pull/3333"
+  },
+  {
+   "pr_id": 3293319686,
+   "number": 17015,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mochilang/mochi/pull/17015"
+  },
+  {
+   "pr_id": 3142399599,
+   "number": 398,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/charlesvestal/extending-move/pull/398"
+  },
+  {
+   "pr_id": 3529524727,
+   "number": 58,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/pc035860/YCS-cont/pull/58"
+  },
+  {
+   "pr_id": 3411572375,
+   "number": 23,
+   "agent": "Cursor",
+   "html_url": "https://github.com/huhusmang/Subscription-Management/pull/23"
+  },
+  {
+   "pr_id": 3478071831,
+   "number": 20805,
+   "agent": "Copilot",
+   "html_url": "https://github.com/Homebrew/brew/pull/20805"
+  },
+  {
+   "pr_id": 3456078578,
+   "number": 103,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/selcukorkmaz/fastml/pull/103"
+  },
+  {
+   "pr_id": 3430731114,
+   "number": 19876,
+   "agent": "Devin",
+   "html_url": "https://github.com/coder/coder/pull/19876"
+  },
+  {
+   "pr_id": 3470967968,
+   "number": 2681,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/litedb-org/LiteDB/pull/2681"
+  },
+  {
+   "pr_id": 3213921961,
+   "number": 80,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/jscarle/LightResults/pull/80"
+  },
+  {
+   "pr_id": 3366757896,
+   "number": 521,
+   "agent": "Copilot",
+   "html_url": "https://github.com/microsoft/fabric-cicd/pull/521"
+  },
+  {
+   "pr_id": 3290060580,
+   "number": 6174,
+   "agent": "Copilot",
+   "html_url": "https://github.com/realm/SwiftLint/pull/6174"
+  },
+  {
+   "pr_id": 3500722520,
+   "number": 1426,
+   "agent": "Copilot",
+   "html_url": "https://github.com/githubnext/gh-aw/pull/1426"
+  },
+  {
+   "pr_id": 3165152080,
+   "number": 2607,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mochilang/mochi/pull/2607"
+  },
+  {
+   "pr_id": 3106934710,
+   "number": 9615,
+   "agent": "Copilot",
+   "html_url": "https://github.com/dotnet/aspire/pull/9615"
+  },
+  {
+   "pr_id": 3074968173,
+   "number": 1559,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/econ-ark/HARK/pull/1559"
+  },
+  {
+   "pr_id": 3250678975,
+   "number": 6394,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/open-telemetry/opentelemetry-dotnet/pull/6394"
+  },
+  {
+   "pr_id": 3149901611,
+   "number": 1117,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mochilang/mochi/pull/1117"
+  },
+  {
+   "pr_id": 3505078374,
+   "number": 999,
+   "agent": "Copilot",
+   "html_url": "https://github.com/1Remote/1Remote/pull/999"
+  },
+  {
+   "pr_id": 3256278196,
+   "number": 3683,
+   "agent": "Copilot",
+   "html_url": "https://github.com/kubernetes-sigs/headlamp/pull/3683"
+  },
+  {
+   "pr_id": 3119037956,
+   "number": 773,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/lollipopkit/flutter_server_box/pull/773"
+  },
+  {
+   "pr_id": 3089035322,
+   "number": 3826,
+   "agent": "Copilot",
+   "html_url": "https://github.com/microsoft/lisa/pull/3826"
+  },
+  {
+   "pr_id": 3495861785,
+   "number": 204,
+   "agent": "Copilot",
+   "html_url": "https://github.com/SpudGunMan/meshing-around/pull/204"
+  },
+  {
+   "pr_id": 3097403205,
+   "number": 21,
+   "agent": "Devin",
+   "html_url": "https://github.com/fatedier/fft/pull/21"
+  },
+  {
+   "pr_id": 3253932747,
+   "number": 42168,
+   "agent": "Copilot",
+   "html_url": "https://github.com/Azure/azure-sdk-for-python/pull/42168"
+  },
+  {
+   "pr_id": 3316963050,
+   "number": 25,
+   "agent": "Copilot",
+   "html_url": "https://github.com/githubnext/gh-aw/pull/25"
+  },
+  {
+   "pr_id": 3141396555,
+   "number": 2,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/tom-doerr/simpledspy/pull/2"
+  },
+  {
+   "pr_id": 3387858103,
+   "number": 6733,
+   "agent": "Copilot",
+   "html_url": "https://github.com/primer/react/pull/6733"
+  },
+  {
+   "pr_id": 3316973261,
+   "number": 1185,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/asynkron/protoactor-go/pull/1185"
+  },
+  {
+   "pr_id": 3408089453,
+   "number": 556,
+   "agent": "Copilot",
+   "html_url": "https://github.com/VREMSoftwareDevelopment/WiFiAnalyzer/pull/556"
+  },
+  {
+   "pr_id": 3550674634,
+   "number": 2314,
+   "agent": "Copilot",
+   "html_url": "https://github.com/githubnext/gh-aw/pull/2314"
+  },
+  {
+   "pr_id": 3437804643,
+   "number": 325,
+   "agent": "Copilot",
+   "html_url": "https://github.com/zhaozg/lua-openssl/pull/325"
+  },
+  {
+   "pr_id": 3088732930,
+   "number": 452,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/gofiber/docs/pull/452"
+  },
+  {
+   "pr_id": 3499960534,
+   "number": 1850,
+   "agent": "Copilot",
+   "html_url": "https://github.com/microsoft/typescript-go/pull/1850"
+  },
+  {
+   "pr_id": 3437507786,
+   "number": 427,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mfat/sshpilot/pull/427"
+  },
+  {
+   "pr_id": 3335520027,
+   "number": 4778,
+   "agent": "Copilot",
+   "html_url": "https://github.com/db-ux-design-system/core-web/pull/4778"
+  },
+  {
+   "pr_id": 3279287130,
+   "number": 2004,
+   "agent": "Copilot",
+   "html_url": "https://github.com/microsoft/WinUI-Gallery/pull/2004"
+  },
+  {
+   "pr_id": 3171257558,
+   "number": 1003,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/go-vikunja/vikunja/pull/1003"
+  },
+  {
+   "pr_id": 3388315894,
+   "number": 137,
+   "agent": "Copilot",
+   "html_url": "https://github.com/Puchaczov/Musoq/pull/137"
+  },
+  {
+   "pr_id": 3534238761,
+   "number": 2046,
+   "agent": "Copilot",
+   "html_url": "https://github.com/githubnext/gh-aw/pull/2046"
+  },
+  {
+   "pr_id": 3350219915,
+   "number": 1349,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/kuberhealthy/kuberhealthy/pull/1349"
+  },
+  {
+   "pr_id": 3519184136,
+   "number": 271572,
+   "agent": "Copilot",
+   "html_url": "https://github.com/microsoft/vscode/pull/271572"
+  },
+  {
+   "pr_id": 3260601855,
+   "number": 12734,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mochilang/mochi/pull/12734"
+  },
+  {
+   "pr_id": 3460847591,
+   "number": 306,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/hjyssg/ShiguReader/pull/306"
+  },
+  {
+   "pr_id": 3141453475,
+   "number": 2126,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/jaseci-labs/jaseci/pull/2126"
+  },
+  {
+   "pr_id": 3335603266,
+   "number": 267,
+   "agent": "Copilot",
+   "html_url": "https://github.com/maehr/awesome-digital-history/pull/267"
+  },
+  {
+   "pr_id": 3024105016,
+   "number": 1541,
+   "agent": "Devin",
+   "html_url": "https://github.com/liam-hq/liam/pull/1541"
+  },
+  {
+   "pr_id": 3505891732,
+   "number": 727,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mfat/sshpilot/pull/727"
+  },
+  {
+   "pr_id": 3519859152,
+   "number": 8256,
+   "agent": "Copilot",
+   "html_url": "https://github.com/epam/ketcher/pull/8256"
+  },
+  {
+   "pr_id": 3393461261,
+   "number": 6335,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/safe-global/safe-wallet-monorepo/pull/6335"
+  },
+  {
+   "pr_id": 3196071489,
+   "number": 46,
+   "agent": "Cursor",
+   "html_url": "https://github.com/RSamaium/CanvasEngine/pull/46"
+  },
+  {
+   "pr_id": 3211401020,
+   "number": 65,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/aeron7/nsepython/pull/65"
+  },
+  {
+   "pr_id": 3292709626,
+   "number": 16932,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mochilang/mochi/pull/16932"
+  },
+  {
+   "pr_id": 3274370282,
+   "number": 708,
+   "agent": "Devin",
+   "html_url": "https://github.com/antiwork/gumroad/pull/708"
+  },
+  {
+   "pr_id": 3088592615,
+   "number": 199,
+   "agent": "Devin",
+   "html_url": "https://github.com/theopenco/llmgateway/pull/199"
+  },
+  {
+   "pr_id": 3222565138,
+   "number": 6797,
+   "agent": "Copilot",
+   "html_url": "https://github.com/microsoft/autogen/pull/6797"
+  },
+  {
+   "pr_id": 3336113928,
+   "number": 16919,
+   "agent": "Copilot",
+   "html_url": "https://github.com/microsoft/vscode-jupyter/pull/16919"
+  },
+  {
+   "pr_id": 3485107340,
+   "number": 543,
+   "agent": "Cursor",
+   "html_url": "https://github.com/wKovacs64/hibp/pull/543"
+  },
+  {
+   "pr_id": 2886124960,
+   "number": 796,
+   "agent": "Devin",
+   "html_url": "https://github.com/liam-hq/liam/pull/796"
+  },
+  {
+   "pr_id": 3078830083,
+   "number": 55,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/pyscout/Webscout/pull/55"
+  },
+  {
+   "pr_id": 3203370369,
+   "number": 5101,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mochilang/mochi/pull/5101"
+  },
+  {
+   "pr_id": 3321074600,
+   "number": 549,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/nagisa77/OpenIsle/pull/549"
+  },
+  {
+   "pr_id": 3530943309,
+   "number": 140,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/DerKoun/bsnes-hd/pull/140"
+  },
+  {
+   "pr_id": 3101799452,
+   "number": 1174,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/MontrealAI/AGI-Alpha-Agent-v0/pull/1174"
+  },
+  {
+   "pr_id": 3002994401,
+   "number": 2633,
+   "agent": "Devin",
+   "html_url": "https://github.com/crewAIInc/crewAI/pull/2633"
+  },
+  {
+   "pr_id": 3124533814,
+   "number": 69,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/EvotecIT/Mailozaurr/pull/69"
+  },
+  {
+   "pr_id": 3519870447,
+   "number": 8262,
+   "agent": "Copilot",
+   "html_url": "https://github.com/epam/ketcher/pull/8262"
+  },
+  {
+   "pr_id": 3213015867,
+   "number": 254676,
+   "agent": "Copilot",
+   "html_url": "https://github.com/microsoft/vscode/pull/254676"
+  },
+  {
+   "pr_id": 3349032407,
+   "number": 19496,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mochilang/mochi/pull/19496"
+  },
+  {
+   "pr_id": 3328490463,
+   "number": 453,
+   "agent": "Copilot",
+   "html_url": "https://github.com/theachoem/storypad/pull/453"
+  },
+  {
+   "pr_id": 3369721294,
+   "number": 71,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/darksworm/argonaut/pull/71"
+  },
+  {
+   "pr_id": 3454867519,
+   "number": 100320,
+   "agent": "Cursor",
+   "html_url": "https://github.com/getsentry/sentry/pull/100320"
+  },
+  {
+   "pr_id": 3209140571,
+   "number": 202,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/SaveTheRbtz/zstd-seekable-format-go/pull/202"
+  },
+  {
+   "pr_id": 3514500327,
+   "number": 4266,
+   "agent": "Copilot",
+   "html_url": "https://github.com/casdoor/casdoor/pull/4266"
+  },
+  {
+   "pr_id": 3217283543,
+   "number": 3161,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/MontrealAI/AGI-Alpha-Agent-v0/pull/3161"
+  },
+  {
+   "pr_id": 3369770047,
+   "number": 21000,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mochilang/mochi/pull/21000"
+  },
+  {
+   "pr_id": 3455545164,
+   "number": 3945,
+   "agent": "Copilot",
+   "html_url": "https://github.com/codenameone/CodenameOne/pull/3945"
+  },
+  {
+   "pr_id": 3155401696,
+   "number": 1572,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mochilang/mochi/pull/1572"
+  },
+  {
+   "pr_id": 3469670097,
+   "number": 5405,
+   "agent": "Copilot",
+   "html_url": "https://github.com/eclipse-tycho/tycho/pull/5405"
+  },
+  {
+   "pr_id": 3210049031,
+   "number": 3633,
+   "agent": "Devin",
+   "html_url": "https://github.com/neondatabase/website/pull/3633"
+  },
+  {
+   "pr_id": 3513232086,
+   "number": 80694,
+   "agent": "Copilot",
+   "html_url": "https://github.com/dotnet/roslyn/pull/80694"
+  },
+  {
+   "pr_id": 3511946893,
+   "number": 4635,
+   "agent": "Copilot",
+   "html_url": "https://github.com/pjsip/pjproject/pull/4635"
+  },
+  {
+   "pr_id": 3520647411,
+   "number": 2293,
+   "agent": "Claude_Code",
+   "html_url": "https://github.com/openshift-pipelines/pipelines-as-code/pull/2293"
+  },
+  {
+   "pr_id": 3348529920,
+   "number": 527,
+   "agent": "Copilot",
+   "html_url": "https://github.com/PrefectHQ/prefect-helm/pull/527"
+  },
+  {
+   "pr_id": 3032437063,
+   "number": 9,
+   "agent": "Devin",
+   "html_url": "https://github.com/get-convex/turbo-expo-nextjs-clerk-convex-monorepo/pull/9"
+  },
+  {
+   "pr_id": 3428277174,
+   "number": 333,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/manaflow-ai/cmux/pull/333"
+  },
+  {
+   "pr_id": 3450283071,
+   "number": 41,
+   "agent": "Copilot",
+   "html_url": "https://github.com/ziflex/lecho/pull/41"
+  },
+  {
+   "pr_id": 3478037982,
+   "number": 2078,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/rainbow-me/browser-extension/pull/2078"
+  },
+  {
+   "pr_id": 3081891684,
+   "number": 15,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/namusyaka/gammo/pull/15"
+  },
+  {
+   "pr_id": 3368892311,
+   "number": 84,
+   "agent": "Claude_Code",
+   "html_url": "https://github.com/vfarcic/dot-ai/pull/84"
+  },
+  {
+   "pr_id": 3303261760,
+   "number": 18069,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mochilang/mochi/pull/18069"
+  },
+  {
+   "pr_id": 3170073037,
+   "number": 2765,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mochilang/mochi/pull/2765"
+  },
+  {
+   "pr_id": 3326898916,
+   "number": 19069,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mochilang/mochi/pull/19069"
+  },
+  {
+   "pr_id": 3469406037,
+   "number": 2020,
+   "agent": "Claude_Code",
+   "html_url": "https://github.com/stackblitz-labs/bolt.diy/pull/2020"
+  },
+  {
+   "pr_id": 3234257837,
+   "number": 624,
+   "agent": "Copilot",
+   "html_url": "https://github.com/Azure/azure-mcp/pull/624"
+  },
+  {
+   "pr_id": 3202741847,
+   "number": 5060,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mochilang/mochi/pull/5060"
+  },
+  {
+   "pr_id": 3118053758,
+   "number": 5738,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/unisonweb/unison/pull/5738"
+  },
+  {
+   "pr_id": 3271930699,
+   "number": 14428,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mochilang/mochi/pull/14428"
+  },
+  {
+   "pr_id": 3088278063,
+   "number": 3477,
+   "agent": "Copilot",
+   "html_url": "https://github.com/plan4better/goat/pull/3477"
+  },
+  {
+   "pr_id": 3147198324,
+   "number": 203,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/jdereg/java-util/pull/203"
+  },
+  {
+   "pr_id": 3168918039,
+   "number": 612,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/jrkropp/open-webui-developer-toolkit/pull/612"
+  },
+  {
+   "pr_id": 3458695943,
+   "number": 3499,
+   "agent": "Copilot",
+   "html_url": "https://github.com/AzureAD/microsoft-identity-web/pull/3499"
+  },
+  {
+   "pr_id": 3179668749,
+   "number": 2840,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/AMICI-dev/AMICI/pull/2840"
+  },
+  {
+   "pr_id": 3499481315,
+   "number": 3624,
+   "agent": "Copilot",
+   "html_url": "https://github.com/tokens-studio/figma-plugin/pull/3624"
+  },
+  {
+   "pr_id": 3196742685,
+   "number": 37,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/bytebot-ai/bytebot/pull/37"
+  },
+  {
+   "pr_id": 3525131189,
+   "number": 993,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/davidmerfield/blot/pull/993"
+  },
+  {
+   "pr_id": 3368666464,
+   "number": 990,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/selfxyz/self/pull/990"
+  },
+  {
+   "pr_id": 3258668926,
+   "number": 1055,
+   "agent": "Copilot",
+   "html_url": "https://github.com/microsoft/react-native-windows-samples/pull/1055"
+  },
+  {
+   "pr_id": 3126282354,
+   "number": 9,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/kyryl-opens-ml/no-ocr/pull/9"
+  },
+  {
+   "pr_id": 3462228489,
+   "number": 2877,
+   "agent": "Copilot",
+   "html_url": "https://github.com/altair-graphql/altair/pull/2877"
+  },
+  {
+   "pr_id": 3361490539,
+   "number": 8496,
+   "agent": "Copilot",
+   "html_url": "https://github.com/flutter/flutter-intellij/pull/8496"
+  },
+  {
+   "pr_id": 2914287594,
+   "number": 1049,
+   "agent": "Devin",
+   "html_url": "https://github.com/Cap-go/capgo/pull/1049"
+  },
+  {
+   "pr_id": 3149554338,
+   "number": 251589,
+   "agent": "Copilot",
+   "html_url": "https://github.com/microsoft/vscode/pull/251589"
+  },
+  {
+   "pr_id": 3410200080,
+   "number": 2144,
+   "agent": "Devin",
+   "html_url": "https://github.com/firecrawl/firecrawl/pull/2144"
+  },
+  {
+   "pr_id": 3367464904,
+   "number": 4,
+   "agent": "Copilot",
+   "html_url": "https://github.com/SamuelAsherRivello/unity-project-template/pull/4"
+  },
+  {
+   "pr_id": 3071786409,
+   "number": 971,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/lunary-ai/lunary/pull/971"
+  },
+  {
+   "pr_id": 3298488823,
+   "number": 18,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/ashkonf/pagerank/pull/18"
+  },
+  {
+   "pr_id": 2996701782,
+   "number": 141,
+   "agent": "Devin",
+   "html_url": "https://github.com/antiwork/flexile/pull/141"
+  },
+  {
+   "pr_id": 3391946419,
+   "number": 213,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mfat/sshpilot/pull/213"
+  },
+  {
+   "pr_id": 3170514368,
+   "number": 2803,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mochilang/mochi/pull/2803"
+  },
+  {
+   "pr_id": 3480602347,
+   "number": 24,
+   "agent": "Copilot",
+   "html_url": "https://github.com/jibrilsharafi/EnergyMe-Home/pull/24"
+  },
+  {
+   "pr_id": 3072527561,
+   "number": 359,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/MontrealAI/AGI-Alpha-Agent-v0/pull/359"
+  },
+  {
+   "pr_id": 3350729460,
+   "number": 2793,
+   "agent": "Cursor",
+   "html_url": "https://github.com/browser-use/browser-use/pull/2793"
+  },
+  {
+   "pr_id": 3500202216,
+   "number": 46955,
+   "agent": "Copilot",
+   "html_url": "https://github.com/Azure/azure-sdk-for-java/pull/46955"
+  },
+  {
+   "pr_id": 3147032669,
+   "number": 174,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/jdereg/java-util/pull/174"
+  },
+  {
+   "pr_id": 3246704994,
+   "number": 764,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/wieslawsoltes/Dock/pull/764"
+  },
+  {
+   "pr_id": 3190107575,
+   "number": 166,
+   "agent": "Cursor",
+   "html_url": "https://github.com/ryokun6/ryos/pull/166"
+  },
+  {
+   "pr_id": 3082995225,
+   "number": 3501,
+   "agent": "Devin",
+   "html_url": "https://github.com/neondatabase/website/pull/3501"
+  },
+  {
+   "pr_id": 3322277575,
+   "number": 81,
+   "agent": "Copilot",
+   "html_url": "https://github.com/dhth/omm/pull/81"
+  },
+  {
+   "pr_id": 3096394414,
+   "number": 7181,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/thirdweb-dev/js/pull/7181"
+  },
+  {
+   "pr_id": 3124462300,
+   "number": 13297,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/prebid/Prebid.js/pull/13297"
+  },
+  {
+   "pr_id": 3082729515,
+   "number": 21468,
+   "agent": "Devin",
+   "html_url": "https://github.com/calcom/cal.com/pull/21468"
+  },
+  {
+   "pr_id": 3206215915,
+   "number": 5508,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mochilang/mochi/pull/5508"
+  },
+  {
+   "pr_id": 3399251125,
+   "number": 1623,
+   "agent": "Copilot",
+   "html_url": "https://github.com/Catfriend1/syncthing-android/pull/1623"
+  },
+  {
+   "pr_id": 3249029467,
+   "number": 1828,
+   "agent": "Cursor",
+   "html_url": "https://github.com/imbhargav5/rooks/pull/1828"
+  },
+  {
+   "pr_id": 3273288553,
+   "number": 14607,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mochilang/mochi/pull/14607"
+  },
+  {
+   "pr_id": 3394302863,
+   "number": 17,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/songtianlun/awesome-prompts/pull/17"
+  },
+  {
+   "pr_id": 3165797836,
+   "number": 25,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/halilozel1903/AndroidTVMovieParadise/pull/25"
+  },
+  {
+   "pr_id": 3527106617,
+   "number": 2454,
+   "agent": "Copilot",
+   "html_url": "https://github.com/wavetermdev/waveterm/pull/2454"
+  },
+  {
+   "pr_id": 3185456619,
+   "number": 2726,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/MontrealAI/AGI-Alpha-Agent-v0/pull/2726"
+  },
+  {
+   "pr_id": 3492839310,
+   "number": 8046,
+   "agent": "Copilot",
+   "html_url": "https://github.com/epam/ketcher/pull/8046"
+  },
+  {
+   "pr_id": 2922025451,
+   "number": 35,
+   "agent": "Devin",
+   "html_url": "https://github.com/jina-ai/deepsearch-ui/pull/35"
+  },
+  {
+   "pr_id": 3206820600,
+   "number": 286,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/oraios/serena/pull/286"
+  },
+  {
+   "pr_id": 3235036061,
+   "number": 3084,
+   "agent": "Cursor",
+   "html_url": "https://github.com/getsentry/sentry-dart/pull/3084"
+  },
+  {
+   "pr_id": 3075221083,
+   "number": 351,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/AhmedElywa/prisma-tools/pull/351"
+  },
+  {
+   "pr_id": 3269431915,
+   "number": 819,
+   "agent": "Devin",
+   "html_url": "https://github.com/antiwork/helper/pull/819"
+  },
+  {
+   "pr_id": 3127398237,
+   "number": 172,
+   "agent": "Copilot",
+   "html_url": "https://github.com/microsoft/Generative-AI-for-beginners-dotnet/pull/172"
+  },
+  {
+   "pr_id": 3070917994,
+   "number": 1337,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/EricLBuehler/mistral.rs/pull/1337"
+  },
+  {
+   "pr_id": 3463436195,
+   "number": 314,
+   "agent": "Cursor",
+   "html_url": "https://github.com/ryokun6/ryos/pull/314"
+  },
+  {
+   "pr_id": 3135341161,
+   "number": 379,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mochilang/mochi/pull/379"
+  },
+  {
+   "pr_id": 3531050758,
+   "number": 12193,
+   "agent": "Copilot",
+   "html_url": "https://github.com/dotnet/aspire/pull/12193"
+  },
+  {
+   "pr_id": 3415344030,
+   "number": 704,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/jrkropp/open-webui-developer-toolkit/pull/704"
+  },
+  {
+   "pr_id": 2816137367,
+   "number": 934,
+   "agent": "Devin",
+   "html_url": "https://github.com/ensdomains/ens-app-v3/pull/934"
+  },
+  {
+   "pr_id": 3407417476,
+   "number": 781,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/portiaAI/portia-sdk-python/pull/781"
+  },
+  {
+   "pr_id": 3214200716,
+   "number": 3124,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/MontrealAI/AGI-Alpha-Agent-v0/pull/3124"
+  },
+  {
+   "pr_id": 3081816409,
+   "number": 4100,
+   "agent": "Copilot",
+   "html_url": "https://github.com/navidrome/navidrome/pull/4100"
+  },
+  {
+   "pr_id": 2914433643,
+   "number": 1052,
+   "agent": "Devin",
+   "html_url": "https://github.com/Cap-go/capgo/pull/1052"
+  },
+  {
+   "pr_id": 3354732498,
+   "number": 19958,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mochilang/mochi/pull/19958"
+  },
+  {
+   "pr_id": 3023513192,
+   "number": 1306,
+   "agent": "Devin",
+   "html_url": "https://github.com/reflex-dev/reflex-web/pull/1306"
+  },
+  {
+   "pr_id": 3135298362,
+   "number": 12926,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/hmislk/hmis/pull/12926"
+  },
+  {
+   "pr_id": 3317557041,
+   "number": 18732,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mochilang/mochi/pull/18732"
+  },
+  {
+   "pr_id": 3103684399,
+   "number": 1204,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/MontrealAI/AGI-Alpha-Agent-v0/pull/1204"
+  },
+  {
+   "pr_id": 3093888976,
+   "number": 976,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/MontrealAI/AGI-Alpha-Agent-v0/pull/976"
+  },
+  {
+   "pr_id": 3246857039,
+   "number": 10974,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mochilang/mochi/pull/10974"
+  },
+  {
+   "pr_id": 3281809806,
+   "number": 1393,
+   "agent": "Copilot",
+   "html_url": "https://github.com/niivue/niivue/pull/1393"
+  },
+  {
+   "pr_id": 3154756123,
+   "number": 392,
+   "agent": "Copilot",
+   "html_url": "https://github.com/Azure/azure-mcp/pull/392"
+  },
+  {
+   "pr_id": 2811845130,
+   "number": 283,
+   "agent": "Devin",
+   "html_url": "https://github.com/goat-sdk/goat/pull/283"
+  },
+  {
+   "pr_id": 3439621656,
+   "number": 162,
+   "agent": "Copilot",
+   "html_url": "https://github.com/flutter/ai/pull/162"
+  },
+  {
+   "pr_id": 3341188701,
+   "number": 3263,
+   "agent": "Copilot",
+   "html_url": "https://github.com/obophenotype/cell-ontology/pull/3263"
+  },
+  {
+   "pr_id": 3514171902,
+   "number": 125,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/selcukorkmaz/fastml/pull/125"
+  },
+  {
+   "pr_id": 3203951710,
+   "number": 2350,
+   "agent": "Devin",
+   "html_url": "https://github.com/onlook-dev/onlook/pull/2350"
+  },
+  {
+   "pr_id": 3354055583,
+   "number": 19825,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mochilang/mochi/pull/19825"
+  },
+  {
+   "pr_id": 3522287492,
+   "number": 80762,
+   "agent": "Copilot",
+   "html_url": "https://github.com/dotnet/roslyn/pull/80762"
+  },
+  {
+   "pr_id": 3277464325,
+   "number": 3300,
+   "agent": "Copilot",
+   "html_url": "https://github.com/magicbug/Cloudlog/pull/3300"
+  },
+  {
+   "pr_id": 3529868771,
+   "number": 12531,
+   "agent": "Copilot",
+   "html_url": "https://github.com/openfoodfacts/openfoodfacts-server/pull/12531"
+  },
+  {
+   "pr_id": 2832745424,
+   "number": 22,
+   "agent": "Devin",
+   "html_url": "https://github.com/jina-ai/node-DeepResearch/pull/22"
+  },
+  {
+   "pr_id": 3529558264,
+   "number": 2061,
+   "agent": "Copilot",
+   "html_url": "https://github.com/eclipse-m2e/m2e-core/pull/2061"
+  },
+  {
+   "pr_id": 3152882125,
+   "number": 2563,
+   "agent": "Cursor",
+   "html_url": "https://github.com/nrwl/nx-console/pull/2563"
+  },
+  {
+   "pr_id": 3468507231,
+   "number": 269047,
+   "agent": "Copilot",
+   "html_url": "https://github.com/microsoft/vscode/pull/269047"
+  },
+  {
+   "pr_id": 3432936596,
+   "number": 2178,
+   "agent": "Copilot",
+   "html_url": "https://github.com/GitoxideLabs/gitoxide/pull/2178"
+  },
+  {
+   "pr_id": 3115592531,
+   "number": 1,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/jbohack/nyanBOX/pull/1"
+  },
+  {
+   "pr_id": 3393377520,
+   "number": 14490,
+   "agent": "Copilot",
+   "html_url": "https://github.com/OfficeDev/microsoft-365-agents-toolkit/pull/14490"
+  },
+  {
+   "pr_id": 3322366805,
+   "number": 404,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/MihaiCristianCondrea/Smart-Cleaner-for-Android/pull/404"
+  },
+  {
+   "pr_id": 3115119469,
+   "number": 3501,
+   "agent": "Copilot",
+   "html_url": "https://github.com/kanisterio/kanister/pull/3501"
+  },
+  {
+   "pr_id": 3381830415,
+   "number": 7847,
+   "agent": "Copilot",
+   "html_url": "https://github.com/Z3Prover/z3/pull/7847"
+  },
+  {
+   "pr_id": 3233270217,
+   "number": 63310,
+   "agent": "Devin",
+   "html_url": "https://github.com/airbytehq/airbyte/pull/63310"
+  },
+  {
+   "pr_id": 3245061908,
+   "number": 263,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/wieslawsoltes/Xaml.Behaviors/pull/263"
+  },
+  {
+   "pr_id": 3308612582,
+   "number": 51861,
+   "agent": "Copilot",
+   "html_url": "https://github.com/Azure/azure-sdk-for-net/pull/51861"
+  },
+  {
+   "pr_id": 3073580906,
+   "number": 461,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/Rello/analytics/pull/461"
+  },
+  {
+   "pr_id": 3485784790,
+   "number": 1780,
+   "agent": "Claude_Code",
+   "html_url": "https://github.com/onetimesecret/onetimesecret/pull/1780"
+  },
+  {
+   "pr_id": 3550676658,
+   "number": 68638,
+   "agent": "Devin",
+   "html_url": "https://github.com/airbytehq/airbyte/pull/68638"
+  },
+  {
+   "pr_id": 3145298354,
+   "number": 127,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/koculu/ZoneTree/pull/127"
+  },
+  {
+   "pr_id": 3153329207,
+   "number": 973,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/go-vikunja/vikunja/pull/973"
+  },
+  {
+   "pr_id": 3182311227,
+   "number": 99,
+   "agent": "Copilot",
+   "html_url": "https://github.com/Azure-Samples/azure-ai-travel-agents/pull/99"
+  },
+  {
+   "pr_id": 3321574533,
+   "number": 10478,
+   "agent": "Copilot",
+   "html_url": "https://github.com/zitadel/zitadel/pull/10478"
+  },
+  {
+   "pr_id": 3096677627,
+   "number": 16,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/superagent-ai/vibekit/pull/16"
+  },
+  {
+   "pr_id": 3280201193,
+   "number": 293,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/nagisa77/OpenIsle/pull/293"
+  },
+  {
+   "pr_id": 3348329547,
+   "number": 690,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/SMEWebify/WebErpMesv2/pull/690"
+  },
+  {
+   "pr_id": 3389194786,
+   "number": 896,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/nagisa77/OpenIsle/pull/896"
+  },
+  {
+   "pr_id": 3468373074,
+   "number": 255,
+   "agent": "Copilot",
+   "html_url": "https://github.com/GiulioRossetti/cdlib/pull/255"
+  },
+  {
+   "pr_id": 3516133712,
+   "number": 1561,
+   "agent": "Copilot",
+   "html_url": "https://github.com/DaveSkender/Stock.Indicators/pull/1561"
+  },
+  {
+   "pr_id": 3087381398,
+   "number": 207,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/CitizensFoundation/your-priorities-app/pull/207"
+  },
+  {
+   "pr_id": 3223072540,
+   "number": 7729,
+   "agent": "Copilot",
+   "html_url": "https://github.com/Z3Prover/z3/pull/7729"
+  },
+  {
+   "pr_id": 3143923654,
+   "number": 374,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/forntoh/LcdMenu/pull/374"
+  },
+  {
+   "pr_id": 3295870787,
+   "number": 2042,
+   "agent": "Copilot",
+   "html_url": "https://github.com/microsoft/vscode-eslint/pull/2042"
+  },
+  {
+   "pr_id": 2847298223,
+   "number": 2103,
+   "agent": "Devin",
+   "html_url": "https://github.com/crewAIInc/crewAI/pull/2103"
+  },
+  {
+   "pr_id": 3287555779,
+   "number": 21,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/LuckyOne7777/ChatGPT-Micro-Cap-Experiment/pull/21"
+  },
+  {
+   "pr_id": 3531193695,
+   "number": 641,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/jkroepke/openvpn-auth-oauth2/pull/641"
+  },
+  {
+   "pr_id": 3131748601,
+   "number": 50505,
+   "agent": "Copilot",
+   "html_url": "https://github.com/Azure/azure-sdk-for-net/pull/50505"
+  },
+  {
+   "pr_id": 3089314570,
+   "number": 806,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/MontrealAI/AGI-Alpha-Agent-v0/pull/806"
+  },
+  {
+   "pr_id": 3208574627,
+   "number": 6067,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mochilang/mochi/pull/6067"
+  },
+  {
+   "pr_id": 3148954719,
+   "number": 1061,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mochilang/mochi/pull/1061"
+  },
+  {
+   "pr_id": 3147348732,
+   "number": 836,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mochilang/mochi/pull/836"
+  },
+  {
+   "pr_id": 3193970456,
+   "number": 1190,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/PaloAltoNetworks/docusaurus-openapi-docs/pull/1190"
+  },
+  {
+   "pr_id": 3412810384,
+   "number": 3214,
+   "agent": "Copilot",
+   "html_url": "https://github.com/ioBroker/ioBroker.admin/pull/3214"
+  },
+  {
+   "pr_id": 3340452043,
+   "number": 3695,
+   "agent": "Copilot",
+   "html_url": "https://github.com/manticoresoftware/manticoresearch/pull/3695"
+  },
+  {
+   "pr_id": 3295204933,
+   "number": 17377,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mochilang/mochi/pull/17377"
+  },
+  {
+   "pr_id": 3308103995,
+   "number": 1278,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mehah/otclient/pull/1278"
+  },
+  {
+   "pr_id": 3075266086,
+   "number": 400,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/MontrealAI/AGI-Alpha-Agent-v0/pull/400"
+  },
+  {
+   "pr_id": 3174697157,
+   "number": 2203,
+   "agent": "Devin",
+   "html_url": "https://github.com/liam-hq/liam/pull/2203"
+  },
+  {
+   "pr_id": 3484605491,
+   "number": 1084,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/effekseer/Effekseer/pull/1084"
+  },
+  {
+   "pr_id": 3142699244,
+   "number": 493,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/giongto35/cloud-game/pull/493"
+  },
+  {
+   "pr_id": 3393850578,
+   "number": 1841,
+   "agent": "Copilot",
+   "html_url": "https://github.com/2anki/server/pull/1841"
+  },
+  {
+   "pr_id": 3461512602,
+   "number": 8808,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/nextcloud/desktop/pull/8808"
+  },
+  {
+   "pr_id": 3216099985,
+   "number": 188,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/DogukanUrker/FlaskBlog/pull/188"
+  },
+  {
+   "pr_id": 3206672743,
+   "number": 5755,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mochilang/mochi/pull/5755"
+  },
+  {
+   "pr_id": 3189541266,
+   "number": 2127,
+   "agent": "Copilot",
+   "html_url": "https://github.com/celestiaorg/docs/pull/2127"
+  },
+  {
+   "pr_id": 3414311017,
+   "number": 41,
+   "agent": "Copilot",
+   "html_url": "https://github.com/ying-ge/FigureYa/pull/41"
+  },
+  {
+   "pr_id": 3401586912,
+   "number": 3569,
+   "agent": "Copilot",
+   "html_url": "https://github.com/tokens-studio/figma-plugin/pull/3569"
+  },
+  {
+   "pr_id": 3438435526,
+   "number": 467,
+   "agent": "Copilot",
+   "html_url": "https://github.com/LogExperts/LogExpert/pull/467"
+  },
+  {
+   "pr_id": 3215022261,
+   "number": 6642,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mochilang/mochi/pull/6642"
+  },
+  {
+   "pr_id": 3169622917,
+   "number": 61927,
+   "agent": "Copilot",
+   "html_url": "https://github.com/microsoft/TypeScript/pull/61927"
+  },
+  {
+   "pr_id": 3070903672,
+   "number": 4617,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/modular/modular/pull/4617"
+  },
+  {
+   "pr_id": 3187660495,
+   "number": 14200,
+   "agent": "Cursor",
+   "html_url": "https://github.com/getsentry/sentry-docs/pull/14200"
+  },
+  {
+   "pr_id": 3189898546,
+   "number": 2426,
+   "agent": "Copilot",
+   "html_url": "https://github.com/microsoft/onnxscript/pull/2426"
+  },
+  {
+   "pr_id": 3247307169,
+   "number": 11081,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mochilang/mochi/pull/11081"
+  },
+  {
+   "pr_id": 3307748180,
+   "number": 1,
+   "agent": "Cursor",
+   "html_url": "https://github.com/Ryson-32/AI-Magnet-Assistant/pull/1"
+  },
+  {
+   "pr_id": 3303048868,
+   "number": 7285,
+   "agent": "Claude_Code",
+   "html_url": "https://github.com/TykTechnologies/tyk/pull/7285"
+  },
+  {
+   "pr_id": 3303948568,
+   "number": 18222,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mochilang/mochi/pull/18222"
+  },
+  {
+   "pr_id": 3211113846,
+   "number": 112,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/nagisa77/OpenIsle/pull/112"
+  },
+  {
+   "pr_id": 3155554674,
+   "number": 1616,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mochilang/mochi/pull/1616"
+  },
+  {
+   "pr_id": 3472078269,
+   "number": 521,
+   "agent": "Copilot",
+   "html_url": "https://github.com/manusa/electronim/pull/521"
+  },
+  {
+   "pr_id": 3287255534,
+   "number": 2204,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/asynkron/protoactor-dotnet/pull/2204"
+  },
+  {
+   "pr_id": 3328374695,
+   "number": 5038,
+   "agent": "Copilot",
+   "html_url": "https://github.com/workadventure/workadventure/pull/5038"
+  },
+  {
+   "pr_id": 2760115428,
+   "number": 18376,
+   "agent": "Devin",
+   "html_url": "https://github.com/calcom/cal.com/pull/18376"
+  },
+  {
+   "pr_id": 3408838713,
+   "number": 89,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/milkschen/leviosam2/pull/89"
+  },
+  {
+   "pr_id": 3312633274,
+   "number": 22016,
+   "agent": "Copilot",
+   "html_url": "https://github.com/vaadin/flow/pull/22016"
+  },
+  {
+   "pr_id": 3519861971,
+   "number": 8258,
+   "agent": "Copilot",
+   "html_url": "https://github.com/epam/ketcher/pull/8258"
+  },
+  {
+   "pr_id": 3070837303,
+   "number": 37,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/jrkropp/open-webui-developer-toolkit/pull/37"
+  },
+  {
+   "pr_id": 3332952039,
+   "number": 149,
+   "agent": "Cursor",
+   "html_url": "https://github.com/useautumn/autumn/pull/149"
+  },
+  {
+   "pr_id": 3358768249,
+   "number": 20286,
+   "agent": "OpenAI_Codex",
+   "html_url": "https://github.com/mochilang/mochi/pull/20286"
+  },
+  {
+   "pr_id": 3021303865,
+   "number": 207,
+   "agent": "Devin",
+   "html_url": "https://github.com/antiwork/flexile/pull/207"
+  }
+ ]
+}

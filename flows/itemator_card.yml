@@ -50,6 +50,7 @@ prompts:
         b. FACTS.card.todo_line, copied character for character.
         c. FACTS.card.caveat_line, copied character for character, only if it is not null.
         d. FACTS.card.injection_line, copied character for character, only if it is not null.
+        d2. FACTS.card.checked_line, copied character for character, only if the key is present and its value is not null.
         e. Only if FACTS.extras is not empty, this block:
            <details><summary>In plain words</summary>
 

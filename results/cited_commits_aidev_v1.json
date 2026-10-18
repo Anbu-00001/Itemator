@@ -1,0 +1,6 @@
+{
+ "what": "Exploratory count, no registered rule: of the commit ids that agent pull requests in our 477-pull-request AIDev sample cite in their descriptions and in their commit messages, how many does the repository the pull request belongs to know? Existence asked of GitHub's commits API (HTTP 200 exists, 422 or 404 missing). Read on 2026-10-18 with the same id patterns as itemator/refs.py.",
+ "limits": "Small numbers. A missing id may be a commit the agent's sandbox never pushed, one that was force-pushed away, or one from another repository; the count does not say which. Four of the five missing ids come from one repository. Not a test of the check and no claim that it catches real problems.",
+ "descriptions": {"cited_ids": 8, "exists": 4, "missing": 4, "missing_by_agent": {"Copilot": 4}, "missing_by_repository": {"typedclojure/typedclojure": 3, "dotnet/fsharp": 1}},
+ "commit_messages": {"rows_with_message": 42152, "distinct_repo_id_pairs": 35, "exists": 34, "missing": 1, "missing_by_agent": {"OpenAI_Codex": 1}, "missing_by_repository": {"rainbow-me/rainbowkit": 1}}
+}

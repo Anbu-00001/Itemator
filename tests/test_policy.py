@@ -250,9 +250,9 @@ def test_parse_reasons_are_one_safe_line():
 
 
 def test_valid_files():
-    assert POL.parse(b"") == {"other_person_required": False, "hold_until_named": False, "asker_required": False, "kinds": (), "paths": ()}
+    assert POL.parse(b"") == {"other_person_required": False, "hold_until_named": False, "asker_required": False, "kinds": (), "paths": (), "reasons": ()}
     assert POL.parse(FULL.encode()) == {"other_person_required": True, "hold_until_named": False, "asker_required": False, "kinds": ("version_bump", "new_dependency"),
-                                        "paths": ("*.yml", "assets/**")}
+                                        "paths": ("*.yml", "assets/**"), "reasons": ()}
     assert POL.parse(("[ignore]\npaths = [" + ", ".join(f'"d{i}/**"' for i in range(20)) + "]\n").encode())["paths"][19] == "d19/**"
     assert POL.parse(b'[ignore]\npaths = ["' + b"a" * 200 + b'"]\n')["paths"] == ("a" * 200,)
 
@@ -582,3 +582,41 @@ def test_this_repository_policy_file_can_be_extended_by_always():
     if not f.exists():
         pytest.skip("no .itemator.toml in this copy")
     assert POL.paths_line_ok(f.read_text())
+
+
+REASONED = b'[ignore]\nkinds = ["version_bump"]\npaths = ["docs/**", "*.md"]\n[reasons]\nversion_bump = "we bump by script"\n"docs/**" = "docs team reviews these"\n"*.md" = "readme edits are low risk"\n'
+
+
+def test_reasons_are_read_and_change_nothing_else():
+    s = POL.parse(REASONED)
+    assert s["reasons"] == (("version_bump", "we bump by script"), ("docs/**", "docs team reviews these"), ("*.md", "readme edits are low risk"))
+    assert (s["kinds"], s["paths"]) == (("version_bump",), ("docs/**", "*.md"))
+    assert POL.Policy(**s).to_dict() == POL.Policy(**{**s, "reasons": ()}).to_dict()       # the facts file does not carry them
+
+
+@pytest.mark.parametrize("text, why", [
+    ('[ignore]\nkinds = ["version_bump"]\n[reasons]\nstray_file = "x"\n', "reasons names `stray_file`, which is not an ignore entry"),
+    ('[ignore]\nkinds = ["version_bump"]\n[reasons]\nversion_bump = ""\n', "the reason for `version_bump` must be a non-empty string"),
+    ('[ignore]\nkinds = ["version_bump"]\n[reasons]\nversion_bump = "  "\n', "the reason for `version_bump` must be a non-empty string"),
+    ('[ignore]\nkinds = ["version_bump"]\n[reasons]\nversion_bump = 3\n', "the reason for `version_bump` must be a non-empty string"),
+    ('[ignore]\nkinds = ["version_bump"]\n[reasons]\nversion_bump = "' + "a" * 201 + '"\n', "has a control character or is longer than 200"),
+    ('[ignore]\nkinds = ["version_bump"]\n[reasons]\nversion_bump = "a\\u0007b"\n', "has a control character or is longer than 200"),
+    ('[reasons]\nx = 1\n[bogus]\n', "unknown table `bogus`"),
+    ('reasons = 3\n', "reasons must be a table"),
+])
+def test_a_bad_reasons_table_makes_the_file_ignored(text, why):
+    assert why in POL.parse(text.encode())
+
+
+def test_lint_names_what_to_tidy():
+    tracked = ["README.md", "docs/a.md", "src/x.py"]
+    assert POL.lint(REASONED, tracked) == []
+    bare = b'[ignore]\nkinds = ["version_bump"]\npaths = ["docs/**", "gone/**"]\n'
+    assert POL.lint(bare, tracked) == [
+        "ignore entry `version_bump` has no reason; add it under [reasons]",
+        "ignore entry `docs/**` has no reason; add it under [reasons]",
+        "ignore entry `gone/**` has no reason; add it under [reasons]",
+        "ignore.paths `gone/**` matches no file in the repository; remove it or fix it"]
+    assert POL.lint(b'[ignore]\npaths = ["*"]\n[reasons]\n"*" = "all"\n', tracked) == ["ignore.paths `*` matches every path, so no extra would ever need a name"]
+    assert POL.lint(b"[ignore\n", tracked)[0].startswith(".itemator.toml would be ignored: it is not valid TOML")
+    assert POL.lint(b"", tracked) == []

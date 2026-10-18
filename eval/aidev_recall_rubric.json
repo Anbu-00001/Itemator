@@ -1,0 +1,29 @@
+{
+ "what": "Leg 1 of the 'does Itemator catch real problems' work, written before any comment is scored: of the human reviewers' scope comments on AI-agent pull requests in the public AIDev dataset, how often did the rules (v6, frozen) list the file the reviewer was talking about? Read-only; nothing is posted.",
+ "dataset": "hao-li/AIDev on Hugging Face (arXiv 2507.15003; CC-BY-4.0; patches keep each repository's licence), read through the dataset-viewer API. Pull requests and review comments from the v4 popular-repository subset; linked issues from hao-li/AIDev-7.6M.",
+ "sample": "Every inline review comment in `pr_review_comments` whose author type is User and whose text contains, ignoring case, one of: unrelated, out of scope, separate PR, not needed, unnecessary, and that sits on a file path. The list of comment ids is eval/aidev_recall_cases.json (written by eval/aidev_cases.py before any scoring). Nobody read any comment text to build it.",
+ "unit": "one comment",
+ "files": "the pull request's files as they stood up to and including the commit the comment was first made on (`original_commit_id`): per-commit file rows in commit order; a file added and later removed vanishes; patches of several commits are joined in order. A comment whose commit is not among the pull request's commits is 'unreadable' and counted apart.",
+ "task": "the linked issue's title and text when the 7.6M copy links one; otherwise the pull request's title and text (reported apart). A second run uses the title alone, to see whether the agent's own description excuses its extras.",
+ "rules": "itemator.extras.analyse, rules version 6 (frozen), with the repository name",
+ "hit": "an extra whose path (or a file in its list, or a listed directory that holds it) is the commented file",
+ "kinds": "listable_kind in eval/aidev_recall.py decides, from the path alone, whether the file is of a kind the rules can list (dependency manifest, CI or config, agent instructions, generated, binary); everything else is source, tests or docs",
+ "outcome": {
+  "primary": "among comments on a file of a listable kind, the share whose file the rules listed (counts and a Wilson 95% interval)",
+  "also_reported": [
+   "the same share over all comments",
+   "by agent, by pull request state (merged, closed, open), by where the task text came from",
+   "the number of pull requests with at least one listed comment",
+   "the title-only run for both shares",
+   "unreadable comments, never dropped silently"
+  ]
+ },
+ "reading_rule": "Report the primary share first, in plain words, with its counts. The share over all comments is reported beside it, never instead. No 'catches X percent of scope creep' sentence is written from either number. Any of K1's documented cases that also appear in the sample are marked and reported apart.",
+ "published": "Comment ids, pull request addresses, file paths, kinds and yes/no results. No comment text, no patch text.",
+ "limits": "A reviewer's phrase is not a verdict that the file did not belong. Concatenated per-commit patches are an approximation of the pull request at that moment. The dataset is a snapshot of popular repositories. The rules compare a change with its task; a vague pull request text can hide an extra (the title-only run measures this). One run of frozen rules; nothing here was tuned on these comments.",
+ "predictions_before_scoring": {
+  "primary share (v6)": "0.25 to 0.70 (80%)",
+  "share over all comments (v6)": "0.03 to 0.12 (80%)"
+ },
+ "seen_before_registration": "Only counts from the fleet-9 research agent K2: 710 human comments on 477 pull requests, of which 63 sit on a file of a listable kind by path (CI or config 38, dependency 13, agent instructions 7, binary 3, generated 2), and that about half the pull requests have a linked issue. No comment was scored. Separately, on 2026-10-16 I ran the v6 rules on five documented cases from K1 (listed the objected-to change in none); those are the development set for any later rules version and are not part of this sample unless they appear in it."
+}

@@ -1,0 +1,78 @@
+{
+ "what": "Three small-feature issues given to GitLab's Developer Flow in this project on 2026-10-17; the rules (version 6) run on each merge request against its issue text. Pre-registered in the war-room note 'Demo batch 2026-10-17' before the runs.",
+ "runs": [
+  {
+   "issue": 68,
+   "merge_request": 131,
+   "title": "Draft: Print a progress line to stderr every 50 files in itemator.local",
+   "files": [
+    {
+     "path": "itemator/ci.py",
+     "landing": "ordinary"
+    },
+    {
+     "path": "itemator/local.py",
+     "landing": "ordinary"
+    },
+    {
+     "path": "tests/test_local.py",
+     "landing": "ordinary"
+    }
+   ],
+   "totals": {
+    "listed": 0,
+    "opened": 0,
+    "neutral": 0,
+    "ordinary": 3
+   },
+   "base_sha": "77f6f87c47bcd2efd34b3118a84c4405222809f0",
+   "head_sha": "2e040eddd5dd8b924c135a6e9055fad6c6d8c80b"
+  },
+  {
+   "issue": 69,
+   "merge_request": 132,
+   "title": "Draft: Colour the extra kinds in itemator.local output",
+   "files": [
+    {
+     "path": "itemator/local.py",
+     "landing": "ordinary"
+    },
+    {
+     "path": "tests/test_local.py",
+     "landing": "ordinary"
+    }
+   ],
+   "totals": {
+    "listed": 0,
+    "opened": 0,
+    "neutral": 0,
+    "ordinary": 2
+   },
+   "base_sha": "77f6f87c47bcd2efd34b3118a84c4405222809f0",
+   "head_sha": "409fa4f3bfe862f0d32b903217bc6b36137bbbf6"
+  },
+  {
+   "issue": 70,
+   "merge_request": 133,
+   "title": "Draft: Draft: itemator.local: add --json option",
+   "files": [
+    {
+     "path": "itemator/local.py",
+     "landing": "ordinary"
+    },
+    {
+     "path": "tests/test_local.py",
+     "landing": "ordinary"
+    }
+   ],
+   "totals": {
+    "listed": 0,
+    "opened": 0,
+    "neutral": 0,
+    "ordinary": 2
+   },
+   "base_sha": "17afd636fc8e6f3110a5fc5da6832191abe32983",
+   "head_sha": "5335325c25899580b8ed74a8bb978319de4c9f11"
+  }
+ ]
+}

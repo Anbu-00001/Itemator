@@ -8,6 +8,9 @@ request, so a merge request cannot weaken the rules it is judged by. A merge req
     [ignore]
     kinds = ["version_bump"]          # extras of these kinds never need a name
     paths = ["docs/**", "*.md"]       # extras whose files all match one of these never need a name
+    [reasons]                         # optional; one line of why per ignore entry (the entry text is the key)
+    version_bump = "we release by script and review the bump there"
+    "docs/**" = "documentation is reviewed by the docs team"
 
 The policy can only quiet extras or tighten who may name one; it never adds an extra. Patterns are fnmatch
 style, case-sensitive, and `*` crosses `/`. The schema is strict: an unknown table or key, a wrong type, an
@@ -28,6 +31,7 @@ FILE = ".itemator.toml"
 MAX_BYTES = 64 * 1024
 MAX_PATTERNS = 20
 MAX_PATTERN_CHARS = 200
+MAX_REASON_CHARS = 200
 TIMEOUT = 10            # seconds per git call
 SCHEMA = {"names": {"other_person_required": bool, "hold_until_named": bool, "asker_required": bool}, "ignore": {"kinds": list, "paths": list}}
 
@@ -74,6 +78,7 @@ class Policy:
     asker_required: bool = False        # T45: only the linked issue's author can keep an extra (see ci.asker_usernames)
     kinds: tuple = ()
     paths: tuple = ()
+    reasons: tuple = ()                 # ((ignore entry, why), ...) from the optional [reasons] table; `lint` reads it, no extra depends on it
     paths_line_ok: bool = False         # T42: the react flow can extend the file with a one-line edit (see paths_line_ok)
 
     def to_dict(self) -> dict:
@@ -130,11 +135,13 @@ def _parse(data: bytes):
         where = f"line {m.group(1)}, column {m.group(2)}" if m else "at the end of the file"
         return f"it is not valid TOML ({where})"
     for table, value in doc.items():
-        if table not in SCHEMA:
+        if table not in SCHEMA and table != "reasons":
             return f"unknown table `{_clean(table)}`"
         if not isinstance(value, dict):
             return f"{table} must be a table"
         for key, v in value.items():
+            if table == "reasons":
+                continue
             want = SCHEMA[table].get(key)
             if want is None:
                 return f"unknown key {table}.`{_clean(key)}`"
@@ -156,10 +163,18 @@ def _parse(data: bytes):
             return "an ignore.paths pattern contains a control character"
         if len(p) > MAX_PATTERN_CHARS:
             return f"an ignore.paths pattern is longer than {MAX_PATTERN_CHARS} characters"
+    reasons = doc.get("reasons", {})
+    for key, why in reasons.items():
+        if key not in kinds and key not in paths:
+            return f"reasons names `{_clean(key)}`, which is not an ignore entry"
+        if type(why) is not str or not why.strip():
+            return f"the reason for `{_clean(key)}` must be a non-empty string"
+        if _CONTROL.search(why) or len(why) > MAX_REASON_CHARS:
+            return f"the reason for `{_clean(key)}` has a control character or is longer than {MAX_REASON_CHARS} characters"
     return {"other_person_required": names.get("other_person_required", False),
             "hold_until_named": names.get("hold_until_named", False),
             "asker_required": names.get("asker_required", False), "kinds": tuple(kinds),
-            "paths": tuple(paths)}
+            "paths": tuple(paths), "reasons": tuple(reasons.items())}
 
 
 class _Unreadable(Exception):
@@ -243,3 +258,20 @@ def why_ignored(policy: Policy, e, items, registry, by_path: dict) -> str | None
         return None
     used = [g for g in policy.paths if any(fnmatch.fnmatchcase(f, g) for f in files)]
     return "its files match ignore.paths " + ", ".join(f"`{_clean(g)}`" for g in used)
+
+
+# ---------------------------------------------------------------- the lint (itemator.local --lint-policy)
+
+def lint(data: bytes, tracked: list[str]) -> list[str]:
+    """What is wrong with a policy file, one plain sentence each; [] when nothing is. `tracked`: the repository's files.
+    Checked: the file is usable, every ignore entry has a reason, no path pattern is dead (matches no file), none matches
+    every path. Nothing here changes what the rules do; it only tells the team what to tidy."""
+    settings = parse(data)
+    if isinstance(settings, str):
+        return [f"{FILE} would be ignored: {settings}"]
+    said = dict(settings["reasons"])
+    out = [f"ignore entry `{_clean(e)}` has no reason; add it under [reasons]" for e in (*settings["kinds"], *settings["paths"]) if e not in said]
+    out += [f"ignore.paths `{_clean(p)}` matches no file in the repository; remove it or fix it" for p in settings["paths"]
+            if not any(fnmatch.fnmatchcase(f, p) for f in tracked)]
+    out += [f"ignore.paths `{_clean(p)}` matches every path, so no extra would ever need a name" for p in settings["paths"] if matches_everything(p)]
+    return out

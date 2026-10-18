@@ -1,0 +1,38 @@
+{
+ "what": "Written before any commit is read by this script. How often do the card's newest no-model checks speak on ordinary commits, and how often do the two checks that compare a change with a commit it names (reverts, cherry-picks) speak on commits that are real reverts and real backports? Read-only; nothing is posted.",
+ "repository": "Mesa (mirror of https://gitlab.freedesktop.org/mesa/mesa.git), the bare clone of 2026-10-18 already used for the fixes trial. Read only; nothing from it is copied into the entry.",
+ "samples": {
+  "ordinary": "Non-merge commits on the default branch dated 2024-01-01 to 2026-09-30. Ids sorted, shuffled with Python's random.Random(20261018), first 1500 read. A commit that changes more than 300 files is skipped and counted.",
+  "reverts": "Non-merge commits on any branch whose message has a line starting 'This reverts commit <hash>'. Ids sorted and shuffled with Python's random.Random(20261018); taken in that order, skipping a commit whose message does not name an existing commit that way, until 1000 are read.",
+  "backports": "Non-merge commits on any branch whose message has '(cherry picked from commit <hash>)'. Ids sorted and shuffled with the same seed; taken in that order, skipping a commit whose message does not name an existing commit that way, until 1000 are read."
+ },
+ "checks": {
+  "moving": "itemator/moving.py on the commit's diff against its first parent",
+  "shapes": "itemator/shapes.py on the same diff",
+  "untrusted": "itemator/untrusted.py on the same diff",
+  "record": "itemator/record.py with the parent as the base, text = the commit message, layout-only set empty",
+  "revert": "itemator/revert.py find() with the commit message as the text (no API), on the reverts sample only",
+  "copy": "itemator/revert.py find(copy=True) with the commit message as the text (no API), on the backports sample only"
+ },
+ "files_as_read": "Each commit's diff is split into files with status added, removed or modified and the unified hunks, the same shape the CI job reads from GitLab.",
+ "rule": "For moving, shapes, untrusted and record on the ordinary sample: met only if the share of the sampled commits on which the check speaks is at most 3% and the upper end of its Wilson 95% interval is at most 5%. Otherwise published as 'not met' with the examples. Constants of the checks are not changed after seeing results; a check that fails the bar is reported as it is and the README says so. For revert and copy there is no bar: the share of real reverts and real backports on which they speak is published with the Wilson interval.",
+ "also_reported": [
+  "per check: commits where it spoke, share of all sampled commits, Wilson 95% interval, and the share among commits that touch a file it can read (CI files and shell scripts for moving and untrusted; any file for shapes)",
+  "up to 10 firing commits per check (ids and the file and line the check named), which the builder reads and labels 'looks right' or 'looks wrong' (a model's judgement, stated as such)",
+  "skipped (too many files), commits with no readable diff"
+ ],
+ "reading_rule": "Counts in plain words first. A check that speaks is not a bug found. No 'catches X percent' sentence. Examples are labelled as the builder's reading.",
+ "published": "Commit ids, file paths, line numbers, kinds, counts, intervals. No diff text, no commit messages.",
+ "limits": "Mesa is C, C++ and Python graphics code with its own CI files; a project of web or application code could speak more or less. One run; constants chosen before reading any commit. The backport sample uses commits that quote their source commit, which is exactly the case the copy check is written for, so its share says how often an honest backport differs from its source, not how often a dishonest one does.",
+ "predictions_before_run": {
+  "moving": "speaks on at most 3% of ordinary commits: 93%",
+  "shapes": "speaks on at most 3% of ordinary commits: 90%",
+  "untrusted": "speaks on at most 3% of ordinary commits: 95%",
+  "record": "speaks on at most 3% of ordinary commits: 95%",
+  "revert": "interval for the share of real reverts it speaks on: 0 to 0.15 (80%)",
+  "copy": "interval for the share of real backports it speaks on: 0.05 to 0.45 (80%)"
+ },
+ "seen_before_registration": "Counts only: 47892 non-merge commits in the ordinary window, 1770 non-merge commits with a 'This reverts commit' line and 26232 with a 'cherry picked from commit' line across all branches (git log --grep on the bare clone). No diff, no flag and no outcome for any sampled commit had been read.",
+ "wording_fixed_before_any_read": "2026-10-18: the reverts and backports sample is described as shuffle-then-skip (same distribution, much cheaper); no commit had been read.",
+ "trial_note": "2026-10-18, before the registered run: a trial of the script on the first 20 commits of each shuffled sample (which are part of the registered samples) showed that the revert and copy checks named a hidden bookkeeping file (for example .pick_status.json on Mesa's stable branches) as an extra change in about half of them. Before the registered run, itemator/revert.py was changed to leave files and folders whose name starts with a dot out of the extra-change list. No other constant changed. The registered run reads all 1000 of each sample, trial commits included."
+}

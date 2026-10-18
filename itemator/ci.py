@@ -30,6 +30,7 @@ import posixpath
 import re
 import subprocess
 import sys
+import time
 import urllib.error
 import urllib.parse
 import urllib.request
@@ -216,15 +217,35 @@ def http_get(url: str, headers: dict) -> tuple[int, bytes]:
         raise JobError(f"GET {url} failed: {e}") from e
 
 
+API_RETRY_WAITS = (3, 10)             # seconds before the second and the third try
+API_BUSY = (429, 500, 502, 503, 504)
+
+
 class Api:
     def __init__(self, base_url: str, token: str | None, http):
         self.base, self.token, self.http = base_url.rstrip("/"), token, http
 
+    def _once(self, url: str, headers: dict) -> tuple[int, bytes]:
+        """One read, tried again after a timeout, a dropped connection or a busy server (HTTP 429, 500, 502, 503, 504):
+        gitlab.com's closes_issues read timed out twice on 2026-10-17 and that alone failed the whole job."""
+        for wait in (*API_RETRY_WAITS, None):
+            try:
+                status, body = self.http(url, headers)
+            except JobError:
+                if wait is None:
+                    raise
+            else:
+                if status not in API_BUSY or wait is None:
+                    return status, body
+            time.sleep(wait)
+        raise AssertionError("unreachable")
+
     def get(self, path: str, missing_ok: bool = False):
         url = self.base + path
-        status, body = self.http(url, {})
+        # With the job token first: from 2026-10-19 gitlab.com caps anonymous reads at 60 an hour per IP address.
+        status, body = self._once(url, {"JOB-TOKEN": self.token} if self.token else {})
         if status in (401, 403, 404) and self.token:
-            status, body = self.http(url, {"JOB-TOKEN": self.token})
+            status, body = self._once(url, {})
         if status == 404 and missing_ok:
             return None
         if status != 200:
@@ -322,8 +343,8 @@ _PHRASES = (
 )
 _PHRASE_RE = [(rule, re.compile(rx, re.I)) for rule, rx in _PHRASES]
 _TAG = re.compile("[\U000E0000-\U000E007F]")
-_BIDI = re.compile("[‪-‮⁦-⁩‎‏؜]")
-_INVISIBLE = re.compile("[​-‍⁠﻿\U000E0000-\U000E007F]")
+_BIDI = re.compile("[\u202a-\u202e\u2066-\u2069\u200e\u200f\u061c]")        # written as escapes: a literal control character in source is itself a trojan-source finding
+_INVISIBLE = re.compile("[\u200b-\u200d\u2060\ufeff\U000E0000-\U000E007F]")
 _COMMENT = re.compile(r"<!--(.*?)-->", re.S)
 _ADDRESSEE = re.compile(r"\b(?:ai|llm|model|bot|agent|assistant|reviewer|duo|claude|copilot|gpt)s?\b", re.I)
 _IMPERATIVE = re.compile(r"\b(?:ignore|disregard|forget|approve|merge|do\s+not|don'?t|never|must|override"
@@ -952,10 +973,72 @@ def run(env, repo_dir: str, http, registry_fetch=None) -> dict:
                  base_sha=base, head_sha=head, warnings=warnings,
                  now=datetime.datetime.now(datetime.timezone.utc), registry_fetch=registry_fetch,
                  policy=policy, checker=checker_of(env, target, head), fallback=not resolved, description_cut=cut)
+    also_checked(report, repo_dir, base, head, files, api, pid, f"{mr.get('title') or ''}\n{description}")
     report["hold"] = hold(report, api, pid, iid, head)
     if report["hold"]["blocked"]:
         report["card"]["todo_line"] = f'{report["card"]["todo_line"]} {HOLD_LINE}'
     return report
+
+
+MAX_CHECKED_FILES = 300       # files the two no-request checks read per job; a larger change is checked in its first 300
+
+
+def also_checked(report: dict, repo_dir: str, base: str, head: str, files: list[dict], api=None, pid=None, mr_text: str = "") -> None:
+    """Add what the layout check and the opener found to report["checked"] and, as one sentence, to the card
+    (`checked_line`). Information only: the state, the extras and the exit code never depend on it, and a file either check cannot
+    read, or that breaks it, is left out."""
+    from itemator import local as L           # local imports this module
+    from itemator import neutral as N
+    from itemator import checked as C
+    from itemator import cochange as CC
+    from itemator import pipeline as PL
+    from itemator import refs as RF
+    from itemator import revert as RV
+    from itemator import moving as MV
+    from itemator import shapes as SP
+    from itemator import untrusted as UT
+    from itemator import scanners as SC
+    from itemator import record as RC
+    listed = {e.get("path") for e in report["extras"]} | {d.split(" ")[0] for e in report["extras"] for d in e["detail"] if isinstance(d, str)}
+    neutral, opened = [], []
+    for f in files[:MAX_CHECKED_FILES]:
+        try:
+            v, look = L.neutral_verdict(repo_dir, base, head, f), L.opened(repo_dir, head, f)
+        except Exception as e:            # noqa: BLE001 -- a check that cannot read a file says nothing about it
+            report["warnings"].append(f"no extra check on {f['filename']}: {type(e).__name__}")
+            continue
+        if v is not None and v.level in N.PROVED and f["filename"] not in listed:     # a listed file is read by the reviewer anyway
+            neutral.append({"path": f["filename"], "level": v.level, "reason": v.reason})
+        if look is not None:
+            opened.append({"path": f["filename"], "kind": look.kind, "line": look.line()})
+    modified = [f["filename"] for f in files if f.get("status") == "modified"]
+    labels, fence = C.history_checks(repo_dir, base, files[:MAX_CHECKED_FILES], listed, report["warnings"])
+    strangers = [p for p in modified if labels.get(p) == CC.STRANGER and p not in listed]
+    pipeline = PL.find(api, pid, base, head, files, report["warnings"]) if api is not None else None
+    try:
+        moving = MV.find(files)
+        shapes = SP.find(files)
+        untrusted = UT.find(files)
+        scanners = SC.find(repo_dir, files, listed, report["warnings"])
+    except Exception as e:                # noqa: BLE001 -- information only
+        moving, shapes, untrusted, scanners = [], [], [], None
+        report["warnings"].append(f"no moving-reference check: {type(e).__name__}")
+    reland = C.reland_check(repo_dir, base, files[:MAX_CHECKED_FILES], report["warnings"])
+    cites, revert, record, copy = [], None, None, None
+    try:
+        said = f"{mr_text}\n{L.commit_messages(repo_dir, base, head)}"
+        cites = RF.find(repo_dir, said, api, pid, report["warnings"])
+        revert = RV.find(repo_dir, said, files, api, pid, report["warnings"])
+        copy = RV.find(repo_dir, said, files, api, pid, report["warnings"], copy=True)
+        record = RC.find(repo_dir, base, files, {n["path"] for n in neutral}, said)
+    except Exception as e:                # noqa: BLE001 -- information only
+        report["warnings"].append(f"no reference check: {type(e).__name__}")
+    report["checked"] = {"neutral": neutral, "opened": opened, "strangers": strangers, "fenced": fence["fenced"], "relanded": reland["relanded"], "cites": cites, "revert": revert, "moving": moving, "shapes": shapes, "untrusted": untrusted, "scanners": scanners, "record": record, "copy": copy, "pipeline": pipeline,
+                         "fence_runs_read": fence["runs_read"], "fence_capped": fence["capped"],
+                         "files_read": min(len(files), MAX_CHECKED_FILES), "files": len(files)}
+    line = C.sentence([n["path"] for n in neutral], [(o["path"], o["line"]) for o in opened], strangers, fence["fenced"], pipeline, reland["relanded"], cites, revert, moving, record, copy, shapes, untrusted, scanners)
+    if line:
+        report["card"]["checked_line"] = line         # only present when there is something to say
 
 
 REACT_BOT = os.environ.get("ITEMATOR_REACT_BOT") or "ai-itemator-react-gitlab-ai-hackathon"   # the exact account: the project is public and anyone can comment

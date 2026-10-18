@@ -1,3 +1,17 @@
+# Secure: GitLab's own secret detection and static analysis (SAST) templates run on every pipeline; they report and never block.
+include:
+  - template: Jobs/Secret-Detection.gitlab-ci.yml
+  - template: Jobs/SAST.gitlab-ci.yml
+
+variables:
+  AST_ENABLE_MR_PIPELINES: "true"      # the templates skip merge request pipelines unless this is set
+
+secret_detection:
+  allow_failure: true
+
+semgrep-sast:
+  allow_failure: true
+
 # One pipeline per change: a merge request pipeline while an MR is open,
 # otherwise a branch pipeline (GitLab's documented pattern).
 workflow:
@@ -119,4 +133,20 @@ shipped-page:
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
   script:
     - python -E -m itemator.shipped --environment production --out public
+    # The routing picture (public/map): the latest merge to main as a real trace (best effort) and a staged example.
+    - python -E examples/make_example.py staged.json
+    - python -E -m itemator.trace --commits --base HEAD~1 --head HEAD --out latest.json || true
+    - python -E -m itemator.mapview --out public/map --skip-missing --label "Latest merge to main (a real run)" --label "Staged example (made up for this demonstration)" --staged staged.json latest.json staged.json
   pages: true
+
+# Monitor: after each deployment of the page, fetch it from the internet and fail loudly if it, or the map page, is not served.
+# GitLab Pages needs a little time after the job ends, so the check waits and tries again.
+pages-smoke-check:
+  stage: .post
+  image: python:3.12
+  needs: [shipped-page]
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+  allow_failure: true
+  script:
+    - python -E tools/smoke_check.py "$CI_PAGES_URL" "$CI_PAGES_URL/map/"

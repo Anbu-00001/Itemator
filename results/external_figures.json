@@ -30,5 +30,37 @@
   "published": "2026-10-13",
   "read_on": "2026-10-15",
   "caveat": "The page is about Anthropic's own version control system; it does not mention merge requests or approval."
+ },
+ "aidev_agent_pull_requests": {
+  "value": 456000,
+  "quote": "Spanning over 456,000 pull requests",
+  "source": "https://arxiv.org/abs/2507.15003",
+  "published": "2025-07-20",
+  "read_on": "2026-10-18",
+  "caveat": "The abstract says 'over 456,000'; the figure is a lower bound."
+ },
+ "aidev_human_pull_requests_merged": {
+  "value": 0.768,
+  "quote": "Human 76.8% (Table 5, %Accepted)",
+  "source": "https://arxiv.org/html/2507.15003",
+  "published": "2025-07-20",
+  "read_on": "2026-10-18",
+  "caveat": "Table 5 (%Accepted), the paper's AIDev-pop subset (popular repositories); the human row is a sample of 2025 pull requests from the same repositories, not all human pull requests."
+ },
+ "aidev_copilot_pull_requests_merged": {
+  "value": 0.382,
+  "quote": "GitHub Copilot 38.2% (Table 5, %Accepted)",
+  "source": "https://arxiv.org/html/2507.15003",
+  "published": "2025-07-20",
+  "read_on": "2026-10-18",
+  "caveat": "Table 5 (%Accepted), the paper's AIDev-pop subset (popular repositories); the human row is a sample of 2025 pull requests from the same repositories, not all human pull requests. The text of the paper rounds this to 35%."
+ },
+ "aidev_codex_pull_requests_merged": {
+  "value": 0.653,
+  "quote": "OpenAI Codex 65.3% (Table 5, %Accepted)",
+  "source": "https://arxiv.org/html/2507.15003",
+  "published": "2025-07-20",
+  "read_on": "2026-10-18",
+  "caveat": "Table 5 (%Accepted), the paper's AIDev-pop subset (popular repositories); the human row is a sample of 2025 pull requests from the same repositories, not all human pull requests. The text of the paper rounds this to 64%."
  }
 }

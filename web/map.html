@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Itemator map</title>
+<style>
+:root{--bg:#fbfbfa;--fg:#1c1c1a;--muted:#5d5d58;--line:#d9d8d2;--card:#fff;--listed:#b3261e;--opened:#7a4fb5;--neutral:#1d7a4b;--ordinary:#4a5560;--noted:#9a5b00;--hit:#b3261e}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#151514;--fg:#ecebe6;--muted:#a6a59d;--line:#3a3a36;--card:#1d1d1b;--listed:#ff8a80;--opened:#c9a8ff;--neutral:#7fd6a2;--ordinary:#9aa6b2;--noted:#e8b04a;--hit:#ff8a80}}
+:root[data-theme="dark"]{--bg:#151514;--fg:#ecebe6;--muted:#a6a59d;--line:#3a3a36;--card:#1d1d1b;--listed:#ff8a80;--opened:#c9a8ff;--neutral:#7fd6a2;--ordinary:#9aa6b2;--noted:#e8b04a;--hit:#ff8a80}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.5 system-ui,sans-serif}
+main{max-width:980px;margin:0 auto;padding:24px 16px 64px}
+h1{font-size:1.4rem;margin:0 0 4px}
+p{margin:.4em 0}
+.muted{color:var(--muted)}
+.bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:16px 0}
+button,select{font:inherit;color:var(--fg);background:var(--card);border:1px solid var(--line);border-radius:6px;padding:6px 12px;cursor:pointer}
+button:focus-visible,select:focus-visible{outline:2px solid var(--opened);outline-offset:2px}
+.stage{min-height:1.5em;font-weight:600}
+.pic{overflow-x:auto;border:1px solid var(--line);border-radius:8px;background:var(--card)}
+svg{display:block;min-width:720px}
+svg text{fill:var(--fg);font:12px system-ui,sans-serif}
+.station{fill:none;stroke:var(--line);stroke-width:1}
+.dot{transition:transform .9s ease-in-out}
+.reduce .dot{transition:none}
+.totals{display:flex;flex-wrap:wrap;gap:12px;margin:16px 0}
+.totals>span{border:1px solid var(--line);border-radius:6px;padding:4px 10px;background:var(--card)}
+table{border-collapse:collapse;width:100%;font-size:.9rem}
+th,td{text-align:left;padding:6px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+.tag{font-weight:600}
+.l-listed{color:var(--listed)}.l-opened{color:var(--opened)}.l-neutral{color:var(--neutral)}.l-ordinary{color:var(--ordinary)}.l-noted{color:var(--noted)}
+</style>
+</head>
+<body>
+<main>
+<h1>What happened to each file in this change</h1>
+<p class="muted" id="what"></p>
+<div class="bar">
+<label>Change <select id="pick" aria-label="Which change to show"></select></label>
+<button id="play" type="button">Play</button>
+<button id="step" type="button">Step</button>
+<button id="reset" type="button">Reset</button>
+</div>
+<p class="stage" id="stage" aria-live="polite"></p>
+<div class="pic"><svg id="svg" role="img" aria-labelledby="svgt"><title id="svgt">Each changed file moving through six checks into one of five bins</title></svg></div>
+<div class="totals" id="totals"></div>
+<p class="muted">"Ordinary" means no check listed or proved anything about the file: read it yourself. It is not a statement that the file is fine.</p>
+<table id="table"><thead><tr><th>File</th><th>Request</th><th>Extras</th><th>Layout-only</th><th>Opener</th><th>History</th><th>Fence</th><th>Lands in</th></tr></thead><tbody></tbody></table>
+<p class="muted" id="src"></p>
+</main>
+<script id="traces" type="application/json">/*TRACES*/</script>
+<script>
+(function(){
+"use strict";
+var DATA=JSON.parse(document.getElementById("traces").textContent);
+var STATIONS=[["request","Request"],["extras","Extras"],["neutral","Layout-only"],["unwrap","Opener"],["history","History"],["fence","Fence"]];
+var BINS=["listed","opened","neutral","noted","ordinary"];
+var BIN_TEXT={listed:"Listed as an extra",opened:"Opened (binary)",neutral:"Layout-only",noted:"History note",ordinary:"Ordinary: read it"};
+var NS="http://www.w3.org/2000/svg",ROW=24,TOP=64,LEFT=8,SX=[190,300,410,520,630,740],BINX=870,W=1040,N=STATIONS.length;
+var svg=document.getElementById("svg"),pick=document.getElementById("pick"),stageEl=document.getElementById("stage");
+var reduce=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+if(reduce)document.documentElement.classList.add("reduce");
+var cur=null,stage=0,timer=null,dots=[];
+function el(n,a,t){var e=document.createElementNS(NS,n);for(var k in a)e.setAttribute(k,a[k]);if(t!=null)e.textContent=t;return e}
+function node(n,t,c){var e=document.createElement(n);if(t!=null)e.textContent=t;if(c)e.className=c;return e}
+function color(f){return "var(--"+f.landing+")"}
+function out(f,i){return f.route[i]?f.route[i].outcome:"not_applicable"}
+function draw(){
+  svg.textContent="";svg.appendChild(el("title",{id:"svgt"},"Each changed file moving through six checks into one of five bins"));
+  var n=cur.files.length,H=Math.max(TOP+n*ROW+16,TOP+5*ROW*2);
+  svg.setAttribute("viewBox","0 0 "+W+" "+H);svg.setAttribute("width",W);svg.setAttribute("height",H);
+  STATIONS.forEach(function(s,i){svg.appendChild(el("rect",{x:SX[i]-50,y:28,width:100,height:H-40,rx:8,"class":"station"}));svg.appendChild(el("text",{x:SX[i],y:20,"text-anchor":"middle"},s[1]))});
+  var counts={},place={};
+  BINS.forEach(function(b){counts[b]=0});
+  cur.files.forEach(function(f){place[f.path]=counts[f.landing]++});
+  var binTop={},y=TOP;
+  BINS.forEach(function(b){binTop[b]=y;svg.appendChild(el("text",{x:BINX-10,y:y-14,"font-weight":"600",fill:"currentColor"},BIN_TEXT[b]+" ("+counts[b]+")"));y+=Math.max(counts[b],1)*ROW+34});
+  if(y>H){svg.setAttribute("viewBox","0 0 "+W+" "+y);svg.setAttribute("height",y)}
+  dots=cur.files.map(function(f,i){
+    var g=el("g",{"class":"dot"});var c=el("circle",{r:6,cx:0,cy:0,fill:"var(--bg)",stroke:"var(--ordinary)","stroke-width":2});
+    var t=el("text",{x:12,y:4},f.path.length>34?"…"+f.path.slice(-33):f.path);t.appendChild(el("title",{},f.path));
+    g.appendChild(c);g.appendChild(t);svg.appendChild(g);
+    return {g:g,c:c,t:t,f:f,y0:TOP+i*ROW,y1:binTop[f.landing]+place[f.path]*ROW}
+  });
+  setStage(stage,true);
+}
+function pos(d,s){
+  if(s===0)return [LEFT,d.y0];
+  if(s<=N)return [SX[s-1]-45,d.y0];
+  return [BINX,d.y1];
+}
+function setStage(s,quick){
+  stage=s;
+  dots.forEach(function(d){
+    var p=pos(d,s);d.g.style.transform="translate("+p[0]+"px,"+p[1]+"px)";d.g.setAttribute("transform","translate("+p[0]+","+p[1]+")");
+    if(s>=1&&s<=N){var o=out(d.f,s-1);d.c.setAttribute("stroke",o==="hit"?"var(--hit)":"var(--ordinary)");d.c.setAttribute("fill",o==="hit"?"var(--hit)":"var(--bg)");d.c.setAttribute("stroke-dasharray",o==="not_applicable"?"2 2":"")}
+    if(s===N+1){d.c.setAttribute("stroke",color(d.f));d.c.setAttribute("fill",color(d.f));d.c.setAttribute("stroke-dasharray","")}
+    if(s===0){d.c.setAttribute("stroke","var(--ordinary)");d.c.setAttribute("fill","var(--bg)");d.c.setAttribute("stroke-dasharray","")}
+  });
+  var msg=["Every changed file starts here.","","","",""];
+  if(s>=1&&s<=N){var k=STATIONS[s-1][0],hits=0,na=0;cur.files.forEach(function(f){var o=out(f,s-1);if(o==="hit")hits++;if(o==="not_applicable")na++});
+    msg=["",hits+" of "+cur.files.length+" file(s) hit at “"+STATIONS[s-1][1]+"”; "+na+" not applicable.",null,null,null];msg[0]=msg[1]}
+  stageEl.textContent=s===0?msg[0]:s<=N?msg[1]:"Each file has landed. Totals below.";
+  document.getElementById("play").textContent=timer?"Pause":"Play";
+}
+function next(){if(stage<N+1)setStage(stage+1);else stop()}
+function stop(){if(timer){clearInterval(timer);timer=null}document.getElementById("play").textContent="Play"}
+function play(){if(timer){stop();return}if(stage>=N+1)setStage(0);timer=setInterval(next,1500);document.getElementById("play").textContent="Pause"}
+function show(i){
+  stop();cur=DATA[i];stage=reduce?N+1:0;
+  document.getElementById("what").textContent=cur.label+" ("+(cur.kind==="staged"?"staged for this demonstration, not a real merge request":"a real run")+")";
+  var t=document.getElementById("totals");t.textContent="";
+  BINS.forEach(function(b){var s=node("span",null);s.appendChild(node("span",(cur.trace.totals[b]||0)+" ","tag l-"+b));s.appendChild(document.createTextNode(BIN_TEXT[b]));t.appendChild(s)});
+  var tb=document.querySelector("#table tbody");tb.textContent="";
+  cur.files=cur.trace.files;
+  cur.files.forEach(function(f){var r=node("tr");r.appendChild(node("td",f.path));
+    for(var j=0;j<N;j++){var st=f.route[j];r.appendChild(node("td",st?st.say:""))}
+    r.appendChild(node("td",f.landing,"tag l-"+f.landing));tb.appendChild(r)});
+  var s=cur.trace.source;document.getElementById("src").textContent="Rules v"+s.rules_version+" · base "+s.base_sha.slice(0,8)+" · head "+s.head_sha.slice(0,8)+" · diff sha256 "+s.input_sha256.slice(0,16)+"… · made by python -m itemator.trace";
+  draw();
+}
+DATA.forEach(function(d,i){var o=document.createElement("option");o.value=i;o.textContent=d.label;pick.appendChild(o)});
+pick.addEventListener("change",function(){show(+pick.value)});
+document.getElementById("play").addEventListener("click",play);
+document.getElementById("step").addEventListener("click",function(){stop();next()});
+document.getElementById("reset").addEventListener("click",function(){stop();setStage(0)});
+show(0);
+var m=/step=(\d)/.exec(location.hash);if(m&&+m[1]<=N+1)setStage(+m[1]);
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,149 @@
+{
+ "note": "a demonstration: the rules were written after reading these diffs",
+ "incidents": [
+  {
+   "id": "amazon-q-1.84.0",
+   "what": "a build script that downloads a file and writes it over a source file",
+   "page": "https://github.com/aws/aws-toolkit-vscode/commit/678851bbe9776228f55e0460e66a6167ac2a1685",
+   "sha256": "21760365e6b708d3c464ec620588ccdebdd5f789eebc090cccc8414d4dcfe273",
+   "files": [
+    {
+     "path": "scripts/package.ts",
+     "status": "modified",
+     "binary": false
+    }
+   ],
+   "shapes": [
+    {
+     "path": "scripts/package.ts",
+     "line": 143,
+     "kind": "download-over-source"
+    }
+   ],
+   "untrusted": [],
+   "moving": [],
+   "extras": [],
+   "expected_check": "shapes",
+   "fired": true
+  },
+  {
+   "id": "nx-s1ngularity",
+   "what": "a workflow that pastes a pull request title into a shell line",
+   "page": "https://github.com/nrwl/nx/pull/32458",
+   "sha256": "ecfdffb38e14d0cdbbbbd64692e0b33146d3904ddcb2e02e0f7ea7402a2da163",
+   "files": [
+    {
+     "path": ".github/workflows/pr-title-validation.yml",
+     "status": "added",
+     "binary": false
+    }
+   ],
+   "shapes": [],
+   "untrusted": [
+    {
+     "path": ".github/workflows/pr-title-validation.yml",
+     "line": 30,
+     "kind": "github-expression"
+    },
+    {
+     "path": ".github/workflows/pr-title-validation.yml",
+     "line": 32,
+     "kind": "github-expression"
+    },
+    {
+     "path": ".github/workflows/pr-title-validation.yml",
+     "line": 37,
+     "kind": "github-expression"
+    }
+   ],
+   "moving": [],
+   "extras": [
+    {
+     "kind": "ci_or_config",
+     "path": ".github/workflows/pr-title-validation.yml"
+    }
+   ],
+   "expected_check": "untrusted",
+   "fired": true
+  },
+  {
+   "id": "xz-test-files",
+   "what": "five binary files added as test data (the build-script half was only in the release tarball)",
+   "page": "https://github.com/tukaani-project/xz/commit/cf44e4b7f5dfdbf8c78aef377c10f71e274f63c0",
+   "sha256": "72458be352b9dddbed2295cfe82bd60ce9377ba8318e5b256154f9db17c431ee",
+   "files": [
+    {
+     "path": "tests/files/README",
+     "status": "modified",
+     "binary": false
+    },
+    {
+     "path": "tests/files/bad-3-corrupt_lzma2.xz",
+     "status": "added",
+     "binary": true
+    },
+    {
+     "path": "tests/files/bad-dict_size.lzma",
+     "status": "added",
+     "binary": true
+    },
+    {
+     "path": "tests/files/good-2cat.xz",
+     "status": "added",
+     "binary": true
+    },
+    {
+     "path": "tests/files/good-large_compressed.lzma",
+     "status": "added",
+     "binary": true
+    },
+    {
+     "path": "tests/files/good-small_compressed.lzma",
+     "status": "added",
+     "binary": true
+    }
+   ],
+   "shapes": [],
+   "untrusted": [],
+   "moving": [],
+   "extras": [
+    {
+     "kind": "binary_or_large_added",
+     "path": "tests/files/bad-3-corrupt_lzma2.xz"
+    },
+    {
+     "kind": "binary_or_large_added",
+     "path": "tests/files/bad-dict_size.lzma"
+    },
+    {
+     "kind": "binary_or_large_added",
+     "path": "tests/files/good-2cat.xz"
+    },
+    {
+     "kind": "binary_or_large_added",
+     "path": "tests/files/good-large_compressed.lzma"
+    },
+    {
+     "kind": "binary_or_large_added",
+     "path": "tests/files/good-small_compressed.lzma"
+    }
+   ],
+   "expected_check": "binary",
+   "fired": true
+  }
+ ],
+ "not_replayed": [
+  {
+   "id": "xz-release-tarball",
+   "why": "the build-script half of the xz attack was only in the release tarball, never in a git change, so no merge request check can see it"
+  },
+  {
+   "id": "tj-actions-changed-files",
+   "why": "the malicious commit page is gone, so there is no public diff to run"
+  },
+  {
+   "id": "account-and-registry takeovers",
+   "why": "ua-parser-js, colors.js and the torchtriton package arrived through a stolen account or a package registry, not a merge request"
+  }
+ ]
+}

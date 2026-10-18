@@ -277,14 +277,14 @@ def test_closing_refs():
 
 # ---- the job token and failures
 
-def test_job_token_only_after_an_anonymous_refusal(repo, tmp_path, monkeypatch):
+def test_anonymous_read_only_after_a_job_token_refusal(repo, tmp_path, monkeypatch):
     head = repo.commit({"src/parser.py": FIXED})
     r = routes(mr(), [])
-    r[CLOSES] = lambda h: (200, [issue()]) if h.get("JOB-TOKEN") == "job-token-value" else (401, {"message": "401"})
+    r[CLOSES] = lambda h: (200, [issue()]) if not h.get("JOB-TOKEN") else (401, {"message": "401"})
     http = FakeHttp(r)
     code, out = job(repo, head, http, tmp_path, monkeypatch, CI_JOB_TOKEN="job-token-value")
     assert code == 0 and out["issue_iids"] == [12]
-    assert http.calls == [(MR, {}), (CLOSES, {}), (CLOSES, {"JOB-TOKEN": "job-token-value"})]
+    assert http.calls == [(MR, {"JOB-TOKEN": "job-token-value"}), (CLOSES, {"JOB-TOKEN": "job-token-value"}), (CLOSES, {})]
     assert "job-token-value" not in (tmp_path / "itemator.json").read_text()
 
 

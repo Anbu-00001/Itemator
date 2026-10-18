@@ -1,0 +1,24 @@
+{
+ "what": "Spike 2, for the unwrap tool (itemator/unwrap.py), written before any file is fetched. Part A shows what the rules say about the two xz-utils test files that hid the 2024 backdoor. Part B asks, for binary or large files that AI-agent pull requests ADDED: does the kind the rules read from a file's first bytes agree with file(1), the standard tool? Read-only; nothing is posted and no fetched file is run.",
+ "dataset": "hao-li/AIDev (arXiv 2507.15003; CC-BY-4.0) pull_request table, cached by the leg 1 run. File contents are read from GitHub with read-only GETs and kept only in the gitignored eval/cache/unwrap/.",
+ "part_a": "tukaani-project/xz at tag v5.6.0: tests/files/bad-3-corrupt_lzma2.xz and tests/files/good-large_compressed.lzma. For each: size, what file(1) says, and the rules' kind and one-line description, printed unedited. They are judged by reading them against Andres Freund's 2024-03-29 oss-security post, which says the payload sits in obfuscated form in these files. The rules do not claim to find a backdoor.",
+ "part_b_sample": "The ordered list is eval/unwrap_spike_cases.json (written by eval/unwrap_cases.py with seed 20261018: sha256 of seed|pr_id, ascending, the first 800 of all pull requests in the table, any title). The run walks it in order and stops at 100 files that a pull request added, that GitHub shows no text patch for (binary or too large to show) and that the contents API returns (at most 1 MB), taken from the first 100 files of each pull request.",
+ "part_b_agreement": "ACCEPT in eval/unwrap_spike.py maps each kind of the rules to the mime types file(1) uses for it (an exact match, or a prefix where the entry ends in / or .). verdict(): agree; both_generic (the rules know no format and file(1) says application/octet-stream); unknown_to_the_rules (the rules know no format and file(1) names one: a format outside version 1, listed, not counted as an error); disagree (anything else).",
+ "outcome": {
+  "primary": "share of files that are 'agree' or 'both_generic', with counts of every verdict",
+  "secondary": [
+   "every (rules kind, file(1) mime) pair that is a disagreement or an unknown, with counts",
+   "how many files carry a note, by category (name disagrees, entry leaves its folder, bytes after an image, stream does not decode, high entropy, and so on)",
+   "the xz files, part A"
+  ]
+ },
+ "reading_rule": "Report the primary share and the verdict counts first, in plain words. A disagreement is a defect or a gap to read and fix (the rules and mapping are version 1 of a new tool), not a result to hide. 'Agree with file(1)' says the rules read the kind correctly, not that a file is safe; no sentence says a note finds an attack. Notes are counted by category and their text, which can hold names from other people's archives, is not published.",
+ "published": "Pull request addresses, agent names, file extensions, sizes, kinds, mime types, note categories and counts. No file contents and no archive entry names.",
+ "limits": "One run of version 1. file(1) is a widely used oracle for the kind of a file but is not infallible. Files over 1 MB are not read. A note's usefulness to a reviewer is not measured here; only whether the kind is read correctly. The xz files are two examples, not a sample. file(1) is run locally, version 5.45; the CI image's version 5.44 typed one tiny hand-made zip as application/octet-stream where 5.45 says application/zip, so the oracle itself varies a little between versions.",
+ "predictions_before_running": {
+  "share agree or both_generic (ana 07f1a9)": "0.5 to 0.9 (80%)",
+  "100 files reached within the 800 pull requests (ana 16ccab)": "0.7",
+  "bad-3-corrupt_lzma2.xz reported as a stream that does not decode (ana b482a9)": "0.85"
+ },
+ "seen_before_registration": "Only the sizes of the two xz files (484 bytes and 35430 bytes) from the GitHub contents listing, and the unit tests on blobs made inside tests/test_unwrap.py. No file of any AIDev pull request has been opened; file(1) has not been run on any of them. Also seen: a one-entry zip made in a unit test was typed differently by two file(1) versions (see limits)."
+}

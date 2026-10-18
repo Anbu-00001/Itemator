@@ -1,0 +1,17 @@
+{
+ "what": "Spike 1 for the refactor-claim check (itemator/neutral.py), written before any file of any pull request is fetched: on AI-agent pull requests in the public AIDev dataset whose title says they refactor, how much of the changed Python code can the rules PROVE leaves behaviour alone? Read-only; nothing is posted.",
+ "dataset": "hao-li/AIDev on Hugging Face (arXiv 2507.15003; CC-BY-4.0): the pull_request table, already cached by the leg 1 run. File text is read from GitHub with read-only GETs and kept only in the gitignored eval/cache/neutral/.",
+ "sample": "Pull requests whose lower-cased title contains one of: refactor, refactoring, refactored, nfc, no functional change, cleanup, clean up, restructure, reorganize, tidy. The ordered list is eval/neutral_spike_cases.json, written by eval/neutral_cases.py with seed 20261017 (sha256 of seed|pr_id, ascending, first 400) before any pull request was opened. The run walks the list in order and stops at 40 pull requests that have at least one modified .py file (status modified; added, removed and renamed files are not counted).",
+ "unit": "one changed .py file; per pull request, at most the first 12 modified .py files in GitHub's listing order, from the first 100 files of the pull request",
+ "files": "old text: the file at the merge base of the pull request's base and head commits (GitHub compare API); new text: the file at the pull request's head commit. A file GitHub will not return, or that is not UTF-8, is counted as unfetched and left out of the shares.",
+ "rules": "itemator.neutral.classify (levels same_syntax, comments_or_docstrings_only, reordered_functions, not_proved, unreadable). A file is 'proved' at the first three levels. not_proved does NOT mean the change alters behaviour.",
+ "outcome": {
+  "primary": "among read files, the share proved at any level, with counts by level",
+  "secondary": ["pull requests where every read file is proved", "by agent", "for every same_syntax verdict, whether CPython compiles both texts to identical code (an independent check on the rule; any 'not_same' is a defect in the rule, reported as such)"]
+ },
+ "reading_rule": "Report the share of files proved and the counts by level first, in plain words. 'Not proved' is never described as 'changes behaviour'. No claim that Itemator finds behaviour changes. A finding that few files are provable is a result, not a failure: it decides whether the headline tool needs moves, renames and other languages before it is worth showing.",
+ "published": "Pull request addresses, agent names, file paths, levels and yes/no results. No file text, no patch text.",
+ "limits": "Python only. Proofs are by syntax tree: a rename, a function moved to another file and a body edit are not proved. A title that says refactor is the author's claim, not the truth. One run of one frozen rule set; nothing here was tuned on these pull requests. Pull requests whose head commit is no longer available count as unfetched.",
+ "predictions_before_running": {"share of read files proved (ana bf2f95)": "0.02 to 0.25 (80%)", "pull requests with every read file proved (ana a1918e)": "0.0 to 0.12 (80%)", "every same_syntax verdict compiles to identical code (ana c159b8)": "0.97"},
+ "seen_before_registration": "Only that 2560 pull requests in the cached table have such titles, and the agent mix of the first 150 of an earlier draw of 150 (more than half OpenAI Codex). No file of any pull request has been opened. The five small examples in tests/test_neutral.py are invented."
+}
