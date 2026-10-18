@@ -106,3 +106,9 @@ Q (the win-hook bank 8 of 8): If every other entry looks the same after the firs
 DEFAULT: the picture of one change moving file by file through the checks into four bins, with the honest bin ("ordinary: read it yourself") shown on screen; I will open the video on it.
 ANSWER:
 
+
+NEEDS YOU (Oct 18, 18:15 IST), merge in this order, each when its pipeline is green:
+1. !169 https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/39194174/showcase/-/merge_requests/169 (fixes the red main: the audit wanted a sign-off on GitLab's own merge commit; main's Pages jobs are skipped until this lands)
+2. !167 .../merge_requests/167 (held-out replay: 10 of 31)
+3. !168 .../merge_requests/168 (untrusted v2: 15 of 31); contains !167's commits
+ANSWER:
