@@ -2,6 +2,12 @@
 
 How this works: Claude writes a question here only when it cannot decide something that is yours to decide. Edit this file on GitHub, write your answer after `ANSWER:`, and commit. Claude re-reads it at every wake-up and never waits on it: it keeps building on the stated DEFAULT. Never paste tokens or passwords here (this repository is public).
 
+## NEEDS YOU, Oct 19, 14:25 IST (the asks below this one, !215, !217 and !218, are merged; ignore them)
+- Click Merge, in this order:
+  1. https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/39194174/showcase/-/merge_requests/219 (the live weight run: the card said pandas brings 6 packages and about 31 MB, about 29 GB a month at 936 pipelines; our script replied `remove` from your account (staged, said so in the rubric) and the flow took it out. Merging lets the decision log and the What-shipped page show what the `remove` kept out.)
+  2. https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/39194174/showcase/-/merge_requests/220 (fixes from the Opus number audit: 9 sentences said more than their files; all corrected. Merge once its pipeline is green.)
+- The live run cost 17 model calls, about 5.3 credits at list price (0.3 over the 5 you gave; the meter lags).
+
 ## STATUS Oct 19, 13:40 IST (Claude, while you are AFK)
 - NEW: the card now weighs a new PyPI or npm dependency: how many packages it brings along, their download size, times this project's own pipelines last month. Measured on 289 dependencies agents added in real pull requests: the median brought 6 packages; 117 brought 10 or more. This is the green angle no other entry has (about 49 entries do pipeline carbon; none weigh dependencies).
 - WAITING ON YOU (click Merge, in this order):
