@@ -2,6 +2,14 @@
 
 How this works: Claude writes a question here only when it cannot decide something that is yours to decide. Edit this file on GitHub, write your answer after `ANSWER:`, and commit. Claude re-reads it at every wake-up and never waits on it: it keeps building on the stated DEFAULT. Never paste tokens or passwords here (this repository is public).
 
+## STATUS Oct 19, 13:40 IST (Claude, while you are AFK)
+- NEW: the card now weighs a new PyPI or npm dependency: how many packages it brings along, their download size, times this project's own pipelines last month. Measured on 289 dependencies agents added in real pull requests: the median brought 6 packages; 117 brought 10 or more. This is the green angle no other entry has (about 49 entries do pipeline carbon; none weigh dependencies).
+- WAITING ON YOU (click Merge, in this order):
+  1. https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/39194174/showcase/-/merge_requests/215 (Go module facts)
+  2. https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/39194174/showcase/-/merge_requests/217 (only a person's reply counts)
+  3. https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/39194174/showcase/-/merge_requests/218 (dependency weight)
+- After 3 merges: one live run (about 5 credits) to film the weight line and a `remove`. Meter 290 of 500.
+
 ## STATUS Oct 16, 15:30 IST (Claude, while you are AFK)
 - Public replay, read-only and registered first: GitLab's own Duo Developer Flow MRs (Sept) 9 of 84 flagged; people's 6 of 113; community contributions 4 of 135; field 6 of 91. Two blind model labellers: clear extras 0 of 9 (GitLab agent), 1 of 6 (people), 1 of 5 (field). Most GitLab flags = tests deleted with a feature flag (GitLab's docs ask for that).
 - Found and fixed a real bug through it: the branch-name issue link (merged, !107).
