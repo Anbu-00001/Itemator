@@ -112,3 +112,42 @@ NEEDS YOU (Oct 18, 18:15 IST), merge in this order, each when its pipeline is gr
 2. !167 .../merge_requests/167 (held-out replay: 10 of 31)
 3. !168 .../merge_requests/168 (untrusted v2: 15 of 31); contains !167's commits
 ANSWER:
+
+
+## NEEDS YOU, Oct 19 morning (written 05:55 IST while you slept). The older asks above (!109-!111, !167-!169) are all merged; ignore them.
+**Click Merge, in this order (both have a green pipeline; small, no figures changed except the cost one):**
+1. https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/39194174/showcase/-/merge_requests/189 : the card's cost on `main` still said nine model calls and up to 2.8 credits; this makes it six and up to 1.9, as measured (6, 5, 5 calls against 9, 9, 8 before).
+2. https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/39194174/showcase/-/merge_requests/190 : README opens on the real agent run and the card picture; it also says plainly that the agent's pip cache was a sensible fix and the card only asks a person to confirm the file was meant to change.
+Then, 5 minutes: open the project page and check the About box shows the MIT licence (the API says licence: none; the Rules need it visible there).
+
+**What the night found (details in `vault/Strategy/Feature Decision 2026-10-19.md`, war room only):**
+- A new gap I fixed: the cost update was pushed after !184 merged and never reached `main`; that is !189.
+- The flagship example (issue #55, MR 94) is a sensible fix, not a bad one; reworded in !190. The react flow already accepts `not an extra` and `always` (keeps and proposes a team-policy change).
+- Judges' likely weakest mark on us is Impact (no catch on real agent work yet), then Innovation (10+ tools compare a change with its task). The one thing no entry among 148 Transcend entries read records is a typed decision per extra on the merge request: "to keep something the issue didn't ask for, you type its name". That is the line to remember.
+- GitLab shows your account as the author of MR 94 (the Developer Flow opens merge requests under the account that starts it). A judge may ask how that is an agent's MR; I will say how it works in the run note once !190 is merged.
+- Full test suite: 5 runs in a row, 1,848 tests each, all passed (no flaky test).
+- I dropped the planned "noise study v3": a fourth zero adds little.
+
+**Questions (your call; none blocks me; each has a DEFAULT I will use):**
+Q (new): May I read, read-only and on GitHub, what happened to the 20 public agent pull requests where a human reviewer asked to take out a file our rules had already listed (27 cases, from `results/aidev_recall_v6.json`)? It means using rows we had held out, only to check "was the file then removed or the PR closed?" The rules stay frozen and nothing is tuned. The plan is written down first, my guess is at least 8 of 20. If it works it is the first real-work catch you can open.
+DEFAULT: yes, read-only, rubric committed first, 0 credits.
+ANSWER:
+
+Q (win-hook bank 1 of 8): What would make a GitLab engineer stop and watch the video's first ten seconds?
+DEFAULT: the video opens on a real merge request showing three requested files, three extras, one click each, and the honest "ordinary" bin.
+ANSWER:
+
+Q (bank 2 of 8): What moment in your own years as a developer made you stop trusting a merge, a bot or a review? Tell it as it happened; no model has your version.
+DEFAULT: we use no such story; the video opens on the real run.
+ANSWER:
+
+Q (bank 3 of 8): What would a developer who has hated every AI tool say after using Itemator that made them say "finally"?
+DEFAULT: "it only spoke about the one thing I did not ask for", and "I typed a name and it remembered" (the `always` reply). Developers' own words found: "extra changes I didn't ask for" (a Hacker News commenter, 2025-06-03).
+ANSWER:
+
+(Bank 4 to 8 above stay open with their defaults. Bank 8's default: I recommend replacing the map with the typed-name line above.)
+
+**Still yours:** the Devpost form needs a "Try it out" link to a live page (the "What shipped" page https://showcase-3cd72e.gitlab.io/ is the candidate), the video embedded, about 12 Built-with tags; close the staged demo MRs !139 !166 !174 !186 !187 !188 after the video (never merge them); the GitHub mirror when you want it; the v1.0.0 tag on Oct 26.
+**Google Cloud (+0.2 at most, optional):** only if you have a Visa or Mastercard that the free trial accepts and you have never been a paying Google Cloud user; never click "Activate". Steps in `vault/Strategy/Google Cloud Decision 2026-10-18.md`. DEFAULT: skip it unless you decide in daylight; I build nothing more for it tonight.
+
+(An Opus check of this night's research found 3 of 8 sampled claims wrong or partly wrong, all fixed in the war-room notes; none reached the repo.)
