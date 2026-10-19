@@ -155,3 +155,5 @@ ANSWER:
 **Update 12:20 IST Oct 19:** please merge !194 (Hugging Face runner studies), !195 (README related tools) and !211 (ablation: the card made 16 model calls with the prepared facts and 14 without, so no saving was measured; the file lists 5 stray sessions from my own set-up). Google Cloud is dropped, as you said.
 
 **Update 12:25 IST Oct 19 (night wake):** still to merge: !211 (ablation), !212 (NuGet package facts, not extras), !213 (README numbers table + modelled energy; stacked on !211, merge !211 first). The six research prompts for ChatGPT/Gemini/Grok are in `vault/Intel/fleet-42-2026-10-19/reports/P1.md` on the laptop.
+
+**Update 12:55 IST Oct 19:** please merge !215 (Go module facts). Do NOT merge !216: it is the throwaway merge request of the asker-study run I am doing for the reaction-flow person check (the run closes it). Branch `fix/non-person-keep` (flow v1.6.3 published, rubric registered first) gets its MR after the run.
