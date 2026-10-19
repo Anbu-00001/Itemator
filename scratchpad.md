@@ -151,3 +151,5 @@ ANSWER:
 **Google Cloud (+0.2 at most, optional):** only if you have a Visa or Mastercard that the free trial accepts and you have never been a paying Google Cloud user; never click "Activate". Steps in `vault/Strategy/Google Cloud Decision 2026-10-18.md`. DEFAULT: skip it unless you decide in daylight; I build nothing more for it tonight.
 
 (An Opus check of this night's research found 3 of 8 sampled claims wrong or partly wrong, all fixed in the war-room notes; none reached the repo.)
+
+**Update 12:20 IST Oct 19:** please merge !194 (Hugging Face runner studies), !195 (README related tools) and !211 (ablation: the card made 16 model calls with the prepared facts and 14 without, so no saving was measured; the file lists 5 stray sessions from my own set-up). Google Cloud is dropped, as you said.
