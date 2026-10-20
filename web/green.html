@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; connect-src https://api.deps.dev https://pypi.org https://registry.npmjs.org; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; connect-src https://api.deps.dev https://pypi.org https://registry.npmjs.org https://gitlab.com https://api.github.com; base-uri 'none'; form-action 'none'">
 <meta name="referrer" content="no-referrer">
 <title>Itemator: green check</title>
 <style>
@@ -49,7 +49,12 @@ footer{margin-top:36px;font-size:.85rem;color:var(--muted);word-break:break-word
 <body>
 <main>
 <h1>Green check: what does this change add that nobody asked for?</h1>
-<p>Paste a change and the issue it was for. This page lists every dependency the change adds, marks the ones the issue did not ask for (the same rule as Itemator's CI job), then weighs only those: the packages and megabytes each one costs on every fresh install, and what that is in grams of CO2e. <span class="lock" title="Only package names are sent, to these three hosts; the diff and the issue stay in this page.">The diff stays here; only package names go to deps.dev, PyPI and npm</span></p>
+<p>Paste a change and the issue it was for. This page lists every dependency the change adds, marks the ones the issue did not ask for (the same rule as Itemator's CI job), then weighs only those: the packages and megabytes each one costs on every fresh install, and what that is in grams of CO2e. <span class="lock" title="A pasted diff and issue never leave this page. A link is read from gitlab.com or api.github.com without credentials.">A pasted diff stays here; only package names go to deps.dev, PyPI and npm</span></p>
+
+<div class="row"><label for="link"><b>A public merge request or pull request</b></label>
+<input id="link" type="text" autocomplete="off" spellcheck="false" placeholder="https://gitlab.com/group/project/-/merge_requests/1" style="flex:1;min-width:16ch">
+<button id="read" type="button">Read it</button></div>
+<p class="muted" style="margin-top:0">Or paste the issue and the diff yourself:</p>
 
 <label for="issue"><b>The issue</b> <span class="muted">(title on the first line; leave empty if there is none)</span></label>
 <textarea id="issue" spellcheck="false"></textarea>
@@ -67,6 +72,7 @@ footer{margin-top:36px;font-size:.85rem;color:var(--muted);word-break:break-word
 <h2>How it is worked out</h2>
 <ul>
 <li><b>Which dependencies:</b> the new-dependency rule of Itemator's rules (v6), the same code the CI job runs, ported to this page; on <span id="agree"></span>. It reads requirements files, pyproject.toml and package.json. A dependency is asked for when the issue names it (or, for a whole new package, names the package) or the issue's title names what it implements. A version bump or a move is not a new dependency.</li>
+<li><b>From a link:</b> the page asks gitlab.com or api.github.com, without credentials, for the changed files and the text the change is checked against. On GitLab that is the issues the merge request closes, as the CI job reads them. On GitHub it is the issue the pull request's text closes, else the pull request's own title and text. Files the host does not show (too large) are not read, and the page says so.</li>
 <li><b>How heavy:</b> the same measure as <a href="../weigh/">the weigh page</a> and the card: deps.dev's resolved graph of the pinned version (or today's latest when the line pins none), and each package's download size from PyPI or npm. A size the registry does not give is unknown, never guessed, and the total becomes "at least".</li>
 <li><b>How much CO2e:</b> <span id="sci"></span></li>
 </ul>
@@ -85,6 +91,9 @@ footer{margin-top:36px;font-size:.85rem;color:var(--muted);word-break:break-word
 /*GREEN*/
 </script>
 <script>
+/*FETCH*/
+</script>
+<script>
 const DATA = /*PAYLOAD*/;
 (function () {
   const $ = (id) => document.getElementById(id);
@@ -92,12 +101,36 @@ const DATA = /*PAYLOAD*/;
   function el(tag, text, cls) { const e = document.createElement(tag); if (text !== undefined) e.textContent = text; if (cls) e.className = cls; return e; }
   const ECO = { requirements: "PyPI", pyproject: "PyPI", npm: "npm" };
   const UNREAD = /(^|\/)(go\.mod|Cargo\.toml|Gemfile|pom\.xml|build\.gradle(\.kts)?)$/;
-  let rows = [];
+  let rows = [], fetched = null;
+
+  function asDiff(files) {         // what the box shows for a link: the files as one git diff
+    return files.map((f) => `diff --git a/${f.filename} b/${f.filename}\n`
+      + (f.status === "added" ? "new file mode 100644\n--- /dev/null\n" : `--- a/${f.filename}\n`)
+      + (f.status === "removed" ? "deleted file mode 100644\n+++ /dev/null\n" : `+++ b/${f.filename}\n`) + f.patch.replace(/\n?$/, "\n")).join("");
+  }
+
+  async function readLink() {
+    const link = GreenFetch.parseLink($("link").value);
+    $("out").replaceChildren();
+    if (!link) { $("status").textContent = "Paste a link like https://gitlab.com/group/project/-/merge_requests/1 or https://github.com/owner/repo/pull/1."; return; }
+    $("status").textContent = `Asking ${link.host === "gitlab" ? "GitLab" : "GitHub"} for the change…`;
+    let got;
+    try { got = await GreenFetch.read(get, link); } catch (e) { got = { error: "the host did not answer" }; }
+    if (got.error) { $("status").textContent = `Could not read it: ${got.error}.`; return; }
+    fetched = { files: got.files, diff: asDiff(got.files), note: got };
+    $("issue").value = got.issue; $("diff").value = fetched.diff;
+    const go = check();
+    const notes = [`${got.files.length} changed ${got.files.length === 1 ? "file" : "files"} read. Checked against: ${got.issueFrom}.`];
+    if (got.truncated) notes.push("Only the first files were read.");
+    if (got.skipped.length) notes.push(`Too large for the host to show, so not read: ${got.skipped.join(", ")}.`);
+    $("status").textContent = notes.join(" ");
+    return go;
+  }
 
   function num(value, label) { const d = el("div", undefined, "num"); d.append(el("b", value), el("span", label)); return d; }
 
   function check() {
-    const files = Itemator.parseDiff($("diff").value);
+    const files = fetched && $("diff").value === fetched.diff ? fetched.files : Itemator.parseDiff($("diff").value);
     $("out").replaceChildren();
     $("status").textContent = "";
     if (!files.length) { $("status").textContent = "Paste a git diff first."; return; }
@@ -109,7 +142,7 @@ const DATA = /*PAYLOAD*/;
     else if (!unasked.length) v.append(el("p", `Green: the issue asked for every dependency this change adds (${rows.length}). Nothing to weigh.`, "big"));
     else {
       v.append(el("p", `${unasked.length} of ${rows.length} added ${rows.length === 1 ? "dependency was" : "dependencies were"} not asked for by the issue.`, "big"));
-      const b = el("button", `Weigh the ${unasked.length} unasked`, "main"); b.type = "button";
+      const b = el("button", unasked.length === 1 ? "Weigh it" : "Weigh the unasked ones", "main"); b.type = "button";
       b.addEventListener("click", () => weighAll(unasked, v, b));
       const r = el("div", undefined, "row"); r.append(b, el("span", "Sends only the package names and versions.", "muted"));
       v.append(r);
@@ -144,16 +177,19 @@ const DATA = /*PAYLOAD*/;
     const runs = Math.max(0, parseInt($("runs").value, 10) || 0);
     $("status").textContent = "Asking deps.dev and the registries…";
     const t0 = performance.now();
-    const done = [];
+    const done = [], asked = new Map();      // one weigh per package and version, however many manifests add it
     await Promise.all(unasked.map(async (r) => {
-      let w;
-      try { w = await weighOne(r); } catch (e) { w = { skip: "a registry did not answer" }; }
+      const key = `${ECO[r.manifest]} ${r.name.toLowerCase()} ${DepsRule.pinned(r) || ""} ${r.source || ""} ${r.newPackage ? r.path : ""}`;
+      const first = !asked.has(key);
+      if (first) asked.set(key, weighOne(r).catch(() => ({ skip: "a registry did not answer" })));
+      const w = await asked.get(key);
       if (w.skip) { r.cost.textContent = w.skip; return; }
-      done.push(w);
+      if (first) done.push(w);
       r.cost.textContent = `${w.version}${w.pinned ? "" : " (today's latest; the line pins none)"}: ${w.capped ? "at least " : ""}${w.packages} ${w.packages === 1 ? "package" : "packages"}, `
         + (w.sized ? `${w.at_least ? "at least" : "about"} ${human(w.bytes)} on every fresh install` : "sizes not given");
     }));
-    $("status").textContent = `Weighed ${done.length} of ${unasked.length} in ${((performance.now() - t0) / 1000).toFixed(1)} s.`;
+    $("status").textContent = `Weighed ${done.length} of ${asked.size} unasked ${asked.size === 1 ? "package" : "packages"} in ${((performance.now() - t0) / 1000).toFixed(1)} s`
+      + (asked.size < unasked.length ? ` (${unasked.length - asked.size} added in more than one manifest, counted once).` : ".");
     const sized = done.filter((w) => w.sized).map((w) => ({ bytes: w.bytes, at_least: w.at_least }));
     if (!sized.length) return;
     const t = Green.total(DATA.coefficients, DATA.seconds, sized, runs);
@@ -168,6 +204,8 @@ const DATA = /*PAYLOAD*/;
   }
 
   $("go").addEventListener("click", check);
+  $("read").addEventListener("click", readLink);
+  $("link").addEventListener("keydown", (e) => { if (e.key === "Enter") readLink(); });
   $("file").addEventListener("change", (e) => {
     const f = e.target.files && e.target.files[0];
     if (!f) return;
@@ -182,6 +220,10 @@ const DATA = /*PAYLOAD*/;
   // A link such as #example/npm-flag fills in that example and checks it; #example/npm-flag/weigh also weighs it.
   const m = /^#example\/([\w-]+)(\/weigh)?$/.exec(location.hash);
   const ex = m && DATA.examples.find((e) => e.id === m[1]);
+  // #read=<link> reads a public merge request or pull request; #read-and-weigh=<link> also weighs what it adds unasked.
+  let hash = ""; try { hash = decodeURIComponent(location.hash); } catch (e) { hash = ""; }
+  const r = /^#read(-and-weigh)?=(https:\/\/\S+)$/.exec(hash);
+  if (r) { $("link").value = r[2]; readLink().then((go) => { if (r[1] && go) go(); }); }
   if (ex) {
     $("issue").value = ex.issue; $("diff").value = ex.diff;
     const go = check(); $("status").textContent = ex.note;

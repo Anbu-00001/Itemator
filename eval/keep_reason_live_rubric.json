@@ -1,0 +1,16 @@
+{
+  "what": "A keep with a reason, live: the author keeps an unasked dependency and says why on the line under its name; the reaction flow keeps it and says a reason was given; the decision log (computed from the live notes) quotes it.",
+  "setup": "eval/weight_live.py --keep-reason: the same staged issue and merge request as eval/weight_live_rubric.json (pandas==2.2.3 added to pyproject.toml, an issue that never names it), written by the project owner's account, so it is staged; no agent wrote it. The reply in the pandas thread is 'pandas' then the reason on the next line, by the merge request's author. Card flow and react flow at their latest catalog versions (react v1.6.5).",
+  "reason_text": "The CSV export step will need it next week.",
+  "expected": [
+    "the card says 'An extra can be welcome; it just needs one person's choice.'",
+    "the pandas thread stub invites a reason: 'a line under the name can say why'",
+    "after the reply, pandas is still in pyproject.toml on the branch",
+    "the react flow's note in the pandas thread says 'Their reason is in their reply.'",
+    "the summary note lists pandas as kept by the author",
+    "itemator.decisions.markdown on the live notes and discussions contains ', saying: The CSV export step will need it next week'"
+  ],
+  "not_counted": "Wording of the react flow's other sentences, and timing. A Duo run that fails to start is a platform failure, recorded as such, not a result.",
+  "cost": "One card run and one react run, about 5 credits; stop at meter + 15.",
+  "registered": "2026-10-20, before the run"
+}

@@ -230,6 +230,9 @@ shipped-page:
     - python -E -m itemator.weighpage --out public/weigh
     # The green check: paste a change and its issue; the new dependencies nobody asked for are weighed in the browser (web/green.html).
     - python -E -m itemator.greenpage --out public/green
+    - python -E -m itemator.catchespage --out public/catches
+    # The answer log (public/answers): every recorded answer, hash-chained, built on the copy this site published last.
+    - python -E -m itemator.answerlog --out public/answers
   pages: true
 
 # Deploy: every merge request gets its own preview of the reviewer's map for exactly that change (a GitLab Pages parallel deployment,
@@ -265,4 +268,4 @@ pages-smoke-check:
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
   allow_failure: true
   script:
-    - python -E tools/smoke_check.py "$CI_PAGES_URL" "$CI_PAGES_URL/map/" "$CI_PAGES_URL/try/" "$CI_PAGES_URL/weigh/" "$CI_PAGES_URL/green/"
+    - python -E tools/smoke_check.py "$CI_PAGES_URL" "$CI_PAGES_URL/map/" "$CI_PAGES_URL/try/" "$CI_PAGES_URL/weigh/" "$CI_PAGES_URL/green/" "$CI_PAGES_URL/catches/" "$CI_PAGES_URL/answers/"

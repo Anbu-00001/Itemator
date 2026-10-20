@@ -2,6 +2,8 @@
 import json
 import pathlib
 
+import pytest
+
 from itemator import registry as RG, sci as SCI
 
 RES = pathlib.Path(__file__).resolve().parent.parent / "results"
@@ -53,3 +55,12 @@ def test_the_registry_sentence_ends_with_the_weight_then_the_bracket():
     s = RG.sentence({"count": 1, "packages": [p]})
     assert "a month if each one installs it without a cache, by the SCI method, a bracket from borrowed coefficients: 0.014 g" in s
     assert s.endswith("13 g to 1.9 kg a month at those pipelines (checked 2026-10-19).")
+
+
+def test_several_dependencies_sum_and_at_least_carries_over():
+    one = SCI.bracket(5_000_000)
+    assert SCI.bracket(10_000_000, 2) == pytest.approx((2 * one[0], 2 * one[1]))
+    assert SCI.bracket(5_000_000, 2)[1] > one[1] and SCI.bracket(10_000_000)[1] > one[1]     # both the lines and the bytes count
+    assert SCI.said({"bytes": 31_500_000, "dependencies": 1, "at_least": False}).endswith(": 0.015 g to 2.1 g CO2e")
+    assert SCI.said({"bytes": 10_000_000, "dependencies": 2, "at_least": False}).endswith(": 0.0062 g to 0.67 g CO2e")   # two lines' time
+    assert ": at least 0.015 g to" in SCI.said({"bytes": 31_500_000, "dependencies": 1, "at_least": True})

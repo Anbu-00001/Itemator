@@ -1,0 +1,9 @@
+{
+ "what": "How often the card's feature-flag fact (itemator/ci.py flag_cleanup, T65) appears on the public replay's G flags (Developer Flow merge requests, the agent's own version). Written after eval/flag_tests.py found the pattern, so this is in-sample: it shows the sentence fires where that study counted, not that it generalises. Reads only the replay's cache (eval/cache/gitlab/).",
+ "G_agent_flagged": {
+  "merge_requests": 9,
+  "tests_removed": 34,
+  "with_the_flag_fact": 24,
+  "merge_requests_where_every_extra_has_it": 4
+ }
+}

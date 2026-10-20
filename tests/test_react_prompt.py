@@ -128,7 +128,17 @@ def test_every_earlier_quoted_phrase_is_kept(flow):
     quoted = set(re.findall(r'"([^"\n]{3,})"', old))
     assert len(quoted) > 60
     assert STEP8 in quoted and STEP8 in system
-    assert sorted(q for q in quoted if q not in system) == []
+    assert sorted(q for q in quoted if q not in system) == sorted(REWORDED_T64)
+    assert all(new in system for new in REWORDED_T64.values())
+
+
+# T64: worded about the change, never the person, and a removal says how to bring the file back. Each old phrase is replaced
+# once, on purpose; every other quoted phrase stays.
+REWORDED_T64 = {
+    " This person wrote the merge request.": " (@WHO also wrote this merge request.)",
+    "Removed: `NAME` taken out of this merge request by @WHO. Nothing was kept.":
+        "Removed: `NAME` taken out of this merge request by @WHO. To bring it back, revert the commit 'Remove `NAME` from !<IID>'.",
+}
 
 
 def test_t42_the_one_line_edit_is_checked_with_compare_not_with_a_character_count(flow):

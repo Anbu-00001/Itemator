@@ -46,6 +46,13 @@ def per_install(mb: float, seconds: tuple[float, float]) -> dict:
     return out
 
 
+def bracket(size_bytes: int, lines: int = 1) -> tuple[float, float]:
+    """Grams CO2e per fresh install, low and high, for `size_bytes` downloaded through `lines` added dependency lines. Every term
+    of per_install is linear, so the bracket of several dependencies is the sum of theirs."""
+    g = per_install(size_bytes / 1e6, (SECONDS[0] * lines, SECONDS[1] * lines))
+    return g["low"]["sci_g_per_install"], g["high"]["sci_g_per_install"]
+
+
 def grams(g: float) -> str:
     """Two significant figures, in kg from a kilogram up."""
     def two(x):
@@ -65,8 +72,7 @@ def part(w: dict | None) -> str | None:
     """The card's words for a weight from itemator/weight.py, or None when nothing was sized. Unknown sizes make it "at least"."""
     if not w or w.get("weight") != "ok" or not w.get("sized"):
         return None
-    g = per_install(w["bytes"] / 1e6, SECONDS)
-    lo, hi = g["low"]["sci_g_per_install"], g["high"]["sci_g_per_install"]
+    lo, hi = bracket(w["bytes"])
     least = "at least " if w["capped"] or w["of"] > w["sized"] else ""
     words = f"by the SCI method, a bracket from borrowed coefficients: {least}{grams(lo)} to {grams(hi)} CO2e per fresh install"
     runs = w.get("pipelines") or {}
@@ -74,3 +80,10 @@ def part(w: dict | None) -> str | None:
         month = "at least " if least or runs.get("at_least") else ""
         words += f" and {month}{grams(lo * runs['count'])} to {grams(hi * runs['count'])} a month at those pipelines"
     return words
+
+
+def said(x: dict) -> str:
+    """{bytes, dependencies, at_least} as summed by itemator/decisions.weights, in the card's words for a bracket."""
+    lo, hi = bracket(x["bytes"], x["dependencies"])
+    least = "at least " if x["at_least"] else ""
+    return f"by the SCI method, a bracket from borrowed coefficients: {least}{grams(lo)} to {grams(hi)} CO2e"

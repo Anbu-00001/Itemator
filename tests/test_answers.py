@@ -7,7 +7,7 @@ from itemator import ci
 from itemator.extras import Extra
 from test_ci import FIXED, FakeHttp, isolated, issue, job, mr, repo, routes  # noqa: F401  (fixtures)
 
-KEEP = "To keep it, reply with its exact name."
+KEEP = "To keep it, reply with its exact name; a line under the name can say why."
 SPLIT = "To move it into its own MR, reply `split`."
 REMOVE = "To drop it from this MR, reply `remove`."
 TAIL = "If this is not really an extra, reply `not an extra`."

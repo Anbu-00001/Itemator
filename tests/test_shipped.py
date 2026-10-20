@@ -150,7 +150,8 @@ def test_the_page_says_what_a_remove_kept_out_of_every_fresh_install():
     r = L.build(api_for(routes), "production", "main")
     assert r["deployments"][0]["weight"]["removed"] == {"dependencies": 1, "bytes": 31_000_000, "at_least": False}
     out = L.page(r)
-    assert "Kept out by a reviewer's <code>remove</code>: about 31 MB on every fresh install</strong>, 1 new dependency with what it" in out
+    assert ("Kept out by a reviewer's <code>remove</code>: about 31 MB on every fresh install</strong> (by the SCI method, a bracket "
+            "from borrowed coefficients: 0.014 g to 2.1 g CO2e each time), 1 new dependency with what it") in out
     assert "<code>requests</code> (at least 476 kB on every fresh install) kept by @alice" in out
     kept_only = dict(routes, **{"merge_requests/7/notes": [{"body": f"Every extra has an answer: 1 kept.\n\n- `requests`: kept, named by @alice\n\n[//]: # (itemator:named={SHA})",
                                                               "author": {"username": BOT}, "system": False, "created_at": "2026-10-13T11:00:00Z"}]})
@@ -159,3 +160,24 @@ def test_the_page_says_what_a_remove_kept_out_of_every_fresh_install():
     plain = L.page(L.build(api_for({"deployments": [dep(1, "2026-10-14T10:00:00Z")], "deployments/101/merge_requests": [mr(7, "2026-10-14T09:00:00Z")],
                                     "merge_requests/7/notes": NOTES, "merge_requests": []}), "production", "main"))
     assert "Kept out" not in plain and "fresh install" not in plain
+
+
+def test_each_merge_request_says_who_merged_it():
+    merged = dict(mr(3, "2026-10-14T09:00:00Z"), merge_user={"username": "<bo>"})
+    api = api_for({"deployments": [dep(1, "2026-10-14T10:00:00Z")], "deployments/101/merge_requests": [merged],
+                   "merge_requests/3/notes": [{"body": SUMMARY, "author": {"username": BOT}, "system": False, "created_at": "2026-10-13T11:00:00Z"}]})
+    out = L.page(L.build(api, "production", "main"))
+    assert "kept by @alice; merged by @bo</li>" in out and "<bo>" not in out
+    plain = api_for({"deployments": [dep(1, "2026-10-14T10:00:00Z")], "deployments/101/merge_requests": [mr(3, "2026-10-14T09:00:00Z")],
+                     "merge_requests/3/notes": []})
+    assert "merged by" not in L.page(L.build(plain, "production", "main"))
+
+
+def test_the_front_page_links_every_page_the_pages_job_builds():
+    import pathlib, re
+    out = L.page({"environment": "production", "deployments": []})
+    assert L.NAV in out
+    ci = (pathlib.Path(__file__).resolve().parent.parent / ".gitlab-ci.yml").read_text()
+    built = set(re.findall(r"--out public/(\w+)", ci))
+    linked = set(re.findall(r'href="(\w+)/"', L.NAV))
+    assert linked == built == {"try", "green", "weigh", "catches", "map", "answers"}

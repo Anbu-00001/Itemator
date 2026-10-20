@@ -60,7 +60,7 @@ def test_an_entry_knows_who_wrote_the_merge_request():
     e = L.entry(mr(7, author="alice"), [note(SUMMARY)])
     assert e["summary"] and [i["by_author"] for i in e["extras"]] == [True, False, True, False, True, True]
     assert L.entry(mr(8), []) == {"iid": 8, "title": "Fix a typo", "merged_at": "2026-10-13T11:00:00Z", "author": "alice",
-                                  "summary": False, "extras": [], "unanswered": None}
+                                  "summary": False, "extras": [], "unanswered": None, "merger": None}
 
 
 def test_stats_count_each_decision_once():
@@ -312,7 +312,11 @@ def test_the_weight_is_read_from_the_jobs_own_report_never_from_note_text():
                               "removed": {"dependencies": 1, "bytes": 31_500_000, "at_least": False}}
     assert ("What new dependencies add to every fresh install, as the job measured each before the merge: removed, about 32 MB "
             "(1 new dependency); kept, at least 476 kB (1 new dependency). Each counts everything it brings along, so this is an upper bound.") in L.markdown([e])
+    assert ("What the removals keep out, by the SCI method, a bracket from borrowed coefficients: 0.015 g to 2.1 g CO2e per fresh "
+            "install.") in L.markdown([e])
     assert "fresh install" not in L.markdown([L.entry(mr(8), [note(SUMMARY)])])
+    kept_only = dict(e, extras=[i for i in e["extras"] if i["decision"] != "removed"])
+    assert "keep out" not in L.markdown([kept_only]) and "kept, at least 476 kB" in L.markdown([kept_only])
 
 
 def test_a_report_weight_is_at_least_when_a_package_was_not_weighed_or_a_size_not_given():
@@ -380,3 +384,45 @@ def test_the_report_is_read_on_the_commit_that_was_merged_and_a_missing_list_is_
     assert L.unanswered_at_merge(a, 7, "c" * 40) == ["after-merge"]
     assert L.unanswered_at_merge(a, 7, "d" * 40) == []                    # `extras: null` is no extras, not a crash
     assert L.unanswered_at_merge(a, 7, "e" * 40) is None                  # no pipeline on that commit: cannot tell
+
+
+def _thread(name, *replies, opener=L.CARD_BOT, marker=None):
+    first = {"author": {"username": opener}, "body": f"`{name}` (new dependency): ...\n\n" + (marker or f"[//]: # (itemator:extra={name})")}
+    return {"notes": [first] + [{"author": {"username": who}, "body": body} for who, body in replies]}
+
+
+def test_the_reason_is_the_lines_under_the_deciding_reply():
+    items = [{"name": "pandas", "decision": "kept", "who": "ana"}, {"name": "x.sh", "decision": "removed", "who": "bo"}]
+    threads = [_thread("pandas", ("ana", "`pandas`.\nThe export needs it for the CSV step.\n")),
+               _thread("x.sh", ("bo", "@ai-itemator-react-gitlab-ai-hackathon Remove\nleft over from a test"), marker="<!-- itemator:extra=x.sh -->")]
+    assert L.reasons(threads, items) == {"pandas": "The export needs it for the CSV step.", "x.sh": "left over from a test"}
+
+
+def test_only_the_decider_in_a_card_thread_gives_a_reason():
+    items = [{"name": "pandas", "decision": "kept", "who": "ana"}]
+    assert L.reasons([_thread("pandas", ("eve", "pandas\nI say so"))], items) == {}
+    assert L.reasons([_thread("pandas", ("ana", "pandas\nmine"), opener="someone")], items) == {}
+    assert L.reasons([_thread("pandas", ("ana", "pandas"))], items) == {}                       # no second line, no reason
+    assert L.reasons([_thread("pandas", ("ana", "pandas please\nwhy"))], items) == {}            # the first line is not the name
+    assert L.reasons([_thread("pandas", ("ana", "remove\nwhy"))], items) == {}                   # an answer the summary did not record
+
+
+def test_a_reason_is_cleaned_cut_and_shown():
+    items = [{"name": "pandas", "decision": "kept", "who": "ana"}]
+    got = L.reasons([_thread("pandas", ("ana", "pandas\nsee https://x.example and ping @bo <b>" + "word " * 80))], items)["pandas"]
+    assert "https" not in got and "@" not in got and "<" not in got and len(got) <= L.REASON
+    e = L.entry({"iid": 3, "author": {"username": "ana"}}, [], discussions_of=lambda: [_thread("pandas", ("ana", "pandas\nneeded"))])
+    assert e["extras"] == []                                                                     # no summary, nothing to attach to
+    e = L.entry(mr(7, author="alice"), [note(SUMMARY)], discussions_of=lambda: [_thread(".gitlab-ci.yml", ("alice", ".gitlab-ci.yml\nthe deploy job"))])
+    assert [i.get("reason") for i in e["extras"]][:2] == ["the deploy job", None]
+    e["extras"] = [dict(items[0], by_author=True, reason="needed")]
+    assert "`pandas` kept by @ana, saying: needed" in L.markdown([e])
+
+
+def test_the_release_names_who_merged_each_merge_request():
+    assert L.merger({"merge_user": {"username": "bo"}, "merged_by": {"username": "eve"}}) == "bo"      # auto-merge: who set it
+    assert L.merger({"merged_by": {"username": "eve"}}) == "eve" and L.merger({}) is None and L.merger({"merge_user": None}) is None
+    assert L.merger({"merge_user": {"username": "[x](http://e) @all"}}) == "xlink removed all"
+    e = L.entry(dict(mr(7, author="alice"), merge_user={"username": "carol"}), [note(SUMMARY)])
+    assert "- !7 Fix a typo: `.gitlab-ci.yml` kept by @alice" in L.markdown([e]) and L.markdown([e]).rstrip().endswith("; merged by @carol")
+    assert "merged by" not in L.markdown([L.entry(mr(7, author="alice"), [note(SUMMARY)])])

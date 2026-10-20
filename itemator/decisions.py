@@ -21,9 +21,12 @@ import urllib.error
 import urllib.parse
 import urllib.request
 
+from itemator import sci as SCI
 from itemator import weight as W
 
 REACT_BOT = os.environ.get("ITEMATOR_REACT_BOT") or "ai-itemator-react-gitlab-ai-hackathon"   # the exact account: the project is public and anyone can comment
+CARD_BOT = os.environ.get("ITEMATOR_CARD_BOT") or "ai-itemator-card-gitlab-ai-hackathon"      # the account that opens each extra's thread
+REASON = 200               # characters of a person's reason shown
 ITEMATOR_JOB = "itemator"  # the policy-injected job whose artifact itemator.json holds each extra's measured weight
 PIPELINES = 5              # a merge request's newest pipelines read for those artifacts
 PAGES = 5                  # pages of 100 merge requests read per window
@@ -87,6 +90,44 @@ def latest_summary(notes: list):
     return best[1] if best else None
 
 
+_THREAD = re.compile(r"itemator:extra=(.{1,300}?)\s*(?:\)|-->)\s*$", re.M)     # the marker as "[//]: # (...)" or "<!-- ... -->"
+_ANSWER_WORD = {"dismissed": "not an extra", "moved": "split", "removed": "remove"}
+
+
+def _first_line(body: str) -> str:
+    """The react prompt's T1 for the reply's first line: backticks out, spaces off both ends, one trailing full stop off."""
+    line = re.sub(r"@ai-itemator-\S+", "", re.sub("`", "", str(body or "").split("\n", 1)[0])).strip()
+    return line[:-1].strip() if line.endswith(".") else line
+
+
+def reasons(discussions: list, items: list) -> dict:
+    """{extra name: the reason its decider wrote}: the lines after the first of the reply that decided it, in that extra's own
+    thread (opened by the card account), by the person the summary names. Their own words, cleaned; nothing is inferred."""
+    out = {}
+    who_of = {(i["name"], i["decision"]): i["who"] for i in items}
+    for d in discussions:
+        notes = d.get("notes") if isinstance(d, dict) else None
+        if not notes or str((notes[0].get("author") or {}).get("username", "")) != CARD_BOT:
+            continue
+        m = _THREAD.search(str(notes[0].get("body") or ""))
+        name = clean_name(m.group(1)) if m else None
+        for (n, decision), who in who_of.items():
+            if n != name or n in out:
+                continue
+            want = n if decision == "kept" else _ANSWER_WORD.get(decision)
+            for r in notes[1:]:
+                body = str(r.get("body") or "")
+                first = _first_line(body)
+                if str((r.get("author") or {}).get("username", "")) != who or "\n" not in body.strip() or want is None:
+                    continue
+                if (first == want if decision == "kept" else first.lower() == want):
+                    reason = clean(body.split("\n", 1)[1], REASON)
+                    if reason:
+                        out[n] = reason
+                    break
+    return out
+
+
 def report_weight(extra: dict):
     """{bytes, at_least} for one extra of an itemator.json report: the sum of what the job measured for its weighed packages
     (itemator/weight.py), or None when none was weighed. "at least" when a package was not weighed or a size was not given."""
@@ -142,7 +183,13 @@ def measured_weights(api: "Api", iid: int) -> dict:
     return out
 
 
-def entry(mr: dict, notes: list, weights_of=None, unanswered_of=None) -> dict:
+def merger(mr: dict) -> str | None:
+    """Who merged it: the person who pressed merge or set auto-merge (GitLab's merge_user, else merged_by), cleaned; None if not given."""
+    who = clean(str(((mr.get("merge_user") or mr.get("merged_by") or {}).get("username")) or ""), 255)
+    return who or None
+
+
+def entry(mr: dict, notes: list, weights_of=None, unanswered_of=None, discussions_of=None) -> dict:
     """`weights_of()` (measured_weights for this merge request) is asked only when a dependency could have been kept or removed.
     `unanswered_of()` (unanswered_at_merge) only when no summary answers the commit that was merged: `unanswered` is then the
     extras the job listed on that commit that no summary answered ([] when none), or None when it cannot be told."""
@@ -153,6 +200,10 @@ def entry(mr: dict, notes: list, weights_of=None, unanswered_of=None) -> dict:
     for i in items:
         if i["name"] in measured:
             i["weight"] = measured[i["name"]]
+    why = reasons(discussions_of(), items) if discussions_of and items else {}
+    for i in items:
+        if i["name"] in why:
+            i["reason"] = why[i["name"]]
     if parsed is not None and (not mr.get("sha") or parsed["sha"] == mr.get("sha")):
         unanswered = []                     # a summary is written only once every extra of that commit has an answer
     else:
@@ -160,7 +211,7 @@ def entry(mr: dict, notes: list, weights_of=None, unanswered_of=None) -> dict:
         answered = {i["name"] for i in items}
         unanswered = None if listed is None else [n for n in listed if n not in answered]
     return {"iid": mr.get("iid"), "title": clean(mr.get("title")), "merged_at": mr.get("merged_at"), "author": clean(author, 255),
-            "summary": parsed is not None, "extras": items, "unanswered": unanswered}
+            "summary": parsed is not None, "extras": items, "unanswered": unanswered, "merger": merger(mr)}
 
 
 def stats(entries: list) -> dict:
@@ -209,14 +260,17 @@ def markdown(entries: list, title: str = "Decisions in this release") -> str:
             return f"{'at least' if x['at_least'] else 'about'} {W.human(x['bytes'])} ({x['dependencies']} new {'dependency' if x['dependencies'] == 1 else 'dependencies'})"
         lines.append(f"What new dependencies add to every fresh install, as the job measured each before the merge: removed, "
                      f"{said(w['removed'])}; kept, {said(w['kept'])}. Each counts everything it brings along, so this is an upper bound.")
+        if w["removed"]["bytes"]:
+            lines.append(f"What the removals keep out, {SCI.said(w['removed'])} per fresh install.")
     lines.append(unanswered_line(s))
     shown = [e for e in entries if e["extras"] or e.get("unanswered")]
     if shown:
         lines.append("")
     for e in shown:
-        what = "; ".join(f"`{i['name']}` {i['decision']} by @{i['who']}" for i in e["extras"]) or \
+        what = "; ".join(f"`{i['name']}` {i['decision']} by @{i['who']}" + (f", saying: {i['reason']}" if i.get("reason") else "")
+                         for i in e["extras"]) or \
             "merged without a recorded answer: " + ", ".join(f"`{n}`" for n in e["unanswered"])
-        lines.append(f"- !{e['iid']} {e['title']}: {what}")
+        lines.append(f"- !{e['iid']} {e['title']}: {what}" + (f"; merged by @{e['merger']}" if e.get("merger") else ""))
     return "\n".join(lines) + "\n"
 
 
@@ -301,7 +355,8 @@ def collect(api: Api, target: str, since: str, until: str) -> list:
 def entry_of(api: Api, m: dict) -> dict:
     notes, complete = notes_of(api, m["iid"])
     return entry(m, notes, lambda: measured_weights(api, m["iid"]),
-                 (lambda: unanswered_at_merge(api, m["iid"], m.get("sha"))) if complete else None)
+                 (lambda: unanswered_at_merge(api, m["iid"], m.get("sha"))) if complete else None,
+                 lambda: api.pages(f"merge_requests/{m['iid']}/discussions", NOTES_PAGES))
 
 
 def window_for_tag(api: Api, tag: str):

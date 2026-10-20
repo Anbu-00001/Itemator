@@ -1,0 +1,31 @@
+{
+ "branch": "demo/keep-reason",
+ "keep_reason": "The CSV export step will need it next week.",
+ "started": "2026-10-20T21:42:06",
+ "meter_before": 314.935,
+ "issue_iid": 79,
+ "mr_iid": 249,
+ "pipeline": "failed",
+ "card_done": "completed session [9763364](https://gitl",
+ "thread": "`pandas` (new dependency): adds package pandas; the issue does not name it. PyPI: first released 2009-12-25, 118 releases plus 1 yanked, licence BSD License as declared by its publisher, 0 known advisories for 2.2.3, with what it brings along, 6 packages (5 more than the line names) and about 31 MB to download on every fresh install; this project ran at least 1000 pipelines in the last 30 days, so at least 31 GB a month if each one installs it without a cache, by the SCI method, a bracket from borrowed coefficients: 0.014 g to 2.0 g CO2e per fresh install and at least 14 g to 2.0 kg a month at those pipelines (checked 2026-10-20). The description does not mention this. To keep it, reply with its exact name; a line under the name can say why. To move it into its own MR, reply `split`. To drop it from this MR, reply `remove`. If this is not really an extra, reply `not an extra`.\n\n[//]: # (itemator:extra=pandas)",
+ "weight_sentence": true,
+ "pipelines_sentence": true,
+ "react_done": "completed session [9763466](https://gitl",
+ "settled": {
+  "bot_notes": [
+   "Kept: `pandas`, named by @anbuchelvanganesan.cse2024. (@anbuchelvanganesan.cse2024 also wrote this merge request.) Their reason is in their reply."
+  ],
+  "settled": "kept",
+  "resolved": true
+ },
+ "pyproject_after": "[project]\nname = \"itemator\"\nversion = \"0.0.1\"\ndescription = \"One click for what was asked. A name for anything more.\"\nlicense = \"MIT\"\nrequires-python = \">=3.12\"\ndependencies = [\"pandas==2.2.3\"]\n\n[project.optional-dependencies]\neval = [\"duckdb==1.5.6\"]   # pinned with eval/inputs.lock.json\ndev = [\"pytest\"]\n",
+ "removed_from_branch": false,
+ "removed_note": null,
+ "card": "1 thing beyond #79: `pandas` (new dependency).\n\nAn extra can be welcome; it just needs one person's choice. Type each name in its thread to keep it, or reply \"split\" to move it to its own MR, \"remove\" to drop it. Itemator keeps, moves or removes nothing until a person replies.\n\nThe issue and this change have the same author, so no second person has described it yet.\n\n<details><summary>In plain words</summary>\n\n- `pandas` was added as a new dependency in pyproject.toml; the new-dependency rule noticed it because the issue does not name it.\n\n</details>\n\nFacts computed by CI job #17323228652, rules v6.\n\nCost of finding these facts: 6.5 s on the CI runner, 13 GitLab reads and 9 package-registry lookups, no model call. The flow after it typically makes about 6 model calls, up to about 1.9 GitLab Credits at the model's list price (an estimate).\n\n[//]: # (itemator:head=ac73b827eacf08aad144c1259ea0730b2f8d1bfa)",
+ "summary": "Every extra has an answer: 1 kept, 0 dismissed, 0 moved, 0 removed.\n\n- `pandas`: kept, named by @anbuchelvanganesan.cse2024\n\nAll of it was typed by the author of this merge request.\n\n[//]: # (itemator:named=ac73b827eacf08aad144c1259ea0730b2f8d1bfa)",
+ "kept_on_branch": true,
+ "reason_noted": true,
+ "decision_log_preview": "## Decisions in this release\n\nMerge requests merged: 1, of which with an Itemator summary: 1. Extras decided: 1 (1 kept, 0 dismissed, 0 moved, 0 removed). Typed by the merge request's own author: 1; by someone else: 0.\nMerged without a recorded answer for every extra: 0 merge requests (0 extras, from the job's own report on the commit that was merged).\n\n- !249 Say that the decision log's window is in UTC: `pandas` kept by @anbuchelvanganesan.cse2024, saying: The CSV export step will need it next week.\n",
+ "meter_after": 314.935,
+ "left_open_for_a_person_to_merge": true
+}

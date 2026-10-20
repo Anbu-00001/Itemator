@@ -11,7 +11,7 @@ from itemator import ci, policy as POL
 from itemator.extras import Extra
 from test_ci import FIXED, FakeHttp, isolated, issue, job, mr, repo, routes  # noqa: F401  (fixtures)
 
-KEEP = "To keep it, reply with its exact name."
+KEEP = "To keep it, reply with its exact name; a line under the name can say why."
 OTHER = "A reply from the merge request author does not count."
 FULL = """# the team's rules
 [names]
@@ -78,7 +78,7 @@ def test_valid_file_quiets_kinds_and_paths_but_never_the_built_in_exceptions(rep
     assert out["state"] == "extras"
     assert out["card"]["final_line"] == ("2 things beyond #12: `leftpad-py` (new dependency), "
                                          "`assets/logo.png` (binary or large file).")
-    assert out["card"]["todo_line"] == 'Type each name in its thread to keep it, or reply "split" to move it to its own MR, "remove" to drop it. ' + ci.CONSENT
+    assert out["card"]["todo_line"] == ci.WELCOME + ' Type each name in its thread to keep it, or reply "split" to move it to its own MR, "remove" to drop it. ' + ci.CONSENT
     p = out["policy"]
     assert p["found"] is True and p["ignored"] is None and p["sha"] == repo.base
     assert p["active"] == {"other_person_required": True, "hold_until_named": False, "asker_required": False, "ignore_kinds": ["version_bump", "new_dependency"],

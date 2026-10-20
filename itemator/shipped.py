@@ -55,6 +55,13 @@ def build(api: D.Api, environment: str, target: str) -> dict:
             "deployments": rows, "unreadable_requests": api.failures}
 
 
+# The other pages the Pages job publishes next to this one (.gitlab-ci.yml), so a visitor who lands here finds them.
+NAV = ("<p>Try it without installing anything: <a href=\"try/\">paste a diff</a>, <a href=\"green/\">paste a merge request or pull "
+       "request link</a>, <a href=\"weigh/\">weigh a package</a>. See <a href=\"catches/\">24 real cases where a reviewer objected to a "
+       "file an AI agent changed</a>, <a href=\"map/\">the picture of one change</a>, and <a href=\"answers/\">every recorded answer, hash-chained</a>. Source and docs: "
+       "<a href=\"https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/39194174/showcase\">the repository</a>.</p>")
+
+
 def _weight_words(x: dict) -> str:
     return f"{'at least' if x['at_least'] else 'about'} {D.W.human(x['bytes'])}"
 
@@ -62,7 +69,8 @@ def _weight_words(x: dict) -> str:
 def _item(i: dict) -> str:
     e = html.escape
     w = f" ({e(_weight_words(i['weight']))} on every fresh install)" if i.get("weight") else ""
-    return f"<code>{e(i['name'])}</code>{w} {e(i['decision'])} by @{e(i['who'])}"
+    why = f", saying: <q>{e(i['reason'])}</q>" if i.get("reason") else ""
+    return f"<code>{e(i['name'])}</code>{w} {e(i['decision'])} by @{e(i['who'])}{why}"
 
 
 def page(report: dict) -> str:
@@ -73,14 +81,16 @@ def page(report: dict) -> str:
            "h2{margin-top:2rem}li{margin:.3rem 0}.m{color:#555}</style></head><body>",
            f"<h1>What shipped to {e(report['environment'])}</h1>",
            "<p>Each deployment, the merge requests in it, the extras each had beyond its issue, and who typed a name for each. "
-           "Made by Itemator's deployment job from GitLab's own records; nothing here is typed by hand.</p>"]
+           "Made by Itemator's deployment job from GitLab's own records; nothing here is typed by hand.</p>",
+           NAV]
     if not report["deployments"]:
         out.append("<p>No successful deployment yet.</p>")
     removed = [d["weight"]["removed"] for d in report["deployments"] if d.get("weight") and d["weight"]["removed"]["dependencies"]]
     if removed:
         total = {"bytes": sum(x["bytes"] for x in removed), "at_least": any(x["at_least"] for x in removed)}
-        n = sum(x["dependencies"] for x in removed)
-        out.append(f"<p><strong>Kept out by a reviewer's <code>remove</code>: {e(_weight_words(total))} on every fresh install</strong>, "
+        total["dependencies"] = n = sum(x["dependencies"] for x in removed)
+        out.append(f"<p><strong>Kept out by a reviewer's <code>remove</code>: {e(_weight_words(total))} on every fresh install</strong> "
+                   f"({e(D.SCI.said(total))} each time), "
                    f"{n} new {'dependency' if n == 1 else 'dependencies'} with what {'it' if n == 1 else 'they'} would have brought along, "
                    "as the job measured each before the merge (the same measure for what was kept, below). An upper bound: some of those "
                    "packages may already be installed for another reason.</p>")
@@ -103,7 +113,8 @@ def page(report: dict) -> str:
                 tail = "<strong>merged without a recorded answer</strong>: " + ", ".join(f"<code>{e(n)}</code>" for n in m["unanswered"])
             else:
                 tail = "no extras" if m.get("unanswered") == [] else "could not tell (no job report left, or a record GitLab did not return)"
-            out.append(f"<li>!{e(str(m['iid']))} {e(m['title'])}: {tail}</li>")
+            by = f"; merged by @{e(m['merger'])}" if m.get("merger") else ""
+            out.append(f"<li>!{e(str(m['iid']))} {e(m['title'])}: {tail}{by}</li>")
         out.append("</ul>")
     out.append("<p class=\"m\">Merge requests merged into the default branch are listed with the extras they had. A commit pushed straight to the default branch is a deployment too, but it has no merge request, so none is listed for it.</p>")
     out.append("</body></html>")

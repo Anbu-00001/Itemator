@@ -148,10 +148,11 @@ def test_new_dependency_beyond_the_ask(repo, tmp_path, monkeypatch):
     assert out["cost"]["registry_reads"] >= 1 and f'{out["cost"]["registry_reads"]} package-registry lookup' in out["card"]["cost_line"]
     assert out["card"]["final_line"] == ("2 things beyond #12: `leftpad-py` (new dependency), "
                                          "`.gitlab-ci.yml` (CI change).")
-    assert out["card"]["todo_line"] == ('Type each name in its thread to keep it, or reply "split" '
+    assert out["card"]["todo_line"] == (ci.WELCOME + ' Type each name in its thread to keep it, or reply "split" '
                                         'to move it to its own MR, "remove" to drop it. ' + ci.CONSENT)
     # the card promises this, so its wording is fixed here; the reaction flow acts only on a reply (flows/itemator_react.yml)
     assert ci.CONSENT == "Itemator keeps, moves or removes nothing until a person replies."
+    assert ci.WELCOME == "An extra can be welcome; it just needs one person's choice."
 
 
 def test_no_issue(repo, tmp_path, monkeypatch):
@@ -184,7 +185,7 @@ def test_author_wrote_the_issue(repo, tmp_path, monkeypatch):
     head = repo.commit({"src/parser.py": FIXED})
     _, out = job(repo, head, FakeHttp(routes(mr(author_id=1), [issue(author_id=1)])), tmp_path, monkeypatch)
     assert out["state"] == "author_wrote_issue"
-    assert out["card"]["final_line"] == "No one but the author described this change."
+    assert out["card"]["final_line"] == "The issue and this change have the same author, so no second person has described it yet."
     assert out["card"]["todo_line"] == "A second person reads #12 before approving."
     assert out["card"]["caveat_line"] is None                    # the final line already says it
 
@@ -240,7 +241,7 @@ def test_extras_are_never_hidden_when_the_author_wrote_the_issue(repo, tmp_path,
     _, out = job(repo, head, FakeHttp(routes(mr(author_id=1), [issue(author_id=1)])), tmp_path, monkeypatch)
     assert out["state"] == "extras"
     assert out["card"]["final_line"] == "1 thing beyond #12: `leftpad-py` (new dependency)."
-    assert out["card"]["caveat_line"] == "No one but the author described this change."
+    assert out["card"]["caveat_line"] == "The issue and this change have the same author, so no second person has described it yet."
 
 
 def test_no_caveat_when_someone_else_wrote_the_issue(repo, tmp_path, monkeypatch):

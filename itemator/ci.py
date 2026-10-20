@@ -453,9 +453,16 @@ def scan_injection(mr_title: str, mr_description: str, issues: list[dict], files
 
 # ------------------------------------------------------------ state, card
 
-AUTHOR_CAVEAT = "No one but the author described this change."
+# The words are about the change, never the person (T64): an unasked card that reads as blame raises self-threat
+# (Harari and Amir, arXiv 2509.09309), so an extra is a choice to make, and a same-author caveat says what is missing.
+AUTHOR_CAVEAT = "The issue and this change have the same author, so no second person has described it yet."
+# Said once on every card that lists extras: an extra can be welcome; it only needs a person's choice.
+WELCOME = "An extra can be welcome; it just needs one person's choice."
 # Said once on every card that lists extras: the flows act only on a person's reply, never on their own.
 CONSENT = "Itemator keeps, moves or removes nothing until a person replies."
+# How a thread asks: the exact name keeps the friction of a choice; the lines under it are the author's side of the
+# conversation, shown in the decision log (itemator/decisions.py), never acted on.
+KEEP = "To keep it, reply with its exact name; a line under the name can say why."
 
 
 def dangling_line(numbers: list[int]) -> str:
@@ -577,7 +584,7 @@ def card_lines(state: str, issues: list[dict], extras: list, unplaced: list, inj
     elif state == "extras":
         names = ", ".join(f"{_code(e.name)} ({_label(e)})" for e in extras)
         final = f"{len(extras)} {'thing' if len(extras) == 1 else 'things'} beyond {refs}: {names}."
-        todo = f'Type each name in its thread to keep it, or reply "split" to move it to its own MR, "remove" to drop it. {CONSENT}'
+        todo = f'{WELCOME} Type each name in its thread to keep it, or reply "split" to move it to its own MR, "remove" to drop it. {CONSENT}'
     elif state == "unplaced_only":
         n = len(unplaced)
         final = f"{n} {'file' if n == 1 else 'files'} the rules could not place."
@@ -789,8 +796,28 @@ def _split_remove(e, items: tuple, by_path: dict) -> tuple:
     return ()
 
 
+_FLAG_DEF = re.compile(r"(?:^|/)config/feature_flags/(?:.+/)?([^/]+)\.yml$")
+
+
+def flag_cleanup(e, by_path: dict) -> str | None:
+    """T65: for removed tests, the feature flag the removed lines name whose definition (config/feature_flags/**/<name>.yml)
+    the same change deletes, or None. GitLab's own cleanup merge requests delete a flag's tests with the flag
+    (results/public_replay_flag_tests.json: 24 of 34 such extras). A fact for the reviewer; the extra is still listed."""
+    if e.kind != "tests_removed":
+        return None
+    flags = sorted({m.group(1) for path, f in by_path.items() if f.get("status") == "removed" and (m := _FLAG_DEF.search(path))})
+    patch = (by_path.get(e.path) or {}).get("patch") or ""
+    gone = "\n".join(line for line in patch.split("\n") if line.startswith("-") and not line.startswith("---"))
+    return next((x for x in flags if re.search(rf"(?<![\w]){re.escape(x)}(?![\w])", gone)), None)
+
+
+def flag_sentence(flag: str) -> str:
+    return (f"The lines it removes name the feature flag {_code(flag)}, whose definition this change deletes, so they may be "
+            "part of removing that flag.")
+
+
 def thread_stub(e, registry_line: str | None = None, other_person: bool = False,
-                offers: tuple = ("split", "remove"), said: str | None = None, askers: tuple = ()) -> str:
+                offers: tuple = ("split", "remove"), said: str | None = None, askers: tuple = (), flag: str | None = None) -> str:
     """The opening text of the extra's thread; the flow may post it as it is. `registry_line` (T17): the sentence of
     registry facts for a new dependency, placed before the replies. `other_person` (T20, names.other_person_required):
     OTHER_PERSON before the replies, as visible text, because the react flow cannot read markdown comments.
@@ -801,13 +828,14 @@ def thread_stub(e, registry_line: str | None = None, other_person: bool = False,
     if not why.endswith((".", "!", "?")):
         why += "."
     facts = f" {registry_line}" if registry_line else ""
+    facts += f" {flag_sentence(flag)}" if flag else ""
     facts += f" {SAID.SENTENCE[said]}" if said else ""
     facts += f" {OTHER_PERSON}" if other_person else ""
     facts += f" {asker_sentence(askers)}" if askers else ""
     split = "To move it into its own MR, reply `split`. " if "split" in offers else ""
     remove = "To drop it from this MR, reply `remove`. " if "remove" in offers else ""
     always = f"{ALWAYS} " if "always" in offers else ""
-    return (f"{_code(e.name)} ({_label(e)}): {why}{facts} To keep it, reply with its exact name. "
+    return (f"{_code(e.name)} ({_label(e)}): {why}{facts} {KEEP} "
             f"{split}{remove}{always}If this is not really an extra, reply `not an extra`.")
 
 
@@ -816,6 +844,7 @@ def describe_extra(e, by_path: dict, items: tuple = (), registry: dict | None = 
     """A grouped extra (`items`, from group_extras) anchors where its first item does, and keeps every item in
     plain_facts.detail. `registry` (T17, from registry.look_up) goes to plain_facts and its sentence to the stub."""
     anchor, reason = anchor_for(items[0] if items else e, by_path)
+    flag = flag_cleanup(e, by_path)
     plain = {"kind": e.kind, "name": shown_name(e.name), "why": e.why, "detail_count": len(e.detail), "path": e.path}
     if items:
         plain["detail"] = [i.to_dict() for i in items]
@@ -825,8 +854,10 @@ def describe_extra(e, by_path: dict, items: tuple = (), registry: dict | None = 
         plain["said"] = said
     if askers:
         plain["asker_usernames"] = list(askers)
+    if flag:
+        plain["flag_cleanup"] = flag
     rec = {**e.to_dict(), "detail": list(e.detail), "anchor": anchor, "anchorless_reason": reason,
-           "thread_stub": thread_stub(e, RG.sentence(registry), other_person, answers(e, items, by_path, always), said, askers),
+           "thread_stub": thread_stub(e, RG.sentence(registry), other_person, answers(e, items, by_path, always), said, askers, flag),
            "plain_facts": plain}
     if rec["name"] != plain["name"]:          # T22: `name` is what the approver sees and types; `raw_name` is the manifest's
         rec["name"], rec["raw_name"] = plain["name"], e.name

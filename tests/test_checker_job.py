@@ -151,7 +151,9 @@ OLD_TAIL = "To move it into its own MR, reply `split`. If this is not really an 
 NEW_TAIL = ("To move it into its own MR, reply `split`. To drop it from this MR, reply `remove`. "
             "If this is not really an extra, reply `not an extra`.")
 OLD_TODO = 'Type each name in its thread to keep it, or reply "split" to move it to its own MR.'
-NEW_TODO = 'Type each name in its thread to keep it, or reply "split" to move it to its own MR, "remove" to drop it. ' + ci.CONSENT    # + the consent line
+NEW_TODO = (ci.WELCOME + ' Type each name in its thread to keep it, or reply "split" to move it to its own MR, "remove" to drop it. '
+            + ci.CONSENT)    # + the consent line, and (T64) the welcome line before it
+OLD_CAVEAT = "No one but the author described this change."     # T64 rewords it
 
 
 MANIFEST = re.compile(r"pyproject\.toml|package\.json|requirements(?:-[^/]*)?\.txt|go\.mod|Cargo\.toml|Gemfile")
@@ -191,8 +193,12 @@ def with_remove(before: dict, by_path: dict, seen: dict) -> tuple[dict, int]:
         offers = offered(e, by_path)
         seen[offers] = seen.get(offers, 0) + 1
         e["thread_stub"], n = e["thread_stub"][:-len(OLD_TAIL)] + new_tail(offers), n + 1
+        e["thread_stub"] = e["thread_stub"].replace("To keep it, reply with its exact name. ", ci.KEEP + " ")     # T64
     if out["card"]["todo_line"] == OLD_TODO:
         out["card"]["todo_line"], n = NEW_TODO, n + 1
+    for key in ("final_line", "caveat_line"):
+        if OLD_CAVEAT in (out["card"].get(key) or ""):
+            out["card"][key], n = out["card"][key].replace(OLD_CAVEAT, ci.AUTHOR_CAVEAT), n + 1
     return out, n
 
 

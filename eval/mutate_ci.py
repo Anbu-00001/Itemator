@@ -233,7 +233,7 @@ RG = [
 ]
 RC = [
  ("stub: registry sentence dropped", "thread_stub(e, RG.sentence(registry), other_person,", "thread_stub(e, None, other_person,"),
- ("stub: sentence after the replies", '{why}{facts} To keep it, reply with its exact name. "', '{why} To keep it, reply with its exact name.{facts} "'),
+ ("stub: sentence after the replies", '{why}{facts} {KEEP} "', '{why} {KEEP}{facts} "'),
  ("plain_facts: registry dropped", '        plain["registry"] = registry', "        pass"),
  ("job: registries not asked by default", "registry_fetch or RG.fetch", "registry_fetch"),
  ("facts: fetcher ignored", "registry = RG.look_up(grouped, by_path, registry_fetch, now, weigh=True) if registry_fetch else [None] * len(grouped)", "registry = [None] * len(grouped)"),
@@ -336,7 +336,8 @@ T26 = [
  ("answers: agent instructions not removable (T37)", '"build_output_added", "agent_instructions")', '"build_output_added")', "itemator/ci.py", "tests/test_answers.py"),
  ("stub: split always offered", '" if "split" in offers else ""', '" if True else ""', "itemator/ci.py", "tests/test_answers.py"),
  ("stub: remove always offered", '" if "remove" in offers else ""', '" if True else ""', "itemator/ci.py", "tests/test_answers.py"),
- ("stub: offers not passed", "other_person, answers(e, items, by_path, always), said, askers),", "other_person, said=said, askers=askers),", "itemator/ci.py", "tests/test_answers.py"),
+ ("stub: flag fact dropped", "    flag = flag_cleanup(e, by_path)\n", "    flag = None\n", "itemator/ci.py", "tests/test_flag_cleanup.py"),
+ ("stub: offers not passed", "other_person, answers(e, items, by_path, always), said, askers, flag),", "other_person, said=said, askers=askers, flag=flag),", "itemator/ci.py", "tests/test_answers.py"),
  ("target: merge base used", "    target, resolved = target_tip(repo_dir, env, base)\n", "    target, resolved = base, True\n", "itemator/ci.py", "tests/test_policy.py"),
  ("target: not a full sha used", "        if _SHA40.fullmatch(sha):\n", "        if sha:\n", "itemator/ci.py", "tests/test_policy.py"),
  ("target: fallback caveat dropped", "             TARGET_CAVEAT if fallback else None,\n", "             None,\n", "itemator/ci.py", "tests/test_policy.py"),
@@ -457,7 +458,7 @@ T40 = [(label, old, new, path, test) for label, old, new, path, test in [
  ("always: the flag ignored", "if always and can_always(e, items) else offers", "if can_always(e, items) else offers", CI, TA),
  ("always: offered first", '(*offers, "always")', '("always", *offers)', CI, TA),
  ("always: facts offer it with any policy", "    always = always_allowed(policy.to_dict() if policy else None)       # T40\n", "    always = bool(policy)\n", CI, TA),
- ("always: not passed to the stub", "other_person, answers(e, items, by_path, always), said, askers),", "other_person, answers(e, items, by_path), said, askers),", CI, TA),
+ ("always: not passed to the stub", "other_person, answers(e, items, by_path, always), said, askers, flag),", "other_person, answers(e, items, by_path), said, askers, flag),", CI, TA),
  ("stub: always sentence dropped", 'always = f"{ALWAYS} " if "always" in offers else ""', 'always = ""', CI, TA),
  ("stub: always sentence first", 'f"{split}{remove}{always}If this', 'f"{always}{split}{remove}If this', CI, TA),
  ("prompt: refusal list misses remember", '"Remove partly done:", "Cannot remember:" or "Remember failed:" (there may be none).', '"Remove partly done:" or "Cannot remember:" (there may be none).', FL, TP),

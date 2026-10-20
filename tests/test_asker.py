@@ -9,7 +9,7 @@ from itemator.extras import Analysis, Extra
 from test_ci import FIXED, FakeHttp, isolated, issue, job, mr, repo, routes  # noqa: F401  (fixtures)
 
 ASKER = "[names]\nasker_required = true\n"
-KEEP = "To keep it, reply with its exact name."
+KEEP = "To keep it, reply with its exact name; a line under the name can say why."
 OTHER = "A reply from the merge request author does not count."
 ONE = "Only the person who wrote the linked issue (@alice) can keep this."
 TWO = "Only the person who wrote the linked issue (@alice or @bob) can keep this."

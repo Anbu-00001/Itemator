@@ -73,7 +73,7 @@ def test_each_outcome_reaches_the_thread_and_plain_facts(monkeypatch):
     for x in r["extras"]:
         stub = x["thread_stub"]
         assert stub.startswith(f"`{x['name']}` (") and stub.split("`")[1] == x["name"]
-        assert "To keep it, reply with its exact name." in stub and "reply `not an extra`." in stub
+        assert "To keep it, reply with its exact name; a line under the name can say why." in stub and "reply `not an extra`." in stub
         assert sum(stub.count(s) for s in (LISTED, NAMED, SILENT)) == 1
         assert "padding" not in stub and "Also touched" not in stub
 

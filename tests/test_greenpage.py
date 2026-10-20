@@ -25,9 +25,9 @@ def test_the_page_is_built_from_the_results_files_and_reaches_only_three_hosts()
     html = P.page()
     csp = re.search(r'Content-Security-Policy" content="([^"]+)"', html).group(1)
     assert "default-src 'none'" in csp and re.search(r"connect-src ([^;]+);", csp).group(1).split() == [
-        "https://api.deps.dev", "https://pypi.org", "https://registry.npmjs.org"]
-    assert not re.search(r"/\*(PAYLOAD|DIFF|RULE|WEIGH|GREEN)\*/", html) and "if (false) module.exports" in html
-    assert html.count("<script>") == html.count("</script>") == 5
+        "https://api.deps.dev", "https://pypi.org", "https://registry.npmjs.org", "https://gitlab.com", "https://api.github.com"]
+    assert not re.search(r"/\*(PAYLOAD|DIFF|RULE|WEIGH|GREEN|FETCH)\*/", html) and "if (false) module.exports" in html
+    assert html.count("<script>") == html.count("</script>") == 6
     for body in re.findall(r"<script>(.*?)</script>", html, re.S):
         assert "</script" not in body
     sci = json.loads((P.RESULTS / "sci_estimate_v1.json").read_text())
@@ -44,7 +44,7 @@ def test_a_closing_script_tag_in_a_source_cannot_end_its_script(tmp_path, monkey
     (tmp_path / "green.js").write_text("var s = '</script><b>x</b>';\n")
     monkeypatch.setattr(P, "WEB", tmp_path)
     html = P.page()
-    assert "var s = '<\\/script><b>x</b>';" in html and html.count("</script>") == 5
+    assert "var s = '<\\/script><b>x</b>';" in html and html.count("</script>") == 6
 
 
 @NODE
@@ -107,3 +107,62 @@ def test_python_line_breaks_split_the_same_in_the_browser():
     text = "a b\r\nc\x0bd\x85e\n\nf\n"
     assert node("const D = require(process.argv[1] + '/deps_rule.js'); process.stdout.write(JSON.stringify(D.splitlines(process.argv[2])));",
                 text) == text.splitlines()
+
+
+FETCH = ("const F = require(process.argv[1] + '/green_fetch.js'); const c = JSON.parse(process.argv[2]); const seen = [];"
+         "const get = async (u) => { seen.push(u); const k = Object.keys(c.routes).find((p) => u.startsWith(p));"
+         " return k ? {status: c.routes[k][0], json: c.routes[k][1]} : {status: 404, json: null}; };"
+         "(async () => { const out = await F.read(get, F.parseLink(c.link)); process.stdout.write(JSON.stringify({out, seen})); })();")
+GL = "https://gitlab.com/api/v4/projects/g%2Fsub%2Fp/merge_requests/7"
+GH = "https://api.github.com/repos/o/r"
+
+
+@NODE
+def test_a_link_is_read_only_from_gitlab_or_github():
+    got = node("const F = require(process.argv[1] + '/green_fetch.js');"
+               "process.stdout.write(JSON.stringify(JSON.parse(process.argv[2]).map(F.parseLink)));", json.dumps([
+                   "https://gitlab.com/g/sub/p/-/merge_requests/7", "https://gitlab.com/g/p/-/merge_requests/7/diffs?x=1 ",
+                   "https://github.com/o/r/pull/12", "https://github.com/o/r/pull/12/files", "http://gitlab.com/g/p/-/merge_requests/7",
+                   "https://evil.example/g/p/-/merge_requests/7", "https://github.com/o/r/issues/12", "https://gitlab.com.evil.example/g/p/-/merge_requests/7",
+                   "see https://gitlab.com/g/p/-/merge_requests/7"]))
+    assert got == [{"host": "gitlab", "project": "g/sub/p", "number": 7}, {"host": "gitlab", "project": "g/p", "number": 7},
+                   {"host": "github", "owner": "o", "repo": "r", "number": 12}, {"host": "github", "owner": "o", "repo": "r", "number": 12},
+                   None, None, None, None, None]
+
+
+@NODE
+def test_a_gitlab_merge_request_is_read_as_the_ci_job_reads_it():
+    diffs = [{"new_path": f"f{i}.py", "diff": "@@ -1 +1 @@\n-a\n+b\n"} for i in range(100)]
+    page2 = [{"new_path": "requirements.txt", "new_file": True, "diff": "@@ -0,0 +1 @@\n+pandas==2.2.2\n"},
+             {"new_path": "gone.py", "deleted_file": True, "diff": ""}, {"new_path": "new_name.py", "renamed_file": True, "diff": ""},
+             {"new_path": "big.json", "diff": "", "too_large": True}]
+    issues = [{"title": "Fix the export", "description": "Retry uploads."}, {"title": "Second", "description": None}]
+    routes = {f"{GL}/diffs?per_page=100&page=1": [200, diffs], f"{GL}/diffs?per_page=100&page=2": [200, page2], f"{GL}/closes_issues": [200, issues]}
+    got = node(FETCH, json.dumps({"link": "https://gitlab.com/g/sub/p/-/merge_requests/7", "routes": routes}))["out"]
+    assert len(got["files"]) == 104 and got["files"][100] == {"filename": "requirements.txt", "status": "added", "patch": "@@ -0,0 +1 @@\n+pandas==2.2.2\n", "too_large": False}
+    assert [f["status"] for f in got["files"][101:]] == ["removed", "renamed", "modified"] and got["skipped"] == ["big.json"]
+    ci_text = "\n\n".join(f"{i['title']}\n{i['description'] or ''}" for i in issues)      # itemator/ci.py's issue_text
+    assert got["issue"] == ci_text and got["issueFrom"] == "the 2 issues it closes" and got["truncated"] is False
+
+
+@NODE
+def test_a_gitlab_merge_request_that_closes_nothing_or_is_private():
+    routes = {f"{GL}/diffs?per_page=100&page=1": [200, []], f"{GL}/closes_issues": [200, []]}
+    got = node(FETCH, json.dumps({"link": "https://gitlab.com/g/sub/p/-/merge_requests/7", "routes": routes}))["out"]
+    assert got["issue"] == "" and got["issueFrom"] == "none (it closes no issue)"
+    assert node(FETCH, json.dumps({"link": "https://gitlab.com/g/sub/p/-/merge_requests/7", "routes": {}}))["out"] == {"error": "not found, or not public"}
+
+
+@NODE
+def test_a_github_pull_request_is_checked_against_the_issue_it_closes_else_its_own_text():
+    files = [{"filename": "package.json", "status": "modified", "patch": "@@ -1 +1 @@\n", "changes": 2}, {"filename": "huge.lock", "status": "modified", "changes": 9000}]
+    base = {f"{GH}/pulls/12/files?per_page=100&page=1": [200, files]}
+    closes = dict(base, **{f"{GH}/pulls/12": [200, {"title": "Add flag", "body": "Adds it.\n\nFixes #34"}], f"{GH}/issues/34": [200, {"title": "Want a flag", "body": "Please."}]})
+    r = node(FETCH, json.dumps({"link": "https://github.com/o/r/pull/12", "routes": closes}))
+    assert r["out"]["issue"] == "Want a flag\nPlease." and r["out"]["issueFrom"] == "issue #34, which it closes" and r["out"]["skipped"] == ["huge.lock"]
+    own = dict(base, **{f"{GH}/pulls/12": [200, {"title": "Add flag", "body": "Mentions #34 but closes nothing"}]})
+    r = node(FETCH, json.dumps({"link": "https://github.com/o/r/pull/12", "routes": own}))
+    assert r["out"]["issue"] == "Add flag\nMentions #34 but closes nothing" and not any("/issues/" in u for u in r["seen"])
+    assert r["out"]["issueFrom"] == "the pull request's own title and text (it closes no issue)"
+    limited = {f"{GH}/pulls/12": [403, None]}
+    assert "hourly limit" in node(FETCH, json.dumps({"link": "https://github.com/o/r/pull/12", "routes": limited}))["out"]["error"]

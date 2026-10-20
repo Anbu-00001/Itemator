@@ -24,7 +24,7 @@ def payload() -> dict:
     agree = json.loads((RESULTS / AGREEMENT).read_text(encoding="utf-8"))
     secs = sci["inputs"]["seconds_added"]
     c = sci["coefficients"]
-    files = [WEB / n for n in ("deps_rule.js", "weigh.js", "green.js")]
+    files = [WEB / n for n in ("deps_rule.js", "weigh.js", "green.js", "green_fetch.js")]
     version = hashlib.sha256(b"".join(f.read_bytes() for f in files)).hexdigest()[:12]
     return {
         "examples": json.loads((WEB / "green_examples.json").read_text(encoding="utf-8")),
@@ -39,7 +39,7 @@ def payload() -> dict:
                 "if someone says \"remove\", and only for installs without a cache."),
         "range_note": ("The low and high ends pair low with low and high with high; they are the ends of a range, not an average. The install "
                        "seconds are medians for one added line on a shared runner, not this package's own."),
-        "footer": (f"Page version {version} (web/deps_rule.js, web/weigh.js, web/green.js). Rules v6, the same as the CI job's. "
+        "footer": (f"Page version {version} (web/deps_rule.js, web/weigh.js, web/green.js, web/green_fetch.js). Rules v6, the same as the CI job's. "
                    "Standard HTML and JavaScript; no library, no model, no cookie."),
     }
 
@@ -49,7 +49,8 @@ def page() -> str:
     weigh = (WEB / "weigh.js").read_text(encoding="utf-8").replace('if (typeof module !== "undefined") module.exports', "if (false) module.exports")
     parts = (("/*PAYLOAD*/", safe_json(payload())), ("/*DIFF*/", (WEB / "try_checks.js").read_text(encoding="utf-8")),
              ("/*RULE*/", (WEB / "deps_rule.js").read_text(encoding="utf-8")), ("/*WEIGH*/", weigh),
-             ("/*GREEN*/", (WEB / "green.js").read_text(encoding="utf-8")))
+             ("/*GREEN*/", (WEB / "green.js").read_text(encoding="utf-8")),
+             ("/*FETCH*/", (WEB / "green_fetch.js").read_text(encoding="utf-8")))
     for marker, text in parts:
         assert html.count(marker) == 1, marker
         html = html.replace(marker, text.replace("</script", "<\\/script"), 1)
