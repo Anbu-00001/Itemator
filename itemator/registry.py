@@ -20,6 +20,7 @@ import urllib.parse
 import urllib.request
 
 from itemator import extras as X
+from itemator import sci as SCI
 from itemator import weight as W
 
 # The only hosts the job may ask (brief T17 item 3): three public registries and OSV's advisory database.
@@ -620,6 +621,9 @@ def _facts(p: dict, declare: bool = True) -> str:
     weight = W.part(p.get("weight"))
     if weight:
         parts.append(weight)
+    carbon = SCI.part(p.get("weight"))
+    if carbon:
+        parts.append(carbon)
     return ", ".join(parts)
 
 

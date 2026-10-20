@@ -32,9 +32,17 @@ var Green = (function () {
     return r;
   }
 
-  function grams(g) {              // three significant figures, in g under a kilogram
-    if (g >= 1000) return Number((g / 1000).toPrecision(3)).toString() + " kg";
-    return Number(g.toPrecision(g < 1 ? 2 : 3)).toString() + " g";
+  function grams(g) {              // two significant figures, in kg from a kilogram up: itemator/sci.py's grams
+    function two(x) {
+      if (x <= 0) return [0, 0];
+      var d = 1 - Math.floor(Math.log10(x));
+      var r = function (k) { return Math.round(x * Math.pow(10, k)) / Math.pow(10, k); };
+      if (r(d) >= Math.pow(10, 2 - d)) d -= 1;          // 9.97 rounds to 10: one digit fewer
+      return [r(d), Math.max(d, 0)];
+    }
+    var r = two(g), unit = "g";
+    if (r[0] >= 1000) { r = two(g / 1000); unit = "kg"; }
+    return r[0].toFixed(r[1]) + " " + unit;
   }
 
   return { perInstall: perInstall, total: total, grams: grams };

@@ -9,7 +9,7 @@ import sys
 
 import pytest
 
-from itemator import extras as X, greenpage as P
+from itemator import extras as X, greenpage as P, sci as SCI
 
 sys.path.insert(0, str(P.ROOT / "eval"))
 import sci_estimate as S  # noqa: E402
@@ -65,14 +65,14 @@ def test_a_total_sums_each_line_and_a_month_multiplies_by_the_pipelines():
     t = node("const G = require(process.argv[1] + '/green.js'); const a = JSON.parse(process.argv[2]);"
              "process.stdout.write(JSON.stringify([G.total(a.c, a.s, [{bytes: 31e6, at_least: false}, {bytes: 13e6, at_least: true}], 936),"
              " G.total(a.c, a.s, [{bytes: 5e5, at_least: false}], 0),"
-             " [100000, 1500, 1000, 999.4, 2.894, 0.00241, 0].map(G.grams)]));", json.dumps({"c": c, "s": secs}))
+             " [100000, 1500, 1000, 999.4, 2.894, 0.00241, 0, 13.4, 9.97, 0.0999, 0.00097].map(G.grams)]));", json.dumps({"c": c, "s": secs}))
     one, two = S.per_install(31.0, tuple(secs)), S.per_install(13.0, tuple(secs))
     low = one["low"]["sci_g_per_install"] + two["low"]["sci_g_per_install"]
     assert t[0]["bytes"] == 44e6 and t[0]["at_least"] is True and t[0]["lines"] == 2
     assert t[0]["g_low"] == pytest.approx(low) and t[0]["month_g_low"] == pytest.approx(low * 936) and t[0]["month_bytes"] == 44e6 * 936
     assert t[0]["month_g_high"] == pytest.approx((one["high"]["sci_g_per_install"] + two["high"]["sci_g_per_install"]) * 936)
     assert t[1]["at_least"] is False and "runs" not in t[1] and "month_g_low" not in t[1]
-    assert t[2] == ["100 kg", "1.5 kg", "1 kg", "999 g", "2.89 g", "0.0024 g", "0 g"]
+    assert t[2] == [SCI.grams(x) for x in (100000, 1500, 1000, 999.4, 2.894, 0.00241, 0, 13.4, 9.97, 0.0999, 0.00097)]
 
 
 @NODE
