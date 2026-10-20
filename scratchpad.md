@@ -2,7 +2,12 @@
 
 How this works: Claude writes a question here only when it cannot decide something that is yours to decide. Edit this file on GitHub, write your answer after `ANSWER:`, and commit. Claude re-reads it at every wake-up and never waits on it: it keeps building on the stated DEFAULT. Never paste tokens or passwords here (this repository is public).
 
-## NEEDS YOU, Oct 19, 14:25 IST (the asks below this one, !215, !217 and !218, are merged; ignore them)
+## NEEDS YOU, Oct 20, 10:35 IST (everything below this is merged or done; ignore it)
+- Click Merge (pipeline green): https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/39194174/showcase/-/merge_requests/221
+  The card now says "Itemator keeps, moves or removes nothing until a person replies." The decision log and the What-shipped page now count extras merged without a recorded answer (it will show 2 of our own: !88 and !101, merged while the triggers were off). The README's "Why now" adds Rob Pike, Summer Yue and one study, all checked at the source. Audited by Sonnet; every fix applied.
+- Organiser ruling (Mattias, Discord): triggers OFF at the deadline. Recorded; nothing for you to do.
+
+## OLD (Oct 19): NEEDS YOU, Oct 19, 14:25 IST (the asks below this one, !215, !217 and !218, are merged; ignore them)
 - Click Merge, in this order:
   1. https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/39194174/showcase/-/merge_requests/219 (the live weight run: the card said pandas brings 6 packages and about 31 MB, about 29 GB a month at 936 pipelines; our script replied `remove` from your account (staged, said so in the rubric) and the flow took it out. Merging lets the decision log and the What-shipped page show what the `remove` kept out.)
   2. https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/39194174/showcase/-/merge_requests/220 (fixes from the Opus number audit: 9 sentences said more than their files; all corrected. Merge once its pipeline is green.)
