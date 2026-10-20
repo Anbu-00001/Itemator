@@ -1,0 +1,24 @@
+{
+ "what": "Written before untrusted.py is changed and before v2 is run on anything. Version 2 of the untrusted-text check, written ONLY from the misses of the 8 first advisories (results/advisory_replay_v1.json, the development set). Its result on the 31 held-out advisories (results/advisory_holdout_v1.json is v1's) is reported next to v1's, never instead of it.",
+ "changes": [
+  "1. Composite action files (action.yml, action.yaml, at any depth) are read as targets. Miss: embano1/wip, whose composite action.yml put an input into a shell line. Same line rules as for workflow files: only a command-like added line counts.",
+  "2. An expression is a hit when a stranger-text term is ANYWHERE inside the braces, not only first. Miss: gouef/githubtoplanguages, `${{ github.event.issue.title || github.event.pull_request.title }}`, which the first-position pattern did not match."
+ ],
+ "declined": "3. js-recon/js-recon: the vulnerable code passed event text through env: and used it as $BRANCH_NAME inside double quotes. That is GitHub's own recommended pattern and the shell does not run a quoted variable, so a rule for it would flag the fix. v2 does not flag env: assignments or $VARIABLE uses; that stays a deliberate limit. A rule for `${{ env.X }}` or `${{ steps.x.outputs.y }}` pasted into a shell line would come from the 31 held-out cases, so it would not be held out: it would be a separate v3, and its result on those 31 would be labelled as tuned.",
+ "unchanged": "The list of stranger-text names, the GitLab variables, the interpreter and AI-tool lists, the single-quote rule, the command-like rule, the cap of 20. No constant is changed after any result is seen.",
+ "runs": [
+  "A. development set: the 8 first advisories (expected to improve: the changes came from them; not held out).",
+  "B. held-out set: the 31 advisories of eval/advisory_holdout_rubric.json, run once.",
+  "C. false-alarm control: the same ordinary Mesa commits and the same agent-written commits as results/mesa_noise_v1.json and results/agent_noise_v1.json, untrusted check only.",
+  "D. the browser port web/try_checks.js must give identical answers (eval/try_agreement.py, a new registered version)."
+ ],
+ "bars": {"C": "speaks on at most 3% of the ordinary commits and 5% of the agent commits, as for v1; any commit where v2 speaks and v1 did not is read and listed"},
+ "predictions_before_run": {
+  "B_caught_of_31_interval": "11 to 17 (80%); v1 named 10",
+  "B_fix_silent_at_least_28_of_31": "70%",
+  "A_caught_at_least_7_of_8": "90%",
+  "C_bar_holds_on_both": "85%"
+ },
+ "published": "Advisory ids, repository names, commit ids, file paths, line numbers, kinds and counts. No diff text.",
+ "limits": "The 31 were seen at the level of v1's result (which patterns it missed) before this file was written, and S1's report lists a pattern for every case. The two changes were chosen from the 8 and from the mechanism of the misses, not from reading the 31 diffs; this is stated so the reader can weigh it."
+}

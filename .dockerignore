@@ -1,0 +1,4 @@
+*
+!itemator/
+!itemator/**
+**/__pycache__

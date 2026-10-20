@@ -1,0 +1,7 @@
+{
+  "what": "Does the browser page (web/weigh.js) measure a dependency exactly as the CI job does (itemator/weight.py)?",
+  "sample": "The first 30 weighed lines of results/aidev_weight_v1.json, in file order, each at the version the study weighed. Both sides run one after the other on the same machine, on the same day.",
+  "identical_means": "the same packages, direct, sized, of, bytes and capped for each line",
+  "predictions_before_running": {"all 30 identical": "75%, ana 190466"},
+  "stop_rules": ["one run; a difference is reported and explained, never re-run away", "a line whose registry answers change between the two runs is reported as such"]
+}

@@ -1,0 +1,6 @@
+diff --git a/.github/workflows/a.yml b/.github/workflows/a.yml
+--- a/.github/workflows/a.yml
++++ b/.github/workflows/a.yml
+@@ -1,1 +1,2 @@
+ a: 1
++      - run: echo ${{ github.event.issue.title }}

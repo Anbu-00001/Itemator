@@ -1,0 +1,35 @@
+{
+  "what": "The GitLab-native version of leg 1, written before any note is fetched or read: on merge requests GitLab Duo's Developer Flow opened in gitlab-org, when a person other than the author said in a note that part of the change did not belong, how often would the rules have listed that file? The labels are what GitLab's own reviewers wrote, not ours. Read-only (GET through glab api); nothing is posted.",
+  "frame": "Every merge request in the gitlab-org group (id 9970, all its projects) whose source branch starts with `duo/`, created from 2026-06-01T00:00:00Z up to 2026-10-18T00:00:00Z, in state merged or closed. Open ones are counted, not scored. The list is written by eval/gitlab_scope.py --frame before any note text is read.",
+  "notes": "Every note on those merge requests that is not a system note, whose author is not the merge request's author, not a bot (eval/replay_gitlab.py is_bot), and not a duo-developer service account. Diff notes carry their file (position.new_path, else old_path). A general note is tied to a file only when it names, in backticks or as a path, exactly one path the merge request changed.",
+  "route_k1": "Keyword route, the same as leg 1 so the two can be put side by side: a note whose text contains, ignoring case, one of: unrelated, out of scope, separate PR, separate MR, not needed, unnecessary; and that is tied to a file. No one reads the text to build this list.",
+  "route_read": "Read route: every note in the frame is read by two labellers who never see the rules' output: one Haiku and one Sonnet agent (tools/cascade.py), each alone, from the same shard file. Question: does this note say that a specific part of this change was not asked for, does not belong in this merge request, or should be removed, split out or reverted? Answer yes, no or unclear, with the file(s) it points at and a quote of at most 40 words. A note is a scope comment when both say yes; a disagreement goes to an Opus adjudicator who sees both answers and the note, never the rules' output. The adjudicator also re-reads a sample fixed now: every 7th note by position in the shard files (1-based: 7, 14, 21, ...), whatever the labellers said.",
+  "files": "the merge request's files as they stood in the newest diff version created at or before the note (merge_requests/:iid/versions); a note older than every version uses the oldest. A note whose file is not in that version is 'not in the change then' and counted apart.",
+  "task": "the issue the flow was started from (eval/replay_gitlab.py flow_issue), else the issue the description closes, else the merge request's title and description (reported apart).",
+  "rules": "itemator.extras.analyse at rules version 6 (frozen; the current main), with the project path",
+  "hit": "an extra whose path (or a file in its list, or a listed directory that holds it) is the commented file; the same definition as leg 1",
+  "kinds": "listable_kind in eval/aidev_recall.py, unchanged",
+  "outcome": {
+    "primary": "read route: among scope comments on a file of a listable kind, the share whose file the rules listed (counts and a Wilson 95% interval)",
+    "also_reported": [
+      "the same share over all read-route scope comments",
+      "the keyword route, both shares, beside leg 1's (results/aidev_recall_v6.json)",
+      "how many keyword notes the labellers said were not scope comments, and how many read-route scope comments no keyword found",
+      "merged against closed",
+      "labeller agreement (both yes, both no, split) and the adjudicator's sample",
+      "notes not in the change then, never dropped silently"
+    ]
+  },
+  "reading_rule": "Report the primary share first, in plain words, with its counts, and the number of merge requests it comes from. If there are fewer than 10 read-route scope comments, say the sample is too small for a share and list each case instead. No 'catches X percent' sentence is written from any number here.",
+  "limits": "One group, one agent (GitLab's Developer Flow), about four and a half months. A reviewer's words are not proof that the file did not belong; a reviewer may also stay silent about an extra. Model labellers read the notes; a person did not. Diff versions approximate what the reviewer saw. One run of frozen rules; nothing is tuned on these notes.",
+  "seen_before_registration": "results/public_replay*.json scored the agent's version of Developer Flow merge requests merged into gitlab-org/gitlab in September 2026 (they are inside this frame); their notes were fetched only to find the flow's account and the issue, and their text was not read for scope. No other note in this frame has been read.",
+  "predictions_before_scoring": {
+    "frame size": "400 to 1600 (80%), ana 3ccde6",
+    "read-route scope comments": "8 to 60 (80%), ana b21bbc",
+    "primary share": "0.15 to 0.65 (80%), ana 53a34a",
+    "share over all": "0.02 to 0.20 (80%), ana e71c5a",
+    "fewer than 10 scope comments": "30%, ana 576a8c"
+  },
+  "amendment_1": "2026-10-18, before the frame was fetched and before any note was read: the frame is narrowed from the whole gitlab-org group to the project gitlab-org/gitlab (id 278964). Reason: a group-wide GraphQL page took about 9 s (an estimated 2 hours for the window), a project page under 1 s. Seen when deciding: the window's counts for the project (17363 merged, 4923 closed) and the source branch names of the first 100 of each (2 and 12 start with duo/). Nothing else changes. The frame is listed through GraphQL (iid, state, sourceBranch, createdAt only), then each duo/ merge request is read through REST.",
+  "amendment_2": "2026-10-18 evening, after the notes were fetched and before any note text was read by anyone (seen: counts, and the authors' user names with their note counts). (a) A note's author is also excluded when GitLab's users API marks the account `bot: true` (this catches GitLabDuo, 2254 notes, which the name rule missed), and when it is the Ghost User (ghost1, 2989 notes: GitLab's stand-in for deleted accounts, so who wrote them is unknown). (b) Labelling every remaining note is about 300 shard reads, so the read route labels a seeded sample instead: 1500 notes drawn with Python's random.Random(20261018) from the notes left after (a), plus every remaining note the keyword route matched (tied to a file or not), shuffled together with the same generator and numbered from 1. Shares are reported over the labelled notes; the number of scope comments in the whole frame is estimated by scaling the random part only, and said to be an estimate. ana b21bbc is resolved on the number of scope comments found among the labelled notes. The 7th-note audit sample applies to the new numbering. Nothing else changes."
+}

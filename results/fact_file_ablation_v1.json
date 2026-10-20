@@ -1,0 +1,177 @@
+{
+  "rubric": "eval/fact_file_ablation_rubric.json",
+  "what": "Same card, with the prepared facts (A) and without (B), on 3 staged tasks, 2026-10-19",
+  "runs": [
+    {
+      "task": "T3",
+      "arm": "A",
+      "mr": 206,
+      "session": "9665072",
+      "model_calls": 5,
+      "tool_calls": 7,
+      "seconds": 71.8,
+      "extras_named": [
+        "requests"
+      ],
+      "labels": [
+        "itemator::needs-names"
+      ],
+      "status": "counted"
+    },
+    {
+      "task": "T1",
+      "arm": "A",
+      "mr": 202,
+      "session": "9665121",
+      "model_calls": 3,
+      "tool_calls": 3,
+      "seconds": 48.0,
+      "extras_named": [
+        "logo.png",
+        "requests",
+        "tests/files/corrupt-sample.xz"
+      ],
+      "labels": [
+        "itemator::needs-names"
+      ],
+      "status": "stray",
+      "why": "no-op: card already posted by a stray session"
+    },
+    {
+      "task": "T1",
+      "arm": "A",
+      "mr": 208,
+      "session": "9665301",
+      "model_calls": 5,
+      "tool_calls": 9,
+      "seconds": 70.5,
+      "extras_named": [
+        "logo.png",
+        "requests",
+        "tests/files/corrupt-sample.xz"
+      ],
+      "labels": [
+        "itemator::needs-names"
+      ],
+      "status": "counted"
+    },
+    {
+      "task": "T3",
+      "arm": "B",
+      "mr": 207,
+      "session": "9665393",
+      "model_calls": 5,
+      "tool_calls": 7,
+      "seconds": 59.9,
+      "extras_named": [
+        "requests"
+      ],
+      "labels": [
+        "itemator::needs-names"
+      ],
+      "status": "counted"
+    },
+    {
+      "task": "T1",
+      "arm": "B",
+      "mr": 203,
+      "session": "9665416",
+      "model_calls": 5,
+      "tool_calls": 11,
+      "seconds": 64.2,
+      "extras_named": [
+        "logo.png",
+        "requests",
+        "tests/files/corrupt-sample.xz",
+        "tidy.py",
+        "utils.py"
+      ],
+      "labels": [
+        "itemator::needs-names"
+      ],
+      "status": "counted"
+    },
+    {
+      "task": "T2",
+      "arm": "A",
+      "mr": 209,
+      "session": "9665515",
+      "model_calls": 6,
+      "tool_calls": 6,
+      "seconds": 57.4,
+      "extras_named": [],
+      "labels": [
+        "itemator::second-reader"
+      ],
+      "status": "counted"
+    },
+    {
+      "task": "T2",
+      "arm": "B",
+      "mr": 210,
+      "session": "9665539",
+      "model_calls": 4,
+      "tool_calls": 6,
+      "seconds": 46.2,
+      "extras_named": [],
+      "labels": [
+        "itemator::inside-ask"
+      ],
+      "status": "counted"
+    },
+    {
+      "session": "9664980",
+      "model_calls": 3,
+      "status": "stray",
+      "why": "invalid start: pipeline had not finished (amendment 1)"
+    },
+    {
+      "session": "9665004",
+      "model_calls": 5,
+      "status": "stray",
+      "why": "stray: pipeline-finished event, T1 merge request"
+    },
+    {
+      "session": "9665011",
+      "model_calls": 4,
+      "status": "stray",
+      "why": "stray: pipeline-finished event, T2 merge request"
+    },
+    {
+      "session": "9665012",
+      "model_calls": 4,
+      "status": "stray",
+      "why": "stray: pipeline-finished event, T2 merge request"
+    }
+  ],
+  "summary": {
+    "per_task_model_calls": {
+      "T1": {
+        "A": 5,
+        "B": 5
+      },
+      "T2": {
+        "A": 6,
+        "B": 4
+      },
+      "T3": {
+        "A": 5,
+        "B": 5
+      }
+    },
+    "total_A": 16,
+    "total_B": 14,
+    "ratio_B_over_A": 0.875,
+    "counted_runs": 6,
+    "all_sessions": 11,
+    "all_model_calls": 49,
+    "modelled_credits_all": 15.31,
+    "modelled_credits_counted": 9.38,
+    "meter_before": 274.615,
+    "meter_after_same_day": 282.175,
+    "cap_modelled": 15,
+    "stray_model_calls": 19,
+    "stray_sessions": 5
+  },
+  "read": "With the prepared facts the card made 16 model calls over three tasks, without them 14. No saving was measured from the prepared facts; on the clean change the version without them made fewer calls (4 vs 6) and posted nothing extra. Five further sessions (19 calls) were wasted by our own set-up and are counted in the cost only. The facts also give checks a model cannot do (rubric not_compared). Three staged tasks, one model, one day: no claim about the field."
+}

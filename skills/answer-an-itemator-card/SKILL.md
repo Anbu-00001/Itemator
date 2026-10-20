@@ -9,7 +9,7 @@ Itemator posts a card on a merge request when its changes go beyond the linked i
 
 ## Read the card
 
-- **First line:** what is beyond the issue, for example `1 thing beyond #12: .gitlab-ci.yml (CI change).`
+- **First line:** what is beyond the issue, for example `1 thing beyond #12: .gitlab-ci.yml (CI change).` <!-- example -->
 - **Second line:** what the approver does next.
 - **A caveat line may follow:** for example that nobody but the author described the change, that a team policy quieted some extras, or that the checker came from the merge request itself.
 - **One thread per extra,** on the changed line when there is one. The merge request is in Draft until every extra has an answer.

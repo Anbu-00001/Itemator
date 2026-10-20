@@ -127,3 +127,29 @@ def test_every_line_of_a_shell_script_is_a_command():
 
 def test_shown_text_is_cut():
     assert len(UT.find([f(".gitlab-ci.yml", "  - eval $CI_COMMIT_MESSAGE " + "x" * 200)])[0]["text"]) == 80
+
+
+def test_a_stranger_term_anywhere_in_the_expression_is_named():
+    first = '          ISSUE_TITLE="${{ github.event.issue.title || github.event.pull_request.title }}"'
+    last = "        run: x=${{ inputs.branch || github.event.pull_request.head.ref }}"
+    assert kinds(f(".github/workflows/a.yml", first, last)) == [("github-expression", 10), ("github-expression", 11)]
+    assert kinds(f(".github/workflows/a.yml", "        run: echo ${{ inputs.branch || github.sha }} ${{ github.event.pull_request.number }}")) == []
+
+
+def test_composite_action_files_are_read_like_workflows_and_other_yaml_is_not():
+    line = '        run: echo "${{ github.event.issue.title }}"'
+    assert kinds(f("action.yml", line)) == [("github-expression", 10)]
+    assert kinds(f(".github/actions/setup/action.yaml", line)) == [("github-expression", 10)]
+    assert kinds(f("src/my-action.yml", line), f("docs/action.yml.md", line), f("config.yml", line)) == []
+    assert kinds(f("action.yml", "      env:", "        TITLE: ${{ github.event.issue.title }}")) == []
+
+
+def test_every_expression_of_a_line_is_read_and_text_between_expressions_is_not():
+    assert kinds(f(".github/workflows/a.yml", "        run: echo ${{ github.sha }} ${{ github.event.issue.title }}")) == [("github-expression", 10)]
+    assert kinds(f(".github/workflows/a.yml", "        run: echo ${{ github.sha }} github.event.issue.title ${{ github.run_id }}")) == []
+
+
+def test_an_escaped_quote_opens_no_string_and_a_quote_inside_double_quotes_is_a_character():
+    assert UT._in_single_quotes("echo \\'x", 7) is False                  # \' is a literal quote: x is expanded
+    assert UT._in_single_quotes("echo 'x", 6) is True
+    assert UT._in_single_quotes('echo "it\'s" x', 12) is False

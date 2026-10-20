@@ -1,0 +1,731 @@
+{
+ "rubric": "eval/weigh_agreement_rubric.json",
+ "checked": "2026-10-19",
+ "lines": 30,
+ "identical": 30,
+ "all_identical": true,
+ "rows": [
+  {
+   "eco": "npm",
+   "name": "next-auth",
+   "version": "4.24.15",
+   "identical": true,
+   "python": {
+    "weight": "ok",
+    "packages": 15,
+    "direct": 9,
+    "sized": 15,
+    "of": 15,
+    "bytes": 952088,
+    "capped": false
+   },
+   "browser": {
+    "weight": "ok",
+    "packages": 15,
+    "direct": 9,
+    "sized": 15,
+    "of": 15,
+    "bytes": 952088,
+    "capped": false
+   }
+  },
+  {
+   "eco": "npm",
+   "name": "eslint",
+   "version": "10.13.0",
+   "identical": true,
+   "python": {
+    "weight": "ok",
+    "packages": 77,
+    "direct": 30,
+    "sized": 77,
+    "of": 77,
+    "bytes": 2426211,
+    "capped": false
+   },
+   "browser": {
+    "weight": "ok",
+    "packages": 77,
+    "direct": 30,
+    "sized": 77,
+    "of": 77,
+    "bytes": 2426211,
+    "capped": false
+   }
+  },
+  {
+   "eco": "npm",
+   "name": "@lingui/conf",
+   "version": "6.10.0",
+   "identical": true,
+   "python": {
+    "weight": "ok",
+    "packages": 27,
+    "direct": 4,
+    "sized": 27,
+    "of": 27,
+    "bytes": 1117924,
+    "capped": false
+   },
+   "browser": {
+    "weight": "ok",
+    "packages": 27,
+    "direct": 4,
+    "sized": 27,
+    "of": 27,
+    "bytes": 1117924,
+    "capped": false
+   }
+  },
+  {
+   "eco": "npm",
+   "name": "@langchain/openai",
+   "version": "0.5.5",
+   "identical": true,
+   "python": {
+    "weight": "ok",
+    "packages": 45,
+    "direct": 4,
+    "sized": 45,
+    "of": 45,
+    "bytes": 12566825,
+    "capped": false
+   },
+   "browser": {
+    "weight": "ok",
+    "packages": 45,
+    "direct": 4,
+    "sized": 45,
+    "of": 45,
+    "bytes": 12566825,
+    "capped": false
+   }
+  },
+  {
+   "eco": "PyPI",
+   "name": "cuda-toolkit",
+   "version": "13.4.3",
+   "identical": true,
+   "python": {
+    "weight": "ok",
+    "packages": 1,
+    "direct": 0,
+    "sized": 1,
+    "of": 1,
+    "bytes": 2690,
+    "capped": false
+   },
+   "browser": {
+    "weight": "ok",
+    "packages": 1,
+    "direct": 0,
+    "sized": 1,
+    "of": 1,
+    "bytes": 2690,
+    "capped": false
+   }
+  },
+  {
+   "eco": "npm",
+   "name": "@mdx-js/loader",
+   "version": "3.1.1",
+   "identical": true,
+   "python": {
+    "weight": "ok",
+    "packages": 114,
+    "direct": 2,
+    "sized": 114,
+    "of": 114,
+    "bytes": 1155858,
+    "capped": false
+   },
+   "browser": {
+    "weight": "ok",
+    "packages": 114,
+    "direct": 2,
+    "sized": 114,
+    "of": 114,
+    "bytes": 1155858,
+    "capped": false
+   }
+  },
+  {
+   "eco": "npm",
+   "name": "regenerator-runtime",
+   "version": "0.14.1",
+   "identical": true,
+   "python": {
+    "weight": "ok",
+    "packages": 1,
+    "direct": 0,
+    "sized": 1,
+    "of": 1,
+    "bytes": 8543,
+    "capped": false
+   },
+   "browser": {
+    "weight": "ok",
+    "packages": 1,
+    "direct": 0,
+    "sized": 1,
+    "of": 1,
+    "bytes": 8543,
+    "capped": false
+   }
+  },
+  {
+   "eco": "npm",
+   "name": "tree-sitter-ocaml",
+   "version": "0.24.2",
+   "identical": true,
+   "python": {
+    "weight": "ok",
+    "packages": 3,
+    "direct": 2,
+    "sized": 3,
+    "of": 3,
+    "bytes": 14818733,
+    "capped": false
+   },
+   "browser": {
+    "weight": "ok",
+    "packages": 3,
+    "direct": 2,
+    "sized": 3,
+    "of": 3,
+    "bytes": 14818733,
+    "capped": false
+   }
+  },
+  {
+   "eco": "npm",
+   "name": "@types/react-dom",
+   "version": "19.3.0",
+   "identical": true,
+   "python": {
+    "weight": "ok",
+    "packages": 1,
+    "direct": 0,
+    "sized": 1,
+    "of": 1,
+    "bytes": 8185,
+    "capped": false
+   },
+   "browser": {
+    "weight": "ok",
+    "packages": 1,
+    "direct": 0,
+    "sized": 1,
+    "of": 1,
+    "bytes": 8185,
+    "capped": false
+   }
+  },
+  {
+   "eco": "npm",
+   "name": "@opentelemetry/api",
+   "version": "1.9.0",
+   "identical": true,
+   "python": {
+    "weight": "ok",
+    "packages": 1,
+    "direct": 0,
+    "sized": 1,
+    "of": 1,
+    "bytes": 126777,
+    "capped": false
+   },
+   "browser": {
+    "weight": "ok",
+    "packages": 1,
+    "direct": 0,
+    "sized": 1,
+    "of": 1,
+    "bytes": 126777,
+    "capped": false
+   }
+  },
+  {
+   "eco": "npm",
+   "name": "@eggjs/typebox-validate",
+   "version": "4.1.0",
+   "identical": true,
+   "python": {
+    "weight": "ok",
+    "packages": 9,
+    "direct": 4,
+    "sized": 9,
+    "of": 9,
+    "bytes": 602135,
+    "capped": false
+   },
+   "browser": {
+    "weight": "ok",
+    "packages": 9,
+    "direct": 4,
+    "sized": 9,
+    "of": 9,
+    "bytes": 602135,
+    "capped": false
+   }
+  },
+  {
+   "eco": "PyPI",
+   "name": "duckdb",
+   "version": "1.3.2",
+   "identical": true,
+   "python": {
+    "weight": "ok",
+    "packages": 1,
+    "direct": 0,
+    "sized": 1,
+    "of": 1,
+    "bytes": 21129975,
+    "capped": false
+   },
+   "browser": {
+    "weight": "ok",
+    "packages": 1,
+    "direct": 0,
+    "sized": 1,
+    "of": 1,
+    "bytes": 21129975,
+    "capped": false
+   }
+  },
+  {
+   "eco": "npm",
+   "name": "@radix-ui/react-context-menu",
+   "version": "2.4.1",
+   "identical": true,
+   "python": {
+    "weight": "ok",
+    "packages": 39,
+    "direct": 5,
+    "sized": 39,
+    "of": 39,
+    "bytes": 420581,
+    "capped": false
+   },
+   "browser": {
+    "weight": "ok",
+    "packages": 39,
+    "direct": 5,
+    "sized": 39,
+    "of": 39,
+    "bytes": 420581,
+    "capped": false
+   }
+  },
+  {
+   "eco": "npm",
+   "name": "identity-obj-proxy",
+   "version": "3.0.0",
+   "identical": true,
+   "python": {
+    "weight": "ok",
+    "packages": 2,
+    "direct": 1,
+    "sized": 2,
+    "of": 2,
+    "bytes": 25894,
+    "capped": false
+   },
+   "browser": {
+    "weight": "ok",
+    "packages": 2,
+    "direct": 1,
+    "sized": 2,
+    "of": 2,
+    "bytes": 25894,
+    "capped": false
+   }
+  },
+  {
+   "eco": "PyPI",
+   "name": "Flask",
+   "version": "3.0.0",
+   "identical": true,
+   "python": {
+    "weight": "ok",
+    "packages": 7,
+    "direct": 5,
+    "sized": 7,
+    "of": 7,
+    "bytes": 636251,
+    "capped": false
+   },
+   "browser": {
+    "weight": "ok",
+    "packages": 7,
+    "direct": 5,
+    "sized": 7,
+    "of": 7,
+    "bytes": 636251,
+    "capped": false
+   }
+  },
+  {
+   "eco": "npm",
+   "name": "@types/node",
+   "version": "26.6.5",
+   "identical": true,
+   "python": {
+    "weight": "ok",
+    "packages": 2,
+    "direct": 1,
+    "sized": 2,
+    "of": 2,
+    "bytes": 500843,
+    "capped": false
+   },
+   "browser": {
+    "weight": "ok",
+    "packages": 2,
+    "direct": 1,
+    "sized": 2,
+    "of": 2,
+    "bytes": 500843,
+    "capped": false
+   }
+  },
+  {
+   "eco": "npm",
+   "name": "@radix-ui/react-accordion",
+   "version": "1.2.11",
+   "identical": true,
+   "python": {
+    "weight": "ok",
+    "packages": 14,
+    "direct": 9,
+    "sized": 14,
+    "of": 14,
+    "bytes": 90551,
+    "capped": false
+   },
+   "browser": {
+    "weight": "ok",
+    "packages": 14,
+    "direct": 9,
+    "sized": 14,
+    "of": 14,
+    "bytes": 90551,
+    "capped": false
+   }
+  },
+  {
+   "eco": "npm",
+   "name": "isomorphic-git",
+   "version": "1.32.1",
+   "identical": true,
+   "python": {
+    "weight": "ok",
+    "packages": 53,
+    "direct": 12,
+    "sized": 53,
+    "of": 53,
+    "bytes": 1363843,
+    "capped": false
+   },
+   "browser": {
+    "weight": "ok",
+    "packages": 53,
+    "direct": 12,
+    "sized": 53,
+    "of": 53,
+    "bytes": 1363843,
+    "capped": false
+   }
+  },
+  {
+   "eco": "PyPI",
+   "name": "scikit-build-core",
+   "version": "1.1.1",
+   "identical": true,
+   "python": {
+    "weight": "ok",
+    "packages": 3,
+    "direct": 2,
+    "sized": 3,
+    "of": 3,
+    "bytes": 480734,
+    "capped": false
+   },
+   "browser": {
+    "weight": "ok",
+    "packages": 3,
+    "direct": 2,
+    "sized": 3,
+    "of": 3,
+    "bytes": 480734,
+    "capped": false
+   }
+  },
+  {
+   "eco": "npm",
+   "name": "concurrently",
+   "version": "10.0.6",
+   "identical": true,
+   "python": {
+    "weight": "ok",
+    "packages": 20,
+    "direct": 6,
+    "sized": 20,
+    "of": 20,
+    "bytes": 1214417,
+    "capped": false
+   },
+   "browser": {
+    "weight": "ok",
+    "packages": 20,
+    "direct": 6,
+    "sized": 20,
+    "of": 20,
+    "bytes": 1214417,
+    "capped": false
+   }
+  },
+  {
+   "eco": "PyPI",
+   "name": "argcomplete",
+   "version": "3.6.2",
+   "identical": true,
+   "python": {
+    "weight": "ok",
+    "packages": 1,
+    "direct": 0,
+    "sized": 1,
+    "of": 1,
+    "bytes": 43708,
+    "capped": false
+   },
+   "browser": {
+    "weight": "ok",
+    "packages": 1,
+    "direct": 0,
+    "sized": 1,
+    "of": 1,
+    "bytes": 43708,
+    "capped": false
+   }
+  },
+  {
+   "eco": "npm",
+   "name": "@types/jest",
+   "version": "30.0.0",
+   "identical": true,
+   "python": {
+    "weight": "ok",
+    "packages": 43,
+    "direct": 2,
+    "sized": 43,
+    "of": 43,
+    "bytes": 1117626,
+    "capped": false
+   },
+   "browser": {
+    "weight": "ok",
+    "packages": 43,
+    "direct": 2,
+    "sized": 43,
+    "of": 43,
+    "bytes": 1117626,
+    "capped": false
+   }
+  },
+  {
+   "eco": "npm",
+   "name": "@types/jest",
+   "version": "30.0.0",
+   "identical": true,
+   "python": {
+    "weight": "ok",
+    "packages": 43,
+    "direct": 2,
+    "sized": 43,
+    "of": 43,
+    "bytes": 1117626,
+    "capped": false
+   },
+   "browser": {
+    "weight": "ok",
+    "packages": 43,
+    "direct": 2,
+    "sized": 43,
+    "of": 43,
+    "bytes": 1117626,
+    "capped": false
+   }
+  },
+  {
+   "eco": "npm",
+   "name": "pkg-pr-new",
+   "version": "0.0.91",
+   "identical": true,
+   "python": {
+    "weight": "ok",
+    "packages": 1,
+    "direct": 0,
+    "sized": 1,
+    "of": 1,
+    "bytes": 1070997,
+    "capped": false
+   },
+   "browser": {
+    "weight": "ok",
+    "packages": 1,
+    "direct": 0,
+    "sized": 1,
+    "of": 1,
+    "bytes": 1070997,
+    "capped": false
+   }
+  },
+  {
+   "eco": "npm",
+   "name": "hast-util-select",
+   "version": "6.0.4",
+   "identical": true,
+   "python": {
+    "weight": "ok",
+    "packages": 20,
+    "direct": 15,
+    "sized": 20,
+    "of": 20,
+    "bytes": 160096,
+    "capped": false
+   },
+   "browser": {
+    "weight": "ok",
+    "packages": 20,
+    "direct": 15,
+    "sized": 20,
+    "of": 20,
+    "bytes": 160096,
+    "capped": false
+   }
+  },
+  {
+   "eco": "PyPI",
+   "name": "s3fs",
+   "version": "2024.12.0",
+   "identical": true,
+   "python": {
+    "weight": "ok",
+    "packages": 19,
+    "direct": 3,
+    "sized": 19,
+    "of": 19,
+    "bytes": 15634966,
+    "capped": false
+   },
+   "browser": {
+    "weight": "ok",
+    "packages": 19,
+    "direct": 3,
+    "sized": 19,
+    "of": 19,
+    "bytes": 15634966,
+    "capped": false
+   }
+  },
+  {
+   "eco": "npm",
+   "name": "clsx",
+   "version": "2.1.1",
+   "identical": true,
+   "python": {
+    "weight": "ok",
+    "packages": 1,
+    "direct": 0,
+    "sized": 1,
+    "of": 1,
+    "bytes": 3936,
+    "capped": false
+   },
+   "browser": {
+    "weight": "ok",
+    "packages": 1,
+    "direct": 0,
+    "sized": 1,
+    "of": 1,
+    "bytes": 3936,
+    "capped": false
+   }
+  },
+  {
+   "eco": "PyPI",
+   "name": "mkdocs-gen-files",
+   "version": "0.6.1",
+   "identical": true,
+   "python": {
+    "weight": "ok",
+    "packages": 18,
+    "direct": 2,
+    "sized": 18,
+    "of": 18,
+    "bytes": 5877669,
+    "capped": false
+   },
+   "browser": {
+    "weight": "ok",
+    "packages": 18,
+    "direct": 2,
+    "sized": 18,
+    "of": 18,
+    "bytes": 5877669,
+    "capped": false
+   }
+  },
+  {
+   "eco": "PyPI",
+   "name": "scikit-build-core",
+   "version": "1.1.1",
+   "identical": true,
+   "python": {
+    "weight": "ok",
+    "packages": 3,
+    "direct": 2,
+    "sized": 3,
+    "of": 3,
+    "bytes": 480734,
+    "capped": false
+   },
+   "browser": {
+    "weight": "ok",
+    "packages": 3,
+    "direct": 2,
+    "sized": 3,
+    "of": 3,
+    "bytes": 480734,
+    "capped": false
+   }
+  },
+  {
+   "eco": "npm",
+   "name": "distro",
+   "version": "0.4.0",
+   "identical": true,
+   "python": {
+    "weight": "ok",
+    "packages": 1,
+    "direct": 0,
+    "sized": 1,
+    "of": 1,
+    "bytes": 7626,
+    "capped": false
+   },
+   "browser": {
+    "weight": "ok",
+    "packages": 1,
+    "direct": 0,
+    "sized": 1,
+    "of": 1,
+    "bytes": 7626,
+    "capped": false
+   }
+  }
+ ],
+ "packages_compared": 585,
+ "prediction": "ana 190466 (75%): all 30 identical; TRUE"
+}

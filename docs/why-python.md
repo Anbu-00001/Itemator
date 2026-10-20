@@ -3,7 +3,7 @@
 Large systems are moving to Rust, so we checked whether Itemator should too. We asked six research agents to study Rust, C++, Go and TypeScript, and we measured the one thing a faster language would change: how long the rules take. We kept Python. The reasons, in order of weight:
 
 ## 1. Speed is not the problem
-On the 180 real agent changes we replayed, the rules take a median of 0.48 <!-- from: results/timing_rules.json:median_ms --> thousandths of a second per change, and 80 <!-- from: results/timing_rules.json:max_ms --> thousandths for the largest (504 <!-- from: results/timing_rules.json:slowest.files --> files). All 180 <!-- from: results/timing_rules.json:prs_timed --> together take 0.39 <!-- from: results/timing_rules.json:total_s --> seconds. The only slow part of Itemator is waiting for the network, and no language speeds that up. Reproduce it with `.venv/bin/python -I eval/time_rules.py`.
+On the 180 <!-- from: results/timing_rules.json:prs_timed --> real agent changes we replayed, the rules take a median of 0.48 <!-- from: results/timing_rules.json:median_ms --> thousandths of a second per change, and 80 <!-- from: results/timing_rules.json:max_ms --> thousandths for the largest (504 <!-- from: results/timing_rules.json:slowest.files --> files). All 180 <!-- from: results/timing_rules.json:prs_timed --> together take 0.39 <!-- from: results/timing_rules.json:total_s --> seconds. The only slow part of Itemator is waiting for the network, and no language speeds that up. Reproduce it with `.venv/bin/python -I eval/time_rules.py`.
 
 ## 2. A rewrite would change no result and cost most of our time
 The agents' estimates for porting the rules, the CI job, the tests and the replay (the full range across their reports):

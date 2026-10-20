@@ -1,0 +1,468 @@
+{
+ "rubric": "eval/install_time_rubric.json",
+ "ecosystem": "PyPI",
+ "checked": "2026-10-19",
+ "runner": {
+  "description": "k8s.saas-linux-small-amd64.runners-manager.gitlab.com/default ",
+  "cpus": 2,
+  "job": "https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/39194174/showcase/-/jobs/17276404964",
+  "tool": "pip 25.0.1 from /usr/local/lib/python3.12/site-packages/pip (python 3.12)"
+ },
+ "baseline": {
+  "name": "six",
+  "version": "1.16.0",
+  "status": "installed",
+  "seconds": 0.48
+ },
+ "summary": {
+  "lines": 40,
+  "measured": 38,
+  "not_measured": {
+   "needs_source_build": 2
+  },
+  "median_seconds": 1.69,
+  "p90_seconds": 5.65,
+  "total_seconds": 98.1,
+  "baseline_seconds": 0.48,
+  "median_seconds_above_baseline": 1.21,
+  "spearman_bytes_seconds": 0.808,
+  "slowest": [
+   {
+    "name": "formulaic",
+    "version": "1.2.2",
+    "seconds": 12.65,
+    "bytes": 63845517,
+    "pr": "https://github.com/alexhallam/tv/pull/202"
+   },
+   {
+    "name": "fastmcp",
+    "version": "4.1.1",
+    "seconds": 10.92,
+    "bytes": 17630289,
+    "pr": "https://github.com/mlflow/mlflow/pull/17454"
+   },
+   {
+    "name": "pandas",
+    "version": "3.0.6",
+    "seconds": 7.37,
+    "bytes": 27756418,
+    "pr": "https://github.com/mochilang/mochi/pull/4596"
+   }
+  ]
+ },
+ "rows": [
+  {
+   "pr": "https://github.com/NVIDIA/cuda-python/pull/892",
+   "name": "cuda-toolkit",
+   "version": "13.4.3",
+   "packages": 1,
+   "bytes": 2690,
+   "state": "closed",
+   "status": "installed",
+   "seconds": 0.52
+  },
+  {
+   "pr": "https://github.com/amphi-ai/amphi-etl/pull/279",
+   "name": "duckdb",
+   "version": "1.3.2",
+   "packages": 1,
+   "bytes": 21129975,
+   "state": "merged",
+   "status": "installed",
+   "seconds": 2.33
+  },
+  {
+   "pr": "https://github.com/dotnet/aspire/pull/9587",
+   "name": "Flask",
+   "version": "3.0.0",
+   "packages": 7,
+   "bytes": 636251,
+   "state": "open",
+   "status": "installed",
+   "seconds": 1.26
+  },
+  {
+   "pr": "https://github.com/Metta-AI/metta/pull/663",
+   "name": "scikit-build-core",
+   "version": "1.1.1",
+   "packages": 3,
+   "bytes": 480734,
+   "state": "closed",
+   "status": "installed",
+   "seconds": 5.9
+  },
+  {
+   "pr": "https://github.com/gpchelkin/scdlbot/pull/1176",
+   "name": "argcomplete",
+   "version": "3.6.2",
+   "packages": 1,
+   "bytes": 43708,
+   "state": "open",
+   "status": "installed",
+   "seconds": 0.52
+  },
+  {
+   "pr": "https://github.com/ClickHouse/ClickHouse/pull/87093",
+   "name": "s3fs",
+   "version": "2024.12.0",
+   "packages": 19,
+   "bytes": 15634966,
+   "state": "closed",
+   "status": "installed",
+   "seconds": 4.34
+  },
+  {
+   "pr": "https://github.com/lucasrodes/whatstk/pull/160",
+   "name": "mkdocs-gen-files",
+   "version": "0.6.1",
+   "packages": 18,
+   "bytes": 5929811,
+   "state": "open",
+   "status": "installed",
+   "seconds": 2.3
+  },
+  {
+   "pr": "https://github.com/Metta-AI/metta/pull/700",
+   "name": "scikit-build-core",
+   "version": "1.1.1",
+   "packages": 3,
+   "bytes": 480734,
+   "state": "merged",
+   "status": "installed",
+   "seconds": 0.91
+  },
+  {
+   "pr": "https://github.com/MontrealAI/AGI-Alpha-Agent-v0/pull/1164",
+   "name": "click",
+   "version": "8.5.0",
+   "packages": 1,
+   "bytes": 125251,
+   "state": "merged",
+   "status": "installed",
+   "seconds": 0.57
+  },
+  {
+   "pr": "https://github.com/swarmauri/swarmauri-sdk/pull/1401",
+   "name": "pytest-benchmark",
+   "version": "5.3.0",
+   "packages": 7,
+   "bytes": 1873465,
+   "state": "merged",
+   "status": "installed",
+   "seconds": 1.87
+  },
+  {
+   "pr": "https://github.com/crewAIInc/crewAI/pull/1818",
+   "name": "tiktoken",
+   "version": "0.14.0",
+   "packages": 7,
+   "bytes": 2496210,
+   "state": "merged",
+   "status": "installed",
+   "seconds": 1.65
+  },
+  {
+   "pr": "https://github.com/resemble-ai/chatterbox/pull/308",
+   "name": "num2words",
+   "version": "0.5.14",
+   "packages": 2,
+   "bytes": 189426,
+   "state": "closed",
+   "status": "needs_source_build",
+   "seconds": 0.45,
+   "error": "ERROR: Could not find a version that satisfies the requirement docopt>=0.6.2 (from num2words) (from versions: none)\nERROR: No matching distribution found for docopt>=0.6.2"
+  },
+  {
+   "pr": "https://github.com/HKUDS/RAG-Anything/pull/125",
+   "name": "python-dotenv",
+   "version": "1.2.4",
+   "packages": 1,
+   "bytes": 23266,
+   "state": "closed",
+   "status": "installed",
+   "seconds": 0.49
+  },
+  {
+   "pr": "https://github.com/crewAIInc/crewAI-tools/pull/164",
+   "name": "scrapegraph-py",
+   "version": "2.3.1",
+   "packages": 12,
+   "bytes": 3268034,
+   "state": "closed",
+   "status": "installed",
+   "seconds": 2.44
+  },
+  {
+   "pr": "https://github.com/marin-community/marin/pull/1596",
+   "name": "hatchling",
+   "version": "1.32.4",
+   "packages": 6,
+   "bytes": 359571,
+   "state": "merged",
+   "status": "installed",
+   "seconds": 1.03
+  },
+  {
+   "pr": "https://github.com/567-labs/kura/pull/70",
+   "name": "Pillow",
+   "version": "13.0.0",
+   "packages": 1,
+   "bytes": 7144542,
+   "state": "closed",
+   "status": "installed",
+   "seconds": 1.1
+  },
+  {
+   "pr": "https://github.com/sweetice/Deep-reinforcement-learning-with-pytorch/pull/51",
+   "name": "gymnasium",
+   "version": "1.4.0",
+   "packages": 5,
+   "bytes": 17274285,
+   "state": "closed",
+   "status": "installed",
+   "seconds": 3.18
+  },
+  {
+   "pr": "https://github.com/spacetx/starfish/pull/2096",
+   "name": "flake8_import_order",
+   "version": "0.19.2",
+   "packages": 3,
+   "bytes": 866122,
+   "state": "merged",
+   "status": "installed",
+   "seconds": 1.19
+  },
+  {
+   "pr": "https://github.com/varunneal/spotify-mcp/pull/34",
+   "name": "mypy",
+   "version": "2.4.0",
+   "packages": 6,
+   "bytes": 4753808,
+   "state": "closed",
+   "status": "installed",
+   "seconds": 2.75
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/4596",
+   "name": "pandas",
+   "version": "3.0.6",
+   "packages": 4,
+   "bytes": 27756418,
+   "state": "closed",
+   "status": "installed",
+   "seconds": 7.37
+  },
+  {
+   "pr": "https://github.com/codezonediitj/pydatastructs/pull/689",
+   "name": "spin",
+   "version": "0.18",
+   "packages": 4,
+   "bytes": 181020,
+   "state": "open",
+   "status": "installed",
+   "seconds": 0.83
+  },
+  {
+   "pr": "https://github.com/m1balcerak/EnergyMatching/pull/35",
+   "name": "omegaconf",
+   "version": "2.4.0",
+   "packages": 2,
+   "bytes": 1062022,
+   "state": "merged",
+   "status": "installed",
+   "seconds": 0.86
+  },
+  {
+   "pr": "https://github.com/microsoft/agent-lightning/pull/174",
+   "name": "flash-attn",
+   "version": "2.8.1",
+   "packages": 31,
+   "bytes": 828444694,
+   "state": "merged",
+   "status": "needs_source_build",
+   "seconds": 0.39,
+   "error": "ERROR: Could not find a version that satisfies the requirement flash-attn==2.8.1 (from versions: none)\nERROR: No matching distribution found for flash-attn==2.8.1"
+  },
+  {
+   "pr": "https://github.com/cartography-cncf/cartography/pull/1623",
+   "name": "scaleway",
+   "version": "2.12.0",
+   "packages": 10,
+   "bytes": 2484880,
+   "state": "merged",
+   "status": "installed",
+   "seconds": 2.4
+  },
+  {
+   "pr": "https://github.com/oraios/serena/pull/169",
+   "name": "tqdm",
+   "version": "4.70.1",
+   "packages": 1,
+   "bytes": 80199,
+   "state": "closed",
+   "status": "installed",
+   "seconds": 0.57
+  },
+  {
+   "pr": "https://github.com/airbytehq/airbyte/pull/54165",
+   "name": "pendulum",
+   "version": "3.3.0",
+   "packages": 4,
+   "bytes": 705225,
+   "state": "closed",
+   "status": "installed",
+   "seconds": 0.96
+  },
+  {
+   "pr": "https://github.com/AJaySi/ALwrity/pull/228",
+   "name": "Pillow",
+   "version": "13.0.0",
+   "packages": 1,
+   "bytes": 7144542,
+   "state": "open",
+   "status": "installed",
+   "seconds": 1.1
+  },
+  {
+   "pr": "https://github.com/kaito-project/kaito/pull/1359",
+   "name": "openai",
+   "version": "1.97.1",
+   "packages": 16,
+   "bytes": 4470588,
+   "state": "merged",
+   "status": "installed",
+   "seconds": 3.29
+  },
+  {
+   "pr": "https://github.com/onyx-dot-app/onyx/pull/3727",
+   "name": "pytest-xdist",
+   "version": "3.5.0",
+   "packages": 7,
+   "bytes": 1883998,
+   "state": "closed",
+   "status": "installed",
+   "seconds": 1.91
+  },
+  {
+   "pr": "https://github.com/Azure/azure-sdk-for-python/pull/42622",
+   "name": "setuptools",
+   "version": "84.0.0",
+   "packages": 1,
+   "bytes": 818216,
+   "state": "merged",
+   "status": "installed",
+   "seconds": 1.06
+  },
+  {
+   "pr": "https://github.com/Metta-AI/metta/pull/1533",
+   "name": "flask",
+   "version": "3.1.3",
+   "packages": 7,
+   "bytes": 639951,
+   "state": "closed",
+   "status": "installed",
+   "seconds": 1.73
+  },
+  {
+   "pr": "https://github.com/AstrBotDevs/AstrBot/pull/2463",
+   "name": "matrix-nio",
+   "version": "0.26.0",
+   "packages": 23,
+   "bytes": 4000784,
+   "state": "closed",
+   "status": "installed",
+   "seconds": 4.2
+  },
+  {
+   "pr": "https://github.com/mlflow/mlflow/pull/17454",
+   "name": "fastmcp",
+   "version": "4.1.1",
+   "packages": 68,
+   "bytes": 17630289,
+   "state": "closed",
+   "status": "installed",
+   "seconds": 10.92
+  },
+  {
+   "pr": "https://github.com/marin-community/levanter/pull/1139",
+   "name": "click",
+   "version": "8.5.0",
+   "packages": 1,
+   "bytes": 125251,
+   "state": "merged",
+   "status": "installed",
+   "seconds": 0.57
+  },
+  {
+   "pr": "https://github.com/alexhallam/tv/pull/202",
+   "name": "formulaic",
+   "version": "1.2.2",
+   "packages": 10,
+   "bytes": 63845517,
+   "state": "closed",
+   "status": "installed",
+   "seconds": 12.65
+  },
+  {
+   "pr": "https://github.com/digitaldemocracy2030/kouchou-ai/pull/232",
+   "name": "azure-core",
+   "version": "1.41.0",
+   "packages": 7,
+   "bytes": 750721,
+   "state": "merged",
+   "status": "installed",
+   "seconds": 1.31
+  },
+  {
+   "pr": "https://github.com/crewAIInc/crewAI/pull/3027",
+   "name": "agentops",
+   "version": "0.4.21",
+   "packages": 36,
+   "bytes": 3908216,
+   "state": "closed",
+   "status": "installed",
+   "seconds": 5.65
+  },
+  {
+   "pr": "https://github.com/mlco2/codecarbon/pull/884",
+   "name": "PyJWT",
+   "version": "2.15.1",
+   "packages": 1,
+   "bytes": 33860,
+   "state": "merged",
+   "status": "installed",
+   "seconds": 0.5
+  },
+  {
+   "pr": "https://github.com/mlflow/mlflow/pull/17276",
+   "name": "openai",
+   "version": "3.35.1",
+   "packages": 14,
+   "bytes": 5794715,
+   "state": "merged",
+   "status": "installed",
+   "seconds": 4.03
+  },
+  {
+   "pr": "https://github.com/python-cachier/cachier/pull/300",
+   "name": "pytest-rerunfailures",
+   "version": "16.7",
+   "packages": 6,
+   "bytes": 1825225,
+   "state": "open",
+   "status": "installed",
+   "seconds": 1.83
+  }
+ ],
+ "predictions": {
+  "819cbe": "median 2 to 25 s: 1.69, MISSED (below)",
+  "df9088": "Spearman >= 0.5: 0.808, yes",
+  "ee97ca": "at least 30 of 40 measured: 38, yes"
+ },
+ "readme": {
+  "median_seconds": 1.69,
+  "slowest_seconds": 12.65,
+  "measured": 38,
+  "lines": 40
+ }
+}

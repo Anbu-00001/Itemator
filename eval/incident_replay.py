@@ -14,6 +14,7 @@ import re
 import sys
 import urllib.request
 
+from itemator import diffreader as DR
 from itemator import extras as X
 from itemator import moving as MV
 from itemator import shapes as SH
@@ -45,17 +46,7 @@ def fetch(page: str) -> str:
 
 
 def files_of(patch: str) -> list[dict]:
-    """The files of a git patch as the checks read them: {filename, status, patch (hunks only)}."""
-    out = []
-    for block in re.split(r"(?m)^diff --git ", patch)[1:]:
-        m = re.match(r"a/(\S+) b/(\S+)", block)
-        if not m:
-            continue
-        hunks = block[block.find("\n@@"):].lstrip("\n") if "\n@@" in block else ""
-        hunks = re.split(r"(?m)^-- $", hunks)[0]                  # the trailer of a format-patch mail
-        status = "added" if re.search(r"(?m)^new file mode", block) else "removed" if re.search(r"(?m)^deleted file mode", block) else "modified"
-        out.append({"filename": m.group(2), "status": status, "patch": hunks, "binary": bool(re.search(r"(?m)^(?:Binary files|GIT binary patch)", block))})
-    return out
+    return DR.files_of(patch)
 
 
 def run(incident: dict, text: str) -> dict:

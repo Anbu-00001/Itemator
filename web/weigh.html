@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; connect-src https://api.deps.dev https://pypi.org https://registry.npmjs.org; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
+<title>Itemator: weigh a dependency</title>
+<style>
+:root{--bg:#fbfbfa;--fg:#1c1c1a;--muted:#5d5d58;--line:#d9d8d2;--card:#fff;--code:#f1f0ec;--hit:#b3261e;--ok:#1d7a4b;--accent:#4b3fa8}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#151514;--fg:#ecebe6;--muted:#a6a59d;--line:#3a3a36;--card:#1d1d1b;--code:#262622;--hit:#ff8a80;--ok:#7fd6a2;--accent:#b7aef5}}
+:root[data-theme="dark"]{--bg:#151514;--fg:#ecebe6;--muted:#a6a59d;--line:#3a3a36;--card:#1d1d1b;--code:#262622;--hit:#ff8a80;--ok:#7fd6a2;--accent:#b7aef5}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.55 system-ui,sans-serif}
+main{max-width:880px;margin:0 auto;padding:28px 16px 72px}
+h1{font-size:1.6rem;line-height:1.25;margin:0 0 6px}
+h2{font-size:1.05rem;margin:32px 0 8px}
+p{margin:.45em 0}
+.muted{color:var(--muted)}
+.lock{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:2px 12px;font-size:.88rem;color:var(--muted);background:var(--card)}
+textarea{width:100%;min-height:200px;font:13px/1.45 ui-monospace,Menlo,Consolas,monospace;color:var(--fg);background:var(--code);border:1px solid var(--line);border-radius:8px;padding:10px;resize:vertical}
+textarea:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible+label{outline:2px solid var(--accent);outline-offset:2px}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:10px 0}
+button,.file{font:inherit;font-size:.92rem;color:var(--fg);background:var(--card);border:1px solid var(--line);border-radius:6px;padding:5px 12px;cursor:pointer}
+button:hover,.file:hover{border-color:var(--accent)}
+input[type=file]{position:absolute;opacity:0;width:1px;height:1px}
+#summary{font-size:1.15rem;font-weight:650;margin:20px 0 8px}
+.hit{border:1px solid var(--line);border-left:5px solid var(--hit);border-radius:8px;background:var(--card);padding:10px 14px;margin:10px 0}
+.hit .where{font-weight:650}
+.hit .path{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.9rem;word-break:break-all}
+pre{margin:8px 0;padding:8px 10px;background:var(--code);border-radius:6px;overflow-x:auto;font:13px/1.45 ui-monospace,Menlo,Consolas,monospace;white-space:pre-wrap;word-break:break-all}
+.why{color:var(--muted);font-size:.92rem;margin:2px 0}
+.none{border:1px solid var(--line);border-left:5px solid var(--ok);border-radius:8px;background:var(--card);padding:10px 14px}
+table{border-collapse:collapse;width:100%;font-size:.92rem}
+th,td{text-align:left;padding:7px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-weight:650}
+td.n{white-space:nowrap}
+.scroll{overflow-x:auto}
+details{margin:8px 0}
+summary{cursor:pointer}
+a{color:var(--accent)}
+footer{margin-top:36px;font-size:.85rem;color:var(--muted);word-break:break-word}
+input[type=text],select{font:inherit;font-size:.95rem;color:var(--fg);background:var(--code);border:1px solid var(--line);border-radius:6px;padding:5px 10px}
+#name{min-width:16ch}
+ol{padding-left:1.4em}
+.big{font-size:1.25rem;font-weight:650;margin:18px 0 6px}
+</style>
+</head>
+<body>
+<main>
+<h1>One line in a manifest. How much comes with it?</h1>
+<p>When a change adds a dependency its issue did not ask for, Itemator's card says what keeping it costs every fresh install: the packages it brings along and their download size. Try the same measure here, on any PyPI or npm package. <span class="lock" title="This page's Content-Security-Policy lets it reach only these three hosts.">This page talks only to deps.dev, PyPI and npm</span></p>
+<div class="row">
+<label for="eco">Registry</label>
+<select id="eco"><option>PyPI</option><option>npm</option></select>
+<label for="name">Package</label><input id="name" type="text" autocomplete="off" spellcheck="false" placeholder="requests">
+<label for="ver">Version</label><input id="ver" type="text" autocomplete="off" spellcheck="false" placeholder="latest" size="10">
+<button id="go" type="button">Weigh it</button>
+</div>
+<div class="row muted" id="examples">Examples: </div>
+<div class="row">
+<label for="runs">Pipelines a month (optional)</label><input id="runs" type="text" inputmode="numeric" size="8" placeholder="from your CI page">
+</div>
+<p id="status" class="muted" aria-live="polite"></p>
+<div id="out"></div>
+
+<h2>What agents added, measured the same way</h2>
+<p id="study"></p>
+<div class="scroll"><table id="heavy"><thead><tr><th>Pull request</th><th>Line added</th><th>Packages</th><th>Download</th><th>State</th></tr></thead><tbody></tbody></table></div>
+<p class="muted" id="studynote"></p>
+
+<h2>How it is measured</h2>
+<p>deps.dev (Google's Open Source Insights) gives the resolved dependency graph of that version. For each package in it, PyPI gives the size of the file pip would most likely download on a Linux x86_64 runner with CPython 3.12, and npm the tarball's length, read from the answer's headers before the download is stopped. Packages bundled inside another are not counted. A size the registry does not give is unknown, never guessed, and the total becomes "at least". The graph is deps.dev's resolution today; an install with a lockfile or on another day can differ. Download bytes are not energy, and this page does not turn them into it.</p>
+<footer id="footer"></footer>
+</main>
+<script>
+/*WEIGH*/
+const DATA = /*PAYLOAD*/;
+(function () {
+  const $ = (id) => document.getElementById(id);
+  const get = browserGet((u, o) => fetch(u, o));
+  function el(tag, text, cls) { const e = document.createElement(tag); if (text !== undefined) e.textContent = text; if (cls) e.className = cls; return e; }
+  function words(w, runs) {
+    const least = w.capped || w.of > w.sized;
+    const n = w.packages;
+    let s = n <= 1 ? "It brings no other package" : `With what it brings along, ${w.capped ? "at least " : ""}${n} packages (${n - 1} more than the line names)`;
+    s += w.sized ? `, ${least ? "at least" : "about"} ${human(w.bytes)} to download on every fresh install` : ", sizes not given";
+    if (runs && w.sized) s += `. At ${runs} pipelines a month, that is ${least ? "at least" : "about"} ${human(w.bytes * runs)} a month if each one installs it without a cache`;
+    return s + ".";
+  }
+  async function run() {
+    const eco = $("eco").value, name = $("name").value.trim();
+    let version = $("ver").value.trim();
+    const runs = parseInt($("runs").value, 10);
+    $("out").replaceChildren();
+    if (!/^[A-Za-z0-9@][A-Za-z0-9._/@-]{0,213}$/.test(name)) { $("status").textContent = "Type a package name."; return; }
+    $("status").textContent = "Asking deps.dev and the registry…";
+    const t0 = performance.now();
+    try {
+      if (!version) version = await latest(get, eco, name);
+      if (!version) { $("status").textContent = "The registry has no such package."; return; }
+      const w = await weigh(get, eco, name, version);
+      if (w.weight !== "ok") { $("status").textContent = `Not weighed (${w.reason || w.weight}).`; return; }
+      $("status").textContent = `${eco} ${name} ${version}: graph and ${w.of} sizes read in ${((performance.now() - t0) / 1000).toFixed(1)} s.`;
+      $("out").append(el("p", words(w, runs > 0 ? runs : 0), "big"));
+      if (w.of > w.sized) $("out").append(el("p", `${w.of - w.sized} of ${w.of} sizes not given by the registry.`, "muted"));
+      if (w.largest.length) {
+        $("out").append(el("p", "Largest downloads:"));
+        const ol = el("ol");
+        for (const x of w.largest) ol.append(el("li", `${x.name} ${x.version}: ${human(x.bytes)}`));
+        $("out").append(ol);
+      }
+    } catch (e) {
+      $("status").textContent = "A registry did not answer; try again.";
+    }
+  }
+  $("go").addEventListener("click", run);
+  $("name").addEventListener("keydown", (e) => { if (e.key === "Enter") run(); });
+  for (const ex of DATA.examples) {
+    const b = el("button", `${ex.name} (${ex.eco})`); b.type = "button";
+    b.addEventListener("click", () => { $("eco").value = ex.eco; $("name").value = ex.name; $("ver").value = ex.version || ""; run(); });
+    $("examples").append(b);
+  }
+  const s = DATA.study;
+  $("study").textContent = s.sentence;
+  const tb = document.querySelector("#heavy tbody");
+  for (const h of s.heaviest) {
+    const tr = el("tr"); const a = el("a", h.pr.replace("https://github.com/", "")); a.href = h.pr; a.rel = "noopener noreferrer";
+    const td = el("td"); td.append(a); tr.append(td, el("td", `${h.name} (${h.ecosystem})`), el("td", String(h.packages), "n"), el("td", `${s.least_note && h.at_least ? "at least " : ""}${human(h.bytes)}`, "n"), el("td", h.state));
+    tb.append(tr);
+  }
+  $("studynote").textContent = s.note;
+  // A link such as #npm/express, #pypi/pandas or #npm/@types/node@20.11.0 fills the form and weighs it.
+  let hash = ""; try { hash = decodeURIComponent(location.hash); } catch (e) { hash = ""; }
+  const m = /^#(pypi|npm)\/((?:@[^/@]+\/)?[^@]+)(?:@(.+))?$/i.exec(hash);
+  if (m) { $("eco").value = m[1].toLowerCase() === "npm" ? "npm" : "PyPI"; $("name").value = m[2]; $("ver").value = m[3] || ""; run(); }
+  $("footer").textContent = DATA.footer;
+})();
+</script>
+</body>
+</html>

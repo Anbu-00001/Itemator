@@ -208,6 +208,10 @@ def run(i, text):
     shutil.copytree(REPO / "itemator", d / "itemator"); shutil.copytree(REPO / "tests", d / "tests")
     (d / "itemator/extras.py").write_text(text)
     return subprocess.run([PY, "-m", "pytest", "-q", "-p", "no:cacheprovider", *TESTS], cwd=d, capture_output=True, text=True)
+if "--anchors-only" in sys.argv:            # tests/test_mutation_anchors.py: every anchor still names one place in the code
+    for label, old, new in M:
+        assert src.count(old) == 1, f"mutant {label!r}: anchor found {src.count(old)} times"
+    print(f"{len(M)} anchors found"); sys.exit(0)
 base = run(99, src)
 if base.returncode != 0:
     print("the unmutated copy fails, so no mutant can be judged:\n" + base.stdout[-2000:]); sys.exit(2)

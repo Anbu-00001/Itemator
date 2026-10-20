@@ -1,0 +1,279 @@
+{
+ "what": "Written before the checks are run on these cases. A held-out replay: does the untrusted-text check, UNCHANGED since the first replay (results/advisory_replay_v1.json), name the vulnerable line of 31 more real, published advisories about GitHub Actions? These cases were found by a Sonnet research agent (fleet 29, report S1) from github.com/advisories and securitylab.github.com; I opened and checked each fix reference exists with the GitHub API (all 31 resolve). None of the 8 cases of the first replay is among them. I did not read their diffs before writing this file.",
+ "cases": [
+  {
+   "n": 1,
+   "advisory": "GHSL-2024-277",
+   "repo": "appsmithorg/appsmith",
+   "pattern": "C",
+   "kind": "W",
+   "fix": "e0fb8f91cfd5218ae37a69577ae376ed415b130e"
+  },
+  {
+   "n": 2,
+   "advisory": "GHSL-2024-274",
+   "repo": "cilium/cilium",
+   "pattern": "A",
+   "kind": "W",
+   "fix": "d5f9e045a59301d0bb6ce864009f2844150dd445"
+  },
+  {
+   "n": 3,
+   "advisory": "GHSL-2024-275",
+   "repo": "cilium/cilium",
+   "pattern": "C",
+   "kind": "W",
+   "fix": "695a4662dc1a45449a1686989a1e020a43a6dcf1"
+  },
+  {
+   "n": 4,
+   "advisory": "GHSA-f67f-hcr6-94mf",
+   "repo": "SHAdd0WTAka/Zen-Ai-Pentest",
+   "pattern": "A",
+   "kind": "W",
+   "fix": "26c4e07df780f11b7e901ad2d88b3dc5ce8a1aca"
+  },
+  {
+   "n": 5,
+   "advisory": "GHSA-vxmw-7h4f-hqxh",
+   "repo": "pypa/gh-action-pypi-publish",
+   "pattern": "B",
+   "kind": "C",
+   "fix": "77db1b7cf7dcea2e403bb4350516284282740dd6"
+  },
+  {
+   "n": 6,
+   "advisory": "GHSA-gq52-6phf-x2r6",
+   "repo": "tj-actions/branch-names",
+   "pattern": "E",
+   "kind": "C",
+   "fix": "e497ceb8ccd43fd9573cf2e375216625bc411d1f"
+  },
+  {
+   "n": 7,
+   "advisory": "GHSA-8v8w-v8xg-79rf",
+   "repo": "tj-actions/branch-names",
+   "pattern": "B",
+   "kind": "C",
+   "fix": "4923d1ca41f928c24f1c1b3af9daaadfb71e6337"
+  },
+  {
+   "n": 8,
+   "advisory": "GHSA-7x29-qqmq-v6qc",
+   "repo": "ultralytics/actions",
+   "pattern": "A",
+   "kind": "C",
+   "fix": "8069e0ac4c23170f308ea6985783e64ca4a7900a"
+  },
+  {
+   "n": 9,
+   "advisory": "GHSA-qq99-p57r-g3v7",
+   "repo": "huggingface/text-generation-inference",
+   "pattern": "A",
+   "kind": "W",
+   "fix": "88702d876383f7200eccf67e28ba00500dc804bb"
+  },
+  {
+   "n": 10,
+   "advisory": "GHSA-ghm2-rq8q-wrhc",
+   "repo": "tj-actions/verify-changed-files",
+   "pattern": "F",
+   "kind": "C",
+   "fix": "498d3f316f501aa72485060e8c96fde7b2014f12"
+  },
+  {
+   "n": 11,
+   "advisory": "GHSA-pwf7-47c3-mfhx",
+   "repo": "j178/prek-action",
+   "pattern": "D",
+   "kind": "C",
+   "fix": "6b7c6ef5c3875c766893b881b40773cd5605bde3"
+  },
+  {
+   "n": 12,
+   "advisory": "GHSA-65rg-554r-9j5x",
+   "repo": "lycheeverse/lychee-action",
+   "pattern": "D",
+   "kind": "C",
+   "fix": "7cd0af4c74a61395d455af97419279d86aafaede"
+  },
+  {
+   "n": 13,
+   "advisory": "GHSA-3g6g-gq4r-xjm9",
+   "repo": "NationalSecurityAgency/emissary",
+   "pattern": "A",
+   "kind": "W",
+   "fix": "38ab53e309f0a9cfa2f047240814bcf8b12c3409"
+  },
+  {
+   "n": 14,
+   "advisory": "GHSL-2025-090",
+   "repo": "harvester/harvester",
+   "pattern": "A",
+   "kind": "W",
+   "fix": "aa2550b6b765a1aa159da7f89da057ffffd3e882"
+  },
+  {
+   "n": 15,
+   "advisory": "GHSL-2025-093",
+   "repo": "MervinPraison/PraisonAI",
+   "pattern": "G",
+   "kind": "C",
+   "fix": "e96afb5eb046b7067370f94288ec1b6955dca4a6"
+  },
+  {
+   "n": 16,
+   "advisory": "GHSA-2qvg-qr73-mqxp",
+   "repo": "wktk/conflibot",
+   "pattern": "H",
+   "kind": "O",
+   "fix": "59e255c49c920fd6b67471ab9ef3bf194439a3f2"
+  },
+  {
+   "n": 17,
+   "advisory": "GHSL-2024-205/206",
+   "repo": "Stirling-Tools/Stirling-PDF",
+   "pattern": "C",
+   "kind": "W",
+   "fix": "a6ae3734ca15c0cf390b34b7e308e182af85e188"
+  },
+  {
+   "n": 18,
+   "advisory": "GHSL-2025-106",
+   "repo": "esphome/esphome-docs",
+   "pattern": "A",
+   "kind": "W",
+   "fix": "885972b35668f969841b9e5a138de502d768f5ea"
+  },
+  {
+   "n": 19,
+   "advisory": "GHSL-2024-319",
+   "repo": "trinodb/trino",
+   "pattern": "A",
+   "kind": "W",
+   "pr": 23980
+  },
+  {
+   "n": 20,
+   "advisory": "GHSL-2024-326",
+   "repo": "actualbudget/actual",
+   "pattern": "C",
+   "kind": "W",
+   "pr": 5952
+  },
+  {
+   "n": 21,
+   "advisory": "GHSL-2024-209",
+   "repo": "dream-num/univer",
+   "pattern": "A",
+   "kind": "W",
+   "pr": 3509
+  },
+  {
+   "n": 22,
+   "advisory": "GHSL-2024-281",
+   "repo": "ant-design/ant-design-web3",
+   "pattern": "C",
+   "kind": "W",
+   "pr": 1352
+  },
+  {
+   "n": 23,
+   "advisory": "GHSL-2024-322",
+   "repo": "sympy/sympy",
+   "pattern": "C",
+   "kind": "W",
+   "pr": 27204
+  },
+  {
+   "n": 24,
+   "advisory": "GHSA-6q4m-7476-932w",
+   "repo": "rlespinasse/github-slug-action",
+   "pattern": "B",
+   "kind": "C",
+   "fix": "102b1a064a9b145e56556e22b18b19c624538d94"
+  },
+  {
+   "n": 25,
+   "advisory": "GHSA-2487-9f55-2vg9",
+   "repo": "OZI-Project/publish",
+   "pattern": "B",
+   "kind": "C",
+   "fix": "abd8524ec69800890529846b3ccfb09ce7c10b5c"
+  },
+  {
+   "n": 26,
+   "advisory": "GHSA-9chj-cp8j-3c5f",
+   "repo": "wazuh/wazuh",
+   "pattern": "D",
+   "kind": "C",
+   "fix": "44bf114d2f4901aa82ecbb9e5b0780f7c3ca5263"
+  },
+  {
+   "n": 27,
+   "advisory": "GHSL-2024-120",
+   "repo": "milvus-io/milvus",
+   "pattern": "A",
+   "kind": "W",
+   "fix": "26945517577d5b6496f4a19f9429087c444e34fe"
+  },
+  {
+   "n": 28,
+   "advisory": "GHSL-2025-101",
+   "repo": "JurajNyiri/HomeAssistant-Tapo-Control",
+   "pattern": "A",
+   "kind": "W",
+   "fix": "2a3b80ff128ddf4f410c97dd47a94343792ce43c"
+  },
+  {
+   "n": 29,
+   "advisory": "GHSL-2023-181",
+   "repo": "pytorch/pytorch",
+   "pattern": "A",
+   "kind": "C",
+   "pr": 107753
+  },
+  {
+   "n": 30,
+   "advisory": "GHSA-9p44-j4g5-cfx5",
+   "repo": "aquasecurity/trivy-action",
+   "pattern": "H",
+   "kind": "C/O",
+   "fix": "7aca5acc9500b463826cc47a47a65ad7d404b045"
+  },
+  {
+   "n": 31,
+   "advisory": "GHSA-pqwm-q9pv-ph8r",
+   "repo": "shivammathur/setup-php",
+   "pattern": "H",
+   "kind": "O",
+   "fix": "eeef37e059fb5368a5bc8ed8ce45ff54bd39b80b"
+  }
+ ],
+ "pattern_key": {
+  "A": "plain event expression in a shell line",
+  "B": "expression with an a || b fallback",
+  "C": "value passed through env: or a step output, then expanded",
+  "D": "input of a composite action",
+  "E": "shell variable fed to eval",
+  "F": "action output of file names",
+  "G": "AI-prompt builder",
+  "H": "other (code that builds a shell command)"
+ },
+ "unit": "One fixing commit (or, for 6 cases that have no single commit page, the files of the fixing pull request). The diff is fetched from the GitHub API at run time (public, read only) and is not stored.",
+ "reverse": "As in eval/advisory_replay_rubric.json: the fix is turned round so that the vulnerable lines are the added lines.",
+ "measures": [
+  "caught: the untrusted check names at least one line of the turned-round diff, and that line is one of the lines the fix removed",
+  "silent on the fix: the untrusted check names nothing on the fix as committed",
+  "silent on the fix, counted again without the cases whose fix deletes the vulnerable file (then the fixed side has no added lines, so silence proves nothing)",
+  "caught and missed, both split by pattern letter and by file kind (workflow, composite action, other)",
+  "also reported: what shapes and moving say on both sides, as counts"
+ ],
+ "rule": "The check is run once, unchanged: itemator/untrusted.py is the version on main at the commit that carries this file. No bar: the counts are the result, the misses are listed with the pattern and the reason in plain words. Nothing in untrusted.py or its constants is changed before the registered run. A later rule change is a new version (v2) with its own rubric, written from the 8 first cases only, and its result on these 31 is reported next to this one, never instead of it.",
+ "published": "Advisory ids, repository names, commit ids, file paths, line numbers, kinds and counts. No diff text.",
+ "predictions_before_run": {
+  "caught_of_31_interval": "7 to 14 (80%)",
+  "fix_silent_of_31_at_least_28": "75%"
+ },
+ "limits": "The cases were chosen because an advisory exists with a fix I could open, so they are the reported ones; a false-alarm control is the Mesa and agent-commit runs. Pattern letters were assigned by the research agent from the diffs it opened, not by me. Row 29 (pytorch) is a pull request that was not merged on GitHub (landed by the project's own bot); its diff is still the fix. Rows 16, 30 and 31 are code that builds a shell command, not a workflow expression, and are not expected to be caught."
+}

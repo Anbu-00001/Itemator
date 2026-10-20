@@ -5,12 +5,19 @@ Run:  python tools/hardcode_audit.py [--root DIR] [--only N ...]
 Exit: 0 when every check passes, 1 on any FAIL.  Python 3.12, standard library only.
 
 Checks (each prints PASS or FAIL with file:line):
- 1. Numbers trace to results. Every number in README.md and docs/**/*.md needs
+ 1. Numbers trace to results. Every number in README.md, AGENTS.md, docs/**/*.md,
+    skills/**/*.md and the text of web/*.html (script and style dropped; placeholder,
+    title, alt, aria-label and value shown) needs
     `<!-- from: results/<file>.json:<json.path> -->` on the same line, and the value
     at that path must equal the number shown (a % may show value or value*100;
     shown decimals round half up; a comment matching no number is also a FAIL).
     Exempt: years 1900-2099, versions (x.y.z, "Python 3.12", ">=3.12"), dates, times,
-    issue/PR numbers (#12, "PR 12"), list numbering, URLs and link targets.
+    issue/PR numbers (#12, "PR 12"), list numbering, URLs and link targets, and a line
+    marked `<!-- example -->` (a made-up sample, such as a card line in a skill).
+    `--also FILE` lists, for a person to review, each number in a file that cannot carry
+    source comments (the Devpost draft) that is not a number the repository shows with a
+    source. A quoted live output or someone else's figure belongs there, so the list
+    never changes the exit code.
  2. Pre-registration holds. A results file whose summary has `predictions_sha256`
     must name the file in `summary.predictions`, and that file must hash to it.
  3. Nothing seeded is shown as live. A file under demo/, fixtures/ or seed/ (any
@@ -87,7 +94,8 @@ def project_files(root: Path, tracked_only: bool = False) -> list[str]:
 
 
 def numbers_files(root: Path) -> list[Path]:
-    found = [root / "README.md"] + sorted((root / "docs").glob("**/*.md"))
+    found = [root / "README.md", root / "AGENTS.md"] + sorted((root / "docs").glob("**/*.md"))
+    found += sorted((root / "skills").glob("**/*.md")) + sorted((root / "web").glob("*.html"))
     return [p for p in found if p.is_file()]
 
 
@@ -104,6 +112,20 @@ def results_files(root: Path) -> list[Path]:
 FROM_ANY = re.compile(r"<!--\s*from:.*?-->", re.S)
 FROM_OK = re.compile(r"<!--\s*from:\s*(results/[^\s:]+\.json):(\S+?)\s*-->")
 ALL_COMMENTS = re.compile(r"<!--.*?-->", re.S)
+EXAMPLE = re.compile(r"<!--\s*example\s*-->")
+HTML_DROP = re.compile(r"<(script|style)\b.*?</\1\s*>", re.I | re.S)
+HTML_TAG = re.compile(r"<(?!!--)[^>]*>", re.S)
+HTML_SHOWN = re.compile(r"""\b(?:placeholder|title|alt|aria-label|value)\s*=\s*(?:"([^"]*)"|'([^']*)')""", re.I)
+
+
+def shown_text(path: Path, text: str) -> str:
+    """What a reader sees, line for line. A page keeps its comments (so it carries sources the same way) and the attribute
+    values a browser shows; a hand-typed placeholder count got past the audit when it read only Markdown."""
+    if path.suffix != ".html":
+        return text
+    keep = lambda m: "\n" * m.group(0).count("\n")                                   # noqa: E731
+    text = HTML_DROP.sub(keep, text)
+    return HTML_TAG.sub(lambda m: " " + " ".join(a or b for a, b in HTML_SHOWN.findall(m.group(0))) + " " + keep(m), text)
 PATH_OK = re.compile(r"(?:[A-Za-z0-9_][\w-]*|\[\d+\])(?:\.[A-Za-z0-9_][\w-]*|\[\d+\])*")
 
 
@@ -194,7 +216,7 @@ class Results:
 # ---------------------------------------------------------------- check 1
 MONTHS = "Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Sept|Oct|Nov|Dec|January|February|March|April|June|July|August|September|October|November|December"
 NUM_RE = re.compile(r"(?<![\w.#!@])(?P<int>\d{1,3}(?:,\d{3})+|\d+)(?P<frac>\.\d+)?(?P<suf>%|[A-Za-z]{1,3})?(?![\w])")
-VERSION_PREFIX = re.compile(r"\b(?:python|py|version|ver|release|v)\s*$", re.I)
+VERSION_PREFIX = re.compile(r"\b(?:c?python|py|version|ver|release|v)\s*$", re.I)
 COMPARATOR_PREFIX = re.compile(r"(?:==|>=|<=|~=|!=|>|<)\s*$")
 VERSION_NAME_PREFIX = re.compile(r"\b(?:gitlab|duckdb|pytest|node|go|rust|ruby)\s*$", re.I)   # only with a decimal part
 ISSUE_PREFIX = re.compile(r"(?:\b(?:issues?|prs?|mrs?|pull requests?|merge requests?|pull)\s*|[#!]\s*)$", re.I)
@@ -259,14 +281,15 @@ def shown_equals(shown: Shown, value) -> bool:
 def check_numbers(root: Path) -> list[Finding]:
     res, found = Results(root), []
     for path in numbers_files(root):
-        name, text = rel(root, path), read(path)
+        name, text = rel(root, path), shown_text(path, read(path))
+        examples = {line_of(text, m.start()) for m in EXAMPLE.finditer(text)}
         by_line: dict[int, list[str]] = {}
         for m in FROM_ANY.finditer(text):
             by_line.setdefault(line_of(text, m.start()), []).append(m.group(0))
         body = ALL_COMMENTS.sub(lambda m: "\n" * m.group(0).count("\n"), text)
         lines = body.split("\n")
         for no in sorted(set(by_line) | set(range(1, len(lines) + 1))):
-            tokens = number_tokens(lines[no - 1]) if no <= len(lines) else []
+            tokens = number_tokens(lines[no - 1]) if no <= len(lines) and no not in examples else []
             values = []
             for c in by_line.get(no, []):
                 ok = FROM_OK.fullmatch(c)
@@ -299,6 +322,32 @@ def check_numbers(root: Path) -> list[Finding]:
 
 
 # ---------------------------------------------------------------- check 2
+def sourced_values(root: Path) -> list:
+    res, out = Results(root), []
+    for path in numbers_files(root):
+        for m in FROM_OK.finditer(read(path)):
+            data = res.get(m.group(1))
+            try:
+                out.append(resolve_json_path(data, m.group(2)))
+            except (KeyError, IndexError, ValueError, TypeError):
+                pass                                                        # check 1 reports it
+    return out
+
+
+def check_also(root: Path, paths: list[Path]) -> list[Finding]:
+    """A file that cannot carry source comments (the Devpost text): every number in it must be one the repository shows with a
+    source. It cannot tell two equal numbers apart, so it catches a stale or hand-typed count, not a number put in the wrong place."""
+    values, found = sourced_values(root), []
+    for path in paths:
+        text = ALL_COMMENTS.sub(lambda m: "\n" * m.group(0).count("\n"), read(path))
+        examples = {line_of(read(path), m.start()) for m in EXAMPLE.finditer(read(path))}
+        for no, line in enumerate(text.split("\n"), 1):
+            for t in [] if no in examples else number_tokens(line):
+                if not any(shown_equals(t, v) for v in values):
+                    found.append(Finding(str(path), no, f"{t.text!r} is not a number the repository shows with a source"))
+    return found
+
+
 def sha256_file(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
@@ -434,6 +483,17 @@ UNSIGNED_PLATFORM_COMMIT = "36891e91"
 SERVICE_ACCOUNT_EMAIL = re.compile(r"service_account_group_121124982_[0-9a-f]{32}@noreply\.gitlab\.com")
 
 
+def _merge_is_git_own(root: Path, sha: str, parents: list[str]) -> bool:
+    """True when the merge commit holds exactly what git itself makes of its two parents (so no hand-made change, which a
+    sign-off would cover). Two edits to neighbouring lines of one file merge cleanly yet show in `diff-tree --cc`, so that
+    diff alone is not the test; it is the fallback for a git too old to have `merge-tree --write-tree`."""
+    if len(parents) == 2:
+        made = git(root, "merge-tree", "--write-tree", *parents)
+        if made.returncode == 0:
+            return made.stdout.split("\n")[0].strip() == git(root, "rev-parse", f"{sha}^{{tree}}").stdout.strip()
+    return not git(root, "diff-tree", "--cc", "--no-commit-id", "-p", "-r", sha).stdout.strip()
+
+
 def check_commits(root: Path) -> list[Finding]:
     done = git(root, "log", "--format=%H%x1f%P%x1f%ae%x1f%B%x1e")
     if done.returncode != 0:
@@ -453,7 +513,7 @@ def check_commits(root: Path) -> list[Finding]:
         # Two more kinds are not written by a person: the merge commit GitLab makes when the Merge button is used
         # (it holds no change of its own; its parents are checked) and a commit made by a flow's service account
         # (a person who does not sign it off has not accepted the DCO for it; the merge request they approve is theirs).
-        if len(parents.split()) > 1 and "See merge request " in body and not git(root, "diff-tree", "--cc", "--no-commit-id", "-p", "-r", sha).stdout.strip():
+        if len(parents.split()) > 1 and "See merge request " in body and _merge_is_git_own(root, sha, parents.split()):
             continue                                   # a merge that adds changes of its own needs a sign-off like any commit
         if SERVICE_ACCOUNT_EMAIL.fullmatch(email):
             continue
@@ -592,14 +652,20 @@ def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(description="Prove the repository's claims are not hardcoded.")
     ap.add_argument("--root", type=Path, default=DEFAULT_ROOT)
     ap.add_argument("--only", type=int, nargs="+", metavar="N", help="run only these check numbers")
+    ap.add_argument("--also", type=Path, nargs="+", default=[], metavar="FILE", help="more text whose numbers must be sourced ones")
     args = ap.parse_args(argv)
     results = run(args.root.resolve(), set(args.only or []))
+    review = check_also(args.root.resolve(), args.also) if args.also else []
     for i, name, findings in results:
         print(f"{'FAIL' if findings else 'PASS'}  {i}. {name}")
         for f in findings:
             print(f"      {f}")
     failed = [i for i, _, f in results if f]
     print(f"\n{len(results) - len(failed)} passed, {len(failed)} failed" + (f" (checks {', '.join(map(str, failed))})" if failed else ""))
+    if args.also:
+        print(f"\nREVIEW  {len(review)} number(s) in --also files that the repository does not show with a source:")
+        for f in review:
+            print(f"      {f}")
     return 1 if failed else 0
 
 

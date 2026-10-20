@@ -26,7 +26,7 @@ M = [
  # ---- state logic
  ("state: no_issue dropped", '    if not issues:\n        return "no_issue"\n', ""),
  ("state: author check any()", 'and all(i["author_id"] == mr_author_id for i in issues)', 'and any(i["author_id"] == mr_author_id for i in issues)'),
- ("state: author check dropped", '    if _author_wrote(issues, mr_author_id):\n        return "author_wrote_issue"\n', ""),
+ ("state: author check dropped", '    if _author_wrote(issues, mr_author_id) and not agent:\n        return "author_wrote_issue"\n', ""),
  ("state: author outranks extras", '    if analysis.extras:                      # the extras are the point; the author note rides along as a caveat\n', '    if analysis.extras and not _author_wrote(issues, mr_author_id):\n'),
  ("state: extras dropped", '    if analysis.extras:                      # the extras are the point; the author note rides along as a caveat\n        return "extras"\n', ""),
  ("card: caveat dropped", '"caveat_line": caveat,', '"caveat_line": None,'),
@@ -35,10 +35,11 @@ M = [
  ("state: no_issue keeps extras", 'found = [] if state == "no_issue" else analysis.extras', "found = analysis.extras"),
  ("issues: closes_issues ignored", "    if closes:\n", "    if False:\n"),
  ("issues: description fallback dropped", "    for n in closing_refs(description):", "    for n in []:"),
- ("api: token sent first", "status, body = self.http(url, {})", 'status, body = self.http(url, {"JOB-TOKEN": self.token} if self.token else {})'),
+ ("api: job token never sent", 'status, body = self._once(url, {"JOB-TOKEN": self.token} if self.token else {})', "status, body = self._once(url, {})"),
+ ("api: no anonymous retry", "if status in (401, 403, 404) and self.token:", "if False:"),
  ("card: singular wrong", '"Skim this file." if n == 1 else', '"Skim this file." if n == 0 else'),
  ("card: injection line dropped", '"injection_line": INJECTION_LINE if injection else None}', '"injection_line": None}'),
- ("card: todo without remove (T23)", ', "remove" to drop it.\'', ".'"),
+ ("card: todo without remove (T23)", ', "remove" to drop it. {CONSENT}\'', ". {CONSENT}'"),
  # ---- injection scan
  ("scan: removed lines scanned", '        elif line.startswith("+"):\n            yield', '        elif line.startswith(("+", "-")):\n            yield'),
  ("scan: context lines not counted", '        elif line.startswith(" "):\n            n += 1', '        elif line.startswith(" "):\n            pass'),
@@ -155,7 +156,7 @@ RG = [
  ("osv: aliases counted again", "        if not ids & seen:\n", "        if True:\n"),
  ("osv: odd ids kept", " and _ADVISORY_ID.fullmatch(v[\"id\"])][:20]", "][:20]"),
  ("osv: more pages ignored", 'rec["advisories_partial"] = True', "pass"),
- ("osv: PyPI name not normalised", '_pep503(name) if eco == "PyPI" else name', "name"),
+ ("osv: PyPI name not normalised", '_pep503(name) if eco == "PyPI" else canonical', "canonical"),
  ("osv: errors escape", '            rec["advisories"], rec["advisories_reason"] = None, _reason(ex)', "            raise"),
  ("pypi: first release from the last file", "first = dates[0] if dates else None", "first = dates[-1] if dates else None"),
  ("pypi: name check dropped", 'if _pep503(str(info.get("name") or "")) != _pep503(name):', "if False:"),
@@ -172,13 +173,13 @@ RG = [
  ("skip: own package looked up", 'if (by_path.get(e.path) or {}).get("status") == "added" and kind in X._PACKAGE_MANIFESTS:', "if False:"),
  ("skip: URL source looked up", 'if "not from the package index" in e.why:', "if False:"),
  ("skip: local path looked up", "    if _local(eco, e.name, line):", "    if False:"),
- ("skip: other ecosystems tried", 'SUPPORTED = ("PyPI", "npm", "crates.io")', 'SUPPORTED = ("PyPI", "npm", "crates.io", "Go")'),
+ ("skip: other ecosystems tried", 'SUPPORTED = ("PyPI", "npm", "crates.io", "NuGet", "Go")', 'SUPPORTED = ("PyPI", "npm", "crates.io", "NuGet", "Go", "RubyGems")'),
  ("redirect: other hosts followed", "new.hostname != old.hostname or ", ""),
  ("redirect: http followed", 'new.scheme != "https" or ', ""),
  ("redirect: handler not installed", "_OPENER = urllib.request.build_opener(_SameHost)", "_OPENER = urllib.request.build_opener()"),
  ("fetch: no User-Agent", 'headers = {"Accept": "application/json", "User-Agent": USER_AGENT}', 'headers = {"Accept": "application/json"}'),
  ("fetch: timeout read as network", 'raise LookupFailed("timeout" if isinstance(e.reason, TimeoutError) else "network") from e', 'raise LookupFailed("network") from e'),
- ("fetch: HTTP error raised", '        return e.code, b""', '        raise LookupFailed("network")'),
+ ("fetch: HTTP error raised", '            return r.status, _read(r, deadline, cap)\n    except urllib.error.HTTPError as e:\n        return e.code, b""', '            return r.status, _read(r, deadline, cap)\n    except urllib.error.HTTPError as e:\n        raise LookupFailed("network")'),
  ("job: lookup errors escape the record", "        except Exception as ex:          # never fail the job because of a lookup", "        except LookupFailed as ex:"),
  ("job: broken request escapes", "            except Exception as ex:\n                packages.append(", "            except LookupFailed as ex:\n                packages.append("),
  # ---- T22: the T21 audit's findings (licence shape, bounds, network location, deadline, caps, long lines, honesty)
@@ -235,7 +236,7 @@ RC = [
  ("stub: sentence after the replies", '{why}{facts} To keep it, reply with its exact name. "', '{why} To keep it, reply with its exact name.{facts} "'),
  ("plain_facts: registry dropped", '        plain["registry"] = registry', "        pass"),
  ("job: registries not asked by default", "registry_fetch or RG.fetch", "registry_fetch"),
- ("facts: fetcher ignored", "registry = RG.look_up(grouped, by_path, registry_fetch, now) if registry_fetch else [None] * len(grouped)", "registry = [None] * len(grouped)"),
+ ("facts: fetcher ignored", "registry = RG.look_up(grouped, by_path, registry_fetch, now, weigh=True) if registry_fetch else [None] * len(grouped)", "registry = [None] * len(grouped)"),
  # ---- T22: names with a backtick or a control character (T21 FIX 2)
  ("name: backtick kept", 'r"[`\\x00-', 'r"[\\x00-'),
  ("name: C0 controls kept", "\\x00-\\x1f\\x7f", "\\x0a\\x0d\\x7f"),
@@ -273,7 +274,7 @@ PC = [
  ("checker: any value means base", 'env.get("ITEMATOR_CHECKER") == "base" and', 'env.get("ITEMATOR_CHECKER") is not None and'),
 ]
 PO = [
- ("schema: unknown table allowed", "        if table not in SCHEMA:\n            return", "        if False:\n            return"),
+ ("schema: unknown table allowed", '        if table not in SCHEMA and table != "reasons":\n            return', "        if False:\n            return"),
  ("schema: non-table allowed", "        if not isinstance(value, dict):\n            return", "        if False:\n            return"),
  ("schema: unknown key allowed", "            if want is None:\n", "            if False:\n"),
  ("schema: wrong type allowed", "            if type(v) is not want:", "            if False:"),
@@ -495,7 +496,7 @@ T42 = [(label, old, new, path, test) for label, old, new, path, test in [
  ("t42: label added to no-issue merge request", 'or (the label "itemator::no-issue" is not on the merge request and the label "itemator::needs-names" is missing)', 'or the label "itemator::needs-names" is missing', FL, TP),
 ]]
 T43 = [(label, old, new, path, test) for label, old, new, path, test in [
- ("t43: no marker needed", 'if not isinstance(body, str) or not MARKER.search(body):', 'if not isinstance(body, str):', LG, TL),
+ ("t43: no marker needed", "    if not marker:\n        return None\n    items = []", "    items = []", LG, TL),
  ("t43: any author believed", ' or str((n.get("author") or {}).get("username", "")) != REACT_BOT', "", LG, TL),
  ("t43: a name that starts like the account believed", 'str((n.get("author") or {}).get("username", "")) != REACT_BOT', 'not str((n.get("author") or {}).get("username", "")).startswith(REACT_BOT)', LG, TL),
  ("t43: system notes believed", 'if not isinstance(n, dict) or n.get("system") or', "if not isinstance(n, dict) or", LG, TL),
@@ -599,7 +600,7 @@ T51 = [(label, old, new, path, test) for label, old, new, path, test in [
 # T52: the deployment page (itemator/shipped.py). Each mutant breaks one line; tests/test_shipped.py must fail.
 SH, SHT = "itemator/shipped.py", "tests/test_shipped.py"
 T52 = [(label, old, new, SH, SHT) for label, old, new in [
- ("t52: no escaping of GitLab's text", "    e = html.escape\n", "    e = str\n"),
+ ("t52: no escaping of GitLab's text", 'escaped."""\n    e = html.escape\n', 'escaped."""\n    e = str\n'),
  ("t52: the window ignores the previous deployment", 'since = (previous or {}).get("created_at") or "1970-01-01T00:00:00Z"', 'since = "1970-01-01T00:00:00Z"'),
  ("t52: an empty GitLab list is not a fallback", "    return mrs or None", "    return mrs if got is not None else None"),
  ("t52: no deployment is shown", "DEPLOYMENTS = 8", "DEPLOYMENTS = 0"),
@@ -620,7 +621,7 @@ T53 = [(label, old, new, "itemator/ci.py", "tests/test_ci.py") for label, old, n
 # T54: a branch number is read only when the description names the same issue (itemator/ci.py), judged by tests/test_ci.py.
 T54 = [(label, old, new, "itemator/ci.py", "tests/test_ci.py") for label, old, new in [
  ("t54: the description is not checked", "if n is not None and not mentions_issue(description, n, project_path):", "if False:"),
- ("t54: the job does not pass the project path", '                                        env.get("CI_PROJECT_PATH"))', '                                        None)'),
+ ("t54: the job does not pass the project path", 'env.get("CI_PROJECT_PATH"), dangling)', "None, dangling)"),
  ("t54: the skipped branch is not reported", '        warnings.append(f"#{n} is named in the branch {source_branch} but not in the description, so it was not read")\n', '        pass\n'),
  ("t54: other/repo#n counts", r'rf"(?<![\w/!#&.-])#{n}(?!\d)"', r'rf"(?<![!#&.-])#{n}(?!\d)"'),
  ("t54: #n matches #n0", r'rf"(?<![\w/!#&.-])#{n}(?!\d)"', r'rf"(?<![\w/!#&.-])#{n}"'),
@@ -661,6 +662,8 @@ JOBS = ([(*m, "itemator/ci.py", "tests/test_ci.py") for m in M] + [(*m, "itemato
         + T26 + T35 + T40 + T42 + T43 + T44 + T45 + T46 + T51 + T52 + T53 + T54 + T55)
 for label, old, new, path, _ in JOBS:
     assert SRC[path].count(old) == 1, f"mutant {label!r}: anchor found {SRC[path].count(old)} times in {path}"
+if "--anchors-only" in sys.argv:            # tests/test_mutation_anchors.py: every anchor still names one place in the code
+    print(f"{len(JOBS)} anchors found"); sys.exit(0)
 if sys.argv[3:] == ["T17"]:
     JOBS = [j for j in JOBS if j[4] == "tests/test_registry.py"]
 if sys.argv[3:] == ["T35"]:
@@ -690,8 +693,12 @@ if sys.argv[3:] == ["T55"]:
 def run(i, path, text, tests):
     d = WORK / f"m{i:02d}"
     if d.exists(): shutil.rmtree(d)
-    for sub in ("itemator", "tests", "tools", "flows"):        # T40: the react prompt is judged too
-        shutil.copytree(REPO / sub, d / sub, ignore=shutil.ignore_patterns("__pycache__"))
+    for sub in ("itemator", "tests", "tools", "flows", "results", "web", "skills", "docs", ".gitlab"):  # T40: the react prompt is judged too
+        if (REPO / sub).is_dir():
+            shutil.copytree(REPO / sub, d / sub, ignore=shutil.ignore_patterns("__pycache__", "*.png"))
+    for f in REPO.iterdir():                                   # .gitlab-ci.yml and the like: tests/test_shipped.py reads it
+        if f.is_file():
+            shutil.copy2(f, d / f.name)
     (d / path).write_text(text)
     return subprocess.run([PY, "-m", "pytest", "-q", "-x", "-p", "no:cacheprovider", tests], cwd=d, capture_output=True,
                           text=True)       # T38: -x, one failure kills a mutant; the suite must fit a 10-minute foreground run
@@ -699,6 +706,8 @@ for target in sorted({j[4] for j in JOBS}):
     base = run(99, "itemator/ci.py", SRC["itemator/ci.py"], target)
     if base.returncode != 0:
         print(f"the unmutated copy fails {target}, so no mutant can be judged:\n" + base.stdout[-2000:]); sys.exit(2)
+if "--bases-only" in sys.argv:              # check the unmutated copies alone, without the mutants
+    print("every unmutated copy passes"); sys.exit(0)
 survivors = 0
 for i, (label, old, new, path, target) in enumerate(JOBS):
     mutated = SRC[path].replace(old, new)

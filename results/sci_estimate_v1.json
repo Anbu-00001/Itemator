@@ -1,0 +1,93 @@
+{
+ "what": "Grams CO2e one `remove` avoids per fresh CI install (R), as an SCI delta: the same install with and without the dependency. Downloads, pipelines and install seconds are measured; every coefficient is borrowed. Energy is not measured here.",
+ "coefficients": {
+  "network_kwh_per_gb": [
+   0.001,
+   0.11399999999999999
+  ],
+  "vcpu": 2,
+  "mem_gb": 8,
+  "pue": 1.1,
+  "vcpu_w": [
+   0.71,
+   4.26
+  ],
+  "mem_w_per_gb": 0.392,
+  "grid_g_per_kwh": [
+   432,
+   579
+  ],
+  "embodied_total_g": 1230000,
+  "life_s": 126230400.0,
+  "host_vcpu": 32
+ },
+ "sources": {
+  "sci": "Green Software Foundation, SCI specification v1.1.0, https://sci.greensoftware.foundation/ (read 2026-10-20)",
+  "network_low": "Cloud Carbon Footprint methodology, 0.001 kWh/GB, data-centre traffic only, https://www.cloudcarbonfootprint.org/docs/methodology/",
+  "network_high": "Sustainable Web Design v4: data centres 0.055 + networks 0.059 kWh/GB, which it says will overestimate, https://sustainablewebdesign.org/estimating-digital-emissions/ (read 2026-10-20)",
+  "network_disputed": "Mytton, Lunden and Malmodin, Journal of Industrial Ecology 28(4), 2024, doi 10.1111/jiec.13512: kWh/GB figures are not accurate enough",
+  "runner_power": "Cloud Carbon Footprint methodology, GCP per-vCPU and per-GB-memory watts, PUE 1.1",
+  "grid": "Google Cloud region carbon table, 2025 data, https://cloud.google.com/sustainability/region-carbon",
+  "embodied": "Cloud Carbon Footprint embodied-emissions method, 4-year life, https://www.cloudcarbonfootprint.org/docs/embodied-emissions/"
+ },
+ "inputs": {
+  "live_mb": 31.0,
+  "pipelines_30_days": 936,
+  "median_mb": 0.57,
+  "seconds_added": [
+   1.21,
+   1.65
+  ]
+ },
+ "live": {
+  "low": {
+   "network_kwh": 3.1e-05,
+   "runner_kwh": 5.25e-07,
+   "operational_g": 0.0136,
+   "embodied_g": 0.000737,
+   "sci_g_per_install": 0.0144
+  },
+  "high": {
+   "network_kwh": 0.00353,
+   "runner_kwh": 5.88e-06,
+   "operational_g": 2.05,
+   "embodied_g": 0.001,
+   "sci_g_per_install": 2.05
+  }
+ },
+ "median": {
+  "low": {
+   "network_kwh": 5.7e-07,
+   "runner_kwh": 5.25e-07,
+   "operational_g": 0.000473,
+   "embodied_g": 0.000737,
+   "sci_g_per_install": 0.00121
+  },
+  "high": {
+   "network_kwh": 6.5e-05,
+   "runner_kwh": 5.88e-06,
+   "operational_g": 0.041,
+   "embodied_g": 0.001,
+   "sci_g_per_install": 0.042
+  }
+ },
+ "readme": {
+  "live_g_low": 0.014,
+  "live_g_high": 2.1,
+  "live_month_g_low": 13,
+  "live_month_kg_high": 1.9,
+  "median_g_low": 0.0012,
+  "median_g_high": 0.042,
+  "network_share_low": 0.983,
+  "network_share_high": 0.998
+ },
+ "limits": [
+  "a delta in a pipeline's SCI, not a full SCI score of the pipeline",
+  "a monthly figure multiplies a rate by this project's pipelines; it holds only if each pipeline installs without a cache",
+  "it counts only when a reviewer actually replies `remove`",
+  "the low and high ends pair low with low and high with high; they are ends of a range, not an average",
+  "install seconds are medians of single lines on a shared runner, not the live case's own",
+  "the embodied figure reads Cloud Carbon Footprint's unitless file as kg; it is a small share of the live case and most of the low end of the median case, so that end is the least certain",
+  "the card flow's model calls are outside this figure: Duo's model energy is not disclosed"
+ ]
+}

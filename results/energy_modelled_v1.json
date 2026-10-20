@@ -1,0 +1,23 @@
+{
+  "what": "Calls the v1.1 prompt avoids on a three-extras card run (measured), times a per-call energy range from outside papers (modelled). Energy is not measured here.",
+  "wh_per_call": {
+    "low": 0.1,
+    "high": 30,
+    "sources": {
+      "low": "EcoLogits method (ecologits.ai, as read 2026-10-18), 24 to 400 billion active parameters: about 0.08 to 0.4 Wh for 1.5k output tokens; Jegham et al. arXiv 2505.09598v6, most efficient of 30 models",
+      "high": "Jegham et al. arXiv 2505.09598v6: over 29 Wh for 10k in and 1.5k out, most energy-hungry of 30 models",
+      "middle_reading": "Epoch AI (7 Feb 2025): about 2.5 Wh for 10k input tokens of GPT-4o",
+      "short_chat_reference": "Google, 22 Aug 2025: 0.24 Wh for a median Gemini text prompt, a company figure not independently verified, short replies"
+    },
+    "spread": 300.0
+  },
+  "summary": {
+    "model_calls_before_mean": 8.67,
+    "model_calls_after": 6.0,
+    "model_calls_avoided_per_run": 2.67,
+    "share_avoided": 0.308,
+    "wh_per_run_avoided_low": 0.27,
+    "wh_per_run_avoided_high": 80.0
+  },
+  "limits": "Three runs before, one comparable run after; the prompt changed, not the facts (results/fact_file_ablation_v1.json: the facts alone did not cut calls). The model behind a Duo call is not disclosed. No carbon figure: the data-centre grid is unknown. The range is about 300-fold, so it shows that the answer is small or large depending on the method, not a saving to quote in kWh."
+}

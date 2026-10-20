@@ -1,0 +1,29 @@
+{
+  "what": "Does the reaction flow still read replies as before when it first checks that each reply's author is a person (GET /users/<id>, bot false)? Run 3 of eval/asker_study.py on the edited flow, the same six cases of eval/asker_study_cases.json, one run.",
+  "why": "With names.asker_required off, any account but the flow's own two could type an extra's name, a service account such as the Developer Flow's included. On 2026-10-19 the Developer Flow, asked to type a name, declined because of our skill (results in eval/dev_reply_probe_rubric.json): a prompt rule, not a limit. The edit makes a bot's reply not count.",
+  "not_tested": "A reply by a service account (bot true). We cannot post as one: the Developer Flow declines. So the bot branch is untested live; this run shows the person branch still works and that the lookup is made.",
+  "predictions_before_running": {
+    "all six cases as expected": "75%, ana eaa1ea",
+    "the react session calls /users/<id> at least once": "70%, ana 694fd2",
+    "the react session makes at most 20 tool calls": "70%, ana 1ed5bb"
+  },
+  "stop_rules": [
+    "one run; a mismatch is reported, not re-run",
+    "stop at meter 300 credits used (about 282 now)"
+  ],
+  "amendment_1": "2026-10-19, before the run: the first start failed before any flow ran (HTTP 400, 'A file with this name already exists': main has a Dockerfile now). The script creates no Dockerfile any more; it appends a line to the existing one, so that thread is a changed config file instead of an added one. The case name and expected outcome are unchanged. The failed start made one issue and two branches, all closed or deleted; no credits were spent by it.",
+  "result": {
+    "react_session": "9667249",
+    "model_calls": 6,
+    "tool_calls": 11,
+    "users_lookups": 2,
+    "cases_as_expected": "6 of 6",
+    "predictions": {
+      "eaa1ea": true,
+      "694fd2": true,
+      "1ed5bb": true
+    },
+    "flow_version": "1.6.3",
+    "mr": 216
+  }
+}

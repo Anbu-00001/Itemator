@@ -1,0 +1,180 @@
+{
+ "before": [
+  {
+   "session": "9641668",
+   "mr": 139,
+   "model_calls": 9,
+   "tool_calls": 10,
+   "models": [
+    "claude-sonnet-5-5"
+   ],
+   "extras": 3,
+   "checked": {
+    "state": "extras",
+    "card_lines_missing": [],
+    "card_matches": true,
+    "extras": 3,
+    "notes_and_threads": 3,
+    "items_match": true,
+    "label_ok": true,
+    "draft_ok": true
+   }
+  },
+  {
+   "session": "9650392",
+   "mr": 166,
+   "model_calls": 9,
+   "tool_calls": 10,
+   "models": [
+    "claude-sonnet-5-5"
+   ],
+   "extras": 3,
+   "checked": {
+    "state": "extras",
+    "card_lines_missing": [],
+    "card_matches": true,
+    "extras": 3,
+    "notes_and_threads": 3,
+    "items_match": true,
+    "label_ok": true,
+    "draft_ok": true
+   }
+  },
+  {
+   "session": "9651403",
+   "mr": 174,
+   "model_calls": 8,
+   "tool_calls": 10,
+   "models": [
+    "claude-sonnet-5-5"
+   ],
+   "extras": 3,
+   "checked": {
+    "state": "extras",
+    "card_lines_missing": [],
+    "card_matches": true,
+    "extras": 3,
+    "notes_and_threads": 3,
+    "items_match": true,
+    "label_ok": true,
+    "draft_ok": true
+   }
+  }
+ ],
+ "summary": {
+  "rubric": "eval/card_model_calls_rubric.json",
+  "predictions": "eval/card_model_calls_rubric.json",
+  "predictions_sha256": "ba2c78914754311afc3cc0dd1f11f94f2a5de2663f5219371a090e11c0ea3b40"
+ },
+ "after": [
+  {
+   "session": "9654895",
+   "mr": 186,
+   "model_calls": 6,
+   "tool_calls": 9,
+   "models": [
+    "claude-sonnet-5-5"
+   ],
+   "extras": 3,
+   "checked": {
+    "state": "extras",
+    "card_lines_missing": [],
+    "card_matches": true,
+    "extras": 3,
+    "notes_and_threads": 3,
+    "items_match": true,
+    "label_ok": true,
+    "draft_ok": true
+   }
+  },
+  {
+   "session": "9654913",
+   "mr": 187,
+   "model_calls": 5,
+   "tool_calls": 7,
+   "models": [
+    "claude-sonnet-5-5"
+   ],
+   "extras": 1,
+   "checked": {
+    "state": "extras",
+    "card_lines_missing": [],
+    "card_matches": true,
+    "extras": 1,
+    "notes_and_threads": 1,
+    "items_match": true,
+    "label_ok": true,
+    "draft_ok": true
+   }
+  },
+  {
+   "session": "9654930",
+   "mr": 188,
+   "model_calls": 5,
+   "tool_calls": 6,
+   "models": [
+    "claude-sonnet-5-5"
+   ],
+   "extras": 0,
+   "checked": {
+    "state": "author_wrote_issue",
+    "card_lines_missing": [],
+    "card_matches": true,
+    "extras": 0,
+    "notes_and_threads": 0,
+    "items_match": true,
+    "label_ok": true,
+    "draft_ok": true
+   }
+  }
+ ],
+ "comparison": {
+  "before": {
+   "runs": 3,
+   "model_calls": [
+    9,
+    9,
+    8
+   ],
+   "tool_calls": [
+    10,
+    10,
+    10
+   ],
+   "mean_model_calls": 8.67,
+   "max_model_calls": 9,
+   "modelled_credits": 8.12
+  },
+  "after": {
+   "runs": 3,
+   "model_calls": [
+    6,
+    5,
+    5
+   ],
+   "tool_calls": [
+    9,
+    7,
+    6
+   ],
+   "mean_model_calls": 5.33,
+   "max_model_calls": 6,
+   "modelled_credits": 5.0
+  },
+  "each_after_run_below_its_comparable_before_run": {
+   "9654895": true,
+   "9654913": false,
+   "9654930": false
+  },
+  "after_mean_below_before_mean": true,
+  "cut": false,
+  "post_hoc": {
+   "note": "not registered: every after run against the smallest before run of any extras count",
+   "each_after_run_below_the_smallest_before_run": {
+    "9654895": true,
+    "9654913": true,
+    "9654930": true
+   }
+  }
+ }
+}

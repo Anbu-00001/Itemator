@@ -26,6 +26,7 @@ import dataclasses
 import datetime
 import json
 import os
+import pathlib
 import posixpath
 import re
 import subprocess
@@ -224,6 +225,7 @@ API_BUSY = (429, 500, 502, 503, 504)
 class Api:
     def __init__(self, base_url: str, token: str | None, http):
         self.base, self.token, self.http = base_url.rstrip("/"), token, http
+        self.reads = 0                    # GitLab reads asked for (a retry of one read is not counted again)
 
     def _once(self, url: str, headers: dict) -> tuple[int, bytes]:
         """One read, tried again after a timeout, a dropped connection or a busy server (HTTP 429, 500, 502, 503, 504):
@@ -242,6 +244,7 @@ class Api:
 
     def get(self, path: str, missing_ok: bool = False):
         url = self.base + path
+        self.reads += 1
         # With the job token first: from 2026-10-19 gitlab.com caps anonymous reads at 60 an hour per IP address.
         status, body = self._once(url, {"JOB-TOKEN": self.token} if self.token else {})
         if status in (401, 403, 404) and self.token:
@@ -254,6 +257,28 @@ class Api:
             return json.loads(body)
         except ValueError as e:
             raise JobError(f"GET {path} did not return JSON") from e
+
+
+PIPELINE_DAYS = 30
+PIPELINE_PAGES = 10           # 100 pipelines a page; more than that is "at least 1000"
+
+
+def pipelines_run(api, pid, now: datetime.datetime) -> dict | None:
+    """{count, at_least, days}: the pipelines this project ran in the last PIPELINE_DAYS days, which the weight of a new
+    dependency is multiplied by (weight.monthly). None when they cannot be read; the card then leaves the line out."""
+    since = (now - datetime.timedelta(days=PIPELINE_DAYS)).strftime("%Y-%m-%dT%H:%M:%SZ")
+    n = 0
+    try:
+        for page in range(1, PIPELINE_PAGES + 1):
+            got = api.get(f"/projects/{pid}/pipelines?created_after={since}&per_page=100&page={page}")
+            if not isinstance(got, list):
+                return None
+            n += len(got)
+            if len(got) < 100:
+                return {"count": n, "at_least": False, "days": PIPELINE_DAYS}
+    except JobError:
+        return None
+    return {"count": n, "at_least": True, "days": PIPELINE_DAYS}
 
 
 _CLOSING = re.compile(
@@ -301,19 +326,40 @@ def mentions_issue(text: str | None, n: int, project_path: str | None = None) ->
     return bool(project_path) and re.search(rf"://[^/\s]+/{re.escape(project_path)}/-/(?:issues|work_items)/{n}(?!\d)", t) is not None
 
 
+DANGLING_READS = 5               # closing-word references looked up beyond GitLab's own list, at most
+
+
+def dangling_refs(api: Api, project_id: str, description: str, known: set) -> list[int]:
+    """Closing-word references in the description that GitLab did not list: the ones this project has no issue for.
+    Only GitLab's own 'not found' counts; a read that fails says nothing."""
+    out = []
+    for n in [n for n in closing_refs(description) if n not in known][:DANGLING_READS]:
+        try:
+            if api.get(f"/projects/{project_id}/issues/{n}", missing_ok=True) is None:
+                out.append(n)
+        except JobError:
+            continue
+    return out
+
+
 def linked_issues(api: Api, project_id: str, mr_iid: str, description: str, warnings: list, source_branch=None,
-                  project_path=None):
+                  project_path=None, dangling: list | None = None):
     """The MR's issues: GitLab's closes_issues, else closing words in the description, else the issue the flow's branch
     is named after, when the description names that issue too (labelling, Oct 16: in GitLab's own Developer Flow merge
     requests a branch number was sometimes a merge request or another project's issue)."""
     closes = api.get(f"/projects/{project_id}/merge_requests/{mr_iid}/closes_issues?per_page=100")
     if closes:
+        if dangling is not None:
+            dangling.extend(dangling_refs(api, project_id, description,
+                                          {i.get("iid") for i in closes if str(i.get("project_id")) == str(project_id)}))
         return [_issue(i, project_id) for i in closes], "closes_issues"
     issues = []
     for n in closing_refs(description):
         raw = api.get(f"/projects/{project_id}/issues/{n}", missing_ok=True)
         if raw is None:
             warnings.append(f"#{n} is named in the description but was not found")
+            if dangling is not None:
+                dangling.append(n)
             continue
         issues.append(_issue(raw, project_id))
     if issues:
@@ -408,18 +454,56 @@ def scan_injection(mr_title: str, mr_description: str, issues: list[dict], files
 # ------------------------------------------------------------ state, card
 
 AUTHOR_CAVEAT = "No one but the author described this change."
+# Said once on every card that lists extras: the flows act only on a person's reply, never on their own.
+CONSENT = "Itemator keeps, moves or removes nothing until a person replies."
+
+
+def dangling_line(numbers: list[int]) -> str:
+    refs = ", ".join(f"#{n}" for n in numbers)
+    return (f"The description says it closes {refs}, but this project has no "
+            f"{'issue' if len(numbers) == 1 else 'issues'} by that number.")
 
 
 def _author_wrote(issues: list[dict], mr_author_id) -> bool:
     return bool(issues) and mr_author_id is not None and all(i["author_id"] == mr_author_id for i in issues)
 
 
-def decide_state(issues: list[dict], mr_author_id, analysis) -> str:
+def agent_line(agent: str) -> str:
+    return (f"@{agent}, an agent account, wrote this change for the merge request's author, so the issue is read as "
+            "that person's ask.")
+
+
+def agent_wrote(api, project_id, mr_iid, issues: list[dict], mr_author_id) -> str | None:
+    """The username of a bot account that opened this merge request for its author, or None. GitLab's Developer Flow opens
+    its merge request under the person who started it, so that person is both the issue's author and the merge request's;
+    on the issue GitLab then writes the system note "mentioned in merge request !<iid>" under the agent's own account,
+    which GitLab marks as a bot. A person cannot write a system note, nor set the bot flag. Read only when the author wrote
+    every linked issue; a failed read gives None, so the card keeps saying the author wrote it."""
+    if not _author_wrote(issues, mr_author_id):
+        return None
+    try:
+        for i in issues:
+            if i["ref"] != f"#{i['iid']}":                  # an issue in another project: its notes name this MR differently
+                continue
+            notes = api.get(f"/projects/{project_id}/issues/{i['iid']}/notes?per_page=100&sort=desc", missing_ok=True) or []
+            for n in notes if isinstance(notes, list) else ():
+                who = (n.get("author") or {}) if isinstance(n, dict) else {}
+                if n.get("system") is True and n.get("body") == f"mentioned in merge request !{mr_iid}" \
+                        and isinstance(who.get("id"), int) and who["id"] != mr_author_id:
+                    user = api.get(f"/users/{who['id']}", missing_ok=True) or {}
+                    if user.get("bot") is True and isinstance(user.get("username"), str):
+                        return user["username"]
+    except JobError:
+        return None
+    return None
+
+
+def decide_state(issues: list[dict], mr_author_id, analysis, agent: str | None = None) -> str:
     if not issues:
         return "no_issue"
     if analysis.extras:                      # the extras are the point; the author note rides along as a caveat
         return "extras"
-    if _author_wrote(issues, mr_author_id):
+    if _author_wrote(issues, mr_author_id) and not agent:
         return "author_wrote_issue"
     if analysis.unplaced:
         return "unplaced_only"
@@ -493,7 +577,7 @@ def card_lines(state: str, issues: list[dict], extras: list, unplaced: list, inj
     elif state == "extras":
         names = ", ".join(f"{_code(e.name)} ({_label(e)})" for e in extras)
         final = f"{len(extras)} {'thing' if len(extras) == 1 else 'things'} beyond {refs}: {names}."
-        todo = 'Type each name in its thread to keep it, or reply "split" to move it to its own MR, "remove" to drop it.'
+        todo = f'Type each name in its thread to keep it, or reply "split" to move it to its own MR, "remove" to drop it. {CONSENT}'
     elif state == "unplaced_only":
         n = len(unplaced)
         final = f"{n} {'file' if n == 1 else 'files'} the rules could not place."
@@ -828,15 +912,15 @@ def checker_of(env, target: str, head: str) -> dict:
 def facts(*, mr_iid: int, mr_title: str, mr_description: str, mr_author_id, issues: list[dict],
           issues_from: str, files: list[dict], repo: str | None, base_sha: str, head_sha: str,
           warnings: list, now: datetime.datetime, registry_fetch=None, policy=None, checker=None,
-          fallback: bool = False, description_cut: bool = False) -> dict:
+          fallback: bool = False, description_cut: bool = False, pipelines=None, agent: str | None = None) -> dict:
     """`policy` (T20, policy.read; None when not read) quiets extras and sets who may name one; `checker`
     (checker_of) says where this code came from; `fallback` (T26 F1): the target branch could not be read, so
     both came from the merge base, and the card says so. `description_cut` (T35): the description may be truncated,
-    so no thread says it does not mention an extra."""
+    so no thread says it does not mention an extra. `agent` (agent_wrote): a bot account wrote the change for its author."""
     at = AT_FORK if fallback else AT_TARGET
     issue_text = "\n\n".join(f"{i['title']}\n{i['description']}" for i in issues)
     analysis = X.analyse(issue_text, files, repo=repo)
-    state = decide_state(issues, mr_author_id, analysis)
+    state = decide_state(issues, mr_author_id, analysis, agent)
     found = [] if state == "no_issue" else analysis.extras      # no ask, so nothing is "beyond" it
     unplaced = [] if state == "no_issue" else analysis.unplaced
     edit = policy_edit(files, at)       # T41: a change to the team policy always asks for a typed name, also when no
@@ -847,7 +931,11 @@ def facts(*, mr_iid: int, mr_title: str, mr_description: str, mr_author_id, issu
         unplaced = [u for u in unplaced if u != edit.path]
     grouped = group_extras(found)
     by_path = {f["filename"]: f for f in files}
-    registry = RG.look_up(grouped, by_path, registry_fetch, now) if registry_fetch else [None] * len(grouped)
+    registry = RG.look_up(grouped, by_path, registry_fetch, now, weigh=True) if registry_fetch else [None] * len(grouped)
+    weighed = [p["weight"] for r in registry if r for p in r["packages"] if (p.get("weight") or {}).get("weight") == "ok"]
+    runs = pipelines() if weighed and pipelines else None     # `pipelines` (pipelines_run): read only when something was weighed
+    for w in weighed if runs else ():
+        w["pipelines"] = runs
     kept, quieted = [], []
     for (e, items), r in zip(grouped, registry):
         why = POL.why_ignored(policy, e, items, r, by_path) if policy else None
@@ -856,7 +944,7 @@ def facts(*, mr_iid: int, mr_title: str, mr_description: str, mr_author_id, issu
         else:
             kept.append(((e, items), r))
     if state != "no_issue":
-        state = decide_state(issues, mr_author_id, X.Analysis([e for (e, _), _ in kept], unplaced=unplaced))
+        state = decide_state(issues, mr_author_id, X.Analysis([e for (e, _), _ in kept], unplaced=unplaced), agent)
     said = SAID.said(mr_title, mr_description, [SAID.names(e.name, e.path, e.detail) for (e, _), _ in kept],
                      cut=description_cut)             # T35: the extras the description does not mention come first
     ranked = sorted(zip(said, kept), key=lambda p: p[0] != SAID.SILENT)
@@ -865,7 +953,8 @@ def facts(*, mr_iid: int, mr_title: str, mr_description: str, mr_author_id, issu
     other = bool(policy and policy.other_person_required)
     always = always_allowed(policy.to_dict() if policy else None)       # T40
     askers = tuple(asker_usernames(issues)) if policy and policy.asker_required else ()    # T45; no issue (no_issue), no names
-    notes = (CHECKER_CAVEAT if checker and checker["source"] != "base" else None,
+    notes = (agent_line(agent) if agent and state != "no_issue" else None,
+             CHECKER_CAVEAT if checker and checker["source"] != "base" else None,
              TARGET_CAVEAT if fallback else None,
              policy_note(policy, [e for e, _ in quieted], at, asks_other=other and bool(kept),
                          asks_asker=bool(askers) and bool(kept),
@@ -882,11 +971,13 @@ def facts(*, mr_iid: int, mr_title: str, mr_description: str, mr_author_id, issu
         "unplaced": list(unplaced),
         "injection": injection,
         "card": card_lines(state, issues, [e for (e, _), _ in kept], unplaced, injection,
-                           _author_wrote(issues, mr_author_id), notes),
+                           _author_wrote(issues, mr_author_id) and not agent, notes),
         "warnings": warnings,
         "truncated": False,        # the job log carries a compact copy when the full one is over LOG_LIMIT
         "generated_at": now.strftime("%Y-%m-%dT%H:%M:%SZ"),
     }
+    if agent:
+        report["agent"] = agent              # only when found, so earlier reports stay byte for byte the same
     if policy is not None:
         report["policy"] = {**policy.to_dict(), "ignored_extras": [
             {"name": shown_name(e.name), "kind": e.kind, "why": why} for e, why in quieted]}
@@ -939,12 +1030,20 @@ def log_block(report: dict, limit: int = LOG_LIMIT) -> str:
 
 # ------------------------------------------------------------------- main
 
-def run(env, repo_dir: str, http, registry_fetch=None) -> dict:
+def run(env, repo_dir: str, http, registry_fetch=None, clock=time.monotonic) -> dict:
     need = ("CI_API_V4_URL", "CI_PROJECT_ID", "CI_MERGE_REQUEST_IID", "CI_MERGE_REQUEST_DIFF_BASE_SHA")
     missing = [k for k in need if not env.get(k)]
     head = env.get("CI_MERGE_REQUEST_SOURCE_BRANCH_SHA") or env.get("CI_COMMIT_SHA")
     if missing or not head:
         raise JobError("not a merge request pipeline: missing " + ", ".join(missing or ["CI_COMMIT_SHA"]))
+    started = clock()
+    registry_reads = [0]
+    if registry_fetch is not None:
+        real_fetch = registry_fetch
+
+        def registry_fetch(*args, **kwargs):          # noqa: F811 -- the same function, counting its calls
+            registry_reads[0] += 1
+            return real_fetch(*args, **kwargs)
     pid, iid, base = env["CI_PROJECT_ID"], env["CI_MERGE_REQUEST_IID"], env["CI_MERGE_REQUEST_DIFF_BASE_SHA"]
     try:
         files = diff_files(repo_dir, base, head)
@@ -961,29 +1060,62 @@ def run(env, repo_dir: str, http, registry_fetch=None) -> dict:
     # characters, per GitLab's CI variable docs; not re-checked offline), so a description from it never says silent.
     cut = not mr.get("description") and bool(description)
     warnings: list[str] = []
+    dangling: list[int] = []
     issues, issues_from = linked_issues(api, pid, iid, description, warnings, env.get("CI_MERGE_REQUEST_SOURCE_BRANCH_NAME"),
-                                        env.get("CI_PROJECT_PATH"))
+                                        env.get("CI_PROJECT_PATH"), dangling)
     target, resolved = target_tip(repo_dir, env, base)
     policy = POL.read(repo_dir, target)       # T20, T26 F1: from the target branch tip, never from the merge request
     if not resolved:
         policy = dataclasses.replace(policy, source="merge_base")
+    now = datetime.datetime.now(datetime.timezone.utc)
     report = facts(mr_iid=int(iid), mr_title=mr.get("title") or env.get("CI_MERGE_REQUEST_TITLE") or "",
                  mr_description=description, mr_author_id=(mr.get("author") or {}).get("id"),
                  issues=issues, issues_from=issues_from, files=files, repo=env.get("CI_PROJECT_PATH"),
                  base_sha=base, head_sha=head, warnings=warnings,
-                 now=datetime.datetime.now(datetime.timezone.utc), registry_fetch=registry_fetch,
-                 policy=policy, checker=checker_of(env, target, head), fallback=not resolved, description_cut=cut)
-    also_checked(report, repo_dir, base, head, files, api, pid, f"{mr.get('title') or ''}\n{description}")
+                 now=now, registry_fetch=registry_fetch,
+                 policy=policy, checker=checker_of(env, target, head), fallback=not resolved, description_cut=cut,
+                 pipelines=lambda: pipelines_run(api, pid, now),
+                 agent=agent_wrote(api, pid, int(iid), issues, (mr.get("author") or {}).get("id")))
+    if dangling:
+        card = report["card"]
+        card["caveat_line"] = " ".join(c for c in (card["caveat_line"], dangling_line(dangling)) if c)
+    also_checked(report, repo_dir, base, head, files, api, pid, f"{mr.get('title') or ''}\n{description}", registry_fetch)
     report["hold"] = hold(report, api, pid, iid, head)
     if report["hold"]["blocked"]:
         report["card"]["todo_line"] = f'{report["card"]["todo_line"]} {HOLD_LINE}'
+    report["cost"] = cost(clock() - started, api.reads, registry_reads[0], flow_cost())
+    report["card"]["cost_line"] = report["cost"]["line"]
     return report
+
+
+def flow_cost() -> dict | None:
+    """The typical cost of the flow that runs after this job (itemator/flow_cost.json, kept equal to results/cost_per_run.json by a
+    test), or None when the file is missing or unreadable: the cost line is information only and must never stop the job."""
+    try:
+        d = json.loads((pathlib.Path(__file__).parent / "flow_cost.json").read_text())
+        return d if all(isinstance(d.get(k), (int, float)) for k in ("calls", "credits")) else None
+    except (OSError, ValueError):
+        return None
+
+
+def cost(seconds: float, gitlab_reads: int, registry_reads: int, flow: dict | None = None) -> dict:
+    """What finding these facts cost: wall time on the CI runner, reads, and no model call (the rules are fixed code). With `flow`,
+    a second sentence says what the flow after this job typically costs, as an estimate. Information only."""
+    shown = "under 0.1 s" if seconds < 0.05 else f"{seconds:.1f} s"
+    reads = f"{gitlab_reads} GitLab {'read' if gitlab_reads == 1 else 'reads'}"
+    if registry_reads:
+        reads += f" and {registry_reads} package-registry {'lookup' if registry_reads == 1 else 'lookups'}"
+    return {"seconds": round(seconds, 1), "gitlab_reads": gitlab_reads, "registry_reads": registry_reads, "model_calls": 0,
+            "line": f"Cost of finding these facts: {shown} on the CI runner, {reads}, no model call."
+                    + (f" The flow after it typically makes about {flow['calls']:g} model calls, up to about {flow['credits']:g} GitLab Credits"
+                       f" at the model's list price (an estimate)." if flow else "")}
 
 
 MAX_CHECKED_FILES = 300       # files the two no-request checks read per job; a larger change is checked in its first 300
 
 
-def also_checked(report: dict, repo_dir: str, base: str, head: str, files: list[dict], api=None, pid=None, mr_text: str = "") -> None:
+def also_checked(report: dict, repo_dir: str, base: str, head: str, files: list[dict], api=None, pid=None, mr_text: str = "",
+                 registry_fetch=None) -> None:
     """Add what the layout check and the opener found to report["checked"] and, as one sentence, to the card
     (`checked_line`). Information only: the state, the extras and the exit code never depend on it, and a file either check cannot
     read, or that breaks it, is left out."""
@@ -996,6 +1128,7 @@ def also_checked(report: dict, repo_dir: str, base: str, head: str, files: list[
     from itemator import revert as RV
     from itemator import moving as MV
     from itemator import shapes as SP
+    from itemator import dotnet as DN
     from itemator import untrusted as UT
     from itemator import scanners as SC
     from itemator import record as RC
@@ -1024,6 +1157,13 @@ def also_checked(report: dict, repo_dir: str, base: str, head: str, files: list[
         moving, shapes, untrusted, scanners = [], [], [], None
         report["warnings"].append(f"no moving-reference check: {type(e).__name__}")
     reland = C.reland_check(repo_dir, base, files[:MAX_CHECKED_FILES], report["warnings"])
+    dotnet = {"found": [], "registry": []}
+    try:
+        dotnet["found"] = DN.find(files)
+        if dotnet["found"] and registry_fetch:
+            dotnet["registry"] = DN.look_up(dotnet["found"], registry_fetch, datetime.datetime.now(datetime.timezone.utc))
+    except Exception as e:                # noqa: BLE001 -- information only
+        report["warnings"].append(f"no NuGet check: {type(e).__name__}")
     cites, revert, record, copy = [], None, None, None
     try:
         said = f"{mr_text}\n{L.commit_messages(repo_dir, base, head)}"
@@ -1033,10 +1173,11 @@ def also_checked(report: dict, repo_dir: str, base: str, head: str, files: list[
         record = RC.find(repo_dir, base, files, {n["path"] for n in neutral}, said)
     except Exception as e:                # noqa: BLE001 -- information only
         report["warnings"].append(f"no reference check: {type(e).__name__}")
-    report["checked"] = {"neutral": neutral, "opened": opened, "strangers": strangers, "fenced": fence["fenced"], "relanded": reland["relanded"], "cites": cites, "revert": revert, "moving": moving, "shapes": shapes, "untrusted": untrusted, "scanners": scanners, "record": record, "copy": copy, "pipeline": pipeline,
+    report["checked"] = {"neutral": neutral, "opened": opened, "strangers": strangers, "fenced": fence["fenced"], "relanded": reland["relanded"], "dotnet": dotnet, "cites": cites, "revert": revert, "moving": moving, "shapes": shapes, "untrusted": untrusted, "scanners": scanners, "record": record, "copy": copy, "pipeline": pipeline,
                          "fence_runs_read": fence["runs_read"], "fence_capped": fence["capped"],
                          "files_read": min(len(files), MAX_CHECKED_FILES), "files": len(files)}
-    line = C.sentence([n["path"] for n in neutral], [(o["path"], o["line"]) for o in opened], strangers, fence["fenced"], pipeline, reland["relanded"], cites, revert, moving, record, copy, shapes, untrusted, scanners)
+    line = C.sentence([n["path"] for n in neutral], [(o["path"], o["line"]) for o in opened], strangers, fence["fenced"], pipeline, reland["relanded"], cites, revert, moving, record, copy, shapes, untrusted, scanners,
+                     DN.sentence(dotnet["found"], dotnet["registry"]))
     if line:
         report["card"]["checked_line"] = line         # only present when there is something to say
 

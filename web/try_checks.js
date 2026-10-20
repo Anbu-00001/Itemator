@@ -183,18 +183,25 @@ var Itemator = (function () {
     "CI_MERGE_REQUEST_MILESTONE", "CI_EXTERNAL_PULL_REQUEST_SOURCE_BRANCH_NAME"];
   var VAR_ALT = GITLAB_VARS.join("|");
   var VARRE = new RegExp("\\$(?:\\{(" + VAR_ALT + ")[}:#%/^,-]|(" + VAR_ALT + ")\\b)", "g");
-  var GITHUB = new RegExp("\\$\\{\\{\\s*(?:github\\.event\\.(?:pull_request\\.(?:title|body|head\\.ref|head\\.label|head\\.repo\\.default_branch)|" +
+  var EXPRESSION = /\$\{\{(.*?)\}\}/g;
+  var STRANGER = new RegExp("github\\.event\\.(?:pull_request\\.(?:title|body|head\\.ref|head\\.label|head\\.repo\\.default_branch)|" +
     "issue\\.(?:title|body)|comment\\.body|review\\.body|review_comment\\.body|discussion\\.(?:title|body)|" +
     "pages\\.[\\w.\\[\\]*]*\\.page_name|head_commit\\.(?:message|author\\.(?:email|name))|" +
     "commits\\[[^\\]]*\\]\\.(?:message|author\\.(?:email|name))|workflow_run\\.(?:head_branch|head_commit\\.(?:message|author\\.(?:email|name))))|" +
-    "github\\.head_ref\\b[^}]*)\\s*\\}\\}");
+    "github\\.head_ref\\b");
   var INTERPRETER = /\b(?:eval|(?:ba|z|da|k)?sh\s+-c|python3?\s+-c|node\s+-e|ruby\s+-e|perl\s+-e|jq|sed|awk|Invoke-Expression|iex)\b/;
   var AGENT = /\b(?:claude|gemini|codex|aider|opencode|cursor-agent|copilot|llm|goose|amp)\b(?:\s|$)/i;
   var KEY = /^\s*(?:-\s+)?([\w.-]+):(?:\s|$)/;
   var SCRIPT_KEYS = ["script", "before_script", "after_script", "run", "entrypoint", "command", "args", "prompt"];
 
   function isTarget(path) {
-    return isCiPath(path) || path.indexOf(".github/workflows/") === 0 || /\.(?:sh|bash)$/.test(path);
+    return isCiPath(path) || path.indexOf(".github/workflows/") === 0 || /\.(?:sh|bash)$/.test(path) || /(?:^|\/)action\.ya?ml$/.test(path);
+  }
+
+  function pastesStrangerText(text) {
+    var re = new RegExp(EXPRESSION.source, "g"), m;
+    while ((m = re.exec(text)) !== null) if (STRANGER.test(m[1])) return true;
+    return false;
   }
 
   function inSingleQuotes(line, at) {
@@ -226,7 +233,7 @@ var Itemator = (function () {
         var n = lines[j][0], text = lines[j][1];
         if (text.trimStart().charAt(0) === "#") continue;
         var kind = null;
-        if (GITHUB.test(text) && commandLike(text, script)) kind = "github-expression";
+        if (pastesStrangerText(text) && commandLike(text, script)) kind = "github-expression";
         else {
           VARRE.lastIndex = 0;
           var m;

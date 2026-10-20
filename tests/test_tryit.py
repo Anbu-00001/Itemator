@@ -54,8 +54,10 @@ def test_the_table_is_the_results_files_and_nothing_more():
     mesa, agents = T._load("mesa_noise_v1.json"), T._load("agent_noise_v1.json")
     for row in ev["rows"]:
         c = row["check"]
-        assert row["ordinary"] == f"{mesa['ordinary']['checks'][c]['spoke']} of {mesa['ordinary']['checks'][c]['read']}"
-        assert row["agents"] == f"{agents['checks'][c]['spoke']} of {agents['checks'][c]['read']}"
+        for got, x in ((row["ordinary"], mesa["ordinary"]["checks"][c]), (row["agents"], agents["checks"][c])):
+            assert got.startswith(f"{x['spoke']} of {x['read']}")
+            assert (f"({x['readable']} changed a file it reads)" in got) == (x["readable"] != x["read"])
+    assert ev["rows"][2]["ordinary"] == "0 of 1499 (4 changed a file it reads)"         # the moving check reads few commits
     assert {r["check"]: r["incidents"] for r in ev["rows"]} == {"shapes": "1 of 1", "untrusted": "1 of 1", "moving": "none in the set"}
 
 

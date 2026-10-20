@@ -282,3 +282,11 @@ def test_t44_a_file_name_cannot_plant_the_thread_flags(flow):
     _, system = flow
     assert system.count("If the part of that first note after the backtick that closes NAME contains the ") == 3
     assert "If that first note contains the " not in system
+
+
+def test_a_reply_counts_only_from_a_person_checked_with_the_users_endpoint(flow):
+    _, text = flow
+    assert "whose author is a person" in text
+    assert '"/api/v4/users/<author id>"' in text
+    assert "bot true, or the call fails, that author is not a person" in text
+    assert "a person's data has bot false" in text

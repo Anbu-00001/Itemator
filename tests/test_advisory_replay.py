@@ -1,4 +1,5 @@
 """eval/advisory_replay.py: turning a fixing commit round so the checks see the vulnerable lines as added ones."""
+import json
 import pathlib
 import sys
 
@@ -36,3 +37,29 @@ def test_the_vulnerable_version_is_caught_and_the_fix_is_silent_and_no_diff_text
 def test_a_fix_that_still_pastes_the_text_is_named_on_the_fix_too():
     bad = {**FILE, "patch": FIX.replace("TITLE: ${{ github.event.issue.title }}", 'X: 1\n+        run: echo "${{ github.event.issue.body }}"')}
     assert not AR.summarise({"advisory": "A", "repo": "o/r", "fix": "b" * 40}, [bad])["silent_on_fix"]
+
+
+def test_a_pull_request_case_carries_its_pattern_and_the_added_lines_of_its_fix(monkeypatch):
+    r = AR.summarise({"advisory": "A", "repo": "o/r", "pr": 7, "pattern": "A", "kind": "W"}, [FILE])
+    assert r["pattern"] == "A" and r["kind"] == "W" and r["fix_added_lines"] == 3
+    gone = {"filename": "a", "status": "removed", "patch": "@@ -1,2 +0,0 @@\n-x\n-y\n"}
+    assert AR.added_lines([gone]) == 0 and AR.added_lines([{"filename": "b", "patch": "+++ b\n+z\n"}]) == 1
+
+
+def test_counts_are_split_by_pattern():
+    rows = [{"pattern": "A", "caught": True}, {"pattern": "A", "caught": False}, {"pattern": "B", "caught": False}]
+    assert AR.by(rows, "pattern") == {"A": {"cases": 2, "caught": 1}, "B": {"cases": 1, "caught": 0}}
+
+
+def test_the_files_of_every_page_of_a_pull_request_are_read(monkeypatch):
+    full = json.dumps([{"filename": f"f{i}", "patch": "p"} for i in range(100)])
+    pages = [full, json.dumps([{"filename": "last", "status": "removed"}])]
+    seen = []
+
+    class Done:
+        def __init__(self, stdout):
+            self.stdout = stdout
+    monkeypatch.setattr(AR.subprocess, "run", lambda cmd, **kw: seen.append(cmd[2]) or Done(pages[len(seen) - 1]))
+    got = AR.fetch_pr("o/r", 9)
+    assert len(got) == 101 and got[-1] == {"filename": "last", "status": "removed", "patch": ""} and got[0]["status"] == "modified"
+    assert seen == ["repos/o/r/pulls/9/files?per_page=100&page=1", "repos/o/r/pulls/9/files?per_page=100&page=2"]

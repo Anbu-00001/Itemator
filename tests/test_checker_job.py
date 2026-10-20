@@ -151,7 +151,7 @@ OLD_TAIL = "To move it into its own MR, reply `split`. If this is not really an 
 NEW_TAIL = ("To move it into its own MR, reply `split`. To drop it from this MR, reply `remove`. "
             "If this is not really an extra, reply `not an extra`.")
 OLD_TODO = 'Type each name in its thread to keep it, or reply "split" to move it to its own MR.'
-NEW_TODO = 'Type each name in its thread to keep it, or reply "split" to move it to its own MR, "remove" to drop it.'
+NEW_TODO = 'Type each name in its thread to keep it, or reply "split" to move it to its own MR, "remove" to drop it. ' + ci.CONSENT    # + the consent line
 
 
 MANIFEST = re.compile(r"pyproject\.toml|package\.json|requirements(?:-[^/]*)?\.txt|go\.mod|Cargo\.toml|Gemfile")

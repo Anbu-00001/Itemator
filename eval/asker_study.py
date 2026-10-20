@@ -57,7 +57,7 @@ def run(doc):
     R.commit(BRANCHES[0], "Fix a typo in the README", [
         {"action": "update", "file_path": "README.md", "content": rd.replace("## Related tools\n", "## Related tools:\n", 1)},
         {"action": "create", "file_path": "docker-compose.yml", "content": "services: {}\n"},
-        {"action": "create", "file_path": "Dockerfile", "content": "FROM python:3.12-slim\nRUN true\n"},
+        {"action": "update", "file_path": "Dockerfile", "content": read("Dockerfile", BRANCHES[0]) + "RUN true\n"},   # the file exists on main since run 2 (amendment in eval/non_person_rubric.json)
         {"action": "create", "file_path": "notes.txt", "content": "scratch notes\n"},
         {"action": "create", "file_path": "setup.cfg", "content": "[metadata]\nname = probe\n"},
         {"action": "create", "file_path": "tox.ini", "content": "[tox]\nenvlist = py312\n"},
@@ -132,7 +132,7 @@ def summarize(runs):
     rows = [c for r in runs for c in r["cases"]]
     ok = [c for c in rows if c["match"]]
     return {"what": "Six reply cases for names.asker_required (reaction flow), pre-registered in eval/asker_study_cases.json. Counts only.",
-            "limits": "Two runs (on two versions of the flow), one merge request each, the same six cases, six cases written by us, two accounts, one model reading. The cases file names the first account as ASKER; the runner (committed before the run, a86e848) used the second account as ASKER and the first as OTHER, the same swap in every case, so the outcomes stand. It shows whether the model applies the username test, not how people answer; a username that differs only in letter case cannot be produced on GitLab, so that clause is covered by unit tests only.",
+            "limits": "Three runs (on three versions of the flow; run 3 on reaction flow v1.6.3, which also checks that each reply's author is a person, eval/non_person_rubric.json), one merge request each, the same six cases, six cases written by us, two accounts, one model reading. The cases file names the first account as ASKER; the runner (committed before the run, a86e848) used the second account as ASKER and the first as OTHER, the same swap in every case, so the outcomes stand. It shows whether the model applies the username test, not how people answer; a username that differs only in letter case cannot be produced on GitLab, so that clause is covered by unit tests only.",
             "runs": len(runs), "cases": len(rows), "as_expected": len(ok), "misread": len(rows) - len(ok),
             "misread_cases": [{"n": c["n"], "label": c["label"], "expected": c["expected"], "got": c["got"]} for c in rows if not c["match"]],
             "asker_sentence_in_every_thread": all(r.get("asker_sentence_in_every_thread") for r in runs),

@@ -1,0 +1,45 @@
+{
+  "what": "Does the prepared fact file (the CI job's itemator.json that the card flow copies) cut the work Duo does? The same card flow, same model setting, same safety text and same card shape, run in two arms on the same three staged tasks: arm A (the live card flow v1.0.8, which reads the CI job's facts) and arm B (eval/ablation/explore_flow.yml, which must find the extras itself from the merge request, its diff and the linked issue, reading no job log or artifact). Staged and made up, so a run has known extras; nothing is merged. This measures how many model calls each arm needs, not whether either is right in the field.",
+  "arms": {
+    "A": "flows/itemator_card.yml as live (catalog item 1016563, v1.0.8), trigger 3014359 (pipeline finished)",
+    "B": "eval/ablation/explore_flow.yml (sha256 506cf030c44f33470163a2a8d2bb51f2930bf0a2476f84d19653745cd1c5e21c) published as a new version of the existing probe item 1016527, trigger 3014118 (reviewer assigned); steps 4 to 5 and the card shape differ as the file shows; every other safety rule is the same text. Frozen before run 1."
+  },
+  "tasks": {
+    "T1": "issue #71 'Greet the user by name'; the change of MR !186 (greeting.py asked for; planted extras: requirements.txt, logo.png, tests/files/corrupt-sample.xz; tidy.py and utils.py also changed)",
+    "T2": "same issue; the change of MR !188 (greeting.py only; nothing planted)",
+    "T3": "a new issue asking for a helpers package of 29 small modules each with a one-line docstring; the change adds those 29 files and one planted extra: requirements.txt gains a dependency (30 files in total)"
+  },
+  "design": "Each task is built twice by script from the same files: one merge request per arm, a fresh branch each, same base. Three pairs, six runs. Run order for the six drawn with random.Random(20261020), all within one 2-hour window on one UTC day, one run at a time, only one of the two triggers on at any moment, the same person (Anbu's account) starting each. Every run is published, a failed or dropped run included.",
+  "primary": "model calls per run, counted as AI messages in the fullest checkpoint of the Duo session (eval/card_model_calls.py count_calls), the unit Duo bills per call",
+  "secondary": [
+    "tool calls per run",
+    "wall seconds from the 'started' to the 'completed' system note of the merge request",
+    "credits: modelled as calls x 0.3125 (list price of Sonnet 5.5) and read from the meter before and about 24 hours after the batch (meter lags); both shown with the gap",
+    "extras named: planted extras named, others named, threads posted, label and Draft state"
+  ],
+  "not_compared": [
+    "the registry line (package age and advisories), the opened-archive description and the exact layout check: a model without a shell cannot do them, so they are listed, never counted as wins",
+    "the verbatim copy of the card's lines from the facts (arm B writes its own)"
+  ],
+  "reading_rule": "Report every run in a table first, then the sums. With three pairs no p-value and no rate is given. If arm B uses as many or fewer calls on any pair, that pair is reported first. The claim allowed is: 'On 3 staged tasks the same card made N model calls with the prepared facts and M without; the prepared facts also gave checks a model cannot do.' No claim about the field, no 'x% cheaper' beyond these three tasks.",
+  "limits": "Staged and made-up changes; three pairs; one model setting; one day; Duo may change; the meter reads about 18 hours late and by calendar day so same-day runs cannot be split; arm B's prompt was written by us (a weak baseline would look like a strawman, so its text shares the card's safety wording and was frozen before any run); arm B's pipeline still runs the itemator job unread.",
+  "stop_rules": [
+    "hard cap 15 credits modelled; the plan costs about 11 (7 to 17); one run above 55 model calls stops everything",
+    "a failed or dropped run is reported; one re-run only for a platform drop with zero tool calls, both logged; none for a bad answer",
+    "arm B's prompt may be changed once, only for a tool error in its first run, both versions and all runs published; no change to tasks, order or prompts otherwise",
+    "results committed before the Oct 22 evening freeze"
+  ],
+  "predictions_before_running": {
+    "T1: arm B uses more model calls than arm A": "80%, ana b340bd",
+    "B more calls than A on all three tasks": "55%, ana f9e13b",
+    "total calls B / A at least 1.2": "65%, ana 033807",
+    "total calls B / A": "1.0 to 2.0 (80%), ana 9c7600",
+    "T1: B names all three planted extras": "70%, ana 209b44",
+    "T2: B posts at least one extra on the clean change": "30%, ana 39fbe3",
+    "all six runs together at most 48 model calls": "80%, ana 4ed91b",
+    "T3: arm A at most 8 model calls": "70%, ana ccb187"
+  },
+  "seen_before_registration": "Card v1.1 sessions: 9, 9, 8 model calls before and 6, 5, 5 after the prompt edit (results/card_model_calls.json); no run of arm B or any explore variant exists. The cost estimate in the plan (fleet 31 A5) expects a small saving because the writes are about 6 of the card's 9 calls.",
+  "amendment_1": "2026-10-19, after run 1 and before run 2: run 1 (T3, arm A, Duo session 9664980) was started less than a minute after the merge request was built, while its itemator job was still running. The flow answered 'No finished itemator job.' after 3 model calls and posted nothing, so it measured nothing about the card. It is kept in the results as an invalid start, its 3 calls and about 0.9 credits counted in the cost, not in any arm. The rule added: a run starts only after the merge request's newest pipeline has finished (the runner now waits for it) and the reviewer assignment is renewed. T3 arm A is run again once, after the pipeline finished. Nothing else changes: tasks, order, flows and predictions are as registered.",
+  "amendment_2": "2026-10-19, before run 3: while run 1 had the card trigger switched on, the pipelines of three other merge requests finished and the card's 'pipeline finished' event started three card sessions by itself (Duo sessions 9665004 on T1 with 5 model calls, 9665011 and 9665012 on the two T2 merge requests with 4 model calls each). That put a card on the T1 A and both T2 merge requests, so the later reviewer-assignment run on T1 A (session 9665121, 3 model calls) found 'Card already posted' and did nothing new. These five sessions (with the invalid session 9664980) are listed in the results as stray, are counted in the cost and in no arm, and the three affected merge requests are closed and rebuilt on fresh branches (T1 A, T2 A, T2 B: new merge requests 208, 209, 210). T3 A (session 9665072) and the untouched T1 B and T3 B merge requests stay. The runner now never has a trigger on while another merge request's pipeline can still finish. The registered order of the remaining runs is unchanged: T1 A, T3 B, T1 B, T2 A, T2 B."
+}

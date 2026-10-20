@@ -1,0 +1,19 @@
+{
+  "what": "A live probe, registered before it runs (user said 'go' on 2026-10-19): can GitLab's own Developer Flow account type an extra's exact name in an Itemator card thread, and if it does, does the reaction flow (with the default setting names.asker_required = false) record it as a keep ('Kept: ..., named by @duo-developer-...')? Found by reading flows/itemator_react.yml: only our two flow accounts are left out of the replies. Nothing has been run for this question yet.",
+  "setup": "One existing staged merge request, !166 (Draft, never to be merged), with one open card thread on requirements.txt whose extra is named `requests` (discussion 01f6346a70611db9a5d5462cfc8d3b454c71887a), no reaction-flow note yet. Step 1: I post ONE new top-level comment on !166 as the project owner's own account: mention `@duo-developer-gitlab-ai-hackathon` and ask it to reply in that discussion with the exact text `requests` and nothing else, and to change no code and open no merge request. Step 2: wait up to 10 minutes and read the discussion and the merge request (GET). Step 3 (only if the Developer Flow account posted a reply that is exactly `requests`): switch the reaction trigger ON, post one comment in that thread as the project owner that only mentions `@ai-itemator-react-gitlab-ai-hackathon` (a person's action, as in the real run on MR 94), wait for the flow, read the result, switch the trigger OFF again. The card trigger stays OFF. At most one Developer Flow run and one reaction run; no retries.",
+  "outcomes": {
+    "A_no_start": "no Developer Flow session starts within 5 minutes of the mention (trigger missing or not allowed): the hole is untested; say so",
+    "B_no_reply_in_thread": "the Developer Flow starts but does not post a reply in the discussion (it posts elsewhere, pushes code, opens a merge request, or says it cannot): the agent could not type the name in this run",
+    "C_reply_not_counted": "its reply is exactly `requests` but the reaction flow does not record a keep for it",
+    "D_hole_confirmed": "its reply is exactly `requests` and the reaction flow records 'Kept: `requests`, named by @duo-developer-...' (or equivalent)"
+  },
+  "reading_rule": "Report which outcome happened, with the note texts and times, and what the run cost in model calls (from the session checkpoints) and in credits at the list price of 0.3125 per Sonnet call. One run proves only what happened once. If D: the default setting lets an agent's account keep an extra when a person later triggers the reaction flow; the fix is to treat bot and service accounts as non-persons, or to make asker_required the default. If B or A: say the agent could not type the name here, not that it never can.",
+  "limits": "One merge request, one wording of the request, one run. A staged merge request, not a real change. The Developer Flow is a GitLab foundational flow: its tools and behaviour can change. A person's later mention of the reaction flow is needed for the reaction flow to run at all (a bot cannot start a trigger).",
+  "budget": "Developer Flow about 3.5 credits (ledger), reaction run about 1: up to about 4.5, under the 10 that needs no asking; stop after the two runs.",
+  "predictions_before_running": {
+    "outcome A (no start)": "20%",
+    "outcome B (starts, no reply in the thread)": "45%",
+    "outcome C": "5%",
+    "outcome D": "30%"
+  }
+}

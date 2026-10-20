@@ -1,0 +1,46 @@
+{
+ "rubric": "eval/try_agreement_rubric.json",
+ "limit_trial": null,
+ "agent_commits": {
+  "units": 4451,
+  "diff_reader_disagreements": [],
+  "check_disagreements": [],
+  "python_spoke_on": {
+   "moving": 3,
+   "shapes": 0,
+   "untrusted": 1
+  }
+ },
+ "mesa_commits": {
+  "units": 800,
+  "diff_reader_disagreements": [],
+  "check_disagreements": [],
+  "python_spoke_on": {
+   "moving": 0,
+   "shapes": 0,
+   "untrusted": 0
+  }
+ },
+ "line_corpus": {
+  "units": 12816,
+  "diff_reader_disagreements": [],
+  "check_disagreements": [],
+  "python_spoke_on": {
+   "moving": 70,
+   "shapes": 105,
+   "untrusted": 70
+  },
+  "lines": 6405
+ },
+ "page_examples": {
+  "units": 6,
+  "diff_reader_disagreements": [],
+  "check_disagreements": [],
+  "python_spoke_on": {
+   "moving": 1,
+   "shapes": 3,
+   "untrusted": 1
+  }
+ },
+ "all_identical": true
+}

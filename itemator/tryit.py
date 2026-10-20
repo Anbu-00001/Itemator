@@ -27,7 +27,9 @@ def _load(name: str) -> dict:
 
 
 def _ratio(row: dict) -> str:
-    return f"{row['spoke']} of {row['read']}"
+    if row.get("readable", row["read"]) == row["read"]:
+        return f"{row['spoke']} of {row['read']}"
+    return f"{row['spoke']} of {row['read']} ({row['readable']} changed a file it reads)"
 
 
 def evidence(mesa: dict, agents: dict, incidents: dict, agreement: dict) -> dict:

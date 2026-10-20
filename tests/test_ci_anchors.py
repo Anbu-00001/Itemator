@@ -458,7 +458,7 @@ def test_six_extras_of_one_kind_from_one_manifest_are_one_line():
                                      "To drop it from this MR, reply `remove`. "
                                      "If this is not really an extra, reply `not an extra`.")
     assert rep["card"]["final_line"] == "1 thing beyond #12: `Cargo.toml` (new dependency, 7 packages)."
-    assert rep["card"]["todo_line"] == 'Type each name in its thread to keep it, or reply "split" to move it to its own MR, "remove" to drop it.'
+    assert rep["card"]["todo_line"] == 'Type each name in its thread to keep it, or reply "split" to move it to its own MR, "remove" to drop it. ' + ci.CONSENT
     five = facts_for([F("src/parser.rs", "@@ -1 +1 @@\n-a\n+b\n"), _cargo(names[:5])])
     assert [x["name"] for x in five["extras"]] == names[:5] and all("detail" not in x["plain_facts"] for x in five["extras"])
 

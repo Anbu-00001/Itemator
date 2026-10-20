@@ -1,0 +1,947 @@
+{
+ "rubric": "eval/advisory_holdout_rubric.json",
+ "cases": 31,
+ "caught": 10,
+ "silent_on_fix": 30,
+ "rows": [
+  {
+   "advisory": "GHSL-2024-277",
+   "repo": "appsmithorg/appsmith",
+   "fix": "e0fb8f91cfd5",
+   "files": [
+    ".github/workflows/ci-test-limited-with-count.yml",
+    ".github/workflows/ci-test-limited.yml"
+   ],
+   "vulnerable_diff": {
+    "untrusted": [],
+    "shapes": [],
+    "moving": []
+   },
+   "fix_as_committed": {
+    "untrusted": [],
+    "shapes": [],
+    "moving": []
+   },
+   "caught": false,
+   "silent_on_fix": true,
+   "pattern": "C",
+   "kind": "W",
+   "fix_added_lines": 16
+  },
+  {
+   "advisory": "GHSL-2024-274",
+   "repo": "cilium/cilium",
+   "fix": "d5f9e045a593",
+   "files": [
+    ".github/workflows/push-chart-ci.yaml",
+    "contrib/scripts/print-chart-version.sh"
+   ],
+   "vulnerable_diff": {
+    "untrusted": [
+     {
+      "path": ".github/workflows/push-chart-ci.yaml",
+      "line": 68,
+      "kind": "github-expression"
+     }
+    ],
+    "shapes": [],
+    "moving": []
+   },
+   "fix_as_committed": {
+    "untrusted": [],
+    "shapes": [],
+    "moving": []
+   },
+   "caught": true,
+   "silent_on_fix": true,
+   "pattern": "A",
+   "kind": "W",
+   "fix_added_lines": 73
+  },
+  {
+   "advisory": "GHSL-2024-275",
+   "repo": "cilium/cilium",
+   "fix": "695a4662dc1a",
+   "files": [
+    ".github/workflows/build-images-base.yaml",
+    ".github/workflows/build-images-docs-builder.yaml"
+   ],
+   "vulnerable_diff": {
+    "untrusted": [],
+    "shapes": [],
+    "moving": []
+   },
+   "fix_as_committed": {
+    "untrusted": [],
+    "shapes": [],
+    "moving": []
+   },
+   "caught": false,
+   "silent_on_fix": true,
+   "pattern": "C",
+   "kind": "W",
+   "fix_added_lines": 14
+  },
+  {
+   "advisory": "GHSA-f67f-hcr6-94mf",
+   "repo": "SHAdd0WTAka/Zen-Ai-Pentest",
+   "fix": "26c4e07df780",
+   "files": [
+    ".github/workflows/dependabot-auto-merge.yml",
+    ".github/workflows/telegram-notifications.yml",
+    ".github/workflows/zenclaw-discord.yml",
+    "mcp/obsidian/server.py"
+   ],
+   "vulnerable_diff": {
+    "untrusted": [
+     {
+      "path": ".github/workflows/dependabot-auto-merge.yml",
+      "line": 67,
+      "kind": "github-expression"
+     },
+     {
+      "path": ".github/workflows/telegram-notifications.yml",
+      "line": 48,
+      "kind": "github-expression"
+     },
+     {
+      "path": ".github/workflows/telegram-notifications.yml",
+      "line": 62,
+      "kind": "github-expression"
+     },
+     {
+      "path": ".github/workflows/telegram-notifications.yml",
+      "line": 77,
+      "kind": "github-expression"
+     },
+     {
+      "path": ".github/workflows/zenclaw-discord.yml",
+      "line": 73,
+      "kind": "github-expression"
+     },
+     {
+      "path": ".github/workflows/zenclaw-discord.yml",
+      "line": 83,
+      "kind": "github-expression"
+     }
+    ],
+    "shapes": [],
+    "moving": []
+   },
+   "fix_as_committed": {
+    "untrusted": [],
+    "shapes": [],
+    "moving": []
+   },
+   "caught": true,
+   "silent_on_fix": true,
+   "pattern": "A",
+   "kind": "W",
+   "fix_added_lines": 85
+  },
+  {
+   "advisory": "GHSA-vxmw-7h4f-hqxh",
+   "repo": "pypa/gh-action-pypi-publish",
+   "fix": "77db1b7cf7dc",
+   "files": [
+    ".github/workflows/build-and-push-docker-image.yml",
+    ".github/workflows/reusable-smoke-test.yml",
+    ".github/workflows/zizmor.yml",
+    ".github/zizmor.yml",
+    ".pre-commit-config.yaml",
+    "action.yml",
+    "oidc-exchange.py"
+   ],
+   "vulnerable_diff": {
+    "untrusted": [],
+    "shapes": [],
+    "moving": []
+   },
+   "fix_as_committed": {
+    "untrusted": [],
+    "shapes": [],
+    "moving": []
+   },
+   "caught": false,
+   "silent_on_fix": true,
+   "pattern": "B",
+   "kind": "C",
+   "fix_added_lines": 119
+  },
+  {
+   "advisory": "GHSA-gq52-6phf-x2r6",
+   "repo": "tj-actions/branch-names",
+   "fix": "e497ceb8ccd4",
+   "files": [
+    "action.yml"
+   ],
+   "vulnerable_diff": {
+    "untrusted": [],
+    "shapes": [],
+    "moving": []
+   },
+   "fix_as_committed": {
+    "untrusted": [],
+    "shapes": [],
+    "moving": []
+   },
+   "caught": false,
+   "silent_on_fix": true,
+   "pattern": "E",
+   "kind": "C",
+   "fix_added_lines": 7
+  },
+  {
+   "advisory": "GHSA-8v8w-v8xg-79rf",
+   "repo": "tj-actions/branch-names",
+   "fix": "4923d1ca41f9",
+   "files": [
+    "action.yml"
+   ],
+   "vulnerable_diff": {
+    "untrusted": [],
+    "shapes": [],
+    "moving": []
+   },
+   "fix_as_committed": {
+    "untrusted": [],
+    "shapes": [],
+    "moving": []
+   },
+   "caught": false,
+   "silent_on_fix": true,
+   "pattern": "B",
+   "kind": "C",
+   "fix_added_lines": 36
+  },
+  {
+   "advisory": "GHSA-7x29-qqmq-v6qc",
+   "repo": "ultralytics/actions",
+   "fix": "8069e0ac4c23",
+   "files": [
+    "action.yml"
+   ],
+   "vulnerable_diff": {
+    "untrusted": [],
+    "shapes": [],
+    "moving": []
+   },
+   "fix_as_committed": {
+    "untrusted": [],
+    "shapes": [],
+    "moving": []
+   },
+   "caught": false,
+   "silent_on_fix": true,
+   "pattern": "A",
+   "kind": "C",
+   "fix_added_lines": 7
+  },
+  {
+   "advisory": "GHSA-qq99-p57r-g3v7",
+   "repo": "huggingface/text-generation-inference",
+   "fix": "88702d876383",
+   "files": [
+    ".github/workflows/autodocs.yml"
+   ],
+   "vulnerable_diff": {
+    "untrusted": [
+     {
+      "path": ".github/workflows/autodocs.yml",
+      "line": 16,
+      "kind": "github-expression"
+     }
+    ],
+    "shapes": [],
+    "moving": []
+   },
+   "fix_as_committed": {
+    "untrusted": [],
+    "shapes": [],
+    "moving": []
+   },
+   "caught": true,
+   "silent_on_fix": true,
+   "pattern": "A",
+   "kind": "W",
+   "fix_added_lines": 4
+  },
+  {
+   "advisory": "GHSA-ghm2-rq8q-wrhc",
+   "repo": "tj-actions/verify-changed-files",
+   "fix": "498d3f316f50",
+   "files": [
+    "README.md",
+    "action.yml",
+    "entrypoint.sh"
+   ],
+   "vulnerable_diff": {
+    "untrusted": [],
+    "shapes": [],
+    "moving": []
+   },
+   "fix_as_committed": {
+    "untrusted": [],
+    "shapes": [],
+    "moving": []
+   },
+   "caught": false,
+   "silent_on_fix": true,
+   "pattern": "F",
+   "kind": "C",
+   "fix_added_lines": 27
+  },
+  {
+   "advisory": "GHSA-pwf7-47c3-mfhx",
+   "repo": "j178/prek-action",
+   "fix": "6b7c6ef5c387",
+   "files": [
+    "action.yaml"
+   ],
+   "vulnerable_diff": {
+    "untrusted": [],
+    "shapes": [],
+    "moving": []
+   },
+   "fix_as_committed": {
+    "untrusted": [],
+    "shapes": [],
+    "moving": []
+   },
+   "caught": false,
+   "silent_on_fix": true,
+   "pattern": "D",
+   "kind": "C",
+   "fix_added_lines": 23
+  },
+  {
+   "advisory": "GHSA-65rg-554r-9j5x",
+   "repo": "lycheeverse/lychee-action",
+   "fix": "7cd0af4c74a6",
+   "files": [
+    "action.yml"
+   ],
+   "vulnerable_diff": {
+    "untrusted": [],
+    "shapes": [],
+    "moving": []
+   },
+   "fix_as_committed": {
+    "untrusted": [],
+    "shapes": [],
+    "moving": []
+   },
+   "caught": false,
+   "silent_on_fix": true,
+   "pattern": "D",
+   "kind": "C",
+   "fix_added_lines": 8
+  },
+  {
+   "advisory": "GHSA-3g6g-gq4r-xjm9",
+   "repo": "NationalSecurityAgency/emissary",
+   "fix": "38ab53e309f0",
+   "files": [
+    ".github/workflows/cherrypick.yml",
+    ".github/workflows/maven-release.yml",
+    ".github/workflows/maven-version.yml"
+   ],
+   "vulnerable_diff": {
+    "untrusted": [],
+    "shapes": [],
+    "moving": []
+   },
+   "fix_as_committed": {
+    "untrusted": [],
+    "shapes": [],
+    "moving": []
+   },
+   "caught": false,
+   "silent_on_fix": true,
+   "pattern": "A",
+   "kind": "W",
+   "fix_added_lines": 20
+  },
+  {
+   "advisory": "GHSL-2025-090",
+   "repo": "harvester/harvester",
+   "fix": "aa2550b6b765",
+   "files": [
+    ".github/workflows/issue-management-link-backport-pr.yaml"
+   ],
+   "vulnerable_diff": {
+    "untrusted": [
+     {
+      "path": ".github/workflows/issue-management-link-backport-pr.yaml",
+      "line": 23,
+      "kind": "github-expression"
+     },
+     {
+      "path": ".github/workflows/issue-management-link-backport-pr.yaml",
+      "line": 47,
+      "kind": "github-expression"
+     }
+    ],
+    "shapes": [],
+    "moving": []
+   },
+   "fix_as_committed": {
+    "untrusted": [],
+    "shapes": [],
+    "moving": []
+   },
+   "caught": true,
+   "silent_on_fix": true,
+   "pattern": "A",
+   "kind": "W",
+   "fix_added_lines": 8
+  },
+  {
+   "advisory": "GHSL-2025-093",
+   "repo": "MervinPraison/PraisonAI",
+   "fix": "e96afb5eb046",
+   "files": [
+    ".github/actions/claude-code-action/action.yml",
+    ".github/workflows/gemini-issue-review.yml",
+    ".github/workflows/gemini-pr-review.yml"
+   ],
+   "vulnerable_diff": {
+    "untrusted": [
+     {
+      "path": ".github/workflows/gemini-issue-review.yml",
+      "line": 66,
+      "kind": "github-expression"
+     },
+     {
+      "path": ".github/workflows/gemini-pr-review.yml",
+      "line": 72,
+      "kind": "github-expression"
+     }
+    ],
+    "shapes": [],
+    "moving": []
+   },
+   "fix_as_committed": {
+    "untrusted": [],
+    "shapes": [],
+    "moving": []
+   },
+   "caught": true,
+   "silent_on_fix": true,
+   "pattern": "G",
+   "kind": "C",
+   "fix_added_lines": 61
+  },
+  {
+   "advisory": "GHSA-2qvg-qr73-mqxp",
+   "repo": "wktk/conflibot",
+   "fix": "59e255c49c92",
+   "files": [
+    "dist/index.js",
+    "package.json",
+    "src/index.ts"
+   ],
+   "vulnerable_diff": {
+    "untrusted": [],
+    "shapes": [],
+    "moving": []
+   },
+   "fix_as_committed": {
+    "untrusted": [],
+    "shapes": [],
+    "moving": []
+   },
+   "caught": false,
+   "silent_on_fix": true,
+   "pattern": "H",
+   "kind": "O",
+   "fix_added_lines": 134
+  },
+  {
+   "advisory": "GHSL-2024-205/206",
+   "repo": "Stirling-Tools/Stirling-PDF",
+   "fix": "a6ae3734ca15",
+   "files": [
+    ".github/workflows/check_properties.yml"
+   ],
+   "vulnerable_diff": {
+    "untrusted": [],
+    "shapes": [],
+    "moving": []
+   },
+   "fix_as_committed": {
+    "untrusted": [],
+    "shapes": [],
+    "moving": []
+   },
+   "caught": false,
+   "silent_on_fix": true,
+   "pattern": "C",
+   "kind": "W",
+   "fix_added_lines": 35
+  },
+  {
+   "advisory": "GHSL-2025-106",
+   "repo": "esphome/esphome-docs",
+   "fix": "885972b35668",
+   "files": [
+    ".github/workflows/component-image.yml"
+   ],
+   "vulnerable_diff": {
+    "untrusted": [
+     {
+      "path": ".github/workflows/component-image.yml",
+      "line": 36,
+      "kind": "github-expression"
+     }
+    ],
+    "shapes": [],
+    "moving": []
+   },
+   "fix_as_committed": {
+    "untrusted": [],
+    "shapes": [],
+    "moving": []
+   },
+   "caught": true,
+   "silent_on_fix": true,
+   "pattern": "A",
+   "kind": "W",
+   "fix_added_lines": 14
+  },
+  {
+   "advisory": "GHSL-2024-319",
+   "repo": "trinodb/trino",
+   "fix": "pull request 23980",
+   "files": [
+    ".github/workflows/upload-test-results.yml"
+   ],
+   "vulnerable_diff": {
+    "untrusted": [
+     {
+      "path": ".github/workflows/upload-test-results.yml",
+      "line": 95,
+      "kind": "github-expression"
+     }
+    ],
+    "shapes": [],
+    "moving": []
+   },
+   "fix_as_committed": {
+    "untrusted": [],
+    "shapes": [],
+    "moving": []
+   },
+   "caught": true,
+   "silent_on_fix": true,
+   "pattern": "A",
+   "kind": "W",
+   "fix_added_lines": 7
+  },
+  {
+   "advisory": "GHSL-2024-326",
+   "repo": "actualbudget/actual",
+   "fix": "pull request 5952",
+   "files": [
+    ".github/workflows/update-vrt.yml",
+    ".github/workflows/vrt-update-apply.yml",
+    ".github/workflows/vrt-update-generate.yml",
+    "upcoming-release-notes/5952.md"
+   ],
+   "vulnerable_diff": {
+    "untrusted": [],
+    "shapes": [],
+    "moving": []
+   },
+   "fix_as_committed": {
+    "untrusted": [
+     {
+      "path": ".github/workflows/vrt-update-generate.yml",
+      "line": 96,
+      "kind": "github-expression"
+     }
+    ],
+    "shapes": [],
+    "moving": []
+   },
+   "caught": false,
+   "silent_on_fix": false,
+   "pattern": "C",
+   "kind": "W",
+   "fix_added_lines": 268
+  },
+  {
+   "advisory": "GHSL-2024-209",
+   "repo": "dream-num/univer",
+   "fix": "pull request 3509",
+   "files": [
+    ".github/workflows/preview-deploy.yml",
+    ".github/workflows/update-snapshots.yml"
+   ],
+   "vulnerable_diff": {
+    "untrusted": [
+     {
+      "path": ".github/workflows/update-snapshots.yml",
+      "line": 30,
+      "kind": "github-expression"
+     }
+    ],
+    "shapes": [],
+    "moving": []
+   },
+   "fix_as_committed": {
+    "untrusted": [],
+    "shapes": [],
+    "moving": []
+   },
+   "caught": true,
+   "silent_on_fix": true,
+   "pattern": "A",
+   "kind": "W",
+   "fix_added_lines": 24
+  },
+  {
+   "advisory": "GHSL-2024-281",
+   "repo": "ant-design/ant-design-web3",
+   "fix": "pull request 1352",
+   "files": [
+    ".github/workflows/preview-deploy.yml"
+   ],
+   "vulnerable_diff": {
+    "untrusted": [],
+    "shapes": [],
+    "moving": []
+   },
+   "fix_as_committed": {
+    "untrusted": [],
+    "shapes": [],
+    "moving": []
+   },
+   "caught": false,
+   "silent_on_fix": true,
+   "pattern": "C",
+   "kind": "W",
+   "fix_added_lines": 31
+  },
+  {
+   "advisory": "GHSL-2024-322",
+   "repo": "sympy/sympy",
+   "fix": "pull request 27204",
+   "files": [
+    ".github/workflows/comment-on-pr.yml",
+    ".github/workflows/runtests.yml"
+   ],
+   "vulnerable_diff": {
+    "untrusted": [],
+    "shapes": [],
+    "moving": []
+   },
+   "fix_as_committed": {
+    "untrusted": [],
+    "shapes": [],
+    "moving": []
+   },
+   "caught": false,
+   "silent_on_fix": true,
+   "pattern": "C",
+   "kind": "W",
+   "fix_added_lines": 2
+  },
+  {
+   "advisory": "GHSA-6q4m-7476-932w",
+   "repo": "rlespinasse/github-slug-action",
+   "fix": "102b1a064a9b",
+   "files": [
+    "action.yml"
+   ],
+   "vulnerable_diff": {
+    "untrusted": [],
+    "shapes": [],
+    "moving": []
+   },
+   "fix_as_committed": {
+    "untrusted": [],
+    "shapes": [],
+    "moving": []
+   },
+   "caught": false,
+   "silent_on_fix": true,
+   "pattern": "B",
+   "kind": "C",
+   "fix_added_lines": 10
+  },
+  {
+   "advisory": "GHSA-2487-9f55-2vg9",
+   "repo": "OZI-Project/publish",
+   "fix": "abd8524ec698",
+   "files": [
+    "action.yml"
+   ],
+   "vulnerable_diff": {
+    "untrusted": [],
+    "shapes": [],
+    "moving": []
+   },
+   "fix_as_committed": {
+    "untrusted": [],
+    "shapes": [],
+    "moving": []
+   },
+   "caught": false,
+   "silent_on_fix": true,
+   "pattern": "B",
+   "kind": "C",
+   "fix_added_lines": 4
+  },
+  {
+   "advisory": "GHSA-9chj-cp8j-3c5f",
+   "repo": "wazuh/wazuh",
+   "fix": "44bf114d2f49",
+   "files": [
+    ".github/actions/4_operational_prerelease_agent_integration_tests_issue/action.yml",
+    ".github/actions/4_operational_prerelease_coverity_issue/action.yml",
+    ".github/actions/4_operational_prerelease_unit_tests_issue/action.yml",
+    ".github/actions/4_operational_prerelease_wpk_tests_issue/action.yml",
+    ".github/actions/build_target_cpp/action.yml",
+    ".github/actions/compile/action.yml",
+    ".github/actions/compile_and_test/action.yml",
+    ".github/actions/legacy_unit_tests_build/action.yml",
+    ".github/actions/legacy_unit_tests_run/action.yml",
+    ".github/workflows/4_builderpackage_filebeat-module.yml",
+    ".github/workflows/4_builderpackage_filebeat-package.yml",
+    ".github/workflows/4_builderpackage_manager-multiples.yml",
+    ".github/workflows/4_builderpackage_manager.yml",
+    ".github/workflows/4_builderprecompiled_docker-images-retag.yml",
+    ".github/workflows/4_builderprecompiled_docker-images-upload-manager.yml",
+    ".github/workflows/4_builderprecompiled_docker-images-upload.yml",
+    ".github/workflows/4_builderprecompiled_vulnerability-scanner-database.yml",
+    ".github/workflows/4_bumper_repository.yml",
+    ".github/workflows/4_codeanalysis_coverity.yml",
+    ".github/workflows/4_operational_prerelease_issues.yml",
+    ".github/workflows/4_testcomponent_vulnerability-scanner.yml",
+    ".github/workflows/4_testunit_api.yml",
+    ".github/workflows/4_testunit_external-integrations.yml",
+    ".github/workflows/4_testunit_framework.yml",
+    ".github/workflows/4_testunit_wodles.yml"
+   ],
+   "vulnerable_diff": {
+    "untrusted": [],
+    "shapes": [],
+    "moving": []
+   },
+   "fix_as_committed": {
+    "untrusted": [],
+    "shapes": [],
+    "moving": []
+   },
+   "caught": false,
+   "silent_on_fix": true,
+   "pattern": "D",
+   "kind": "C",
+   "fix_added_lines": 389
+  },
+  {
+   "advisory": "GHSL-2024-120",
+   "repo": "milvus-io/milvus",
+   "fix": "26945517577d",
+   "files": [
+    ".github/workflows/check-issue.yaml"
+   ],
+   "vulnerable_diff": {
+    "untrusted": [
+     {
+      "path": ".github/workflows/check-issue.yaml",
+      "line": 22,
+      "kind": "github-expression"
+     },
+     {
+      "path": ".github/workflows/check-issue.yaml",
+      "line": 35,
+      "kind": "github-expression"
+     }
+    ],
+    "shapes": [],
+    "moving": []
+   },
+   "fix_as_committed": {
+    "untrusted": [],
+    "shapes": [],
+    "moving": []
+   },
+   "caught": true,
+   "silent_on_fix": true,
+   "pattern": "A",
+   "kind": "W",
+   "fix_added_lines": 4
+  },
+  {
+   "advisory": "GHSL-2025-101",
+   "repo": "JurajNyiri/HomeAssistant-Tapo-Control",
+   "fix": "2a3b80ff128d",
+   "files": [
+    ".github/workflows/issues.yml"
+   ],
+   "vulnerable_diff": {
+    "untrusted": [
+     {
+      "path": ".github/workflows/issues.yml",
+      "line": 21,
+      "kind": "github-expression"
+     },
+     {
+      "path": ".github/workflows/issues.yml",
+      "line": 23,
+      "kind": "github-expression"
+     }
+    ],
+    "shapes": [],
+    "moving": []
+   },
+   "fix_as_committed": {
+    "untrusted": [],
+    "shapes": [],
+    "moving": []
+   },
+   "caught": true,
+   "silent_on_fix": true,
+   "pattern": "A",
+   "kind": "W",
+   "fix_added_lines": 22
+  },
+  {
+   "advisory": "GHSL-2023-181",
+   "repo": "pytorch/pytorch",
+   "fix": "pull request 107753",
+   "files": [
+    ".github/actions/filter-test-configs/action.yml"
+   ],
+   "vulnerable_diff": {
+    "untrusted": [],
+    "shapes": [],
+    "moving": []
+   },
+   "fix_as_committed": {
+    "untrusted": [],
+    "shapes": [],
+    "moving": []
+   },
+   "caught": false,
+   "silent_on_fix": true,
+   "pattern": "A",
+   "kind": "C",
+   "fix_added_lines": 10
+  },
+  {
+   "advisory": "GHSA-9p44-j4g5-cfx5",
+   "repo": "aquasecurity/trivy-action",
+   "fix": "7aca5acc9500",
+   "files": [
+    "README.md",
+    "action.yaml",
+    "entrypoint.sh",
+    "test/test.bats"
+   ],
+   "vulnerable_diff": {
+    "untrusted": [],
+    "shapes": [],
+    "moving": []
+   },
+   "fix_as_committed": {
+    "untrusted": [],
+    "shapes": [],
+    "moving": []
+   },
+   "caught": false,
+   "silent_on_fix": true,
+   "pattern": "H",
+   "kind": "C/O",
+   "fix_added_lines": 74
+  },
+  {
+   "advisory": "GHSA-pqwm-q9pv-ph8r",
+   "repo": "shivammathur/setup-php",
+   "fix": "eeef37e059fb",
+   "files": [
+    "__tests__/config.test.ts",
+    "__tests__/tools.test.ts",
+    "__tests__/utils.test.ts",
+    "dist/index.js",
+    "src/config.ts",
+    "src/install.ts",
+    "src/tools.ts",
+    "src/utils.ts"
+   ],
+   "vulnerable_diff": {
+    "untrusted": [],
+    "shapes": [],
+    "moving": []
+   },
+   "fix_as_committed": {
+    "untrusted": [],
+    "shapes": [],
+    "moving": []
+   },
+   "caught": false,
+   "silent_on_fix": true,
+   "pattern": "H",
+   "kind": "O",
+   "fix_added_lines": 198
+  }
+ ],
+ "silent_on_fix_with_added_lines": {
+  "cases": 31,
+  "silent": 30
+ },
+ "by_pattern": {
+  "C": {
+   "cases": 6,
+   "caught": 0
+  },
+  "A": {
+   "cases": 12,
+   "caught": 9
+  },
+  "B": {
+   "cases": 4,
+   "caught": 0
+  },
+  "E": {
+   "cases": 1,
+   "caught": 0
+  },
+  "F": {
+   "cases": 1,
+   "caught": 0
+  },
+  "D": {
+   "cases": 3,
+   "caught": 0
+  },
+  "G": {
+   "cases": 1,
+   "caught": 1
+  },
+  "H": {
+   "cases": 3,
+   "caught": 0
+  }
+ },
+ "by_kind": {
+  "W": {
+   "cases": 16,
+   "caught": 9
+  },
+  "C": {
+   "cases": 12,
+   "caught": 1
+  },
+  "O": {
+   "cases": 2,
+   "caught": 0
+  },
+  "C/O": {
+   "cases": 1,
+   "caught": 0
+  }
+ }
+}

@@ -1,0 +1,25 @@
+{
+  "what": "How long does a fresh install of a dependency an AI agent added beyond its task take on a GitLab-hosted runner? The weight study (results/aidev_weight_v1.json) measured bytes and packages; this measures seconds, which GitLab bills as compute minutes.",
+  "sample": "The first 40 weighed lines of each ecosystem in results/aidev_weight_v1.json, in file order (that file's order is its seeded random order), each at the version the weight study weighed; plus one baseline package per ecosystem (six 1.16.0, ms 2.1.3) for the tool's own start-up.",
+  "measure": "One timed install per line in a new empty environment with an empty cache: pip install --no-cache-dir --only-binary=:all: (python:3.12 image) or npm install --ignore-scripts --no-package-lock (node:22 image). The virtual environment is made before the clock starts. Seconds are wall time on the runner, network included.",
+  "safety": "No package code runs: wheels only (a line that needs a source build is recorded as needs_source_build, not measured), and no npm install scripts.",
+  "outputs": [
+    "median and 90th percentile seconds, total",
+    "median seconds above the baseline",
+    "Spearman correlation of the weight study's bytes with seconds",
+    "lines not measured, by reason",
+    "the three slowest"
+  ],
+  "limits": "One run per line on shared runners, whose speed and network vary; pip's and npm's own resolution today, not deps.dev's; wheels only, so lines needing a source build are left out; a pipeline with a cache installs faster.",
+  "predictions_before_running": {
+    "PyPI median seconds": "2 to 25 (80%), ana 819cbe",
+    "npm median seconds": "1.5 to 15 (80%), ana 672795",
+    "PyPI Spearman >= 0.5": "65%, ana df9088",
+    "npm Spearman >= 0.5": "60%, ana f6e519",
+    "at least 30 of 40 PyPI lines measured": "70%, ana ee97ca"
+  },
+  "stop_rules": [
+    "one run per ecosystem; no re-run for a result we dislike; a platform failure before any line is measured may be re-run once, logged",
+    "no Duo credits"
+  ]
+}

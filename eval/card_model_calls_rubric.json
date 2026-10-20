@@ -1,0 +1,31 @@
+{
+  "what": "Does a prompt-only edit of the card flow (v1.1: read the pipeline from the merge request answer, send the jobs listing and the duplicate search in one turn, write the card and every thread in one turn) cut the number of MODEL calls a card run makes, without changing what the card says or does? Written before any run of the edited flow. Counts only: three runs per arm are too few for a rate or a test.",
+  "measure": "Model calls of a run = the number of AI messages in the run's conversation history in the checkpoints of the Duo session (GET /ai/duo_workflows/workflows/<id>/checkpoints, the latest snapshot with the most messages), counted by eval/card_model_calls.py. Tool calls = the tool calls those messages made. The model name is read from each message. A model call is what the platform bills; a tool call is not.",
+  "before_arm": "Sessions 9641668 (MR !139), 9650392 (!166) and 9651403 (!174), the card flow v1.0.7, re-counted by the script (not copied from any report). Reviewer-assignment path.",
+  "after_arm": "Three fresh staged merge requests built from current main, with 3, 1 and 0 extras (an issue-linked change with that many extras the rules list), reviewer-assignment path, card trigger switched ON for each run only. One run each. Every run is listed, including a dropped or failed one (counted, never replaced silently; a rerun needs a new line in the result file saying why).",
+  "flow_change": "flows/itemator_card.yml only (the prompt). No new tool, no new permission, no new component. Safety text, the stale check, the duplicate check by search, one attempt per extra, the label and Draft rules and the copied-character-for-character lines stay as they are (tests/test_card_prompt.py pins them).",
+  "primary_outcome": "Model calls per run, before and after, listed run by run, with the mean of each arm. The change counts as a cut when every after run has fewer model calls than the smallest before run that has the same number of extras or fewer (the three before runs had 3, 1 and 0 extras in some order, read from the script), and the after mean is below the before mean. No p-value, no rate.",
+  "also_reported": [
+    "tool calls per run before and after",
+    "whether the posted card note contains every FACTS.card line the flow is told to copy, character for character (checked by the script against the job's itemator.json)",
+    "whether the number of threads equals the number of extras, and whether the label and the Draft state equal what the facts require",
+    "the credits the meter shows for the three after runs, read at least 18 hours later (it lags); modelled credits = model calls times 0.3125",
+    "the flow's catalog version that ran each session"
+  ],
+  "reading_rule": "State the model calls first, in plain words, with every run. If the after runs are not lower, say so and revert the flow to v1.0.7. No sentence says the saving applies to other models, other triggers or other projects. The pipeline-hook path was not counted before and is not claimed.",
+  "stop_rules": [
+    "any run above 12 model calls stops the experiment and the flow is reverted",
+    "any run whose card differs from the facts, or whose label, Draft state or thread count is wrong, stops it and the flow is reverted",
+    "modelled credits above 8.4 for the three after runs stops it (the run limit that needs no asking is 10)"
+  ],
+  "limits": "Three runs per arm, one project, one model setting, staged merge requests built for the test, and the before sessions were not run on the same merge requests as the after sessions. Only the reviewer-assignment path is measured. The meter lags about 18 hours and covers one account.",
+  "seen_before_registration": "Agent report B5 (vault/Intel/fleet-32-2026-10-19/reports/B5.md) read the three before sessions and reported 8 to 9 model calls and 10 tool calls each. I looked at one of them (9651403): 9 AI messages, 10 tool calls, every message on claude-sonnet-5-5. No after run exists.",
+  "predictions_before_runs": {
+    "every after run has at most 6 model calls": "70%, ana 52c999",
+    "mean model calls after, over the three runs": "5 to 7 (80%), ana 5a79a6",
+    "every after card contains every FACTS.card line character for character": "85%, ana 26e8dc",
+    "threads, label and Draft state all as the facts require, on all three runs": "85%, ana 3b2548",
+    "after mean is below the before mean (primary outcome)": "80%, ana 535923"
+  },
+  "amendment_1": "2026-10-19, before any run of the edited flow: the catalog refused the cycle cap (`/components/0/max_cycles` is a disallowed additional property), so the edit is the prompt only. Nothing else changes."
+}

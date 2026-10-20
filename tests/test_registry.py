@@ -115,9 +115,11 @@ def test_found_on_pypi():
     assert e["plain_facts"]["registry"] == {"count": 1, "packages": [{
         "ecosystem": "PyPI", "name": "leftpad-py", "version": None, "checked": "2026-10-11", "source": PYPI,
         "lookup": "ok", "found": True, "first_release": "2023-02-01", "releases": 3, "latest": "1.2.0",
-        "license": "MIT", "license_form": "spdx", "advisories": 0, "advisory_ids": []}]}
+        "license": "MIT", "license_form": "spdx", "advisories": 0, "advisory_ids": [],
+        "weight": {"weight": "unavailable", "reason": "graph_http_404", "of_version": "latest"}}]}
     assert [(c["method"], c["url"], c["body"]) for c in fake.calls] == [
-        ("GET", PYPI, None), ("POST", OSV, {"package": {"name": "leftpad-py", "ecosystem": "PyPI"}})]
+        ("GET", PYPI, None), ("POST", OSV, {"package": {"name": "leftpad-py", "ecosystem": "PyPI"}}),
+        ("GET", "https://api.deps.dev/v3/systems/pypi/packages/leftpad-py/versions/1.2.0:dependencies", None)]   # weighed (test_weight.py)
     plain = card([req("leftpad-py>=1.0")], None)
     assert (out["state"], out["card"]) == (plain["state"], plain["card"]) and "registry" not in plain["extras"][0]["plain_facts"]
     check_stub(e["thread_stub"], "leftpad-py")
@@ -176,7 +178,7 @@ def test_advisories_counted_and_pinned_version_sent():
     ("npm", "left-pad", '"left-pad": "^1.3.0",', None), ("npm", "left-pad", '"left-pad": "1.3"', None),
     ("crates.io", "serde", 'serde = "=1.0.100"', "1.0.100"), ("crates.io", "serde", 'serde = "1.0.100"', None),
     ("crates.io", "serde", 'serde = { version = "=1.0.1", features = ["derive"] }', "1.0.1"),
-    ("crates.io", "serde", 'serde_json = "=1.0.1"', None), ("Go", "x", "x v1.0.0", None)])
+    ("crates.io", "serde", 'serde_json = "=1.0.1"', None), ("Go", "x", "x v1.0.0", "v1.0.0")])
 def test_pinned(ecosystem, name, line, want):
     assert RG.pinned(ecosystem, name, line) == want
 
@@ -328,7 +330,8 @@ def test_a_grouped_extra_looks_up_five_and_counts_all():
             f"on pypi.org was found; `lib1` on PyPI: {first}; `lib3` on PyPI: {one}; `lib4` on PyPI: {one}; facts for 1 could not "
             f"be read. {KEEP}") in e["thread_stub"]
     check_stub(e["thread_stub"], "requirements.txt")
-    assert sum(c["method"] == "GET" for c in fake.calls) == 5
+    assert sum(c["method"] == "GET" and "deps.dev" not in c["url"] for c in fake.calls) == 5
+    assert sum("deps.dev" in c["url"] for c in fake.calls) == 3          # the first three found are weighed
 
 
 def test_the_total_budget():
@@ -344,10 +347,10 @@ def test_the_total_budget():
 # ---------------------------------------------------- what is not looked up
 
 def test_other_ecosystems_say_nothing():
-    patch = "@@ -1,3 +1,4 @@\n module example.com/x\n \n go 1.22\n+require github.com/foo/bar v1.2.3\n"
+    patch = "@@ -1,2 +1,3 @@\n source 'https://rubygems.org'\n \n+gem 'rake'\n"
     fake = Fake()
-    (e,) = card([F("go.mod", patch)], fake)["extras"]
-    assert e["plain_facts"]["registry"]["packages"] == [{"ecosystem": "Go", "name": "github.com/foo/bar", "lookup": "not_supported"}]
+    (e,) = card([F("Gemfile", patch)], fake)["extras"]
+    assert e["plain_facts"]["registry"]["packages"] == [{"ecosystem": "RubyGems", "name": "rake", "lookup": "not_supported"}]
     assert e["thread_stub"] == ci.thread_stub(Extra(e["kind"], e["path"], e["name"], e["why"])) and fake.calls == []
 
 
@@ -582,7 +585,7 @@ class Unread(Resp):
 
 def test_t22_answers_are_capped_per_host(monkeypatch):
     assert RG.MAX_BODY == {"api.osv.dev": 2 ** 20, "pypi.org": 16 * 2 ** 20, "crates.io": 16 * 2 ** 20,
-                           "registry.npmjs.org": 64 * 2 ** 20}
+                           "registry.npmjs.org": 64 * 2 ** 20, "api.nuget.org": 16 * 2 ** 20, "proxy.golang.org": 2 ** 20, "api.deps.dev": 4 * 2 ** 20}
     big = b"x" * (2 ** 20 + 1)
     monkeypatch.setattr(RG, "_open", lambda req, timeout: Resp(big))
     with pytest.raises(RG.LookupFailed) as ex:
@@ -644,3 +647,97 @@ def test_t22_only_advisories_with_a_string_id_are_counted():
     assert (p["advisories"], p["advisory_ids"]) == (1, ["GHSA-2", "GHSA-3"])
     junk = look(Fake({PYPI: (200, pypi_doc()), OSV: (200, {"vulns": [{"id": True}, 7, None]})}), "PyPI", "leftpad-py")
     assert ", 0 known advisories in any version" in RG.sentence({"count": 1, "packages": [junk]})
+
+
+# ------------------------------------------------------------ a version that is new
+
+def _pypi_new(day):
+    doc = pypi_doc()
+    doc["releases"]["1.3.0"] = [{"upload_time_iso_8601": f"{day}T10:00:00.000000Z"}]
+    return doc
+
+
+@pytest.mark.parametrize("day,said", [
+    ("2026-10-10", "version 1.3.0 released 1 day before this check"),
+    ("2026-10-11", "version 1.3.0 released the day of this check"),
+    ("2026-09-11", "version 1.3.0 released 30 days before this check")])
+def test_a_recent_pinned_version_says_when_it_came_out(day, said):
+    p = look(Fake({PYPI: (200, _pypi_new(day)), OSV: (200, {})}), "PyPI", "leftpad-py", "1.3.0")
+    assert p["version_released"] == day
+    assert f"first released 2023-02-01, {said}, 4 releases" in RG.sentence({"count": 1, "packages": [p]})
+
+
+@pytest.mark.parametrize("day,version", [("2026-09-10", "1.3.0"), ("2026-10-12", "1.3.0"), ("2026-10-10", "1.2.1"), ("2026-10-10", None)])
+def test_an_old_future_or_unknown_version_is_not_called_new(day, version):
+    p = look(Fake({PYPI: (200, _pypi_new(day)), OSV: (200, {})}), "PyPI", "leftpad-py", version)
+    assert "released" not in RG.sentence({"count": 1, "packages": [p]}).replace("first released", "")
+
+
+def test_npm_and_crates_say_it_too():
+    url = "https://registry.npmjs.org/@scope%2Fpkg"
+    doc = {"name": "@scope/pkg", "dist-tags": {"latest": "1.1.0"}, "versions": {"1.0.0": {}, "1.1.0": {}},
+           "time": {"created": "2021-03-04T05:06:07.000Z", "1.1.0": "2026-10-09T05:06:07.000Z"}, "license": "ISC"}
+    p = look(Fake({url: (200, doc), OSV: (200, {})}), "npm", "@scope/pkg", "1.1.0")
+    assert "version 1.1.0 released 2 days before this check" in RG.sentence({"count": 1, "packages": [p]})
+    curl = "https://crates.io/api/v1/crates/fnv"
+    cdoc = {"crate": {"name": "fnv", "created_at": "2015-04-23T16:42:59.000000+00:00", "max_version": "1.0.7"},
+            "versions": [{"num": "1.0.7", "license": "MIT", "created_at": "2026-10-10T01:00:00.000000+00:00"}]}
+    p = look(Fake({curl: (200, cdoc), OSV: (200, {})}), "crates.io", "fnv", "1.0.7")
+    assert "version 1.0.7 released 1 day before this check" in RG.sentence({"count": 1, "packages": [p]})
+
+
+def test_a_version_with_several_files_counts_from_its_first_upload():
+    doc = _pypi_new("2026-10-10")
+    doc["releases"]["1.3.0"].append({"upload_time_iso_8601": "2026-10-11T10:00:00.000000Z"})
+    p = look(Fake({PYPI: (200, doc), OSV: (200, {})}), "PyPI", "leftpad-py", "1.3.0")
+    assert p["version_released"] == "2026-10-10"
+
+
+# ---- code that runs on install, deprecated and yanked versions
+def _npm_doc(meta, version="1.0.0"):
+    return {"name": "x", "dist-tags": {"latest": version}, "time": {"created": "2020-01-01T00:00:00Z", version: "2020-01-02T00:00:00Z"},
+            "versions": {version: {"license": "MIT", **meta}}}
+
+
+@pytest.mark.parametrize("meta,want", [
+    ({}, {}),
+    ({"hasInstallScript": True}, {"install_code": "npm"}),
+    ({"scripts": {"postinstall": "node x.js", "test": "jest"}}, {"install_code": "npm"}),
+    ({"scripts": {"test": "jest", "prepare": "tsc"}}, {}),                  # prepare runs for git installs, not from the registry
+    ({"deprecated": "use y instead"}, {"deprecated": True}),
+    ({"deprecated": " "}, {}),
+])
+def test_npm_says_when_installing_runs_code_and_when_a_version_is_deprecated(meta, want):
+    got = RG._npm(_npm_doc(meta), "x", "1.0.0")
+    assert {k: got[k] for k in ("install_code", "deprecated") if k in got} == want
+    unpinned = RG._npm(_npm_doc(meta), "x")                               # no pin: the latest version's own record
+    assert {k: unpinned[k] for k in ("install_code", "deprecated") if k in unpinned} == want
+
+
+def _pypi_files(*names, yanked=()):
+    return [{"filename": n, "upload_time_iso_8601": "2020-01-02T00:00:00Z", "yanked": n in yanked} for n in names]
+
+
+@pytest.mark.parametrize("files,want", [
+    (_pypi_files("x-1.0-py3-none-any.whl", "x-1.0.tar.gz"), {}),
+    (_pypi_files("x-1.0.tar.gz"), {"install_code": "sdist"}),
+    (_pypi_files("x-1.0-py3-none-any.whl", "x-1.0.tar.gz", yanked=("x-1.0-py3-none-any.whl",)), {"install_code": "sdist"}),
+    (_pypi_files("x-1.0.tar.gz", yanked=("x-1.0.tar.gz",)), {"version_yanked": True}),
+])
+def test_pypi_says_when_a_version_has_no_wheel_or_is_yanked(files, want):
+    doc = {"info": {"name": "x", "version": "1.0", "license": "MIT"}, "releases": {"1.0": files}}
+    got = RG._pypi(doc, "x", "1.0")
+    assert {k: got[k] for k in ("install_code", "version_yanked") if k in got} == want
+    assert {k: RG._pypi(doc, "x")[k] for k in want} == want                # unpinned: the latest version's files
+
+
+def test_the_sentence_names_install_code_deprecation_and_yanking():
+    base = {"found": True, "ecosystem": "npm", "name": "x", "first_release": "2020-01-01", "releases": 3, "license": "MIT",
+            "advisories": 0, "version": "1.0.0"}
+    assert "runs the package's own install script" in RG._facts({**base, "install_code": "npm"})
+    assert "its publisher marked version 1.0.0 deprecated" in RG._facts({**base, "deprecated": True})
+    assert "version 1.0.0 is yanked" in RG._facts({**base, "version_yanked": True})
+    no_pin = RG._facts({**base, "version": None, "install_code": "sdist"})
+    assert "its latest version has no wheel, so installing it builds it from source and runs the package's own build code" in no_pin
+    plain = RG._facts(base)
+    assert not re.search(r"install script|build code|deprecated|yanked", plain)

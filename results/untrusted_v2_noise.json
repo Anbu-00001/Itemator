@@ -1,0 +1,29 @@
+{
+ "rubric": "eval/untrusted_v2_rubric.json",
+ "seed": 20261018,
+ "limit_trial": null,
+ "ordinary": {
+  "sampled": 1500,
+  "skipped_too_many_files": 2,
+  "checks": {
+   "untrusted": {
+    "spoke": 0,
+    "read": 1498,
+    "readable": 43,
+    "readable_spoke": 0,
+    "examples": [],
+    "share": 0.0,
+    "wilson": [
+     0.0,
+     0.0026
+    ],
+    "share_of_readable": 0.0,
+    "wilson_readable": [
+     0.0,
+     0.082
+    ],
+    "rule": "met"
+   }
+  }
+ }
+}

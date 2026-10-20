@@ -1,0 +1,3276 @@
+{
+ "rubric": "eval/agent_noise_rubric.json",
+ "file_rows": 42152,
+ "note": "'agent' and by_agent are the commit author field of the AIDev rows: bot accounts (for example Copilot, devin-ai-integration[bot]) and also people whose pull request an agent worked on, so the split is by commit author, not a verified split by agent.",
+ "commits": 4795,
+ "commits_without_patch": 344,
+ "checks": {
+  "moving": {
+   "spoke": 3,
+   "read": 4451,
+   "readable": 38,
+   "readable_spoke": 3,
+   "examples": [
+    {
+     "commit": "0f1c4884fa73",
+     "pull_request": 3103367606,
+     "agent": "nazreen",
+     "said": [
+      {
+       "path": "Dockerfile.hyperliquid",
+       "kind": "image-latest"
+      }
+     ],
+     "label": "looks right: image tagged latest"
+    },
+    {
+     "commit": "c733757b724e",
+     "pull_request": 3083352446,
+     "agent": "rita-gorokhod",
+     "said": [
+      {
+       "path": "Dockerfile",
+       "kind": "pipe-to-shell"
+      }
+     ],
+     "label": "looks right: wget piped to sh"
+    },
+    {
+     "commit": "ec71cb0333ef",
+     "pull_request": 3134306675,
+     "agent": "grzegorz-roboflow",
+     "said": [
+      {
+       "path": "docker/dockerfiles/Dockerfile.onnx.jetson.4.6.1",
+       "kind": "pipe-to-shell"
+      }
+     ],
+     "label": "looks right: curl piped to sh"
+    }
+   ],
+   "by_agent": {
+    "Copilot": {
+     "read": 2201,
+     "spoke": 0
+    },
+    "devin-ai-integration[bot]": {
+     "read": 396,
+     "spoke": 0
+    },
+    "cursoragent": {
+     "read": 61,
+     "spoke": 0
+    },
+    "pelikhan": {
+     "read": 59,
+     "spoke": 0
+    },
+    "NoritakaIkeda": {
+     "read": 51,
+     "spoke": 0
+    },
+    "CyrusNajmabadi": {
+     "read": 45,
+     "spoke": 0
+    },
+    "osterman": {
+     "read": 37,
+     "spoke": 0
+    },
+    "tphakala": {
+     "read": 32,
+     "spoke": 0
+    },
+    "achantavy": {
+     "read": 31,
+     "spoke": 0
+    },
+    "brandonh-msft": {
+     "read": 30,
+     "spoke": 0
+    },
+    "pirapira": {
+     "read": 30,
+     "spoke": 0
+    },
+    "aibrahim-oai": {
+     "read": 28,
+     "spoke": 0
+    },
+    "JCQuintas": {
+     "read": 27,
+     "spoke": 0
+    },
+    "justin808": {
+     "read": 27,
+     "spoke": 0
+    },
+    "abremard": {
+     "read": 26,
+     "spoke": 0
+    },
+    "github-actions[bot]": {
+     "read": 25,
+     "spoke": 0
+    },
+    "johlju": {
+     "read": 24,
+     "spoke": 0
+    },
+    "panarch": {
+     "read": 24,
+     "spoke": 0
+    },
+    "sapphi-red": {
+     "read": 24,
+     "spoke": 0
+    },
+    "harupy": {
+     "read": 22,
+     "spoke": 0
+    },
+    "Evangelink": {
+     "read": 22,
+     "spoke": 0
+    },
+    "joshdholtz": {
+     "read": 22,
+     "spoke": 0
+    },
+    "keith-hall": {
+     "read": 22,
+     "spoke": 0
+    },
+    "SupaflyFPV": {
+     "read": 20,
+     "spoke": 0
+    },
+    "majdyz": {
+     "read": 19,
+     "spoke": 0
+    },
+    "Chrisimx": {
+     "read": 19,
+     "spoke": 0
+    },
+    "leofang": {
+     "read": 18,
+     "spoke": 0
+    },
+    "georgewrmarshall": {
+     "read": 17,
+     "spoke": 0
+    },
+    "rwgk": {
+     "read": 17,
+     "spoke": 0
+    },
+    "tombii": {
+     "read": 17,
+     "spoke": 0
+    },
+    "kunaals": {
+     "read": 17,
+     "spoke": 0
+    },
+    "kevin-dp": {
+     "read": 16,
+     "spoke": 0
+    },
+    "henrymercer": {
+     "read": 16,
+     "spoke": 0
+    },
+    "Rich-Harris": {
+     "read": 15,
+     "spoke": 0
+    },
+    "T-Gro": {
+     "read": 15,
+     "spoke": 0
+    },
+    "kurotu": {
+     "read": 15,
+     "spoke": 0
+    },
+    "romtsn": {
+     "read": 15,
+     "spoke": 0
+    },
+    "noahsmartin": {
+     "read": 15,
+     "spoke": 0
+    },
+    "nazreen": {
+     "read": 15,
+     "spoke": 1
+    },
+    "scosman": {
+     "read": 14,
+     "spoke": 0
+    },
+    "DanielSinclair": {
+     "read": 14,
+     "spoke": 0
+    },
+    "KyleAMathews": {
+     "read": 14,
+     "spoke": 0
+    },
+    "hi-ogawa": {
+     "read": 14,
+     "spoke": 0
+    },
+    "tejasbadadare": {
+     "read": 13,
+     "spoke": 0
+    },
+    "tyler-dane": {
+     "read": 13,
+     "spoke": 0
+    },
+    "gaby": {
+     "read": 13,
+     "spoke": 0
+    },
+    "saewitz": {
+     "read": 12,
+     "spoke": 0
+    },
+    "faros-ai-devin": {
+     "read": 11,
+     "spoke": 0
+    },
+    "brooke-hamilton": {
+     "read": 11,
+     "spoke": 0
+    },
+    "Amit91848": {
+     "read": 11,
+     "spoke": 0
+    },
+    "TheCactusBlue": {
+     "read": 11,
+     "spoke": 0
+    },
+    "shuaitian-git": {
+     "read": 11,
+     "spoke": 0
+    },
+    "ottenhoff": {
+     "read": 11,
+     "spoke": 0
+    },
+    "Caroline-99": {
+     "read": 11,
+     "spoke": 0
+    },
+    "rach-id": {
+     "read": 11,
+     "spoke": 0
+    },
+    "anupriya13": {
+     "read": 11,
+     "spoke": 0
+    },
+    "dependabot[bot]": {
+     "read": 11,
+     "spoke": 0
+    },
+    "MatissJanis": {
+     "read": 10,
+     "spoke": 0
+    },
+    "jeffhandley": {
+     "read": 10,
+     "spoke": 0
+    },
+    "BillWagner": {
+     "read": 10,
+     "spoke": 0
+    },
+    "hipsterusername": {
+     "read": 10,
+     "spoke": 0
+    },
+    "eunjae-lee": {
+     "read": 10,
+     "spoke": 0
+    },
+    "tbennun": {
+     "read": 10,
+     "spoke": 0
+    },
+    "viva-jinyi": {
+     "read": 9,
+     "spoke": 0
+    },
+    "daxian-dbw": {
+     "read": 9,
+     "spoke": 0
+    },
+    "bw4sz": {
+     "read": 9,
+     "spoke": 0
+    },
+    "zeroliu": {
+     "read": 9,
+     "spoke": 0
+    },
+    "sasamuku": {
+     "read": 9,
+     "spoke": 0
+    },
+    "nomadicmehul": {
+     "read": 9,
+     "spoke": 0
+    },
+    "delphos-mike": {
+     "read": 8,
+     "spoke": 0
+    },
+    "vursen": {
+     "read": 8,
+     "spoke": 0
+    },
+    "davidfowl": {
+     "read": 8,
+     "spoke": 0
+    },
+    "Mossaka": {
+     "read": 8,
+     "spoke": 0
+    },
+    "hetunandu": {
+     "read": 8,
+     "spoke": 0
+    },
+    "chmouel": {
+     "read": 8,
+     "spoke": 0
+    },
+    "hansent": {
+     "read": 8,
+     "spoke": 0
+    },
+    "FunamaYukina": {
+     "read": 8,
+     "spoke": 0
+    },
+    "radical": {
+     "read": 8,
+     "spoke": 0
+    },
+    "forntoh": {
+     "read": 7,
+     "spoke": 0
+    },
+    "Mary Hipp": {
+     "read": 7,
+     "spoke": 0
+    },
+    "peterargue": {
+     "read": 7,
+     "spoke": 0
+    },
+    "swathipil": {
+     "read": 7,
+     "spoke": 0
+    },
+    "B4nan": {
+     "read": 7,
+     "spoke": 0
+    },
+    "bambriz": {
+     "read": 7,
+     "spoke": 0
+    },
+    "callicles": {
+     "read": 7,
+     "spoke": 0
+    },
+    "jveitchmichaelis": {
+     "read": 7,
+     "spoke": 0
+    },
+    "machinewrapped": {
+     "read": 7,
+     "spoke": 0
+    },
+    "mgoin": {
+     "read": 6,
+     "spoke": 0
+    },
+    "hunsche": {
+     "read": 6,
+     "spoke": 0
+    },
+    "claude[bot]": {
+     "read": 6,
+     "spoke": 0
+    },
+    "jonathanpeppers": {
+     "read": 6,
+     "spoke": 0
+    },
+    "eerhardt": {
+     "read": 6,
+     "spoke": 0
+    },
+    "nibanks": {
+     "read": 6,
+     "spoke": 0
+    },
+    "alexnick83": {
+     "read": 6,
+     "spoke": 0
+    },
+    "MH4GF": {
+     "read": 6,
+     "spoke": 0
+    },
+    "jkotas": {
+     "read": 6,
+     "spoke": 0
+    },
+    "andrewbranch": {
+     "read": 6,
+     "spoke": 0
+    },
+    "pixlwave": {
+     "read": 6,
+     "spoke": 0
+    },
+    "flemzord": {
+     "read": 6,
+     "spoke": 0
+    },
+    "WeichenXu123": {
+     "read": 6,
+     "spoke": 0
+    },
+    "avifenesh": {
+     "read": 6,
+     "spoke": 0
+    },
+    "rockfordlhotka": {
+     "read": 6,
+     "spoke": 0
+    },
+    "mingxin-zheng": {
+     "read": 6,
+     "spoke": 0
+    },
+    "autofix-ci[bot]": {
+     "read": 6,
+     "spoke": 0
+    },
+    "simianhacker": {
+     "read": 5,
+     "spoke": 0
+    },
+    "javiercn": {
+     "read": 5,
+     "spoke": 0
+    },
+    "droidmonkey": {
+     "read": 5,
+     "spoke": 0
+    },
+    "scopsy": {
+     "read": 5,
+     "spoke": 0
+    },
+    "joshfree": {
+     "read": 5,
+     "spoke": 0
+    },
+    "mcollovati": {
+     "read": 5,
+     "spoke": 0
+    },
+    "pre-commit-ci[bot]": {
+     "read": 5,
+     "spoke": 0
+    },
+    "AlexKarpov98": {
+     "read": 5,
+     "spoke": 0
+    },
+    "mmitche": {
+     "read": 5,
+     "spoke": 0
+    },
+    "denik": {
+     "read": 5,
+     "spoke": 0
+    },
+    "Brooooooklyn": {
+     "read": 5,
+     "spoke": 0
+    },
+    "mlflow-app[bot]": {
+     "read": 5,
+     "spoke": 0
+    },
+    "wzimrin": {
+     "read": 5,
+     "spoke": 0
+    },
+    "patmmccann": {
+     "read": 5,
+     "spoke": 0
+    },
+    "MartinZikmund": {
+     "read": 5,
+     "spoke": 0
+    },
+    "michellewzhang": {
+     "read": 5,
+     "spoke": 0
+    },
+    "jmprieur": {
+     "read": 5,
+     "spoke": 0
+    },
+    "IEvangelist": {
+     "read": 4,
+     "spoke": 0
+    },
+    "KunalSin9h": {
+     "read": 4,
+     "spoke": 0
+    },
+    "marcpopMSFT": {
+     "read": 4,
+     "spoke": 0
+    },
+    "MikeAlhayek": {
+     "read": 4,
+     "spoke": 0
+    },
+    "Youssef1313": {
+     "read": 4,
+     "spoke": 0
+    },
+    "mattchenderson": {
+     "read": 4,
+     "spoke": 0
+    },
+    "dmytrokirpa": {
+     "read": 4,
+     "spoke": 0
+    },
+    "tepi": {
+     "read": 4,
+     "spoke": 0
+    },
+    "tobio": {
+     "read": 4,
+     "spoke": 0
+    },
+    "highperformancecoder": {
+     "read": 4,
+     "spoke": 0
+    },
+    "prathyushpv": {
+     "read": 4,
+     "spoke": 0
+    },
+    "jakebailey": {
+     "read": 4,
+     "spoke": 0
+    },
+    "toyamarinyon": {
+     "read": 4,
+     "spoke": 0
+    },
+    "mogery": {
+     "read": 3,
+     "spoke": 0
+    },
+    "bt-justtrack": {
+     "read": 3,
+     "spoke": 0
+    },
+    "vienthuong": {
+     "read": 3,
+     "spoke": 0
+    },
+    "njzjz": {
+     "read": 3,
+     "spoke": 0
+    },
+    "ericstj": {
+     "read": 3,
+     "spoke": 0
+    },
+    "DonKoko": {
+     "read": 3,
+     "spoke": 0
+    },
+    "kirankumarkolli": {
+     "read": 3,
+     "spoke": 0
+    },
+    "kentcdodds": {
+     "read": 3,
+     "spoke": 0
+    },
+    "trask": {
+     "read": 3,
+     "spoke": 0
+    },
+    "ewoutkramer": {
+     "read": 3,
+     "spoke": 0
+    },
+    "ultmaster": {
+     "read": 3,
+     "spoke": 0
+    },
+    "anthonykim1": {
+     "read": 3,
+     "spoke": 0
+    },
+    "pksjce": {
+     "read": 3,
+     "spoke": 0
+    },
+    "getsantry[bot]": {
+     "read": 3,
+     "spoke": 0
+    },
+    "stephentoub": {
+     "read": 3,
+     "spoke": 0
+    },
+    "greinacker": {
+     "read": 3,
+     "spoke": 0
+    },
+    "jozkee": {
+     "read": 3,
+     "spoke": 0
+    },
+    "arv": {
+     "read": 3,
+     "spoke": 0
+    },
+    "alfonso-paella": {
+     "read": 3,
+     "spoke": 0
+    },
+    "Dunqing": {
+     "read": 3,
+     "spoke": 0
+    },
+    "KMKoushik": {
+     "read": 3,
+     "spoke": 0
+    },
+    "vapourismo": {
+     "read": 3,
+     "spoke": 0
+    },
+    "rita-gorokhod": {
+     "read": 3,
+     "spoke": 1
+    },
+    "davidwengier": {
+     "read": 3,
+     "spoke": 0
+    },
+    "Skn0tt": {
+     "read": 3,
+     "spoke": 0
+    },
+    "evan-forbes": {
+     "read": 2,
+     "spoke": 0
+    },
+    "dckc": {
+     "read": 2,
+     "spoke": 0
+    },
+    "tjuanitas": {
+     "read": 2,
+     "spoke": 0
+    },
+    "keshavmohta09": {
+     "read": 2,
+     "spoke": 0
+    },
+    "hoyosjs": {
+     "read": 2,
+     "spoke": 0
+    },
+    "maryhipp": {
+     "read": 2,
+     "spoke": 0
+    },
+    "serxa": {
+     "read": 2,
+     "spoke": 0
+    },
+    "captainsafia": {
+     "read": 2,
+     "spoke": 0
+    },
+    "YuliiaKovalova": {
+     "read": 2,
+     "spoke": 0
+    },
+    "tzdybal": {
+     "read": 2,
+     "spoke": 0
+    },
+    "abhisek": {
+     "read": 2,
+     "spoke": 0
+    },
+    "svenvoskamp": {
+     "read": 2,
+     "spoke": 0
+    },
+    "psychedelicious": {
+     "read": 2,
+     "spoke": 0
+    },
+    "joperezr": {
+     "read": 2,
+     "spoke": 0
+    },
+    "333fred": {
+     "read": 2,
+     "spoke": 0
+    },
+    "whitphx": {
+     "read": 2,
+     "spoke": 0
+    },
+    "v1v": {
+     "read": 2,
+     "spoke": 0
+    },
+    "JacobKnightley": {
+     "read": 2,
+     "spoke": 0
+    },
+    "enesozturk": {
+     "read": 2,
+     "spoke": 0
+    },
+    "llali": {
+     "read": 2,
+     "spoke": 0
+    },
+    "taiga-family-bot": {
+     "read": 2,
+     "spoke": 0
+    },
+    "kiview": {
+     "read": 2,
+     "spoke": 0
+    },
+    "turian": {
+     "read": 2,
+     "spoke": 0
+    },
+    "Andrei-hub11": {
+     "read": 2,
+     "spoke": 0
+    },
+    "olegsych": {
+     "read": 2,
+     "spoke": 0
+    },
+    "kotlarmilos": {
+     "read": 2,
+     "spoke": 0
+    },
+    "google-labs-jules[bot]": {
+     "read": 2,
+     "spoke": 0
+    },
+    "arein": {
+     "read": 2,
+     "spoke": 0
+    },
+    "LearningCircuit": {
+     "read": 2,
+     "spoke": 0
+    },
+    "carlosvirreira": {
+     "read": 2,
+     "spoke": 0
+    },
+    "will": {
+     "read": 2,
+     "spoke": 0
+    },
+    "JoshLove-msft": {
+     "read": 2,
+     "spoke": 0
+    },
+    "HazAT": {
+     "read": 2,
+     "spoke": 0
+    },
+    "Xuanwo": {
+     "read": 2,
+     "spoke": 0
+    },
+    "grzegorz-roboflow": {
+     "read": 2,
+     "spoke": 1
+    },
+    "acco": {
+     "read": 1,
+     "spoke": 0
+    },
+    "lostintangent": {
+     "read": 1,
+     "spoke": 0
+    },
+    "six7": {
+     "read": 1,
+     "spoke": 0
+    },
+    "TravisEz13": {
+     "read": 1,
+     "spoke": 0
+    },
+    "theachoem": {
+     "read": 1,
+     "spoke": 0
+    },
+    "ArneDeutsch": {
+     "read": 1,
+     "spoke": 0
+    },
+    "RogerHYang": {
+     "read": 1,
+     "spoke": 0
+    },
+    "petebacondarwin": {
+     "read": 1,
+     "spoke": 0
+    },
+    "aThorp96": {
+     "read": 1,
+     "spoke": 0
+    },
+    "PeerRich": {
+     "read": 1,
+     "spoke": 0
+    },
+    "shreyan-gupta": {
+     "read": 1,
+     "spoke": 0
+    },
+    "virgofx": {
+     "read": 1,
+     "spoke": 0
+    },
+    "kundadebdatta": {
+     "read": 1,
+     "spoke": 0
+    },
+    "bernardnormier": {
+     "read": 1,
+     "spoke": 0
+    },
+    "logancyang": {
+     "read": 1,
+     "spoke": 0
+    },
+    "N2D4": {
+     "read": 1,
+     "spoke": 0
+    },
+    "gewarren": {
+     "read": 1,
+     "spoke": 0
+    },
+    "nihal467": {
+     "read": 1,
+     "spoke": 0
+    },
+    "LLFourn": {
+     "read": 1,
+     "spoke": 0
+    },
+    "actions-user": {
+     "read": 1,
+     "spoke": 0
+    },
+    "splincode": {
+     "read": 1,
+     "spoke": 0
+    },
+    "minestarks": {
+     "read": 1,
+     "spoke": 0
+    },
+    "BabyChouSr": {
+     "read": 1,
+     "spoke": 0
+    },
+    "theakshaypant": {
+     "read": 1,
+     "spoke": 0
+    },
+    "kristenwomack": {
+     "read": 1,
+     "spoke": 0
+    },
+    "alandtse": {
+     "read": 1,
+     "spoke": 0
+    },
+    "asdacap": {
+     "read": 1,
+     "spoke": 0
+    },
+    "alexr00": {
+     "read": 1,
+     "spoke": 0
+    },
+    "szokeasaurusrex": {
+     "read": 1,
+     "spoke": 0
+    },
+    "arpad-m": {
+     "read": 1,
+     "spoke": 0
+    },
+    "mergify[bot]": {
+     "read": 1,
+     "spoke": 0
+    },
+    "skunkworxdark": {
+     "read": 1,
+     "spoke": 0
+    },
+    "isaaccorley": {
+     "read": 1,
+     "spoke": 0
+    },
+    "penalosa": {
+     "read": 1,
+     "spoke": 0
+    },
+    "mikhailshilkov": {
+     "read": 1,
+     "spoke": 0
+    },
+    "St0rmBr3w": {
+     "read": 1,
+     "spoke": 0
+    },
+    "lewing": {
+     "read": 1,
+     "spoke": 0
+    },
+    "otelbot[bot]": {
+     "read": 1,
+     "spoke": 0
+    },
+    "Byron": {
+     "read": 1,
+     "spoke": 0
+    },
+    "Eric-Guo": {
+     "read": 1,
+     "spoke": 0
+    },
+    "B-Step62": {
+     "read": 1,
+     "spoke": 0
+    },
+    "abonie": {
+     "read": 1,
+     "spoke": 0
+    },
+    "gmalouf": {
+     "read": 1,
+     "spoke": 0
+    },
+    "bgrainger": {
+     "read": 1,
+     "spoke": 0
+    },
+    "dmytrostruk": {
+     "read": 1,
+     "spoke": 0
+    },
+    "aksh-at": {
+     "read": 1,
+     "spoke": 0
+    },
+    "adegeo": {
+     "read": 1,
+     "spoke": 0
+    },
+    "dsyme": {
+     "read": 1,
+     "spoke": 0
+    },
+    "hazzik": {
+     "read": 1,
+     "spoke": 0
+    },
+    "caalador": {
+     "read": 1,
+     "spoke": 0
+    },
+    "harshach": {
+     "read": 1,
+     "spoke": 0
+    },
+    "mkaput": {
+     "read": 1,
+     "spoke": 0
+    },
+    "Legioth": {
+     "read": 1,
+     "spoke": 0
+    },
+    "shivammathur": {
+     "read": 1,
+     "spoke": 0
+    },
+    "claude": {
+     "read": 1,
+     "spoke": 0
+    },
+    "vaadin-bot": {
+     "read": 1,
+     "spoke": 0
+    },
+    "akshay-gupta7": {
+     "read": 1,
+     "spoke": 0
+    },
+    "lalitb": {
+     "read": 1,
+     "spoke": 0
+    },
+    "rohit-710": {
+     "read": 1,
+     "spoke": 0
+    },
+    "baronfel": {
+     "read": 1,
+     "spoke": 0
+    },
+    "junkisai": {
+     "read": 1,
+     "spoke": 0
+    },
+    "DanielRosenwasser": {
+     "read": 1,
+     "spoke": 0
+    },
+    "frenchy64": {
+     "read": 1,
+     "spoke": 0
+    },
+    "jennyf19": {
+     "read": 1,
+     "spoke": 0
+    },
+    "goruha": {
+     "read": 1,
+     "spoke": 0
+    },
+    "rootfs": {
+     "read": 1,
+     "spoke": 0
+    },
+    "cijothomas": {
+     "read": 1,
+     "spoke": 0
+    },
+    "FabianMeiswinkel": {
+     "read": 1,
+     "spoke": 0
+    },
+    "manusa": {
+     "read": 1,
+     "spoke": 0
+    }
+   },
+   "share": 0.0007,
+   "wilson": [
+    0.0002,
+    0.002
+   ],
+   "share_of_readable": 0.0789,
+   "wilson_readable": [
+    0.0272,
+    0.208
+   ],
+   "rule": "met"
+  },
+  "shapes": {
+   "spoke": 0,
+   "read": 4451,
+   "readable": 4451,
+   "readable_spoke": 0,
+   "examples": [],
+   "by_agent": {
+    "Copilot": {
+     "read": 2201,
+     "spoke": 0
+    },
+    "devin-ai-integration[bot]": {
+     "read": 396,
+     "spoke": 0
+    },
+    "cursoragent": {
+     "read": 61,
+     "spoke": 0
+    },
+    "pelikhan": {
+     "read": 59,
+     "spoke": 0
+    },
+    "NoritakaIkeda": {
+     "read": 51,
+     "spoke": 0
+    },
+    "CyrusNajmabadi": {
+     "read": 45,
+     "spoke": 0
+    },
+    "osterman": {
+     "read": 37,
+     "spoke": 0
+    },
+    "tphakala": {
+     "read": 32,
+     "spoke": 0
+    },
+    "achantavy": {
+     "read": 31,
+     "spoke": 0
+    },
+    "brandonh-msft": {
+     "read": 30,
+     "spoke": 0
+    },
+    "pirapira": {
+     "read": 30,
+     "spoke": 0
+    },
+    "aibrahim-oai": {
+     "read": 28,
+     "spoke": 0
+    },
+    "JCQuintas": {
+     "read": 27,
+     "spoke": 0
+    },
+    "justin808": {
+     "read": 27,
+     "spoke": 0
+    },
+    "abremard": {
+     "read": 26,
+     "spoke": 0
+    },
+    "github-actions[bot]": {
+     "read": 25,
+     "spoke": 0
+    },
+    "johlju": {
+     "read": 24,
+     "spoke": 0
+    },
+    "panarch": {
+     "read": 24,
+     "spoke": 0
+    },
+    "sapphi-red": {
+     "read": 24,
+     "spoke": 0
+    },
+    "harupy": {
+     "read": 22,
+     "spoke": 0
+    },
+    "Evangelink": {
+     "read": 22,
+     "spoke": 0
+    },
+    "joshdholtz": {
+     "read": 22,
+     "spoke": 0
+    },
+    "keith-hall": {
+     "read": 22,
+     "spoke": 0
+    },
+    "SupaflyFPV": {
+     "read": 20,
+     "spoke": 0
+    },
+    "majdyz": {
+     "read": 19,
+     "spoke": 0
+    },
+    "Chrisimx": {
+     "read": 19,
+     "spoke": 0
+    },
+    "leofang": {
+     "read": 18,
+     "spoke": 0
+    },
+    "georgewrmarshall": {
+     "read": 17,
+     "spoke": 0
+    },
+    "rwgk": {
+     "read": 17,
+     "spoke": 0
+    },
+    "tombii": {
+     "read": 17,
+     "spoke": 0
+    },
+    "kunaals": {
+     "read": 17,
+     "spoke": 0
+    },
+    "kevin-dp": {
+     "read": 16,
+     "spoke": 0
+    },
+    "henrymercer": {
+     "read": 16,
+     "spoke": 0
+    },
+    "Rich-Harris": {
+     "read": 15,
+     "spoke": 0
+    },
+    "T-Gro": {
+     "read": 15,
+     "spoke": 0
+    },
+    "kurotu": {
+     "read": 15,
+     "spoke": 0
+    },
+    "romtsn": {
+     "read": 15,
+     "spoke": 0
+    },
+    "noahsmartin": {
+     "read": 15,
+     "spoke": 0
+    },
+    "nazreen": {
+     "read": 15,
+     "spoke": 0
+    },
+    "scosman": {
+     "read": 14,
+     "spoke": 0
+    },
+    "DanielSinclair": {
+     "read": 14,
+     "spoke": 0
+    },
+    "KyleAMathews": {
+     "read": 14,
+     "spoke": 0
+    },
+    "hi-ogawa": {
+     "read": 14,
+     "spoke": 0
+    },
+    "tejasbadadare": {
+     "read": 13,
+     "spoke": 0
+    },
+    "tyler-dane": {
+     "read": 13,
+     "spoke": 0
+    },
+    "gaby": {
+     "read": 13,
+     "spoke": 0
+    },
+    "saewitz": {
+     "read": 12,
+     "spoke": 0
+    },
+    "faros-ai-devin": {
+     "read": 11,
+     "spoke": 0
+    },
+    "brooke-hamilton": {
+     "read": 11,
+     "spoke": 0
+    },
+    "Amit91848": {
+     "read": 11,
+     "spoke": 0
+    },
+    "TheCactusBlue": {
+     "read": 11,
+     "spoke": 0
+    },
+    "shuaitian-git": {
+     "read": 11,
+     "spoke": 0
+    },
+    "ottenhoff": {
+     "read": 11,
+     "spoke": 0
+    },
+    "Caroline-99": {
+     "read": 11,
+     "spoke": 0
+    },
+    "rach-id": {
+     "read": 11,
+     "spoke": 0
+    },
+    "anupriya13": {
+     "read": 11,
+     "spoke": 0
+    },
+    "dependabot[bot]": {
+     "read": 11,
+     "spoke": 0
+    },
+    "MatissJanis": {
+     "read": 10,
+     "spoke": 0
+    },
+    "jeffhandley": {
+     "read": 10,
+     "spoke": 0
+    },
+    "BillWagner": {
+     "read": 10,
+     "spoke": 0
+    },
+    "hipsterusername": {
+     "read": 10,
+     "spoke": 0
+    },
+    "eunjae-lee": {
+     "read": 10,
+     "spoke": 0
+    },
+    "tbennun": {
+     "read": 10,
+     "spoke": 0
+    },
+    "viva-jinyi": {
+     "read": 9,
+     "spoke": 0
+    },
+    "daxian-dbw": {
+     "read": 9,
+     "spoke": 0
+    },
+    "bw4sz": {
+     "read": 9,
+     "spoke": 0
+    },
+    "zeroliu": {
+     "read": 9,
+     "spoke": 0
+    },
+    "sasamuku": {
+     "read": 9,
+     "spoke": 0
+    },
+    "nomadicmehul": {
+     "read": 9,
+     "spoke": 0
+    },
+    "delphos-mike": {
+     "read": 8,
+     "spoke": 0
+    },
+    "vursen": {
+     "read": 8,
+     "spoke": 0
+    },
+    "davidfowl": {
+     "read": 8,
+     "spoke": 0
+    },
+    "Mossaka": {
+     "read": 8,
+     "spoke": 0
+    },
+    "hetunandu": {
+     "read": 8,
+     "spoke": 0
+    },
+    "chmouel": {
+     "read": 8,
+     "spoke": 0
+    },
+    "hansent": {
+     "read": 8,
+     "spoke": 0
+    },
+    "FunamaYukina": {
+     "read": 8,
+     "spoke": 0
+    },
+    "radical": {
+     "read": 8,
+     "spoke": 0
+    },
+    "forntoh": {
+     "read": 7,
+     "spoke": 0
+    },
+    "Mary Hipp": {
+     "read": 7,
+     "spoke": 0
+    },
+    "peterargue": {
+     "read": 7,
+     "spoke": 0
+    },
+    "swathipil": {
+     "read": 7,
+     "spoke": 0
+    },
+    "B4nan": {
+     "read": 7,
+     "spoke": 0
+    },
+    "bambriz": {
+     "read": 7,
+     "spoke": 0
+    },
+    "callicles": {
+     "read": 7,
+     "spoke": 0
+    },
+    "jveitchmichaelis": {
+     "read": 7,
+     "spoke": 0
+    },
+    "machinewrapped": {
+     "read": 7,
+     "spoke": 0
+    },
+    "mgoin": {
+     "read": 6,
+     "spoke": 0
+    },
+    "hunsche": {
+     "read": 6,
+     "spoke": 0
+    },
+    "claude[bot]": {
+     "read": 6,
+     "spoke": 0
+    },
+    "jonathanpeppers": {
+     "read": 6,
+     "spoke": 0
+    },
+    "eerhardt": {
+     "read": 6,
+     "spoke": 0
+    },
+    "nibanks": {
+     "read": 6,
+     "spoke": 0
+    },
+    "alexnick83": {
+     "read": 6,
+     "spoke": 0
+    },
+    "MH4GF": {
+     "read": 6,
+     "spoke": 0
+    },
+    "jkotas": {
+     "read": 6,
+     "spoke": 0
+    },
+    "andrewbranch": {
+     "read": 6,
+     "spoke": 0
+    },
+    "pixlwave": {
+     "read": 6,
+     "spoke": 0
+    },
+    "flemzord": {
+     "read": 6,
+     "spoke": 0
+    },
+    "WeichenXu123": {
+     "read": 6,
+     "spoke": 0
+    },
+    "avifenesh": {
+     "read": 6,
+     "spoke": 0
+    },
+    "rockfordlhotka": {
+     "read": 6,
+     "spoke": 0
+    },
+    "mingxin-zheng": {
+     "read": 6,
+     "spoke": 0
+    },
+    "autofix-ci[bot]": {
+     "read": 6,
+     "spoke": 0
+    },
+    "simianhacker": {
+     "read": 5,
+     "spoke": 0
+    },
+    "javiercn": {
+     "read": 5,
+     "spoke": 0
+    },
+    "droidmonkey": {
+     "read": 5,
+     "spoke": 0
+    },
+    "scopsy": {
+     "read": 5,
+     "spoke": 0
+    },
+    "joshfree": {
+     "read": 5,
+     "spoke": 0
+    },
+    "mcollovati": {
+     "read": 5,
+     "spoke": 0
+    },
+    "pre-commit-ci[bot]": {
+     "read": 5,
+     "spoke": 0
+    },
+    "AlexKarpov98": {
+     "read": 5,
+     "spoke": 0
+    },
+    "mmitche": {
+     "read": 5,
+     "spoke": 0
+    },
+    "denik": {
+     "read": 5,
+     "spoke": 0
+    },
+    "Brooooooklyn": {
+     "read": 5,
+     "spoke": 0
+    },
+    "mlflow-app[bot]": {
+     "read": 5,
+     "spoke": 0
+    },
+    "wzimrin": {
+     "read": 5,
+     "spoke": 0
+    },
+    "patmmccann": {
+     "read": 5,
+     "spoke": 0
+    },
+    "MartinZikmund": {
+     "read": 5,
+     "spoke": 0
+    },
+    "michellewzhang": {
+     "read": 5,
+     "spoke": 0
+    },
+    "jmprieur": {
+     "read": 5,
+     "spoke": 0
+    },
+    "IEvangelist": {
+     "read": 4,
+     "spoke": 0
+    },
+    "KunalSin9h": {
+     "read": 4,
+     "spoke": 0
+    },
+    "marcpopMSFT": {
+     "read": 4,
+     "spoke": 0
+    },
+    "MikeAlhayek": {
+     "read": 4,
+     "spoke": 0
+    },
+    "Youssef1313": {
+     "read": 4,
+     "spoke": 0
+    },
+    "mattchenderson": {
+     "read": 4,
+     "spoke": 0
+    },
+    "dmytrokirpa": {
+     "read": 4,
+     "spoke": 0
+    },
+    "tepi": {
+     "read": 4,
+     "spoke": 0
+    },
+    "tobio": {
+     "read": 4,
+     "spoke": 0
+    },
+    "highperformancecoder": {
+     "read": 4,
+     "spoke": 0
+    },
+    "prathyushpv": {
+     "read": 4,
+     "spoke": 0
+    },
+    "jakebailey": {
+     "read": 4,
+     "spoke": 0
+    },
+    "toyamarinyon": {
+     "read": 4,
+     "spoke": 0
+    },
+    "mogery": {
+     "read": 3,
+     "spoke": 0
+    },
+    "bt-justtrack": {
+     "read": 3,
+     "spoke": 0
+    },
+    "vienthuong": {
+     "read": 3,
+     "spoke": 0
+    },
+    "njzjz": {
+     "read": 3,
+     "spoke": 0
+    },
+    "ericstj": {
+     "read": 3,
+     "spoke": 0
+    },
+    "DonKoko": {
+     "read": 3,
+     "spoke": 0
+    },
+    "kirankumarkolli": {
+     "read": 3,
+     "spoke": 0
+    },
+    "kentcdodds": {
+     "read": 3,
+     "spoke": 0
+    },
+    "trask": {
+     "read": 3,
+     "spoke": 0
+    },
+    "ewoutkramer": {
+     "read": 3,
+     "spoke": 0
+    },
+    "ultmaster": {
+     "read": 3,
+     "spoke": 0
+    },
+    "anthonykim1": {
+     "read": 3,
+     "spoke": 0
+    },
+    "pksjce": {
+     "read": 3,
+     "spoke": 0
+    },
+    "getsantry[bot]": {
+     "read": 3,
+     "spoke": 0
+    },
+    "stephentoub": {
+     "read": 3,
+     "spoke": 0
+    },
+    "greinacker": {
+     "read": 3,
+     "spoke": 0
+    },
+    "jozkee": {
+     "read": 3,
+     "spoke": 0
+    },
+    "arv": {
+     "read": 3,
+     "spoke": 0
+    },
+    "alfonso-paella": {
+     "read": 3,
+     "spoke": 0
+    },
+    "Dunqing": {
+     "read": 3,
+     "spoke": 0
+    },
+    "KMKoushik": {
+     "read": 3,
+     "spoke": 0
+    },
+    "vapourismo": {
+     "read": 3,
+     "spoke": 0
+    },
+    "rita-gorokhod": {
+     "read": 3,
+     "spoke": 0
+    },
+    "davidwengier": {
+     "read": 3,
+     "spoke": 0
+    },
+    "Skn0tt": {
+     "read": 3,
+     "spoke": 0
+    },
+    "evan-forbes": {
+     "read": 2,
+     "spoke": 0
+    },
+    "dckc": {
+     "read": 2,
+     "spoke": 0
+    },
+    "tjuanitas": {
+     "read": 2,
+     "spoke": 0
+    },
+    "keshavmohta09": {
+     "read": 2,
+     "spoke": 0
+    },
+    "hoyosjs": {
+     "read": 2,
+     "spoke": 0
+    },
+    "maryhipp": {
+     "read": 2,
+     "spoke": 0
+    },
+    "serxa": {
+     "read": 2,
+     "spoke": 0
+    },
+    "captainsafia": {
+     "read": 2,
+     "spoke": 0
+    },
+    "YuliiaKovalova": {
+     "read": 2,
+     "spoke": 0
+    },
+    "tzdybal": {
+     "read": 2,
+     "spoke": 0
+    },
+    "abhisek": {
+     "read": 2,
+     "spoke": 0
+    },
+    "svenvoskamp": {
+     "read": 2,
+     "spoke": 0
+    },
+    "psychedelicious": {
+     "read": 2,
+     "spoke": 0
+    },
+    "joperezr": {
+     "read": 2,
+     "spoke": 0
+    },
+    "333fred": {
+     "read": 2,
+     "spoke": 0
+    },
+    "whitphx": {
+     "read": 2,
+     "spoke": 0
+    },
+    "v1v": {
+     "read": 2,
+     "spoke": 0
+    },
+    "JacobKnightley": {
+     "read": 2,
+     "spoke": 0
+    },
+    "enesozturk": {
+     "read": 2,
+     "spoke": 0
+    },
+    "llali": {
+     "read": 2,
+     "spoke": 0
+    },
+    "taiga-family-bot": {
+     "read": 2,
+     "spoke": 0
+    },
+    "kiview": {
+     "read": 2,
+     "spoke": 0
+    },
+    "turian": {
+     "read": 2,
+     "spoke": 0
+    },
+    "Andrei-hub11": {
+     "read": 2,
+     "spoke": 0
+    },
+    "olegsych": {
+     "read": 2,
+     "spoke": 0
+    },
+    "kotlarmilos": {
+     "read": 2,
+     "spoke": 0
+    },
+    "google-labs-jules[bot]": {
+     "read": 2,
+     "spoke": 0
+    },
+    "arein": {
+     "read": 2,
+     "spoke": 0
+    },
+    "LearningCircuit": {
+     "read": 2,
+     "spoke": 0
+    },
+    "carlosvirreira": {
+     "read": 2,
+     "spoke": 0
+    },
+    "will": {
+     "read": 2,
+     "spoke": 0
+    },
+    "JoshLove-msft": {
+     "read": 2,
+     "spoke": 0
+    },
+    "HazAT": {
+     "read": 2,
+     "spoke": 0
+    },
+    "Xuanwo": {
+     "read": 2,
+     "spoke": 0
+    },
+    "grzegorz-roboflow": {
+     "read": 2,
+     "spoke": 0
+    },
+    "acco": {
+     "read": 1,
+     "spoke": 0
+    },
+    "lostintangent": {
+     "read": 1,
+     "spoke": 0
+    },
+    "six7": {
+     "read": 1,
+     "spoke": 0
+    },
+    "TravisEz13": {
+     "read": 1,
+     "spoke": 0
+    },
+    "theachoem": {
+     "read": 1,
+     "spoke": 0
+    },
+    "ArneDeutsch": {
+     "read": 1,
+     "spoke": 0
+    },
+    "RogerHYang": {
+     "read": 1,
+     "spoke": 0
+    },
+    "petebacondarwin": {
+     "read": 1,
+     "spoke": 0
+    },
+    "aThorp96": {
+     "read": 1,
+     "spoke": 0
+    },
+    "PeerRich": {
+     "read": 1,
+     "spoke": 0
+    },
+    "shreyan-gupta": {
+     "read": 1,
+     "spoke": 0
+    },
+    "virgofx": {
+     "read": 1,
+     "spoke": 0
+    },
+    "kundadebdatta": {
+     "read": 1,
+     "spoke": 0
+    },
+    "bernardnormier": {
+     "read": 1,
+     "spoke": 0
+    },
+    "logancyang": {
+     "read": 1,
+     "spoke": 0
+    },
+    "N2D4": {
+     "read": 1,
+     "spoke": 0
+    },
+    "gewarren": {
+     "read": 1,
+     "spoke": 0
+    },
+    "nihal467": {
+     "read": 1,
+     "spoke": 0
+    },
+    "LLFourn": {
+     "read": 1,
+     "spoke": 0
+    },
+    "actions-user": {
+     "read": 1,
+     "spoke": 0
+    },
+    "splincode": {
+     "read": 1,
+     "spoke": 0
+    },
+    "minestarks": {
+     "read": 1,
+     "spoke": 0
+    },
+    "BabyChouSr": {
+     "read": 1,
+     "spoke": 0
+    },
+    "theakshaypant": {
+     "read": 1,
+     "spoke": 0
+    },
+    "kristenwomack": {
+     "read": 1,
+     "spoke": 0
+    },
+    "alandtse": {
+     "read": 1,
+     "spoke": 0
+    },
+    "asdacap": {
+     "read": 1,
+     "spoke": 0
+    },
+    "alexr00": {
+     "read": 1,
+     "spoke": 0
+    },
+    "szokeasaurusrex": {
+     "read": 1,
+     "spoke": 0
+    },
+    "arpad-m": {
+     "read": 1,
+     "spoke": 0
+    },
+    "mergify[bot]": {
+     "read": 1,
+     "spoke": 0
+    },
+    "skunkworxdark": {
+     "read": 1,
+     "spoke": 0
+    },
+    "isaaccorley": {
+     "read": 1,
+     "spoke": 0
+    },
+    "penalosa": {
+     "read": 1,
+     "spoke": 0
+    },
+    "mikhailshilkov": {
+     "read": 1,
+     "spoke": 0
+    },
+    "St0rmBr3w": {
+     "read": 1,
+     "spoke": 0
+    },
+    "lewing": {
+     "read": 1,
+     "spoke": 0
+    },
+    "otelbot[bot]": {
+     "read": 1,
+     "spoke": 0
+    },
+    "Byron": {
+     "read": 1,
+     "spoke": 0
+    },
+    "Eric-Guo": {
+     "read": 1,
+     "spoke": 0
+    },
+    "B-Step62": {
+     "read": 1,
+     "spoke": 0
+    },
+    "abonie": {
+     "read": 1,
+     "spoke": 0
+    },
+    "gmalouf": {
+     "read": 1,
+     "spoke": 0
+    },
+    "bgrainger": {
+     "read": 1,
+     "spoke": 0
+    },
+    "dmytrostruk": {
+     "read": 1,
+     "spoke": 0
+    },
+    "aksh-at": {
+     "read": 1,
+     "spoke": 0
+    },
+    "adegeo": {
+     "read": 1,
+     "spoke": 0
+    },
+    "dsyme": {
+     "read": 1,
+     "spoke": 0
+    },
+    "hazzik": {
+     "read": 1,
+     "spoke": 0
+    },
+    "caalador": {
+     "read": 1,
+     "spoke": 0
+    },
+    "harshach": {
+     "read": 1,
+     "spoke": 0
+    },
+    "mkaput": {
+     "read": 1,
+     "spoke": 0
+    },
+    "Legioth": {
+     "read": 1,
+     "spoke": 0
+    },
+    "shivammathur": {
+     "read": 1,
+     "spoke": 0
+    },
+    "claude": {
+     "read": 1,
+     "spoke": 0
+    },
+    "vaadin-bot": {
+     "read": 1,
+     "spoke": 0
+    },
+    "akshay-gupta7": {
+     "read": 1,
+     "spoke": 0
+    },
+    "lalitb": {
+     "read": 1,
+     "spoke": 0
+    },
+    "rohit-710": {
+     "read": 1,
+     "spoke": 0
+    },
+    "baronfel": {
+     "read": 1,
+     "spoke": 0
+    },
+    "junkisai": {
+     "read": 1,
+     "spoke": 0
+    },
+    "DanielRosenwasser": {
+     "read": 1,
+     "spoke": 0
+    },
+    "frenchy64": {
+     "read": 1,
+     "spoke": 0
+    },
+    "jennyf19": {
+     "read": 1,
+     "spoke": 0
+    },
+    "goruha": {
+     "read": 1,
+     "spoke": 0
+    },
+    "rootfs": {
+     "read": 1,
+     "spoke": 0
+    },
+    "cijothomas": {
+     "read": 1,
+     "spoke": 0
+    },
+    "FabianMeiswinkel": {
+     "read": 1,
+     "spoke": 0
+    },
+    "manusa": {
+     "read": 1,
+     "spoke": 0
+    }
+   },
+   "share": 0.0,
+   "wilson": [
+    0.0,
+    0.0009
+   ],
+   "share_of_readable": 0.0,
+   "wilson_readable": [
+    0.0,
+    0.0009
+   ],
+   "rule": "met"
+  },
+  "untrusted": {
+   "spoke": 1,
+   "read": 4451,
+   "readable": 448,
+   "readable_spoke": 1,
+   "examples": [
+    {
+     "commit": "a176959fbbf8",
+     "pull_request": 3489171215,
+     "agent": "MatissJanis",
+     "said": [
+      {
+       "path": ".github/workflows/vrt-update-generate.yml",
+       "line": 96,
+       "kind": "github-expression"
+      }
+     ],
+     "label": "looks right: a pull request's head ref is put into a shell echo"
+    }
+   ],
+   "by_agent": {
+    "Copilot": {
+     "read": 2201,
+     "spoke": 0
+    },
+    "devin-ai-integration[bot]": {
+     "read": 396,
+     "spoke": 0
+    },
+    "cursoragent": {
+     "read": 61,
+     "spoke": 0
+    },
+    "pelikhan": {
+     "read": 59,
+     "spoke": 0
+    },
+    "NoritakaIkeda": {
+     "read": 51,
+     "spoke": 0
+    },
+    "CyrusNajmabadi": {
+     "read": 45,
+     "spoke": 0
+    },
+    "osterman": {
+     "read": 37,
+     "spoke": 0
+    },
+    "tphakala": {
+     "read": 32,
+     "spoke": 0
+    },
+    "achantavy": {
+     "read": 31,
+     "spoke": 0
+    },
+    "brandonh-msft": {
+     "read": 30,
+     "spoke": 0
+    },
+    "pirapira": {
+     "read": 30,
+     "spoke": 0
+    },
+    "aibrahim-oai": {
+     "read": 28,
+     "spoke": 0
+    },
+    "JCQuintas": {
+     "read": 27,
+     "spoke": 0
+    },
+    "justin808": {
+     "read": 27,
+     "spoke": 0
+    },
+    "abremard": {
+     "read": 26,
+     "spoke": 0
+    },
+    "github-actions[bot]": {
+     "read": 25,
+     "spoke": 0
+    },
+    "johlju": {
+     "read": 24,
+     "spoke": 0
+    },
+    "panarch": {
+     "read": 24,
+     "spoke": 0
+    },
+    "sapphi-red": {
+     "read": 24,
+     "spoke": 0
+    },
+    "harupy": {
+     "read": 22,
+     "spoke": 0
+    },
+    "Evangelink": {
+     "read": 22,
+     "spoke": 0
+    },
+    "joshdholtz": {
+     "read": 22,
+     "spoke": 0
+    },
+    "keith-hall": {
+     "read": 22,
+     "spoke": 0
+    },
+    "SupaflyFPV": {
+     "read": 20,
+     "spoke": 0
+    },
+    "majdyz": {
+     "read": 19,
+     "spoke": 0
+    },
+    "Chrisimx": {
+     "read": 19,
+     "spoke": 0
+    },
+    "leofang": {
+     "read": 18,
+     "spoke": 0
+    },
+    "georgewrmarshall": {
+     "read": 17,
+     "spoke": 0
+    },
+    "rwgk": {
+     "read": 17,
+     "spoke": 0
+    },
+    "tombii": {
+     "read": 17,
+     "spoke": 0
+    },
+    "kunaals": {
+     "read": 17,
+     "spoke": 0
+    },
+    "kevin-dp": {
+     "read": 16,
+     "spoke": 0
+    },
+    "henrymercer": {
+     "read": 16,
+     "spoke": 0
+    },
+    "Rich-Harris": {
+     "read": 15,
+     "spoke": 0
+    },
+    "T-Gro": {
+     "read": 15,
+     "spoke": 0
+    },
+    "kurotu": {
+     "read": 15,
+     "spoke": 0
+    },
+    "romtsn": {
+     "read": 15,
+     "spoke": 0
+    },
+    "noahsmartin": {
+     "read": 15,
+     "spoke": 0
+    },
+    "nazreen": {
+     "read": 15,
+     "spoke": 0
+    },
+    "scosman": {
+     "read": 14,
+     "spoke": 0
+    },
+    "DanielSinclair": {
+     "read": 14,
+     "spoke": 0
+    },
+    "KyleAMathews": {
+     "read": 14,
+     "spoke": 0
+    },
+    "hi-ogawa": {
+     "read": 14,
+     "spoke": 0
+    },
+    "tejasbadadare": {
+     "read": 13,
+     "spoke": 0
+    },
+    "tyler-dane": {
+     "read": 13,
+     "spoke": 0
+    },
+    "gaby": {
+     "read": 13,
+     "spoke": 0
+    },
+    "saewitz": {
+     "read": 12,
+     "spoke": 0
+    },
+    "faros-ai-devin": {
+     "read": 11,
+     "spoke": 0
+    },
+    "brooke-hamilton": {
+     "read": 11,
+     "spoke": 0
+    },
+    "Amit91848": {
+     "read": 11,
+     "spoke": 0
+    },
+    "TheCactusBlue": {
+     "read": 11,
+     "spoke": 0
+    },
+    "shuaitian-git": {
+     "read": 11,
+     "spoke": 0
+    },
+    "ottenhoff": {
+     "read": 11,
+     "spoke": 0
+    },
+    "Caroline-99": {
+     "read": 11,
+     "spoke": 0
+    },
+    "rach-id": {
+     "read": 11,
+     "spoke": 0
+    },
+    "anupriya13": {
+     "read": 11,
+     "spoke": 0
+    },
+    "dependabot[bot]": {
+     "read": 11,
+     "spoke": 0
+    },
+    "MatissJanis": {
+     "read": 10,
+     "spoke": 1
+    },
+    "jeffhandley": {
+     "read": 10,
+     "spoke": 0
+    },
+    "BillWagner": {
+     "read": 10,
+     "spoke": 0
+    },
+    "hipsterusername": {
+     "read": 10,
+     "spoke": 0
+    },
+    "eunjae-lee": {
+     "read": 10,
+     "spoke": 0
+    },
+    "tbennun": {
+     "read": 10,
+     "spoke": 0
+    },
+    "viva-jinyi": {
+     "read": 9,
+     "spoke": 0
+    },
+    "daxian-dbw": {
+     "read": 9,
+     "spoke": 0
+    },
+    "bw4sz": {
+     "read": 9,
+     "spoke": 0
+    },
+    "zeroliu": {
+     "read": 9,
+     "spoke": 0
+    },
+    "sasamuku": {
+     "read": 9,
+     "spoke": 0
+    },
+    "nomadicmehul": {
+     "read": 9,
+     "spoke": 0
+    },
+    "delphos-mike": {
+     "read": 8,
+     "spoke": 0
+    },
+    "vursen": {
+     "read": 8,
+     "spoke": 0
+    },
+    "davidfowl": {
+     "read": 8,
+     "spoke": 0
+    },
+    "Mossaka": {
+     "read": 8,
+     "spoke": 0
+    },
+    "hetunandu": {
+     "read": 8,
+     "spoke": 0
+    },
+    "chmouel": {
+     "read": 8,
+     "spoke": 0
+    },
+    "hansent": {
+     "read": 8,
+     "spoke": 0
+    },
+    "FunamaYukina": {
+     "read": 8,
+     "spoke": 0
+    },
+    "radical": {
+     "read": 8,
+     "spoke": 0
+    },
+    "forntoh": {
+     "read": 7,
+     "spoke": 0
+    },
+    "Mary Hipp": {
+     "read": 7,
+     "spoke": 0
+    },
+    "peterargue": {
+     "read": 7,
+     "spoke": 0
+    },
+    "swathipil": {
+     "read": 7,
+     "spoke": 0
+    },
+    "B4nan": {
+     "read": 7,
+     "spoke": 0
+    },
+    "bambriz": {
+     "read": 7,
+     "spoke": 0
+    },
+    "callicles": {
+     "read": 7,
+     "spoke": 0
+    },
+    "jveitchmichaelis": {
+     "read": 7,
+     "spoke": 0
+    },
+    "machinewrapped": {
+     "read": 7,
+     "spoke": 0
+    },
+    "mgoin": {
+     "read": 6,
+     "spoke": 0
+    },
+    "hunsche": {
+     "read": 6,
+     "spoke": 0
+    },
+    "claude[bot]": {
+     "read": 6,
+     "spoke": 0
+    },
+    "jonathanpeppers": {
+     "read": 6,
+     "spoke": 0
+    },
+    "eerhardt": {
+     "read": 6,
+     "spoke": 0
+    },
+    "nibanks": {
+     "read": 6,
+     "spoke": 0
+    },
+    "alexnick83": {
+     "read": 6,
+     "spoke": 0
+    },
+    "MH4GF": {
+     "read": 6,
+     "spoke": 0
+    },
+    "jkotas": {
+     "read": 6,
+     "spoke": 0
+    },
+    "andrewbranch": {
+     "read": 6,
+     "spoke": 0
+    },
+    "pixlwave": {
+     "read": 6,
+     "spoke": 0
+    },
+    "flemzord": {
+     "read": 6,
+     "spoke": 0
+    },
+    "WeichenXu123": {
+     "read": 6,
+     "spoke": 0
+    },
+    "avifenesh": {
+     "read": 6,
+     "spoke": 0
+    },
+    "rockfordlhotka": {
+     "read": 6,
+     "spoke": 0
+    },
+    "mingxin-zheng": {
+     "read": 6,
+     "spoke": 0
+    },
+    "autofix-ci[bot]": {
+     "read": 6,
+     "spoke": 0
+    },
+    "simianhacker": {
+     "read": 5,
+     "spoke": 0
+    },
+    "javiercn": {
+     "read": 5,
+     "spoke": 0
+    },
+    "droidmonkey": {
+     "read": 5,
+     "spoke": 0
+    },
+    "scopsy": {
+     "read": 5,
+     "spoke": 0
+    },
+    "joshfree": {
+     "read": 5,
+     "spoke": 0
+    },
+    "mcollovati": {
+     "read": 5,
+     "spoke": 0
+    },
+    "pre-commit-ci[bot]": {
+     "read": 5,
+     "spoke": 0
+    },
+    "AlexKarpov98": {
+     "read": 5,
+     "spoke": 0
+    },
+    "mmitche": {
+     "read": 5,
+     "spoke": 0
+    },
+    "denik": {
+     "read": 5,
+     "spoke": 0
+    },
+    "Brooooooklyn": {
+     "read": 5,
+     "spoke": 0
+    },
+    "mlflow-app[bot]": {
+     "read": 5,
+     "spoke": 0
+    },
+    "wzimrin": {
+     "read": 5,
+     "spoke": 0
+    },
+    "patmmccann": {
+     "read": 5,
+     "spoke": 0
+    },
+    "MartinZikmund": {
+     "read": 5,
+     "spoke": 0
+    },
+    "michellewzhang": {
+     "read": 5,
+     "spoke": 0
+    },
+    "jmprieur": {
+     "read": 5,
+     "spoke": 0
+    },
+    "IEvangelist": {
+     "read": 4,
+     "spoke": 0
+    },
+    "KunalSin9h": {
+     "read": 4,
+     "spoke": 0
+    },
+    "marcpopMSFT": {
+     "read": 4,
+     "spoke": 0
+    },
+    "MikeAlhayek": {
+     "read": 4,
+     "spoke": 0
+    },
+    "Youssef1313": {
+     "read": 4,
+     "spoke": 0
+    },
+    "mattchenderson": {
+     "read": 4,
+     "spoke": 0
+    },
+    "dmytrokirpa": {
+     "read": 4,
+     "spoke": 0
+    },
+    "tepi": {
+     "read": 4,
+     "spoke": 0
+    },
+    "tobio": {
+     "read": 4,
+     "spoke": 0
+    },
+    "highperformancecoder": {
+     "read": 4,
+     "spoke": 0
+    },
+    "prathyushpv": {
+     "read": 4,
+     "spoke": 0
+    },
+    "jakebailey": {
+     "read": 4,
+     "spoke": 0
+    },
+    "toyamarinyon": {
+     "read": 4,
+     "spoke": 0
+    },
+    "mogery": {
+     "read": 3,
+     "spoke": 0
+    },
+    "bt-justtrack": {
+     "read": 3,
+     "spoke": 0
+    },
+    "vienthuong": {
+     "read": 3,
+     "spoke": 0
+    },
+    "njzjz": {
+     "read": 3,
+     "spoke": 0
+    },
+    "ericstj": {
+     "read": 3,
+     "spoke": 0
+    },
+    "DonKoko": {
+     "read": 3,
+     "spoke": 0
+    },
+    "kirankumarkolli": {
+     "read": 3,
+     "spoke": 0
+    },
+    "kentcdodds": {
+     "read": 3,
+     "spoke": 0
+    },
+    "trask": {
+     "read": 3,
+     "spoke": 0
+    },
+    "ewoutkramer": {
+     "read": 3,
+     "spoke": 0
+    },
+    "ultmaster": {
+     "read": 3,
+     "spoke": 0
+    },
+    "anthonykim1": {
+     "read": 3,
+     "spoke": 0
+    },
+    "pksjce": {
+     "read": 3,
+     "spoke": 0
+    },
+    "getsantry[bot]": {
+     "read": 3,
+     "spoke": 0
+    },
+    "stephentoub": {
+     "read": 3,
+     "spoke": 0
+    },
+    "greinacker": {
+     "read": 3,
+     "spoke": 0
+    },
+    "jozkee": {
+     "read": 3,
+     "spoke": 0
+    },
+    "arv": {
+     "read": 3,
+     "spoke": 0
+    },
+    "alfonso-paella": {
+     "read": 3,
+     "spoke": 0
+    },
+    "Dunqing": {
+     "read": 3,
+     "spoke": 0
+    },
+    "KMKoushik": {
+     "read": 3,
+     "spoke": 0
+    },
+    "vapourismo": {
+     "read": 3,
+     "spoke": 0
+    },
+    "rita-gorokhod": {
+     "read": 3,
+     "spoke": 0
+    },
+    "davidwengier": {
+     "read": 3,
+     "spoke": 0
+    },
+    "Skn0tt": {
+     "read": 3,
+     "spoke": 0
+    },
+    "evan-forbes": {
+     "read": 2,
+     "spoke": 0
+    },
+    "dckc": {
+     "read": 2,
+     "spoke": 0
+    },
+    "tjuanitas": {
+     "read": 2,
+     "spoke": 0
+    },
+    "keshavmohta09": {
+     "read": 2,
+     "spoke": 0
+    },
+    "hoyosjs": {
+     "read": 2,
+     "spoke": 0
+    },
+    "maryhipp": {
+     "read": 2,
+     "spoke": 0
+    },
+    "serxa": {
+     "read": 2,
+     "spoke": 0
+    },
+    "captainsafia": {
+     "read": 2,
+     "spoke": 0
+    },
+    "YuliiaKovalova": {
+     "read": 2,
+     "spoke": 0
+    },
+    "tzdybal": {
+     "read": 2,
+     "spoke": 0
+    },
+    "abhisek": {
+     "read": 2,
+     "spoke": 0
+    },
+    "svenvoskamp": {
+     "read": 2,
+     "spoke": 0
+    },
+    "psychedelicious": {
+     "read": 2,
+     "spoke": 0
+    },
+    "joperezr": {
+     "read": 2,
+     "spoke": 0
+    },
+    "333fred": {
+     "read": 2,
+     "spoke": 0
+    },
+    "whitphx": {
+     "read": 2,
+     "spoke": 0
+    },
+    "v1v": {
+     "read": 2,
+     "spoke": 0
+    },
+    "JacobKnightley": {
+     "read": 2,
+     "spoke": 0
+    },
+    "enesozturk": {
+     "read": 2,
+     "spoke": 0
+    },
+    "llali": {
+     "read": 2,
+     "spoke": 0
+    },
+    "taiga-family-bot": {
+     "read": 2,
+     "spoke": 0
+    },
+    "kiview": {
+     "read": 2,
+     "spoke": 0
+    },
+    "turian": {
+     "read": 2,
+     "spoke": 0
+    },
+    "Andrei-hub11": {
+     "read": 2,
+     "spoke": 0
+    },
+    "olegsych": {
+     "read": 2,
+     "spoke": 0
+    },
+    "kotlarmilos": {
+     "read": 2,
+     "spoke": 0
+    },
+    "google-labs-jules[bot]": {
+     "read": 2,
+     "spoke": 0
+    },
+    "arein": {
+     "read": 2,
+     "spoke": 0
+    },
+    "LearningCircuit": {
+     "read": 2,
+     "spoke": 0
+    },
+    "carlosvirreira": {
+     "read": 2,
+     "spoke": 0
+    },
+    "will": {
+     "read": 2,
+     "spoke": 0
+    },
+    "JoshLove-msft": {
+     "read": 2,
+     "spoke": 0
+    },
+    "HazAT": {
+     "read": 2,
+     "spoke": 0
+    },
+    "Xuanwo": {
+     "read": 2,
+     "spoke": 0
+    },
+    "grzegorz-roboflow": {
+     "read": 2,
+     "spoke": 0
+    },
+    "acco": {
+     "read": 1,
+     "spoke": 0
+    },
+    "lostintangent": {
+     "read": 1,
+     "spoke": 0
+    },
+    "six7": {
+     "read": 1,
+     "spoke": 0
+    },
+    "TravisEz13": {
+     "read": 1,
+     "spoke": 0
+    },
+    "theachoem": {
+     "read": 1,
+     "spoke": 0
+    },
+    "ArneDeutsch": {
+     "read": 1,
+     "spoke": 0
+    },
+    "RogerHYang": {
+     "read": 1,
+     "spoke": 0
+    },
+    "petebacondarwin": {
+     "read": 1,
+     "spoke": 0
+    },
+    "aThorp96": {
+     "read": 1,
+     "spoke": 0
+    },
+    "PeerRich": {
+     "read": 1,
+     "spoke": 0
+    },
+    "shreyan-gupta": {
+     "read": 1,
+     "spoke": 0
+    },
+    "virgofx": {
+     "read": 1,
+     "spoke": 0
+    },
+    "kundadebdatta": {
+     "read": 1,
+     "spoke": 0
+    },
+    "bernardnormier": {
+     "read": 1,
+     "spoke": 0
+    },
+    "logancyang": {
+     "read": 1,
+     "spoke": 0
+    },
+    "N2D4": {
+     "read": 1,
+     "spoke": 0
+    },
+    "gewarren": {
+     "read": 1,
+     "spoke": 0
+    },
+    "nihal467": {
+     "read": 1,
+     "spoke": 0
+    },
+    "LLFourn": {
+     "read": 1,
+     "spoke": 0
+    },
+    "actions-user": {
+     "read": 1,
+     "spoke": 0
+    },
+    "splincode": {
+     "read": 1,
+     "spoke": 0
+    },
+    "minestarks": {
+     "read": 1,
+     "spoke": 0
+    },
+    "BabyChouSr": {
+     "read": 1,
+     "spoke": 0
+    },
+    "theakshaypant": {
+     "read": 1,
+     "spoke": 0
+    },
+    "kristenwomack": {
+     "read": 1,
+     "spoke": 0
+    },
+    "alandtse": {
+     "read": 1,
+     "spoke": 0
+    },
+    "asdacap": {
+     "read": 1,
+     "spoke": 0
+    },
+    "alexr00": {
+     "read": 1,
+     "spoke": 0
+    },
+    "szokeasaurusrex": {
+     "read": 1,
+     "spoke": 0
+    },
+    "arpad-m": {
+     "read": 1,
+     "spoke": 0
+    },
+    "mergify[bot]": {
+     "read": 1,
+     "spoke": 0
+    },
+    "skunkworxdark": {
+     "read": 1,
+     "spoke": 0
+    },
+    "isaaccorley": {
+     "read": 1,
+     "spoke": 0
+    },
+    "penalosa": {
+     "read": 1,
+     "spoke": 0
+    },
+    "mikhailshilkov": {
+     "read": 1,
+     "spoke": 0
+    },
+    "St0rmBr3w": {
+     "read": 1,
+     "spoke": 0
+    },
+    "lewing": {
+     "read": 1,
+     "spoke": 0
+    },
+    "otelbot[bot]": {
+     "read": 1,
+     "spoke": 0
+    },
+    "Byron": {
+     "read": 1,
+     "spoke": 0
+    },
+    "Eric-Guo": {
+     "read": 1,
+     "spoke": 0
+    },
+    "B-Step62": {
+     "read": 1,
+     "spoke": 0
+    },
+    "abonie": {
+     "read": 1,
+     "spoke": 0
+    },
+    "gmalouf": {
+     "read": 1,
+     "spoke": 0
+    },
+    "bgrainger": {
+     "read": 1,
+     "spoke": 0
+    },
+    "dmytrostruk": {
+     "read": 1,
+     "spoke": 0
+    },
+    "aksh-at": {
+     "read": 1,
+     "spoke": 0
+    },
+    "adegeo": {
+     "read": 1,
+     "spoke": 0
+    },
+    "dsyme": {
+     "read": 1,
+     "spoke": 0
+    },
+    "hazzik": {
+     "read": 1,
+     "spoke": 0
+    },
+    "caalador": {
+     "read": 1,
+     "spoke": 0
+    },
+    "harshach": {
+     "read": 1,
+     "spoke": 0
+    },
+    "mkaput": {
+     "read": 1,
+     "spoke": 0
+    },
+    "Legioth": {
+     "read": 1,
+     "spoke": 0
+    },
+    "shivammathur": {
+     "read": 1,
+     "spoke": 0
+    },
+    "claude": {
+     "read": 1,
+     "spoke": 0
+    },
+    "vaadin-bot": {
+     "read": 1,
+     "spoke": 0
+    },
+    "akshay-gupta7": {
+     "read": 1,
+     "spoke": 0
+    },
+    "lalitb": {
+     "read": 1,
+     "spoke": 0
+    },
+    "rohit-710": {
+     "read": 1,
+     "spoke": 0
+    },
+    "baronfel": {
+     "read": 1,
+     "spoke": 0
+    },
+    "junkisai": {
+     "read": 1,
+     "spoke": 0
+    },
+    "DanielRosenwasser": {
+     "read": 1,
+     "spoke": 0
+    },
+    "frenchy64": {
+     "read": 1,
+     "spoke": 0
+    },
+    "jennyf19": {
+     "read": 1,
+     "spoke": 0
+    },
+    "goruha": {
+     "read": 1,
+     "spoke": 0
+    },
+    "rootfs": {
+     "read": 1,
+     "spoke": 0
+    },
+    "cijothomas": {
+     "read": 1,
+     "spoke": 0
+    },
+    "FabianMeiswinkel": {
+     "read": 1,
+     "spoke": 0
+    },
+    "manusa": {
+     "read": 1,
+     "spoke": 0
+    }
+   },
+   "share": 0.0002,
+   "wilson": [
+    0.0,
+    0.0013
+   ],
+   "share_of_readable": 0.0022,
+   "wilson_readable": [
+    0.0004,
+    0.0125
+   ],
+   "rule": "met"
+  }
+ }
+}

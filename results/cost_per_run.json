@@ -1,9 +1,11 @@
 {
  "what": "What a run costs in GitLab Duo credits, from our own account meter. The meter lags by many hours and covers one account, so these are estimates from the change in the meter divided by the tool calls the runs made, not a billing statement.",
- "basis": "Meter readings taken before and after groups of live runs on 2026-10-11 and 2026-10-12 (about 75 tool calls for +13.2, and about 27 calls for +3.5).",
- "credits_per_tool_call": {"low": 0.13, "high": 0.18},
- "card_run_tool_calls": {"typical": 9},
- "react_run_tool_calls": {"min": 4, "max": 26},
+ "basis": "Meter readings taken before and after groups of live runs on 2026-10-11 and 2026-10-12. The two latest windows give 0.18 (about 75 tool calls for +13.2) and 0.13 (about 27 calls for +3.5); the whole span from 2026-10-11 09:20 to 2026-10-12 20:16 gives about 0.21 to 0.23 (84.7 credits over about 376 to 401 calls) and the first window about 0.25, so the band runs from the lowest window to the highest.",
+ "credits_per_tool_call": {"low": 0.13, "high": 0.25},
+ "card_run_model_calls": {"typical": 6, "before_v1_1": 9, "basis": "Model calls (AI messages in the Duo session record) of the card flow: the three runs before the v1.1 prompt made 9, 9 and 8; the three registered runs after it made 6, 5 and 5 (results/card_model_calls.json on the merge request that adds it). Typical is the largest of the three, the run with three extras."},
+ "credits_per_model_call_list_price": 0.3125,
+ "card_run_credits": {"list_price": 1.9, "how": "card_run_model_calls.typical times credits_per_model_call_list_price (1.875), rounded half up to one decimal; the meter has read lower than list price (0.4 to 0.8 of it in our ledger), so this is an upper estimate"},
+ "react_run_tool_calls": {"min": 3, "max": 34},
  "developer_flow_run_tool_calls": {"min": 20, "max": 27},
  "monthly_cap_per_user": 500,
  "limits": "One account, one model setting, small runs. A run with more threads makes more calls."

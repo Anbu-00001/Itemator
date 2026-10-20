@@ -22,7 +22,7 @@ workflow:
       when: never
     - if: $CI_COMMIT_BRANCH
 
-# The unit tests run on every pipeline (the duckdb file only reads the AIDev data used for the evaluation).
+# The unit tests run on every pipeline (the duckdb files only read the AIDev data used for the evaluation).
 unit-tests:
   image: python:3.12
   variables:
@@ -30,7 +30,7 @@ unit-tests:
   script:
     - python -m venv .venv
     - .venv/bin/pip install -q pytest pyyaml
-    - .venv/bin/python -m pytest -q --ignore=tests/test_review_stats.py
+    - .venv/bin/python -m pytest -q --ignore=tests/test_review_stats.py --ignore=tests/test_aidev_local.py
 
 # The copy of ci/itemator-job.yml that the policy injects lives in the policy project. This job fails when it differs from the copy
 # here (the tests read this one), so a change to either side cannot go unnoticed.
@@ -50,7 +50,7 @@ hardcode-audit:
 # The `itemator` job is not defined here: a pipeline execution policy injects it (ci/itemator-job.yml, read from main), so a
 # merge request cannot edit, delete or skip it.
 
-# Mutation tests (eval/mutate_extras.py and eval/mutate_ci.py): they break the rules or the job one line at a time and
+# Mutation tests (eval/mutate_extras.py, eval/mutate_ci.py and eval/mutate_checks.py): they break the rules or the job one line at a time and
 # every mutant must make a test fail. Manual, because a run takes several minutes; start it from the pipeline page.
 # The laptop that builds this project overheats on it, so it runs here. mutation.log is the evidence.
 mutation-suite:
@@ -66,11 +66,13 @@ mutation-suite:
     - .venv/bin/pip install -q pytest pyyaml
     - .venv/bin/python -I eval/mutate_extras.py "$CI_PROJECT_DIR" /tmp/mut-extras 2>&1 | tee mutation-extras.log | tail -5
     - .venv/bin/python -I eval/mutate_ci.py "$CI_PROJECT_DIR" /tmp/mut-ci 2>&1 | tee mutation-ci.log | tail -5
+    - .venv/bin/python -I eval/mutate_checks.py "$CI_PROJECT_DIR" /tmp/mut-checks 2>&1 | tee mutation-checks.log | tail -5
   artifacts:
     paths:
       - mutation-extras.log
       - mutation-ci.log
-    expire_in: 30 days
+      - mutation-checks.log
+    expire_in: 90 days     # results/mutation.json links this job; keep it past the winners' announcement
     when: always
 
 # The decision log (itemator/decisions.py): who decided each extra in the merge requests merged since the last release.
@@ -112,6 +114,53 @@ scan-history:
     expire_in: 90 days
     when: always
 
+# The weight study (eval/aidev_weight.py, registered in eval/aidev_weight_rubric.json before it ran): what the new PyPI and npm
+# dependencies in AI agents' pull requests bring along. Manual, on any branch or merge request; it reads the public AIDev dataset (1.3 GB) and the
+# registries, posts nothing and uses no Duo credits. It runs here because the laptop cannot hold it.
+weight-study:
+  image: python:3.12
+  rules:
+    - if: $CI_COMMIT_BRANCH || $CI_MERGE_REQUEST_IID
+      when: manual
+      allow_failure: true
+  timeout: 2h
+  script:
+    - pip install -q duckdb==1.1.3
+    - curl --fail --silent --show-error --location -o /tmp/pr_commit_details.parquet https://huggingface.co/datasets/hao-li/AIDev/resolve/main/pr_commit_details.parquet
+    - python -u eval/aidev_weight.py --commit-details /tmp/pr_commit_details.parquet
+  artifacts:
+    paths:
+      - results/aidev_weight_v1.json
+    expire_in: 90 days
+    when: always
+
+# The install-time study (eval/install_time.py, registered in eval/install_time_rubric.json before it ran): seconds on this runner for a
+# fresh install of the dependencies the weight study weighed. Manual, on any branch or merge request; wheels only and no npm install scripts, so no
+# package code runs; no Duo credits.
+.install-time:
+  rules:
+    - if: $CI_COMMIT_BRANCH || $CI_MERGE_REQUEST_IID
+      when: manual
+      allow_failure: true
+  timeout: 1h
+  artifacts:
+    paths:
+      - results/install_time_*_v1.json
+    expire_in: 90 days
+    when: always
+
+install-time-pypi:
+  extends: .install-time
+  image: python:3.12
+  script:
+    - python -u eval/install_time.py --ecosystem PyPI
+
+install-time-npm:
+  extends: .install-time
+  image: node:22
+  script:
+    - python3 -u eval/install_time.py --ecosystem npm
+
 # The deployment page. `publish-package` is the deployment: it uploads the checker (itemator/) to this project's package
 # registry and records a deployment of the `production` environment. `shipped-page` then publishes, with GitLab Pages, the page "what shipped": for each
 # deployment, the merge requests in it, their extras and who named each (itemator/shipped.py; it only reads GitLab).
@@ -122,9 +171,47 @@ publish-package:
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
   environment:
     name: production
+    url: https://showcase-3cd72e.gitlab.io/
+  # Two merges in a row deploy one after the other, never together. DEPLOY_TARGET is a project variable scoped to the
+  # `production` environment (Settings > CI/CD > Variables); it is empty in any other job.
+  resource_group: production
   script:
+    - echo "Deploying to ${DEPLOY_TARGET:-no environment-scoped variable set}"
     - tar czf itemator.tar.gz itemator
     - 'curl --fail --silent --show-error --header "JOB-TOKEN: $CI_JOB_TOKEN" --upload-file itemator.tar.gz "$CI_API_V4_URL/projects/$CI_PROJECT_ID/packages/generic/itemator/0.1.$CI_PIPELINE_IID/itemator.tar.gz"'
+
+# The same checks over HTTP on Google Cloud Run (itemator/serve.py, Dockerfile). The job is in the pipeline only when GCP_PROJECT_ID is set
+# (Settings > CI/CD > Variables) and runs by hand; it signs in with a Workload Identity Federation token (no key file is stored anywhere).
+# GCP_WIF_AUDIENCE is the provider's full resource name, e.g. //iam.googleapis.com/projects/NUMBER/locations/global/workloadIdentityPools/POOL/providers/PROVIDER.
+# The service takes at most one instance, 20 requests at once and a 10-second request, and keeps nothing. Do not run it after Oct 27 13:00 UTC.
+deploy-cloud-run:
+  stage: deploy
+  image: google/cloud-sdk:slim
+  rules:
+    - if: $GCP_PROJECT_ID && $GCP_WIF_AUDIENCE && $GCP_SERVICE_ACCOUNT && $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+      when: manual
+  id_tokens:
+    GCP_ID_TOKEN:
+      aud: $GCP_WIF_AUDIENCE
+  variables:
+    GCP_REGION: us-central1
+  script:
+    - echo "$GCP_ID_TOKEN" > "$CI_PROJECT_DIR/.gcp-token"
+    - gcloud iam workload-identity-pools create-cred-config "${GCP_WIF_AUDIENCE#//iam.googleapis.com/}" --service-account="$GCP_SERVICE_ACCOUNT" --credential-source-file="$CI_PROJECT_DIR/.gcp-token" --output-file="$CI_PROJECT_DIR/.gcp-cred.json"
+    - gcloud auth login --cred-file="$CI_PROJECT_DIR/.gcp-cred.json" --quiet
+    - gcloud run deploy itemator-check --project="$GCP_PROJECT_ID" --region="$GCP_REGION" --source=. --allow-unauthenticated --max-instances=1 --concurrency=20 --timeout=10 --memory=256Mi --cpu=1 --quiet
+    - URL=$(gcloud run services describe itemator-check --project="$GCP_PROJECT_ID" --region="$GCP_REGION" --format='value(status.url)')
+    - echo "CLOUD_RUN_URL=$URL" > deploy.env
+    - 'curl --fail --silent --show-error "$URL/" | grep -q "\"stores\": \"nothing\""'
+    - 'curl --fail --silent --show-error --data-binary @examples/cloud-run-sample.diff "$URL/check" | grep -q "\"named\": 1"'
+  after_script:
+    - rm -f "$CI_PROJECT_DIR/.gcp-token" "$CI_PROJECT_DIR/.gcp-cred.json"
+  environment:
+    name: google-cloud
+    url: $CLOUD_RUN_URL
+  artifacts:
+    reports:
+      dotenv: deploy.env
 
 shipped-page:
   stage: .post
@@ -139,6 +226,8 @@ shipped-page:
     - python -E -m itemator.mapview --out public/map --skip-missing --label "Latest merge to main (a real run)" --label "Staged example (made up for this demonstration)" --staged staged.json latest.json staged.json
     # The page where a visitor pastes a diff and three checks run in the browser, with the numbers read from results/.
     - python -E -m itemator.tryit --out public/try
+    # The page where a visitor weighs any PyPI or npm package in the browser, the way the card does (web/weigh.js).
+    - python -E -m itemator.weighpage --out public/weigh
   pages: true
 
 # Deploy: every merge request gets its own preview of the reviewer's map for exactly that change (a GitLab Pages parallel deployment,
@@ -174,4 +263,4 @@ pages-smoke-check:
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
   allow_failure: true
   script:
-    - python -E tools/smoke_check.py "$CI_PAGES_URL" "$CI_PAGES_URL/map/" "$CI_PAGES_URL/try/"
+    - python -E tools/smoke_check.py "$CI_PAGES_URL" "$CI_PAGES_URL/map/" "$CI_PAGES_URL/try/" "$CI_PAGES_URL/weigh/"

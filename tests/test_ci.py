@@ -126,8 +126,11 @@ def test_change_inside_the_ask(repo, tmp_path, monkeypatch):
     code, out = job(repo, head, FakeHttp(routes(mr(), [issue()])), tmp_path, monkeypatch)
     assert code == 0
     assert out["state"] == "inside_ask" and out["extras"] == [] and out["unplaced"] == []
+    line = out["card"].pop("cost_line")
     assert out["card"] == {"final_line": "Nothing beyond #12.", "todo_line": "Approve as usual.",
                            "caveat_line": None, "injection_line": None}
+    assert line.startswith("Cost of finding these facts: ") and "no model call." in line and line == out["cost"]["line"]
+    assert out["cost"]["model_calls"] == 0 and out["cost"]["gitlab_reads"] >= 2 and out["cost"]["registry_reads"] == 0
     assert out["issue_iids"] == [12] and out["issues_from"] == "closes_issues"
     assert out["mr_iid"] == 5 and out["rules_version"] == 6 and out["head_sha"] == head
     assert out["injection"] == [] and out["generated_at"].endswith("Z")
@@ -142,10 +145,13 @@ def test_new_dependency_beyond_the_ask(repo, tmp_path, monkeypatch):
                                                                ("ci_or_config", ".gitlab-ci.yml")]
     assert set(out["extras"][0]) == {"kind", "path", "name", "why", "detail", "anchor", "anchorless_reason",
                                      "thread_stub", "plain_facts"}
+    assert out["cost"]["registry_reads"] >= 1 and f'{out["cost"]["registry_reads"]} package-registry lookup' in out["card"]["cost_line"]
     assert out["card"]["final_line"] == ("2 things beyond #12: `leftpad-py` (new dependency), "
                                          "`.gitlab-ci.yml` (CI change).")
     assert out["card"]["todo_line"] == ('Type each name in its thread to keep it, or reply "split" '
-                                        'to move it to its own MR, "remove" to drop it.')
+                                        'to move it to its own MR, "remove" to drop it. ' + ci.CONSENT)
+    # the card promises this, so its wording is fixed here; the reaction flow acts only on a reply (flows/itemator_react.yml)
+    assert ci.CONSENT == "Itemator keeps, moves or removes nothing until a person replies."
 
 
 def test_no_issue(repo, tmp_path, monkeypatch):
@@ -181,6 +187,52 @@ def test_author_wrote_the_issue(repo, tmp_path, monkeypatch):
     assert out["card"]["final_line"] == "No one but the author described this change."
     assert out["card"]["todo_line"] == "A second person reads #12 before approving."
     assert out["card"]["caveat_line"] is None                    # the final line already says it
+
+
+NOTES_12 = "/projects/7/issues/12/notes?per_page=100&sort=desc"
+
+
+def agent_routes(note, user, extra_issue_routes=None):
+    r = routes(mr(author_id=1), [issue(author_id=1)])
+    r.update({NOTES_12: (200, [note]), "/users/99": (200, user)})
+    return r
+
+
+def test_an_agent_that_opened_the_merge_request_for_its_author_makes_the_issue_an_ask(repo, tmp_path, monkeypatch):
+    head = repo.commit({"src/parser.py": FIXED})
+    note = {"system": True, "body": "mentioned in merge request !5", "author": {"id": 99}}
+    _, out = job(repo, head, FakeHttp(agent_routes(note, {"bot": True, "username": "duo-developer-grp"})), tmp_path, monkeypatch)
+    assert out["state"] == "inside_ask" and out["agent"] == "duo-developer-grp"
+    assert out["card"]["final_line"] == "Nothing beyond #12."
+    assert out["card"]["caveat_line"] == ci.agent_line("duo-developer-grp")
+    assert ci.agent_line("x") == ("@x, an agent account, wrote this change for the merge request's author, so the issue is read as "
+                                  "that person's ask.")
+    head2 = repo.commit({"src/parser.py": FIXED, "requirements.txt": "requests==2.31.0\nleftpad-py==1.0.0\n"})
+    _, out = job(repo, head2, FakeHttp(agent_routes(note, {"bot": True, "username": "duo-developer-grp"})), tmp_path, monkeypatch)
+    assert out["state"] == "extras" and ci.AUTHOR_CAVEAT not in (out["card"]["caveat_line"] or "")
+    assert ci.agent_line("duo-developer-grp") in out["card"]["caveat_line"]
+
+
+@pytest.mark.parametrize("note,user", [
+    ({"system": True, "body": "mentioned in merge request !5", "author": {"id": 99}}, {"bot": False, "username": "a-person"}),
+    ({"system": False, "body": "mentioned in merge request !5", "author": {"id": 99}}, {"bot": True, "username": "bot"}),
+    ({"system": True, "body": "mentioned in merge request !6", "author": {"id": 99}}, {"bot": True, "username": "bot"}),
+    ({"system": True, "body": "mentioned in merge request !5", "author": {"id": 1}}, {"bot": True, "username": "bot"}),
+])
+def test_only_a_bots_system_note_naming_this_merge_request_counts(repo, tmp_path, monkeypatch, note, user):
+    head = repo.commit({"src/parser.py": FIXED})
+    r = agent_routes(note, user)
+    r["/users/1"] = (200, user)
+    _, out = job(repo, head, FakeHttp(r), tmp_path, monkeypatch)
+    assert out["state"] == "author_wrote_issue" and "agent" not in out
+
+
+def test_an_unreadable_issue_note_list_keeps_the_author_caveat(repo, tmp_path, monkeypatch):
+    head = repo.commit({"src/parser.py": FIXED})
+    r = routes(mr(author_id=1), [issue(author_id=1)])
+    r[NOTES_12] = (403, {"message": "403 Forbidden"})
+    _, out = job(repo, head, FakeHttp(r), tmp_path, monkeypatch)
+    assert out["state"] == "author_wrote_issue" and "agent" not in out
 
 
 def test_extras_are_never_hidden_when_the_author_wrote_the_issue(repo, tmp_path, monkeypatch):
@@ -415,3 +467,67 @@ def test_a_base_missing_from_the_clone_says_so(repo, tmp_path, monkeypatch, caps
                     CI_MERGE_REQUEST_DIFF_BASE_SHA="f" * 40)
     assert code == 2 and out is None
     assert "the base commit is not in this clone (a shallow clone? set GIT_DEPTH to 0)" in capsys.readouterr().err
+
+
+# ---- closing words that point at nothing
+
+NONE_SUCH = "The description says it closes #999, but this project has no issue by that number."
+
+
+def test_a_closing_word_for_an_issue_that_does_not_exist_is_said_on_the_card(repo, tmp_path, monkeypatch):
+    head = repo.commit({"src/parser.py": FIXED})
+    _, out = job(repo, head, FakeHttp(routes(mr("Closes #12 and #999"), [issue()])), tmp_path, monkeypatch)
+    assert out["issue_iids"] == [12] and out["state"] == "inside_ask"
+    assert out["card"]["caveat_line"] == NONE_SUCH
+
+
+def test_two_missing_issues_are_listed_and_one_that_exists_is_not(repo, tmp_path, monkeypatch):
+    head = repo.commit({"src/parser.py": FIXED})
+    http = FakeHttp(routes(mr("Closes #12, #998, #999 and #14"), [issue()], issue(14)))
+    _, out = job(repo, head, http, tmp_path, monkeypatch)
+    assert out["card"]["caveat_line"] == ("The description says it closes #998, #999, but this project has no issues by that number.")
+
+
+def test_a_read_that_fails_says_nothing_about_the_issue(repo, tmp_path, monkeypatch):
+    monkeypatch.setattr(ci.time, "sleep", lambda _s: None)
+    head = repo.commit({"src/parser.py": FIXED})
+    r = routes(mr("Closes #12 and #999"), [issue()])
+    r["/projects/7/issues/999"] = (500, {"message": "busy"})
+    _, out = job(repo, head, FakeHttp(r), tmp_path, monkeypatch)
+    assert out["card"]["caveat_line"] is None and out["state"] == "inside_ask"
+
+
+def test_a_missing_issue_in_the_description_route_is_said_too(repo, tmp_path, monkeypatch):
+    head = repo.commit({"src/parser.py": FIXED})
+    _, out = job(repo, head, FakeHttp(routes(mr("Fixes #4 and #6"), [], issue(4))), tmp_path, monkeypatch)
+    assert out["card"]["caveat_line"] == "The description says it closes #6, but this project has no issue by that number."
+
+
+def test_no_closing_words_no_extra_reads(repo, tmp_path, monkeypatch):
+    head = repo.commit({"src/parser.py": FIXED})
+    http = FakeHttp(routes(mr("Parser fix, see #999"), [issue()]))
+    _, out = job(repo, head, http, tmp_path, monkeypatch)
+    assert out["card"]["caveat_line"] is None and not any("issues/999" in u for u, _ in http.calls)
+
+
+def test_at_most_five_references_are_looked_up(repo, tmp_path, monkeypatch):
+    head = repo.commit({"src/parser.py": FIXED})
+    nums = ", ".join(f"#{n}" for n in range(901, 909))
+    http = FakeHttp(routes(mr(f"Closes #12, {nums}"), [issue()]))
+    _, out = job(repo, head, http, tmp_path, monkeypatch)
+    assert sum("/issues/9" in u for u, _ in http.calls) == 5
+    assert out["card"]["caveat_line"].startswith("The description says it closes #901, #902, #903, #904, #905,")
+
+
+def test_another_projects_issue_with_the_same_number_does_not_hide_a_missing_one(repo, tmp_path, monkeypatch):
+    head = repo.commit({"src/parser.py": FIXED})
+    elsewhere = {**issue(999), "project_id": 8, "web_url": "https://gitlab.example/other/lib/-/issues/999"}
+    _, out = job(repo, head, FakeHttp(routes(mr("Closes #12 and #999"), [issue(), elsewhere])), tmp_path, monkeypatch)
+    assert out["card"]["caveat_line"] == NONE_SUCH
+
+
+def test_the_missing_issue_note_joins_the_author_caveat_it_does_not_replace_it(repo, tmp_path, monkeypatch):
+    head = repo.commit({"src/parser.py": FIXED, "requirements.txt": "requests==2.31.0\nleftpad-py==1.0.0\n"})
+    _, out = job(repo, head, FakeHttp(routes(mr("Closes #12 and #999", author_id=1), [issue(author_id=1), issue(14, author_id=1)])),
+                 tmp_path, monkeypatch)
+    assert out["state"] == "extras" and out["card"]["caveat_line"] == f"{ci.AUTHOR_CAVEAT} {NONE_SUCH}"

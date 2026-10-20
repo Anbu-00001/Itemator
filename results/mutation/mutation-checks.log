@@ -1,0 +1,52 @@
+KILLED  weight     yanked file picked                       test_the_wheel_is_picked_in_pips_order_the_most_specific_tag_first
+KILLED  weight     largest file of a tier picked            test_of_two_files_in_the_same_tier_the_smaller_is_taken
+KILLED  weight     source archive never picked              test_the_wheel_is_picked_in_pips_order_the_most_specific_tag_first
+KILLED  weight     npm ranged answer refused                test_npm_names_and_sizes_use_the_tarball_length
+KILLED  weight     bundled package counted                  test_bundled_packages_are_inside_another_and_not_counted
+KILLED  weight     graph error read as a graph              test_no_graph_an_error_graph_and_unsupported_ecosystems_say_nothing
+KILLED  weight     empty graph weighed                      test_no_graph_an_error_graph_and_unsupported_ecosystems_say_nothing
+KILLED  weight     cap never said                           test_a_large_graph_is_sized_up_to_the_cap_and_said_to_be_at_least
+KILLED  weight     direct count of all                      test_a_dependency_is_weighed_from_its_graph_and_each_package_size
+KILLED  weight     unknown size hidden                      test_an_unknown_size_is_counted_as_unknown_never_guessed
+KILLED  weight     one package read as many                 test_bundled_packages_are_inside_another_and_not_counted
+KILLED  weight     monthly line without a count             test_the_weight_is_multiplied_by_this_projects_own_pipelines_and_says_without_a_cache
+KILLED  weight     monthly says about when unknown          test_a_graph_of_exactly_the_cap_is_not_at_least_and_unknown_sizes_make_the_month_at_least
+KILLED  weight     kB boundary in binary units              test_sizes
+KILLED  untrusted  comments read as commands                test_a_quoted_or_unrelated_use_is_not[
+KILLED  untrusted  removed files read                       test_removed_and_patchless_files_are_not_read
+KILLED  untrusted  any file is a target                     test_shell_scripts_are_read_but_other_files_are_not
+KILLED  untrusted  single quotes protect nothing            test_a_quoted_or_unrelated_use_is_not[
+KILLED  untrusted  variables: read as a command             test_a_quoted_or_unrelated_use_is_not[
+KILLED  untrusted  backslash escapes ignored                test_an_escaped_quote_opens_no_string_and_a_quote_inside_double_quotes_is_a_character
+KILLED  untrusted  agent prompt not named                   test_a_variable_in_an_agent_prompt_is_named[
+KILLED  untrusted  stranger text needs no command           test_a_github_expression_in_a_mapping_is_the_safe_pattern
+KILLED  shapes     decode-and-run off                       test_decode_and_run_is_named[
+KILLED  shapes     env send needs no whole env              test_ordinary_lines_are_not[await
+KILLED  shapes     runs never split                         test_lines_that_are_not_consecutive_are_not_one_run
+KILLED  shapes     removed files read                       test_tests_docs_locks_and_removed_files_are_not_read
+KILLED  moving     variable image flagged                   test_a_pinned_or_unrelated_line_is_not[image:
+KILLED  moving     untagged image passes                    test_a_moving_reference_is_named[
+KILLED  moving     pinned tag read as latest                test_a_pinned_or_unrelated_line_is_not[image:
+KILLED  moving     comments read                            test_a_commented_download_is_not_a_reference
+KILLED  moving     untagged build stage flagged             test_dockerfiles_are_read_with_their_own_rule
+KILLED  moving     curl pipe to shell off                   test_a_moving_reference_is_named[
+KILLED  scanners   removed files kept                       test_a_removed_file_has_no_lines_to_join
+KILLED  scanners   findings outside the change kept         test_a_finding_in_a_file_the_change_does_not_touch_is_left_out
+KILLED  scanners   touched read as introduced               test_a_finding_elsewhere_in_a_touched_file_is_marked_so
+KILLED  scanners   multi-line finding reads one line        test_a_range_that_overlaps_an_added_line_counts
+KILLED  scanners   named flag always true                   test_the_extras_list_naming_a_file_is_shown
+KILLED  scanners   oversized report read                    test_an_oversize_report_is_not_read
+KILLED  checked    scanner sentence dropped                 test_the_card_carries_the_scanner_line_first_among_the_added_line_checks
+KILLED  checked    untrusted sentence dropped               test_parts_that_fit_are_all_kept
+KILLED  checked    shapes sentence dropped                  test_parts_that_fit_are_all_kept
+KILLED  checked    moving sentence dropped                  test_the_card_carries_the_moving_line_before_the_pipeline_line
+KILLED  checked    empty line not None                      test_nothing_checked_says_nothing
+KILLED  checked    line length cap ignored                  test_parts_that_fit_are_all_kept
+KILLED  decisions  pipeline of any commit                   test_the_report_is_read_on_the_commit_that_was_merged_and_a_missing_list_is_empty
+KILLED  decisions  no report read as no extras              test_extras_merged_without_an_answer_are_read_from_the_newest_pipelines_report
+KILLED  decisions  stale summary answers the merge          test_a_summary_for_an_earlier_commit_answers_only_the_extras_it_names
+KILLED  decisions  partial answers ignored                  test_a_summary_for_an_earlier_commit_answers_only_the_extras_it_names
+KILLED  decisions  unknown counted as answered              test_stats_count_each_decision_once
+KILLED  decisions  author alone not counted                 test_stats_count_each_decision_once
+KILLED  decisions  removed weight summed as kept            test_the_weight_is_read_from_the_jobs_own_report_never_from_note_text
+51/51 mutants killed

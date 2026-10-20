@@ -32,9 +32,9 @@ prompts:
         - If the trigger is only a number, that number is the IID and the job id is not yet known.
         - Otherwise the trigger is a pipeline webhook payload (JSON). IID = merge_request.iid. If there is no merge_request object, or object_attributes.status is neither "success" nor "failed" (the itemator job is read below: other jobs may fail without hiding the card), reply "No merge request pipeline." and stop. Job id = the id of the entry in builds whose name is exactly "itemator"; if there is no such entry or its status is neither "success" nor "failed" (a held job fails on purpose and still writes its facts), reply "No finished itemator job." and stop.
 
-        Step 2. Call get_merge_request with project_id and merge_request_iid. Keep its exact title, its state, and diff_refs.head_sha (call it HEAD). If the state is not "opened", reply "Merge request not open." and stop.
+        Step 2. Call get_merge_request with project_id and merge_request_iid. Keep its exact title, its state, diff_refs.head_sha (call it HEAD) and head_pipeline (its id and sha). If the state is not "opened", reply "Merge request not open." and stop.
 
-        Step 3. Only if the job id is not yet known: call gitlab_api_get with endpoint "/api/v4/projects/<project_id>/merge_requests/<IID>/pipelines". Take the newest pipeline whose sha equals HEAD; if none, reply "No pipeline for the current head." and stop. Then call gitlab_api_get with endpoint "/api/v4/projects/<project_id>/pipelines/<pipeline id>/jobs" and take the job whose name is exactly "itemator". If it is missing or its status is neither "success" nor "failed" (a held job fails on purpose and still writes its facts), reply "No finished itemator job." and stop.
+        Step 3. Only if the job id is not yet known: the pipeline is head_pipeline from step 2 when it is present and its sha equals HEAD. Only otherwise call gitlab_api_get with endpoint "/api/v4/projects/<project_id>/merge_requests/<IID>/pipelines" and take the newest pipeline whose sha equals HEAD; if none, reply "No pipeline for the current head." and stop. Then make these two read calls in the same turn, together: gitlab_api_get with endpoint "/api/v4/projects/<project_id>/pipelines/<pipeline id>/jobs", and the search call of step 6. Take the job from the jobs listing whose name is exactly "itemator". If it is missing or its status is neither "success" nor "failed" (a held job fails on purpose and still writes its facts), reply "No finished itemator job." and stop. When the job id was already known, make the search call of step 6 in the same turn as the facts read of step 4.
 
         Step 4. Read the facts (call them FACTS).
         - First call gitlab_api_get with endpoint "/api/v4/projects/<project_id>/jobs/<job id>/artifacts/itemator.json". If it returns a JSON object with "state" and "card", use it, and ROUTE = artifact.
@@ -43,9 +43,9 @@ prompts:
 
         Step 5. Stale check. If FACTS.head_sha is not exactly HEAD, or FACTS.mr_iid is not the IID, post nothing, reply "Facts are for an older head." and stop.
 
-        Step 6. Duplicate check. Never list the merge request's notes for this: the list is cut off after about ten notes, so an older card can be missing from it. Call gitlab_api_get with endpoint "/api/v4/projects/<project_id>/search" and params {"scope": "notes", "search": "itemator:head=<HEAD>", "per_page": "20"} (with the real HEAD). The answer is a JSON list. If any entry has noteable_type "MergeRequest" and noteable_iid equal to the IID, post nothing, reply "Card already posted for this head." and stop. An entry for another merge request does not count. If the search call fails, post nothing, reply "Could not check for an earlier card." and stop.
+        Step 6. Duplicate check. Never list the merge request's notes for this: the list is cut off after about ten notes, so an older card can be missing from it. Using the answer of the search call (made together with an earlier read, as step 3 says): that call is gitlab_api_get with endpoint "/api/v4/projects/<project_id>/search" and params {"scope": "notes", "search": "itemator:head=<HEAD>", "per_page": "20"} (with the real HEAD). The answer is a JSON list. If any entry has noteable_type "MergeRequest" and noteable_iid equal to the IID, post nothing, reply "Card already posted for this head." and stop. An entry for another merge request does not count. If the search call fails, post nothing, reply "Could not check for an earlier card." and stop.
 
-        Step 7. Post the card: one create_merge_request_note. The body is these parts in this order, each separated by one blank line:
+        Step 7. Post the card: one create_merge_request_note. Make this call and every call of step 8 together in one turn, this one first. The body is these parts in this order, each separated by one blank line:
         a. FACTS.card.final_line, copied character for character, nothing added or removed.
         b. FACTS.card.todo_line, copied character for character.
         c. FACTS.card.caveat_line, copied character for character, only if it is not null.
@@ -58,6 +58,7 @@ prompts:
 
            </details>
         f. The line: Facts computed by CI job #<job id>, rules v<FACTS.rules_version>.
+        f2. FACTS.card.cost_line, copied character for character, only if the key is present and its value is not null.
         g. The line MARK(itemator:head=HEAD) (a separate line, after a blank line).
         Bullets: write each one only from that extra's plain_facts (kind, name, why, detail_count, path). Start with the name in backticks. Say in plain words what was added or changed and which rule noticed it. At most 25 words. No verdict, no advice, never the word "should", nothing the facts do not say, never contradict them.
 

@@ -1,0 +1,41 @@
+{
+ "started": "2026-10-19T14:08:31",
+ "meter_before": 293.515,
+ "issue_iid": 75,
+ "mr_iid": 219,
+ "pipeline": "failed",
+ "card_done": "completed session [9670921](https://gitl",
+ "thread": "`pandas` (new dependency): adds package pandas; the issue does not name it. PyPI: first released 2009-12-25, 118 releases plus 1 yanked, licence BSD License as declared by its publisher, 0 known advisories for 2.2.3, with what it brings along, 6 packages (5 more than the line names) and about 31 MB to download on every fresh install; this project ran 936 pipelines in the last 30 days, so about 29 GB a month if each one installs it without a cache (checked 2026-10-19). The description does not mention this. To keep it, reply with its exact name. To move it into its own MR, reply `split`. To drop it from this MR, reply `remove`. If this is not really an extra, reply `not an extra`.\n\n[//]: # (itemator:extra=pandas)",
+ "weight_sentence": true,
+ "pipelines_sentence": true,
+ "react_done": "completed session [9670985](https://gitl",
+ "settled": {
+  "bot_notes": [
+   "Removed: `pandas` taken out of this merge request by @anbuchelvanganesan.cse2024. Nothing was kept. This person wrote the merge request."
+  ],
+  "settled": "removed",
+  "resolved": true
+ },
+ "pyproject_after": "[project]\nname = \"itemator\"\nversion = \"0.0.1\"\ndescription = \"One click for what was asked. A name for anything more.\"\nlicense = \"MIT\"\nrequires-python = \">=3.12\"\ndependencies = []\n\n[project.optional-dependencies]\neval = [\"duckdb==1.5.6\"]   # pinned with eval/inputs.lock.json\ndev = [\"pytest\"]\n",
+ "removed_from_branch": true,
+ "summary": "Every extra has an answer: 0 kept, 0 dismissed, 0 moved, 1 removed.\n\n- `pandas`: removed from this merge request, by @anbuchelvanganesan.cse2024\n\nAll of it was typed by the author of this merge request.\n\n[//]: # (itemator:named=4e343cdf9e2fec79c74c339d099e714c12e0f968)",
+ "meter_after": 293.515,
+ "left_open_for_a_person_to_merge": true,
+ "model_calls": {
+  "how": "eval/card_model_calls.py count_calls on each session's checkpoints, read 2026-10-19 after the run",
+  "card_session_9670921": {
+   "model_calls": 5,
+   "tool_calls": 7,
+   "models": [
+    "claude-sonnet-5-5"
+   ]
+  },
+  "react_session_9670985": {
+   "model_calls": 12,
+   "tool_calls": 18,
+   "models": [
+    "claude-sonnet-5-5"
+   ]
+  }
+ }
+}

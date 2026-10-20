@@ -1,0 +1,23 @@
+{
+  "what": "The population run, written before it is run: over the whole public AIDev table of AI-agent pull requests (hao-li/AIDev, pull_request, 71,677 rows from popular repositories), on how many would Itemator's frozen rules (v6) have opened a card, and with how many threads (one per listed extra)? A count of how often the card would speak, not of whether it is right. Run on a Hugging Face Space from the dataset's own parquet files; nothing is posted.",
+  "unit": "one pull request of AIDev's pull_request table",
+  "files": "the pull request's files as they stood at its LAST commit (aidev_recall.net_files over pr_commit_details rows in file order, as in leg 2 amendment 3). A pull request with no file rows is unreadable and counted apart, never dropped silently.",
+  "task": "the linked issue's title and text when AIDev-7.6M links one; otherwise the pull request's own title and text (reported apart), as in legs 1 and 2.",
+  "rules": "itemator.extras.analyse, rules version 6 (frozen), with the repository name taken from html_url. Same code as legs 1 and 2; nothing tuned.",
+  "primary_outcome": "the share of readable pull requests for which the rules list at least one extra, with a Wilson 95% interval and counts.",
+  "also_reported": [
+    "threads per readable pull request (the number of listed extras): counts for 0, 1, 2, 3 to 5, and 6 or more; the share with 3 or more; the most for one pull request",
+    "the same primary share by agent, by state (merged or not) and by task source (linked issue or pull request text), as counts with intervals",
+    "counts of listed extras by kind (dependency, CI or config, tests removed, agent instructions, other)",
+    "unreadable pull requests, and pull requests with no linked issue"
+  ],
+  "reading_rule": "Plain words first: 'on N of M agent pull requests the card would have opened, with at most K threads'. No sentence says the card is right on them, or catches anything: a listed extra is a file the task text does not explain, and many are legitimate (a dependency the issue did not name). Say it speaks on about one pull request in X. No comparison with human pull requests (not measured here).",
+  "limits": "AIDev covers popular public repositories and five agents (as listed in the data). Task text is the linked issue when present, else the pull request's title and body, so a vague title makes more extras. Nobody judged whether the extras were real. Files are read at the last commit, so a file added and removed again does not count. One run of frozen rules over the whole table; nothing was tuned on these pull requests. Leg 2's 720 controls (matched on agent and state) listed an extra on 21% (151 of 720): the only prior view of this number.",
+  "seen_before_registration": "Leg 2's result file (results/aidev_revert_v6.json): 980 pull requests of this table scored, among them 12 + 720 controls. No other pull request of the table has been scored by these rules except the 477 pull requests of leg 1 (comment-bearing ones).",
+  "predictions_before_running": {
+    "share of readable pull requests with at least one listed extra": "0.12 to 0.32 (80%), ana f953a3",
+    "share of pull requests with 3 or more threads": "0.01 to 0.08 (80%), ana eaa916",
+    "unreadable share": "0.00 to 0.12 (80%), ana e831fa",
+    "wall time on the Space": "15 to 120 minutes (80%), ana 0686aa"
+  }
+}

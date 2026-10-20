@@ -1,0 +1,226 @@
+{
+ "rubric": "eval/advisory_replay_rubric.json",
+ "cases": 8,
+ "caught": 6,
+ "silent_on_fix": 8,
+ "rows": [
+  {
+   "advisory": "GHSA-rg3q-prf8-qxmp",
+   "repo": "embano1/wip",
+   "fix": "c25450f77ed0",
+   "files": [
+    ".github/workflows/check-wip.yaml",
+    "README.md",
+    "action.yml"
+   ],
+   "vulnerable_diff": {
+    "untrusted": [],
+    "shapes": [],
+    "moving": []
+   },
+   "fix_as_committed": {
+    "untrusted": [],
+    "shapes": [],
+    "moving": []
+   },
+   "caught": false,
+   "silent_on_fix": true
+  },
+  {
+   "advisory": "GHSL-2023-106",
+   "repo": "Textualize/rich",
+   "fix": "68224905f5dc",
+   "files": [
+    ".github/workflows/newissue.yml"
+   ],
+   "vulnerable_diff": {
+    "untrusted": [
+     {
+      "path": ".github/workflows/newissue.yml",
+      "line": 17,
+      "kind": "github-expression"
+     }
+    ],
+    "shapes": [],
+    "moving": []
+   },
+   "fix_as_committed": {
+    "untrusted": [],
+    "shapes": [],
+    "moving": []
+   },
+   "caught": true,
+   "silent_on_fix": true
+  },
+  {
+   "advisory": "GHSL-2024-044",
+   "repo": "simple-icons/simple-icons",
+   "fix": "a41a8897b99c",
+   "files": [
+    ".github/workflows/autoclose-issues.yml"
+   ],
+   "vulnerable_diff": {
+    "untrusted": [
+     {
+      "path": ".github/workflows/autoclose-issues.yml",
+      "line": 19,
+      "kind": "github-expression"
+     }
+    ],
+    "shapes": [],
+    "moving": []
+   },
+   "fix_as_committed": {
+    "untrusted": [],
+    "shapes": [],
+    "moving": []
+   },
+   "caught": true,
+   "silent_on_fix": true
+  },
+  {
+   "advisory": "GHSA-c3xh-98xp-6qhf",
+   "repo": "gouef/githubtoplanguages",
+   "fix": "157840482e59",
+   "files": [
+    ".github/workflows/discord-issue.yml"
+   ],
+   "vulnerable_diff": {
+    "untrusted": [
+     {
+      "path": ".github/workflows/discord-issue.yml",
+      "line": 17,
+      "kind": "github-expression"
+     }
+    ],
+    "shapes": [],
+    "moving": []
+   },
+   "fix_as_committed": {
+    "untrusted": [],
+    "shapes": [],
+    "moving": []
+   },
+   "caught": true,
+   "silent_on_fix": true
+  },
+  {
+   "advisory": "GHSA-phf6-hm3h-x8qp",
+   "repo": "broadinstitute/cromwell",
+   "fix": "dc2c26abd311",
+   "files": [
+    ".github/workflows/scalafmt-fix.yml"
+   ],
+   "vulnerable_diff": {
+    "untrusted": [
+     {
+      "path": ".github/workflows/scalafmt-fix.yml",
+      "line": 33,
+      "kind": "github-expression"
+     },
+     {
+      "path": ".github/workflows/scalafmt-fix.yml",
+      "line": 41,
+      "kind": "github-expression"
+     }
+    ],
+    "shapes": [],
+    "moving": []
+   },
+   "fix_as_committed": {
+    "untrusted": [],
+    "shapes": [],
+    "moving": []
+   },
+   "caught": true,
+   "silent_on_fix": true
+  },
+  {
+   "advisory": "GHSA-c5pc-mf2f-xq8h",
+   "repo": "nextcloud/cookbook",
+   "fix": "a46d98559e2c",
+   "files": [
+    ".github/workflows/pull-checks.yml"
+   ],
+   "vulnerable_diff": {
+    "untrusted": [
+     {
+      "path": ".github/workflows/pull-checks.yml",
+      "line": 67,
+      "kind": "github-expression"
+     }
+    ],
+    "shapes": [],
+    "moving": []
+   },
+   "fix_as_committed": {
+    "untrusted": [],
+    "shapes": [],
+    "moving": []
+   },
+   "caught": true,
+   "silent_on_fix": true
+  },
+  {
+   "advisory": "GHSA-w9cj-mg3x-qjm4",
+   "repo": "js-recon/js-recon",
+   "fix": "447876c4bfa9",
+   "files": [
+    ".github/workflows/pr_checker.yml"
+   ],
+   "vulnerable_diff": {
+    "untrusted": [],
+    "shapes": [],
+    "moving": []
+   },
+   "fix_as_committed": {
+    "untrusted": [],
+    "shapes": [],
+    "moving": []
+   },
+   "caught": false,
+   "silent_on_fix": true
+  },
+  {
+   "advisory": "GHSA-cg2g-xgg7-3xxq",
+   "repo": "VowpalWabbit/vowpal_wabbit",
+   "fix": "998e390e80a7",
+   "files": [
+    ".github/workflows/python_checks.yml"
+   ],
+   "vulnerable_diff": {
+    "untrusted": [
+     {
+      "path": ".github/workflows/python_checks.yml",
+      "line": 122,
+      "kind": "github-expression"
+     },
+     {
+      "path": ".github/workflows/python_checks.yml",
+      "line": 179,
+      "kind": "github-expression"
+     },
+     {
+      "path": ".github/workflows/python_checks.yml",
+      "line": 209,
+      "kind": "github-expression"
+     },
+     {
+      "path": ".github/workflows/python_checks.yml",
+      "line": 262,
+      "kind": "github-expression"
+     }
+    ],
+    "shapes": [],
+    "moving": []
+   },
+   "fix_as_committed": {
+    "untrusted": [],
+    "shapes": [],
+    "moving": []
+   },
+   "caught": true,
+   "silent_on_fix": true
+  }
+ ]
+}

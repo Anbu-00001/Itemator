@@ -1,0 +1,463 @@
+{
+ "rubric": "eval/install_time_rubric.json",
+ "ecosystem": "npm",
+ "checked": "2026-10-19",
+ "runner": {
+  "description": "k8s.saas-linux-small-amd64.runners-manager.gitlab.com/default ",
+  "cpus": 2,
+  "job": "https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/39194174/showcase/-/jobs/17276404965",
+  "tool": "10.9.9"
+ },
+ "baseline": {
+  "name": "ms",
+  "version": "2.1.3",
+  "status": "installed",
+  "seconds": 0.54
+ },
+ "summary": {
+  "lines": 40,
+  "measured": 40,
+  "not_measured": {},
+  "median_seconds": 2.19,
+  "p90_seconds": 11.33,
+  "total_seconds": 191.1,
+  "baseline_seconds": 0.54,
+  "median_seconds_above_baseline": 1.65,
+  "spearman_bytes_seconds": 0.518,
+  "slowest": [
+   {
+    "name": "@eggjs/typebox-validate",
+    "version": "4.1.0",
+    "seconds": 38.05,
+    "bytes": 602135,
+    "pr": "https://github.com/cnpm/cnpmcore/pull/834"
+   },
+   {
+    "name": "@layerzerolabs/protocol-devtools-evm",
+    "version": "6.0.0",
+    "seconds": 32.16,
+    "bytes": 338454,
+    "pr": "https://github.com/LayerZero-Labs/devtools/pull/1539"
+   },
+   {
+    "name": "ts-jest",
+    "version": "29.4.15",
+    "seconds": 15.34,
+    "bytes": 1556861,
+    "pr": "https://github.com/estruyf/vscode-demo-time/pull/148"
+   }
+  ]
+ },
+ "rows": [
+  {
+   "pr": "https://github.com/nuxt-modules/storybook/pull/957",
+   "name": "next-auth",
+   "version": "4.24.15",
+   "packages": 15,
+   "bytes": 952088,
+   "state": "open",
+   "status": "installed",
+   "seconds": 12.03
+  },
+  {
+   "pr": "https://github.com/vercel/turborepo/pull/10729",
+   "name": "eslint",
+   "version": "10.13.0",
+   "packages": 77,
+   "bytes": 2426211,
+   "state": "merged",
+   "status": "installed",
+   "seconds": 4.04
+  },
+  {
+   "pr": "https://github.com/d-kimuson/claude-code-viewer/pull/23",
+   "name": "@lingui/conf",
+   "version": "6.10.0",
+   "packages": 27,
+   "bytes": 1117924,
+   "state": "merged",
+   "status": "installed",
+   "seconds": 2.13
+  },
+  {
+   "pr": "https://github.com/liam-hq/liam/pull/1304",
+   "name": "@langchain/openai",
+   "version": "0.5.5",
+   "packages": 45,
+   "bytes": 12566825,
+   "state": "merged",
+   "status": "installed",
+   "seconds": 5.25
+  },
+  {
+   "pr": "https://github.com/ai-shifu/ai-shifu/pull/512",
+   "name": "@mdx-js/loader",
+   "version": "3.1.1",
+   "packages": 114,
+   "bytes": 1155858,
+   "state": "merged",
+   "status": "installed",
+   "seconds": 4.54
+  },
+  {
+   "pr": "https://github.com/microsoft/vscode-cosmosdb/pull/2706",
+   "name": "regenerator-runtime",
+   "version": "0.14.1",
+   "packages": 1,
+   "bytes": 8543,
+   "state": "closed",
+   "status": "installed",
+   "seconds": 0.39
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/14192",
+   "name": "tree-sitter-ocaml",
+   "version": "0.24.2",
+   "packages": 3,
+   "bytes": 14818733,
+   "state": "merged",
+   "status": "installed",
+   "seconds": 1.68
+  },
+  {
+   "pr": "https://github.com/MontrealAI/AGI-Alpha-Agent-v0/pull/846",
+   "name": "@types/react-dom",
+   "version": "19.3.0",
+   "packages": 1,
+   "bytes": 8185,
+   "state": "merged",
+   "status": "installed",
+   "seconds": 5.65
+  },
+  {
+   "pr": "https://github.com/theopenco/llmgateway/pull/816",
+   "name": "@opentelemetry/api",
+   "version": "1.9.0",
+   "packages": 1,
+   "bytes": 126777,
+   "state": "merged",
+   "status": "installed",
+   "seconds": 0.65
+  },
+  {
+   "pr": "https://github.com/cnpm/cnpmcore/pull/834",
+   "name": "@eggjs/typebox-validate",
+   "version": "4.1.0",
+   "packages": 9,
+   "bytes": 602135,
+   "state": "merged",
+   "status": "installed",
+   "seconds": 38.05
+  },
+  {
+   "pr": "https://github.com/ohcnetwork/care_fe/pull/13577",
+   "name": "@radix-ui/react-context-menu",
+   "version": "2.4.1",
+   "packages": 39,
+   "bytes": 420581,
+   "state": "merged",
+   "status": "installed",
+   "seconds": 3.41
+  },
+  {
+   "pr": "https://github.com/revtel/react-native-nfc-rewriter/pull/69",
+   "name": "identity-obj-proxy",
+   "version": "3.0.0",
+   "packages": 2,
+   "bytes": 25894,
+   "state": "closed",
+   "status": "installed",
+   "seconds": 0.46
+  },
+  {
+   "pr": "https://github.com/sei-protocol/sei-chain/pull/2335",
+   "name": "@types/node",
+   "version": "26.6.5",
+   "packages": 2,
+   "bytes": 500843,
+   "state": "open",
+   "status": "installed",
+   "seconds": 0.79
+  },
+  {
+   "pr": "https://github.com/neondatabase/mcp-server-neon/pull/54",
+   "name": "@radix-ui/react-accordion",
+   "version": "1.2.11",
+   "packages": 14,
+   "bytes": 90551,
+   "state": "merged",
+   "status": "installed",
+   "seconds": 2.35
+  },
+  {
+   "pr": "https://github.com/sst/opencode/pull/371",
+   "name": "isomorphic-git",
+   "version": "1.32.1",
+   "packages": 53,
+   "bytes": 1363843,
+   "state": "open",
+   "status": "installed",
+   "seconds": 2.25
+  },
+  {
+   "pr": "https://github.com/instructure/instructure-ui/pull/2172",
+   "name": "concurrently",
+   "version": "10.0.6",
+   "packages": 20,
+   "bytes": 1214417,
+   "state": "open",
+   "status": "installed",
+   "seconds": 1.91
+  },
+  {
+   "pr": "https://github.com/estruyf/vscode-demo-time/pull/147",
+   "name": "@types/jest",
+   "version": "30.0.0",
+   "packages": 43,
+   "bytes": 1117626,
+   "state": "merged",
+   "status": "installed",
+   "seconds": 3.07
+  },
+  {
+   "pr": "https://github.com/lostintangent/gistpad-mcp/pull/2",
+   "name": "@types/jest",
+   "version": "30.0.0",
+   "packages": 43,
+   "bytes": 1117626,
+   "state": "closed",
+   "status": "installed",
+   "seconds": 3.13
+  },
+  {
+   "pr": "https://github.com/pixijs/pixijs/pull/11466",
+   "name": "pkg-pr-new",
+   "version": "0.0.91",
+   "packages": 1,
+   "bytes": 1070997,
+   "state": "open",
+   "status": "installed",
+   "seconds": 0.53
+  },
+  {
+   "pr": "https://github.com/getsentry/sentry-docs/pull/13994",
+   "name": "hast-util-select",
+   "version": "6.0.4",
+   "packages": 20,
+   "bytes": 160096,
+   "state": "merged",
+   "status": "installed",
+   "seconds": 1.17
+  },
+  {
+   "pr": "https://github.com/antiwork/gumroad/pull/1065",
+   "name": "clsx",
+   "version": "2.1.1",
+   "packages": 1,
+   "bytes": 3936,
+   "state": "merged",
+   "status": "installed",
+   "seconds": 0.4
+  },
+  {
+   "pr": "https://github.com/microsoft/vscode/pull/255340",
+   "name": "distro",
+   "version": "0.4.0",
+   "packages": 1,
+   "bytes": 7626,
+   "state": "closed",
+   "status": "installed",
+   "seconds": 0.51
+  },
+  {
+   "pr": "https://github.com/langgenius/webapp-conversation/pull/183",
+   "name": "@eslint-react/eslint-plugin",
+   "version": "5.28.1",
+   "packages": 37,
+   "bytes": 2043386,
+   "state": "merged",
+   "status": "installed",
+   "seconds": 11.33
+  },
+  {
+   "pr": "https://github.com/ryuphi/astrology-api/pull/35",
+   "name": "@types/node",
+   "version": "26.6.5",
+   "packages": 2,
+   "bytes": 500843,
+   "state": "open",
+   "status": "installed",
+   "seconds": 0.81
+  },
+  {
+   "pr": "https://github.com/ln-dev7/circle/pull/15",
+   "name": "@types/better-sqlite3",
+   "version": "9.6.0",
+   "packages": 3,
+   "bytes": 504045,
+   "state": "closed",
+   "status": "installed",
+   "seconds": 0.83
+  },
+  {
+   "pr": "https://github.com/antiwork/flexile/pull/370",
+   "name": "@helperai/react",
+   "version": "0.9.5",
+   "packages": 103,
+   "bytes": 2581414,
+   "state": "closed",
+   "status": "installed",
+   "seconds": 8.03
+  },
+  {
+   "pr": "https://github.com/LayerZero-Labs/devtools/pull/1539",
+   "name": "@layerzerolabs/protocol-devtools-evm",
+   "version": "6.0.0",
+   "packages": 9,
+   "bytes": 338454,
+   "state": "merged",
+   "status": "installed",
+   "seconds": 32.16
+  },
+  {
+   "pr": "https://github.com/liam-hq/liam/pull/2525",
+   "name": "zod",
+   "version": "3.25.76",
+   "packages": 1,
+   "bytes": 583600,
+   "state": "closed",
+   "status": "installed",
+   "seconds": 0.74
+  },
+  {
+   "pr": "https://github.com/module-federation/module-federation-examples/pull/4389",
+   "name": "module-federation-runtime",
+   "version": "1.2.4",
+   "packages": 5,
+   "bytes": 69813,
+   "state": "merged",
+   "status": "installed",
+   "seconds": 0.72
+  },
+  {
+   "pr": "https://github.com/liam-hq/liam/pull/1520",
+   "name": "@langchain/core",
+   "version": "0.3.45",
+   "packages": 29,
+   "bytes": 11793770,
+   "state": "merged",
+   "status": "installed",
+   "seconds": 3.45
+  },
+  {
+   "pr": "https://github.com/db-ux-design-system/core-web/pull/4813",
+   "name": "eslint-plugin-package-json",
+   "version": "0.54.0",
+   "packages": 35,
+   "bytes": 328934,
+   "state": "merged",
+   "status": "installed",
+   "seconds": 5.76
+  },
+  {
+   "pr": "https://github.com/calcom/cal.com/pull/21262",
+   "name": "@changesets/changelog-github",
+   "version": "1.0.1",
+   "packages": 4,
+   "bytes": 28752,
+   "state": "closed",
+   "status": "installed",
+   "seconds": 0.84
+  },
+  {
+   "pr": "https://github.com/epicweb-dev/epicshop/pull/257",
+   "name": "@sentry/node",
+   "version": "11.8.0",
+   "packages": 42,
+   "bytes": 28336965,
+   "state": "closed",
+   "status": "installed",
+   "seconds": 4.46
+  },
+  {
+   "pr": "https://github.com/waku-org/js-waku/pull/2585",
+   "name": "@types/lodash.debounce",
+   "version": "4.0.9",
+   "packages": 2,
+   "bytes": 104208,
+   "state": "closed",
+   "status": "installed",
+   "seconds": 0.61
+  },
+  {
+   "pr": "https://github.com/firecrawl/firecrawl/pull/1445",
+   "name": "git-diff",
+   "version": "2.0.7",
+   "packages": 32,
+   "bytes": 462765,
+   "state": "merged",
+   "status": "installed",
+   "seconds": 1.71
+  },
+  {
+   "pr": "https://github.com/bytebot-ai/bytebot/pull/26",
+   "name": "@nestjs/event-emitter",
+   "version": "12.0.1",
+   "packages": 2,
+   "bytes": 29463,
+   "state": "merged",
+   "status": "installed",
+   "seconds": 3.22
+  },
+  {
+   "pr": "https://github.com/sereneinserenade/notitap/pull/21",
+   "name": "@testing-library/jest-dom",
+   "version": "7.0.1",
+   "packages": 10,
+   "bytes": 207727,
+   "state": "closed",
+   "status": "installed",
+   "seconds": 5.47
+  },
+  {
+   "pr": "https://github.com/estruyf/vscode-demo-time/pull/148",
+   "name": "ts-jest",
+   "version": "29.4.15",
+   "packages": 15,
+   "bytes": 1556861,
+   "state": "merged",
+   "status": "installed",
+   "seconds": 15.34
+  },
+  {
+   "pr": "https://github.com/tsparticles/tsparticles/pull/5530",
+   "name": "fs-extra",
+   "version": "11.4.1",
+   "packages": 4,
+   "bytes": 31895,
+   "state": "open",
+   "status": "installed",
+   "seconds": 0.57
+  },
+  {
+   "pr": "https://github.com/reown-com/appkit/pull/4437",
+   "name": "@types/react",
+   "version": "19.1.3",
+   "packages": 2,
+   "bytes": 284734,
+   "state": "merged",
+   "status": "installed",
+   "seconds": 0.65
+  }
+ ],
+ "predictions": {
+  "672795": "median 1.5 to 15 s: 2.19, inside",
+  "f6e519": "Spearman >= 0.5: 0.518, yes"
+ },
+ "readme": {
+  "median_seconds": 2.19,
+  "slowest_seconds": 38.05,
+  "measured": 40,
+  "lines": 40
+ }
+}

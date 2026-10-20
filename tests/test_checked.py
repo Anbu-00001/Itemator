@@ -3,7 +3,7 @@ import lzma
 
 from itemator import checked as C
 from itemator import local as L
-from tests.test_ci import FIXED, FakeHttp, isolated, issue, job, mr, repo, routes  # noqa: F401  (the fixtures)
+from tests.test_ci import FIXED, FakeHttp, env, isolated, issue, job, mr, repo, routes  # noqa: F401  (the fixtures)
 
 BASE_PY = "def a():\n    return 1\n\n\ndef b():\n    return 2\n"
 SPACED = "def a():\n\n    # one\n    return 1\n\n\n\ndef b():\n    return 2   # two\n"
@@ -62,8 +62,10 @@ def test_the_state_and_the_extras_do_not_depend_on_the_check(repo, tmp_path, mon
     monkeypatch.setattr(L, "neutral_verdict", lambda *a: None)
     monkeypatch.setattr(L, "opened", lambda *a: None)
     _, without = job(repo, head, FakeHttp(routes(mr(), [issue()])), tmp_path, monkeypatch)
-    for k in ("state", "extras", "unplaced", "card"):
+    for k in ("state", "extras", "unplaced"):
         assert with_check[k] == without[k]
+    timed = lambda card: {k: v for k, v in card.items() if k != "cost_line"}      # the cost line carries the run's own time
+    assert timed(with_check["card"]) == timed(without["card"]) and with_check["card"]["cost_line"] and without["card"]["cost_line"]
 
 
 def test_a_check_that_breaks_never_fails_the_job(repo, tmp_path, monkeypatch):
@@ -217,3 +219,35 @@ def test_the_first_part_is_always_kept_and_the_count_is_exact():
         assert s1.endswith("1 more result is in `checked` in itemator.json.")
     finally:
         C.MAX_LINE = old
+
+
+def test_a_nuget_package_added_in_a_project_file_is_looked_up_and_is_on_the_card_but_is_no_extra(repo, tmp_path, monkeypatch):
+    import json as _json
+    from itemator import ci as _ci
+    base = "https://api.nuget.org/v3/registration5-semver1/acme.widgets/index.json"
+    doc = {"count": 1, "items": [{"@id": "x", "count": 1, "items": [{"catalogEntry": {
+        "id": "Acme.Widgets", "version": "2.1.0", "published": "2021-03-01T10:00:00.000+00:00", "licenseExpression": "MIT"}}]}]}
+
+    def fetch(method, url, body, timeout):
+        if url == base:
+            return 200, _json.dumps(doc).encode()
+        return (200, b'{"vulns": []}') if "osv.dev" in url else (404, b"")
+
+    repo.base = repo.commit({"src/parser.py": FIXED, "src/App.csproj": "<Project>\n</Project>\n"})
+    head = repo.commit({"src/parser.py": FIXED, "src/App.csproj": '<Project>\n<PackageReference Include="Acme.Widgets" Version="2.1.0" />\n</Project>\n'})
+    monkeypatch.setattr(_ci, "http_get", FakeHttp(routes(mr(), [issue()])))
+    out_path = tmp_path / "itemator.json"
+    assert _ci.main(["--out", str(out_path), "--repo", str(repo.path)], env=env(repo, head), registry_fetch=fetch) == 0
+    out = _json.loads(out_path.read_text())
+    assert [p["name"] for p in out["checked"]["dotnet"]["found"]] == ["Acme.Widgets"] and out["extras"] == []
+    line = out["card"]["checked_line"]
+    assert "1 NuGet package added in .NET project files" in line and "first released 2021-03-01" in line
+    assert out["cost"]["registry_reads"] == 2 and "2 package-registry lookups" in out["cost"]["line"]
+
+
+def test_a_failing_nuget_check_never_stops_the_job(repo, tmp_path, monkeypatch):
+    from itemator import dotnet as _dn
+    monkeypatch.setattr(_dn, "find", lambda files: 1 / 0)
+    head = repo.commit({"src/parser.py": FIXED})
+    code, out = job(repo, head, FakeHttp(routes(mr(), [issue()])), tmp_path, monkeypatch)
+    assert code == 0 and "no NuGet check: ZeroDivisionError" in out["warnings"]

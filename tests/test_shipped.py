@@ -71,10 +71,23 @@ def test_everything_that_came_from_gitlab_is_escaped_in_the_page():
     assert "<script>" not in out and "<img" not in out and "&lt;" in out
 
 
-def test_a_merge_request_without_a_summary_is_said_to_have_none():
+def test_a_merge_request_without_a_summary_or_a_job_report_is_said_to_have_none():
     api = api_for({"deployments": [dep(1, "2026-10-14T10:00:00Z")], "deployments/101/merge_requests": [mr(3, "2026-10-14T09:00:00Z")],
                    "merge_requests/3/notes": []})
-    assert "no Itemator summary" in L.page(L.build(api, "production", "main"))
+    out = L.page(L.build(api, "production", "main"))
+    assert "could not tell (no job report left" in out and "; could not tell for 1 (job reports are kept 30 days)." in out
+
+
+def test_extras_merged_with_no_answer_are_named_and_counted_at_the_top():
+    base = {"deployments": [dep(1, "2026-10-14T10:00:00Z")], "deployments/101/merge_requests": [mr(3, "2026-10-14T09:00:00Z")],
+            "merge_requests/3/notes": [], "merge_requests/3/pipelines": [{"id": 900}], "pipelines/900/jobs": [{"id": 55, "name": "itemator"}]}
+    out = L.page(L.build(api_for(dict(base, **{"jobs/55/artifacts/itemator.json": {"extras": [{"name": "<b>x</b>"}, {"name": "pandas"}]}})),
+                         "production", "main"))
+    assert ("<strong>In the 1 deployment below, merged without a recorded answer for every extra: 1 merge request (2 extras, from the job&#x27;s own report on "
+            "the commit that was merged).</strong> Itemator keeps, moves or removes nothing until a person replies") in out
+    assert "<strong>merged without a recorded answer</strong>: <code>&lt;b&gt;x&lt;/b&gt;</code>, <code>pandas</code>" in out and "<b>x" not in out
+    none = L.page(L.build(api_for(dict(base, **{"jobs/55/artifacts/itemator.json": {"extras": []}})), "production", "main"))
+    assert "!3 Fix a typo: no extras" in none and "every extra: 0 merge requests (0 extras" in none
 
 
 def test_only_the_reaction_account_is_believed():
@@ -111,3 +124,38 @@ def test_one_merge_request_is_not_plural():
                    "merge_requests/3/notes": NOTES})
     out = L.page(L.build(api, "production", "main"))
     assert "1 merge request," in out and "1 merge requests" not in out
+
+
+def test_the_deploy_job_runs_in_a_resource_group_and_reads_the_environment_scoped_variable():
+    import pathlib
+    import yaml
+    job = yaml.safe_load((pathlib.Path(__file__).resolve().parent.parent / ".gitlab-ci.yml").read_text())["publish-package"]
+    assert job["resource_group"] == "production" and job["environment"]["name"] == "production"
+    assert job["environment"]["url"] == "https://showcase-3cd72e.gitlab.io/"      # the environment list gets an Open button
+    assert any("DEPLOY_TARGET" in line for line in job["script"])
+
+
+def test_the_page_says_what_a_remove_kept_out_of_every_fresh_install():
+    summary = (f"Every extra has an answer: 1 kept, 1 removed.\n\n- `pandas`: removed from this merge request, by @bob\n"
+               f"- `requests`: kept, named by @alice\n\n[//]: # (itemator:named={SHA})")
+    notes = [{"body": summary, "author": {"username": BOT}, "system": False, "created_at": "2026-10-13T10:00:00Z"}]
+
+    def pkg(b, of=3, sized=3):
+        return {"weight": {"weight": "ok", "bytes": b, "capped": False, "of": of, "sized": sized}}
+    report = {"extras": [{"name": "pandas", "plain_facts": {"registry": {"packages": [pkg(31_000_000)]}}},
+                         {"name": "requests", "plain_facts": {"registry": {"packages": [pkg(476_000, of=5, sized=4)]}}}]}
+    routes = {"deployments": [dep(1, "2026-10-14T10:00:00Z")], "deployments/101/merge_requests": [mr(7, "2026-10-14T09:00:00Z")],
+              "merge_requests/7/notes": notes, "merge_requests": [], "merge_requests/7/pipelines": [{"id": 900}],
+              "pipelines/900/jobs": [{"id": 55, "name": "itemator"}], "jobs/55/artifacts/itemator.json": report}
+    r = L.build(api_for(routes), "production", "main")
+    assert r["deployments"][0]["weight"]["removed"] == {"dependencies": 1, "bytes": 31_000_000, "at_least": False}
+    out = L.page(r)
+    assert "Kept out by a reviewer's <code>remove</code>: about 31 MB on every fresh install</strong>, 1 new dependency with what it" in out
+    assert "<code>requests</code> (at least 476 kB on every fresh install) kept by @alice" in out
+    kept_only = dict(routes, **{"merge_requests/7/notes": [{"body": f"Every extra has an answer: 1 kept.\n\n- `requests`: kept, named by @alice\n\n[//]: # (itemator:named={SHA})",
+                                                              "author": {"username": BOT}, "system": False, "created_at": "2026-10-13T11:00:00Z"}]})
+    out = L.page(L.build(api_for(kept_only), "production", "main"))
+    assert "Kept out" not in out and "(at least 476 kB on every fresh install) kept" in out
+    plain = L.page(L.build(api_for({"deployments": [dep(1, "2026-10-14T10:00:00Z")], "deployments/101/merge_requests": [mr(7, "2026-10-14T09:00:00Z")],
+                                    "merge_requests/7/notes": NOTES, "merge_requests": []}), "production", "main"))
+    assert "Kept out" not in plain and "fresh install" not in plain

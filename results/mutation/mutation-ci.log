@@ -1,15 +1,16 @@
 KILLED  state: no_issue dropped                        test_no_issue
 KILLED  state: author check any()                      test_a_second_issue_by_someone_else_describes_it
 KILLED  state: author check dropped                    test_author_wrote_the_issue
-KILLED  state: author outranks extras                  test_extras_are_never_hidden_when_the_author_wrote_the_issue
+KILLED  state: author outranks extras                  test_an_agent_that_opened_the_merge_request_for_its_author_makes_the_issue_an_ask
 KILLED  state: extras dropped                          test_new_dependency_beyond_the_ask
-KILLED  card: caveat dropped                           test_extras_are_never_hidden_when_the_author_wrote_the_issue
+KILLED  card: caveat dropped                           test_an_agent_that_opened_the_merge_request_for_its_author_makes_the_issue_an_ask
 KILLED  card: caveat repeats the final line            test_author_wrote_the_issue
 KILLED  state: unplaced_only dropped                   test_unplaced_only
 KILLED  state: no_issue keeps extras                   test_no_issue
 KILLED  issues: closes_issues ignored                  test_change_inside_the_ask
 KILLED  issues: description fallback dropped           test_issues_from_the_description_when_closes_issues_is_empty
-KILLED  api: token sent first                          test_job_token_only_after_an_anonymous_refusal
+KILLED  api: job token never sent                      test_anonymous_read_only_after_a_job_token_refusal
+KILLED  api: no anonymous retry                        test_anonymous_read_only_after_a_job_token_refusal
 KILLED  card: singular wrong                           test_unplaced_only
 KILLED  card: injection line dropped                   test_injection_phrase_in_an_added_line
 KILLED  card: todo without remove (T23)                test_new_dependency_beyond_the_ask
@@ -424,7 +425,7 @@ KILLED  t42: brackets inside the list allowed          test_paths_line_ok_only_f
 KILLED  t42: compare check ignores the inserted text   test_t42_the_one_line_edit_is_checked_with_compare_not_with_a_character_count
 KILLED  t42: a # inside the list allowed               test_paths_line_ok_only_for_the_layout_the_flow_edits[[ignore]\npaths
 KILLED  t42: label added to no-issue merge request     test_t42_a_no_issue_merge_request_never_swaps_its_label_and_stays_in_draft
-KILLED  t43: no marker needed                          test_a_note_that_is_not_a_summary_gives_nothing[Every
+KILLED  t43: no marker needed                          test_a_note_that_is_not_a_summary_gives_nothing[None]
 KILLED  t43: any author believed                       test_only_the_reaction_account_is_believed
 KILLED  t43: a name that starts like the account believed test_only_the_exact_reaction_account_is_believed_not_a_name_that_starts_like_it
 KILLED  t43: system notes believed                     test_only_the_reaction_account_is_believed
@@ -509,7 +510,7 @@ KILLED  t51: Step 8 reports an approval                test_the_flow_never_appro
 KILLED  t51: no rule against slash lines               test_t46_quoted_strings_that_start_with_a_slash_are_endpoints
 KILLED  t51: early stop skips the mention step         test_t46_no_extra_threads_still_reach_the_mention_step
 KILLED  t51: loop stops at 7b                          test_t46_steps_are_in_order_and_each_merge_request_runs_them_all
-KILLED  t52: no escaping of GitLab's text              test_everything_that_came_from_gitlab_is_escaped_in_the_page
+KILLED  t52: no escaping of GitLab's text              test_extras_merged_with_no_answer_are_named_and_counted_at_the_top
 KILLED  t52: the window ignores the previous deployment test_the_window_runs_from_the_previous_deployment_to_this_one
 KILLED  t52: an empty GitLab list is not a fallback    test_gitlabs_own_list_is_used_when_it_has_one
 KILLED  t52: no deployment is shown                    test_gitlabs_own_list_is_used_when_it_has_one
@@ -548,4 +549,4 @@ KILLED  t55: a failed read stops the scan              test_scan_takes_the_last_
 KILLED  t55: the page lists merge requests without extras test_scan_reads_each_merge_request_as_it_landed
 KILLED  t55: a list error exits 0                      test_scan_stops_when_the_list_cannot_be_read
 KILLED  t55: the branch name is not quoted             test_merged_reads_pages_until_a_short_one
-550/550 mutants killed
+551/551 mutants killed

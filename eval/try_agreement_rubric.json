@@ -5,8 +5,10 @@
  "rule": "Agreement means the two lists are identical for every unit and every check. Met only if there is no disagreement. Every disagreement is published with its commit id prefix, the check and both answers (no diff text). The Python is the reference: a disagreement is fixed in the JavaScript, and the run is repeated and published with both runs.",
  "predictions_before_run": {
   "first_run_all_identical": "30%",
-  "after_fixes_all_identical": "95%"
+  "after_fixes_all_identical": "95%",
+  "v3_all_identical": "90%"
  },
  "limits": "Agreement says the two programs behave alike, not that either is right: how often the checks speak and what they catch is in results/mesa_noise_v1.json, results/agent_noise_v1.json and results/incident_replay_v1.json.",
- "v2": "After the v1 run (all identical; results/try_agreement_v1.json) a mutation check of the JavaScript showed that the v1 corpora never exercised deleted files, files under docs/ or tests/, .py and .bash paths, or the trailer of a format-patch mail, so six deliberate breaks of the JavaScript went unnoticed. The v2 run adds those cases (the same rule) and is published beside v1."
+ "v2": "After the v1 run (all identical; results/try_agreement_v1.json) a mutation check of the JavaScript showed that the v1 corpora never exercised deleted files, files under docs/ or tests/, .py and .bash paths, or the trailer of a format-patch mail, so six deliberate breaks of the JavaScript went unnoticed. The v2 run adds those cases (the same rule) and is published beside v1.",
+ "v3": "After untrusted v2 (eval/untrusted_v2_rubric.json: composite action files as targets, a stranger term anywhere inside an expression) the JavaScript was changed the same way. This run repeats the v2 corpora and the same rule on the changed Python and JavaScript, before any other result of v2 is read. Result: results/try_agreement_v3.json. The line corpus now also contains the new test strings of tests/test_untrusted.py, as it is built from them."
 }

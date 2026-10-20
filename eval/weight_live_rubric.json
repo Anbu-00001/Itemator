@@ -1,0 +1,7 @@
+{
+  "what": "The weight on a live merge request: the policy-injected job weighs a dependency the issue does not name, the card's thread says so with this project's pipeline count, the author replies remove and the reaction flow takes the line out.",
+  "setup": "One issue (a docstring note in itemator/decisions.py) and one merge request into main that does that and also adds pandas==2.2.3 to pyproject.toml. Written by the project owner's account, so it is staged; no agent wrote it. The card account is assigned as reviewer by the script; the reaction flow is started by a mention.",
+  "expected": ["the pandas thread says what it brings along and the pipelines of the last 30 days", "after remove, pyproject.toml on the branch has no pandas and the summary lists pandas as removed", "the merge request stays open; a person may merge it"],
+  "predictions_before_running": {"weight and pipelines sentences": "85%, ana dc4c0d", "removed from the branch and in the summary": "75%, ana 5c1ae6", "at most 6 credits": "60%, ana 770f2c"},
+  "stop_rules": ["one run; a platform failure before the card posts may be re-run once, logged", "credit stop given on the command line"]
+}

@@ -250,6 +250,18 @@ def test_commits_exempt_the_merge_button_commit(tmp_path):
     assert msgs(audit.check_commits, tmp_path) == []
 
 
+def test_commits_exempt_a_button_merge_of_two_edits_to_neighbouring_lines_of_one_file(tmp_path):
+    repo(tmp_path, {"a.txt": "one\ntwo\nthree\nfour\nfive\nsix\n"})
+    git(tmp_path, "checkout", "-q", "-b", "side")
+    write(tmp_path, {"a.txt": "one\nTWO\nthree\nfour\nfive\nsix\n"})
+    git(tmp_path, "commit", "-q", "-am", f"Side\n\n{SIGN}\n")
+    git(tmp_path, "checkout", "-q", "main")
+    write(tmp_path, {"a.txt": "one\ntwo\nthree\nFOUR\nfive\nsix\n"})
+    git(tmp_path, "commit", "-q", "-am", f"Main\n\n{SIGN}\n")
+    git(tmp_path, "merge", "-q", "--no-ff", "side", "-m", "Merge branch 'side' into 'main'\n\nSee merge request group/proj!7")
+    assert msgs(audit.check_commits, tmp_path) == []
+
+
 def test_commits_a_merge_that_carries_a_change_of_its_own_needs_a_sign_off(tmp_path):
     repo(tmp_path, {"a.txt": "x"})
     git(tmp_path, "checkout", "-q", "-b", "side")
@@ -396,3 +408,37 @@ def test_cli_exit_codes(tmp_path):
     good, bad = run_cli(tmp_path / "good"), run_cli(tmp_path / "bad")
     assert good.returncode == 0 and "FAIL" not in good.stdout
     assert bad.returncode == 1 and "FAIL  4. Banned words" in bad.stdout and "docs/a.md:1:" in bad.stdout
+
+
+# ---- check 1 beyond the README: AGENTS.md, skills, the text of the web pages; --also for the Devpost text
+def test_numbers_are_read_in_agents_skills_and_what_a_page_shows(tmp_path):
+    write(tmp_path, {"README.md": "", "results/a.json": RESULTS, "AGENTS.md": "Flag 16 at most.\n",
+                     "skills/x/SKILL.md": "Say 60.\n", "web/p.html": '<p>27%</p>\n<input\n  placeholder="918">\n<b title="x 5">y</b>\n'})
+    got = msgs(audit.check_numbers, tmp_path)
+    assert got == ["AGENTS.md:1: '16' has no <!-- from: results/<file>.json:<json.path> --> on this line",
+                   "skills/x/SKILL.md:1: '60' has no <!-- from: results/<file>.json:<json.path> --> on this line",
+                   "web/p.html:1: '27%' has no <!-- from: results/<file>.json:<json.path> --> on this line",
+                   "web/p.html:2: '918' has no <!-- from: results/<file>.json:<json.path> --> on this line",
+                   "web/p.html:4: '5' has no <!-- from: results/<file>.json:<json.path> --> on this line"]
+
+
+def test_a_page_is_read_as_shown_with_its_sources_and_without_code(tmp_path):
+    page = ('<!doctype html>\n<style>\n.a { width: 640px; }\n</style>\n<p data-n="3" class="c2">27% '
+            f'{FROM.format("summary.rate")}</p>\n<script>\nconst n = 42;\n</script>\n<p>On CPython 3.12.</p>\n')
+    write(tmp_path, {"README.md": "", "results/a.json": RESULTS, "web/p.html": page})
+    assert msgs(audit.check_numbers, tmp_path) == []
+    assert audit.shown_text(Path("p.html"), page).count("\n") == page.count("\n")       # line numbers stay the page's own
+
+
+def test_an_example_line_is_exempt_and_only_that_line(tmp_path):
+    write(tmp_path, {"README.md": "", "results/a.json": RESULTS, "skills/x/SKILL.md": "e.g. `1 thing beyond #12` <!-- example -->\nSay 60.\n"})
+    assert msgs(audit.check_numbers, tmp_path) == ["skills/x/SKILL.md:2: '60' has no <!-- from: results/<file>.json:<json.path> --> on this line"]
+
+
+def test_also_lists_numbers_the_repository_does_not_source_and_never_fails(tmp_path, capsys):
+    write(tmp_path, {"README.md": f"Flagged 16 {FROM.format('summary.flagged')} and 27% {FROM.format('summary.rate')}\n",
+                     "results/a.json": RESULTS, "draft.md": "16 flagged, 27%, and 12 of 12 asked.\nFor example 3 things <!-- example -->\n"})
+    got = msgs(lambda r: audit.check_also(r, [r / "draft.md"]), tmp_path)
+    assert got == [f"{tmp_path / 'draft.md'}:1: '12' is not a number the repository shows with a source"] * 2
+    assert audit.main(["--root", str(tmp_path), "--only", "1", "--also", str(tmp_path / "draft.md")]) == 0
+    assert "REVIEW  2 number(s)" in capsys.readouterr().out
