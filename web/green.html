@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; connect-src https://api.deps.dev https://pypi.org https://registry.npmjs.org; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
+<title>Itemator: green check</title>
+<style>
+:root{--bg:#fbfbfa;--fg:#1c1c1a;--muted:#5d5d58;--line:#d9d8d2;--card:#fff;--code:#f1f0ec;--hit:#b3261e;--ok:#1d7a4b;--accent:#4b3fa8;--okbg:#e9f5ee}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#151514;--fg:#ecebe6;--muted:#a6a59d;--line:#3a3a36;--card:#1d1d1b;--code:#262622;--hit:#ff8a80;--ok:#7fd6a2;--accent:#b7aef5;--okbg:#17271e}}
+:root[data-theme="dark"]{--bg:#151514;--fg:#ecebe6;--muted:#a6a59d;--line:#3a3a36;--card:#1d1d1b;--code:#262622;--hit:#ff8a80;--ok:#7fd6a2;--accent:#b7aef5;--okbg:#17271e}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.55 system-ui,sans-serif}
+main{max-width:880px;margin:0 auto;padding:28px 16px 72px}
+h1{font-size:1.6rem;line-height:1.25;margin:0 0 6px}
+h2{font-size:1.05rem;margin:32px 0 8px}
+p{margin:.45em 0}
+.muted{color:var(--muted)}
+.lock{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:2px 12px;font-size:.88rem;color:var(--muted);background:var(--card)}
+textarea{width:100%;font:13px/1.45 ui-monospace,Menlo,Consolas,monospace;color:var(--fg);background:var(--code);border:1px solid var(--line);border-radius:8px;padding:10px;resize:vertical}
+#issue{min-height:80px}
+#diff{min-height:200px}
+textarea:focus-visible,button:focus-visible,input:focus-visible,.file:focus-within{outline:2px solid var(--accent);outline-offset:2px}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:10px 0}
+button,.file{font:inherit;font-size:.92rem;color:var(--fg);background:var(--card);border:1px solid var(--line);border-radius:6px;padding:5px 12px;cursor:pointer}
+button:hover,.file:hover{border-color:var(--accent)}
+button.main{border-color:var(--accent);font-weight:650}
+input[type=file]{position:absolute;opacity:0;width:1px;height:1px}
+input[type=text]{font:inherit;font-size:.95rem;color:var(--fg);background:var(--code);border:1px solid var(--line);border-radius:6px;padding:5px 10px}
+.dep{border:1px solid var(--line);border-left:5px solid var(--hit);border-radius:8px;background:var(--card);padding:10px 14px;margin:10px 0}
+.dep.asked{border-left-color:var(--ok)}
+.dep .name{font-weight:650;font-family:ui-monospace,Menlo,Consolas,monospace}
+.dep .path{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.88rem;color:var(--muted);word-break:break-all}
+.why{color:var(--muted);font-size:.92rem;margin:2px 0}
+.cost{margin:4px 0 0}
+.verdict{border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin:18px 0;background:var(--card)}
+.verdict.green{border-color:var(--ok);background:var(--okbg)}
+.verdict .big{font-size:1.2rem;font-weight:650;margin:0 0 6px}
+.nums{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;margin:10px 0}
+.num{border:1px solid var(--line);border-radius:8px;padding:8px 12px;background:var(--bg)}
+.num b{display:block;font-size:1.25rem}
+.num span{font-size:.85rem;color:var(--muted)}
+a{color:var(--accent)}
+ul{padding-left:1.3em}
+footer{margin-top:36px;font-size:.85rem;color:var(--muted);word-break:break-word}
+</style>
+</head>
+<body>
+<main>
+<h1>Green check: what does this change add that nobody asked for?</h1>
+<p>Paste a change and the issue it was for. This page lists every dependency the change adds, marks the ones the issue did not ask for (the same rule as Itemator's CI job), then weighs only those: the packages and megabytes each one costs on every fresh install, and what that is in grams of CO2e. <span class="lock" title="Only package names are sent, to these three hosts; the diff and the issue stay in this page.">The diff stays here; only package names go to deps.dev, PyPI and npm</span></p>
+
+<label for="issue"><b>The issue</b> <span class="muted">(title on the first line; leave empty if there is none)</span></label>
+<textarea id="issue" spellcheck="false"></textarea>
+<div class="row"><label for="diff"><b>The change</b> <span class="muted">(a git diff or a .diff / .patch file)</span></label>
+<label class="file">Open a file<input id="file" type="file" accept=".diff,.patch,.txt,text/plain"></label></div>
+<textarea id="diff" spellcheck="false" placeholder="diff --git a/requirements.txt b/requirements.txt ..."></textarea>
+<div class="row muted" id="examples">Examples: </div>
+<div class="row">
+<label for="runs">Pipelines a month</label><input id="runs" type="text" inputmode="numeric" size="8" placeholder="from your CI page">
+<button id="go" type="button" class="main">Check</button>
+</div>
+<p id="status" class="muted" aria-live="polite"></p>
+<div id="out"></div>
+
+<h2>How it is worked out</h2>
+<ul>
+<li><b>Which dependencies:</b> the new-dependency rule of Itemator's rules (v6), the same code the CI job runs, ported to this page; on <span id="agree"></span>. It reads requirements files, pyproject.toml and package.json. A dependency is asked for when the issue names it (or, for a whole new package, names the package) or the issue's title names what it implements. A version bump or a move is not a new dependency.</li>
+<li><b>How heavy:</b> the same measure as <a href="../weigh/">the weigh page</a> and the card: deps.dev's resolved graph of the pinned version (or today's latest when the line pins none), and each package's download size from PyPI or npm. A size the registry does not give is unknown, never guessed, and the total becomes "at least".</li>
+<li><b>How much CO2e:</b> <span id="sci"></span></li>
+</ul>
+<footer id="footer"></footer>
+</main>
+<script>
+/*DIFF*/
+</script>
+<script>
+/*RULE*/
+</script>
+<script>
+/*WEIGH*/
+</script>
+<script>
+/*GREEN*/
+</script>
+<script>
+const DATA = /*PAYLOAD*/;
+(function () {
+  const $ = (id) => document.getElementById(id);
+  const get = browserGet((u, o) => fetch(u, o));
+  function el(tag, text, cls) { const e = document.createElement(tag); if (text !== undefined) e.textContent = text; if (cls) e.className = cls; return e; }
+  const ECO = { requirements: "PyPI", pyproject: "PyPI", npm: "npm" };
+  const UNREAD = /(^|\/)(go\.mod|Cargo\.toml|Gemfile|pom\.xml|build\.gradle(\.kts)?)$/;
+  let rows = [];
+
+  function num(value, label) { const d = el("div", undefined, "num"); d.append(el("b", value), el("span", label)); return d; }
+
+  function check() {
+    const files = Itemator.parseDiff($("diff").value);
+    $("out").replaceChildren();
+    $("status").textContent = "";
+    if (!files.length) { $("status").textContent = "Paste a git diff first."; return; }
+    rows = DepsRule.added($("issue").value, files);
+    const unread = files.filter((f) => UNREAD.test(f.filename || "")).map((f) => f.filename);
+    const unasked = rows.filter((r) => !r.asked);
+    const v = el("div", undefined, "verdict" + (unasked.length ? "" : " green"));
+    if (!rows.length) v.append(el("p", "This change adds no dependency in a manifest this page reads.", "big"));
+    else if (!unasked.length) v.append(el("p", `Green: the issue asked for every dependency this change adds (${rows.length}). Nothing to weigh.`, "big"));
+    else {
+      v.append(el("p", `${unasked.length} of ${rows.length} added ${rows.length === 1 ? "dependency was" : "dependencies were"} not asked for by the issue.`, "big"));
+      const b = el("button", `Weigh the ${unasked.length} unasked`, "main"); b.type = "button";
+      b.addEventListener("click", () => weighAll(unasked, v, b));
+      const r = el("div", undefined, "row"); r.append(b, el("span", "Sends only the package names and versions.", "muted"));
+      v.append(r);
+    }
+    $("out").append(v);
+    for (const r of rows) $("out").append(card(r));
+    if (unread.length) $("out").append(el("p", `Not read on this page (the CI job reads them): ${unread.join(", ")}.`, "muted"));
+    return unasked.length ? () => weighAll(unasked, v, v.querySelector("button")) : null;
+  }
+
+  function card(r) {
+    const d = el("div", undefined, "dep" + (r.asked ? " asked" : ""));
+    const top = el("div"); top.append(el("span", r.name, "name"), document.createTextNode(r.asked ? "  asked for" : "  not asked for"));
+    d.append(top, el("div", r.path, "path"), el("p", r.why, "why"));
+    r.cost = el("p", "", "cost"); d.append(r.cost);
+    return d;
+  }
+
+  async function weighOne(r) {
+    if (r.newPackage) return { skip: "a whole new package; the weigh is of what it lists, not done here" };
+    if (r.source) return { skip: "installs from a URL, not from the package index; not weighed" };
+    const eco = ECO[r.manifest];
+    const version = DepsRule.pinned(r) || await latest(get, eco, r.name);
+    if (!version) return { skip: "the registry has no such package" };
+    const w = await weigh(get, eco, r.name, version);
+    if (w.weight !== "ok") return { skip: `not weighed (${w.reason || w.weight})` };
+    return Object.assign(w, { pinned: !!DepsRule.pinned(r), at_least: w.capped || w.of > w.sized });
+  }
+
+  async function weighAll(unasked, v, button) {
+    button.disabled = true;
+    const runs = Math.max(0, parseInt($("runs").value, 10) || 0);
+    $("status").textContent = "Asking deps.dev and the registries…";
+    const t0 = performance.now();
+    const done = [];
+    await Promise.all(unasked.map(async (r) => {
+      let w;
+      try { w = await weighOne(r); } catch (e) { w = { skip: "a registry did not answer" }; }
+      if (w.skip) { r.cost.textContent = w.skip; return; }
+      done.push(w);
+      r.cost.textContent = `${w.version}${w.pinned ? "" : " (today's latest; the line pins none)"}: ${w.capped ? "at least " : ""}${w.packages} ${w.packages === 1 ? "package" : "packages"}, `
+        + (w.sized ? `${w.at_least ? "at least" : "about"} ${human(w.bytes)} on every fresh install` : "sizes not given");
+    }));
+    $("status").textContent = `Weighed ${done.length} of ${unasked.length} in ${((performance.now() - t0) / 1000).toFixed(1)} s.`;
+    const sized = done.filter((w) => w.sized).map((w) => ({ bytes: w.bytes, at_least: w.at_least }));
+    if (!sized.length) return;
+    const t = Green.total(DATA.coefficients, DATA.seconds, sized, runs);
+    const about = t.at_least ? "at least" : "about";
+    v.append(el("p", `Saying "remove" to ${t.lines === 1 ? "it" : `these ${t.lines}`} saves ${about} ${human(t.bytes)} of download on every fresh install`
+      + (runs ? `, ${about} ${human(t.month_bytes)} a month at ${runs} pipelines that install without a cache.` : ". Add your pipelines a month to see a month.")));
+    const g = el("div", undefined, "nums");
+    g.append(num(`${human(t.bytes)}`, "download per fresh install"),
+             num(`${Green.grams(t.g_low)} – ${Green.grams(t.g_high)}`, "CO2e per fresh install (low – high)"));
+    if (runs) g.append(num(`${human(t.month_bytes)}`, `a month at ${runs} pipelines`), num(`${Green.grams(t.month_g_low)} – ${Green.grams(t.month_g_high)}`, "CO2e a month (low – high)"));
+    v.append(g, el("p", DATA.range_note, "muted"));
+  }
+
+  $("go").addEventListener("click", check);
+  $("file").addEventListener("change", (e) => {
+    const f = e.target.files && e.target.files[0];
+    if (!f) return;
+    if (f.size > 5e6) { $("status").textContent = "That file is over 5 MB; paste the manifest part of the diff instead."; return; }
+    f.text().then((t) => { $("diff").value = t; check(); });
+  });
+  for (const ex of DATA.examples) {
+    const b = el("button", ex.title); b.type = "button"; b.title = ex.note;
+    b.addEventListener("click", () => { $("issue").value = ex.issue; $("diff").value = ex.diff; check(); $("status").textContent = ex.note; });
+    $("examples").append(b);
+  }
+  // A link such as #example/npm-flag fills in that example and checks it; #example/npm-flag/weigh also weighs it.
+  const m = /^#example\/([\w-]+)(\/weigh)?$/.exec(location.hash);
+  const ex = m && DATA.examples.find((e) => e.id === m[1]);
+  if (ex) {
+    $("issue").value = ex.issue; $("diff").value = ex.diff;
+    const go = check(); $("status").textContent = ex.note;
+    if (m[2] && go) go();
+  }
+  $("agree").textContent = DATA.agreement;
+  $("sci").textContent = DATA.sci;
+  $("footer").textContent = DATA.footer;
+})();
+</script>
+</body>
+</html>

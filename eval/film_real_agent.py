@@ -6,6 +6,7 @@ Raw record: results/film_real_agent.json (one entry per issue).
 usage (repository root, glab authenticated; spends Duo credits):
     python3 eval/film_real_agent.py start --issue 1 --credit-stop 360
     python3 eval/film_real_agent.py react --mr <iid>          # after the owner has typed an answer in a thread
+    python3 eval/film_real_agent.py rehearse --issue 1 --credit-stop 360   # reads only: checks each step, prints the writes
     The second film: add --rubric eval/film_real_agent_v2_rubric.json --out results/film_real_agent_v2.json to both."""
 from __future__ import annotations
 
@@ -101,6 +102,48 @@ def start(n: int, credit_stop: float) -> int:
     return 0
 
 
+def member(user_id: int) -> bool:
+    """Asked per account: the project's member list inherits the whole hackathon group, so one page of it proves nothing."""
+    try:
+        return bool(R.api(f"projects/{P}/members/all/{user_id}"))
+    except RuntimeError:                 # 404: not a member
+        return False
+
+
+def rehearse(n: int, credit_stop: float, rubric: pathlib.Path) -> int:
+    """Every step of `start` and `react` with reads only: what each write needs is checked, and the writes are printed, not
+    made. No issue, note, reviewer or trigger changes; no Duo credits."""
+    ok = True
+
+    def check(good, what):
+        nonlocal ok
+        ok &= bool(good)
+        print(f"{'ok  ' if good else 'FAIL'}  {what}")
+
+    issue = next((i for i in json.loads(rubric.read_text())["issues"] if i["id"] == n), None)
+    check(issue, f"issue {n} is in {rubric.name}")
+    m0 = R.meter()
+    check(m0 is not None and m0 < credit_stop, f"meter {m0} is under the credit stop {credit_stop} (the meter lags about 18 hours)")
+    states = R.trigger_states()
+    for which, gid in R.TRIG.items():
+        check(states.get(gid) is False, f"{which} trigger exists and is off before the run")
+    for user, why in ((DEVELOPER, "the agent the issue is assigned to"), (R.REACT_MENTION.lstrip("@"), "the reaction flow's account")):
+        found = R.api(f"users?username={user}") or []
+        check(found and member(found[0]["id"]), f"@{user} exists and is a member of the project ({why})")
+    card = R.api(f"users/{R.CARD_USER}") or {}
+    check("itemator-card" in (card.get("username") or "") and member(R.CARD_USER),
+          f"reviewer id {R.CARD_USER} is the card account ({card.get('username')}) and a member of the project")
+    if issue:
+        print(f"plan  POST projects/{P}/issues title={issue['title']!r}")
+        print(f"plan  POST the note '/assign @{DEVELOPER}' on it; wait up to {MR_WAIT // 60} min for the agent's merge request")
+        print(f"plan  wait up to {PIPELINE_WAIT // 60} min for the itemator job; switch the card trigger on; PUT reviewer_ids={R.CARD_USER};"
+              " wait for the card; switch the card trigger off")
+        print(f"plan  react: wait up to {ANSWER_WAIT // 60} min for the owner's answer; switch the react trigger on; POST"
+              f" '{R.REACT_MENTION} check'; wait; switch it off")
+    print("rehearsal: every check passed" if ok else "rehearsal: fix the FAIL lines first")
+    return 0 if ok else 1
+
+
 def react(mr_iid: int) -> int:
     records = load()
     rec = next(r for r in records if r.get("mr_iid") == mr_iid)
@@ -141,8 +184,13 @@ def main() -> int:
     s.add_argument("--credit-stop", type=float, required=True)
     r = sub.add_parser("react")
     r.add_argument("--mr", type=int, required=True)
+    h = sub.add_parser("rehearse")
+    h.add_argument("--issue", type=int, required=True, choices=(1, 2))
+    h.add_argument("--credit-stop", type=float, required=True)
     a = ap.parse_args()
     RUBRIC, OUT = a.rubric, a.out
+    if a.cmd == "rehearse":
+        return rehearse(a.issue, a.credit_stop, a.rubric)
     return start(a.issue, a.credit_stop) if a.cmd == "start" else react(a.mr)
 
 

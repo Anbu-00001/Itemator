@@ -71,6 +71,7 @@ ol{padding-left:1.4em}
 
 <h2>How it is measured</h2>
 <p>deps.dev (Google's Open Source Insights) gives the resolved dependency graph of that version. For each package in it, PyPI gives the size of the file pip would most likely download on a Linux x86_64 runner with CPython 3.12, and npm the tarball's length, read from the answer's headers before the download is stopped. Packages bundled inside another are not counted. A size the registry does not give is unknown, never guessed, and the total becomes "at least". The graph is deps.dev's resolution today; an install with a lockfile or on another day can differ. Download bytes are not energy, and this page does not turn them into it.</p>
+<p class="muted">To weigh only what a change adds beyond its issue, paste the change into <a href="../green/">the green check</a>.</p>
 <footer id="footer"></footer>
 </main>
 <script>

@@ -1,0 +1,15 @@
+{
+ "what": "Written before the JavaScript version of rule 1 (new_dependency, web/deps_rule.js) is compared with the Python (itemator/extras.py, _new_dependencies, rules v6). The page web/green.html lists the new dependencies of a pasted diff in the browser. Does it list exactly what the CI job lists?",
+ "scope": "Only the three manifests the page reads: requirements files, pyproject.toml and package.json. The page does not read go.mod, Cargo.toml, Gemfile, pom.xml or Gradle files, and says so.",
+ "data": "(A) Every file row of one of the three manifests with a patch in the cached AIDev rows (eval/cache/aidev/commit_details.json), as a one-file change, under two issue texts: the pull request's title and body (from eval/cache/aidev/pull_request.json), and an empty issue. (B) The same rows with every added line's package name copied into the issue text, so that the 'the issue names it' paths are exercised, not only the 'does not name it' ones.",
+ "unit": "One file row under one issue text: the list of extras, each as (kind, path, name, why), in order.",
+ "rule": "Agreement means the two lists are identical for every unit. Met only if there is no disagreement. Every disagreement is published with the pull request number, the path and both answers (no patch text). The Python is the reference: a disagreement is fixed in the JavaScript, and the run is repeated and published with both runs.",
+ "coverage": "After the run, deliberate breaks of the JavaScript (eval/green_agreement.py --mutants) are run on the same corpus. A break no unit notices is published as a gap in the corpus, not hidden.",
+ "predictions_before_run": {
+  "first_run_all_identical": "35%",
+  "after_fixes_all_identical": "95%",
+  "v2_all_identical": "60%"
+ },
+ "limits": "Agreement says the two programs behave alike, not that either is right. What rule 1 catches on real pull requests is in results/real_catches.md and results/aidev_recall_v6.json.",
+ "v2": "After the v1 run (2,322 of 2,322 identical; results/green_agreement_v1.json; a first attempt stopped at a syntax error in the JavaScript before any comparison) the coverage step showed that 12 of 20 deliberate breaks went unnoticed: real manifest diffs rarely install from a URL, name a package only through its title's acronym, or use pyproject's tool tables. The v2 run adds (C): every (issue, files) input that the Python unit tests pass to _new_dependencies (recorded while tests/test_extras*.py run, written to eval/green_fixtures.json), cut to the three manifests, under the same rule. Written before (C) is compared."
+}

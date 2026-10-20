@@ -17,6 +17,7 @@ CASES = ROOT / "eval" / "react_study_cases.json"
 RAW = ROOT / "results" / "react_study_raw.json"
 OUT = ROOT / "results" / "react_study.json"
 P, NS = 87291130, "gitlab-ai-hackathon"
+PATH = "gitlab-ai-hackathon/transcend-october-2026/39194174/showcase"
 CARD_USER, REACT_MENTION = 43246470, "@ai-itemator-react-gitlab-ai-hackathon"
 TRIG = {"card": "gid://gitlab/Ai::FlowTrigger/3014359", "react": "gid://gitlab/Ai::FlowTrigger/3014366"}
 SIGN = "\n\nSigned-off-by: Anbu <39194174-anbuchelvanganesan.cse2024@users.noreply.gitlab.com>"
@@ -43,9 +44,23 @@ def commit(branch, message, actions):
         raise RuntimeError(r.stderr[:200] + r.stdout[:200])
 
 
-def trigger(which, on):
+def trigger_states() -> dict:
+    """{trigger gid: active} for this project's flow triggers, read back from GitLab."""
+    q = '{ project(fullPath:"%s") { aiFlowTriggers { nodes { id active } } } }' % PATH
+    r = subprocess.run(["glab", "api", "graphql", "-f", f"query={q}"], capture_output=True, text=True)
+    nodes = ((((json.loads(r.stdout or "{}").get("data") or {}).get("project") or {}).get("aiFlowTriggers") or {}).get("nodes") or [])
+    return {n["id"]: n["active"] for n in nodes}
+
+
+def trigger(which, on, states=trigger_states):
+    """Switch a trigger and read it back: a switch that did not take raises, so a flow is never left on (or waited for) unseen."""
     q = 'mutation { aiFlowTriggerUpdate(input: {id: "%s", active: %s}) { errors } }' % (TRIG[which], "true" if on else "false")
     subprocess.run(["glab", "api", "graphql", "-f", f"query={q}"], capture_output=True, text=True)
+    for _ in range(3):
+        if states().get(TRIG[which]) is on:
+            return
+        time.sleep(2)
+    raise RuntimeError(f"the {which} trigger did not switch {'on' if on else 'off'}: check AI > Triggers by hand")
 
 
 def meter():

@@ -1,0 +1,106 @@
+{
+ "rubric": "eval/green_agreement_rubric.json",
+ "checked": "2026-10-20",
+ "units": 2322,
+ "files": 774,
+ "units_with_an_extra": 258,
+ "identical": 2322,
+ "all_identical": true,
+ "disagreements": [],
+ "mutants": [
+  {
+   "break": "if (source === null && removed[low]) return;",
+   "noticed_by": 769
+  },
+  {
+   "break": "if (source !== null && removedSources[source]) return;",
+   "noticed_by": 0
+  },
+  {
+   "break": "if (seen[low]) return;",
+   "noticed_by": 14
+  },
+  {
+   "break": "row.asked = issue.toLowerCase().indexOf(source.toLowerCase()) >= 0;",
+   "noticed_by": 0
+  },
+  {
+   "break": "if (acronyms.some(",
+   "noticed_by": 0
+  },
+  {
+   "break": "(short !== name && mentions(issue, short))",
+   "noticed_by": 3
+  },
+  {
+   "break": "[squash(issue), squash(name)]",
+   "noticed_by": 0
+  },
+  {
+   "break": "{3,}\\b/g",
+   "noticed_by": 0
+  },
+  {
+   "break": "if (f.status === \"added\" && PACKAGE_MANIFESTS",
+   "noticed_by": 75
+  },
+  {
+   "break": "if (mentions(issue, name) || mentions(issue, name.slice",
+   "noticed_by": 1
+  },
+  {
+   "break": "return key === \"dependencies\" || key === \"dev-dependencies\" || section.slice(-12",
+   "noticed_by": 0
+  },
+  {
+   "break": "if (section === \"build-system\") return key === \"requires\";",
+   "noticed_by": 10
+  },
+  {
+   "break": "else if (!known && q[3] && HAS_VERSION.test(q[3]))",
+   "noticed_by": 0
+  },
+  {
+   "break": "&& key.toLowerCase() !== \"python\"",
+   "noticed_by": 0
+  },
+  {
+   "break": "else if (block === null && NPM_NOT_DEPS.indexOf(key) < 0 && NPM_VERSION.test(val",
+   "noticed_by": 77
+  },
+  {
+   "break": "if (s[0] === \"-\") return;",
+   "noticed_by": 0
+  },
+  {
+   "break": "if (URLISH.test(s)) { var name = urlReqName(s); if (name) out.push([sign, name, ",
+   "noticed_by": 0
+  },
+  {
+   "break": "if (/^\\s*\\}/.test(text)) { if (stack.length) stack.pop(); else stack = [\"<top>\"]",
+   "noticed_by": 0
+  },
+  {
+   "break": "if (sign === \"@\") { section = null; arrayKey = null; return; }",
+   "noticed_by": 3
+  },
+  {
+   "break": "(n === 1 ? \"dependency\" : \"dependencies\")",
+   "noticed_by": 0
+  }
+ ],
+ "mutants_unnoticed": [
+  "if (source !== null && removedSources[source]) return;",
+  "row.asked = issue.toLowerCase().indexOf(source.toLowerCase()) >= 0;",
+  "if (acronyms.some(",
+  "[squash(issue), squash(name)]",
+  "{3,}\\b/g",
+  "return key === \"dependencies\" || key === \"dev-dependencies\" || section.slice(-12",
+  "else if (!known && q[3] && HAS_VERSION.test(q[3]))",
+  "&& key.toLowerCase() !== \"python\"",
+  "if (s[0] === \"-\") return;",
+  "if (URLISH.test(s)) { var name = urlReqName(s); if (name) out.push([sign, name, ",
+  "if (/^\\s*\\}/.test(text)) { if (stack.length) stack.pop(); else stack = [\"<top>\"]",
+  "(n === 1 ? \"dependency\" : \"dependencies\")"
+ ]
+}

