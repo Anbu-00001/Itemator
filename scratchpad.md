@@ -176,3 +176,9 @@ ANSWER:
 **Update 12:25 IST Oct 19 (night wake):** still to merge: !211 (ablation), !212 (NuGet package facts, not extras), !213 (README numbers table + modelled energy; stacked on !211, merge !211 first). The six research prompts for ChatGPT/Gemini/Grok are in `vault/Intel/fleet-42-2026-10-19/reports/P1.md` on the laptop.
 
 **Update 12:55 IST Oct 19:** please merge !215 (Go module facts). Do NOT merge !216: it is the throwaway merge request of the asker-study run I am doing for the reaction-flow person check (the run closes it). Branch `fix/non-person-keep` (flow v1.6.3 published, rubric registered first) gets its MR after the run.
+
+## NEEDS YOU, Oct 20 (written 11:38 IST)
+1. Merge !226 (the card now names the agent on Developer Flow merge requests instead of saying "No one but the author described this change"). Pipeline green.
+2. Merge !227 once its pipeline is green (the number check now also covers AGENTS.md, the skills and the web pages).
+3. Do NOT merge !223 or !224; they stay open for your recording. !224 has a scanner warning.
+ANSWER:
