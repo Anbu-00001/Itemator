@@ -20,6 +20,7 @@ import urllib.parse
 import urllib.request
 
 from itemator import extras as X
+from itemator import installs as INSTALLS
 from itemator import sci as SCI
 from itemator import weight as W
 
@@ -151,7 +152,7 @@ def _line(e, by_path: dict) -> str:
 def request_for(e, by_path: dict) -> dict:
     """What to look up for one new-dependency extra, or why nothing is looked up."""
     kind = X._manifest_kind(e.path)
-    eco = _KIND_ECOSYSTEM.get(kind)
+    eco = _KIND_ECOSYSTEM.get(kind) or INSTALLS.ecosystem(e)       # a package a command line installs (installs.py)
     base = {"ecosystem": eco, "name": e.name}
     if eco not in SUPPORTED:
         return {**base, "lookup": "not_supported"}

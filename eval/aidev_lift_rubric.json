@@ -1,0 +1,22 @@
+{
+  "what": "Written before any file is scored. In the same public agent pull requests where a human reviewer wrote a scope comment (eval/aidev_recall_cases.json, unchanged), is a file the frozen rules (v6) list more likely to draw that comment than a file they do not list? Asked by blind judge round 3 (2026-10-22): a base rate beside the 24 real catches. Read-only, from the cache eval/aidev_recall.py built; nothing is posted.",
+  "unit": "one file of one pull request",
+  "pull_requests": "every pull request holding at least one case comment and readable in the cache (eval/aidev_recall.py rules for readable). Pull requests are chosen because a reviewer objected to something in them, so every rate here is higher than in agent pull requests at large; only the comparison inside them is read.",
+  "files": "the pull request's files as they stood at the earliest case comment's original_commit_id (eval/aidev_recall.py net_files). A pull request whose earliest comment's commit is not among its commits is unreadable and counted apart.",
+  "task": "eval/aidev_recall.py task_text (the linked issue, else the pull request's own text), unchanged.",
+  "listed": "eval/aidev_recall.py listed(): an extra from itemator.extras.analyse(task, files, repo, version=6) names the file, a directory holding it, or a mass event's list holding it.",
+  "objected": "at least one case comment in that pull request has exactly that file's path.",
+  "numbers": {
+    "main": "share objected among listed files and among unlisted files, each with a Wilson 95% interval, and their ratio (listed / unlisted)",
+    "same_kind": "the same two shares restricted to files of a kind the rules can list on its own (eval/aidev_recall.py listable_kind not None): does comparing with the issue add anything over the file type alone?",
+    "per_pull_request": "pull requests with at least one listed file: how many had a listed file objected to, against how many had an unlisted file objected to",
+    "by_agent": "the main shares per agent"
+  },
+  "headline_rule": "The README may say 'listed files drew a reviewer's scope comment N times as often as other files in the same pull requests' only if the lower end of the listed share's Wilson interval is above the upper end of the unlisted share's interval. Otherwise it reports the numbers without a 'times as often' line.",
+  "predictions_before_scoring": {
+    "ratio above 1": "0.85",
+    "ratio at least 2": "0.50",
+    "same_kind: listed share above unlisted share": "0.60"
+  },
+  "limits": "Keyword-picked comments (no person read them); a file can be objected to for reasons the rules do not name; the rules saw the issue, the reviewer saw more. Rules v6 were frozen on 2026-10-12, but the recall study (2026-10-19) already showed which 27 objected files they list, so the numerator is known; the new part is the denominators (how many files are listed and unlisted)."
+}

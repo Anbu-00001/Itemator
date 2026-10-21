@@ -1,0 +1,20 @@
+{
+  "what": "How often does the weakened-tests check (itemator/hollow.py) speak on real agent pull requests, and on what?",
+  "pull_requests_read": 390,
+  "with_a_modified_test_file": 126,
+  "pull_requests_spoken_on": 1,
+  "files_named": 1,
+  "firings": [
+    {
+      "pull_request": "3242243860",
+      "path": "plugins/catalog-backend/src/service/createRouter.test.ts",
+      "why": "switches off 1 test with an unconditional skip; the issue does not name this file",
+      "lines": [
+        "+it.skip('handles If-None-Match header for streaming responses', async () => {",
+        "-expect(entitiesCatalog.queryEntities).toHaveBeenCalledTimes(1);",
+        "-expect(entitiesCatalog.queryEntities).toHaveBeenCalledWith({"
+      ],
+      "label": "looks right: GitHub Copilot skipped the test of the feature it was building; the pull request (https://github.com/backstage/backstage/pull/30586) closed without merging"
+    }
+  ]
+}

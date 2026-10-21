@@ -288,3 +288,16 @@ def test_a_changed_sentence_file_cannot_be_read_out(tmp_path, monkeypatch):
 def test_the_committed_sentences_match_their_seal():
     import hashlib
     assert P.frozen_on(hashlib.sha256(P.SENTENCES.read_bytes()).hexdigest()) == "2026-10-21"
+
+
+def test_amendment_2_counts_only_pull_requests_with_1_to_10_listed_files():
+    row = lambda pr, listed, ob: {"pr": pr, "listed": listed, "objected": ob, "state": "still_open_with_file", "silent_landing": False}
+    rows = ([row("few", True, True), row("few", False, False), row("few", False, True)]
+            + [row("mass", True, False) for _ in range(11)] + [row("mass", False, True)]
+            + [row("none", False, True)])
+    f = P.few_listed(rows)
+    assert f["pull_requests"] == 1
+    assert (f["listed"]["files"], f["listed"]["objected"]) == (1, 1)
+    assert (f["unlisted"]["files"], f["unlisted"]["objected"]) == (2, 1)
+    edge = [row("ten", True, False) for _ in range(10)] + [row("ten", False, False)]
+    assert P.few_listed(edge)["listed"]["files"] == 10

@@ -40,6 +40,11 @@ from itemator import extras as X
 from itemator import policy as POL
 from itemator import registry as RG
 from itemator import said as SAID
+from itemator import after as AFTER
+from itemator import other as OTHER
+from itemator import packed as PACKED
+from itemator import scope as SCOPE
+from itemator import precedent as PRE
 
 STATES = ("inside_ask", "extras", "no_issue", "author_wrote_issue", "unplaced_only")
 INJECTION_LINE = "This MR contains text addressed to automated reviewers; it was not followed."
@@ -524,7 +529,9 @@ _LABEL = {"new_dependency": "new dependency", "ci_or_config": "config change", "
           "binary_or_large_added": "binary or large file", "version_bump": "version bump",
           "build_output_added": "build output", "stray_file": "stray file", "policy_changed": "team policy change",
           "agent_instructions": "agent instructions",
+          "outside_scope": "outside the issue's scope", "tests_weakened": "tests weakened", "git_hook": "git hook",
           "whitespace_only": "whitespace only"}
+_LABEL[OTHER.KIND] = "named by another checker"
 _UNIT = {"new_dependency": "packages"}      # what a grouped extra's detail lists when it is not files
 
 
@@ -547,7 +554,9 @@ _PLURAL = {"new_dependency": "new dependencies", "ci_or_config": "config changes
            "binary_or_large_added": "binary or large files added", "version_bump": "version changes",
            "build_output_added": "build output directories", "stray_file": "stray file entries",
            "policy_changed": "team policy changes", "whitespace_only": "whitespace-only groups",
-           "agent_instructions": "agent instruction extras"}
+           "agent_instructions": "agent instruction extras", "outside_scope": "files outside the issue's scope",
+           "tests_weakened": "test files weakened", "git_hook": "git hooks"}
+_PLURAL[OTHER.KIND] = "files another checker named"
 
 
 def _group_key(e):
@@ -736,6 +745,8 @@ _CONFIG_EXT = (".yml", ".yaml", ".toml", ".json", ".cfg", ".ini")
 _ADDED_KINDS = ("stray_file", "binary_or_large_added", "build_output_added", "agent_instructions")   # T37: an added
 # agent instruction file named by its path can be removed; a modified, deleted or grouped one offers neither (the flow
 # refuses whole-file and multi-file edits of existing files)
+_ADDED_KINDS += ("outside_scope",)      # an added file outside the issue's itemator-scope block (scope.py)
+_ADDED_KINDS += (OTHER.KIND,)           # an added file another checker named (other.py)
 
 
 def _manifest(path: str) -> bool:
@@ -788,6 +799,8 @@ def _split_remove(e, items: tuple, by_path: dict) -> tuple:
     offers what the flow would refuse (T26 F4): both for a CI or config file named by its path, and for a manifest
     dependency alone or in a group whose thread lists every package (B2: the flow checks each changed line against
     that list); `remove` alone for a file this merge request adds (T37: an agent instruction file too)."""
+    if PACKED.one_line(e):
+        return ()                        # one line holds its object's braces: no line to remove
     if e.kind == "ci_or_config" and e.name == e.path and not e.detail and _config_file(e.path):
         return ("split", "remove")
     if e.kind == "new_dependency" and _manifest(e.path) and (
@@ -945,14 +958,16 @@ def checker_of(env, target: str, head: str) -> dict:
 def facts(*, mr_iid: int, mr_title: str, mr_description: str, mr_author_id, issues: list[dict],
           issues_from: str, files: list[dict], repo: str | None, base_sha: str, head_sha: str,
           warnings: list, now: datetime.datetime, registry_fetch=None, policy=None, checker=None,
-          fallback: bool = False, description_cut: bool = False, pipelines=None, agent: str | None = None) -> dict:
+          fallback: bool = False, description_cut: bool = False, pipelines=None, agent: str | None = None,
+          other=None) -> dict:
     """`policy` (T20, policy.read; None when not read) quiets extras and sets who may name one; `checker`
     (checker_of) says where this code came from; `fallback` (T26 F1): the target branch could not be read, so
     both came from the merge base, and the card says so. `description_cut` (T35): the description may be truncated,
     so no thread says it does not mention an extra. `agent` (agent_wrote): a bot account wrote the change for its author."""
     at = AT_FORK if fallback else AT_TARGET
     issue_text = "\n\n".join(f"{i['title']}\n{i['description']}" for i in issues)
-    analysis = X.analyse(issue_text, files, repo=repo)
+    analysis, scope = AFTER.analyse(issue_text, files, repo=repo)
+    analysis = OTHER.apply(analysis, other, files, scope)     # another checker's files (ITEMATOR_OTHER_CHECKER)
     state = decide_state(issues, mr_author_id, analysis, agent)
     found = [] if state == "no_issue" else analysis.extras      # no ask, so nothing is "beyond" it
     unplaced = [] if state == "no_issue" else analysis.unplaced
@@ -989,6 +1004,7 @@ def facts(*, mr_iid: int, mr_title: str, mr_description: str, mr_author_id, issu
     notes = (agent_line(agent) if agent and state != "no_issue" else None,
              CHECKER_CAVEAT if checker and checker["source"] != "base" else None,
              TARGET_CAVEAT if fallback else None,
+             SCOPE.NOTE if scope and state != "no_issue" else None,
              policy_note(policy, [e for e, _ in quieted], at, asks_other=other and bool(kept),
                          asks_asker=bool(askers) and bool(kept),
                          nobody_can=other and bool(askers) and bool(kept) and _author_wrote(issues, mr_author_id)))
@@ -1011,6 +1027,8 @@ def facts(*, mr_iid: int, mr_title: str, mr_description: str, mr_author_id, issu
     }
     if agent:
         report["agent"] = agent              # only when found, so earlier reports stay byte for byte the same
+    if scope:
+        report["scope"] = scope.to_dict()    # the same, for an issue's itemator-scope block
     if policy is not None:
         report["policy"] = {**policy.to_dict(), "ignored_extras": [
             {"name": shown_name(e.name), "kind": e.kind, "why": why} for e, why in quieted]}
@@ -1063,7 +1081,7 @@ def log_block(report: dict, limit: int = LOG_LIMIT) -> str:
 
 # ------------------------------------------------------------------- main
 
-def run(env, repo_dir: str, http, registry_fetch=None, clock=time.monotonic) -> dict:
+def run(env, repo_dir: str, http, registry_fetch=None, clock=time.monotonic, precedent_fetch=None) -> dict:
     need = ("CI_API_V4_URL", "CI_PROJECT_ID", "CI_MERGE_REQUEST_IID", "CI_MERGE_REQUEST_DIFF_BASE_SHA")
     missing = [k for k in need if not env.get(k)]
     head = env.get("CI_MERGE_REQUEST_SOURCE_BRANCH_SHA") or env.get("CI_COMMIT_SHA")
@@ -1100,6 +1118,10 @@ def run(env, repo_dir: str, http, registry_fetch=None, clock=time.monotonic) -> 
     policy = POL.read(repo_dir, target)       # T20, T26 F1: from the target branch tip, never from the merge request
     if not resolved:
         policy = dataclasses.replace(policy, source="merge_base")
+    other = OTHER.read(env.get("ITEMATOR_OTHER_CHECKER"), repo_dir)
+    if other is False:
+        warnings.append("ITEMATOR_OTHER_CHECKER is set, but its file could not be read; only Itemator's own rules ran.")
+        other = None
     now = datetime.datetime.now(datetime.timezone.utc)
     report = facts(mr_iid=int(iid), mr_title=mr.get("title") or env.get("CI_MERGE_REQUEST_TITLE") or "",
                  mr_description=description, mr_author_id=(mr.get("author") or {}).get("id"),
@@ -1108,11 +1130,15 @@ def run(env, repo_dir: str, http, registry_fetch=None, clock=time.monotonic) -> 
                  now=now, registry_fetch=registry_fetch,
                  policy=policy, checker=checker_of(env, target, head), fallback=not resolved, description_cut=cut,
                  pipelines=lambda: pipelines_run(api, pid, now),
-                 agent=agent_wrote(api, pid, int(iid), issues, (mr.get("author") or {}).get("id")))
+                 agent=agent_wrote(api, pid, int(iid), issues, (mr.get("author") or {}).get("id")),
+                 other=other)
+    if other is not None:
+        report["other_checker"] = {"named": [p for p, _, _ in other]}       # what it named, also when the rules already had it
     if dangling:
         card = report["card"]
         card["caveat_line"] = " ".join(c for c in (card["caveat_line"], dangling_line(dangling)) if c)
     also_checked(report, repo_dir, base, head, files, api, pid, f"{mr.get('title') or ''}\n{description}", registry_fetch)
+    PRE.apply(report, env, int(iid), precedent_fetch or PRE.fetch)
     report["hold"] = hold(report, api, pid, iid, head)
     if report["hold"]["blocked"]:
         report["card"]["todo_line"] = f'{report["card"]["todo_line"]} {HOLD_LINE}'
@@ -1161,6 +1187,7 @@ def also_checked(report: dict, repo_dir: str, base: str, head: str, files: list[
     from itemator import revert as RV
     from itemator import moving as MV
     from itemator import shapes as SP
+    from itemator import powers as PW
     from itemator import dotnet as DN
     from itemator import untrusted as UT
     from itemator import scanners as SC
@@ -1184,10 +1211,11 @@ def also_checked(report: dict, repo_dir: str, base: str, head: str, files: list[
     try:
         moving = MV.find(files)
         shapes = SP.find(files)
+        powers = PW.find(files, PW.read_before(repo_dir, base, files[:MAX_CHECKED_FILES]))
         untrusted = UT.find(files)
         scanners = SC.find(repo_dir, files, listed, report["warnings"])
     except Exception as e:                # noqa: BLE001 -- information only
-        moving, shapes, untrusted, scanners = [], [], [], None
+        moving, shapes, untrusted, scanners, powers = [], [], [], None, []
         report["warnings"].append(f"no moving-reference check: {type(e).__name__}")
     reland = C.reland_check(repo_dir, base, files[:MAX_CHECKED_FILES], report["warnings"])
     dotnet = {"found": [], "registry": []}
@@ -1206,11 +1234,11 @@ def also_checked(report: dict, repo_dir: str, base: str, head: str, files: list[
         record = RC.find(repo_dir, base, files, {n["path"] for n in neutral}, said)
     except Exception as e:                # noqa: BLE001 -- information only
         report["warnings"].append(f"no reference check: {type(e).__name__}")
-    report["checked"] = {"neutral": neutral, "opened": opened, "strangers": strangers, "fenced": fence["fenced"], "relanded": reland["relanded"], "dotnet": dotnet, "cites": cites, "revert": revert, "moving": moving, "shapes": shapes, "untrusted": untrusted, "scanners": scanners, "record": record, "copy": copy, "pipeline": pipeline,
+    report["checked"] = {"neutral": neutral, "opened": opened, "strangers": strangers, "fenced": fence["fenced"], "relanded": reland["relanded"], "dotnet": dotnet, "cites": cites, "revert": revert, "moving": moving, "shapes": shapes, "untrusted": untrusted, "scanners": scanners, "powers": powers, "record": record, "copy": copy, "pipeline": pipeline,
                          "fence_runs_read": fence["runs_read"], "fence_capped": fence["capped"],
                          "files_read": min(len(files), MAX_CHECKED_FILES), "files": len(files)}
     line = C.sentence([n["path"] for n in neutral], [(o["path"], o["line"]) for o in opened], strangers, fence["fenced"], pipeline, reland["relanded"], cites, revert, moving, record, copy, shapes, untrusted, scanners,
-                     DN.sentence(dotnet["found"], dotnet["registry"]))
+                     DN.sentence(dotnet["found"], dotnet["registry"]), powers)
     if line:
         report["card"]["checked_line"] = line         # only present when there is something to say
 

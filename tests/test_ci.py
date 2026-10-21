@@ -532,3 +532,45 @@ def test_the_missing_issue_note_joins_the_author_caveat_it_does_not_replace_it(r
     _, out = job(repo, head, FakeHttp(routes(mr("Closes #12 and #999", author_id=1), [issue(author_id=1), issue(14, author_id=1)])),
                  tmp_path, monkeypatch)
     assert out["state"] == "extras" and out["card"]["caveat_line"] == f"{ci.AUTHOR_CAVEAT} {NONE_SUCH}"
+
+
+def test_the_job_adds_what_a_person_decided_before(repo, tmp_path, monkeypatch):
+    from itemator import answerlog as A
+    from itemator import precedent as PRE
+    log = {"entries": A.chain([{"iid": 3, "note": 30, "at": "2026-10-20T10:00:00Z", "commit": "c" * 40, "body_sha256": "x",
+                                 "items": [{"name": "leftpad-py", "decision": "removed", "who": "ann", "ref": None}],
+                                 "url": "https://gitlab.example/mr/3#note_30"}])}
+    monkeypatch.setattr(PRE, "fetch", lambda url: log if url == "https://pages.example/answers/answers.json" else None)
+    head = repo.commit({"src/parser.py": FIXED, "requirements.txt": "requests==2.31.0\nleftpad-py==1.0.0\n"})
+    _, out = job(repo, head, FakeHttp(routes(mr(), [issue()])), tmp_path, monkeypatch, CI_PAGES_URL="https://pages.example")
+    stub = out["extras"][0]["thread_stub"]
+    assert stub.startswith("`leftpad-py`") and stub.endswith("Decided before: removed on !3 by ann on 2026-10-20 (public answer log).")
+    assert out["decided_before"] == {"read": True, "matched": 1}
+
+
+def test_the_job_asks_about_a_file_another_checker_named(repo, tmp_path, monkeypatch):
+    found = tmp_path / "overreach.json"
+    found.write_text('{"findings": [{"file": "src/helpers.py", "detail": "File is not within the files the prompt authorized."}]}')
+    head = repo.commit({"src/parser.py": FIXED, "src/helpers.py": "def helper():\n    return 1\n"})
+    _, out = job(repo, head, FakeHttp(routes(mr(), [issue()])), tmp_path, monkeypatch, ITEMATOR_OTHER_CHECKER=str(found))
+    named = [e for e in out["extras"] if e["kind"] == "named_by_other_checker"]
+    assert [e["name"] for e in named] == ["src/helpers.py"]
+    assert named[0]["thread_stub"].startswith("`src/helpers.py` (named by another checker): Overreach named it (File is not")
+    assert "reply `remove`" in named[0]["thread_stub"]                 # the merge request adds it
+    assert out["other_checker"] == {"named": ["src/helpers.py"]}
+
+
+def test_an_unreadable_other_checker_file_is_said_and_changes_nothing(repo, tmp_path, monkeypatch):
+    head = repo.commit({"src/parser.py": FIXED})
+    _, out = job(repo, head, FakeHttp(routes(mr(), [issue()])), tmp_path, monkeypatch, ITEMATOR_OTHER_CHECKER=str(tmp_path / "missing.json"))
+    assert not [e for e in out["extras"] if e["kind"] == "named_by_other_checker"]
+    assert any("ITEMATOR_OTHER_CHECKER" in w for w in out["warnings"])
+
+
+def test_a_checker_that_names_nothing_is_not_a_warning(repo, tmp_path, monkeypatch):
+    found = tmp_path / "overreach.json"
+    found.write_text('{"findings": []}')
+    head = repo.commit({"src/parser.py": FIXED})
+    _, out = job(repo, head, FakeHttp(routes(mr(), [issue()])), tmp_path, monkeypatch, ITEMATOR_OTHER_CHECKER=str(found))
+    assert not any("ITEMATOR_OTHER_CHECKER" in w for w in out["warnings"])
+    assert out["other_checker"] == {"named": []}

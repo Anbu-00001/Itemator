@@ -124,6 +124,11 @@ var Itemator = (function () {
     NET + "[^\\n]*\\$\\(\\s*git\\s+remote\\s+-v",
     "\\bcat\\s+[^|;\\n]*(?:\\.ssh/|\\.aws/credentials|\\.npmrc|\\.git-credentials|\\.docker/config\\.json)[^|;\\n]*\\|\\s*" + NET
   ]);
+  var RUN_DOWNLOAD = res([
+    NET + "[^|;&\\n]*\\|\\s*" + SHELL,
+    "\\b(?:ba|z|da|k)?sh\\s+-c\\s+[\"']?\\$\\(\\s*" + NET,
+    "\\b(?:ba|z|da|k)?sh\\s+<\\(\\s*" + NET
+  ]);
   var SEND = /\b(?:fetch|axios\.(?:post|put)|https?\.request|got\.post|requests\.(?:post|put)|urlopen|\.post)\s*\(/i;
   var WHOLE_ENV_RE = new RegExp(WHOLE_ENV);
   var DOWNLOAD = /\b(?:curl|wget)\b|\bfetch\s*\(|requests\.get\s*\(|urllib\.request\.urlopen|https?\.get\s*\(|axios\.get\s*\(|\bdownload\w*\s*\(/i;
@@ -131,8 +136,9 @@ var Itemator = (function () {
   var SOURCE_PATH = new RegExp("[\"'][^\"'\\n]*\\." + SOURCE_EXT + "[\"']");
   var REDIRECT = new RegExp("(?:\\s-o|\\s-O|--output|>)\\s*[\"']?[\\w./$-]+\\." + SOURCE_EXT + "\\b");
 
-  function shape(text) {
+  function shape(text, build) {
     if (DECODE.some(function (p) { return p.test(text); })) return "decode-and-run";
+    if (!build && RUN_DOWNLOAD.some(function (p) { return p.test(text); })) return "download-and-run";
     if (ENV.some(function (p) { return p.test(text); }) || (SEND.test(text) && WHOLE_ENV_RE.test(text))) return "env-to-network";
     return null;
   }
@@ -156,8 +162,9 @@ var Itemator = (function () {
         var t = nt[1].trimStart();
         return !startsWithAny(t, ["#", "//"]) || t.indexOf("#!") === 0;
       });
+      var build = isBuildFile(path);
       lines.forEach(function (nt) {
-        var kind = shape(nt[1]);
+        var kind = shape(nt[1], build);
         if (kind) found.push({ path: path, line: nt[0], kind: kind, text: nt[1].trim().slice(0, 80) });
       });
       runsOf(lines).forEach(function (run) {
@@ -258,7 +265,7 @@ var Itemator = (function () {
     "image-latest": "an image tagged `latest`", "image-untagged": "an image with no tag", "include-branch": "an include on a branch",
     "remote-branch": "an include from a branch URL", "component-branch": "a component on a moving version",
     "pipe-to-shell": "a download piped into a shell",
-    "decode-and-run": "decodes text and runs it", "env-to-network": "sends the environment or credentials to a server",
+    "decode-and-run": "decodes text and runs it", "download-and-run": "downloads a script and runs it", "env-to-network": "sends the environment or credentials to a server",
     "download-over-source": "downloads a file and writes it over a source file",
     "github-expression": "pastes text a stranger writes into a script before the shell runs it",
     "interpreter": "hands text a stranger writes to an interpreter that runs it",

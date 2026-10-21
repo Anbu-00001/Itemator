@@ -201,6 +201,14 @@ def _counts(rows: list) -> dict:
             "wilson95": A.G.wilson(caught, len(rows)) if rows else None}
 
 
+def few_listed(rows: list) -> dict:
+    """Amendment 2: listed against unlisted files inside pull requests with 1 to 10 listed files (no mass event)."""
+    per = collections.Counter(r["pr"] for r in rows if r["listed"])
+    keep = [r for r in rows if 1 <= per[r["pr"]] <= 10]
+    return {"pull_requests": len({r["pr"] for r in keep}), "listed": _counts([r for r in keep if r["listed"]]),
+            "unlisted": _counts([r for r in keep if not r["listed"]])}
+
+
 def summarize(rows: list, prs: list) -> dict:
     """`prs`: per sealed pull request {url, unreadable, state?, merged?, added_after_sampling?}."""
     read = [p for p in prs if not p.get("unreadable")]
@@ -217,6 +225,7 @@ def summarize(rows: list, prs: list) -> dict:
             "pull_requests_with_a_listed_file": len({r["pr"] for r in listed}),
             "share_landed_silently_of_listed_landed": round(sum(r["silent_landing"] for r in in_merged) / len(in_merged), 4)
             if in_merged else None,
+            "in_pull_requests_with_1_to_10_listed_files": few_listed(rows),                     # amendment 2
             "by_agent": {a: _counts([r for r in listed if r["agent"] == a]) for a in sorted({r["agent"] for r in listed})},
             "by_kind": {k: _counts([r for r in listed if r["kind"] == k]) for k in sorted({str(r["kind"]) for r in listed})}}
 

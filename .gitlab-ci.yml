@@ -54,6 +54,35 @@ hardcode-audit:
 # The `itemator` job is not defined here: a pipeline execution policy injects it (ci/itemator-job.yml, read from main), so a
 # merge request cannot edit, delete or skip it.
 
+# Another scope checker (itemator/other.py): Overreach, MIT, offline and with no key, named more of the files reviewers
+# objected to than Itemator's own rules in the registered head-to-head (results/head_to_head_v1.json). Its output goes to
+# the injected itemator job as an artifact (a later stage downloads it), read through the project variable
+# ITEMATOR_OTHER_CHECKER=overreach.json. A merge request can edit this job, so its findings can only add questions: the
+# checker keeps only changed files and strips mentions and links from the reasons. A failure here leaves the itemator job
+# to its own rules, and the card says the file could not be read.
+other-checker:
+  stage: test
+  image: node:22-alpine
+  variables:
+    GIT_DEPTH: "0"
+    OVERREACH_TELEMETRY: "off"
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+  allow_failure: true
+  before_script:
+    - apk add -q --no-cache git
+  script:
+    - git fetch -q --no-tags origin "+refs/heads/$CI_MERGE_REQUEST_TARGET_BRANCH_NAME:refs/remotes/origin/$CI_MERGE_REQUEST_TARGET_BRANCH_NAME"
+    - git diff "$CI_MERGE_REQUEST_DIFF_BASE_SHA" HEAD > change.diff
+    - node ci/other_checker_task.mjs > task.txt
+    - npx -y overreach@0.9.0 --prompt-file task.txt --diff change.diff --json --no-cache > overreach.json || true
+    - node -e 'const f=JSON.parse(require("fs").readFileSync("overreach.json","utf8")).findings||[];console.log("overreach named", f.length)'
+  artifacts:
+    paths:
+      - overreach.json
+    expire_in: 30 days
+    when: always
+
 # Mutation tests (eval/mutate_extras.py, eval/mutate_ci.py and eval/mutate_checks.py): they break the rules or the job one line at a time and
 # every mutant must make a test fail. Manual, because a run takes several minutes; start it from the pipeline page.
 # The laptop that builds this project overheats on it, so it runs here. mutation.log is the evidence.

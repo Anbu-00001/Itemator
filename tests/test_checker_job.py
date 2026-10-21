@@ -217,6 +217,7 @@ def test_replay_records_pass_through_unchanged_without_a_policy(monkeypatch):
             a = Analysis([Extra(x["kind"], x["path"], x["name"], x["why"], tuple(x["detail"])) for x in v4["extras"]],
                          unplaced=list(v4["unplaced"]))
             monkeypatch.setattr(ci.X, "analyse", lambda *_, **__: a)
+            monkeypatch.setattr(ci.AFTER, "ADDERS", ())     # the later checks are part of the analysis stubbed above
             files = cache.get(rec["files_sha256"], [])
             with_files += bool(files)
             kw = dict(mr_iid=5, mr_title="t", mr_description="", mr_author_id=2, issues=issues,

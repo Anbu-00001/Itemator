@@ -10,6 +10,7 @@ A person will approve your merge request, often quickly. Itemator, a check in th
 ## Before you finish
 
 1. **Write down the ask in one sentence** from the issue. If you cannot, ask in the issue instead of guessing.
+   If the issue has an `itemator-scope` block, it is the ask's exact limit: change only files that match its `paths`, and add only the packages its `dependencies` line lists (`none` means none).
 2. **List what you changed.** For each file, decide: did the issue ask for this, or is it needed to do what the issue asked?
 3. **Treat these as needing a decision by a person, never as a side effect:**
    - a new or changed dependency (name the package and the version);

@@ -1,0 +1,20 @@
+{
+ "what": "Written and pushed before any rival tool ran on the data. On the AIDev scope-comment cases of results/aidev_recall_v6.json, side by side with two offline scope checkers that compare a diff with a task text: which of the files human reviewers called unrelated, out of scope, unnecessary or for a separate pull request does each tool name, and how many files does each name in total to get there?",
+ "tools": {
+  "itemator": "itemator/extras.py rules v6 (X.analyse), the same call as eval/aidev_recall.py; a file counts as named by the same listed() test.",
+  "overreach": "npm overreach 0.9.0 (MIT), no API key, offline regex mode: `overreach -p TASK --diff FILE --json --no-cache`, OVERREACH_TELEMETRY=0. Named = every `file` of its `findings`. Its `blast_radius` warnings are advice, not findings, and are reported separately, never in the headline.",
+  "scope_creep_detector": "scripts/scope_creep.py of the scope-creep-detector skill in Shubhamsaboo/awesome-llm-apps (Apache-2.0), commit read on the run day, `--diff FILE --intent TASK --json`. Named = every path in `likely_creep`, `config_edits`, `new_deps` and `api_renames` (everything it reports outside `in_scope`).",
+  "left_out": "ScopeDiff 0.2.0 (MIT) reads a live git working tree; the dataset holds patches without the files they apply to, so it cannot run fairly here. MergeWarden needs a live GitHub pull request."
+ },
+ "unit": "A snapshot: one pull request's files as they stood at the reviewed commit (eval/aidev_recall.py net_files), with its task text (linked issue, else the pull request's title and text, the same as the recall study). The diff given to the rivals is built from the dataset's patches with a `diff --git` header per file; files without a patch get a header only. Each tool runs once per snapshot; every case on that snapshot is scored from that one run.",
+ "cases": "The 587 readable cases of results/aidev_recall_v6.json. A case where a rival exits with an error or prints no JSON counts as not named for that rival and is counted under errors; nothing is retried by hand.",
+ "numbers": ["per tool: cases named (of 587), Wilson 95% interval", "per tool: files named in total and per snapshot (median), against files changed in total", "per tool: named-case density = cases named / files named", "cases each rival names that Itemator does not, and the reverse"],
+ "headline_rule": "The README may say a tool 'names more of the files reviewers objected to' only when the Wilson intervals of cases named do not overlap. It must print, beside it, how many files each tool names in total. No sentence may call any tool better or worse; the numbers stand side by side.",
+ "predictions_before_scoring": {
+  "overreach names more cases than itemator": "0.80",
+  "scope_creep_detector names more cases than itemator": "0.85",
+  "both rivals name at least 3 times as many files in total as itemator": "0.75",
+  "itemator's named-case density is the highest of the three": "0.45"
+ },
+ "limits": "Keyword-picked reviewer comments (no person read them). The rivals were built for a prompt, not an issue, and run here in their no-key modes; with a model key Overreach reads the prompt with an LLM and may do differently. Itemator's 27 named cases were already known from the recall study; the rivals' counts are new. The diff lacks unchanged context, which may affect the rivals' symbol and import checks."
+}

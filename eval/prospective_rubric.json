@@ -44,5 +44,10 @@
     "date": "2026-10-21, after sealing and before any outcome was read",
     "why": "one sealed pull request holds 127 of the 245 listed files (a mass event), so per-file shares would mostly describe that one pull request",
     "change": "also report, per pull request, how many have at least one listed file objected to or removed, out of the readable pull requests with a listed file. The per-file numbers stay as registered."
+  },
+  "amendment_2": {
+    "date": "2026-10-22, before any outcome was read (read date 2026-10-25)",
+    "why": "the AIDev lift study (results/aidev_lift_v6.json) found, in a cut chosen after its registered result was seen, that in pull requests with 1 to 10 listed files a listed file drew a reviewer's scope comment 5.2 times as often as an unlisted file (19 of 200 against 78 of 4,245), while the registered all-files comparison went the other way (0.3 times), because two mass events held 1,065 of the 2,023 listed files. That cut is a hypothesis from old data; this amendment tests it on new data.",
+    "change": "also report the listed and unlisted counts (the same fields as the main comparison) restricted to sealed pull requests with 1 to 10 listed files. Registered prediction: the listed share objected-or-removed is above the unlisted share there, with probability 0.65. The main per-file numbers and amendment 1 stay as registered."
   }
 }

@@ -8,6 +8,7 @@ from itemator import cochange as CC
 from itemator import fence as FE
 from itemator import moving as MV
 from itemator import pipeline as PL
+from itemator import powers as PW
 from itemator import refs as RF
 from itemator import scanners as SC
 from itemator import shapes as SP
@@ -47,10 +48,10 @@ def _reland_part(relanded: list[dict]) -> str:
 
 def sentence(neutral: list[str], opened: list[tuple[str, str]], strangers: list[str] = (), fenced: list[dict] = (),
              pipeline: dict | None = None, relanded: list[dict] = (), cites: list[dict] = (),
-             revert: dict | None = None, moving: list[dict] = (), record: dict | None = None, copy: dict | None = None, shapes: list[dict] = (), untrusted: list[dict] = (), scanners: dict | None = None, dotnet: str | None = None) -> str | None:
+             revert: dict | None = None, moving: list[dict] = (), record: dict | None = None, copy: dict | None = None, shapes: list[dict] = (), untrusted: list[dict] = (), scanners: dict | None = None, dotnet: str | None = None, powers: list[dict] = ()) -> str | None:
     """`neutral`: paths the layout check proved; `opened`: (path, what the opener read); `strangers`: modified files with
     history that never changed in a commit with any other changed file; `fenced`: itemator.fence.find()["fenced"];
-    `pipeline`: itemator.pipeline.find()'s result; `relanded`: itemator.reland.find()["relanded"]; `cites`: itemator.refs.find(); `revert`: itemator.revert.find(); `moving`: itemator.moving.find(); `record`: itemator.record.find(); `copy`: itemator.revert.find(copy=True); `shapes`: itemator.shapes.find(); `untrusted`: itemator.untrusted.find(); `scanners`: itemator.scanners.find(). None when all fourteen are empty."""
+    `pipeline`: itemator.pipeline.find()'s result; `relanded`: itemator.reland.find()["relanded"]; `cites`: itemator.refs.find(); `revert`: itemator.revert.find(); `moving`: itemator.moving.find(); `record`: itemator.record.find(); `copy`: itemator.revert.find(copy=True); `shapes`: itemator.shapes.find(); `untrusted`: itemator.untrusted.find(); `scanners`: itemator.scanners.find(); `powers`: itemator.powers.find(). None when all fifteen are empty."""
     parts = []
     if neutral:
         n = len(neutral)
@@ -76,6 +77,8 @@ def sentence(neutral: list[str], opened: list[tuple[str, str]], strangers: list[
         parts.append(UT.sentence(list(untrusted)))
     if shapes:
         parts.append(SP.sentence(list(shapes)))
+    if powers:
+        parts.append(PW.sentence(list(powers)))
     if moving:
         parts.append(MV.sentence(list(moving)))
     if record:

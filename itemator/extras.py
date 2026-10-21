@@ -1618,6 +1618,11 @@ def analyse(issue_text: str, files: list[dict], *, repo: str | None = None,
     return Analysis(extras=unique, named_paths=named, anchored=anchored, unplaced=unplaced, stray=[p for p, _ in stray])
 
 
+def sort_extras(found) -> list[Extra]:
+    """The fixed order of analyse (kind, path, name), with kinds the checks outside these rules add after the rules' own."""
+    return sorted(found, key=lambda e: (KINDS.index(e.kind) if e.kind in KINDS else len(KINDS), e.kind, e.path, e.name))
+
+
 def extras(issue_text: str, files: list[dict], *, repo: str | None = None,
            version: int = RULES_VERSION) -> list[Extra]:
     """The extras of a change, in a fixed order (kind, path, name)."""

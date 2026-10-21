@@ -1,0 +1,15 @@
+{
+ "what": "Written and pushed before the run. Does the 'Decided before' line (itemator/precedent.py) appear on a real pipeline when two extras already answered on other merge requests come back? One staged merge request on this project, CI only: no Duo flow runs, so no credits.",
+ "staged": "One issue asking for one change in examples/; the merge request makes it, adds `rich` to pyproject.toml's dependencies and adds a file `scratch.bak`. `rich` was kept on !278 by an outside person (francisdevasargunam, 2026-10-21); `scratch.bak` was removed on !17 (2026-10-11), per the public answer log at https://showcase-3cd72e.gitlab.io/answers/answers.json read before the run.",
+ "checks": {
+  "D1_job_ran": "the pipeline's itemator job succeeded or failed with an itemator.json artifact",
+  "D2_rich": "the extra named `rich` has a thread_stub ending with 'Decided before: kept on !278 by francisdevasargunam on 2026-10-21 (public answer log).'",
+  "D3_scratch": "the extra named `scratch.bak` has a thread_stub ending with 'Decided before: removed on !17 by anbuchelvanganesan.cse2024 on 2026-10-11 (public answer log).'",
+  "D4_record": "itemator.json decided_before == {read: true, matched: 2}",
+  "D5_no_flow": "every flow trigger of the project is inactive before and after the run",
+  "D6_no_notes": "no note on the merge request from the card or react service account"
+ },
+ "prediction_before_run": {"all six pass": "0.70", "D2 and D3 both pass": "0.80"},
+ "after": "Record in results/decided_before_live.json; close the merge request and the issue unmerged; the record keeps their links.",
+ "limits": "Staged by the owner; every earlier answer in the log comes from the owner's accounts except !278's. It shows the line appears on a real pipeline, not that it changes what a person decides."
+}

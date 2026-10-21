@@ -80,6 +80,7 @@ footer{margin-top:36px;font-size:.85rem;color:var(--muted);word-break:break-word
     "decode-and-run": "Hides what runs. Seen in the tj-actions/changed-files and reviewdog action payloads.",
     "env-to-network": "Sends secrets out of the build. The Codecov bash uploader did this.",
     "download-over-source": "A build step that rewrites source code after review. The Amazon Q extension, version 1.84.0.",
+    "download-and-run": "Runs whatever the address serves today, with nobody reading it first.",
     "github-expression": "A stranger controls this text. The Nx workflow (August 2025) was attacked through a pull request title.",
     "interpreter": "A stranger controls this text, and an interpreter runs it.",
     "agent-prompt": "A stranger controls this text, and an AI tool obeys it. A triage workflow of the Cline project was attacked this way.",
@@ -90,7 +91,7 @@ footer{margin-top:36px;font-size:.85rem;color:var(--muted);word-break:break-word
     "component-branch": "Can change under you. Pin a component to a version.",
     "pipe-to-shell": "Runs whatever the address serves today."
   };
-  var CHECK_OF = { "decode-and-run": "shapes", "env-to-network": "shapes", "download-over-source": "shapes", "github-expression": "untrusted", "interpreter": "untrusted", "agent-prompt": "untrusted" };
+  var CHECK_OF = { "decode-and-run": "shapes", "env-to-network": "shapes", "download-over-source": "shapes", "download-and-run": "shapes", "github-expression": "untrusted", "interpreter": "untrusted", "agent-prompt": "untrusted" };
 
   function hits(files) {
     var r = Itemator.run(files), out = [];

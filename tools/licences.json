@@ -11,5 +11,9 @@
   "unidiff": {
     "spdx": "MIT",
     "source": "gh api repos/matiasb/python-unidiff --jq .license.spdx_id, read-only GET, 2026-10-10"
+  },
+  "pyyaml": {
+    "spdx": "MIT",
+    "source": "gh api repos/yaml/pyyaml --jq .license.spdx_id, read-only GET, 2026-10-21"
   }
 }

@@ -1,0 +1,74 @@
+{
+  "what": "How often does the new-powers line (itemator/powers.py) speak on real agent pull requests, and on what?",
+  "bound": "upper: removed and context lines stand in for the base text",
+  "pull_requests_read": 390,
+  "pull_requests_spoken_on": 7,
+  "lines_named": 8,
+  "lines_read_as_right": 7,
+  "firings": [
+    {
+      "pull_request": "3006276172",
+      "path": "src/mcp_text_editor/text_editor.py",
+      "power": "process",
+      "line": 798,
+      "text": "f\"Executing subprocess.run with: {[self.validator_command, file_path]}\"",
+      "label": "wrong: the words are inside a log message, not a call"
+    },
+    {
+      "pull_request": "3091643325",
+      "path": "mcp_test_runner.py",
+      "power": "environment",
+      "line": 59,
+      "text": "env = os.environ.copy()",
+      "label": "right: copies the whole environment to pass to a child process"
+    },
+    {
+      "pull_request": "3091643325",
+      "path": "mcp_test_runner.py",
+      "power": "process",
+      "line": 79,
+      "text": "result = subprocess.run(cmd, env=env)",
+      "label": "right: runs a test command"
+    },
+    {
+      "pull_request": "3177549523",
+      "path": "scripts/lefthook.ts",
+      "power": "process",
+      "line": 1,
+      "text": "import { execSync } from 'node:child_process';",
+      "label": "right: imports execSync to run commands"
+    },
+    {
+      "pull_request": "3193634550",
+      "path": "sdk/evaluation/azure-ai-evaluation/azure/ai/evaluation/__init__.py",
+      "power": "dynamic",
+      "line": 74,
+      "text": "module = __import__(module_path, fromlist=[class_name])",
+      "label": "right: imports a module by a name built at run time"
+    },
+    {
+      "pull_request": "3225499913",
+      "path": "cmd/rqlite/main.go",
+      "power": "network",
+      "line": 383,
+      "text": "req, err := http.NewRequest(\"DELETE\", url, nil)",
+      "label": "right: sends an HTTP DELETE"
+    },
+    {
+      "pull_request": "3236144651",
+      "path": "src/strategies/threads.js",
+      "power": "network",
+      "line": 90,
+      "text": "const response = await fetch(url, {",
+      "label": "right: fetches a URL"
+    },
+    {
+      "pull_request": "3238111966",
+      "path": "src/discovery.rs",
+      "power": "network",
+      "line": 29,
+      "text": "http_client: reqwest::Client,",
+      "label": "right: holds an HTTP client"
+    }
+  ]
+}

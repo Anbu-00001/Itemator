@@ -2,7 +2,7 @@
 
 We created the flows in this project through GitLab's GraphQL API; the menu path below (AI > Flows) is the documented one and is untested by us. We have not installed Itemator in a second project.
 
-**You need:** GitLab with the Duo Agent Platform and custom flows turned on, a role that can create AI flows and triggers (ours was a custom Developer + AI role), and a Python 3.12 runner image for the CI job.
+**You need:** GitLab Premium or Ultimate with the Duo Agent Platform and custom flows turned on (Ultimate for the policy below: pipeline execution policies are Ultimate only), the Owner role once to link the policy project, a public project (in a private one the job cannot read the issue, see [limits](limits.md)), a role that can create AI flows and triggers (ours was a custom Developer + AI role), and a Python 3.12 runner image for the CI job.
 
 ## 1. The CI job
 1. Copy the `itemator/` folder to the root of your repository.
@@ -40,8 +40,11 @@ In **AI** > **Triggers** > **New flow trigger**, create two triggers. Both are o
 - Card flow (service account: the card account): event **Pipeline** (statuses Passed and Failed, source merge request) and event **Assign reviewer**. The project must sit under a top-level group, because service accounts are created per group.
 - Reaction flow (service account: the reaction account): events **Mention**, **Merge request ready** (called **Marked ready** under **Merge request** in newer GitLab versions), and **Merge request** with the **Approved** action (we never tested Approved).
 
-## 4. Make the threads a lock (optional, needs the Maintainer role)
+## 4. Make the threads a lock (needs the Maintainer role; without it nothing blocks the merge)
 In **Settings** > **Merge requests**, turn on **All threads must be resolved**. Until then an unnamed extra puts the merge request in Draft but does not stop the merge button.
+
+## 4b. The skills (optional)
+Copy the [skills/](../skills/) folder to the root of your repository. GitLab's Developer Flow read `stay-inside-the-issue` from there with no other setup in our one run; `answer-an-itemator-card` lets an agent explain a card and its answers to a person who asks.
 
 ## 5. The team policy (optional): `.itemator.toml`
 Put it at the root of the branch merge requests target; it is read from there, never from the merge request. Every key is optional and an unknown key makes the whole file ignored (the card says why).
@@ -58,6 +61,36 @@ paths = []   # file paths or shell-style patterns to quiet (`*` also crosses `/`
 The `always` answer edits this file for you, one line at a time, in a merge request your team reviews. It is offered only when the `[ignore]` table has exactly one line that starts with `paths = [` and ends the list on the same line (no `#` inside the list, no trailing comma); with `paths=[]`, a list over several lines, or no `[ignore]` table the policy still works but `always` is not offered.
 
 `hold_until_named = true` closes the gap in loops that arm auto-merge inside the pipeline: the `itemator` job exits with an error while any kept extra has no name, so GitLab cannot merge before the card exists. The job passes again when the reaction account has posted its "Every extra has an answer" summary for the current head commit; after the last name, retry the `itemator` job (the card says so). Only a note from the exact reaction account counts (`ai-itemator-react-gitlab-ai-hackathon` here; set the CI variable `ITEMATOR_REACT_BOT` to your own account's username), the check fails closed if the notes cannot be read, and it needs the project to require a successful pipeline before merging.
+
+### An issue can declare its own scope (optional)
+
+An issue that needs to be exact can say what a change may touch, in a fenced block anywhere in its description:
+
+    ```itemator-scope
+    paths: src/parser/**, tests/parser/**
+    dependencies: none
+    ```
+
+`paths` are globs (`*` stays in one directory, `**` crosses them, a trailing `/` means everything under it); `dependencies` are package names, or `none`. Either line may be left out. What the block declares replaces the reading of the issue's words for that part: every changed file outside the paths is an extra named by its path, and every new dependency not on the list is an extra even when the issue's words contain its name. Extras on files inside the paths count as asked for, except a new dependency (only the list allows one), an agent instruction file, and a binary or large file. The card says when a block was used. Without a block nothing changes (`itemator/scope.py`).
+
+## 5b. Another scope checker (optional)
+
+If you already run a scope checker, or want one that names more files than Itemator's rules, run it in an earlier job and pass its JSON output as an artifact. Set `ITEMATOR_OTHER_CHECKER` to that file's path in the Itemator job. Each changed file it names, and the rules did not, becomes an extra labelled "named by another checker" with the checker's own reason, and gets the same thread, typed answer, hold and log entry. It reads Overreach's `--json` output, the Scope Creep Detector's `--json` output, and a plain `{"tool": "name", "files": [{"path": "...", "why": "..."}]}`. An issue with an `itemator-scope` block is left to that block. A file that cannot be read is said on the card, and only Itemator's own rules run. See [itemator/other.py](../itemator/other.py).
+
+```yaml
+scope-check:
+  stage: test
+  image: node:lts-alpine
+  variables: { OVERREACH_TELEMETRY: "off" }
+  script:
+    - git fetch origin "$CI_MERGE_REQUEST_TARGET_BRANCH_NAME"
+    - git diff "origin/$CI_MERGE_REQUEST_TARGET_BRANCH_NAME...HEAD" > change.diff
+    - npx -y overreach@0.9.0 -p "$CI_MERGE_REQUEST_TITLE" --diff change.diff --json > overreach.json || true
+  artifacts: { paths: [overreach.json] }
+  rules: [{ if: $CI_PIPELINE_SOURCE == "merge_request_event" }]
+```
+
+Then give the Itemator job `needs: [scope-check]` and `ITEMATOR_OTHER_CHECKER: overreach.json`. We have not run this job in a pipeline; the parsing is covered by tests/test_other.py.
 
 ## 6. The decision log (optional)
 Copy the `decision-log` job from `.gitlab-ci.yml` and `itemator/decisions.py`. On a tag it reads the merge requests merged since the previous tag, takes each one's "Every extra has an answer" summary note, and writes a "Decisions in <tag>" section into that release's description (it creates the release if there is none). Run by hand on the default branch it reports the last thirty days and writes `decisions.md` and `decisions.json` as job artifacts. It uses the job token, reads merge requests and notes, and writes nothing else. Only notes from the exact reaction account are believed (`ai-itemator-react-gitlab-ai-hackathon` here; set `ITEMATOR_REACT_BOT` to your own account's username), because anyone can comment on a public project.

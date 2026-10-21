@@ -8,4 +8,4 @@ dependencies = []
 
 [project.optional-dependencies]
 eval = ["duckdb==1.5.6"]   # pinned with eval/inputs.lock.json
-dev = ["pytest"]
+dev = ["pytest", "pyyaml"]  # tests read the flow and CI YAML; the checker itself needs neither

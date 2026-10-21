@@ -1,0 +1,57 @@
+{
+ "staged": true,
+ "branch": "demo/decided-before",
+ "started": "2026-10-22T02:14:45",
+ "triggers_before": {
+  "gid://gitlab/Ai::FlowTrigger/3014366": false,
+  "gid://gitlab/Ai::FlowTrigger/3014359": false,
+  "gid://gitlab/Ai::FlowTrigger/3014118": false,
+  "gid://gitlab/Ai::FlowTrigger/2988651": true,
+  "gid://gitlab/Ai::FlowTrigger/2975839": true
+ },
+ "issue_iid": 83,
+ "mr_iid": 322,
+ "mr_url": "https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/39194174/showcase/-/merge_requests/322",
+ "pipeline": {
+  "id": 2973801549,
+  "status": "failed"
+ },
+ "itemator_job": {
+  "id": 17362885719,
+  "status": "success",
+  "url": "https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/39194174/showcase/-/jobs/17362885719"
+ },
+ "extras": [
+  {
+   "name": "rich",
+   "kind": "new_dependency",
+   "thread_stub": "`rich` (new dependency): adds package rich; the issue does not name it. PyPI: first released 2019-11-10, 206 releases plus 1 yanked, licence MIT as declared by its publisher, 0 known advisories in any version, for its latest version (the line pins none), with what it brings along, 4 packages (3 more than the line names) and about 1.7 MB to download on every fresh install; this project ran at least 1000 pipelines in the last 30 days, so at least 1.7 GB a month if each one installs it without a cache, by the SCI method, a bracket from borrowed coefficients: 0.0017 g to 0.11 g CO2e per fresh install and at least 1.7 g to 110 g a month at those pipelines (checked 2026-10-21). The description does not mention this. To keep it, reply with its exact name; put `@ai-itemator-react-gitlab-ai-hackathon` on the same line to start the check, and a line under the name can say why. To move it into its own MR, reply `split`. To drop it from this MR, reply `remove`. If this is not really an extra, reply `not an extra`.\n\nDecided before: kept on !278 by francisdevasargunam on 2026-10-21 (public answer log)."
+  },
+  {
+   "name": "scratch.bak",
+   "kind": "stray_file",
+   "thread_stub": "`scratch.bak` (stray file): adds a temp or scratch file; the issue does not ask for it. The description does not mention this. To keep it, reply with its exact name; put `@ai-itemator-react-gitlab-ai-hackathon` on the same line to start the check, and a line under the name can say why. To drop it from this MR, reply `remove`. To keep it and stop asking about this file, reply `always`; that opens a merge request that changes the team policy. If this is not really an extra, reply `not an extra`.\n\nDecided before: removed on !17 by anbuchelvanganesan.cse2024 on 2026-10-11 (public answer log)."
+  }
+ ],
+ "decided_before": {
+  "read": true,
+  "matched": 2
+ },
+ "triggers_after": {
+  "gid://gitlab/Ai::FlowTrigger/3014366": false,
+  "gid://gitlab/Ai::FlowTrigger/3014359": false,
+  "gid://gitlab/Ai::FlowTrigger/3014118": false,
+  "gid://gitlab/Ai::FlowTrigger/2988651": true,
+  "gid://gitlab/Ai::FlowTrigger/2975839": true
+ },
+ "checks": {
+  "D1_job_ran": true,
+  "D2_rich": true,
+  "D3_scratch": true,
+  "D4_record": true,
+  "D5_no_flow": false,
+  "D6_no_notes": true
+ },
+ "left": "merge request and issue closed unmerged after recording",
+ "checks_note": "D5 fails as registered: two triggers that are not Itemator's were already active before the run and stayed so, GitLab's Code Review flow on reviewer assignment (Ai::FlowTrigger/2988651, a credit probe from 2026-10-10) and GitLab's Developer flow (Ai::FlowTrigger/2975839). Both Itemator triggers (card 3014359, react 3014366) were inactive throughout. No reviewer was assigned and no account was mentioned, and D6 shows no note from a flow account, so no flow ran on the merge request."
+}

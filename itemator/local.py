@@ -17,6 +17,7 @@ import sys
 
 from itemator import ci
 from itemator import extras as X
+from itemator import after as AFTER
 from itemator import neutral as N
 from itemator import policy as POL
 from itemator import unwrap as U
@@ -186,7 +187,7 @@ def main(argv=None, out=sys.stdout) -> int:
     except (ci.JobError, OSError) as e:
         print(f"itemator.local: {e}", file=sys.stderr)
         return 2
-    analysis = X.analyse(text, files)
+    analysis = AFTER.analyse(text, files)[0]
     print(render(analysis, len(files), bool(text.strip()), "commit messages" if a.commits else "issue text"), file=out)
     if a.map:
         print("\n" + file_map(analysis, files, file_facts(a.repo, base, a.head, files)), file=out)
