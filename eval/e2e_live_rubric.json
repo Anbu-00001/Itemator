@@ -1,0 +1,15 @@
+{
+ "what": "Written and pushed before the run. One staged merge request, opened by a person, run end to end with the card trigger on: does the card start by itself when the pipeline finishes, and do its threads carry the two newest parts, the 'Decided before' line and a file named only by the other checker (Overreach)? Card run only; about 2 credits.",
+ "staged": "Issue: drop the empty item after a trailing comma in examples/parser.py; nothing else asked. The merge request makes that change, adds `rich` to pyproject.toml (kept on !278 by an outside person, per the public answer log) and adds examples/usage_ping.py, a function that posts a usage event to an outside URL. Offline before the run: Itemator's rules name `rich` and not usage_ping.py; Overreach 0.9.0 in no-key mode names usage_ping.py.",
+ "checks": {
+  "E1_started_by_itself": "a card note appears, and before it no person requested a review or mentioned a flow account on the merge request",
+  "E2_decided_before": "the thread for `rich` contains 'Decided before: kept on !278 by francisdevasargunam on 2026-10-21 (public answer log).'",
+  "E3_other_checker": "a thread for examples/usage_ping.py says 'named by another checker' and 'Overreach named it'",
+  "E4_read_line": "every extra thread contains the line 'What it does, as the card's model read the diff (check it): '",
+  "E5_draft": "the card account marked the merge request as draft",
+  "E6_nothing_else": "after the run the card and react triggers are off, and no note comes from GitLab's Code Review or Developer flow accounts"
+ },
+ "prediction_before_run": {"all six pass": "0.45", "E1 passes": "0.80", "E3 passes": "0.65"},
+ "after": "Record in results/e2e_live.json; leave the merge request open and unmerged as the public record (like !313), close the issue only if the card failed.",
+ "limits": "Staged by the owner on the owner's project. The answer the 'Decided before' line quotes is one outside person's; every other answer in the log is the owner's. It shows the parts run together on a real pipeline, not what a person then decides."
+}

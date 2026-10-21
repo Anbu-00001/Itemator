@@ -1,0 +1,33 @@
+{
+ "staged": true,
+ "branch": "demo/e2e-live",
+ "started": "2026-10-22T02:30:20",
+ "meter_before": 331.0,
+ "issue_iid": 84,
+ "mr_iid": 325,
+ "mr_url": "https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/39194174/showcase/-/merge_requests/325",
+ "card_done": null,
+ "threads": {
+  "rich": "`rich` (new dependency): adds package rich; the issue does not name it. PyPI: first released 2019-11-10, 206 releases plus 1 yanked, licence MIT as declared by its publisher, 0 known advisories in any version, for its latest version (the line pins none), with what it brings along, 4 packages (3 more than the line names) and about 1.7 MB to download on every fresh install; this project ran at least 1000 pipelines in the last 30 days, so at least 1.7 GB a month if each one installs it without a cache, by the SCI method, a bracket from borrowed coefficients: 0.0017 g to 0.11 g CO2e per fresh install and at least 1.7 g to 110 g a month at those pipelines (checked 2026-10-21). The description does not mention this. To keep it, reply with its exact name; put `@ai-itemator-react-gitlab-ai-hackathon` on the same line to start the check, and a line under the name can say why. To move it into its own MR, reply `split`. To drop it from this MR, reply `remove`. If this is not really an extra, reply `not an extra`.\n\nDecided before: kept on !278 by francisdevasargunam on 2026-10-21 (public answer log).\n\nWhat it does, as the card's model read the diff (check it): It changes the dependencies line in pyproject.toml from an empty list to a list holding rich at version 13 or newer.\n\n[//]: # (itemator:extra=rich)",
+  "examples/usage_ping.py": "`examples/usage_ping.py` (named by another checker): Overreach named it (File \"examples/usage_ping.py\" is not within the files the prompt authorized.); Itemator's own rules did not. The description does not mention this. To keep it, reply with its exact name; put `@ai-itemator-react-gitlab-ai-hackathon` on the same line to start the check, and a line under the name can say why. To drop it from this MR, reply `remove`. If this is not really an extra, reply `not an extra`.\n\nWhat it does, as the card's model read the diff (check it): It adds a new Python file with a ping function that sends a usage event as JSON to an example.org address using urllib.\n\n[//]: # (itemator:extra=examples/usage_ping.py)"
+ },
+ "card_note": "2 things beyond #84: `rich` (new dependency), `examples/usage_ping.py` (named by another checker).\n\nAn extra can be welcome; it just needs one person's choice. Type each name in its thread to keep it, or reply \"split\" to move it to its own MR, \"remove\" to drop it. Itemator keeps, moves or removes nothing until a person replies.\n\nThe issue and this change have the same author, so no second person has described it yet.\n\nAlso checked, with no model: Code that can do something new, which the same file did not do before: `examples/usage_ping.py` line 2 now reaches the network (`import urllib.request`).\n\n<details><summary>In plain words</summary>\n\n- `rich` was added as a new dependency in pyproject.toml; the new-dependency rule noticed it because the issue does not name it.\n- `examples/usage_ping.py` was named by another checker, Overreach, not by Itemator's own rules.\n\n</details>\n\nFacts computed by CI job #17363218254, rules v6.\n\nCost of finding these facts: 4.7 s on the CI runner, 13 GitLab reads and 7 package-registry lookups, no model call. The flow after it typically makes about 6 model calls, up to about 1.9 GitLab Credits at the model's list price (an estimate).\n\n[//]: # (itemator:head=2e9cd6a5143f0bd25b9ef2bf2d8ccbf88c366eee)",
+ "triggers_after": {
+  "gid://gitlab/Ai::FlowTrigger/3014366": false,
+  "gid://gitlab/Ai::FlowTrigger/3014359": false,
+  "gid://gitlab/Ai::FlowTrigger/3014118": false,
+  "gid://gitlab/Ai::FlowTrigger/2988651": true,
+  "gid://gitlab/Ai::FlowTrigger/2975839": true
+ },
+ "checks": {
+  "E1_started_by_itself": true,
+  "E2_decided_before": true,
+  "E3_other_checker": true,
+  "E4_read_line": true,
+  "E5_draft": true,
+  "E6_nothing_else": true
+ },
+ "meter_after": 332.26,
+ "left_open": "staged; left open and unmerged as the public record",
+ "card_done_note": "card_done is null: a card started by the pipeline posts no 'started/completed session' system notes, so the 30-minute wait ran out (the trigger stayed on until 03:00 IST). The card's own notes landed at 21:04 UTC (02:34 IST), four minutes after the run started."
+}
