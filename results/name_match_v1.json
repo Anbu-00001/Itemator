@@ -1,0 +1,48 @@
+{
+ "what": "How often does an issue's wording stop the new-dependency rule, and how did the issue name the package?",
+ "samples": [
+  "replay_v2_sampleB",
+  "replay_v3_sampleC",
+  "replay_v4_sampleD",
+  "replay_v5_sampleE",
+  "replay_v6_sampleF"
+ ],
+ "pull_requests": 300,
+ "not_readable": 0,
+ "silenced": 4,
+ "by_how_named": {
+  "code": 0,
+  "package_context": 0,
+  "bare": 4
+ },
+ "prs_with_a_bare_silencing": 4,
+ "rows": [
+  {
+   "pr_url": "https://github.com/Azure/AppConfiguration/pull/1065",
+   "name": "azure-appconfiguration-provider",
+   "named": "bare",
+   "reading": "named as the package to use ('Uses azure-appconfiguration-provider')"
+  },
+  {
+   "pr_url": "https://github.com/mizchi/similarity/pull/13",
+   "name": "tree-sitter",
+   "named": "bare",
+   "reading": "the issue is about tree-sitter ('Test tree-sitter token matcher')"
+  },
+  {
+   "pr_url": "https://github.com/navig-me/telert/pull/13",
+   "name": "slixmpp",
+   "named": "bare",
+   "reading": "the issue asks for XMPP support; the title-acronym rule matched XMPP inside slixmpp"
+  },
+  {
+   "pr_url": "https://github.com/tomhrr/cosh/pull/182",
+   "name": "ahash",
+   "named": "bare",
+   "reading": "the issue suggests it ('See e.g. AHash')"
+  }
+ ],
+ "reading_by": "the builder's coding agent (Claude), from the issue text shown; one reader, no second label",
+ "silenced_by_an_unrelated_sense": 0,
+ "note": "On this sample no dependency was silenced by a word used in another sense; a stricter match would have listed all four as extras."
+}

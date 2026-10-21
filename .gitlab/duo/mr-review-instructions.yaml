@@ -1,0 +1,45 @@
+# Custom review instructions for GitLab Duo's reviewers (Code Review Flow and GitLab Duo Code Review read this file).
+# They point the reviewer at the same kinds of change Itemator's rules list. They are advice to the reviewer only: what is
+# kept or removed is still decided by a person answering the Itemator card, never by these comments.
+instructions:
+  - name: Dependencies the issue did not ask for
+    fileFilters:
+      - "pyproject.toml"
+      - "**/requirements*.txt"
+      - "**/package.json"
+      - "**/go.mod"
+      - "**/Cargo.toml"
+      - "**/*.csproj"
+    instructions: |
+      If this merge request adds a dependency, check whether the linked issue asks for it. If it does not, say so in one
+      sentence, name the package, and ask whether the change needs it. Do not judge the package itself.
+  - name: CI and configuration changes the issue did not ask for
+    fileFilters:
+      - ".gitlab-ci.yml"
+      - "ci/**"
+      - ".github/**"
+      - "**/Dockerfile"
+      - ".itemator.toml"
+    instructions: |
+      If a CI, container or tool configuration file changed and the linked issue does not mention it, say which file and
+      ask whether the change belongs in this merge request or in its own.
+  - name: Tests removed or weakened
+    fileFilters:
+      - "tests/**"
+      - "**/test_*.py"
+      - "**/*_test.*"
+      - "**/spec/**"
+    instructions: |
+      If tests are deleted, skipped or have assertions removed, say which, and ask whether the linked issue asked for it.
+      A test removed together with the feature flag or code it covered is expected; say that instead of flagging it.
+  - name: Files that instruct coding agents
+    fileFilters:
+      - "AGENTS.md"
+      - "**/AGENTS.md"
+      - "CLAUDE.md"
+      - ".cursorrules"
+      - ".github/copilot-instructions.md"
+      - "skills/**"
+    instructions: |
+      These files change what coding agents do in this project. If one changed, quote the changed instruction in one line
+      and ask whether the linked issue asked for it.

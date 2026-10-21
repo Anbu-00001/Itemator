@@ -1,0 +1,48 @@
+{
+  "what": "A prospective test, registered before the sample is drawn and before any outcome exists: coding-agent pull requests that are OPEN on GitHub now, what Itemator's frozen rules (extras v6, unchanged) list for each, sealed by a commit and a SHA-256, and on 2026-10-25 the outcome read. Did a human reviewer object to a listed file, did the file leave the pull request, or did it merge with no objection (the false-alarm side)? Read-only: GET requests through `gh api` with the user's own read access; nothing is posted, starred, forked or commented.",
+  "rules": "itemator.extras.analyse(task_text, files, repo='owner/name', version=6). task_text is the linked issue's title and body (eval/aidev_recall.py task_text); files are the pull request's /pulls/{n}/files entries at sampling time (filename, status, patch, previous_filename). A file is listed when eval/aidev_recall.py listed() says so: an extra names it, a directory that holds it, or a mass event's file list includes it.",
+  "sampling": {
+    "window": "pull requests created 2026-10-19 to 2026-10-21 (GitHub search created:2026-10-19..2026-10-21), searched once on the sampling day; the search time is recorded in the sealed file",
+    "search": "GitHub search API, /search/issues, one query per (agent, day): `is:pr is:public is:open linked:issue created:<day> <agent qualifier>`, sort=created, order=desc, up to 2 pages of 100 (the newest 200 of that day for that agent). At most 30 searches a minute: 2.5 s sleep between searches.",
+    "agents": {
+      "copilot": "author:app/copilot-swe-agent (author login Copilot or copilot-swe-agent[bot])",
+      "devin": "author:app/devin-ai-integration",
+      "jules": "author:app/google-labs-jules",
+      "cursor": "author:app/cursor",
+      "claude_code": "author:app/claude, or the body contains 'Generated with [Claude Code]' or 'Generated with Claude Code' (query: \"Generated with Claude Code\" in:body)",
+      "codex": "the body contains 'Codex Task' and a chatgpt.com/codex link (query: \"Codex Task\" in:body)"
+    },
+    "agent_check": "the search hit is kept only if the agent is confirmed from the fetched item itself: the author login for the app queries, the phrase in the body for the body queries. A pull request found by two queries takes the first agent in the order above.",
+    "eligible": "state open; not a draft whose title starts with '[WIP]' (Copilot's marker that it is still writing); the body has a closing reference (itemator.ci.closing_refs: Closes/Fixes/Resolves/Implements #n, or the issue's https://github.com/<same owner>/<same repo>/issues/<n> URL after a closing word) to an issue in the SAME repository; that issue is readable and is an issue, not a pull request; the pull request has 1 to 300 changed files; the rules list at least one of its files.",
+    "order": "every searched pull request is ordered by sha256('itemator-prospective-v1:' + html_url) as hex, ascending. Walk that order; check eligibility; keep at most 1 pull request per repository (the first in the order) and at most 10 per agent; stop at N=60. If the walk ends with fewer than 60, walk again from the start without the per-agent cap (the per-repository cap stays).",
+    "N": 60,
+    "seed": "itemator-prospective-v1",
+    "recorded_per_pull_request": "url, created_at, agent, issue number, head sha at sampling, the paths of all changed files at sampling, the listed extras (kind, path, name, files they cover) and the listed paths. No outcome fields, no comment text, no patches, no issue text.",
+    "recorded_overall": "search time, queries and their total_count, pool size, counts skipped by reason, and cases_sha256 = sha256 of json.dumps(pull_requests, sort_keys=True, separators=(',', ':')) so the sealed list can be checked inside its own file"
+  },
+  "read_date": "2026-10-25 (IST), before the 27 Oct deadline. `python3 eval/prospective.py read` is run once that day; its results go to results/prospective_v1_read.json. The sealed file is not edited after its commit.",
+  "outcomes_per_listed_file": {
+    "objected": "a human (author type User, not the pull request's author, login not ending in [bot]) wrote, after the pull request was created, (a) an inline review comment whose path is the listed file, or (b) a review body or conversation comment whose text contains the listed file's full path, or its basename when no other changed file at sampling has that basename; AND that comment's text matches, case-insensitive, whole word: remove, removed, removing, unnecessary, unneeded, needed, necessary, why, revert, reverted, unrelated, 'out of scope', 'not needed', 'don't need', 'do not need', 'shouldn't be', 'should not be', delete, drop. The rule is mechanical; nobody reads the comments to decide.",
+    "removed": "the listed path is not among the pull request's files on the read date, and no file there has it as previous_filename",
+    "landed": "the pull request is merged and the listed file is among its final files",
+    "closed_unmerged": "the pull request is closed and not merged (whatever its files)",
+    "still_open_with_file": "the pull request is open and the listed file is among its files",
+    "silent_landing": "landed and not objected: the false-alarm side, the listed file merged and no human objected",
+    "precedence": "objected is counted on its own (a file can be objected and also removed, landed or still open). The state outcome takes the first that applies: closed_unmerged, removed, landed, still_open_with_file."
+  },
+  "unreadable": "the pull request, its files, comments or reviews return 404/410 or any error after 4 tries on the read date (deleted, made private, repository gone), or the file list has 3000 entries (the API cap). Unreadable pull requests are counted and reported, never dropped silently, and their files are left out of every share.",
+  "comparison": "the same outcomes are computed for the files of the same pull requests that the rules did NOT list (the paths recorded at sampling), so the listed files' rates have a base rate beside them. Files added after sampling are counted but not scored.",
+  "summary_numbers": "pull requests sealed, readable on the read date, and their state counts (open, merged, closed unmerged); listed files: objected, removed, landed, closed_unmerged, still_open_with_file, silent_landing; the share objected-or-removed among listed files with its Wilson 95% interval; the same share among unlisted files; the share of listed files in merged pull requests that landed silently; by agent and by kind of extra.",
+  "limits": "Four to six days is short: most pull requests will still be open and unreviewed, so 'not objected' mostly means 'not looked at yet'. Many agent pull requests are on personal repositories where nobody reviews. Removal can be the agent's own churn, not a reviewer's request. The keyword rule will miss objections in other words and count some comments that only ask a question. The search API's results are not a random sample of all agent pull requests, and the day's newest 200 per agent favours later hours.",
+  "seen_before_registration": "Only the search total_counts for 2026-10-19..21 (open, linked:issue): copilot 269, devin 99, cursor 4, author:app/claude 40, 'Generated with Claude Code' 6426; 'Codex Task' 509 and google-labs-jules 280 without linked:issue; three Claude Code search hits' bodies (to check the phrase). No file list of any pull request has been read and the rules have not been run on any of them.",
+  "predictions_before_sampling": {
+    "at least one listed file is objected to or removed by 2026-10-25": "0.70",
+    "the share objected-or-removed is higher among listed files than among unlisted files of the same pull requests": "0.55",
+    "of the listed files in pull requests merged by 2026-10-25, at least half landed silently (no objection)": "0.80"
+  },
+  "amendment_1": {
+    "date": "2026-10-21, after sealing and before any outcome was read",
+    "why": "one sealed pull request holds 127 of the 245 listed files (a mass event), so per-file shares would mostly describe that one pull request",
+    "change": "also report, per pull request, how many have at least one listed file objected to or removed, out of the readable pull requests with a listed file. The per-file numbers stay as registered."
+  }
+}

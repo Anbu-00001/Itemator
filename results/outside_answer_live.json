@@ -1,0 +1,30 @@
+{
+ "rubric": "eval/outside_answer_rubric.json",
+ "card_started": "2026-10-21T10:32:21",
+ "meter_before_card": 324.07,
+ "issue_iid": 81,
+ "mr_iid": 278,
+ "mr_url": "https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/39194174/showcase/-/merge_requests/278",
+ "pipeline": "failed",
+ "card_done": "completed session [9794619](https://gitl",
+ "thread_url": "https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/39194174/showcase/-/merge_requests/278#note_4055529406",
+ "thread": "`rich` (new dependency): adds package rich; the issue does not name it. PyPI: first released 2019-11-10, 206 releases plus 1 yanked, licence MIT as declared by its publisher, 0 known advisories for 13.7.1, with what it brings along, 4 packages (3 more than the line names) and about 1.6 MB to download on every fresh install; this project ran at least 1000 pipelines in the last 30 days, so at least 1.6 GB a month if each one installs it without a cache, by the SCI method, a bracket from borrowed coefficients: 0.0017 g to 0.11 g CO2e per fresh install and at least 1.7 g to 110 g a month at those pipelines (checked 2026-10-21). The description does not mention this. To keep it, reply with its exact name; put `@ai-itemator-react-gitlab-ai-hackathon` on the same line to start the check, and a line under the name can say why. To move it into its own MR, reply `split`. To drop it from this MR, reply `remove`. If this is not really an extra, reply `not an extra`.\n\n[//]: # (itemator:extra=rich)",
+ "meter_after_card": 324.07,
+ "settle_started": "2026-10-21T11:12:37",
+ "meter_before_settle": 325.645,
+ "outside_reply": {
+  "id": 4055666063,
+  "at": "2026-10-21T05:42:09.023Z",
+  "first_line": "rich"
+ },
+ "react_done": "completed session [9795505](https://gitl",
+ "settled": {
+  "bot_notes": [
+   "Kept: `rich`, named by @francisdevasargunam. Their reason is in their reply."
+  ],
+  "settled": "kept",
+  "resolved": true
+ },
+ "summary": "Every extra has an answer: 1 kept, 0 dismissed, 0 moved, 0 removed.\n\n- `rich`: kept, named by @francisdevasargunam\n\n[//]: # (itemator:named=10780d76905219b627715929ced265472c0b61ca)",
+ "meter_after_settle": 325.645
+}

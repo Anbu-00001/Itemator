@@ -263,7 +263,8 @@ def test_t46_the_receipt_is_posted_once_after_the_summary_and_never_starts_a_lin
               "call create_issue_note once with project_id, issue_iid ISSUE_IID",
               '"Receipt from Itemator for !<IID>: this merge request went beyond this issue in <number of extras> '
               'place(s), and each has an answer."',
-              '"- `NAME`: <kept|dismissed|moved|removed>, decided by @WHO"', "then MARK(MARKER_R)"):
+              '"- `NAME`: <kept|dismissed|moved|removed>, decided by @WHO"', "then MARK(MARKER_R)",
+              'and when that note ends with "Their reason is in their reply." add ", with a reason in its thread" at the end of that line'):
         assert s in step, s
     assert "create_issue_note" not in system.replace(step, "")          # the issue gets nothing from any other step
 

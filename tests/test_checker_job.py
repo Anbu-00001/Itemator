@@ -239,3 +239,45 @@ def test_the_policy_job_runs_even_when_an_earlier_job_failed():
     text = (ROOT / "ci" / "itemator-job.yml").read_text()
     assert "\n  stage: .pipeline-policy-post\n" in text
     assert '  rules:\n    - if: $CI_PIPELINE_SOURCE == "merge_request_event"\n      when: always\n' in text
+
+
+def _job(repo, base, tmp_path):
+    repo.git("update-ref", "refs/remotes/origin/main", base)
+    (tmp_path / "bin").mkdir(exist_ok=True)
+    if not (tmp_path / "bin" / "python").exists():
+        (tmp_path / "bin" / "python").symlink_to(sys.executable)
+    (tmp_path / "tmp").mkdir(exist_ok=True)
+    env = {"PATH": f"{tmp_path / 'bin'}:/usr/bin:/bin", "HOME": str(tmp_path), "TMPDIR": str(tmp_path / "tmp"),
+           "GIT_CONFIG_GLOBAL": os.devnull, "GIT_CONFIG_NOSYSTEM": "1", "CI_PROJECT_DIR": str(repo.path),
+           "CI_MERGE_REQUEST_DIFF_BASE_SHA": base, "CI_MERGE_REQUEST_TARGET_BRANCH_NAME": "main"}
+    return subprocess.run(["sh", "-c", job_script()], cwd=repo.path, env=env, capture_output=True, text=True, timeout=60)
+
+
+EXTRA = ('{"extras": [{"kind": "stray_file", "path": "x.sh", "name": "x.sh", "why": "w", '
+         '"anchor": {"new_path": "x.sh", "new_line": 2}, "plain_facts": {}}]}')
+
+
+@pytest.mark.parametrize("code", [0, 1, 2])
+def test_the_reports_never_change_the_checkers_result(tmp_path, code):
+    repo = Repo(tmp_path / "repo")
+    ci_py = f"import sys\na = sys.argv[1:]\nopen(a[a.index('--out') + 1], 'w').write({EXTRA!r})\nsys.exit({code})\n"
+    base = repo.commit({"itemator/__init__.py": "", "itemator/ci.py": ci_py,
+                        **{f"itemator/{n}": (ROOT / "itemator" / n).read_text() for n in ("glreports.py", "sci.py")}})
+    r = _job(repo, base, tmp_path)
+    assert r.returncode == code, r.stderr
+    cq = json.loads((repo.path / "gl-code-quality-report.json").read_text())
+    assert [(f["location"]["path"], f["location"]["lines"]["begin"]) for f in cq] == [("x.sh", 2)]
+    assert (repo.path / "metrics.txt").read_text().startswith("itemator_extras 1\n")
+
+
+def test_a_target_branch_without_the_reports_module_still_passes(tmp_path):
+    repo = Repo(tmp_path / "repo")
+    base = repo.commit(stub("base"))
+    r = _job(repo, base, tmp_path)
+    assert r.returncode == 0, r.stderr
+    assert (repo.path / "itemator.json").exists() and not (repo.path / "gl-code-quality-report.json").exists()
+
+
+def test_the_job_uploads_both_reports():
+    text = (ROOT / "ci" / "itemator-job.yml").read_text()
+    assert "    reports:\n      codequality: gl-code-quality-report.json\n      metrics: metrics.txt\n" in text

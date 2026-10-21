@@ -259,7 +259,7 @@ def test_mass_event_of_generated_files_anchors_on_the_first_removed_line():
 
 # ------------------------------------------------- thread stub, plain facts
 
-KEEP = ("To keep it, reply with its exact name; a line under the name can say why. To move it into its own MR, reply `split`. "
+KEEP = ("To keep it, reply with its exact name; put `@ai-itemator-react-gitlab-ai-hackathon` on the same line to start the check, and a line under the name can say why. To move it into its own MR, reply `split`. "
         "To drop it from this MR, reply `remove`. "
         "If this is not really an extra, reply `not an extra`.")
 
@@ -454,7 +454,7 @@ def test_six_extras_of_one_kind_from_one_manifest_are_one_line():
     assert [d["name"] for d in e["plain_facts"]["detail"]] == names and e["plain_facts"]["detail"][0]["kind"] == "new_dependency"
     assert e["anchor"] == at("Cargo.toml", "Cargo.toml", None, 2)
     assert e["thread_stub"].startswith("`Cargo.toml` (new dependency, 7 packages): 7 new dependencies in Cargo.toml: crate-a, ")
-    assert e["thread_stub"].endswith("To keep it, reply with its exact name; a line under the name can say why. To move it into its own MR, reply `split`. "
+    assert e["thread_stub"].endswith("To keep it, reply with its exact name; put `@ai-itemator-react-gitlab-ai-hackathon` on the same line to start the check, and a line under the name can say why. To move it into its own MR, reply `split`. "
                                      "To drop it from this MR, reply `remove`. "
                                      "If this is not really an extra, reply `not an extra`.")
     assert rep["card"]["final_line"] == "1 thing beyond #12: `Cargo.toml` (new dependency, 7 packages)."

@@ -25,3 +25,12 @@ def test_the_preview_maps_the_requests_own_commits():
 
 def test_the_production_page_job_is_not_touched():
     assert CI["shipped-page"]["pages"] is True and CI["shipped-page"]["rules"] == [{"if": "$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH"}]
+
+
+def test_every_script_line_is_a_plain_string():
+    """A ": " inside an unquoted script line turns it into a mapping; YAML still parses, but GitLab rejects the pipeline."""
+    for name, job in CI.items():
+        if isinstance(job, dict):
+            for key in ("before_script", "script", "after_script"):
+                for line in job.get(key) or []:
+                    assert isinstance(line, str), (name, key, line)

@@ -1,0 +1,42 @@
+{
+ "mr": 294,
+ "pipeline": 2970740075,
+ "jobs": {
+  "itemator": {
+   "id": 17339280563,
+   "status": "success",
+   "seconds": 35.539026,
+   "log_seconds": 34.8
+  },
+  "alpine-trial": {
+   "id": 17339280561,
+   "status": "success",
+   "seconds": 136.555463,
+   "log_seconds": 20.8
+  }
+ },
+ "downloaded_per_run_bytes": {
+  "itemator (apt git)": 23800000,
+  "alpine-trial (apk git)": 9769586
+ },
+ "same": true,
+ "differs_in": [],
+ "extras": 2,
+ "images": {
+  "full": {
+   "image": "python:3.12",
+   "image_mb": 411.6,
+   "git_mb_per_run": 0
+  },
+  "slim": {
+   "image": "python:3.12-slim",
+   "image_mb": 43.3,
+   "git_mb_per_run": 23.8
+  },
+  "alpine": {
+   "image": "python:3.12-alpine",
+   "image_mb": 20.6,
+   "git_mb_per_run": 9.8
+  }
+ }
+}

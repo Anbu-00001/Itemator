@@ -58,7 +58,7 @@ def build(api: D.Api, environment: str, target: str) -> dict:
 # The other pages the Pages job publishes next to this one (.gitlab-ci.yml), so a visitor who lands here finds them.
 NAV = ("<p>Try it without installing anything: <a href=\"try/\">paste a diff</a>, <a href=\"green/\">paste a merge request or pull "
        "request link</a>, <a href=\"weigh/\">weigh a package</a>. See <a href=\"catches/\">24 real cases where a reviewer objected to a "
-       "file an AI agent changed</a>, <a href=\"map/\">the picture of one change</a>, and <a href=\"answers/\">every recorded answer, hash-chained</a>. Source and docs: "
+       "file an AI agent changed</a>, <a href=\"map/\">the picture of one change</a>, <a href=\"answers/\">every recorded answer, hash-chained</a>, and <a href=\"sealed/\">a forward test sealed before its outcome</a>. Source and docs: "
        "<a href=\"https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/39194174/showcase\">the repository</a>.</p>")
 
 
@@ -73,16 +73,50 @@ def _item(i: dict) -> str:
     return f"<code>{e(i['name'])}</code>{w} {e(i['decision'])} by @{e(i['who'])}{why}"
 
 
-def page(report: dict) -> str:
+LATEST = 5             # newest recorded answers shown at the top
+INTRO = ("<p><strong>Itemator</strong> lists what a merge request changed beyond its issue, such as a new dependency or a CI file "
+         "nobody asked for, and asks a person to keep or remove each one before the merge. This page is its own record on this "
+         "project.</p>")
+
+
+def latest_answers(log) -> str:
+    """The newest answers from the answer log (public/answers/answers.json), newest first, each linked to its note; "" when there are none."""
+    entries = log.get("entries") if isinstance(log, dict) else None
+    if not isinstance(entries, list):
+        return ""
+    e = html.escape
+    rows = [(x, i) for x in reversed(entries) if isinstance(x, dict) for i in (x.get("items") or [])][:LATEST]
+    if not rows:
+        return ""
+    owners = set(log.get("owners") or [])
+
+    def outside(w):
+        return " <strong>(outside the project)</strong>" if owners and w not in owners else ""
+    lis = "".join(f"<li><a href=\"{e(str(x.get('url', '')))}\">!{e(str(x.get('iid')))}</a> <code>{e(D.clean_name(i.get('name')))}</code>: "
+                  f"{e(str(i.get('decision')))} by @{e(str(i.get('who')))}{outside(i.get('who'))} <span class=\"m\">{e(str(x.get('at', ''))[:10])}</span></li>" for x, i in rows)
+    return f"<h2>Latest answers</h2><ul>{lis}</ul><p><a href=\"answers/\">Every recorded answer</a></p>"
+
+
+SHOWN = 3              # deployments always shown in full; later ones with no extras fold into one line
+
+
+def _fold(blocks: list) -> list:
+    n = sum(b.startswith("<h2>") for b in blocks)
+    if not n:
+        return []
+    return [f"<details><summary>{n} more deployment{'' if n == 1 else 's'}, all with no extras, so nothing to ask</summary>", *blocks, "</details>"]
+
+
+def page(report: dict, answers=None) -> str:
     """A static HTML page; every string that came from GitLab is escaped."""
     e = html.escape
     out = ["<!doctype html><html lang=\"en\"><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\">",
            "<title>What shipped</title><style>body{font:16px/1.5 system-ui,sans-serif;max-width:46rem;margin:2rem auto;padding:0 1rem}"
            "h2{margin-top:2rem}li{margin:.3rem 0}.m{color:#555}</style></head><body>",
-           f"<h1>What shipped to {e(report['environment'])}</h1>",
+           INTRO, f"<h1>What shipped to {e(report['environment'])}</h1>",
            "<p>Each deployment, the merge requests in it, the extras each had beyond its issue, and who typed a name for each. "
            "Made by Itemator's deployment job from GitLab's own records; nothing here is typed by hand.</p>",
-           NAV]
+           NAV, latest_answers(answers)]
     if not report["deployments"]:
         out.append("<p>No successful deployment yet.</p>")
     removed = [d["weight"]["removed"] for d in report["deployments"] if d.get("weight") and d["weight"]["removed"]["dependencies"]]
@@ -100,10 +134,16 @@ def page(report: dict) -> str:
         line = D.unanswered_line(D.stats(merged))
         out.append(f"<p><strong>In the {n} deployment{'' if n == 1 else 's'} below, {e(line[0].lower() + line[1:])}</strong> "
                    "Itemator keeps, moves or removes nothing until a person replies, so this is what went in without one.</p>")
-    for d in report["deployments"]:
+    folded = []                         # quiet deployments after the first SHOWN, behind one line, still on the page
+    for k, d in enumerate(report["deployments"]):
+        quiet = k >= SHOWN and bool(d["merge_requests"]) and all(not m["extras"] and m.get("unanswered") == [] for m in d["merge_requests"])
+        if folded and not quiet:
+            out += _fold(folded)
+            folded = []
+        dest = folded if quiet else out
         s = d["stats"]
-        out.append(f"<h2>Deployment {e(str(d['iid'] or d['deployment']))} <span class=\"m\">{e(d['created_at'])}, commit {e(d['sha'])}</span></h2>")
-        out.append(f"<p class=\"m\">{s['merge_requests']} merge request{'' if s['merge_requests'] == 1 else 's'}, {s['extras']} extras decided "
+        dest.append(f"<h2>Deployment {e(str(d['iid'] or d['deployment']))} <span class=\"m\">{e(d['created_at'])}, commit {e(d['sha'])}</span></h2>")
+        dest.append(f"<p class=\"m\">{s['merge_requests']} merge request{'' if s['merge_requests'] == 1 else 's'}, {s['extras']} extras decided "
                    f"({s['kept']} kept, {s['dismissed']} dismissed, {s['moved']} moved, {s['removed']} removed). List: {e(d['source'])}.</p><ul>")
         for m in d["merge_requests"]:
             what = "; ".join(_item(i) for i in m["extras"])
@@ -112,10 +152,11 @@ def page(report: dict) -> str:
             elif m.get("unanswered"):
                 tail = "<strong>merged without a recorded answer</strong>: " + ", ".join(f"<code>{e(n)}</code>" for n in m["unanswered"])
             else:
-                tail = "no extras" if m.get("unanswered") == [] else "could not tell (no job report left, or a record GitLab did not return)"
+                tail = "no extras, so nothing to ask" if m.get("unanswered") == [] else "could not tell (no job report left, or a record GitLab did not return)"
             by = f"; merged by @{e(m['merger'])}" if m.get("merger") else ""
-            out.append(f"<li>!{e(str(m['iid']))} {e(m['title'])}: {tail}{by}</li>")
-        out.append("</ul>")
+            dest.append(f"<li>!{e(str(m['iid']))} {e(m['title'])}: {tail}{by}</li>")
+        dest.append("</ul>")
+    out += _fold(folded)
     out.append("<p class=\"m\">Merge requests merged into the default branch are listed with the extras they had. A commit pushed straight to the default branch is a deployment too, but it has no merge request, so none is listed for it.</p>")
     out.append("</body></html>")
     return "\n".join(out) + "\n"
@@ -128,6 +169,7 @@ def main(argv=None) -> int:
     ap.add_argument("--environment", default=os.environ.get("CI_ENVIRONMENT_NAME", "production"))
     ap.add_argument("--target", default=os.environ.get("CI_DEFAULT_BRANCH", "main"))
     ap.add_argument("--out", default="public")
+    ap.add_argument("--answers", default="", help="the answer log's answers.json, for the newest answers at the top")
     a = ap.parse_args(argv)
     token = os.environ.get("CI_JOB_TOKEN", "")
     if not (a.api and a.project and token):
@@ -137,7 +179,13 @@ def main(argv=None) -> int:
     report = build(api, a.environment, a.target)
     out = pathlib.Path(a.out)
     out.mkdir(parents=True, exist_ok=True)
-    (out / "index.html").write_text(page(report))
+    answers = None
+    if a.answers and pathlib.Path(a.answers).is_file():
+        try:
+            answers = json.loads(pathlib.Path(a.answers).read_text())
+        except ValueError:
+            answers = None
+    (out / "index.html").write_text(page(report, answers))
     (out / "shipped.json").write_text(json.dumps(report, indent=1))
     n = sum(d["stats"]["merge_requests"] for d in report["deployments"])
     print(f"itemator shipped: {len(report['deployments'])} deployments, {n} merge requests, {api.failures} unreadable requests"

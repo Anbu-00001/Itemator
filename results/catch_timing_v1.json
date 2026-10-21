@@ -1,0 +1,181 @@
+{
+ "rubric": "eval/catch_timing_rubric.json",
+ "summary": {
+  "read": 24,
+  "unreadable": 0,
+  "median_hours": 4.5,
+  "min_hours": 0.2,
+  "max_hours": 336.1,
+  "over_24h": 5
+ },
+ "cases": [
+  {
+   "pr": "https://github.com/Azure/azure-sdk-for-python/pull/42404",
+   "path": "sdk/identity/azure-identity/pyproject.toml",
+   "pr_created_at": "2025-08-07T16:36:29Z",
+   "comment_created_at": "2025-08-13T22:43:21Z",
+   "hours": 150.1
+  },
+  {
+   "pr": "https://github.com/Azure/azure-sdk-for-python/pull/42406",
+   "path": "sdk/cosmos/azure-cosmos/pyproject.toml",
+   "pr_created_at": "2025-08-07T16:37:32Z",
+   "comment_created_at": "2025-08-13T20:46:02Z",
+   "hours": 148.1
+  },
+  {
+   "pr": "https://github.com/CherryHQ/cherry-studio/pull/9992",
+   "path": "PR_TEMPLATE.md",
+   "pr_created_at": "2025-09-06T13:59:26Z",
+   "comment_created_at": "2025-09-06T14:37:03Z",
+   "hours": 0.6
+  },
+  {
+   "pr": "https://github.com/NVIDIA/cuda-python/pull/884",
+   "path": "cuda_pathfinder/docs/source/_static/images/Nsight-Compute-CLI-625x473.png",
+   "pr_created_at": "2025-08-21T18:33:39Z",
+   "comment_created_at": "2025-08-21T18:47:50Z",
+   "hours": 0.2
+  },
+  {
+   "pr": "https://github.com/NVIDIA/cuda-python/pull/884",
+   "path": "cuda_pathfinder/docs/source/_static/logo-dark-mode.png",
+   "pr_created_at": "2025-08-21T18:33:39Z",
+   "comment_created_at": "2025-08-21T18:47:54Z",
+   "hours": 0.2
+  },
+  {
+   "pr": "https://github.com/NVIDIA/cuda-python/pull/884",
+   "path": "cuda_pathfinder/docs/source/_static/logo-light-mode.png",
+   "pr_created_at": "2025-08-21T18:33:39Z",
+   "comment_created_at": "2025-08-21T18:47:58Z",
+   "hours": 0.2
+  },
+  {
+   "pr": "https://github.com/documentdb/documentdb/pull/204",
+   "path": ".github/workflows/build_rpm_packages.yml",
+   "pr_created_at": "2025-05-29T08:55:22Z",
+   "comment_created_at": "2025-06-12T09:03:18Z",
+   "hours": 336.1
+  },
+  {
+   "pr": "https://github.com/githubnext/gh-aw/pull/2082",
+   "path": "go.mod",
+   "pr_created_at": "2025-10-21T11:32:40Z",
+   "comment_created_at": "2025-10-21T12:16:12Z",
+   "hours": 0.7
+  },
+  {
+   "pr": "https://github.com/go-vikunja/vikunja/pull/1358",
+   "path": "example-force-availability.yml",
+   "pr_created_at": "2025-08-30T15:43:37Z",
+   "comment_created_at": "2025-08-30T17:05:41Z",
+   "hours": 1.4
+  },
+  {
+   "pr": "https://github.com/kurotu/VRCQuestTools/pull/121",
+   "path": "TESTING_INSTRUCTIONS.md",
+   "pr_created_at": "2025-08-28T13:40:23Z",
+   "comment_created_at": "2025-08-29T02:32:04Z",
+   "hours": 12.9
+  },
+  {
+   "pr": "https://github.com/kurotu/VRCQuestTools/pull/131",
+   "path": "PREVIEW_IMPLEMENTATION.md",
+   "pr_created_at": "2025-08-30T02:43:08Z",
+   "comment_created_at": "2025-08-30T04:04:28Z",
+   "hours": 1.4
+  },
+  {
+   "pr": "https://github.com/liam-hq/liam/pull/2079",
+   "path": "frontend/internal-packages/agent/src/chat/workflow/workflow.test.ts",
+   "pr_created_at": "2025-06-19T02:25:31Z",
+   "comment_created_at": "2025-06-25T07:49:09Z",
+   "hours": 149.4
+  },
+  {
+   "pr": "https://github.com/microsoft/react-native-windows/pull/14796",
+   "path": "vnext/codegen/rnwcoreJSI-generated.cpp",
+   "pr_created_at": "2025-06-17T23:59:14Z",
+   "comment_created_at": "2025-06-18T06:32:08Z",
+   "hours": 6.5
+  },
+  {
+   "pr": "https://github.com/modelcontextprotocol/csharp-sdk/pull/645",
+   "path": "dotnet-install.sh",
+   "pr_created_at": "2025-07-23T12:40:27Z",
+   "comment_created_at": "2025-07-23T15:09:48Z",
+   "hours": 2.5
+  },
+  {
+   "pr": "https://github.com/pola-rs/r-polars/pull/1559",
+   "path": ".github/workflows/copilot-setup-steps.yml",
+   "pr_created_at": "2025-09-23T13:11:03Z",
+   "comment_created_at": "2025-09-23T14:01:28Z",
+   "hours": 0.8
+  },
+  {
+   "pr": "https://github.com/projectcalico/calico/pull/11086",
+   "path": "goldmane/pkg/client/mocks/FlowsClient.go",
+   "pr_created_at": "2025-09-26T20:04:09Z",
+   "comment_created_at": "2025-09-26T20:50:22Z",
+   "hours": 0.8
+  },
+  {
+   "pr": "https://github.com/projectcalico/calico/pull/11086",
+   "path": "goldmane/proto/api.pb.go",
+   "pr_created_at": "2025-09-26T20:04:09Z",
+   "comment_created_at": "2025-09-26T20:31:34Z",
+   "hours": 0.5
+  },
+  {
+   "pr": "https://github.com/projectcalico/calico/pull/11086",
+   "path": "manifests/tigera-operator-ocp-upgrade.yaml",
+   "pr_created_at": "2025-09-26T20:04:09Z",
+   "comment_created_at": "2025-09-26T20:30:56Z",
+   "hours": 0.4
+  },
+  {
+   "pr": "https://github.com/tambo-ai/tambo/pull/1023",
+   "path": "showcase/tsconfig.json",
+   "pr_created_at": "2025-09-09T03:41:41Z",
+   "comment_created_at": "2025-09-09T18:26:19Z",
+   "hours": 14.7
+  },
+  {
+   "pr": "https://github.com/tokens-studio/figma-plugin/pull/3374",
+   "path": "packages/tokens-studio-for-figma/src/types/AsyncMessages.ts",
+   "pr_created_at": "2025-05-23T20:15:19Z",
+   "comment_created_at": "2025-05-24T09:39:36Z",
+   "hours": 13.4
+  },
+  {
+   "pr": "https://github.com/tomhrr/cosh/pull/181",
+   "path": "tests/tests.rs",
+   "pr_created_at": "2025-06-19T02:56:45Z",
+   "comment_created_at": "2025-06-19T10:28:36Z",
+   "hours": 7.5
+  },
+  {
+   "pr": "https://github.com/truenas/webui/pull/12147",
+   "path": "src/app/pages/credentials/new-users/all-users/user-list/user-access-cell/user-access-cell.component.html",
+   "pr_created_at": "2025-06-17T10:06:49Z",
+   "comment_created_at": "2025-06-18T12:20:45Z",
+   "hours": 26.2
+  },
+  {
+   "pr": "https://github.com/valkey-io/valkey-glide/pull/4287",
+   "path": ".github/workflows/codeql.yml",
+   "pr_created_at": "2025-07-02T19:21:21Z",
+   "comment_created_at": "2025-07-03T12:24:01Z",
+   "hours": 17.0
+  },
+  {
+   "pr": "https://github.com/vllm-project/semantic-router/pull/322",
+   "path": "TRACING_FEATURE.md",
+   "pr_created_at": "2025-10-02T22:57:10Z",
+   "comment_created_at": "2025-10-03T14:02:46Z",
+   "hours": 15.1
+  }
+ ]
+}

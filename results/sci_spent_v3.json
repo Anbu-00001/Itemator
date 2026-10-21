@@ -1,0 +1,49 @@
+{
+ "inputs": {
+  "jobs": 6,
+  "median_job_seconds": 18.3,
+  "clone_mb": 3.17,
+  "image_mb": 21,
+  "image": "python:3.12-alpine",
+  "apt_mb": 9.8
+ },
+ "spent_g_per_check": {
+  "image_cached": {
+   "low": 0.0202,
+   "high": 0.903
+  },
+  "image_pulled": {
+   "low": 0.029,
+   "high": 2.264
+  }
+ },
+ "saved_g_per_install_live": {
+  "low": 0.0144,
+  "high": 2.05
+ },
+ "saved_g_per_install_median": {
+  "low": 0.00121,
+  "high": 0.042
+ },
+ "installs_to_repay_one_check_live": {
+  "image_cached": {
+   "low": 1.4,
+   "high": 0.4
+  },
+  "image_pulled": {
+   "low": 2.0,
+   "high": 1.1
+  }
+ },
+ "installs_to_repay_one_check_median": {
+  "image_cached": {
+   "low": 16.7,
+   "high": 21.5
+  },
+  "image_pulled": {
+   "low": 24.0,
+   "high": 53.9
+  }
+ },
+ "left_out": "the card flow's model calls (about 6 per card; Duo publishes no energy per call) and the Pages and API requests"
+}

@@ -1,0 +1,16 @@
+{
+ "what": "The public sentence for each possible result of the sealed forward test (results/prospective_v1_sealed.json), committed before the read on 2026-10-25. eval/prospective.py read picks one band by the rule below and fills in the counts; nobody writes or edits the sentence after the read.",
+ "rule": "Bands are tried in this order and the first that holds is used. early: fewer than 20 of the readable pull requests were merged or closed. none: no listed file was objected to or removed. too_few: fewer than 3 listed files were objected to or removed, or they all sit in one pull request, so one loose comment could decide the result. ahead: the share objected-or-removed among listed files is higher than among unlisted files of the same pull requests (the second prediction in eval/prospective_rubric.json). not_ahead: everything else. The misses sentence is added after every band except early.",
+ "min_decided": 20,
+ "bands": {
+  "early": "By {read_on}, only {decided} of the {readable} pull requests had been merged or closed, too few to say anything; the list is below and nothing is claimed from it.",
+  "none": "By {read_on}, reviewers objected to or removed none of the {n} files the rules listed: on this sample, the list named nothing reviewers acted on.",
+  "too_few": "By {read_on}, reviewers objected to or removed {k} of the {n} files the rules listed, in {kp} pull request(s), against {ku} of the {nu} files they did not list: too few to say whether the list picks out what reviewers act on.",
+  "ahead": "By {read_on}, reviewers objected to or removed {k} of the {n} files the rules listed ({p}%), against {ku} of the {nu} files they did not list ({pu}%).",
+  "not_ahead": "By {read_on}, reviewers objected to or removed {k} of the {n} files the rules listed ({p}%), no more often than {ku} of the {nu} files they did not list ({pu}%): on this sample, the list did not pick out what reviewers acted on."
+ },
+ "misses": " The listed files acted on came from {kp} of the {np} pull requests with a listed file. Of the {landed} listed files in merged pull requests, {silent} landed with nobody objecting.",
+ "min_hits": 3,
+ "min_hit_prs": 2,
+ "placement": "Whatever the band, the sentence replaces the README bullet 'The forward test is not read yet' in Known limits, word for word, and the sealed page shows it first. No band moves it higher, lower or out."
+}

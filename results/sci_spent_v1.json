@@ -1,0 +1,47 @@
+{
+ "inputs": {
+  "jobs": 46,
+  "median_job_seconds": 34.15,
+  "clone_mb": 2.78,
+  "image_mb": 412
+ },
+ "spent_g_per_check": {
+  "image_cached": {
+   "low": 0.0284,
+   "high": 0.2745
+  },
+  "image_pulled": {
+   "low": 0.206,
+   "high": 27.444
+  }
+ },
+ "saved_g_per_install_live": {
+  "low": 0.0144,
+  "high": 2.05
+ },
+ "saved_g_per_install_median": {
+  "low": 0.00121,
+  "high": 0.042
+ },
+ "installs_to_repay_one_check_live": {
+  "image_cached": {
+   "low": 2.0,
+   "high": 0.1
+  },
+  "image_pulled": {
+   "low": 14.3,
+   "high": 13.4
+  }
+ },
+ "installs_to_repay_one_check_median": {
+  "image_cached": {
+   "low": 23.5,
+   "high": 6.5
+  },
+  "image_pulled": {
+   "low": 170.2,
+   "high": 653.4
+  }
+ },
+ "left_out": "the card flow's model calls (about 6 per card; Duo publishes no energy per call) and the Pages and API requests"
+}

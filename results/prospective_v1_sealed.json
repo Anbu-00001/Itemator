@@ -1,0 +1,4226 @@
+{
+ "rubric": "eval/prospective_rubric.json",
+ "rules_version": 6,
+ "seed": "itemator-prospective-v1",
+ "searched_at": "2026-10-20T20:16:01Z",
+ "read_on": "2026-10-25",
+ "searches": [
+  {
+   "agent": "copilot",
+   "query": "is:pr is:public is:open linked:issue created:2026-10-19 author:app/copilot-swe-agent",
+   "total_count": 107
+  },
+  {
+   "agent": "copilot",
+   "query": "is:pr is:public is:open linked:issue created:2026-10-20 author:app/copilot-swe-agent",
+   "total_count": 158
+  },
+  {
+   "agent": "copilot",
+   "query": "is:pr is:public is:open linked:issue created:2026-10-21 author:app/copilot-swe-agent",
+   "total_count": 0
+  },
+  {
+   "agent": "devin",
+   "query": "is:pr is:public is:open linked:issue created:2026-10-19 author:app/devin-ai-integration",
+   "total_count": 12
+  },
+  {
+   "agent": "devin",
+   "query": "is:pr is:public is:open linked:issue created:2026-10-20 author:app/devin-ai-integration",
+   "total_count": 88
+  },
+  {
+   "agent": "devin",
+   "query": "is:pr is:public is:open linked:issue created:2026-10-21 author:app/devin-ai-integration",
+   "total_count": 0
+  },
+  {
+   "agent": "jules",
+   "query": "is:pr is:public is:open linked:issue created:2026-10-19 author:app/google-labs-jules",
+   "total_count": 0
+  },
+  {
+   "agent": "jules",
+   "query": "is:pr is:public is:open linked:issue created:2026-10-20 author:app/google-labs-jules",
+   "total_count": 3
+  },
+  {
+   "agent": "jules",
+   "query": "is:pr is:public is:open linked:issue created:2026-10-21 author:app/google-labs-jules",
+   "total_count": 0
+  },
+  {
+   "agent": "cursor",
+   "query": "is:pr is:public is:open linked:issue created:2026-10-19 author:app/cursor",
+   "total_count": 1
+  },
+  {
+   "agent": "cursor",
+   "query": "is:pr is:public is:open linked:issue created:2026-10-20 author:app/cursor",
+   "total_count": 3
+  },
+  {
+   "agent": "cursor",
+   "query": "is:pr is:public is:open linked:issue created:2026-10-21 author:app/cursor",
+   "total_count": 0
+  },
+  {
+   "agent": "claude_code",
+   "query": "is:pr is:public is:open linked:issue created:2026-10-19 author:app/claude",
+   "total_count": 13
+  },
+  {
+   "agent": "claude_code",
+   "query": "is:pr is:public is:open linked:issue created:2026-10-20 author:app/claude",
+   "total_count": 29
+  },
+  {
+   "agent": "claude_code",
+   "query": "is:pr is:public is:open linked:issue created:2026-10-21 author:app/claude",
+   "total_count": 0
+  },
+  {
+   "agent": "claude_code",
+   "query": "is:pr is:public is:open linked:issue created:2026-10-19 \"Generated with Claude Code\" in:body",
+   "total_count": 2145
+  },
+  {
+   "agent": "claude_code",
+   "query": "is:pr is:public is:open linked:issue created:2026-10-20 \"Generated with Claude Code\" in:body",
+   "total_count": 4333
+  },
+  {
+   "agent": "claude_code",
+   "query": "is:pr is:public is:open linked:issue created:2026-10-21 \"Generated with Claude Code\" in:body",
+   "total_count": 0
+  },
+  {
+   "agent": "codex",
+   "query": "is:pr is:public is:open linked:issue created:2026-10-19 \"Codex Task\" in:body",
+   "total_count": 25
+  },
+  {
+   "agent": "codex",
+   "query": "is:pr is:public is:open linked:issue created:2026-10-20 \"Codex Task\" in:body",
+   "total_count": 27
+  },
+  {
+   "agent": "codex",
+   "query": "is:pr is:public is:open linked:issue created:2026-10-21 \"Codex Task\" in:body",
+   "total_count": 0
+  }
+ ],
+ "pool": 861,
+ "skipped": {
+  "agent_not_confirmed": 50,
+  "file_count_out_of_range": 14,
+  "issue_unreadable": 4,
+  "no_same_repo_closing_ref": 78,
+  "not_open": 39,
+  "nothing_listed": 382,
+  "ref_is_pull_request": 2,
+  "repo_already_kept": 36,
+  "wip_title": 6
+ },
+ "summary": {
+  "pull_requests": 60,
+  "listed_files": 245,
+  "files": 1838,
+  "by_agent": {
+   "claude_code": 46,
+   "copilot": 12,
+   "devin": 2
+  },
+  "read_on": "2026-10-25",
+  "cases_sha256": "1281919d8262256d45363f315cc74afe4e54023a4d1e855fba59dc150ed38647"
+ },
+ "pull_requests": [
+  {
+   "url": "https://github.com/open-telemetry/opentelemetry-java-instrumentation/pull/20747",
+   "created_at": "2026-10-20T02:09:02Z",
+   "agent": "copilot",
+   "issue": 20413,
+   "head_sha": "a03767f903beddb7318c9a2536c02d0b68da81b1",
+   "files": [
+    "instrumentation-api-incubator/src/main/java/io/opentelemetry/instrumentation/api/incubator/builder/internal/DefaultHttpClientInstrumenterBuilder.java",
+    "instrumentation-api-incubator/src/main/java/io/opentelemetry/instrumentation/api/incubator/builder/internal/DefaultHttpServerInstrumenterBuilder.java",
+    "instrumentation-api-incubator/src/main/java/io/opentelemetry/instrumentation/api/incubator/semconv/db/DbClientAttributesExtractor.java",
+    "instrumentation-api-incubator/src/main/java/io/opentelemetry/instrumentation/api/incubator/semconv/db/DbConnectionPoolMetrics.java",
+    "instrumentation-api-incubator/src/main/java/io/opentelemetry/instrumentation/api/incubator/semconv/db/SqlClientAttributesExtractor.java",
+    "instrumentation-api-incubator/src/main/java/io/opentelemetry/instrumentation/api/incubator/semconv/db/internal/DbSchemaUrls.java",
+    "instrumentation-api-incubator/src/main/java/io/opentelemetry/instrumentation/api/incubator/semconv/genai/internal/GenAiSchemaUrls.java",
+    "instrumentation-api-incubator/src/main/java/io/opentelemetry/instrumentation/api/incubator/semconv/messaging/MessagingAttributesExtractor.java",
+    "instrumentation-api-incubator/src/main/java/io/opentelemetry/instrumentation/api/incubator/semconv/messaging/internal/MessagingSchemaUrls.java",
+    "instrumentation-api-incubator/src/main/java/io/opentelemetry/instrumentation/api/incubator/semconv/rpc/RpcCommonAttributesExtractor.java",
+    "instrumentation-api-incubator/src/main/java/io/opentelemetry/instrumentation/api/incubator/semconv/rpc/internal/RpcSemconvSelection.java",
+    "instrumentation-api-incubator/src/test/java/io/opentelemetry/instrumentation/api/incubator/semconv/rpc/RpcInstanceSemconvTest.java",
+    "instrumentation-api/src/main/java/io/opentelemetry/instrumentation/api/internal/SemconvStability.java",
+    "instrumentation-api/src/main/java/io/opentelemetry/instrumentation/api/semconv/http/internal/HttpSchemaUrls.java",
+    "instrumentation-api/src/test/java/io/opentelemetry/instrumentation/api/internal/SemconvStabilityTest.java",
+    "instrumentation/aws-sdk/aws-sdk-1.11/library/src/main/java/io/opentelemetry/instrumentation/awssdk/v1_11/internal/AwsSdkInstrumenterFactory.java",
+    "instrumentation/aws-sdk/aws-sdk-2.2/library/src/main/java/io/opentelemetry/instrumentation/awssdk/v2_2/internal/AwsSdkInstrumenterFactory.java",
+    "instrumentation/camel-2.20/javaagent/src/main/java/io/opentelemetry/javaagent/instrumentation/camel/v2_20/CamelProcessMetrics.java",
+    "instrumentation/camel-2.20/javaagent/src/main/java/io/opentelemetry/javaagent/instrumentation/camel/v2_20/CamelSingletons.java",
+    "instrumentation/couchbase/couchbase-3.0/javaagent/src/main/java/io/opentelemetry/javaagent/instrumentation/couchbase/v3_0/CouchbaseRequestTracer.java",
+    "instrumentation/couchbase/couchbase-3.1/javaagent/src/main/java/io/opentelemetry/javaagent/instrumentation/couchbase/v3_1/CouchbaseRequestTracer.java",
+    "instrumentation/couchbase/couchbase-3.2/javaagent/src/main/java/io/opentelemetry/javaagent/instrumentation/couchbase/v3_2/CouchbaseRequestTracer.java",
+    "instrumentation/graphql-java/graphql-java-common-12.0/library/src/main/java/io/opentelemetry/instrumentation/graphql/common/v12_0/internal/OpenTelemetryInstrumentationHelper.java",
+    "instrumentation/jdbc/library/src/main/java/io/opentelemetry/instrumentation/jdbc/internal/JdbcInstrumenterFactory.java",
+    "instrumentation/lettuce/lettuce-4.0/javaagent/src/main/java/io/opentelemetry/javaagent/instrumentation/lettuce/v4_0/LettuceSingletons.java",
+    "instrumentation/lettuce/lettuce-5.0/javaagent/src/main/java/io/opentelemetry/javaagent/instrumentation/lettuce/v5_0/LettuceSingletons.java",
+    "instrumentation/netty/netty-3.8/javaagent/src/main/java/io/opentelemetry/javaagent/instrumentation/netty/v3_8/client/NettyClientSingletons.java"
+   ],
+   "listed_paths": [
+    "instrumentation-api/src/test/java/io/opentelemetry/instrumentation/api/internal/SemconvStabilityTest.java"
+   ],
+   "extras": [
+    {
+     "kind": "tests_removed",
+     "path": "instrumentation-api/src/test/java/io/opentelemetry/instrumentation/api/internal/SemconvStabilityTest.java",
+     "name": "instrumentation-api/src/test/java/io/opentelemetry/instrumentation/api/internal/SemconvStabilityTest.java",
+     "files": [
+      "instrumentation-api/src/test/java/io/opentelemetry/instrumentation/api/internal/SemconvStabilityTest.java"
+     ]
+    }
+   ]
+  },
+  {
+   "url": "https://github.com/llm-d/llm-d-benchmark/pull/2092",
+   "created_at": "2026-10-19T04:03:31Z",
+   "agent": "copilot",
+   "issue": 2089,
+   "head_sha": "400ae5d4c4787dd9e3a244571b6816e978067881",
+   "files": [
+    "build/Dockerfile",
+    "config/scenarios/examples/cpu.yaml",
+    "config/scenarios/guides/nok8s.yaml",
+    "config/templates/values/defaults.yaml",
+    "docs/upstream-versions.md"
+   ],
+   "listed_paths": [
+    "build/Dockerfile"
+   ],
+   "extras": [
+    {
+     "kind": "ci_or_config",
+     "path": "build/Dockerfile",
+     "name": "build/Dockerfile",
+     "files": [
+      "build/Dockerfile"
+     ]
+    }
+   ]
+  },
+  {
+   "url": "https://github.com/ltoinel/amw/pull/148",
+   "created_at": "2026-10-20T20:15:17Z",
+   "agent": "claude_code",
+   "issue": 103,
+   "head_sha": "2309c5b452e87426b51ca364e5a1ad7f540522a2",
+   "files": [
+    ".dockerignore",
+    ".github/workflows/docs.yml",
+    ".gitignore",
+    ".npmignore",
+    "README.md",
+    "docs/api.md",
+    "docs/architecture.md",
+    "docs/assets/amazon-modern-widget.png",
+    "docs/assets/amw-logo.png",
+    "docs/assets/favicon.svg",
+    "docs/ci-cd.md",
+    "docs/configuration.md",
+    "docs/contributing.md",
+    "docs/development.md",
+    "docs/features.md",
+    "docs/getting-started/docker.md",
+    "docs/getting-started/index.md",
+    "docs/getting-started/npm.md",
+    "docs/getting-started/reverse-proxy.md",
+    "docs/index.md",
+    "docs/performance.md",
+    "docs/requirements.txt",
+    "docs/security.md",
+    "docs/widget.md",
+    "mkdocs.yml",
+    "spec/01-overview.md",
+    "spec/02-technical-architecture.md",
+    "spec/03-features.md",
+    "spec/04-configuration.md",
+    "spec/05-deployment.md",
+    "spec/06-performance-optimization.md",
+    "spec/07-integration.md",
+    "spec/08-security-and-best-pratices.md",
+    "spec/09-unit-tests-documentation.md",
+    "spec/10-ci-cd-documentation.md",
+    "spec/11-environments-configuration.md",
+    "spec/12-docker-organization.md"
+   ],
+   "listed_paths": [
+    "docs/assets/amazon-modern-widget.png",
+    "docs/assets/amw-logo.png",
+    "docs/requirements.txt"
+   ],
+   "extras": [
+    {
+     "kind": "new_dependency",
+     "path": "docs/requirements.txt",
+     "name": "mkdocs-material",
+     "files": [
+      "docs/requirements.txt"
+     ]
+    },
+    {
+     "kind": "new_dependency",
+     "path": "docs/requirements.txt",
+     "name": "pymdown-extensions",
+     "files": [
+      "docs/requirements.txt"
+     ]
+    },
+    {
+     "kind": "binary_or_large_added",
+     "path": "docs/assets/amazon-modern-widget.png",
+     "name": "docs/assets/amazon-modern-widget.png",
+     "files": [
+      "docs/assets/amazon-modern-widget.png"
+     ]
+    },
+    {
+     "kind": "binary_or_large_added",
+     "path": "docs/assets/amw-logo.png",
+     "name": "docs/assets/amw-logo.png",
+     "files": [
+      "docs/assets/amw-logo.png"
+     ]
+    }
+   ]
+  },
+  {
+   "url": "https://github.com/Blurry-gg/cotizador-e10/pull/8",
+   "created_at": "2026-10-20T20:12:16Z",
+   "agent": "claude_code",
+   "issue": 7,
+   "head_sha": "367126a56a7d91ccb6f8a325fe211d23e1864f8f",
+   "files": [
+    ".github/workflows/motor.yml",
+    "motor/.formatter.exs",
+    "motor/.gitignore",
+    "motor/lib/cotizador.ex",
+    "motor/mix.exs",
+    "motor/test/aceptacion_test.exs",
+    "motor/test/test_helper.exs"
+   ],
+   "listed_paths": [
+    ".github/workflows/motor.yml"
+   ],
+   "extras": [
+    {
+     "kind": "ci_or_config",
+     "path": ".github/workflows/motor.yml",
+     "name": ".github/workflows/motor.yml",
+     "files": [
+      ".github/workflows/motor.yml"
+     ]
+    }
+   ]
+  },
+  {
+   "url": "https://github.com/alexander-shamray/blueprint-admin/pull/353",
+   "created_at": "2026-10-20T20:09:45Z",
+   "agent": "claude_code",
+   "issue": 329,
+   "head_sha": "e453ae0f1bf5d7627aa1c3db10234a768789731c",
+   "files": [
+    ".claude/scripts/git-worktree-drop.sh",
+    ".claude/scripts/git-worktree-remove.sh",
+    ".claude/scripts/test_harness_helpers.py",
+    "docs/harness-boundaries.md"
+   ],
+   "listed_paths": [
+    ".claude/scripts/test_harness_helpers.py"
+   ],
+   "extras": [
+    {
+     "kind": "agent_instructions",
+     "path": ".claude/scripts/test_harness_helpers.py",
+     "name": ".claude/scripts/test_harness_helpers.py",
+     "files": [
+      ".claude/scripts/test_harness_helpers.py"
+     ]
+    }
+   ]
+  },
+  {
+   "url": "https://github.com/tratto-email/tratto-node/pull/65",
+   "created_at": "2026-10-20T20:12:12Z",
+   "agent": "claude_code",
+   "issue": 64,
+   "head_sha": "0bf4744bd3e8512453e2f9577ff9f15257442fa0",
+   "files": [
+    "CHANGELOG.md",
+    "README.md",
+    "examples/send-email.ts",
+    "examples/smoke.ts",
+    "package-lock.json",
+    "package.json",
+    "src/error.ts",
+    "src/index.ts",
+    "src/resources/base.ts",
+    "src/resources/emails.spec.ts",
+    "src/resources/emails.ts",
+    "src/types.ts"
+   ],
+   "listed_paths": [
+    "package.json"
+   ],
+   "extras": [
+    {
+     "kind": "version_bump",
+     "path": "package.json",
+     "name": "1.6.0",
+     "files": [
+      "package.json"
+     ]
+    }
+   ]
+  },
+  {
+   "url": "https://github.com/mikeallisonJS/cadent/pull/77",
+   "created_at": "2026-10-19T23:48:08Z",
+   "agent": "claude_code",
+   "issue": 31,
+   "head_sha": "84817ca194b12099f67347819f9804632338dc76",
+   "files": [
+    ".github/workflows/build-installer-linux.yml",
+    ".github/workflows/tag-release.yml",
+    ".github/workflows/test.yml",
+    "GLOSSARY.md",
+    "README.md",
+    "cadent/__init__.py",
+    "cadent/__main__.py",
+    "cadent/app.py",
+    "cadent/config.py",
+    "cadent/gpu_pack.py",
+    "cadent/hardware.py",
+    "cadent/hotkey.py",
+    "cadent/platform/__init__.py",
+    "cadent/platform/base.py",
+    "cadent/platform/darwin.py",
+    "cadent/platform/fallback.py",
+    "cadent/platform/keycodes.py",
+    "cadent/platform/linux/__init__.py",
+    "cadent/platform/linux/apps.py",
+    "cadent/platform/linux/portal.py",
+    "cadent/platform/linux/shell.py",
+    "cadent/platform/linux/wayland.py",
+    "cadent/platform/linux/wire.py",
+    "cadent/platform/linux/x11.py",
+    "cadent/platform/win32.py",
+    "cadent/settings_ui/general.py",
+    "cadent/settings_ui/hotkeys.py",
+    "cadent/settings_ui/overrides.py",
+    "cadent/settings_ui/speech.py",
+    "cadent/settings_ui/window.py",
+    "cadent/stt.py",
+    "cadent/tray.py",
+    "cadent/wizard.py",
+    "changelog.d/31.feature.md",
+    "changelog.d/32.feature.md",
+    "changelog.d/33.feature.md",
+    "changelog.d/34.feature.md",
+    "changelog.d/35.feature.md",
+    "changelog.d/36.feature.md",
+    "changelog.d/37.feature.md",
+    "changelog.d/38.feature.md",
+    "changelog.d/39.feature.md",
+    "changelog.d/40.feature.md",
+    "packaging/aur/PKGBUILD",
+    "packaging/cadent.spec",
+    "packaging/hooks/rthook_portaudio.py",
+    "packaging/icons/png/app-128.png",
+    "packaging/icons/png/app-256.png",
+    "packaging/icons/png/app-48.png",
+    "pyproject.toml",
+    "scripts/build.py",
+    "scripts/build_icons.py",
+    "scripts/build_linux.py",
+    "tests/conftest.py",
+    "tests/test_gpu_pack.py",
+    "tests/test_import_walk.py",
+    "tests/test_linux_platform.py",
+    "tests/test_linux_portal.py",
+    "tests/test_linux_shell.py",
+    "tests/test_linux_ui.py",
+    "tests/test_main.py",
+    "tests/test_packaging.py",
+    "tests/test_platform.py",
+    "tests/test_settings_ui.py",
+    "tests/test_wizard.py",
+    "uv.lock"
+   ],
+   "listed_paths": [
+    ".github/workflows/build-installer-linux.yml",
+    ".github/workflows/tag-release.yml",
+    ".github/workflows/test.yml",
+    "packaging/icons/png/app-128.png",
+    "packaging/icons/png/app-256.png",
+    "packaging/icons/png/app-48.png",
+    "pyproject.toml"
+   ],
+   "extras": [
+    {
+     "kind": "new_dependency",
+     "path": "pyproject.toml",
+     "name": "jeepney",
+     "files": [
+      "pyproject.toml"
+     ]
+    },
+    {
+     "kind": "new_dependency",
+     "path": "pyproject.toml",
+     "name": "onnxruntime-gpu",
+     "files": [
+      "pyproject.toml"
+     ]
+    },
+    {
+     "kind": "new_dependency",
+     "path": "pyproject.toml",
+     "name": "python-xlib",
+     "files": [
+      "pyproject.toml"
+     ]
+    },
+    {
+     "kind": "ci_or_config",
+     "path": ".github/workflows/build-installer-linux.yml",
+     "name": ".github/workflows/build-installer-linux.yml",
+     "files": [
+      ".github/workflows/build-installer-linux.yml"
+     ]
+    },
+    {
+     "kind": "ci_or_config",
+     "path": ".github/workflows/tag-release.yml",
+     "name": ".github/workflows/tag-release.yml",
+     "files": [
+      ".github/workflows/tag-release.yml"
+     ]
+    },
+    {
+     "kind": "ci_or_config",
+     "path": ".github/workflows/test.yml",
+     "name": ".github/workflows/test.yml",
+     "files": [
+      ".github/workflows/test.yml"
+     ]
+    },
+    {
+     "kind": "binary_or_large_added",
+     "path": "packaging/icons/png/app-128.png",
+     "name": "packaging/icons/png/app-128.png",
+     "files": [
+      "packaging/icons/png/app-128.png"
+     ]
+    },
+    {
+     "kind": "binary_or_large_added",
+     "path": "packaging/icons/png/app-256.png",
+     "name": "packaging/icons/png/app-256.png",
+     "files": [
+      "packaging/icons/png/app-256.png"
+     ]
+    },
+    {
+     "kind": "binary_or_large_added",
+     "path": "packaging/icons/png/app-48.png",
+     "name": "packaging/icons/png/app-48.png",
+     "files": [
+      "packaging/icons/png/app-48.png"
+     ]
+    }
+   ]
+  },
+  {
+   "url": "https://github.com/dbt-labs/dbt-context-engineering/pull/30",
+   "created_at": "2026-10-20T20:13:57Z",
+   "agent": "claude_code",
+   "issue": 18,
+   "head_sha": "5f45e427bdae60872ead3065684c5e765cf9965a",
+   "files": [
+    ".github/workflows/ci.yml",
+    "README.md",
+    "TESTING.md",
+    "adr/0003-cost-as-a-first-class-output.md",
+    "adr/0035-per-call-token-estimate-for-the-guard-and-the-log.md",
+    "adr/README.md",
+    "dbt_project.yml",
+    "integration_tests/cloud/models/logged_prompted.sql",
+    "integration_tests/cloud/models/signals.sql",
+    "integration_tests/cloud/tests/assert_call_tokens.sql",
+    "integration_tests/cloud/tests/assert_embeddings_nonempty.sql",
+    "integration_tests/cloud/tests/assert_run_log.sql",
+    "integration_tests/duckdb/models/guard_prompted.sql",
+    "integration_tests/duckdb/models/logged_filtered.sql",
+    "integration_tests/duckdb/models/logged_model.sql",
+    "integration_tests/duckdb/models/logged_prompted.sql",
+    "integration_tests/duckdb/models/logged_unprompted.sql",
+    "integration_tests/duckdb/tests/assert_call_tokens.sql",
+    "integration_tests/duckdb/tests/assert_log_filtered.sql",
+    "integration_tests/duckdb/tests/assert_run_log.sql",
+    "macros/cost/estimate_tokens.sql",
+    "macros/cost/guard_batch.sql",
+    "macros/cost/log_ai_run.sql",
+    "macros/prompts/config_prompt.sql",
+    "skills/dbt-ce-pipeline/references/governance-incremental.md",
+    "skills/dbt-ce-setup/SKILL.md",
+    "skills/dbt-ce-setup/references/vars-reference.md"
+   ],
+   "listed_paths": [
+    "skills/dbt-ce-setup/SKILL.md"
+   ],
+   "extras": [
+    {
+     "kind": "agent_instructions",
+     "path": "skills/dbt-ce-setup/SKILL.md",
+     "name": "skills/dbt-ce-setup/SKILL.md",
+     "files": [
+      "skills/dbt-ce-setup/SKILL.md"
+     ]
+    }
+   ]
+  },
+  {
+   "url": "https://github.com/FixByteStudio/captain-prospectus/pull/606",
+   "created_at": "2026-10-20T20:09:33Z",
+   "agent": "claude_code",
+   "issue": 595,
+   "head_sha": "0bfe3adea5f4173d76d8d6c0abc4a93ba0471c93",
+   "files": [
+    "_bmad-output/implementation-artifacts/deferred-work.md",
+    "_bmad-output/implementation-artifacts/spec-gh-595-refactor-sweep.md",
+    "src/client/App.tsx",
+    "src/client/admin/AdminApp.tsx",
+    "src/client/admin/queries.ts",
+    "src/client/admin/users/AddUserDialog.tsx",
+    "src/client/admin/users/CodeDialog.tsx",
+    "src/client/admin/users/DeactivateDialog.tsx",
+    "src/client/admin/users/DeviceLines.tsx",
+    "src/client/admin/users/EnrolmentBadge.tsx",
+    "src/client/admin/users/PassphraseDialog.tsx",
+    "src/client/admin/users/RowMenu.tsx",
+    "src/client/admin/users/UsersList.tsx",
+    "src/client/admin/users/UsersScreen.test.tsx",
+    "src/client/admin/users/UsersScreen.tsx",
+    "src/client/admin/users/UsersTable.tsx",
+    "src/client/admin/users/copy-to-clipboard.ts",
+    "src/client/admin/users/failure-toast.ts",
+    "src/client/copy/admin.ts",
+    "src/client/copy/field.ts",
+    "src/client/field/AccountMenu.test.tsx",
+    "src/client/field/AccountMenu.tsx",
+    "src/worker/auth.test.ts",
+    "src/worker/device-label.ts"
+   ],
+   "listed_paths": [
+    "src/client/admin/users/UsersScreen.tsx",
+    "src/client/field/AccountMenu.test.tsx"
+   ],
+   "extras": [
+    {
+     "kind": "tests_removed",
+     "path": "src/client/field/AccountMenu.test.tsx",
+     "name": "src/client/field/AccountMenu.test.tsx",
+     "files": [
+      "src/client/field/AccountMenu.test.tsx"
+     ]
+    },
+    {
+     "kind": "public_api_removed",
+     "path": "src/client/admin/users/UsersScreen.tsx",
+     "name": "AgentsScreen",
+     "files": [
+      "src/client/admin/users/UsersScreen.tsx"
+     ]
+    }
+   ]
+  },
+  {
+   "url": "https://github.com/SimonHylander/riptide/pull/21",
+   "created_at": "2026-10-20T20:06:56Z",
+   "agent": "claude_code",
+   "issue": 7,
+   "head_sha": "1ecbe2d69e6a5ef33373137510fcd306e639da38",
+   "files": [
+    ".github/workflows/ci.yml",
+    "apps/agent/package.json",
+    "apps/agent/src/adapters/convex/ConvexReportGateway.ts",
+    "apps/agent/src/adapters/memory/InMemoryReportGateway.ts",
+    "apps/agent/src/adapters/stdout/StdoutReportGateway.ts",
+    "apps/agent/src/core/Agent.ts",
+    "apps/agent/src/core/aggregate.ts",
+    "apps/agent/src/core/outbox.ts",
+    "apps/agent/src/dev/printSamples.ts",
+    "apps/agent/src/main.ts",
+    "apps/agent/test/convex.test.ts",
+    "apps/agent/test/core/Agent.test.ts",
+    "apps/agent/test/core/aggregate.test.ts",
+    "apps/agent/test/core/outbox.test.ts"
+   ],
+   "listed_paths": [
+    ".github/workflows/ci.yml"
+   ],
+   "extras": [
+    {
+     "kind": "ci_or_config",
+     "path": ".github/workflows/ci.yml",
+     "name": ".github/workflows/ci.yml",
+     "files": [
+      ".github/workflows/ci.yml"
+     ]
+    }
+   ]
+  },
+  {
+   "url": "https://github.com/raitoxlol/everett/pull/25",
+   "created_at": "2026-10-19T07:44:32Z",
+   "agent": "devin",
+   "issue": 4,
+   "head_sha": "9953dec8a642c4fc59556dea198ec87bc655aba6",
+   "files": [
+    "CHANGELOG.md",
+    "README.md",
+    "convex/auth.config.ts",
+    "convex/auth.ts",
+    "convex/authorization.ts",
+    "convex/crons.ts",
+    "convex/enrollmentPage.ts",
+    "convex/hosted.ts",
+    "convex/http.ts",
+    "convex/schema.ts",
+    "convex/tests/authConfig.test.ts",
+    "convex/tests/hosted.test.ts",
+    "docs/auth.md",
+    "docs/cross-device.md",
+    "docs/relay-threat-model.md",
+    "everett-rs/src/auth.rs",
+    "everett-rs/src/cli.rs",
+    "everett-rs/src/hosted.rs",
+    "everett-rs/src/lib.rs",
+    "everett-rs/src/main.rs",
+    "everett-rs/src/mcp.rs",
+    "everett-rs/src/relay/mod.rs",
+    "everett-rs/tests/hosted.rs",
+    "package-lock.json",
+    "package.json",
+    "scripts/dev-login/README.md",
+    "scripts/dev-login/hosted-smoke.mjs"
+   ],
+   "listed_paths": [
+    "package.json"
+   ],
+   "extras": [
+    {
+     "kind": "new_dependency",
+     "path": "package.json",
+     "name": "@auth/core",
+     "files": [
+      "package.json"
+     ]
+    }
+   ]
+  },
+  {
+   "url": "https://github.com/kelihlodversson/TypeShelf/pull/40",
+   "created_at": "2026-10-20T20:17:37Z",
+   "agent": "claude_code",
+   "issue": 39,
+   "head_sha": "779621f1cb1078464b3a9b94f40a62d3bb25d868",
+   "files": [
+    "Makefile",
+    "README.md",
+    "docs/images/screenshot-emutos-low.png",
+    "src/main.c",
+    "src/ui/app.c",
+    "src/ui/app.h",
+    "src/ui/command.c",
+    "src/ui/command.h",
+    "src/ui/glyphs.c",
+    "src/ui/glyphs.h",
+    "src/ui/menu.c",
+    "src/ui/menu.h",
+    "src/ui/rect.c",
+    "src/ui/rect.h",
+    "src/ui/toolbar_layout.c",
+    "src/ui/toolbar_layout.h",
+    "src/ui/window.c",
+    "src/ui/window.h",
+    "src/ui/winstate.c",
+    "src/ui/winstate.h",
+    "tests/main.c",
+    "tests/test_ui.c"
+   ],
+   "listed_paths": [
+    "Makefile"
+   ],
+   "extras": [
+    {
+     "kind": "ci_or_config",
+     "path": "Makefile",
+     "name": "Makefile",
+     "files": [
+      "Makefile"
+     ]
+    }
+   ]
+  },
+  {
+   "url": "https://github.com/martin-conur/task-force/pull/285",
+   "created_at": "2026-10-20T20:15:50Z",
+   "agent": "claude_code",
+   "issue": 277,
+   "head_sha": "8af468efb5996239f6b9903490b7d87aff1bfa8e",
+   "files": [
+    ".claude/gh-workflow.md",
+    "CHANGELOG.md",
+    "README.md",
+    "claude-gh/install.sh",
+    "claude-gh/steering/gh-workflow.example.md",
+    "claude-jira/install.sh",
+    "claude-jira/steering/jira-workflow.example.md",
+    "claude-local/install.sh",
+    "claude-local/steering/local-workflow.example.md",
+    "claude-notion/install.sh",
+    "claude-notion/steering/notion-workflow.example.md",
+    "kiro-gh/install.sh",
+    "kiro-gh/steering/gh-workflow.example.md",
+    "kiro-local/install.sh",
+    "kiro-local/steering/local-workflow.example.md",
+    "kiro-notion/install.sh",
+    "kiro-notion/steering/notion-workflow.example.md",
+    "lib/monitor-install.sh",
+    "tests/install_symlinks.bats"
+   ],
+   "listed_paths": [
+    ".claude/gh-workflow.md"
+   ],
+   "extras": [
+    {
+     "kind": "agent_instructions",
+     "path": ".claude/gh-workflow.md",
+     "name": ".claude/gh-workflow.md",
+     "files": [
+      ".claude/gh-workflow.md"
+     ]
+    }
+   ]
+  },
+  {
+   "url": "https://github.com/bryancassell/bluecard/pull/367",
+   "created_at": "2026-10-20T20:14:57Z",
+   "agent": "claude_code",
+   "issue": 340,
+   "head_sha": "47bb51fd84eedde5b231969cd6bcefe5768a9de0",
+   "files": [
+    "ARCHITECTURE.md",
+    "app/build.gradle.kts",
+    "app/src/androidTest/java/io/github/bryancassell/bluecard/data/report/PdfDocumentWriterTest.kt",
+    "app/src/main/java/io/github/bryancassell/bluecard/data/backup/BackupFormat.kt",
+    "app/src/main/java/io/github/bryancassell/bluecard/data/backup/BackupRepository.kt",
+    "app/src/main/java/io/github/bryancassell/bluecard/data/catalog/Catalog.kt",
+    "app/src/main/java/io/github/bryancassell/bluecard/data/progress/BadgeVersion.kt",
+    "app/src/main/java/io/github/bryancassell/bluecard/data/progress/Completion.kt",
+    "app/src/main/java/io/github/bryancassell/bluecard/data/progress/Converters.kt",
+    "app/src/main/java/io/github/bryancassell/bluecard/data/progress/EarnedBadges.kt",
+    "app/src/main/java/io/github/bryancassell/bluecard/data/progress/FileDamagedProgressRepository.kt",
+    "app/src/main/java/io/github/bryancassell/bluecard/data/progress/Progress.kt",
+    "app/src/main/java/io/github/bryancassell/bluecard/data/progress/ProgressDao.kt",
+    "app/src/main/java/io/github/bryancassell/bluecard/data/progress/ProgressRepository.kt",
+    "app/src/main/java/io/github/bryancassell/bluecard/data/progress/RankStatus.kt",
+    "app/src/main/java/io/github/bryancassell/bluecard/data/progress/RoomProgressRepository.kt",
+    "app/src/main/java/io/github/bryancassell/bluecard/data/progress/TimeInRank.kt",
+    "app/src/main/java/io/github/bryancassell/bluecard/data/report/AdvancementReport.kt",
+    "app/src/main/java/io/github/bryancassell/bluecard/data/report/PdfReportRepository.kt",
+    "app/src/main/java/io/github/bryancassell/bluecard/data/report/ReportLayout.kt",
+    "app/src/main/java/io/github/bryancassell/bluecard/di/AppModule.kt",
+    "app/src/main/java/io/github/bryancassell/bluecard/text/Formatting.kt",
+    "app/src/main/java/io/github/bryancassell/bluecard/ui/SavedStateDate.kt",
+    "app/src/main/java/io/github/bryancassell/bluecard/ui/badge/BadgeDetailScreen.kt",
+    "app/src/main/java/io/github/bryancassell/bluecard/ui/badge/BadgeDetailUiState.kt",
+    "app/src/main/java/io/github/bryancassell/bluecard/ui/badge/BadgeDetailViewModel.kt",
+    "app/src/main/java/io/github/bryancassell/bluecard/ui/badge/CompletionDate.kt",
+    "app/src/main/java/io/github/bryancassell/bluecard/ui/badge/CompletionRecorder.kt",
+    "app/src/main/java/io/github/bryancassell/bluecard/ui/badge/EditCounselorViewModel.kt",
+    "app/src/main/java/io/github/bryancassell/bluecard/ui/badge/RequirementDetailScreen.kt",
+    "app/src/main/java/io/github/bryancassell/bluecard/ui/badge/RequirementDetailUiState.kt",
+    "app/src/main/java/io/github/bryancassell/bluecard/ui/badge/RequirementDetailViewModel.kt",
+    "app/src/main/java/io/github/bryancassell/bluecard/ui/badge/StatusCard.kt",
+    "app/src/main/java/io/github/bryancassell/bluecard/ui/badge/TrackerEntryScreen.kt",
+    "app/src/main/java/io/github/bryancassell/bluecard/ui/badge/TrackerEntryUiState.kt",
+    "app/src/main/java/io/github/bryancassell/bluecard/ui/badge/TrackerEntryViewModel.kt",
+    "app/src/main/java/io/github/bryancassell/bluecard/ui/badge/TrackerSection.kt",
+    "app/src/main/java/io/github/bryancassell/bluecard/ui/data/DataManagementScreen.kt",
+    "app/src/main/java/io/github/bryancassell/bluecard/ui/data/DataManagementViewModel.kt",
+    "app/src/main/java/io/github/bryancassell/bluecard/ui/data/MergeChoices.kt",
+    "app/src/main/java/io/github/bryancassell/bluecard/ui/rank/RankDetailScreen.kt",
+    "app/src/main/java/io/github/bryancassell/bluecard/ui/rank/RankDetailUiState.kt",
+    "app/src/main/java/io/github/bryancassell/bluecard/ui/rank/RankDetailViewModel.kt",
+    "app/src/test/java/io/github/bryancassell/bluecard/MainActivityTest.kt",
+    "app/src/test/java/io/github/bryancassell/bluecard/data/backup/BackupFormatTest.kt",
+    "app/src/test/java/io/github/bryancassell/bluecard/data/backup/JsonBackupRepositoryTest.kt",
+    "app/src/test/java/io/github/bryancassell/bluecard/data/backup/MergeTest.kt",
+    "app/src/test/java/io/github/bryancassell/bluecard/data/catalog/CatalogTest.kt",
+    "app/src/test/java/io/github/bryancassell/bluecard/data/catalog/CatalogValidatorTest.kt",
+    "app/src/test/java/io/github/bryancassell/bluecard/data/progress/BadgeStatusTest.kt",
+    "app/src/test/java/io/github/bryancassell/bluecard/data/progress/BadgeVersionTest.kt",
+    "app/src/test/java/io/github/bryancassell/bluecard/data/progress/CompletionTest.kt",
+    "app/src/test/java/io/github/bryancassell/bluecard/data/progress/ConvertersTest.kt",
+    "app/src/test/java/io/github/bryancassell/bluecard/data/progress/EarnedBadgesTest.kt",
+    "app/src/test/java/io/github/bryancassell/bluecard/data/progress/FakeProgressRepository.kt",
+    "app/src/test/java/io/github/bryancassell/bluecard/data/progress/FileDamagedProgressRepositoryTest.kt",
+    "app/src/test/java/io/github/bryancassell/bluecard/data/progress/FractionDoneTest.kt",
+    "app/src/test/java/io/github/bryancassell/bluecard/data/progress/MigrationTest.kt",
+    "app/src/test/java/io/github/bryancassell/bluecard/data/progress/ProgressRepositoryContract.kt",
+    "app/src/test/java/io/github/bryancassell/bluecard/data/progress/ProgressTest.kt",
+    "app/src/test/java/io/github/bryancassell/bluecard/data/progress/RankStatusTest.kt",
+    "app/src/test/java/io/github/bryancassell/bluecard/data/progress/RoomProgressRepositoryTest.kt",
+    "app/src/test/java/io/github/bryancassell/bluecard/data/progress/SetAsideDamagedDatabaseDriverTest.kt",
+    "app/src/test/java/io/github/bryancassell/bluecard/data/progress/TimeInRankTest.kt",
+    "app/src/test/java/io/github/bryancassell/bluecard/data/report/AdvancementReportTest.kt",
+    "app/src/test/java/io/github/bryancassell/bluecard/data/report/PdfReportRepositoryTest.kt",
+    "app/src/test/java/io/github/bryancassell/bluecard/data/report/ReportLayoutTest.kt",
+    "app/src/test/java/io/github/bryancassell/bluecard/di/AndroidModuleTest.kt",
+    "app/src/test/java/io/github/bryancassell/bluecard/di/AppModuleTest.kt",
+    "app/src/test/java/io/github/bryancassell/bluecard/di/DeviceClockTest.kt",
+    "app/src/test/java/io/github/bryancassell/bluecard/testing/FakeClock.kt",
+    "app/src/test/java/io/github/bryancassell/bluecard/text/FormattingTest.kt",
+    "app/src/test/java/io/github/bryancassell/bluecard/ui/SavedStateDateTest.kt",
+    "app/src/test/java/io/github/bryancassell/bluecard/ui/badge/AdvancementRequirementsTest.kt",
+    "app/src/test/java/io/github/bryancassell/bluecard/ui/badge/BadgeDetailScreenTest.kt",
+    "app/src/test/java/io/github/bryancassell/bluecard/ui/badge/BadgeDetailViewModelTest.kt",
+    "app/src/test/java/io/github/bryancassell/bluecard/ui/badge/CompletionDateTest.kt",
+    "app/src/test/java/io/github/bryancassell/bluecard/ui/badge/CompletionRecorderTest.kt",
+    "app/src/test/java/io/github/bryancassell/bluecard/ui/badge/EditCounselorViewModelTest.kt",
+    "app/src/test/java/io/github/bryancassell/bluecard/ui/badge/RemovalButtonScreenshotTest.kt",
+    "app/src/test/java/io/github/bryancassell/bluecard/ui/badge/ReportTasksTest.kt",
+    "app/src/test/java/io/github/bryancassell/bluecard/ui/badge/RequirementDetailScreenTest.kt",
+    "app/src/test/java/io/github/bryancassell/bluecard/ui/badge/RequirementDetailViewModelTest.kt",
+    "app/src/test/java/io/github/bryancassell/bluecard/ui/badge/RequirementItemTest.kt",
+    "app/src/test/java/io/github/bryancassell/bluecard/ui/badge/StatusCardScreenshotTest.kt",
+    "app/src/test/java/io/github/bryancassell/bluecard/ui/badge/TrackerEntryScreenTest.kt",
+    "app/src/test/java/io/github/bryancassell/bluecard/ui/badge/TrackerEntryViewModelTest.kt",
+    "app/src/test/java/io/github/bryancassell/bluecard/ui/badges/BadgeSearchTest.kt",
+    "app/src/test/java/io/github/bryancassell/bluecard/ui/badges/BadgesViewModelTest.kt",
+    "app/src/test/java/io/github/bryancassell/bluecard/ui/badges/EagleRequirementTest.kt",
+    "app/src/test/java/io/github/bryancassell/bluecard/ui/badges/ListedBadgeTest.kt",
+    "app/src/test/java/io/github/bryancassell/bluecard/ui/data/DataManagementScreenTest.kt",
+    "app/src/test/java/io/github/bryancassell/bluecard/ui/data/DataManagementViewModelTest.kt",
+    "app/src/test/java/io/github/bryancassell/bluecard/ui/data/MergeChoicesTest.kt",
+    "app/src/test/java/io/github/bryancassell/bluecard/ui/home/HomeViewModelTest.kt",
+    "app/src/test/java/io/github/bryancassell/bluecard/ui/rank/RankDetailScreenTest.kt",
+    "app/src/test/java/io/github/bryancassell/bluecard/ui/rank/RankDetailViewModelTest.kt",
+    "app/src/test/java/io/github/bryancassell/bluecard/ui/ranks/RanksViewModelTest.kt",
+    "gradle/libs.versions.toml"
+   ],
+   "listed_paths": [
+    "app/build.gradle.kts"
+   ],
+   "extras": [
+    {
+     "kind": "new_dependency",
+     "path": "app/build.gradle.kts",
+     "name": "libs.kotlinx.datetime",
+     "files": [
+      "app/build.gradle.kts"
+     ]
+    }
+   ]
+  },
+  {
+   "url": "https://github.com/barca-orc/barca/pull/469",
+   "created_at": "2026-10-20T20:17:36Z",
+   "agent": "claude_code",
+   "issue": 393,
+   "head_sha": "0f68761dbc7477ad20fedbe926bde1ec496cf4a6",
+   "files": [
+    "CHANGELOG.md",
+    "Cargo.lock",
+    "Cargo.toml",
+    "README.md",
+    "crates/barca-cli/docs/contract.md",
+    "crates/barca-cli/docs/scheduling.md",
+    "crates/barca-cli/docs/status.md",
+    "crates/barca-cli/docs/telemetry.md",
+    "crates/barca-cli/snapshots/help/barca-history.txt",
+    "crates/barca-cli/src/args.rs",
+    "crates/barca-cli/src/bounded.rs",
+    "crates/barca-cli/src/commands/execute.rs",
+    "crates/barca-cli/src/contract.rs",
+    "crates/barca-core/src/commands.rs",
+    "crates/barca-core/src/db.rs",
+    "crates/barca-core/src/db_schema.rs",
+    "crates/barca-core/src/dispatch.rs",
+    "crates/barca-core/src/events.rs",
+    "crates/barca-core/src/execution.rs",
+    "crates/barca-core/src/io_loop.rs",
+    "crates/barca-core/src/lib.rs",
+    "crates/barca-core/src/lines.rs",
+    "crates/barca-core/src/outcome.rs",
+    "crates/barca-core/src/persist.rs",
+    "crates/barca-core/src/report.rs",
+    "crates/barca-core/src/report/commands.rs",
+    "crates/barca-core/src/state_carry.rs",
+    "crates/barca-core/src/state_validate.rs",
+    "crates/barca-core/src/store_sync.rs",
+    "crates/barca-core/src/targets.rs",
+    "crates/barca-core/src/telemetry/datadog.rs",
+    "crates/barca-core/src/telemetry/mod.rs",
+    "crates/barca-core/src/warnings.rs",
+    "crates/barca-server/Cargo.toml",
+    "crates/barca-server/src/error.rs",
+    "crates/barca-server/src/handlers.rs",
+    "crates/barca-server/src/inspect.rs",
+    "crates/barca-server/src/lib.rs",
+    "crates/barca-server/src/pause.rs",
+    "crates/barca-server/src/routes.rs",
+    "crates/barca-server/src/runs.rs",
+    "crates/barca-server/src/scheduler.rs",
+    "crates/barca-server/src/state.rs",
+    "crates/barca-server/tests/api.rs",
+    "crates/barca-server/tests/openapi.rs",
+    "python/tests/snapshots/cli_contract/history.txt",
+    "python/tests/snapshots/cli_contract/history_reconciled.txt",
+    "python/tests/test_http_openapi_client.py",
+    "python/tests/test_remote_preflight.py",
+    "python/tests/test_serve_robustness.py",
+    "site/src/content/docs/deploying.md",
+    "site/src/content/docs/reference/cli-contract.md",
+    "site/src/content/docs/reference/cli.md",
+    "site/src/content/docs/reference/server-api.md",
+    "site/src/content/docs/reference/telemetry.md",
+    "site/src/content/docs/rfcs/0007-server-mode.md",
+    "site/src/content/docs/scheduling.md",
+    "site/src/content/docs/workflows/05-schedule-driven-reconciliation-and-effects.md",
+    "specs/README.md",
+    "specs/metadata-schema.md",
+    "specs/server-api.openapi.yaml",
+    "ui/ARCHITECTURE.md",
+    "ui/e2e/graph-state.spec.ts",
+    "ui/e2e/groups.spec.ts",
+    "ui/e2e/helpers/seed.ts",
+    "ui/e2e/load-errors.spec.ts",
+    "ui/e2e/run.spec.ts",
+    "ui/e2e/runs.spec.ts",
+    "ui/src/components/assets/NodePanel.tsx",
+    "ui/src/components/graph/NodeInspector.tsx",
+    "ui/src/hooks/useRunStream.ts",
+    "ui/src/hooks/useRuns.ts",
+    "ui/src/hooks/useSchedule.ts",
+    "ui/src/hooks/useTriggerGet.ts",
+    "ui/src/hooks/useTriggerNode.ts",
+    "ui/src/hooks/useTriggerRun.ts",
+    "ui/src/lib/api.ts",
+    "ui/src/lib/apiBase.test.ts",
+    "ui/src/lib/generated/LineWhen.ts",
+    "ui/src/lib/generated/ListFreshness.ts",
+    "ui/src/lib/generated/ListNode.ts",
+    "ui/src/lib/generated/NodeState.ts",
+    "ui/src/lib/generated/OutcomeStatus.ts",
+    "ui/src/lib/generated/RunCommand.ts",
+    "ui/src/lib/generated/RunDetail.ts",
+    "ui/src/lib/generated/RunEvent.ts",
+    "ui/src/lib/generated/RunRequest.ts",
+    "ui/src/lib/generated/RunState.ts",
+    "ui/src/lib/generated/RunSummary.ts",
+    "ui/src/lib/generated/RunView.ts",
+    "ui/src/lib/generated/TriggeredBy.ts",
+    "ui/src/lib/graph.test.ts",
+    "ui/src/lib/groups.test.ts",
+    "ui/src/lib/groups.ts",
+    "ui/src/lib/pipeline.ts",
+    "ui/src/lib/runStream.test.ts",
+    "ui/src/lib/runStream.ts",
+    "ui/src/lib/runs.test.ts",
+    "ui/src/lib/runs.ts",
+    "ui/src/lib/schedules.test.ts",
+    "ui/src/lib/schedules.ts",
+    "ui/src/lib/status.ts",
+    "ui/src/lib/types.ts",
+    "ui/src/mocks/assets.ts",
+    "ui/src/pages/RunsPage.tsx",
+    "ui/src/pages/SchedulesPage.tsx",
+    "ui/src/pages/runs.css"
+   ],
+   "listed_paths": [
+    "crates/barca-server/Cargo.toml",
+    "ui/src/lib/status.ts",
+    "ui/src/lib/types.ts"
+   ],
+   "extras": [
+    {
+     "kind": "new_dependency",
+     "path": "crates/barca-server/Cargo.toml",
+     "name": "sha2",
+     "files": [
+      "crates/barca-server/Cargo.toml"
+     ]
+    },
+    {
+     "kind": "public_api_removed",
+     "path": "ui/src/lib/status.ts",
+     "name": "runStatusToVisual",
+     "files": [
+      "ui/src/lib/status.ts"
+     ]
+    },
+    {
+     "kind": "public_api_removed",
+     "path": "ui/src/lib/types.ts",
+     "name": "AssetSummary",
+     "files": [
+      "ui/src/lib/types.ts"
+     ]
+    },
+    {
+     "kind": "public_api_removed",
+     "path": "ui/src/lib/types.ts",
+     "name": "RunDetail",
+     "files": [
+      "ui/src/lib/types.ts"
+     ]
+    },
+    {
+     "kind": "public_api_removed",
+     "path": "ui/src/lib/types.ts",
+     "name": "RunStatus",
+     "files": [
+      "ui/src/lib/types.ts"
+     ]
+    }
+   ]
+  },
+  {
+   "url": "https://github.com/Caisesiume/TurfGPS/pull/231",
+   "created_at": "2026-10-19T23:11:22Z",
+   "agent": "claude_code",
+   "issue": 229,
+   "head_sha": "40c829e5cf808d7df7b95bffa3c331bb6509731e",
+   "files": [
+    ".claude/agents/engineering-lead.md",
+    ".claude/skills/team-protocol/SKILL.md",
+    "docs/TEAM.md",
+    "docs/adr/ADR-0005-lean-team.md",
+    "docs/adr/ADR-0007-lead-merges.md",
+    "docs/adr/README.md",
+    "scripts/team/merge.sh",
+    "scripts/team/tests/merge-refusals.sh"
+   ],
+   "listed_paths": [
+    ".claude/skills/team-protocol/SKILL.md"
+   ],
+   "extras": [
+    {
+     "kind": "agent_instructions",
+     "path": ".claude/skills/team-protocol/SKILL.md",
+     "name": ".claude/skills/team-protocol/SKILL.md",
+     "files": [
+      ".claude/skills/team-protocol/SKILL.md"
+     ]
+    }
+   ]
+  },
+  {
+   "url": "https://github.com/melodic-software/claude-code-plugins/pull/8742",
+   "created_at": "2026-10-20T20:17:26Z",
+   "agent": "claude_code",
+   "issue": 8739,
+   "head_sha": "b4e191df8621484cb1e9039ad7ad24a60b766b3d",
+   "files": [
+    ".changes/planning/feat-8739-continue-bg-goal-gate-52f14754.md",
+    ".changes/session-flow/feat-8739-continue-bg-goal-gate-850abf8f.md",
+    "plugins/planning/skills/draft-goal-condition/SKILL.md",
+    "plugins/session-flow/skills/continue-in-background/SKILL.md",
+    "plugins/session-flow/skills/continue-in-background/evals/evals.json",
+    "plugins/session-flow/skills/workflow/context/continuation.md"
+   ],
+   "listed_paths": [
+    "plugins/planning/skills/draft-goal-condition/SKILL.md",
+    "plugins/session-flow/skills/continue-in-background/SKILL.md",
+    "plugins/session-flow/skills/continue-in-background/evals/evals.json",
+    "plugins/session-flow/skills/workflow/context/continuation.md"
+   ],
+   "extras": [
+    {
+     "kind": "agent_instructions",
+     "path": "plugins/",
+     "name": "agent instruction files",
+     "files": [
+      "plugins/planning/skills/draft-goal-condition/SKILL.md",
+      "plugins/session-flow/skills/continue-in-background/SKILL.md",
+      "plugins/session-flow/skills/continue-in-background/evals/evals.json",
+      "plugins/session-flow/skills/workflow/context/continuation.md"
+     ]
+    }
+   ]
+  },
+  {
+   "url": "https://github.com/zeestack/dendra/pull/11",
+   "created_at": "2026-10-20T20:08:00Z",
+   "agent": "claude_code",
+   "issue": 2,
+   "head_sha": "efd92fa99f45f6ca4bad0befb325f6803e8202c9",
+   "files": [
+    ".claude/skills/dendra/SKILL.md",
+    "AGENTS.md",
+    "README.md",
+    "src/core.ts",
+    "src/object-shape.ts",
+    "src/schema.ts",
+    "test/middleware-input.test-d.ts",
+    "test/middleware-input.test.ts"
+   ],
+   "listed_paths": [
+    ".claude/skills/dendra/SKILL.md",
+    "AGENTS.md"
+   ],
+   "extras": [
+    {
+     "kind": "agent_instructions",
+     "path": "./",
+     "name": "agent instruction files",
+     "files": [
+      ".claude/skills/dendra/SKILL.md",
+      "AGENTS.md"
+     ]
+    }
+   ]
+  },
+  {
+   "url": "https://github.com/tatolab/streamlib/pull/2882",
+   "created_at": "2026-10-20T20:09:59Z",
+   "agent": "claude_code",
+   "issue": 2870,
+   "head_sha": "e16becfa5adbd6df22504308ba137f5da5f1d0be",
+   "files": [
+    "runtime/streamlib-engine/src/apple/videotoolbox_video_codec_backend/videotoolbox_decode_session.rs",
+    "runtime/streamlib-engine/src/apple/videotoolbox_video_codec_backend/videotoolbox_encode_session.rs",
+    "runtime/streamlib-engine/src/core/color/h273_color_vui.rs",
+    "runtime/streamlib-engine/src/core/context/video_codec_backend.rs",
+    "runtime/streamlib-engine/src/core/h265_sequence_parameter_set.rs",
+    "runtime/streamlib-engine/src/vulkan/video/codec_utils/vk_video_core_profile.rs",
+    "runtime/streamlib-engine/src/vulkan/video/decode/h264.rs",
+    "runtime/streamlib-engine/src/vulkan/video/decode/h265.rs",
+    "runtime/streamlib-engine/src/vulkan/video/decode/mod.rs",
+    "runtime/streamlib-engine/src/vulkan/video/decode/session.rs",
+    "runtime/streamlib-engine/src/vulkan/video/decode/types.rs",
+    "runtime/streamlib-engine/src/vulkan/video/encode/config.rs",
+    "runtime/streamlib-engine/src/vulkan/video/encode/session.rs",
+    "runtime/streamlib-engine/src/vulkan/video/encode/tests.rs",
+    "runtime/streamlib-engine/src/vulkan/video/nv12_to_rgb.rs",
+    "runtime/streamlib-engine/src/vulkan/video/video_context.rs",
+    "runtime/streamlib-engine/src/vulkan/video/vulkan_video_codec_backend.rs",
+    "runtime/streamlib-engine/tests/fixtures/e2e_fixture_psnr_test_pattern.sh",
+    "runtime/streamlib-engine/tests/fixtures/third_party_colour_signalling_clips/h264_bt601_limited_range_1280x720.annexb",
+    "runtime/streamlib-engine/tests/fixtures/third_party_colour_signalling_clips/h264_bt709_full_range_1280x720.annexb",
+    "runtime/streamlib-engine/tests/fixtures/third_party_colour_signalling_clips/h264_unsignalled_1280x720.annexb",
+    "runtime/streamlib-engine/tests/fixtures/third_party_colour_signalling_clips/h264_unsignalled_640x480.annexb",
+    "runtime/streamlib-engine/tests/fixtures/third_party_colour_signalling_clips/h265_bt601_limited_range_1280x720.annexb",
+    "runtime/streamlib-engine/tests/fixtures/third_party_colour_signalling_clips/h265_bt709_full_range_1280x720.annexb",
+    "runtime/streamlib-engine/tests/fixtures/third_party_colour_signalling_clips/regenerate_the_third_party_colour_signalling_clips.sh",
+    "runtime/streamlib-engine/tests/vulkan_video_decodes_with_the_colour_a_stream_signals.rs",
+    "runtime/streamlib-media-builtins/src/encoded_frame_to_published_surface_decoder.rs",
+    "runtime/streamlib-media-builtins/src/h264_decoder.rs",
+    "runtime/streamlib-media-builtins/src/h265_decoder.rs",
+    "runtime/streamlib-media-builtins/src/published_surface_to_encoded_frame_encoder.rs",
+    "sdk/tatolab-stream/tatolab/stream/_built_in_nodes.py"
+   ],
+   "listed_paths": [
+    "runtime/streamlib-engine/tests/fixtures/third_party_colour_signalling_clips/h264_bt601_limited_range_1280x720.annexb",
+    "runtime/streamlib-engine/tests/fixtures/third_party_colour_signalling_clips/h264_bt709_full_range_1280x720.annexb",
+    "runtime/streamlib-engine/tests/fixtures/third_party_colour_signalling_clips/h264_unsignalled_1280x720.annexb",
+    "runtime/streamlib-engine/tests/fixtures/third_party_colour_signalling_clips/h264_unsignalled_640x480.annexb",
+    "runtime/streamlib-engine/tests/fixtures/third_party_colour_signalling_clips/h265_bt601_limited_range_1280x720.annexb",
+    "runtime/streamlib-engine/tests/fixtures/third_party_colour_signalling_clips/h265_bt709_full_range_1280x720.annexb"
+   ],
+   "extras": [
+    {
+     "kind": "binary_or_large_added",
+     "path": "runtime/streamlib-engine/tests/fixtures/third_party_colour_signalling_clips/h264_bt601_limited_range_1280x720.annexb",
+     "name": "runtime/streamlib-engine/tests/fixtures/third_party_colour_signalling_clips/h264_bt601_limited_range_1280x720.annexb",
+     "files": [
+      "runtime/streamlib-engine/tests/fixtures/third_party_colour_signalling_clips/h264_bt601_limited_range_1280x720.annexb"
+     ]
+    },
+    {
+     "kind": "binary_or_large_added",
+     "path": "runtime/streamlib-engine/tests/fixtures/third_party_colour_signalling_clips/h264_bt709_full_range_1280x720.annexb",
+     "name": "runtime/streamlib-engine/tests/fixtures/third_party_colour_signalling_clips/h264_bt709_full_range_1280x720.annexb",
+     "files": [
+      "runtime/streamlib-engine/tests/fixtures/third_party_colour_signalling_clips/h264_bt709_full_range_1280x720.annexb"
+     ]
+    },
+    {
+     "kind": "binary_or_large_added",
+     "path": "runtime/streamlib-engine/tests/fixtures/third_party_colour_signalling_clips/h264_unsignalled_1280x720.annexb",
+     "name": "runtime/streamlib-engine/tests/fixtures/third_party_colour_signalling_clips/h264_unsignalled_1280x720.annexb",
+     "files": [
+      "runtime/streamlib-engine/tests/fixtures/third_party_colour_signalling_clips/h264_unsignalled_1280x720.annexb"
+     ]
+    },
+    {
+     "kind": "binary_or_large_added",
+     "path": "runtime/streamlib-engine/tests/fixtures/third_party_colour_signalling_clips/h264_unsignalled_640x480.annexb",
+     "name": "runtime/streamlib-engine/tests/fixtures/third_party_colour_signalling_clips/h264_unsignalled_640x480.annexb",
+     "files": [
+      "runtime/streamlib-engine/tests/fixtures/third_party_colour_signalling_clips/h264_unsignalled_640x480.annexb"
+     ]
+    },
+    {
+     "kind": "binary_or_large_added",
+     "path": "runtime/streamlib-engine/tests/fixtures/third_party_colour_signalling_clips/h265_bt601_limited_range_1280x720.annexb",
+     "name": "runtime/streamlib-engine/tests/fixtures/third_party_colour_signalling_clips/h265_bt601_limited_range_1280x720.annexb",
+     "files": [
+      "runtime/streamlib-engine/tests/fixtures/third_party_colour_signalling_clips/h265_bt601_limited_range_1280x720.annexb"
+     ]
+    },
+    {
+     "kind": "binary_or_large_added",
+     "path": "runtime/streamlib-engine/tests/fixtures/third_party_colour_signalling_clips/h265_bt709_full_range_1280x720.annexb",
+     "name": "runtime/streamlib-engine/tests/fixtures/third_party_colour_signalling_clips/h265_bt709_full_range_1280x720.annexb",
+     "files": [
+      "runtime/streamlib-engine/tests/fixtures/third_party_colour_signalling_clips/h265_bt709_full_range_1280x720.annexb"
+     ]
+    }
+   ]
+  },
+  {
+   "url": "https://github.com/mrauhala/meteocore/pull/1241",
+   "created_at": "2026-10-20T20:09:57Z",
+   "agent": "claude_code",
+   "issue": 1159,
+   "head_sha": "79f42bf3ad771a01d86eba306f6f10bfcfc819fb",
+   "files": [
+    "Cargo.lock",
+    "crates/api-edr/CLAUDE.md",
+    "crates/api-edr/Cargo.toml",
+    "crates/api-edr/README.md",
+    "crates/api-edr/src/handlers.rs",
+    "crates/api-edr/src/plot_convert.rs",
+    "crates/api-edr/tests/png_plot_tests.rs",
+    "crates/render/src/plot.rs",
+    "crates/server/src/admin.rs"
+   ],
+   "listed_paths": [
+    "crates/api-edr/CLAUDE.md"
+   ],
+   "extras": [
+    {
+     "kind": "agent_instructions",
+     "path": "crates/api-edr/CLAUDE.md",
+     "name": "crates/api-edr/CLAUDE.md",
+     "files": [
+      "crates/api-edr/CLAUDE.md"
+     ]
+    }
+   ]
+  },
+  {
+   "url": "https://github.com/Azure/typespec-azure/pull/5781",
+   "created_at": "2026-10-20T18:56:27Z",
+   "agent": "copilot",
+   "issue": 5780,
+   "head_sha": "99e9d1d6d3bde09f3a0a6f0e26801a81dde0eb6a",
+   "files": [
+    ".chronus/changes/copilot-typespec-metadata-fix-data-plane-resolution-2026-9-20-19-5-31.md",
+    "packages/typespec-metadata/package.json",
+    "packages/typespec-metadata/src/collector.ts",
+    "packages/typespec-metadata/test/collector.test.ts",
+    "packages/typespec-metadata/test/service-type.test.ts",
+    "packages/typespec-metadata/test/tester.ts",
+    "pnpm-lock.yaml"
+   ],
+   "listed_paths": [
+    "packages/typespec-metadata/package.json"
+   ],
+   "extras": [
+    {
+     "kind": "new_dependency",
+     "path": "packages/typespec-metadata/package.json",
+     "name": "@azure-tools/typespec-azure-resource-manager",
+     "files": [
+      "packages/typespec-metadata/package.json"
+     ]
+    },
+    {
+     "kind": "new_dependency",
+     "path": "packages/typespec-metadata/package.json",
+     "name": "@typespec/openapi",
+     "files": [
+      "packages/typespec-metadata/package.json"
+     ]
+    }
+   ]
+  },
+  {
+   "url": "https://github.com/ScriptedAlchemy/tracedecay/pull/4362",
+   "created_at": "2026-10-19T04:02:47Z",
+   "agent": "copilot",
+   "issue": 4222,
+   "head_sha": "15292094beed53e9a9e2a6237994a6b2cacaf461",
+   "files": [
+    "crates/tracedecay-api/src/configuration.rs",
+    "crates/tracedecay-api/tests/dashboard_presentations.rs",
+    "crates/tracedecay-contracts/src/result/envelope.rs",
+    "crates/tracedecay-contracts/src/result/evidence.rs",
+    "crates/tracedecay-contracts/src/result/receipt.rs",
+    "crates/tracedecay-contracts/src/settings_preview.rs",
+    "crates/tracedecay-dashboard-api/src/application_surface.rs",
+    "crates/tracedecay-dashboard-api/src/automation_config_api.rs",
+    "crates/tracedecay-dashboard-api/src/contract_schema.rs",
+    "crates/tracedecay-dashboard-api/src/settings_api.rs",
+    "crates/tracedecay/tests/runtime_acceptance_suite/runtime_surface_acceptance.rs",
+    "dashboard/codegen/schemas/dashboard-contracts.schema.json",
+    "dashboard/codegen/src/generate.ts",
+    "dashboard/codegen/tests/generate.test.ts",
+    "dashboard/src/contracts/decoders.ts",
+    "dashboard/src/contracts/types.ts",
+    "dashboard/src/test/fixtures/settings-patch.json",
+    "dashboard/src/workspaces/settings/EffectiveConfigTable.tsx",
+    "dashboard/src/workspaces/settings/SettingsEditorController.tsx",
+    "dashboard/src/workspaces/settings/SettingsEditorPanel.tsx",
+    "dashboard/src/workspaces/settings/SettingsInspector.tsx",
+    "dashboard/src/workspaces/settings/SettingsPage.dom.test.tsx",
+    "dashboard/src/workspaces/settings/SettingsPage.tsx",
+    "dashboard/src/workspaces/settings/SettingsValues.tsx",
+    "dashboard/src/workspaces/settings/settingsChrome.ts",
+    "dashboard/src/workspaces/settings/settingsEditorMachine.test.ts",
+    "dashboard/src/workspaces/settings/settingsEditorMachine.ts",
+    "dashboard/src/workspaces/settings/settingsModel.ts",
+    "dashboard/src/workspaces/settings/settingsMutation.test.ts",
+    "dashboard/src/workspaces/settings/settingsMutation.ts",
+    "dashboard/src/workspaces/settings/settingsRows.test.ts",
+    "dashboard/src/workspaces/settings/settingsRows.ts"
+   ],
+   "listed_paths": [
+    "dashboard/src/workspaces/settings/SettingsValues.tsx",
+    "dashboard/src/workspaces/settings/settingsEditorMachine.ts"
+   ],
+   "extras": [
+    {
+     "kind": "public_api_removed",
+     "path": "dashboard/src/workspaces/settings/SettingsValues.tsx",
+     "name": "reviewStatusWord",
+     "files": [
+      "dashboard/src/workspaces/settings/SettingsValues.tsx"
+     ]
+    },
+    {
+     "kind": "public_api_removed",
+     "path": "dashboard/src/workspaces/settings/settingsEditorMachine.ts",
+     "name": "settingsConfirmationHeld",
+     "files": [
+      "dashboard/src/workspaces/settings/settingsEditorMachine.ts"
+     ]
+    },
+    {
+     "kind": "public_api_removed",
+     "path": "dashboard/src/workspaces/settings/settingsEditorMachine.ts",
+     "name": "settingsReviewOf",
+     "files": [
+      "dashboard/src/workspaces/settings/settingsEditorMachine.ts"
+     ]
+    }
+   ]
+  },
+  {
+   "url": "https://github.com/SCIInstitute/SCIRun/pull/2849",
+   "created_at": "2026-10-19T23:56:45Z",
+   "agent": "claude_code",
+   "issue": 2565,
+   "head_sha": "594ffc7eb45ffd35560fb645bb74b533fb48aa4b",
+   "files": [
+    ".github/workflows/reusable-build.yml",
+    "Superbuild/BoostExternal.cmake",
+    "Superbuild/CMakeLists.txt",
+    "Superbuild/Cleaver2External.cmake",
+    "Superbuild/FreetypeExternal.cmake",
+    "Superbuild/LodePngExternal.cmake",
+    "Superbuild/OsprayExternal.cmake",
+    "Superbuild/PythonExternal.cmake",
+    "Superbuild/QwtExternal.cmake",
+    "Superbuild/SQLiteExternal.cmake",
+    "Superbuild/Superbuild.cmake",
+    "Superbuild/TeemExternal.cmake",
+    "Superbuild/TetgenExternal.cmake",
+    "Superbuild/TnyExternal.cmake",
+    "Superbuild/ZlibExternal.cmake",
+    "src/CMakeLists.txt"
+   ],
+   "listed_paths": [
+    ".github/workflows/reusable-build.yml"
+   ],
+   "extras": [
+    {
+     "kind": "ci_or_config",
+     "path": ".github/workflows/reusable-build.yml",
+     "name": ".github/workflows/reusable-build.yml",
+     "files": [
+      ".github/workflows/reusable-build.yml"
+     ]
+    }
+   ]
+  },
+  {
+   "url": "https://github.com/gofish-graphics/gofish-graphics/pull/1177",
+   "created_at": "2026-10-19T23:08:57Z",
+   "agent": "claude_code",
+   "issue": 1024,
+   "head_sha": "e900799600193c0f88daf2fbcc42ea928ffd448b",
+   "files": [
+    ".claude/skills/add-cross-language-construct/SKILL.md",
+    ".github/workflows/claude-code-review.yml",
+    "apps/docs/docs/internals/core/underlying-space.md",
+    "apps/docs/docs/internals/design/python-wrapper-codegen.md",
+    "apps/docs/docs/internals/frontend/mark-factory.md",
+    "apps/docs/docs/internals/frontend/operator-factory.md",
+    "apps/docs/docs/internals/frontend/schema-json.md",
+    "apps/docs/docs/internals/frontend/serialization-api.md",
+    "apps/docs/docs/internals/frontend/serialization.md",
+    "apps/docs/docs/js/api/core/layer.md",
+    "apps/docs/docs/js/api/core/mark.md",
+    "apps/docs/docs/python/api/core/layer.md",
+    "apps/docs/docs/python/api/core/mark.md",
+    "apps/docs/docs/python/api/core/render.md",
+    "apps/docs/docs/python/api/operators/layer.md",
+    "packages/gofish-graphics/src/ast/datumProjection.ts",
+    "packages/gofish-graphics/src/ast/marks/builderMixins.ts",
+    "packages/gofish-graphics/src/ast/marks/chart.ts",
+    "packages/gofish-graphics/src/ast/marks/chartBuilder.ts",
+    "packages/gofish-graphics/src/ast/marks/createOperator.ts",
+    "packages/gofish-graphics/src/ast/marks/markResult.ts",
+    "packages/gofish-graphics/src/ast/schema.ts",
+    "packages/gofish-graphics/src/serialize/fromJSON.ts",
+    "packages/gofish-graphics/src/serialize/index.ts",
+    "packages/gofish-graphics/src/serialize/registry.ts",
+    "packages/gofish-graphics/src/serialize/toJSON.ts",
+    "packages/gofish-graphics/src/tests/autoLabelAngle.test.ts",
+    "packages/gofish-graphics/src/tests/defaultSplit.test.ts",
+    "packages/gofish-graphics/src/tests/encloseWire.test.ts",
+    "packages/gofish-graphics/src/tests/fusion.test.ts",
+    "packages/gofish-graphics/src/tests/serialize.test.ts",
+    "packages/gofish-graphics/stories/forwardsyntax/Labels.stories.tsx",
+    "packages/gofish-graphics/stories/forwardsyntax/NestedCharts.stories.tsx",
+    "packages/gofish-graphics/stories/lowlevel/Constraints.stories.tsx",
+    "packages/gofish-ir/README.md",
+    "packages/gofish-ir/src/frontend/descriptors.ts",
+    "packages/gofish-ir/src/frontend/examples.ts",
+    "packages/gofish-ir/src/frontend/index.ts",
+    "packages/gofish-ir/src/frontend/jsonSchema.ts",
+    "packages/gofish-ir/src/frontend/schema.ts",
+    "packages/gofish-ir/src/frontend/validate.ts",
+    "packages/gofish-ir/src/tests/schema.test.ts",
+    "packages/gofish-python/gofish/_nonfinite.py",
+    "packages/gofish-python/gofish/arrow_utils.py",
+    "packages/gofish-python/gofish/ast.py",
+    "packages/gofish-python/gofish/widget.py",
+    "packages/gofish-python/notes/implementation.md",
+    "packages/gofish-python/package.json",
+    "packages/gofish-python/tests/_ir.py",
+    "packages/gofish-python/tests/test_arrow_ingestion.py",
+    "packages/gofish-python/tests/test_arrow_transport.py",
+    "packages/gofish-python/tests/test_ast.py",
+    "packages/gofish-python/tests/test_families.py",
+    "packages/gofish-python/tests/test_generated_factories.py",
+    "packages/gofish-python/tests/test_gotree.py",
+    "packages/gofish-python/tests/test_widget_protocol.py",
+    "packages/gofish-python/widget-src/arrowBridge.ts",
+    "packages/gofish-python/widget-src/arrowDecode.ts",
+    "packages/gofish-python/widget-src/arrowTransport.test.ts",
+    "packages/gofish-python/widget-src/arrowTransport.ts",
+    "packages/gofish-python/widget-src/index.ts",
+    "tests/.python-sync-exempt",
+    "tests/harness/main.ts",
+    "tests/python-stories/_lowlevel_data/category_brands.json",
+    "tests/python-stories/animated-vega-lite/test_bar_chart_race.py",
+    "tests/python-stories/animated-vega-lite/test_gapminder.py",
+    "tests/python-stories/data.py",
+    "tests/python-stories/forward-syntax/test_flower_chart.py",
+    "tests/python-stories/forward-syntax/test_labels.py",
+    "tests/python-stories/forward-syntax/test_nested_charts.py",
+    "tests/python-stories/low-level-syntax/test_constraints.py",
+    "tests/python-stories/piccl/test_bottle.py",
+    "tests/python-stories/tutorials/test_basics.py",
+    "tests/python-stories/tutorials/test_diagrams.py",
+    "tests/scripts/bench.ts",
+    "tests/scripts/capture-python-dom.ts",
+    "tests/scripts/check-story-ir.py",
+    "tests/scripts/derive-server.py",
+    "tests/scripts/validate-python-ir.ts"
+   ],
+   "listed_paths": [
+    ".claude/skills/add-cross-language-construct/SKILL.md",
+    ".github/workflows/claude-code-review.yml",
+    "packages/gofish-graphics/src/serialize/fromJSON.ts",
+    "packages/gofish-graphics/src/serialize/index.ts",
+    "packages/gofish-graphics/src/serialize/registry.ts",
+    "packages/gofish-graphics/src/serialize/toJSON.ts",
+    "packages/gofish-ir/src/frontend/schema.ts",
+    "packages/gofish-python/gofish/_nonfinite.py",
+    "packages/gofish-python/gofish/arrow_utils.py",
+    "packages/gofish-python/gofish/ast.py",
+    "packages/gofish-python/widget-src/arrowDecode.ts"
+   ],
+   "extras": [
+    {
+     "kind": "ci_or_config",
+     "path": ".github/workflows/claude-code-review.yml",
+     "name": ".github/workflows/claude-code-review.yml",
+     "files": [
+      ".github/workflows/claude-code-review.yml"
+     ]
+    },
+    {
+     "kind": "public_api_removed",
+     "path": "packages/gofish-graphics/src/serialize/fromJSON.ts",
+     "name": "IRHost",
+     "files": [
+      "packages/gofish-graphics/src/serialize/fromJSON.ts"
+     ]
+    },
+    {
+     "kind": "public_api_removed",
+     "path": "packages/gofish-graphics/src/serialize/fromJSON.ts",
+     "name": "LayerSpec",
+     "files": [
+      "packages/gofish-graphics/src/serialize/fromJSON.ts"
+     ]
+    },
+    {
+     "kind": "public_api_removed",
+     "path": "packages/gofish-graphics/src/serialize/fromJSON.ts",
+     "name": "RawMarkSpec",
+     "files": [
+      "packages/gofish-graphics/src/serialize/fromJSON.ts"
+     ]
+    },
+    {
+     "kind": "public_api_removed",
+     "path": "packages/gofish-graphics/src/serialize/fromJSON.ts",
+     "name": "buildChart",
+     "files": [
+      "packages/gofish-graphics/src/serialize/fromJSON.ts"
+     ]
+    },
+    {
+     "kind": "public_api_removed",
+     "path": "packages/gofish-graphics/src/serialize/fromJSON.ts",
+     "name": "unwrapValues",
+     "files": [
+      "packages/gofish-graphics/src/serialize/fromJSON.ts"
+     ]
+    },
+    {
+     "kind": "public_api_removed",
+     "path": "packages/gofish-graphics/src/serialize/index.ts",
+     "name": "toJSONLayer",
+     "files": [
+      "packages/gofish-graphics/src/serialize/index.ts"
+     ]
+    },
+    {
+     "kind": "public_api_removed",
+     "path": "packages/gofish-graphics/src/serialize/index.ts",
+     "name": "toJSONRawMark",
+     "files": [
+      "packages/gofish-graphics/src/serialize/index.ts"
+     ]
+    },
+    {
+     "kind": "public_api_removed",
+     "path": "packages/gofish-graphics/src/serialize/registry.ts",
+     "name": "applyLambdaTyped",
+     "files": [
+      "packages/gofish-graphics/src/serialize/registry.ts"
+     ]
+    },
+    {
+     "kind": "public_api_removed",
+     "path": "packages/gofish-graphics/src/serialize/toJSON.ts",
+     "name": "toJSONLayer",
+     "files": [
+      "packages/gofish-graphics/src/serialize/toJSON.ts"
+     ]
+    },
+    {
+     "kind": "public_api_removed",
+     "path": "packages/gofish-graphics/src/serialize/toJSON.ts",
+     "name": "toJSONRawMark",
+     "files": [
+      "packages/gofish-graphics/src/serialize/toJSON.ts"
+     ]
+    },
+    {
+     "kind": "public_api_removed",
+     "path": "packages/gofish-ir/src/frontend/schema.ts",
+     "name": "LayerIR",
+     "files": [
+      "packages/gofish-ir/src/frontend/schema.ts"
+     ]
+    },
+    {
+     "kind": "public_api_removed",
+     "path": "packages/gofish-ir/src/frontend/schema.ts",
+     "name": "RawMarkIR",
+     "files": [
+      "packages/gofish-ir/src/frontend/schema.ts"
+     ]
+    },
+    {
+     "kind": "public_api_removed",
+     "path": "packages/gofish-ir/src/frontend/schema.ts",
+     "name": "isLayerIR",
+     "files": [
+      "packages/gofish-ir/src/frontend/schema.ts"
+     ]
+    },
+    {
+     "kind": "public_api_removed",
+     "path": "packages/gofish-ir/src/frontend/schema.ts",
+     "name": "isRawMarkIR",
+     "files": [
+      "packages/gofish-ir/src/frontend/schema.ts"
+     ]
+    },
+    {
+     "kind": "public_api_removed",
+     "path": "packages/gofish-python/gofish/_nonfinite.py",
+     "name": "encode_non_finite",
+     "files": [
+      "packages/gofish-python/gofish/_nonfinite.py"
+     ]
+    },
+    {
+     "kind": "public_api_removed",
+     "path": "packages/gofish-python/gofish/arrow_utils.py",
+     "name": "empty_placeholder_arrow_bytes",
+     "files": [
+      "packages/gofish-python/gofish/arrow_utils.py"
+     ]
+    },
+    {
+     "kind": "public_api_removed",
+     "path": "packages/gofish-python/gofish/ast.py",
+     "name": "relate",
+     "files": [
+      "packages/gofish-python/gofish/ast.py"
+     ]
+    },
+    {
+     "kind": "public_api_removed",
+     "path": "packages/gofish-python/gofish/ast.py",
+     "name": "tier",
+     "files": [
+      "packages/gofish-python/gofish/ast.py"
+     ]
+    },
+    {
+     "kind": "public_api_removed",
+     "path": "packages/gofish-python/gofish/ast.py",
+     "name": "tiers_arrow_bytes",
+     "files": [
+      "packages/gofish-python/gofish/ast.py"
+     ]
+    },
+    {
+     "kind": "public_api_removed",
+     "path": "packages/gofish-python/widget-src/arrowDecode.ts",
+     "name": "decodeTierRows",
+     "files": [
+      "packages/gofish-python/widget-src/arrowDecode.ts"
+     ]
+    },
+    {
+     "kind": "agent_instructions",
+     "path": ".claude/skills/add-cross-language-construct/SKILL.md",
+     "name": ".claude/skills/add-cross-language-construct/SKILL.md",
+     "files": [
+      ".claude/skills/add-cross-language-construct/SKILL.md"
+     ]
+    }
+   ]
+  },
+  {
+   "url": "https://github.com/khirano0628/my-project/pull/7",
+   "created_at": "2026-10-19T13:05:44Z",
+   "agent": "copilot",
+   "issue": 6,
+   "head_sha": "99b49fe744a1a319364d5c3bf4dd36c5f0da5c43",
+   "files": [
+    "src/agent-framework-agent-basic-responses/Dockerfile"
+   ],
+   "listed_paths": [
+    "src/agent-framework-agent-basic-responses/Dockerfile"
+   ],
+   "extras": [
+    {
+     "kind": "ci_or_config",
+     "path": "src/agent-framework-agent-basic-responses/Dockerfile",
+     "name": "src/agent-framework-agent-basic-responses/Dockerfile",
+     "files": [
+      "src/agent-framework-agent-basic-responses/Dockerfile"
+     ]
+    }
+   ]
+  },
+  {
+   "url": "https://github.com/jamessoubry/clawband/pull/323",
+   "created_at": "2026-10-19T22:09:07Z",
+   "agent": "claude_code",
+   "issue": 300,
+   "head_sha": "195895dc04c11be4eec482c4dc52596d56c7ccd4",
+   "files": [
+    "Cargo.lock",
+    "Cargo.toml",
+    "src/main.rs",
+    "tests/cli.rs"
+   ],
+   "listed_paths": [
+    "Cargo.toml"
+   ],
+   "extras": [
+    {
+     "kind": "version_bump",
+     "path": "Cargo.toml",
+     "name": "3.27.1",
+     "files": [
+      "Cargo.toml"
+     ]
+    }
+   ]
+  },
+  {
+   "url": "https://github.com/NucleusFramework/Nucleus/pull/864",
+   "created_at": "2026-10-19T23:22:44Z",
+   "agent": "claude_code",
+   "issue": 841,
+   "head_sha": "22b12aed3ab7a523252a5733dad0a3d72c068caa",
+   "files": [
+    "CLAUDE.md",
+    "decorated-window-tao/api/decorated-window-tao.api",
+    "decorated-window-tao/src/main/kotlin/dev/nucleusframework/window/DialogTitleBar.kt",
+    "decorated-window-tao/src/main/kotlin/dev/nucleusframework/window/TitleBar.kt",
+    "decorated-window-tao/src/main/kotlin/dev/nucleusframework/window/WindowControls.kt",
+    "decorated-window-tao/src/main/kotlin/dev/nucleusframework/window/WindowScaffold.kt",
+    "decorated-window-tao/src/main/kotlin/dev/nucleusframework/window/tao/DecoratedDialog.kt",
+    "decorated-window-tao/src/main/kotlin/dev/nucleusframework/window/tao/DecoratedWindow.kt",
+    "decorated-window-tao/src/main/kotlin/dev/nucleusframework/window/tao/DecoratedWindowComposable.kt",
+    "decorated-window-tao/src/main/kotlin/dev/nucleusframework/window/tao/DecoratedWindowNucleusV2.kt",
+    "decorated-window-tao/src/main/kotlin/dev/nucleusframework/window/tao/TaoApplication.kt",
+    "decorated-window-tao/src/main/kotlin/dev/nucleusframework/window/tao/TaoWindow.kt",
+    "decorated-window-tao/src/main/kotlin/dev/nucleusframework/window/tao/ffi/NativeMetalBridge.kt",
+    "decorated-window-tao/src/main/kotlin/dev/nucleusframework/window/tao/ffi/NativeTaoBridge.kt",
+    "decorated-window-tao/src/main/kotlin/dev/nucleusframework/window/tao/ffi/NativeTaoWindowsDecoBridge.kt",
+    "decorated-window-tao/src/main/kotlin/dev/nucleusframework/window/tao/scene/TaoComposeSceneHost.kt",
+    "decorated-window-tao/src/main/kotlin/dev/nucleusframework/window/tao/scene/TaoComposeSceneHostLinux.kt",
+    "decorated-window-tao/src/main/kotlin/dev/nucleusframework/window/tao/scene/TaoComposeSceneHostWindows.kt",
+    "decorated-window-tao/src/main/native/macos/NucleusTaoMetal.m",
+    "decorated-window-tao/src/main/native/src/event_loop.rs",
+    "decorated-window-tao/src/main/native/src/events.rs",
+    "decorated-window-tao/src/main/native/src/window_jni.rs",
+    "decorated-window-tao/src/main/native/vendor/tao-patches/0014-linux-system-decorations.patch",
+    "decorated-window-tao/src/main/native/vendor/tao-patches/README.md",
+    "decorated-window-tao/src/main/native/vendor/tao/src/platform/unix.rs",
+    "decorated-window-tao/src/main/native/vendor/tao/src/platform_impl/linux/event_loop.rs",
+    "decorated-window-tao/src/main/native/vendor/tao/src/platform_impl/linux/mod.rs",
+    "decorated-window-tao/src/main/native/vendor/tao/src/platform_impl/linux/window.rs",
+    "decorated-window-tao/src/main/native/windows/nucleus_tao_windows_deco.c",
+    "decorated-window-tao/src/test/kotlin/dev/nucleusframework/window/tao/headful/SystemDecorationsHeadfulCases.kt",
+    "decorated-window-tao/src/test/kotlin/dev/nucleusframework/window/tao/headful/TaoHeadfulTestSuiteMain.kt",
+    "decorated-window-tao/src/test/kotlin/dev/nucleusframework/window/tao/headful/TaoWindowTestHarness.kt",
+    "docs/internals/system-decorations.md",
+    "examples/lab/probes/window/src/main/kotlin/dev/nucleusframework/lab/probes/window/system/SystemDecoratedWindows.kt",
+    "examples/lab/probes/window/src/main/kotlin/dev/nucleusframework/lab/probes/window/system/SystemDecorationsContract.kt",
+    "examples/lab/probes/window/src/main/kotlin/dev/nucleusframework/lab/probes/window/system/SystemDecorationsProbe.kt",
+    "examples/lab/probes/window/src/main/kotlin/dev/nucleusframework/lab/probes/window/system/SystemDecorationsViewModel.kt",
+    "nucleus-application/api/nucleus-application.api",
+    "nucleus-application/src/main/kotlin/dev/nucleusframework/application/DecoratedDialog.kt",
+    "nucleus-application/src/main/kotlin/dev/nucleusframework/application/DecoratedWindow.kt",
+    "nucleus-application/src/main/kotlin/dev/nucleusframework/application/Window.kt",
+    "nucleus-application/src/main/kotlin/dev/nucleusframework/application/internal/TaoDecoratedDialogAdapter.kt",
+    "nucleus-application/src/main/kotlin/dev/nucleusframework/application/internal/TaoDecoratedWindowAdapter.kt"
+   ],
+   "listed_paths": [
+    "CLAUDE.md"
+   ],
+   "extras": [
+    {
+     "kind": "agent_instructions",
+     "path": "CLAUDE.md",
+     "name": "CLAUDE.md",
+     "files": [
+      "CLAUDE.md"
+     ]
+    }
+   ]
+  },
+  {
+   "url": "https://github.com/21072026/Internship/pull/2986",
+   "created_at": "2026-10-19T23:09:01Z",
+   "agent": "claude_code",
+   "issue": 2985,
+   "head_sha": "34382c5ea6aeda4f003b78349b4edcb2529ffe15",
+   "files": [
+    ".github/workflows/backup-verify.yml",
+    ".github/workflows/ci.yml",
+    ".github/workflows/deploy-preview.yml",
+    ".github/workflows/deploy-prod.yml",
+    ".github/workflows/e2e-full.yml",
+    ".github/workflows/e2e.yml",
+    ".github/workflows/k6-load.yml",
+    ".github/workflows/mysql-watchdog.yml",
+    ".github/workflows/release-compact.yml",
+    ".github/workflows/stress.yml",
+    ".github/workflows/uptime.yml",
+    "apps/mobile/README.md",
+    "apps/mobile/package-lock.json",
+    "apps/mobile/package.json",
+    "apps/mobile/src/app/(tabs)/_layout.tsx",
+    "apps/mobile/src/app/(tabs)/notifications.tsx",
+    "apps/mobile/src/components/WebScreen.tsx",
+    "apps/mobile/src/lib/menu.ts",
+    "docs/audit-stream.md",
+    "docs/disaster-recovery.md",
+    "docs/integrations/account-events.md",
+    "docs/integrations/klaviyo.md",
+    "docs/mobile-push.md",
+    "docs/sso-saml.md",
+    "docs/testing.md",
+    "e2e/a11y-media-preferences.spec.ts",
+    "e2e/account-events-lost-batch.spec.ts",
+    "e2e/admin-organizations.spec.ts",
+    "e2e/api-explorer.spec.ts",
+    "e2e/duplicate-blocking.unit.spec.ts",
+    "e2e/interview-loop.spec.ts",
+    "e2e/interview-request-form.spec.ts",
+    "e2e/klaviyo-connector.spec.ts",
+    "e2e/mobile-layout-coverage.spec.ts",
+    "e2e/offers.spec.ts",
+    "e2e/org-premium-write-gate.spec.ts",
+    "e2e/release-notes-paging.spec.ts",
+    "e2e/report-subscriptions.spec.ts",
+    "e2e/support/klaviyo-mock.mjs",
+    "infra/README.md",
+    "infra/backup-db.sh",
+    "infra/check-backups.sh",
+    "infra/deploy-prod.sh",
+    "package.json",
+    "playwright.config.ts",
+    "prisma/schema.prisma",
+    "prisma/wipe-integration-source.mjs",
+    "releases/unreleased/klaviyo-connector.json",
+    "scripts/check-api-key-routes.mjs",
+    "scripts/check-events.mjs",
+    "scripts/check-i18n.ts",
+    "scripts/check-unit-coverage.mjs",
+    "scripts/test/app-navigation.test.mjs",
+    "scripts/test/klaviyo-rule.test.mjs",
+    "scripts/test/nav-capabilities.test.mjs",
+    "src/app/admin/api-explorer/page.tsx",
+    "src/app/admin/cohorts/page.tsx",
+    "src/app/admin/companies/page.tsx",
+    "src/app/admin/integrations/page.tsx",
+    "src/app/admin/layout.tsx",
+    "src/app/admin/organizations/page.tsx",
+    "src/app/api/admin/analytics/benchmark/route.ts",
+    "src/app/api/admin/integrations/klaviyo/preview/route.ts",
+    "src/app/api/admin/integrations/klaviyo/route.ts",
+    "src/app/api/admin/integrations/klaviyo/sync/route.ts",
+    "src/app/api/admin/integrations/klaviyo/test/route.ts",
+    "src/app/api/admin/openapi/route.ts",
+    "src/app/api/admin/organizations/[id]/brand-mark/route.ts",
+    "src/app/api/admin/organizations/[id]/conferencing/route.ts",
+    "src/app/api/admin/organizations/[id]/invite-admin/route.ts",
+    "src/app/api/admin/organizations/[id]/pipeline-stages/route.ts",
+    "src/app/api/admin/organizations/[id]/sample-data/route.ts",
+    "src/app/api/admin/organizations/[id]/sso-role-mappings/route.ts",
+    "src/app/api/admin/organizations/[id]/starter-pack/route.ts",
+    "src/app/api/admin/organizations/route.ts",
+    "src/app/api/app/navigation/route.ts",
+    "src/app/api/companies/route.ts",
+    "src/app/api/company/candidates/[id]/route.ts",
+    "src/app/api/cron/route.ts",
+    "src/app/api/cron/start/route.ts",
+    "src/app/api/integrations/[source]/events/batch/route.ts",
+    "src/app/api/interactions/route.ts",
+    "src/app/api/interview-requests/route.ts",
+    "src/app/api/offers/[id]/route.ts",
+    "src/app/api/v1/candidates/route.ts",
+    "src/app/api/v1/openapi.json/route.ts",
+    "src/app/auth/resume/ResumeClient.tsx",
+    "src/app/auth/sso/complete/page.tsx",
+    "src/app/company/candidates/[id]/page.tsx",
+    "src/app/company/requisitions/[id]/page.tsx",
+    "src/app/release-notes/ReleaseNotesList.tsx",
+    "src/components/AdminNav.tsx",
+    "src/components/CommandPalette.tsx",
+    "src/components/CompanyDetailView.tsx",
+    "src/components/admin/KlaviyoCard.tsx",
+    "src/i18n/dictionaries.ts",
+    "src/lib/accountErasure.ts",
+    "src/lib/accountEventIngest.ts",
+    "src/lib/apiKey.ts",
+    "src/lib/apiScopes.ts",
+    "src/lib/appNavigation.ts",
+    "src/lib/applicationStage.ts",
+    "src/lib/companyDetail.ts",
+    "src/lib/dbHandle.ts",
+    "src/lib/duplicateDetection.ts",
+    "src/lib/externalProfileErasure.ts",
+    "src/lib/features.ts",
+    "src/lib/hiringOutcome.ts",
+    "src/lib/inviteCreate.ts",
+    "src/lib/klaviyoClient.ts",
+    "src/lib/klaviyoGate.ts",
+    "src/lib/klaviyoRule.ts",
+    "src/lib/klaviyoSync.ts",
+    "src/lib/leadSourceName.ts",
+    "src/lib/marketingImport.ts",
+    "src/lib/marketingImportStore.ts",
+    "src/lib/navLinks.ts",
+    "src/lib/notifications/catalog.ts",
+    "src/lib/orgContext.ts",
+    "src/lib/orgProvisioning.ts",
+    "src/lib/settings.ts",
+    "src/lib/ssoEnforcement.ts",
+    "src/lib/winBack.ts",
+    "src/services/emailService.ts"
+   ],
+   "listed_paths": [
+    ".github/workflows/backup-verify.yml",
+    ".github/workflows/ci.yml",
+    ".github/workflows/deploy-preview.yml",
+    ".github/workflows/deploy-prod.yml",
+    ".github/workflows/e2e-full.yml",
+    ".github/workflows/e2e.yml",
+    ".github/workflows/k6-load.yml",
+    ".github/workflows/mysql-watchdog.yml",
+    ".github/workflows/release-compact.yml",
+    ".github/workflows/stress.yml",
+    ".github/workflows/uptime.yml",
+    "src/app/company/requisitions/[id]/page.tsx",
+    "src/lib/accountEventIngest.ts",
+    "src/lib/applicationStage.ts",
+    "src/lib/dbHandle.ts",
+    "src/lib/duplicateDetection.ts"
+   ],
+   "extras": [
+    {
+     "kind": "ci_or_config",
+     "path": ".github/workflows/backup-verify.yml",
+     "name": ".github/workflows/backup-verify.yml",
+     "files": [
+      ".github/workflows/backup-verify.yml"
+     ]
+    },
+    {
+     "kind": "ci_or_config",
+     "path": ".github/workflows/ci.yml",
+     "name": ".github/workflows/ci.yml",
+     "files": [
+      ".github/workflows/ci.yml"
+     ]
+    },
+    {
+     "kind": "ci_or_config",
+     "path": ".github/workflows/deploy-preview.yml",
+     "name": ".github/workflows/deploy-preview.yml",
+     "files": [
+      ".github/workflows/deploy-preview.yml"
+     ]
+    },
+    {
+     "kind": "ci_or_config",
+     "path": ".github/workflows/deploy-prod.yml",
+     "name": ".github/workflows/deploy-prod.yml",
+     "files": [
+      ".github/workflows/deploy-prod.yml"
+     ]
+    },
+    {
+     "kind": "ci_or_config",
+     "path": ".github/workflows/e2e-full.yml",
+     "name": ".github/workflows/e2e-full.yml",
+     "files": [
+      ".github/workflows/e2e-full.yml"
+     ]
+    },
+    {
+     "kind": "ci_or_config",
+     "path": ".github/workflows/e2e.yml",
+     "name": ".github/workflows/e2e.yml",
+     "files": [
+      ".github/workflows/e2e.yml"
+     ]
+    },
+    {
+     "kind": "ci_or_config",
+     "path": ".github/workflows/k6-load.yml",
+     "name": ".github/workflows/k6-load.yml",
+     "files": [
+      ".github/workflows/k6-load.yml"
+     ]
+    },
+    {
+     "kind": "ci_or_config",
+     "path": ".github/workflows/mysql-watchdog.yml",
+     "name": ".github/workflows/mysql-watchdog.yml",
+     "files": [
+      ".github/workflows/mysql-watchdog.yml"
+     ]
+    },
+    {
+     "kind": "ci_or_config",
+     "path": ".github/workflows/release-compact.yml",
+     "name": ".github/workflows/release-compact.yml",
+     "files": [
+      ".github/workflows/release-compact.yml"
+     ]
+    },
+    {
+     "kind": "ci_or_config",
+     "path": ".github/workflows/stress.yml",
+     "name": ".github/workflows/stress.yml",
+     "files": [
+      ".github/workflows/stress.yml"
+     ]
+    },
+    {
+     "kind": "ci_or_config",
+     "path": ".github/workflows/uptime.yml",
+     "name": ".github/workflows/uptime.yml",
+     "files": [
+      ".github/workflows/uptime.yml"
+     ]
+    },
+    {
+     "kind": "public_api_removed",
+     "path": "src/app/company/requisitions/[id]/page.tsx",
+     "name": "CompanyRequisitionBoardPage",
+     "files": [
+      "src/app/company/requisitions/[id]/page.tsx"
+     ]
+    },
+    {
+     "kind": "public_api_removed",
+     "path": "src/lib/accountEventIngest.ts",
+     "name": "DryRunInconclusiveError",
+     "files": [
+      "src/lib/accountEventIngest.ts"
+     ]
+    },
+    {
+     "kind": "public_api_removed",
+     "path": "src/lib/applicationStage.ts",
+     "name": "advanceApplicationOnAcceptedOffer",
+     "files": [
+      "src/lib/applicationStage.ts"
+     ]
+    },
+    {
+     "kind": "public_api_removed",
+     "path": "src/lib/dbHandle.ts",
+     "name": "unitFailedIn",
+     "files": [
+      "src/lib/dbHandle.ts"
+     ]
+    },
+    {
+     "kind": "public_api_removed",
+     "path": "src/lib/duplicateDetection.ts",
+     "name": "findDuplicatePairsYielding",
+     "files": [
+      "src/lib/duplicateDetection.ts"
+     ]
+    }
+   ]
+  },
+  {
+   "url": "https://github.com/ijun17/centralu/pull/1255",
+   "created_at": "2026-10-19T03:50:19Z",
+   "agent": "claude_code",
+   "issue": 1236,
+   "head_sha": "9587534cf773c4237d88c05dd4187c0489efda63",
+   "files": [
+    ".centralu/apps/project-board/AGENTS.md",
+    ".centralu/apps/project-board/bin/merge-queue.mjs",
+    ".centralu/apps/project-board/queue-driver.mjs",
+    ".centralu/apps/project-board/queue-tools.mjs",
+    ".centralu/apps/project-board/queue.mjs",
+    "tooling/project-board-queue.test.ts"
+   ],
+   "listed_paths": [
+    ".centralu/apps/project-board/AGENTS.md"
+   ],
+   "extras": [
+    {
+     "kind": "agent_instructions",
+     "path": ".centralu/apps/project-board/AGENTS.md",
+     "name": ".centralu/apps/project-board/AGENTS.md",
+     "files": [
+      ".centralu/apps/project-board/AGENTS.md"
+     ]
+    }
+   ]
+  },
+  {
+   "url": "https://github.com/MatheusCastro99/HarnessConfigAndWorkflow/pull/29",
+   "created_at": "2026-10-20T20:13:26Z",
+   "agent": "claude_code",
+   "issue": 26,
+   "head_sha": "f8774b39054a950528ba61f9947ad5cb50fdaf7a",
+   "files": [
+    "Templates/agents/surveyor.md",
+    "Templates/skills/harness-onboarding/SKILL.md"
+   ],
+   "listed_paths": [
+    "Templates/skills/harness-onboarding/SKILL.md"
+   ],
+   "extras": [
+    {
+     "kind": "agent_instructions",
+     "path": "Templates/skills/harness-onboarding/SKILL.md",
+     "name": "Templates/skills/harness-onboarding/SKILL.md",
+     "files": [
+      "Templates/skills/harness-onboarding/SKILL.md"
+     ]
+    }
+   ]
+  },
+  {
+   "url": "https://github.com/Acervator-LLC/ACERVATOR/pull/1391",
+   "created_at": "2026-10-20T20:09:34Z",
+   "agent": "claude_code",
+   "issue": 230,
+   "head_sha": "0f7ebb34fe461a004418ddd92b33495f173b1ef7",
+   "files": [
+    "docs/manual/08-tabs/asset-charts.md",
+    "src/gui/main_tabs/native_chart_surface.py",
+    "src/gui/native_chart.py",
+    "src/gui/web/native_chart.js"
+   ],
+   "listed_paths": [
+    "src/gui/main_tabs/native_chart_surface.py"
+   ],
+   "extras": [
+    {
+     "kind": "public_api_removed",
+     "path": "src/gui/main_tabs/native_chart_surface.py",
+     "name": "set_grid_lines",
+     "files": [
+      "src/gui/main_tabs/native_chart_surface.py"
+     ]
+    }
+   ]
+  },
+  {
+   "url": "https://github.com/jammiller/jammiller/pull/54",
+   "created_at": "2026-10-20T16:45:23Z",
+   "agent": "copilot",
+   "issue": 31,
+   "head_sha": "a727628c1c1899a2c29900ed3b4e0b616a77b770",
+   "files": [
+    "command-center/AGENTS.md",
+    "command-center/README.md",
+    "command-center/app/campaigns/page.tsx",
+    "command-center/app/reports/page.tsx",
+    "command-center/app/traffic/page.tsx",
+    "command-center/components/Sidebar.tsx",
+    "command-center/lib/types.ts",
+    "command-center/supabase/schema.sql"
+   ],
+   "listed_paths": [
+    "command-center/AGENTS.md"
+   ],
+   "extras": [
+    {
+     "kind": "agent_instructions",
+     "path": "command-center/AGENTS.md",
+     "name": "command-center/AGENTS.md",
+     "files": [
+      "command-center/AGENTS.md"
+     ]
+    }
+   ]
+  },
+  {
+   "url": "https://github.com/andyrward/Optical_Trap_Calibration/pull/12",
+   "created_at": "2026-10-20T19:04:06Z",
+   "agent": "copilot",
+   "issue": 11,
+   "head_sha": "ca338bf10b62071af5eb9f94dcf60410c658935a",
+   "files": [
+    "optical_trap_oscillator.py",
+    "optical_trap_tidy.py",
+    "requirements.txt",
+    "tests/test_optical_trap_tidy.py"
+   ],
+   "listed_paths": [
+    "requirements.txt"
+   ],
+   "extras": [
+    {
+     "kind": "new_dependency",
+     "path": "requirements.txt",
+     "name": "pandas",
+     "files": [
+      "requirements.txt"
+     ]
+    },
+    {
+     "kind": "new_dependency",
+     "path": "requirements.txt",
+     "name": "pyarrow",
+     "files": [
+      "requirements.txt"
+     ]
+    }
+   ]
+  },
+  {
+   "url": "https://github.com/chrischaps/Terrarium/pull/86",
+   "created_at": "2026-10-20T20:12:42Z",
+   "agent": "claude_code",
+   "issue": 77,
+   "head_sha": "471524d2c361aabb2fa7359a454755d8927713fd",
+   "files": [
+    "CLAUDE.md",
+    "bodies/climb.lua",
+    "bodies/snail.lua",
+    "bodies/spider.lua",
+    "core/statehash.lua",
+    "core/synth.lua",
+    "dev.lua",
+    "genome.lua",
+    "jar/eggs.lua",
+    "jar/moss.lua",
+    "jar/remains.lua",
+    "jar/room.lua",
+    "jar/world.lua",
+    "main.lua",
+    "mind.lua",
+    "nav/glide.lua",
+    "nav/navgraph.lua"
+   ],
+   "listed_paths": [
+    "CLAUDE.md"
+   ],
+   "extras": [
+    {
+     "kind": "agent_instructions",
+     "path": "CLAUDE.md",
+     "name": "CLAUDE.md",
+     "files": [
+      "CLAUDE.md"
+     ]
+    }
+   ]
+  },
+  {
+   "url": "https://github.com/codefly-dev/service-redis/pull/108",
+   "created_at": "2026-10-20T20:15:02Z",
+   "agent": "claude_code",
+   "issue": 107,
+   "head_sha": "d00ed105da6631aa8d0f162e70eb7cd16e2f8f6b",
+   "files": [
+    "AGENTS.md",
+    "cache_format_test.go",
+    "cacheprovider_test.go",
+    "go.mod",
+    "go.sum",
+    "redislog.go",
+    "redislog_test.go"
+   ],
+   "listed_paths": [
+    "AGENTS.md"
+   ],
+   "extras": [
+    {
+     "kind": "agent_instructions",
+     "path": "AGENTS.md",
+     "name": "AGENTS.md",
+     "files": [
+      "AGENTS.md"
+     ]
+    }
+   ]
+  },
+  {
+   "url": "https://github.com/flock-community/bunq-sdk/pull/34",
+   "created_at": "2026-10-19T22:24:21Z",
+   "agent": "claude_code",
+   "issue": 25,
+   "head_sha": "d468b5d6cf0e2842c8f0d8ba45655936a9b2ce4e",
+   "files": [
+    ".github/workflows/build.yml",
+    "docs/java.md",
+    "docs/kotlin.md",
+    "docs/python.md",
+    "docs/typescript.md",
+    "packages/java/src/main/java/com/bunq/sdk/Config.java",
+    "packages/java/src/main/java/com/bunq/sdk/Context.java",
+    "packages/java/src/test/java/com/bunq/sdk/SecretMaskingTest.java",
+    "packages/kotlin/src/main/kotlin/com/bunq/sdk/Config.kt",
+    "packages/kotlin/src/main/kotlin/com/bunq/sdk/Context.kt",
+    "packages/kotlin/src/test/kotlin/com/bunq/sdk/SecretMaskingTest.kt",
+    "packages/npm/src/config.ts",
+    "packages/npm/src/context.ts",
+    "packages/npm/src/index.ts",
+    "packages/npm/src/signing-keys.ts",
+    "packages/npm/test/secret-masking.test.ts",
+    "packages/python/src/config.py",
+    "packages/python/src/context.py",
+    "packages/python/src/secret_masking_test.py"
+   ],
+   "listed_paths": [
+    ".github/workflows/build.yml"
+   ],
+   "extras": [
+    {
+     "kind": "ci_or_config",
+     "path": ".github/workflows/build.yml",
+     "name": ".github/workflows/build.yml",
+     "files": [
+      ".github/workflows/build.yml"
+     ]
+    }
+   ]
+  },
+  {
+   "url": "https://github.com/pydantic/pydantic-ai/pull/10672",
+   "created_at": "2026-10-19T23:28:40Z",
+   "agent": "claude_code",
+   "issue": 1771,
+   "head_sha": "60e7dcbce33759738591922abc57935fe51fd6b9",
+   "files": [
+    "docs/api/models/batch.md",
+    "docs/api/output.md",
+    "docs/batch.md",
+    "docs/capabilities/custom.md",
+    "docs/capabilities/overview.md",
+    "docs/direct.md",
+    "docs/harness/dynamic-workflow.md",
+    "docs/harness/subagents.md",
+    "docs/hooks.md",
+    "docs/models/anthropic.md",
+    "docs/models/google.md",
+    "docs/models/openai.md",
+    "docs/navigation.yml",
+    "docs/testing.md",
+    "pydantic_ai_slim/pydantic_ai/.agents/skills/building-pydantic-ai-agents/references/ORCHESTRATION-AND-INTEGRATIONS.md",
+    "pydantic_ai_slim/pydantic_ai/__init__.py",
+    "pydantic_ai_slim/pydantic_ai/_agent_graph.py",
+    "pydantic_ai_slim/pydantic_ai/_output.py",
+    "pydantic_ai_slim/pydantic_ai/agent/abstract.py",
+    "pydantic_ai_slim/pydantic_ai/capabilities/__init__.py",
+    "pydantic_ai_slim/pydantic_ai/capabilities/abstract.py",
+    "pydantic_ai_slim/pydantic_ai/capabilities/batch_model_requests.py",
+    "pydantic_ai_slim/pydantic_ai/capabilities/combined.py",
+    "pydantic_ai_slim/pydantic_ai/capabilities/wrapper.py",
+    "pydantic_ai_slim/pydantic_ai/direct.py",
+    "pydantic_ai_slim/pydantic_ai/durable_exec/_base.py",
+    "pydantic_ai_slim/pydantic_ai/durable_exec/_capability_operation.py",
+    "pydantic_ai_slim/pydantic_ai/durable_exec/_utils.py",
+    "pydantic_ai_slim/pydantic_ai/durable_exec/dbos/_model.py",
+    "pydantic_ai_slim/pydantic_ai/durable_exec/prefect/_model.py",
+    "pydantic_ai_slim/pydantic_ai/durable_exec/temporal/_model.py",
+    "pydantic_ai_slim/pydantic_ai/models/__init__.py",
+    "pydantic_ai_slim/pydantic_ai/models/_anthropic_batch.py",
+    "pydantic_ai_slim/pydantic_ai/models/_batch_codec.py",
+    "pydantic_ai_slim/pydantic_ai/models/_batch_model.py",
+    "pydantic_ai_slim/pydantic_ai/models/_batch_settings.py",
+    "pydantic_ai_slim/pydantic_ai/models/_continuation.py",
+    "pydantic_ai_slim/pydantic_ai/models/_google_batch.py",
+    "pydantic_ai_slim/pydantic_ai/models/_in_memory_batch.py",
+    "pydantic_ai_slim/pydantic_ai/models/_openai_batch.py",
+    "pydantic_ai_slim/pydantic_ai/models/anthropic.py",
+    "pydantic_ai_slim/pydantic_ai/models/batch.py",
+    "pydantic_ai_slim/pydantic_ai/models/function.py",
+    "pydantic_ai_slim/pydantic_ai/models/google.py",
+    "pydantic_ai_slim/pydantic_ai/models/openai.py",
+    "pydantic_ai_slim/pydantic_ai/models/openai_codex.py",
+    "pydantic_ai_slim/pydantic_ai/models/test.py",
+    "pydantic_ai_slim/pydantic_ai/models/wrapper.py",
+    "pydantic_ai_slim/pydantic_ai/output.py",
+    "pydantic_ai_slim/pydantic_ai/result.py",
+    "src/pydantic_ai_harness/pydantic_ai_harness/_sub_agent_output.py",
+    "src/pydantic_ai_harness/pydantic_ai_harness/dynamic_workflow/README.md",
+    "src/pydantic_ai_harness/pydantic_ai_harness/subagents/README.md",
+    "src/pydantic_ai_harness/pydantic_ai_harness/subagents/_events.py",
+    "src/pydantic_ai_harness/pydantic_ai_harness/subagents/_toolset.py",
+    "tests/batch_utils.py",
+    "tests/batch_vcr_utils.py",
+    "tests/durable_exec/temporal/test_agent.py",
+    "tests/durable_exec/temporal/test_durability.py",
+    "tests/durable_exec/test_capability_durable_operation.py",
+    "tests/durable_exec/test_dbos.py",
+    "tests/durable_exec/test_prefect.py",
+    "tests/harness/_deferred_tools.py",
+    "tests/harness/dynamic_workflow/test_dynamic_workflow.py",
+    "tests/harness/subagents/test_subagents.py",
+    "tests/models/cassettes/test_anthropic_batch_vcr/test_anthropic_batch_cancellation.yaml",
+    "tests/models/cassettes/test_anthropic_batch_vcr/test_anthropic_batch_item_error.yaml",
+    "tests/models/cassettes/test_anthropic_batch_vcr/test_anthropic_batch_model_agent_run.yaml",
+    "tests/models/cassettes/test_anthropic_batch_vcr/test_anthropic_batch_roundtrip[InstrumentedModel].yaml",
+    "tests/models/cassettes/test_anthropic_batch_vcr/test_anthropic_batch_roundtrip[None].yaml",
+    "tests/models/cassettes/test_anthropic_batch_vcr/test_anthropic_batch_roundtrip[WrapperModel].yaml",
+    "tests/models/cassettes/test_anthropic_batch_vcr/test_anthropic_model_request_batch.yaml",
+    "tests/models/cassettes/test_google_batch_vcr/test_gemini_batch_api_error.yaml",
+    "tests/models/cassettes/test_google_batch_vcr/test_gemini_batch_cancellation.yaml",
+    "tests/models/cassettes/test_google_batch_vcr/test_gemini_batch_item_error.yaml",
+    "tests/models/cassettes/test_google_batch_vcr/test_gemini_batch_model_agent_run.yaml",
+    "tests/models/cassettes/test_google_batch_vcr/test_gemini_batch_roundtrip.yaml",
+    "tests/models/cassettes/test_google_batch_vcr/test_gemini_model_request_batch.yaml",
+    "tests/models/cassettes/test_openai_batch_vcr/test_openai_batch_cancellation.yaml",
+    "tests/models/cassettes/test_openai_batch_vcr/test_openai_batch_item_error.yaml",
+    "tests/models/cassettes/test_openai_batch_vcr/test_openai_batch_model_agent_run.yaml",
+    "tests/models/cassettes/test_openai_batch_vcr/test_openai_batch_roundtrip.yaml",
+    "tests/models/cassettes/test_openai_batch_vcr/test_openai_batch_unknown_model.yaml",
+    "tests/models/test_anthropic_batch.py",
+    "tests/models/test_anthropic_batch_vcr.py",
+    "tests/models/test_batch.py",
+    "tests/models/test_continuation_stream.py",
+    "tests/models/test_google_batch.py",
+    "tests/models/test_google_batch_vcr.py",
+    "tests/models/test_model_settings_support.py",
+    "tests/models/test_openai_batch.py",
+    "tests/models/test_openai_batch_vcr.py",
+    "tests/test_agent_output_schemas.py",
+    "tests/test_capability_combine.py",
+    "tests/test_capability_wrapper_model.py",
+    "tests/test_examples.py"
+   ],
+   "listed_paths": [
+    "pydantic_ai_slim/pydantic_ai/.agents/skills/building-pydantic-ai-agents/references/ORCHESTRATION-AND-INTEGRATIONS.md"
+   ],
+   "extras": [
+    {
+     "kind": "agent_instructions",
+     "path": "pydantic_ai_slim/pydantic_ai/.agents/skills/building-pydantic-ai-agents/references/ORCHESTRATION-AND-INTEGRATIONS.md",
+     "name": "pydantic_ai_slim/pydantic_ai/.agents/skills/building-pydantic-ai-agents/references/ORCHESTRATION-AND-INTEGRATIONS.md",
+     "files": [
+      "pydantic_ai_slim/pydantic_ai/.agents/skills/building-pydantic-ai-agents/references/ORCHESTRATION-AND-INTEGRATIONS.md"
+     ]
+    }
+   ]
+  },
+  {
+   "url": "https://github.com/clementbrunel/my-ai-tools/pull/452",
+   "created_at": "2026-10-19T22:18:00Z",
+   "agent": "claude_code",
+   "issue": 272,
+   "head_sha": "a5200f55d3467c5f0bb0383a555f0b822f8c0932",
+   "files": [
+    "my-money-hub/CLAUDE.md",
+    "my-money-hub/backend/src/main/java/com/mymoneyhub/controller/AccountController.java",
+    "my-money-hub/backend/src/main/java/com/mymoneyhub/controller/InstitutionController.java",
+    "my-money-hub/backend/src/main/java/com/mymoneyhub/dto/AccountDto.java",
+    "my-money-hub/backend/src/main/java/com/mymoneyhub/dto/CreateManualAccountRequest.java",
+    "my-money-hub/backend/src/main/java/com/mymoneyhub/dto/UpdateBalanceRequest.java",
+    "my-money-hub/backend/src/main/java/com/mymoneyhub/repository/BalanceSnapshotRepository.java",
+    "my-money-hub/backend/src/main/java/com/mymoneyhub/service/AccountService.java",
+    "my-money-hub/backend/src/test/java/com/mymoneyhub/service/AccountServiceTest.java",
+    "my-money-hub/frontend/src/api/accounts.ts",
+    "my-money-hub/frontend/src/api/institutions.ts",
+    "my-money-hub/frontend/src/components/AccountCard.tsx",
+    "my-money-hub/frontend/src/components/ManualAccountForm.tsx",
+    "my-money-hub/frontend/src/index.css",
+    "my-money-hub/frontend/src/pages/Dashboard.tsx",
+    "my-money-hub/frontend/src/types/index.ts",
+    "my-money-hub/frontend/src/utils/amount.ts"
+   ],
+   "listed_paths": [
+    "my-money-hub/CLAUDE.md"
+   ],
+   "extras": [
+    {
+     "kind": "agent_instructions",
+     "path": "my-money-hub/CLAUDE.md",
+     "name": "my-money-hub/CLAUDE.md",
+     "files": [
+      "my-money-hub/CLAUDE.md"
+     ]
+    }
+   ]
+  },
+  {
+   "url": "https://github.com/tangency-labs/solidcraft/pull/3306",
+   "created_at": "2026-10-19T22:18:26Z",
+   "agent": "claude_code",
+   "issue": 3217,
+   "head_sha": "d489f0c03c20fea16210a1bed0048088c66322fe",
+   "files": [
+    ".config/nextest.toml",
+    "ATTRIBUTION.md",
+    "Cargo.lock",
+    "apps/solidcraft-cli/examples/studio_evidence.rs",
+    "apps/solidcraft-cli/src/main.rs",
+    "apps/solidcraft-cli/src/render.rs",
+    "assets/locales/cs.json",
+    "assets/locales/en.json",
+    "assets/locales/ja.json",
+    "assets/locales/zh.json",
+    "crates/engine/src/cmd/render.rs",
+    "crates/engine/src/cmd/render/clear_coat.rs",
+    "crates/engine/src/cmd/render/environment.rs",
+    "crates/engine/src/cmd/render/job_tests.rs",
+    "crates/engine/src/cmd/render/jobs.rs",
+    "crates/engine/src/cmd/render/textures.rs",
+    "crates/engine/src/cmd/render/transmission.rs",
+    "crates/engine/src/lib.rs",
+    "crates/engine/src/product_scene.rs",
+    "crates/engine/src/render_jobs.rs",
+    "crates/gpu/Cargo.toml",
+    "crates/gpu/src/lib.rs",
+    "crates/gpu/src/path/denoise.rs",
+    "crates/gpu/src/path/denoise.wgsl",
+    "crates/gpu/src/path/denoise_guides.wgsl",
+    "crates/gpu/src/path/denoise_tests.rs",
+    "crates/gpu/src/path/mod.rs",
+    "crates/gpu/src/path/path.wgsl",
+    "crates/gpu/src/path/planar_patches.rs",
+    "crates/gpu/src/path/scene.rs",
+    "crates/gpu/src/path/scene_bvh_tests.rs",
+    "crates/gpu/src/path/scene_weld_tests.rs",
+    "crates/gpu/src/path/shadows.wgsl",
+    "crates/gpu/src/path/tests.rs",
+    "crates/gpu/src/path/textures.rs",
+    "crates/gpu/src/path/textures.wgsl",
+    "crates/gpu/src/select.rs",
+    "crates/render/src/clear_coat.rs",
+    "crates/render/src/dielectric_oracle_tests.rs",
+    "crates/render/src/job/host.rs",
+    "crates/render/src/job/host_tests.rs",
+    "crates/render/src/job/image.rs",
+    "crates/render/src/job/image_tests.rs",
+    "crates/render/src/job/lens.rs",
+    "crates/render/src/job/lighting.rs",
+    "crates/render/src/job/mod.rs",
+    "crates/render/src/job/png.rs",
+    "crates/render/src/job/textures.rs",
+    "crates/render/src/lib.rs",
+    "crates/render/src/lighting/environment.rs",
+    "crates/render/src/lighting/environment/tests.rs",
+    "crates/render/src/lighting/mod.rs",
+    "crates/render/src/product.rs",
+    "crates/render/src/surface.rs",
+    "crates/render/src/transmission.rs",
+    "crates/ui-egui/src/lib.rs",
+    "crates/ui-egui/src/render_workspace.rs",
+    "crates/ui-egui/src/render_workspace_tests.rs",
+    "docs/render-backends.md",
+    "docs/render-clear-coat.md",
+    "docs/render-denoise.md",
+    "docs/render-environment.md",
+    "docs/render-glass-boundaries.md",
+    "docs/render-glass-shadows.md",
+    "docs/render-integration.md",
+    "docs/render-jobs.md",
+    "docs/render-path.md",
+    "docs/render-runtime-textures.md",
+    "docs/render-studio-lighting.md",
+    "docs/render-thin-lens.md",
+    "docs/render-transmission.md",
+    "docs/render-workspace.md",
+    "examples/render-path-studio.json",
+    "examples/studio/README.md",
+    "examples/studio/author_coffee_cylinder.py",
+    "examples/studio/author_coffee_framing.py",
+    "examples/studio/author_scene.py",
+    "examples/studio/author_showcase.py",
+    "examples/studio/author_sweep.py",
+    "examples/studio/author_tumblers.py",
+    "examples/studio/coffee-cylinder-render.json",
+    "examples/studio/coffee-cylinder-sweep.json",
+    "examples/studio/coffee-cylinder.json",
+    "examples/studio/coffee-cylinder.md",
+    "examples/studio/coffee-exploded-render.json",
+    "examples/studio/coffee-exploded-sweep.json",
+    "examples/studio/coffee-exploded.json",
+    "examples/studio/coffee-framing-render.json",
+    "examples/studio/coffee-framing-sweep.json",
+    "examples/studio/coffee-framing.json",
+    "examples/studio/coffee-framing.md",
+    "examples/studio/materials.json",
+    "examples/studio/stage1-render.json",
+    "examples/studio/stage1-sweep.json",
+    "examples/studio/stage1.json",
+    "examples/studio/textures/.gitignore",
+    "examples/studio/textures/ATTRIBUTION.md",
+    "examples/studio/textures/author_textures.py",
+    "examples/studio/textures/environment-manifest.json",
+    "examples/studio/textures/manifest.json",
+    "examples/studio/tumblers-hdr-textures-blocked-render.json",
+    "examples/studio/tumblers-hdr-textures-render.json",
+    "examples/studio/tumblers-materials.json",
+    "examples/studio/tumblers-render.json",
+    "examples/studio/tumblers-sun-render.json",
+    "examples/studio/tumblers-sun-textures-blocked-render.json",
+    "examples/studio/tumblers-sun-textures-render.json",
+    "examples/studio/tumblers-sun.json",
+    "examples/studio/tumblers-textures-blocked-render.json",
+    "examples/studio/tumblers-textures-render.json",
+    "examples/studio/tumblers.json"
+   ],
+   "listed_paths": [
+    "crates/gpu/Cargo.toml"
+   ],
+   "extras": [
+    {
+     "kind": "new_dependency",
+     "path": "crates/gpu/Cargo.toml",
+     "name": "image",
+     "files": [
+      "crates/gpu/Cargo.toml"
+     ]
+    },
+    {
+     "kind": "new_dependency",
+     "path": "crates/gpu/Cargo.toml",
+     "name": "robust",
+     "files": [
+      "crates/gpu/Cargo.toml"
+     ]
+    }
+   ]
+  },
+  {
+   "url": "https://github.com/misterfitz/docker-slurm/pull/13",
+   "created_at": "2026-10-19T23:01:38Z",
+   "agent": "claude_code",
+   "issue": 3,
+   "head_sha": "fa869da5cd11477516ac9ed9fe16a70350e7fc8a",
+   "files": [
+    ".gitattributes",
+    ".github/workflows/lint.yml",
+    ".hadolint.yaml",
+    ".pre-commit-config.yaml",
+    ".yamllint.yaml",
+    "README.md",
+    "docker-compose.yml",
+    "dockerfile_base/Dockerfile",
+    "dockerfile_base/image_tests/run_tests.sh",
+    "dockerfile_base/startup.sh",
+    "dockerfile_full/Dockerfile",
+    "dockerfile_full/image_tests/run_tests.sh"
+   ],
+   "listed_paths": [
+    ".hadolint.yaml",
+    ".yamllint.yaml"
+   ],
+   "extras": [
+    {
+     "kind": "stray_file",
+     "path": "./",
+     "name": "stray files",
+     "files": [
+      ".hadolint.yaml",
+      ".yamllint.yaml"
+     ]
+    }
+   ]
+  },
+  {
+   "url": "https://github.com/Azure/azure-sdk-for-js/pull/40398",
+   "created_at": "2026-10-19T18:19:44Z",
+   "agent": "copilot",
+   "issue": 40395,
+   "head_sha": "42c347f0331943f8ee05285082739bf9d62a9b3b",
+   "files": [
+    ".github/aw/actions-lock.json",
+    ".github/skills/agentic-workflows/SKILL.md",
+    ".github/workflows/agent-observability.lock.yml",
+    ".github/workflows/archie.lock.yml",
+    ".github/workflows/copilot-setup-steps.yml",
+    ".github/workflows/dash.lock.yml",
+    ".github/workflows/dexter.lock.yml",
+    ".github/workflows/dexter.md",
+    ".github/workflows/docs-consistency-check.lock.yml",
+    ".github/workflows/issue-triage.lock.yml",
+    ".github/workflows/issue-triage.md",
+    ".github/workflows/mgmt-guidance.lock.yml",
+    ".github/workflows/mgmt-review.lock.yml",
+    ".github/workflows/scribe.lock.yml",
+    ".github/workflows/sentinel.lock.yml",
+    ".github/workflows/sentinel.md",
+    ".github/workflows/tester.lock.yml",
+    ".github/workflows/upgrade-agentic-workflows.lock.yml",
+    "eng/tools/pr-review/review-request.test.cjs"
+   ],
+   "listed_paths": [
+    ".github/skills/agentic-workflows/SKILL.md"
+   ],
+   "extras": [
+    {
+     "kind": "agent_instructions",
+     "path": ".github/skills/agentic-workflows/SKILL.md",
+     "name": ".github/skills/agentic-workflows/SKILL.md",
+     "files": [
+      ".github/skills/agentic-workflows/SKILL.md"
+     ]
+    }
+   ]
+  },
+  {
+   "url": "https://github.com/omattsson/k8s-stack-manager/pull/658",
+   "created_at": "2026-10-20T20:08:17Z",
+   "agent": "claude_code",
+   "issue": 649,
+   "head_sha": "91faacbd9b9be425719bdd925477949a4ab082ae",
+   "files": [
+    ".github/copilot-instructions.md",
+    "CLAUDE.md",
+    "backend/CLAUDE.md",
+    "backend/internal/notifier/channel/dispatcher.go",
+    "backend/internal/notifier/channel/dispatcher_test.go",
+    "backend/internal/notifier/channel/invalid_url_test.go",
+    "backend/internal/notifier/channel/metrics.go",
+    "backend/internal/notifier/channel/metrics_test.go",
+    "backend/internal/notifier/channel/redirect_test.go",
+    "backend/internal/notifier/channel/teams_test.go",
+    "backend/internal/notifier/channel/workers.go",
+    "backend/internal/notifier/channel/workers_test.go",
+    "backend/internal/notifier/notifier.go",
+    "backend/internal/notifier/notifier_dispatch_test.go"
+   ],
+   "listed_paths": [
+    ".github/copilot-instructions.md",
+    "CLAUDE.md",
+    "backend/CLAUDE.md"
+   ],
+   "extras": [
+    {
+     "kind": "agent_instructions",
+     "path": "./",
+     "name": "agent instruction files",
+     "files": [
+      ".github/copilot-instructions.md",
+      "CLAUDE.md",
+      "backend/CLAUDE.md"
+     ]
+    }
+   ]
+  },
+  {
+   "url": "https://github.com/PostHog/posthog/pull/120672",
+   "created_at": "2026-10-20T20:13:56Z",
+   "agent": "claude_code",
+   "issue": 120591,
+   "head_sha": "f15c0047b28fad4d4112adb04b4aad0173302646",
+   "files": [
+    "docs/internal/signals-pr-lifecycle.md",
+    "docs/published/handbook/engineering/ai/sandboxed-agents.md",
+    "frontend/src/lib/agentScopes.generated.ts",
+    "frontend/src/lib/integrations/PosthogConnect.tsx",
+    "posthog/auth.py",
+    "posthog/hogql/database/schema/system.py",
+    "posthog/hogql/database/test/test_database.py",
+    "posthog/models/integration/oauth.py",
+    "products/access_control/backend/facade/user_access_control.py",
+    "products/access_control/frontend/generated/api.schemas.ts",
+    "products/access_control/frontend/generated/api.zod.ts",
+    "products/desktop/apps/mobile/src/features/auth/lib/constants.ts",
+    "products/desktop/apps/mobilehog/src/lib/oauth.ts",
+    "products/signals/ARCHITECTURE.md",
+    "products/signals/backend/presentation/inbox_summary.py",
+    "products/signals/backend/presentation/onboarding.py",
+    "products/signals/backend/scout_harness/AGENTS.md",
+    "products/signals/backend/scout_harness/serializers.py",
+    "products/signals/backend/scout_harness/views.py",
+    "products/signals/backend/test/test_scout_harness_api.py",
+    "products/signals/backend/test/test_signal_report_api.py",
+    "products/signals/backend/views.py",
+    "products/signals/mcp/tools.yaml",
+    "products/signals/skills/authoring-scouts/SKILL.md",
+    "products/signals/skills/authoring-scouts/references/report-checks.md",
+    "products/signals/skills/authoring-scouts/references/report-contract.md",
+    "products/signals/skills/exploring-scouts/SKILL.md",
+    "products/signals/skills/working-with-scouts/SKILL.md",
+    "products/signals/skills/working-with-scouts/references/delegation-recipes.md",
+    "products/tasks/backend/facade/contracts.py",
+    "services/mcp/schema/generated-tool-definitions.json",
+    "services/mcp/schema/tool-definitions-all.json",
+    "services/mcp/src/api/generated.ts",
+    "services/mcp/src/generated/access_control/api.ts"
+   ],
+   "listed_paths": [
+    "products/signals/skills/authoring-scouts/SKILL.md",
+    "products/signals/skills/authoring-scouts/references/report-checks.md",
+    "products/signals/skills/authoring-scouts/references/report-contract.md",
+    "products/signals/skills/exploring-scouts/SKILL.md",
+    "products/signals/skills/working-with-scouts/SKILL.md",
+    "products/signals/skills/working-with-scouts/references/delegation-recipes.md"
+   ],
+   "extras": [
+    {
+     "kind": "agent_instructions",
+     "path": "products/signals/skills/",
+     "name": "agent instruction files",
+     "files": [
+      "products/signals/skills/authoring-scouts/SKILL.md",
+      "products/signals/skills/authoring-scouts/references/report-checks.md",
+      "products/signals/skills/authoring-scouts/references/report-contract.md",
+      "products/signals/skills/exploring-scouts/SKILL.md",
+      "products/signals/skills/working-with-scouts/SKILL.md",
+      "products/signals/skills/working-with-scouts/references/delegation-recipes.md"
+     ]
+    }
+   ]
+  },
+  {
+   "url": "https://github.com/jermrad/copilot-agent-and-mcp/pull/2",
+   "created_at": "2026-10-20T17:49:02Z",
+   "agent": "copilot",
+   "issue": 1,
+   "head_sha": "39b7c2047f9c0f610ff09de94a1f255ce0fefe36",
+   "files": [
+    "backend/routes/favorites.js",
+    "backend/server.js",
+    "backend/tests/favorites.test.js",
+    "backend/writeJSON.js",
+    "frontend/cypress/e2e/clear_favorites.cy.js",
+    "frontend/src/components/Favorites.jsx",
+    "frontend/src/store/favoritesSlice.js",
+    "package-lock.json",
+    "package.json"
+   ],
+   "listed_paths": [
+    "package.json"
+   ],
+   "extras": [
+    {
+     "kind": "new_dependency",
+     "path": "package.json",
+     "name": "express-rate-limit",
+     "files": [
+      "package.json"
+     ]
+    }
+   ]
+  },
+  {
+   "url": "https://github.com/boldaxolotl/booley/pull/1930",
+   "created_at": "2026-10-20T20:07:56Z",
+   "agent": "claude_code",
+   "issue": 1749,
+   "head_sha": "c1ac1fcb33bc44d89154f157a57eff33bc02ebae",
+   "files": [
+    ".github/scripts/image_package_inventory.py",
+    ".github/scripts/picorv32_ci_inputs.py",
+    ".github/scripts/verify_riscv_image_contract.sh",
+    ".github/workflows/docker-base-publish.yml",
+    ".github/workflows/docker-publish.yml",
+    ".github/workflows/test.yml",
+    "docs/internals/SESSION-RUNTIME-CONTRACT.md",
+    "tests/ci/test_change_classifier.py",
+    "tests/ci/test_image_package_inventory.py",
+    "tests/ci/test_sandbox_image_contract.py",
+    "tests/sandbox_image_contract.py"
+   ],
+   "listed_paths": [
+    ".github/scripts/image_package_inventory.py"
+   ],
+   "extras": [
+    {
+     "kind": "public_api_removed",
+     "path": ".github/scripts/image_package_inventory.py",
+     "name": "ExportError",
+     "files": [
+      ".github/scripts/image_package_inventory.py"
+     ]
+    },
+    {
+     "kind": "public_api_removed",
+     "path": ".github/scripts/image_package_inventory.py",
+     "name": "copy_archive",
+     "files": [
+      ".github/scripts/image_package_inventory.py"
+     ]
+    },
+    {
+     "kind": "public_api_removed",
+     "path": ".github/scripts/image_package_inventory.py",
+     "name": "copy_inventory",
+     "files": [
+      ".github/scripts/image_package_inventory.py"
+     ]
+    },
+    {
+     "kind": "public_api_removed",
+     "path": ".github/scripts/image_package_inventory.py",
+     "name": "inspect_image",
+     "files": [
+      ".github/scripts/image_package_inventory.py"
+     ]
+    },
+    {
+     "kind": "public_api_removed",
+     "path": ".github/scripts/image_package_inventory.py",
+     "name": "inventory_from_archive",
+     "files": [
+      ".github/scripts/image_package_inventory.py"
+     ]
+    },
+    {
+     "kind": "public_api_removed",
+     "path": ".github/scripts/image_package_inventory.py",
+     "name": "main",
+     "files": [
+      ".github/scripts/image_package_inventory.py"
+     ]
+    },
+    {
+     "kind": "public_api_removed",
+     "path": ".github/scripts/image_package_inventory.py",
+     "name": "read_bounded_stream",
+     "files": [
+      ".github/scripts/image_package_inventory.py"
+     ]
+    }
+   ]
+  },
+  {
+   "url": "https://github.com/TD-51/copilot-agent-and-mcp/pull/4",
+   "created_at": "2026-10-20T15:15:26Z",
+   "agent": "copilot",
+   "issue": 3,
+   "head_sha": "cc4c135e1834c0efac8340bee531ffb4d0b554e3",
+   "files": [
+    "README.md",
+    "backend/routes/favorites.js",
+    "backend/tests/favorites.test.js",
+    "frontend/cypress/e2e/book_favorites.cy.js",
+    "frontend/src/components/Favorites.jsx",
+    "frontend/src/store/favoritesSlice.js",
+    "package-lock.json",
+    "package.json"
+   ],
+   "listed_paths": [
+    "package.json"
+   ],
+   "extras": [
+    {
+     "kind": "new_dependency",
+     "path": "package.json",
+     "name": "express-rate-limit",
+     "files": [
+      "package.json"
+     ]
+    }
+   ]
+  },
+  {
+   "url": "https://github.com/saadshahd/roundup/pull/2974",
+   "created_at": "2026-10-20T09:29:15Z",
+   "agent": "claude_code",
+   "issue": 2896,
+   "head_sha": "d988c427d210f57ca3b5562975ff6631e7e801f6",
+   "files": [
+    ".github/workflows/check.yml",
+    "apps/desktop/src/copy.test.ts",
+    "apps/desktop/src/copy.ts",
+    "apps/desktop/src/keys/HintLine.tsx",
+    "apps/desktop/src/keys/chords.ts",
+    "apps/desktop/src/keys/u2241_nothing_else.test.tsx",
+    "apps/desktop/src/keys/u54_help.test.tsx",
+    "apps/desktop/src/rail/u132_colour_and_kind.test.tsx",
+    "apps/desktop/src/shelf/OwnerGroups.tsx",
+    "apps/desktop/src/shelf/scope.ts",
+    "apps/desktop/src/shelf/styles.css",
+    "apps/desktop/src/shelf/u460_project.test.tsx",
+    "apps/desktop/src/shelf/u460_real_daemon.test.tsx",
+    "apps/desktop/src/shelf/u460_rendered.test.ts",
+    "apps/desktop/src/shelf/u491a_browser.test.ts",
+    "apps/desktop/src/terminal/u514_browser.test.ts",
+    "apps/desktop/src/testing/checks.ts",
+    "apps/desktop/src/testing/stores.ts",
+    "apps/desktop/src/testing/u159_workstream_todos.test.tsx",
+    "apps/desktop/src/testing/u178_workstream_todos.test.tsx",
+    "apps/desktop/src/testing/u2580a_key_layers.test.tsx",
+    "apps/desktop/src/testing/u361_todo_row.test.ts",
+    "apps/desktop/src/testing/u362_todo_drag.test.ts",
+    "apps/desktop/src/testing/u379_rows_click.test.ts",
+    "apps/desktop/src/todos/OwnerPicker.tsx",
+    "apps/desktop/src/todos/Todos.tsx",
+    "apps/desktop/src/todos/laneBrowser.ts",
+    "apps/desktop/src/todos/rowButton.styles.css",
+    "apps/desktop/src/todos/sortedList.ts",
+    "apps/desktop/src/todos/testHarness.tsx",
+    "apps/desktop/src/todos/u361_todo_row.test.tsx",
+    "apps/desktop/src/todos/u3717_owner_groups.test.tsx",
+    "apps/desktop/src/todos/u3718_owner_drag.test.ts",
+    "apps/desktop/src/todos/u3718_owner_drop.test.ts",
+    "apps/desktop/src/todos/u3720_real_daemon_owner.test.tsx",
+    "apps/desktop/src/todos/u490a_browser.test.ts",
+    "apps/desktop/src/todos/u490a_keyboard.test.tsx",
+    "apps/desktop/src/ui/sortable.tsx",
+    "loop/launch-sites.json"
+   ],
+   "listed_paths": [
+    ".github/workflows/check.yml"
+   ],
+   "extras": [
+    {
+     "kind": "ci_or_config",
+     "path": ".github/workflows/check.yml",
+     "name": ".github/workflows/check.yml",
+     "files": [
+      ".github/workflows/check.yml"
+     ]
+    }
+   ]
+  },
+  {
+   "url": "https://github.com/tenphi/tasty/pull/417",
+   "created_at": "2026-10-20T20:07:06Z",
+   "agent": "claude_code",
+   "issue": 415,
+   "head_sha": "aafee5ff5b330b39f9d269987c1c724de50f849b",
+   "files": [
+    ".changeset/color-mix-opacity.md",
+    "docs/configuration.md",
+    "docs/dsl.md",
+    "src/__snapshots__/tasty.test.tsx.snap",
+    "src/applied-styles.test.tsx",
+    "src/config-normalize.ts",
+    "src/config.ts",
+    "src/parser/case.test.ts",
+    "src/parser/classify.ts",
+    "src/parser/parser.md",
+    "src/parser/parser.test.ts",
+    "src/plugins/glaze-example.test.tsx",
+    "src/styles.test.ts",
+    "src/styles/createStyle.ts",
+    "src/utils/color-space.test.ts",
+    "src/utils/color-space.ts",
+    "src/utils/colors.ts",
+    "src/utils/styles.test.ts",
+    "src/utils/styles.ts"
+   ],
+   "listed_paths": [
+    "src/utils/color-space.ts"
+   ],
+   "extras": [
+    {
+     "kind": "public_api_removed",
+     "path": "src/utils/color-space.ts",
+     "name": "overrideColorAlpha",
+     "files": [
+      "src/utils/color-space.ts"
+     ]
+    },
+    {
+     "kind": "public_api_removed",
+     "path": "src/utils/color-space.ts",
+     "name": "parseAlphaOverride",
+     "files": [
+      "src/utils/color-space.ts"
+     ]
+    }
+   ]
+  },
+  {
+   "url": "https://github.com/medTech-group/pairnexus-workflow/pull/206",
+   "created_at": "2026-10-20T20:16:44Z",
+   "agent": "claude_code",
+   "issue": 115,
+   "head_sha": "4df2e1d35dac1fdcb4bf8c3db105b4e2ad673d54",
+   "files": [
+    "CHANGELOG.md",
+    "docs/enforcement.md",
+    "scripts/workflow/_old_python.py",
+    "scripts/workflow/doctor.py",
+    "scripts/workflow/profile.py",
+    "skills/check-setup/SKILL.md",
+    "tests/test_doctor_old_python.py",
+    "tests/test_doctor_previews.py"
+   ],
+   "listed_paths": [
+    "skills/check-setup/SKILL.md"
+   ],
+   "extras": [
+    {
+     "kind": "agent_instructions",
+     "path": "skills/check-setup/SKILL.md",
+     "name": "skills/check-setup/SKILL.md",
+     "files": [
+      "skills/check-setup/SKILL.md"
+     ]
+    }
+   ]
+  },
+  {
+   "url": "https://github.com/jjhoncv/chamba/pull/19",
+   "created_at": "2026-10-20T01:11:03Z",
+   "agent": "claude_code",
+   "issue": 4,
+   "head_sha": "59c91ba98c3723459d2e7150d145cd1d163a2143",
+   "files": [
+    "PROYECTO.md",
+    "app/globals.css",
+    "app/guias/[slug]/page.test.tsx",
+    "app/guias/[slug]/page.tsx",
+    "app/layout.tsx",
+    "app/page.test.tsx",
+    "app/page.tsx",
+    "components/boton-comprar.tsx",
+    "components/cabecera.test.tsx",
+    "components/cabecera.tsx",
+    "components/iconos.tsx",
+    "components/logo.tsx",
+    "components/pie.test.tsx",
+    "components/pie.tsx",
+    "components/portada-libro.tsx",
+    "components/precio.tsx",
+    "components/ui/button.tsx",
+    "docs/creditos.md",
+    "docs/decisiones/0002-boceto-de-e-commerce.md",
+    "features/steps/vitrina.ts",
+    "lib/contacto.ts",
+    "lib/guias-prueba.test.ts",
+    "lib/guias-prueba.ts",
+    "lib/utils.ts",
+    "package-lock.json",
+    "package.json",
+    "postcss.config.mjs",
+    "public/logos/mastercard.svg",
+    "public/logos/mercadopago.svg",
+    "public/logos/visa.svg",
+    "public/logos/yape.svg",
+    "public/portadas/cv.svg",
+    "public/portadas/entrevista.svg"
+   ],
+   "listed_paths": [
+    "package.json"
+   ],
+   "extras": [
+    {
+     "kind": "new_dependency",
+     "path": "package.json",
+     "name": "@radix-ui/react-slot",
+     "files": [
+      "package.json"
+     ]
+    },
+    {
+     "kind": "new_dependency",
+     "path": "package.json",
+     "name": "@tailwindcss/postcss",
+     "files": [
+      "package.json"
+     ]
+    },
+    {
+     "kind": "new_dependency",
+     "path": "package.json",
+     "name": "class-variance-authority",
+     "files": [
+      "package.json"
+     ]
+    },
+    {
+     "kind": "new_dependency",
+     "path": "package.json",
+     "name": "clsx",
+     "files": [
+      "package.json"
+     ]
+    },
+    {
+     "kind": "new_dependency",
+     "path": "package.json",
+     "name": "postcss",
+     "files": [
+      "package.json"
+     ]
+    },
+    {
+     "kind": "new_dependency",
+     "path": "package.json",
+     "name": "tailwind-merge",
+     "files": [
+      "package.json"
+     ]
+    },
+    {
+     "kind": "new_dependency",
+     "path": "package.json",
+     "name": "tailwindcss",
+     "files": [
+      "package.json"
+     ]
+    }
+   ]
+  },
+  {
+   "url": "https://github.com/discobox-ai/discobox/pull/302",
+   "created_at": "2026-10-20T20:17:19Z",
+   "agent": "claude_code",
+   "issue": 261,
+   "head_sha": "eeed3c01109f8574d9bbe6ef2e141f804afac11a",
+   "files": [
+    ".agents/skills/add-harness/SKILL.md",
+    ".agents/skills/verify-recipes/SKILL.md",
+    ".discobox/hooks/91-shellcheck.sh",
+    ".gitignore",
+    "harness/DESIGN.md",
+    "harness/claude-code/Dockerfile",
+    "harness/claude-code/check-launcher.sh",
+    "harness/claude-code/driver_test.go",
+    "harness/claude-code/install-cli.sh",
+    "harness/claude-code/provision.yaml",
+    "harness/codex-cli/Dockerfile",
+    "harness/codex-cli/check-launcher.sh",
+    "harness/codex-cli/driver_test.go",
+    "harness/codex-cli/install-cli.sh",
+    "harness/codex-cli/provision.yaml",
+    "harness/copilot/Dockerfile",
+    "harness/copilot/check-launcher.sh",
+    "harness/copilot/driver_test.go",
+    "harness/copilot/install-cli.sh",
+    "harness/copilot/provision.yaml",
+    "harness/feature_test.go",
+    "harness/internal/featuretest/featuretest.go",
+    "harness/omp/Dockerfile",
+    "harness/omp/check-launcher.sh",
+    "harness/omp/driver_test.go",
+    "harness/omp/install-cli.sh",
+    "harness/omp/provision.yaml",
+    "harness/opencode/Dockerfile",
+    "harness/opencode/check-launcher.sh",
+    "harness/opencode/driver_test.go",
+    "harness/opencode/install-cli.sh",
+    "harness/opencode/provision.yaml",
+    "harness/pi/Dockerfile",
+    "harness/pi/check-launcher.sh",
+    "harness/pi/driver_test.go",
+    "harness/pi/install-cli.sh",
+    "harness/pi/provision.yaml",
+    "internal/cmd/discobox-docker-image-watch/main.go",
+    "provisionspec/spec.go",
+    "provisionspec/spec_test.go",
+    "sandbox-agent/DESIGN.md",
+    "sandbox-agent/Dockerfile",
+    "sandbox-agent/REVIEW.md",
+    "sandbox-agent/agentstore/agentstore_test.go",
+    "sandbox-agent/boot/launchers.go",
+    "sandbox-agent/cmd/discobox-image-provision/main.go",
+    "sandbox-agent/cmd/discobox-sandbox-agent/main.go",
+    "sandbox-agent/cmd/discobox-sandbox-agent/main_test.go",
+    "sandbox-agent/desktop/DESIGN.md",
+    "sandbox-agent/desktop/activation_test.go",
+    "sandbox-agent/desktop/chromium_test.go",
+    "sandbox-agent/desktop/scale.go",
+    "sandbox-agent/desktop/vscode.go",
+    "sandbox-agent/dnsstub/daemon_test.go",
+    "sandbox-agent/execs/shell_launcher_test.go",
+    "sandbox-agent/features/brew/install-brew.sh",
+    "sandbox-agent/features/brew/provision.yaml",
+    "sandbox-agent/features/browser/chromium-policies/discobox.json",
+    "sandbox-agent/features/browser/chromium.d/discobox-sandbox",
+    "sandbox-agent/features/browser/chromium.d/discobox-scale",
+    "sandbox-agent/features/browser/default-browser.sh",
+    "sandbox-agent/features/browser/mimeapps.list",
+    "sandbox-agent/features/browser/nss-trust-check.sh",
+    "sandbox-agent/features/browser/nss-trust.sh",
+    "sandbox-agent/features/browser/provision.yaml",
+    "sandbox-agent/features/build/provision.yaml",
+    "sandbox-agent/features/bun/install-bun.sh",
+    "sandbox-agent/features/bun/provision.yaml",
+    "sandbox-agent/features/cli/install-gh.sh",
+    "sandbox-agent/features/cli/provision.yaml",
+    "sandbox-agent/features/core/discobox-shell",
+    "sandbox-agent/features/core/harness-run",
+    "sandbox-agent/features/core/link-agent.sh",
+    "sandbox-agent/features/core/make-dirs.sh",
+    "sandbox-agent/features/core/prebuild-ca-store.sh",
+    "sandbox-agent/features/core/profile.d/sandbox-dev-tools.sh",
+    "sandbox-agent/features/core/provision.yaml",
+    "sandbox-agent/features/core/skills/discobox/SKILL.md",
+    "sandbox-agent/features/core/systemd/discobox-proxy-bridge.service",
+    "sandbox-agent/features/core/systemd/discobox-render-proxy-env.service",
+    "sandbox-agent/features/core/systemd/discobox-sandbox-agent.path",
+    "sandbox-agent/features/core/systemd/discobox-sandbox-agent.service",
+    "sandbox-agent/features/core/systemd/discobox-trust-ca.service",
+    "sandbox-agent/features/core/systemd/discobox-wire.service",
+    "sandbox-agent/features/core/systemd/journald-console.conf",
+    "sandbox-agent/features/desktop/brand-theme",
+    "sandbox-agent/features/desktop/discobox-vnc-websockify",
+    "sandbox-agent/features/desktop/helpers.rc",
+    "sandbox-agent/features/desktop/launchers/terminal.desktop",
+    "sandbox-agent/features/desktop/launchers/web-browser.desktop",
+    "sandbox-agent/features/desktop/link-brand.sh",
+    "sandbox-agent/features/desktop/panel.xml",
+    "sandbox-agent/features/desktop/profile.d/sandbox-desktop-scale.sh",
+    "sandbox-agent/features/desktop/provision.yaml",
+    "sandbox-agent/features/desktop/render-backdrop.sh",
+    "sandbox-agent/features/desktop/services/10-desktop.yaml",
+    "sandbox-agent/features/desktop/systemd/discobox-desktop.service",
+    "sandbox-agent/features/desktop/systemd/discobox-desktop.socket",
+    "sandbox-agent/features/desktop/systemd/discobox-session-bus.service",
+    "sandbox-agent/features/desktop/systemd/discobox-session-bus.socket",
+    "sandbox-agent/features/desktop/systemd/websockify-proxy.service",
+    "sandbox-agent/features/desktop/systemd/websockify-proxy.socket",
+    "sandbox-agent/features/desktop/systemd/websockify@.service",
+    "sandbox-agent/features/desktop/systemd/x11-display.service",
+    "sandbox-agent/features/desktop/systemd/x11-display.socket",
+    "sandbox-agent/features/desktop/systemd/x11vnc.socket",
+    "sandbox-agent/features/desktop/systemd/x11vnc@.service",
+    "sandbox-agent/features/desktop/systemd/xfce4-session@.service",
+    "sandbox-agent/features/desktop/systemd/xvfb.service",
+    "sandbox-agent/features/desktop/wallpaper.svg",
+    "sandbox-agent/features/desktop/xfconf/xfce4-desktop.xml",
+    "sandbox-agent/features/desktop/xfconf/xfwm4.xml",
+    "sandbox-agent/features/desktop/xfconf/xsettings.xml",
+    "sandbox-agent/features/desktop/xorg-dummy.conf",
+    "sandbox-agent/features/direnv/hook-shells.sh",
+    "sandbox-agent/features/direnv/nushell-direnv.nu",
+    "sandbox-agent/features/direnv/profile.d/sandbox-direnv.sh",
+    "sandbox-agent/features/direnv/provision.yaml",
+    "sandbox-agent/features/discobox-cli/link-cli.sh",
+    "sandbox-agent/features/discobox-cli/provision.yaml",
+    "sandbox-agent/features/docker/daemon.json",
+    "sandbox-agent/features/docker/link-personalities.sh",
+    "sandbox-agent/features/docker/provision.yaml",
+    "sandbox-agent/features/docker/socket-activation.sh",
+    "sandbox-agent/features/docker/systemd/containerd.service.d/runc-ca.conf",
+    "sandbox-agent/features/docker/systemd/discobox-buildkit-bridge.service",
+    "sandbox-agent/features/docker/systemd/discobox-proxy-bridge-docker.service",
+    "sandbox-agent/features/docker/systemd/docker.service.d/proxy-bridge.conf",
+    "sandbox-agent/features/docker/systemd/docker.service.d/proxy.conf",
+    "sandbox-agent/features/docker/systemd/docker.service.d/runc-ca.conf",
+    "sandbox-agent/features/go/install-go.sh",
+    "sandbox-agent/features/go/provision.yaml",
+    "sandbox-agent/features/mise/install-mise.sh",
+    "sandbox-agent/features/mise/provision.yaml",
+    "sandbox-agent/features/nix/install-nix.sh",
+    "sandbox-agent/features/nix/link-shims.sh",
+    "sandbox-agent/features/nix/nix-seed",
+    "sandbox-agent/features/nix/nix-shim",
+    "sandbox-agent/features/nix/provision.yaml",
+    "sandbox-agent/features/nix/systemd/discobox-nix-seed.service",
+    "sandbox-agent/features/nix/systemd/nix-daemon.service.d/proxy.conf",
+    "sandbox-agent/features/nix/systemd/nix-daemon.service.d/seed.conf",
+    "sandbox-agent/features/nix/systemd/nix-daemon.socket.d/seed.conf",
+    "sandbox-agent/features/node/agent-store",
+    "sandbox-agent/features/node/harness-upgrade",
+    "sandbox-agent/features/node/install-node.sh",
+    "sandbox-agent/features/node/install-pnpm.sh",
+    "sandbox-agent/features/node/profile.d/sandbox-agent-store.sh",
+    "sandbox-agent/features/node/provision.yaml",
+    "sandbox-agent/features/python/install-uv.sh",
+    "sandbox-agent/features/python/provision.yaml",
+    "sandbox-agent/features/review/link-review.sh",
+    "sandbox-agent/features/review/provision.yaml",
+    "sandbox-agent/features/review/skills/discobox-review/SKILL.md",
+    "sandbox-agent/features/review/tools/10-diff.yaml",
+    "sandbox-agent/features/rust/install-rustup.sh",
+    "sandbox-agent/features/rust/provision.yaml",
+    "sandbox-agent/features/shells-editors/link-commands.sh",
+    "sandbox-agent/features/shells-editors/provision.yaml",
+    "sandbox-agent/features/shells-editors/tools/20-fresh.sh",
+    "sandbox-agent/features/shells-editors/tools/fresh/config.jsonc",
+    "sandbox-agent/features/shells-editors/tools/fresh/live_diff.json",
+    "sandbox-agent/features/shells-editors/zsh-newuser",
+    "sandbox-agent/provision/DESIGN.md",
+    "sandbox-agent/provision/box.go",
+    "sandbox-agent/provision/platform_tree_test.go",
+    "sandbox-agent/provision/provision_test.go",
+    "sandbox-agent/provision/records.go",
+    "sandbox-agent/provision/steps.go",
+    "sandbox-agent/provision/unpack.go",
+    "sandbox-agent/provision/unpack_test.go",
+    "sandbox-agent/services/discover_test.go",
+    "sandbox-agent/services/manager_test.go",
+    "scripts/shellcheck.sh",
+    "tools/tools_test.go"
+   ],
+   "listed_paths": [
+    ".agents/skills/add-harness/SKILL.md",
+    ".agents/skills/verify-recipes/SKILL.md",
+    "sandbox-agent/features/core/skills/discobox/SKILL.md",
+    "sandbox-agent/features/review/skills/discobox-review/SKILL.md"
+   ],
+   "extras": [
+    {
+     "kind": "agent_instructions",
+     "path": "./",
+     "name": "agent instruction files",
+     "files": [
+      ".agents/skills/add-harness/SKILL.md",
+      ".agents/skills/verify-recipes/SKILL.md",
+      "sandbox-agent/features/core/skills/discobox/SKILL.md",
+      "sandbox-agent/features/review/skills/discobox-review/SKILL.md"
+     ]
+    }
+   ]
+  },
+  {
+   "url": "https://github.com/tyler-suifleet/suifleet/pull/166",
+   "created_at": "2026-10-19T22:59:14Z",
+   "agent": "claude_code",
+   "issue": 124,
+   "head_sha": "316c784274340eb9781d29c7fc0c54be7da0a310",
+   "files": [
+    ".github/workflows/ci.yml",
+    "Makefile",
+    "docs/GREENGRASS_PARITY_AUDIT.md",
+    "docs/GREENGRASS_REMAINING_ROADMAP.md",
+    "docs/GREENGRASS_TICKET_COVERAGE.md",
+    "docs/INDUSTRIAL.md",
+    "docs/validation/sf070-industrial.json",
+    "interfaces/compat/industrial/config-cases.json",
+    "interfaces/compat/industrial/crypto-lock.json",
+    "scripts/industrial/__init__.py",
+    "scripts/industrial/build.py",
+    "scripts/industrial/collector.py",
+    "scripts/industrial/deps.py",
+    "scripts/industrial/modbus.py",
+    "scripts/industrial/opcua_client.py",
+    "scripts/industrial/opcua_codec.py",
+    "scripts/industrial/opcua_secure.py",
+    "scripts/industrial/opcua_server.py",
+    "scripts/industrial/simulator.py",
+    "scripts/test_industrial.py",
+    "scripts/test_industrial_daemon.py",
+    "scripts/test_industrial_interop.py"
+   ],
+   "listed_paths": [
+    "Makefile"
+   ],
+   "extras": [
+    {
+     "kind": "ci_or_config",
+     "path": "Makefile",
+     "name": "Makefile",
+     "files": [
+      "Makefile"
+     ]
+    }
+   ]
+  },
+  {
+   "url": "https://github.com/hopescorner/hopes-corner-app/pull/78",
+   "created_at": "2026-10-19T23:22:45Z",
+   "agent": "copilot",
+   "issue": 77,
+   "head_sha": "4b28d0cd371105df996339fa11790a5eddcf98b0",
+   "files": [
+    "CHANGELOG.md",
+    "package-lock.json",
+    "package.json",
+    "public/sw.js",
+    "src/components/services/MealsSection.tsx",
+    "src/components/services/__tests__/MealsSection.test.tsx",
+    "src/data/changelog.json",
+    "src/lib/utils/appVersion.ts"
+   ],
+   "listed_paths": [
+    "package.json"
+   ],
+   "extras": [
+    {
+     "kind": "version_bump",
+     "path": "package.json",
+     "name": "0.48.3",
+     "files": [
+      "package.json"
+     ]
+    }
+   ]
+  },
+  {
+   "url": "https://github.com/RCHENLAB/AiScientist/pull/26",
+   "created_at": "2026-10-19T23:30:11Z",
+   "agent": "claude_code",
+   "issue": 25,
+   "head_sha": "4d18e563ef7f04eea6a17c732863af8d423c1b09",
+   "files": [
+    "README.md",
+    "configs/aiscientist.example.env",
+    "frontend/console/app.js",
+    "pyproject.toml",
+    "src/aiscientist/gateway/app.py",
+    "src/aiscientist/gateway/estimates.py",
+    "src/aiscientist/gateway/models.py",
+    "src/aiscientist/gateway/settings.py",
+    "src/aiscientist/gateway/slurm_job.py",
+    "src/aiscientist/tools/annotate_variants/resource_profile.json",
+    "src/aiscientist/tools/catalog.py",
+    "src/aiscientist/tools/run_cellqc/resource_profile.json",
+    "src/aiscientist/tools/run_scanpy_qc/resource_profile.json",
+    "src/aiscientist/tools/scgpt_annotate/resource_profile.json",
+    "tests/test_compute_estimates.py",
+    "tests/test_console_estimates_js.py"
+   ],
+   "listed_paths": [
+    "pyproject.toml"
+   ],
+   "extras": [
+    {
+     "kind": "new_dependency",
+     "path": "pyproject.toml",
+     "name": "sqlalchemy",
+     "files": [
+      "pyproject.toml"
+     ]
+    }
+   ]
+  },
+  {
+   "url": "https://github.com/bthomas466/manapals/pull/56",
+   "created_at": "2026-10-20T19:28:54Z",
+   "agent": "claude_code",
+   "issue": 45,
+   "head_sha": "5f1a331ecc7bf83f34ccdd0794de90c2e5ef52b2",
+   "files": [
+    "docs/specs/45-real-profile-stats-themed-pages.md",
+    "docs/specs/45-real-profile-stats-themed-pages/mockup.html",
+    "docs/specs/45-real-profile-stats-themed-pages/mockup.png",
+    "scripts/seed-staging.ts",
+    "src/app/(main)/collection/loading.tsx",
+    "src/app/(main)/error.tsx",
+    "src/app/(main)/not-found.tsx",
+    "src/app/(main)/profile/loading.tsx",
+    "src/app/(main)/profile/page.tsx",
+    "src/app/(main)/trades/[username]/page.tsx",
+    "src/app/(main)/trades/loading.tsx",
+    "src/app/(main)/wishlist/loading.tsx",
+    "src/app/globals.css",
+    "src/components/profile/ProfileStats.tsx",
+    "src/lib/profile/stats.ts",
+    "src/lib/trades/match.ts",
+    "src/lib/wishlist/queries.ts",
+    "tests/e2e/auth.spec.ts",
+    "tests/e2e/authed/not-found.spec.ts",
+    "tests/e2e/authed/profile-stats.serial.spec.ts",
+    "tests/e2e/authed/profile-stats.spec.ts",
+    "tests/unit/collection-readers-wiring.test.ts",
+    "tests/unit/loading-skeletons.test.ts",
+    "tests/unit/main-error.test.ts",
+    "tests/unit/profile-stats.test.ts",
+    "tests/unit/trade-match.test.ts",
+    "tests/unit/wishlist-queries.test.ts"
+   ],
+   "listed_paths": [
+    "docs/specs/45-real-profile-stats-themed-pages/mockup.png"
+   ],
+   "extras": [
+    {
+     "kind": "binary_or_large_added",
+     "path": "docs/specs/45-real-profile-stats-themed-pages/mockup.png",
+     "name": "docs/specs/45-real-profile-stats-themed-pages/mockup.png",
+     "files": [
+      "docs/specs/45-real-profile-stats-themed-pages/mockup.png"
+     ]
+    }
+   ]
+  },
+  {
+   "url": "https://github.com/kerbaras/mangas/pull/305",
+   "created_at": "2026-10-20T14:11:58Z",
+   "agent": "devin",
+   "issue": 123,
+   "head_sha": "3905ce60138b2b8cc0e3e74f347d0758b5bec5aa",
+   "files": [
+    "Cargo.lock",
+    "README.md",
+    "apps/desktop/src/screens/settings-network.tsx",
+    "docs/rewrite-design.md",
+    "packages/core/src/net.rs",
+    "packages/providers/Cargo.toml",
+    "packages/providers/src/http/network.rs",
+    "packages/providers/src/http/pages/mod.rs",
+    "packages/providers/src/http/pages/redirect.rs",
+    "packages/providers/src/http/pages/resolver.rs",
+    "packages/providers/src/http/pages/resolver_tests.rs",
+    "packages/providers/tests/page_proxied.rs",
+    "packages/providers/tests/proxy/mod.rs"
+   ],
+   "listed_paths": [
+    "packages/providers/Cargo.toml"
+   ],
+   "extras": [
+    {
+     "kind": "new_dependency",
+     "path": "packages/providers/Cargo.toml",
+     "name": "hyper-util",
+     "files": [
+      "packages/providers/Cargo.toml"
+     ]
+    }
+   ]
+  },
+  {
+   "url": "https://github.com/peterstorm/loom/pull/125",
+   "created_at": "2026-10-20T20:17:13Z",
+   "agent": "claude_code",
+   "issue": 123,
+   "head_sha": "07f0ca0a6bfac9fd61b29529241dd37abd78a8b7",
+   "files": [
+    ".claude/plans/2026-10-20-g4-slice-2-repilot.md",
+    ".claude/plans/2026-10-20-ledger-epoch-view.md",
+    ".claude/specs/2026-10-20-ledger-epoch-view/spec.md",
+    "docs/operations.md",
+    "engine/src/core/ledger-epoch-view.ts",
+    "engine/src/linter/programmatic/no-io-in-pure-modules.ts",
+    "engine/tests/core/ledger-epoch-view.test.ts",
+    "engine/tests/scripts/ledger-epoch.test.ts",
+    "engine/tsconfig.json",
+    "scripts/ledger-epoch.ts"
+   ],
+   "listed_paths": [
+    ".claude/plans/2026-10-20-ledger-epoch-view.md"
+   ],
+   "extras": [
+    {
+     "kind": "agent_instructions",
+     "path": ".claude/plans/2026-10-20-ledger-epoch-view.md",
+     "name": ".claude/plans/2026-10-20-ledger-epoch-view.md",
+     "files": [
+      ".claude/plans/2026-10-20-ledger-epoch-view.md"
+     ]
+    }
+   ]
+  },
+  {
+   "url": "https://github.com/docdyhr/mcp-wordpress/pull/318",
+   "created_at": "2026-10-20T19:23:28Z",
+   "agent": "copilot",
+   "issue": 290,
+   "head_sha": "fd3bb0d27313a5c616a7dd3804e07f75fe383b51",
+   "files": [
+    "AGENTS.md",
+    "CHANGELOG.md",
+    "README.md",
+    "docs/api/README.md",
+    "docs/api/categories/comment.md",
+    "docs/api/categories/media.md",
+    "docs/api/categories/page.md",
+    "docs/api/categories/post.md",
+    "docs/api/categories/system.md",
+    "docs/api/categories/taxonomy.md",
+    "docs/api/categories/user.md",
+    "docs/api/openapi.json",
+    "docs/api/summary.json",
+    "docs/api/tools/wp_create_post.md",
+    "docs/api/tools/wp_delete_post.md",
+    "docs/api/tools/wp_get_post.md",
+    "docs/api/tools/wp_list_plugins.md",
+    "docs/api/tools/wp_list_posts.md",
+    "docs/api/tools/wp_list_themes.md",
+    "docs/api/tools/wp_update_post.md",
+    "src/cache/AGENTS.md",
+    "src/cache/CacheInvalidation.ts",
+    "src/docs/DocumentationGenerator.ts",
+    "src/docs/MarkdownFormatter.ts",
+    "src/tools/AGENTS.md",
+    "src/tools/posts/PostHandlers.ts",
+    "src/tools/posts/PostToolDefinitions.ts",
+    "src/tools/posts/index.ts",
+    "src/tools/system.ts",
+    "tests/cache/CacheInvalidation.test.js",
+    "tests/docs/DocumentationGenerator.test.js",
+    "tests/tools/posts/PostCustomPostTypes.test.js",
+    "tests/tools/system.test.js"
+   ],
+   "listed_paths": [
+    "AGENTS.md",
+    "src/cache/AGENTS.md",
+    "src/tools/AGENTS.md"
+   ],
+   "extras": [
+    {
+     "kind": "agent_instructions",
+     "path": "./",
+     "name": "agent instruction files",
+     "files": [
+      "AGENTS.md",
+      "src/cache/AGENTS.md",
+      "src/tools/AGENTS.md"
+     ]
+    }
+   ]
+  },
+  {
+   "url": "https://github.com/apache/hugegraph/pull/3375",
+   "created_at": "2026-10-19T23:10:28Z",
+   "agent": "claude_code",
+   "issue": 3225,
+   "head_sha": "455d01791adf8f2c3f4739fc95cf2273a2826cbd",
+   "files": [
+    "hugegraph-server/hugegraph-api/src/main/java/org/apache/hugegraph/api/profile/GraphsAPI.java",
+    "hugegraph-server/hugegraph-api/src/main/java/org/apache/hugegraph/core/GraphManager.java",
+    "hugegraph-server/hugegraph-core/src/main/java/org/apache/hugegraph/StandardHugeGraph.java",
+    "hugegraph-server/hugegraph-core/src/main/java/org/apache/hugegraph/backend/store/BackendStoreProvider.java",
+    "hugegraph-server/hugegraph-core/src/main/java/org/apache/hugegraph/backend/store/memory/InMemoryDBStoreProvider.java",
+    "hugegraph-server/hugegraph-core/src/main/java/org/apache/hugegraph/backend/store/raft/RaftBackendStoreProvider.java",
+    "hugegraph-server/hugegraph-core/src/main/java/org/apache/hugegraph/config/CoreOptions.java",
+    "hugegraph-server/hugegraph-dist/src/assembly/static/conf/graphs/hstore.properties.template",
+    "hugegraph-server/hugegraph-dist/src/assembly/static/conf/graphs/hugegraph.properties",
+    "hugegraph-server/hugegraph-dist/src/assembly/travis/conf-raft1/graphs/hugegraph.properties",
+    "hugegraph-server/hugegraph-dist/src/assembly/travis/conf-raft2/graphs/hugegraph.properties",
+    "hugegraph-server/hugegraph-dist/src/assembly/travis/conf-raft3/graphs/hugegraph.properties",
+    "hugegraph-server/hugegraph-dist/src/assembly/travis/start-server.sh",
+    "hugegraph-server/hugegraph-example/src/main/resources/hugegraph.properties",
+    "hugegraph-server/hugegraph-hbase/src/main/java/org/apache/hugegraph/backend/store/hbase/HbaseStoreProvider.java",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g1/g.resume-lock",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g1/g/CURRENT",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g1/g/IDENTITY",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g1/g/LOCK",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g1/g/LOG",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g1/g/LOG.old.1792449795235560",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g1/g/MANIFEST-000009",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g1/g/OPTIONS-000013",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g1/g/OPTIONS-000015",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g1/m.resume-lock",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g1/m/CURRENT",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g1/m/IDENTITY",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g1/m/LOCK",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g1/m/LOG",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g1/m/LOG.old.1792449795186510",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g1/m/MANIFEST-000009",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g1/m/OPTIONS-000013",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g1/m/OPTIONS-000015",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g1/s.resume-lock",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g1/s/CURRENT",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g1/s/IDENTITY",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g1/s/LOCK",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g1/s/LOG",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g1/s/LOG.old.1792449795207481",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g1/s/MANIFEST-000009",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g1/s/OPTIONS-000013",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g1/s/OPTIONS-000015",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g2/g.resume-lock",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g2/g/CURRENT",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g2/g/IDENTITY",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g2/g/LOCK",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g2/g/LOG",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g2/g/LOG.old.1792449794560137",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g2/g/LOG.old.1792449795507335",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g2/g/LOG.old.1792449795513866",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g2/g/MANIFEST-000021",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g2/g/OPTIONS-000015",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g2/g/OPTIONS-000023",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g2/m.resume-lock",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g2/m/CURRENT",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g2/m/IDENTITY",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g2/m/LOCK",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g2/m/LOG",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g2/m/LOG.old.1792449794516152",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g2/m/LOG.old.1792449795473057",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g2/m/LOG.old.1792449795479847",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g2/m/MANIFEST-000021",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g2/m/OPTIONS-000015",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g2/m/OPTIONS-000023",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g2/s.resume-lock",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g2/s/CURRENT",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g2/s/IDENTITY",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g2/s/LOCK",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g2/s/LOG",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g2/s/LOG.old.1792449794539340",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g2/s/LOG.old.1792449795489310",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g2/s/LOG.old.1792449795496066",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g2/s/MANIFEST-000021",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g2/s/OPTIONS-000015",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g2/s/OPTIONS-000023",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g3/g.resume-lock",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g3/g/CURRENT",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g3/g/IDENTITY",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g3/g/LOCK",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g3/g/LOG",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g3/g/LOG.old.1792449795577524",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g3/g/MANIFEST-000009",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g3/g/OPTIONS-000011",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g3/m.resume-lock",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g3/m/CURRENT",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g3/m/IDENTITY",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g3/m/LOCK",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g3/m/LOG",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g3/m/LOG.old.1792449795537939",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g3/m/MANIFEST-000009",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g3/m/OPTIONS-000011",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g3/s.resume-lock",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g3/s/CURRENT",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g3/s/IDENTITY",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g3/s/LOCK",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g3/s/LOG",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g3/s/LOG.old.1792449795557466",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g3/s/MANIFEST-000009",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g3/s/OPTIONS-000011",
+    "hugegraph-server/hugegraph-test/rocksdb-data/legacySchedulerType/g.resume-lock",
+    "hugegraph-server/hugegraph-test/rocksdb-data/legacySchedulerType/g/CURRENT",
+    "hugegraph-server/hugegraph-test/rocksdb-data/legacySchedulerType/g/IDENTITY",
+    "hugegraph-server/hugegraph-test/rocksdb-data/legacySchedulerType/g/LOCK",
+    "hugegraph-server/hugegraph-test/rocksdb-data/legacySchedulerType/g/LOG",
+    "hugegraph-server/hugegraph-test/rocksdb-data/legacySchedulerType/g/LOG.old.1792449796056572",
+    "hugegraph-server/hugegraph-test/rocksdb-data/legacySchedulerType/g/MANIFEST-000009",
+    "hugegraph-server/hugegraph-test/rocksdb-data/legacySchedulerType/g/OPTIONS-000011",
+    "hugegraph-server/hugegraph-test/rocksdb-data/legacySchedulerType/m.resume-lock",
+    "hugegraph-server/hugegraph-test/rocksdb-data/legacySchedulerType/m/CURRENT",
+    "hugegraph-server/hugegraph-test/rocksdb-data/legacySchedulerType/m/IDENTITY",
+    "hugegraph-server/hugegraph-test/rocksdb-data/legacySchedulerType/m/LOCK",
+    "hugegraph-server/hugegraph-test/rocksdb-data/legacySchedulerType/m/LOG",
+    "hugegraph-server/hugegraph-test/rocksdb-data/legacySchedulerType/m/LOG.old.1792449796011660",
+    "hugegraph-server/hugegraph-test/rocksdb-data/legacySchedulerType/m/MANIFEST-000009",
+    "hugegraph-server/hugegraph-test/rocksdb-data/legacySchedulerType/m/OPTIONS-000011",
+    "hugegraph-server/hugegraph-test/rocksdb-data/legacySchedulerType/s.resume-lock",
+    "hugegraph-server/hugegraph-test/rocksdb-data/legacySchedulerType/s/CURRENT",
+    "hugegraph-server/hugegraph-test/rocksdb-data/legacySchedulerType/s/IDENTITY",
+    "hugegraph-server/hugegraph-test/rocksdb-data/legacySchedulerType/s/LOCK",
+    "hugegraph-server/hugegraph-test/rocksdb-data/legacySchedulerType/s/LOG",
+    "hugegraph-server/hugegraph-test/rocksdb-data/legacySchedulerType/s/LOG.old.1792449796035095",
+    "hugegraph-server/hugegraph-test/rocksdb-data/legacySchedulerType/s/MANIFEST-000009",
+    "hugegraph-server/hugegraph-test/rocksdb-data/legacySchedulerType/s/OPTIONS-000011",
+    "hugegraph-server/hugegraph-test/rocksdb-index1/g.resume-lock",
+    "hugegraph-server/hugegraph-test/rocksdb-index1/g/CURRENT",
+    "hugegraph-server/hugegraph-test/rocksdb-index1/g/IDENTITY",
+    "hugegraph-server/hugegraph-test/rocksdb-index1/g/LOCK",
+    "hugegraph-server/hugegraph-test/rocksdb-index1/g/LOG",
+    "hugegraph-server/hugegraph-test/rocksdb-index1/g/LOG.old.1792449795235996",
+    "hugegraph-server/hugegraph-test/rocksdb-index1/g/MANIFEST-000009",
+    "hugegraph-server/hugegraph-test/rocksdb-index1/g/OPTIONS-000017",
+    "hugegraph-server/hugegraph-test/rocksdb-index1/g/OPTIONS-000019",
+    "hugegraph-server/hugegraph-test/rocksdb-index2/g.resume-lock",
+    "hugegraph-server/hugegraph-test/rocksdb-index2/g/CURRENT",
+    "hugegraph-server/hugegraph-test/rocksdb-index2/g/IDENTITY",
+    "hugegraph-server/hugegraph-test/rocksdb-index2/g/LOCK",
+    "hugegraph-server/hugegraph-test/rocksdb-index2/g/LOG",
+    "hugegraph-server/hugegraph-test/rocksdb-index2/g/LOG.old.1792449795235577",
+    "hugegraph-server/hugegraph-test/rocksdb-index2/g/MANIFEST-000009",
+    "hugegraph-server/hugegraph-test/rocksdb-index2/g/OPTIONS-000013",
+    "hugegraph-server/hugegraph-test/rocksdb-index2/g/OPTIONS-000015",
+    "hugegraph-server/hugegraph-test/src/main/java/org/apache/hugegraph/unit/serializer/SerializerFactoryTest.java",
+    "hugegraph-store/README.md",
+    "hugegraph-store/docs/deployment-guide.md",
+    "hugegraph-store/docs/integration-guide.md"
+   ],
+   "listed_paths": [
+    "hugegraph-server/hugegraph-test/rocksdb-data/g1/g.resume-lock",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g1/g/CURRENT",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g1/g/IDENTITY",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g1/g/LOCK",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g1/g/LOG",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g1/g/LOG.old.1792449795235560",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g1/g/MANIFEST-000009",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g1/g/OPTIONS-000013",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g1/g/OPTIONS-000015",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g1/m.resume-lock",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g1/m/CURRENT",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g1/m/IDENTITY",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g1/m/LOCK",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g1/m/LOG",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g1/m/LOG.old.1792449795186510",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g1/m/MANIFEST-000009",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g1/m/OPTIONS-000013",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g1/m/OPTIONS-000015",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g1/s.resume-lock",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g1/s/CURRENT",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g1/s/IDENTITY",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g1/s/LOCK",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g1/s/LOG",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g1/s/LOG.old.1792449795207481",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g1/s/MANIFEST-000009",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g1/s/OPTIONS-000013",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g1/s/OPTIONS-000015",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g2/g.resume-lock",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g2/g/CURRENT",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g2/g/IDENTITY",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g2/g/LOCK",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g2/g/LOG",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g2/g/LOG.old.1792449794560137",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g2/g/LOG.old.1792449795507335",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g2/g/LOG.old.1792449795513866",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g2/g/MANIFEST-000021",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g2/g/OPTIONS-000015",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g2/g/OPTIONS-000023",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g2/m.resume-lock",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g2/m/CURRENT",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g2/m/IDENTITY",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g2/m/LOCK",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g2/m/LOG",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g2/m/LOG.old.1792449794516152",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g2/m/LOG.old.1792449795473057",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g2/m/LOG.old.1792449795479847",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g2/m/MANIFEST-000021",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g2/m/OPTIONS-000015",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g2/m/OPTIONS-000023",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g2/s.resume-lock",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g2/s/CURRENT",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g2/s/IDENTITY",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g2/s/LOCK",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g2/s/LOG",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g2/s/LOG.old.1792449794539340",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g2/s/LOG.old.1792449795489310",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g2/s/LOG.old.1792449795496066",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g2/s/MANIFEST-000021",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g2/s/OPTIONS-000015",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g2/s/OPTIONS-000023",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g3/g.resume-lock",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g3/g/CURRENT",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g3/g/IDENTITY",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g3/g/LOCK",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g3/g/LOG",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g3/g/LOG.old.1792449795577524",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g3/g/MANIFEST-000009",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g3/g/OPTIONS-000011",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g3/m.resume-lock",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g3/m/CURRENT",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g3/m/IDENTITY",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g3/m/LOCK",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g3/m/LOG",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g3/m/LOG.old.1792449795537939",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g3/m/MANIFEST-000009",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g3/m/OPTIONS-000011",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g3/s.resume-lock",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g3/s/CURRENT",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g3/s/IDENTITY",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g3/s/LOCK",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g3/s/LOG",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g3/s/LOG.old.1792449795557466",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g3/s/MANIFEST-000009",
+    "hugegraph-server/hugegraph-test/rocksdb-data/g3/s/OPTIONS-000011",
+    "hugegraph-server/hugegraph-test/rocksdb-data/legacySchedulerType/g.resume-lock",
+    "hugegraph-server/hugegraph-test/rocksdb-data/legacySchedulerType/g/CURRENT",
+    "hugegraph-server/hugegraph-test/rocksdb-data/legacySchedulerType/g/IDENTITY",
+    "hugegraph-server/hugegraph-test/rocksdb-data/legacySchedulerType/g/LOCK",
+    "hugegraph-server/hugegraph-test/rocksdb-data/legacySchedulerType/g/LOG",
+    "hugegraph-server/hugegraph-test/rocksdb-data/legacySchedulerType/g/LOG.old.1792449796056572",
+    "hugegraph-server/hugegraph-test/rocksdb-data/legacySchedulerType/g/MANIFEST-000009",
+    "hugegraph-server/hugegraph-test/rocksdb-data/legacySchedulerType/g/OPTIONS-000011",
+    "hugegraph-server/hugegraph-test/rocksdb-data/legacySchedulerType/m.resume-lock",
+    "hugegraph-server/hugegraph-test/rocksdb-data/legacySchedulerType/m/CURRENT",
+    "hugegraph-server/hugegraph-test/rocksdb-data/legacySchedulerType/m/IDENTITY",
+    "hugegraph-server/hugegraph-test/rocksdb-data/legacySchedulerType/m/LOCK",
+    "hugegraph-server/hugegraph-test/rocksdb-data/legacySchedulerType/m/LOG",
+    "hugegraph-server/hugegraph-test/rocksdb-data/legacySchedulerType/m/LOG.old.1792449796011660",
+    "hugegraph-server/hugegraph-test/rocksdb-data/legacySchedulerType/m/MANIFEST-000009",
+    "hugegraph-server/hugegraph-test/rocksdb-data/legacySchedulerType/m/OPTIONS-000011",
+    "hugegraph-server/hugegraph-test/rocksdb-data/legacySchedulerType/s.resume-lock",
+    "hugegraph-server/hugegraph-test/rocksdb-data/legacySchedulerType/s/CURRENT",
+    "hugegraph-server/hugegraph-test/rocksdb-data/legacySchedulerType/s/IDENTITY",
+    "hugegraph-server/hugegraph-test/rocksdb-data/legacySchedulerType/s/LOCK",
+    "hugegraph-server/hugegraph-test/rocksdb-data/legacySchedulerType/s/LOG",
+    "hugegraph-server/hugegraph-test/rocksdb-data/legacySchedulerType/s/LOG.old.1792449796035095",
+    "hugegraph-server/hugegraph-test/rocksdb-data/legacySchedulerType/s/MANIFEST-000009",
+    "hugegraph-server/hugegraph-test/rocksdb-data/legacySchedulerType/s/OPTIONS-000011",
+    "hugegraph-server/hugegraph-test/rocksdb-index1/g.resume-lock",
+    "hugegraph-server/hugegraph-test/rocksdb-index1/g/CURRENT",
+    "hugegraph-server/hugegraph-test/rocksdb-index1/g/IDENTITY",
+    "hugegraph-server/hugegraph-test/rocksdb-index1/g/LOCK",
+    "hugegraph-server/hugegraph-test/rocksdb-index1/g/LOG",
+    "hugegraph-server/hugegraph-test/rocksdb-index1/g/LOG.old.1792449795235996",
+    "hugegraph-server/hugegraph-test/rocksdb-index1/g/MANIFEST-000009",
+    "hugegraph-server/hugegraph-test/rocksdb-index1/g/OPTIONS-000017",
+    "hugegraph-server/hugegraph-test/rocksdb-index1/g/OPTIONS-000019",
+    "hugegraph-server/hugegraph-test/rocksdb-index2/g.resume-lock",
+    "hugegraph-server/hugegraph-test/rocksdb-index2/g/CURRENT",
+    "hugegraph-server/hugegraph-test/rocksdb-index2/g/IDENTITY",
+    "hugegraph-server/hugegraph-test/rocksdb-index2/g/LOCK",
+    "hugegraph-server/hugegraph-test/rocksdb-index2/g/LOG",
+    "hugegraph-server/hugegraph-test/rocksdb-index2/g/LOG.old.1792449795235577",
+    "hugegraph-server/hugegraph-test/rocksdb-index2/g/MANIFEST-000009",
+    "hugegraph-server/hugegraph-test/rocksdb-index2/g/OPTIONS-000013",
+    "hugegraph-server/hugegraph-test/rocksdb-index2/g/OPTIONS-000015",
+    "hugegraph-server/hugegraph-test/src/main/java/org/apache/hugegraph/unit/serializer/SerializerFactoryTest.java"
+   ],
+   "extras": [
+    {
+     "kind": "binary_or_large_added",
+     "path": "hugegraph-server/hugegraph-test/",
+     "name": "hugegraph-server/hugegraph-test/",
+     "files": [
+      "hugegraph-server/hugegraph-test/rocksdb-data/g1/g.resume-lock",
+      "hugegraph-server/hugegraph-test/rocksdb-data/g1/g/CURRENT",
+      "hugegraph-server/hugegraph-test/rocksdb-data/g1/g/IDENTITY",
+      "hugegraph-server/hugegraph-test/rocksdb-data/g1/g/LOCK",
+      "hugegraph-server/hugegraph-test/rocksdb-data/g1/g/LOG",
+      "hugegraph-server/hugegraph-test/rocksdb-data/g1/g/LOG.old.1792449795235560",
+      "hugegraph-server/hugegraph-test/rocksdb-data/g1/g/MANIFEST-000009",
+      "hugegraph-server/hugegraph-test/rocksdb-data/g1/g/OPTIONS-000013",
+      "hugegraph-server/hugegraph-test/rocksdb-data/g1/g/OPTIONS-000015",
+      "hugegraph-server/hugegraph-test/rocksdb-data/g1/m.resume-lock",
+      "hugegraph-server/hugegraph-test/rocksdb-data/g1/m/CURRENT",
+      "hugegraph-server/hugegraph-test/rocksdb-data/g1/m/IDENTITY",
+      "hugegraph-server/hugegraph-test/rocksdb-data/g1/m/LOCK",
+      "hugegraph-server/hugegraph-test/rocksdb-data/g1/m/LOG",
+      "hugegraph-server/hugegraph-test/rocksdb-data/g1/m/LOG.old.1792449795186510",
+      "hugegraph-server/hugegraph-test/rocksdb-data/g1/m/MANIFEST-000009",
+      "hugegraph-server/hugegraph-test/rocksdb-data/g1/m/OPTIONS-000013",
+      "hugegraph-server/hugegraph-test/rocksdb-data/g1/m/OPTIONS-000015",
+      "hugegraph-server/hugegraph-test/rocksdb-data/g1/s.resume-lock",
+      "hugegraph-server/hugegraph-test/rocksdb-data/g1/s/CURRENT",
+      "hugegraph-server/hugegraph-test/rocksdb-data/g1/s/IDENTITY",
+      "hugegraph-server/hugegraph-test/rocksdb-data/g1/s/LOCK",
+      "hugegraph-server/hugegraph-test/rocksdb-data/g1/s/LOG",
+      "hugegraph-server/hugegraph-test/rocksdb-data/g1/s/LOG.old.1792449795207481",
+      "hugegraph-server/hugegraph-test/rocksdb-data/g1/s/MANIFEST-000009",
+      "hugegraph-server/hugegraph-test/rocksdb-data/g1/s/OPTIONS-000013",
+      "hugegraph-server/hugegraph-test/rocksdb-data/g1/s/OPTIONS-000015",
+      "hugegraph-server/hugegraph-test/rocksdb-data/g2/g.resume-lock",
+      "hugegraph-server/hugegraph-test/rocksdb-data/g2/g/CURRENT",
+      "hugegraph-server/hugegraph-test/rocksdb-data/g2/g/IDENTITY",
+      "hugegraph-server/hugegraph-test/rocksdb-data/g2/g/LOCK",
+      "hugegraph-server/hugegraph-test/rocksdb-data/g2/g/LOG",
+      "hugegraph-server/hugegraph-test/rocksdb-data/g2/g/LOG.old.1792449794560137",
+      "hugegraph-server/hugegraph-test/rocksdb-data/g2/g/LOG.old.1792449795507335",
+      "hugegraph-server/hugegraph-test/rocksdb-data/g2/g/LOG.old.1792449795513866",
+      "hugegraph-server/hugegraph-test/rocksdb-data/g2/g/MANIFEST-000021",
+      "hugegraph-server/hugegraph-test/rocksdb-data/g2/g/OPTIONS-000015",
+      "hugegraph-server/hugegraph-test/rocksdb-data/g2/g/OPTIONS-000023",
+      "hugegraph-server/hugegraph-test/rocksdb-data/g2/m.resume-lock",
+      "hugegraph-server/hugegraph-test/rocksdb-data/g2/m/CURRENT",
+      "hugegraph-server/hugegraph-test/rocksdb-data/g2/m/IDENTITY",
+      "hugegraph-server/hugegraph-test/rocksdb-data/g2/m/LOCK",
+      "hugegraph-server/hugegraph-test/rocksdb-data/g2/m/LOG",
+      "hugegraph-server/hugegraph-test/rocksdb-data/g2/m/LOG.old.1792449794516152",
+      "hugegraph-server/hugegraph-test/rocksdb-data/g2/m/LOG.old.1792449795473057",
+      "hugegraph-server/hugegraph-test/rocksdb-data/g2/m/LOG.old.1792449795479847",
+      "hugegraph-server/hugegraph-test/rocksdb-data/g2/m/MANIFEST-000021",
+      "hugegraph-server/hugegraph-test/rocksdb-data/g2/m/OPTIONS-000015",
+      "hugegraph-server/hugegraph-test/rocksdb-data/g2/m/OPTIONS-000023",
+      "hugegraph-server/hugegraph-test/rocksdb-data/g2/s.resume-lock",
+      "hugegraph-server/hugegraph-test/rocksdb-data/g2/s/CURRENT",
+      "hugegraph-server/hugegraph-test/rocksdb-data/g2/s/IDENTITY",
+      "hugegraph-server/hugegraph-test/rocksdb-data/g2/s/LOCK",
+      "hugegraph-server/hugegraph-test/rocksdb-data/g2/s/LOG",
+      "hugegraph-server/hugegraph-test/rocksdb-data/g2/s/LOG.old.1792449794539340",
+      "hugegraph-server/hugegraph-test/rocksdb-data/g2/s/LOG.old.1792449795489310",
+      "hugegraph-server/hugegraph-test/rocksdb-data/g2/s/LOG.old.1792449795496066",
+      "hugegraph-server/hugegraph-test/rocksdb-data/g2/s/MANIFEST-000021",
+      "hugegraph-server/hugegraph-test/rocksdb-data/g2/s/OPTIONS-000015",
+      "hugegraph-server/hugegraph-test/rocksdb-data/g2/s/OPTIONS-000023",
+      "hugegraph-server/hugegraph-test/rocksdb-data/g3/g.resume-lock",
+      "hugegraph-server/hugegraph-test/rocksdb-data/g3/g/CURRENT",
+      "hugegraph-server/hugegraph-test/rocksdb-data/g3/g/IDENTITY",
+      "hugegraph-server/hugegraph-test/rocksdb-data/g3/g/LOCK",
+      "hugegraph-server/hugegraph-test/rocksdb-data/g3/g/LOG",
+      "hugegraph-server/hugegraph-test/rocksdb-data/g3/g/LOG.old.1792449795577524",
+      "hugegraph-server/hugegraph-test/rocksdb-data/g3/g/MANIFEST-000009",
+      "hugegraph-server/hugegraph-test/rocksdb-data/g3/g/OPTIONS-000011",
+      "hugegraph-server/hugegraph-test/rocksdb-data/g3/m.resume-lock",
+      "hugegraph-server/hugegraph-test/rocksdb-data/g3/m/CURRENT",
+      "hugegraph-server/hugegraph-test/rocksdb-data/g3/m/IDENTITY",
+      "hugegraph-server/hugegraph-test/rocksdb-data/g3/m/LOCK",
+      "hugegraph-server/hugegraph-test/rocksdb-data/g3/m/LOG",
+      "hugegraph-server/hugegraph-test/rocksdb-data/g3/m/LOG.old.1792449795537939",
+      "hugegraph-server/hugegraph-test/rocksdb-data/g3/m/MANIFEST-000009",
+      "hugegraph-server/hugegraph-test/rocksdb-data/g3/m/OPTIONS-000011",
+      "hugegraph-server/hugegraph-test/rocksdb-data/g3/s.resume-lock",
+      "hugegraph-server/hugegraph-test/rocksdb-data/g3/s/CURRENT",
+      "hugegraph-server/hugegraph-test/rocksdb-data/g3/s/IDENTITY",
+      "hugegraph-server/hugegraph-test/rocksdb-data/g3/s/LOCK",
+      "hugegraph-server/hugegraph-test/rocksdb-data/g3/s/LOG",
+      "hugegraph-server/hugegraph-test/rocksdb-data/g3/s/LOG.old.1792449795557466",
+      "hugegraph-server/hugegraph-test/rocksdb-data/g3/s/MANIFEST-000009",
+      "hugegraph-server/hugegraph-test/rocksdb-data/g3/s/OPTIONS-000011",
+      "hugegraph-server/hugegraph-test/rocksdb-data/legacySchedulerType/g.resume-lock",
+      "hugegraph-server/hugegraph-test/rocksdb-data/legacySchedulerType/g/CURRENT",
+      "hugegraph-server/hugegraph-test/rocksdb-data/legacySchedulerType/g/IDENTITY",
+      "hugegraph-server/hugegraph-test/rocksdb-data/legacySchedulerType/g/LOCK",
+      "hugegraph-server/hugegraph-test/rocksdb-data/legacySchedulerType/g/LOG",
+      "hugegraph-server/hugegraph-test/rocksdb-data/legacySchedulerType/g/LOG.old.1792449796056572",
+      "hugegraph-server/hugegraph-test/rocksdb-data/legacySchedulerType/g/MANIFEST-000009",
+      "hugegraph-server/hugegraph-test/rocksdb-data/legacySchedulerType/g/OPTIONS-000011",
+      "hugegraph-server/hugegraph-test/rocksdb-data/legacySchedulerType/m.resume-lock",
+      "hugegraph-server/hugegraph-test/rocksdb-data/legacySchedulerType/m/CURRENT",
+      "hugegraph-server/hugegraph-test/rocksdb-data/legacySchedulerType/m/IDENTITY",
+      "hugegraph-server/hugegraph-test/rocksdb-data/legacySchedulerType/m/LOCK",
+      "hugegraph-server/hugegraph-test/rocksdb-data/legacySchedulerType/m/LOG",
+      "hugegraph-server/hugegraph-test/rocksdb-data/legacySchedulerType/m/LOG.old.1792449796011660",
+      "hugegraph-server/hugegraph-test/rocksdb-data/legacySchedulerType/m/MANIFEST-000009",
+      "hugegraph-server/hugegraph-test/rocksdb-data/legacySchedulerType/m/OPTIONS-000011",
+      "hugegraph-server/hugegraph-test/rocksdb-data/legacySchedulerType/s.resume-lock",
+      "hugegraph-server/hugegraph-test/rocksdb-data/legacySchedulerType/s/CURRENT",
+      "hugegraph-server/hugegraph-test/rocksdb-data/legacySchedulerType/s/IDENTITY",
+      "hugegraph-server/hugegraph-test/rocksdb-data/legacySchedulerType/s/LOCK",
+      "hugegraph-server/hugegraph-test/rocksdb-data/legacySchedulerType/s/LOG",
+      "hugegraph-server/hugegraph-test/rocksdb-data/legacySchedulerType/s/LOG.old.1792449796035095",
+      "hugegraph-server/hugegraph-test/rocksdb-data/legacySchedulerType/s/MANIFEST-000009",
+      "hugegraph-server/hugegraph-test/rocksdb-data/legacySchedulerType/s/OPTIONS-000011",
+      "hugegraph-server/hugegraph-test/rocksdb-index1/g.resume-lock",
+      "hugegraph-server/hugegraph-test/rocksdb-index1/g/CURRENT",
+      "hugegraph-server/hugegraph-test/rocksdb-index1/g/IDENTITY",
+      "hugegraph-server/hugegraph-test/rocksdb-index1/g/LOCK",
+      "hugegraph-server/hugegraph-test/rocksdb-index1/g/LOG",
+      "hugegraph-server/hugegraph-test/rocksdb-index1/g/LOG.old.1792449795235996",
+      "hugegraph-server/hugegraph-test/rocksdb-index1/g/MANIFEST-000009",
+      "hugegraph-server/hugegraph-test/rocksdb-index1/g/OPTIONS-000017",
+      "hugegraph-server/hugegraph-test/rocksdb-index1/g/OPTIONS-000019",
+      "hugegraph-server/hugegraph-test/rocksdb-index2/g.resume-lock",
+      "hugegraph-server/hugegraph-test/rocksdb-index2/g/CURRENT",
+      "hugegraph-server/hugegraph-test/rocksdb-index2/g/IDENTITY",
+      "hugegraph-server/hugegraph-test/rocksdb-index2/g/LOCK",
+      "hugegraph-server/hugegraph-test/rocksdb-index2/g/LOG",
+      "hugegraph-server/hugegraph-test/rocksdb-index2/g/LOG.old.1792449795235577",
+      "hugegraph-server/hugegraph-test/rocksdb-index2/g/MANIFEST-000009",
+      "hugegraph-server/hugegraph-test/rocksdb-index2/g/OPTIONS-000013",
+      "hugegraph-server/hugegraph-test/rocksdb-index2/g/OPTIONS-000015",
+      "hugegraph-server/hugegraph-test/src/main/java/org/apache/hugegraph/unit/serializer/SerializerFactoryTest.java"
+     ]
+    }
+   ]
+  },
+  {
+   "url": "https://github.com/ChulioZ/spielwirbel/pull/1704",
+   "created_at": "2026-10-20T20:12:11Z",
+   "agent": "claude_code",
+   "issue": 1702,
+   "head_sha": "f1b355eb4cec4784cf807effd6e9f1ac60af32c7",
+   "files": [
+    ".claude/rules/vendored-frontend-library.md",
+    "docs/architecture.md",
+    "docs/features.md",
+    "docs/legal/dsar-process.md",
+    "eslint.config.js",
+    "lib/faq.js",
+    "package-lock.json",
+    "package.json",
+    "public/index.html",
+    "public/js/error-report.js",
+    "public/js/lang/de.js",
+    "public/js/lang/en.js",
+    "public/js/lang/es.js",
+    "public/js/lang/fi.js",
+    "public/js/lang/fr.js",
+    "public/js/lang/it.js",
+    "public/js/lang/ko.js",
+    "public/js/lang/nl.js",
+    "public/js/lang/pt.js",
+    "public/js/news.js",
+    "public/js/round-export.js",
+    "public/js/vendor/fflate.LICENSE.txt",
+    "public/js/vendor/fflate.min.js",
+    "public/js/views-round-settings.js",
+    "public/sw.js",
+    "test/fixtures/forest-tier2b-klassisch-golden.json",
+    "test/round-export.test.js"
+   ],
+   "listed_paths": [
+    ".claude/rules/vendored-frontend-library.md"
+   ],
+   "extras": [
+    {
+     "kind": "agent_instructions",
+     "path": ".claude/rules/vendored-frontend-library.md",
+     "name": ".claude/rules/vendored-frontend-library.md",
+     "files": [
+      ".claude/rules/vendored-frontend-library.md"
+     ]
+    }
+   ]
+  }
+ ]
+}

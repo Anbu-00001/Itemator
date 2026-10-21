@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import argparse
 import html
+import json
 import pathlib
 import re
 
@@ -15,6 +16,7 @@ from itemator.tryit import REPO
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 SOURCE = ROOT / "results" / "real_catches.md"
+TIMING = ROOT / "results" / "catch_timing_v1.json"
 _LINK = re.compile(r"\[([^\]]*)\]\(([^)\s]+)\)")
 _CODE = re.compile(r"`([^`]+)`")
 _COLUMNS = ("pr", "agent", "file", "rule", "words", "reading")
@@ -65,14 +67,47 @@ def parse(md: str) -> dict:
     return {"title": title, "intro": intro, "sections": sections}
 
 
-def card(r: dict) -> str:
+def load_timing(path=TIMING) -> dict:
+    """{"summary": {...}, "hours": {(pull request link, file path): hours}} from the timing file; empty if it is missing or unreadable."""
+    try:
+        d = json.loads(pathlib.Path(path).read_text(encoding="utf-8"))
+        hours = {(c["pr"], c["path"]): c["hours"] for c in d["cases"] if isinstance(c.get("hours"), (int, float))}
+        return {"summary": d.get("summary", {}), "hours": hours}
+    except (OSError, ValueError, KeyError, TypeError, AttributeError):
+        return {}
+
+
+def _hours(h: float) -> str:
+    return "1 hour" if h == 1 else f"{h:g} hours"
+
+
+def hours_for(r: dict, timing: dict):
+    """Hours from the pull request opening to the objection for one card, or None when unknown."""
+    m = re.search(r"\]\(([^)\s]+)\)", r["pr"])
+    f = r["file"].strip("`")
+    if not m or not timing:
+        return None
+    hit = [h for (pr, path), h in timing["hours"].items() if pr == m.group(1) and (path == f or path.endswith("/" + f))]
+    return hit[0] if len(hit) == 1 else None
+
+
+def card(r: dict, hours=None) -> str:
+    when = f"<p class=\"muted\">Objection came {_hours(hours)} after the pull request opened.</p>" if hours is not None else ""
     return ("<article><p class=\"pr\">" + inline(r["pr"]) + f" <span class=\"muted\">· {html.escape(r['agent'])}</span></p>"
             f"<p><span class=\"k\">File</span> {inline(r['file'])}</p>"
             f"<p><span class=\"k\">Reviewer</span> {inline(r['words'])} <span class=\"muted\">({html.escape(r['reading'])})</span></p>"
-            f"<p><span class=\"k\">Itemator</span> {inline(r['rule'])}</p></article>")
+            f"<p><span class=\"k\">Itemator</span> {inline(r['rule'])}</p>{when}</article>")
 
 
-def page(study: dict) -> str:
+def timing_sentence(timing: dict) -> str:
+    s = (timing or {}).get("summary", {})
+    if not isinstance(s.get("median_hours"), (int, float)) or not s.get("read"):
+        return ""
+    return (f"The median wait from a pull request opening to the reviewer's objection was {_hours(s['median_hours'])} "
+            f"({s['over_24h']} of {s['read']} waited more than a day), the time the extra sat with nobody asking.")
+
+
+def page(study: dict, timing: dict | None = None) -> str:
     out = ["<!doctype html><html lang=\"en\"><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\">",
            "<meta http-equiv=\"Content-Security-Policy\" content=\"default-src 'none'; style-src 'unsafe-inline'; base-uri 'none'; form-action 'none'\">",
            "<title>Real catches</title><style>"
@@ -88,9 +123,11 @@ def page(study: dict) -> str:
            ".muted{color:var(--muted)}</style></head><body><main>",
            "<h1>Real catches: a reviewer objected to a file an AI agent changed, and Itemator's rules named the same file</h1>"]
     out += [f"<p>{inline(p)}</p>" for p in study["intro"]]
+    if timing_sentence(timing):
+        out.append(f"<p>{html.escape(timing_sentence(timing))}</p>")
     for s in study["sections"]:
         out.append(f"<h2>{html.escape(s['heading'])}</h2>")
-        out += [card(r) for r in s["rows"]]
+        out += [card(r, hours_for(r, timing)) for r in s["rows"]]
     out.append(f"<p class=\"muted\">Source: <a href=\"{REPO}results/real_catches.md\">results/real_catches.md</a>, which this page is built "
                "from. Try the rules on a change of your own: <a href=\"../try/\">paste a diff</a> or <a href=\"../green/\">paste a link</a>.</p>"
                "</main></body></html>")
@@ -103,7 +140,7 @@ def main(argv=None) -> int:
     a = ap.parse_args(argv)
     out = pathlib.Path(a.out)
     out.mkdir(parents=True, exist_ok=True)
-    (out / "index.html").write_text(page(parse(SOURCE.read_text(encoding="utf-8"))), encoding="utf-8")
+    (out / "index.html").write_text(page(parse(SOURCE.read_text(encoding="utf-8")), load_timing()), encoding="utf-8")
     return 0
 
 

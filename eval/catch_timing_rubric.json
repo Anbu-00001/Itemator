@@ -1,0 +1,14 @@
+{
+ "what": "Written before the run. In the 24 real cases of results/real_catches_v1.json, how many hours passed between an AI agent's pull request being opened and the reviewer's objection to the file? This is the time the extra sat with nobody asking; Itemator's card would ask on the first pipeline.",
+ "data": "results/real_catches_v1.json cases (pr, path, comment_created_at). The pull request's created_at comes from the public GitHub REST API, GET /repos/{owner}/{repo}/pulls/{n}, GET only, unauthenticated or through gh, cached under eval/cache/github/.",
+ "measure": "hours = (comment_created_at - pull request created_at) in hours, rounded to 0.1, per case. Two cases on one pull request count separately, each with its own comment time.",
+ "unreadable": "A case is left out and counted as unreadable if the API call fails or returns no created_at, if comment_created_at is missing, or if the difference is negative. Nothing is guessed in their place.",
+ "summary": ["read", "unreadable", "median_hours", "min_hours", "max_hours", "over_24h"],
+ "summary_notes": "median_hours is the median of the read cases; over_24h is how many read cases have hours greater than 24.",
+ "limits": "These are only the cases where a reviewer wrote an objection we could read, so it says nothing about extras nobody objected to. The comment time is the first inline comment we matched, not necessarily the first moment anyone noticed. Pull requests opened as drafts by an agent may have waited before a person looked.",
+ "prediction_before_run": {
+  "median_hours": "between 3 and 30 hours",
+  "over_24h": "between 5 and 12 of the read cases",
+  "basis": "Agent pull requests tend to get a human look the same day or the next, but a few sit for days."
+ }
+}

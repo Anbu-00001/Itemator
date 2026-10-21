@@ -11,7 +11,7 @@ from itemator import ci, policy as POL
 from itemator.extras import Extra
 from test_ci import FIXED, FakeHttp, isolated, issue, job, mr, repo, routes  # noqa: F401  (fixtures)
 
-KEEP = "To keep it, reply with its exact name; a line under the name can say why."
+KEEP = "To keep it, reply with its exact name; put `@ai-itemator-react-gitlab-ai-hackathon` on the same line to start the check, and a line under the name can say why."
 OTHER = "A reply from the merge request author does not count."
 FULL = """# the team's rules
 [names]

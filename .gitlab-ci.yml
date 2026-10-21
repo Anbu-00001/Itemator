@@ -24,9 +24,11 @@ workflow:
 
 # The unit tests run on every pipeline (the duckdb files only read the AIDev data used for the evaluation).
 unit-tests:
-  image: python:3.12
+  image: python:3.12-alpine
   variables:
     GIT_DEPTH: "0"
+  before_script:
+    - apk add -q --no-cache git ca-certificates file
   script:
     - python -m venv .venv
     - .venv/bin/pip install -q pytest pyyaml
@@ -35,15 +37,17 @@ unit-tests:
 # The copy of ci/itemator-job.yml that the policy injects lives in the policy project. This job fails when it differs from the copy
 # here (the tests read this one), so a change to either side cannot go unnoticed.
 policy-job-in-sync:
-  image: python:3.12
+  image: python:3.12-alpine
   script:
     - python -c "import urllib.request as u; open('/tmp/policy-copy.yml','wb').write(u.urlopen('https://gitlab.com/api/v4/projects/87623122/repository/files/ci%2Fitemator-job.yml/raw?ref=main', timeout=30).read())"
     - diff -u /tmp/policy-copy.yml ci/itemator-job.yml
 
 hardcode-audit:
-  image: python:3.12
+  image: python:3.12-alpine
   variables:
     GIT_DEPTH: "0"
+  before_script:
+    - apk add -q --no-cache git ca-certificates
   script:
     - python tools/hardcode_audit.py
 
@@ -166,7 +170,7 @@ install-time-npm:
 # deployment, the merge requests in it, their extras and who named each (itemator/shipped.py; it only reads GitLab).
 publish-package:
   stage: deploy
-  image: python:3.12
+  image: python:3.12-alpine
   rules:
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
   environment:
@@ -175,6 +179,8 @@ publish-package:
   # Two merges in a row deploy one after the other, never together. DEPLOY_TARGET is a project variable scoped to the
   # `production` environment (Settings > CI/CD > Variables); it is empty in any other job.
   resource_group: production
+  before_script:
+    - apk add -q --no-cache curl
   script:
     - echo "Deploying to ${DEPLOY_TARGET:-no environment-scoped variable set}"
     - tar czf itemator.tar.gz itemator
@@ -215,11 +221,15 @@ deploy-cloud-run:
 
 shipped-page:
   stage: .post
-  image: python:3.12
+  image: python:3.12-alpine
   rules:
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+  before_script:
+    - apk add -q --no-cache git ca-certificates
   script:
-    - python -E -m itemator.shipped --environment production --out public
+    # The answer log (public/answers): every recorded answer, hash-chained, built on the copy this site published last.
+    - python -E -m itemator.answerlog --out public/answers --owners anbuchelvanganesan.cse2024,anbuchelvannew --note "Answers from the owner's accounts come from our own test runs during the hackathon; some were posted by our test scripts. An answer from outside the project is marked."
+    - python -E -m itemator.shipped --environment production --out public --answers public/answers/answers.json
     # The routing picture (public/map): the latest merge to main as a real trace (best effort) and a staged example.
     - python -E examples/make_example.py staged.json
     - python -E -m itemator.trace --commits --base HEAD~1 --head HEAD --out latest.json || true
@@ -231,20 +241,45 @@ shipped-page:
     # The green check: paste a change and its issue; the new dependencies nobody asked for are weighed in the browser (web/green.html).
     - python -E -m itemator.greenpage --out public/green
     - python -E -m itemator.catchespage --out public/catches
-    # The answer log (public/answers): every recorded answer, hash-chained, built on the copy this site published last.
-    - python -E -m itemator.answerlog --out public/answers
+    # The sealed forward test (public/sealed): open agent pull requests and what the rules listed, committed before any outcome.
+    - python -E -m itemator.sealedpage --out public/sealed
   pages: true
 
 # Deploy: every merge request gets its own preview of the reviewer's map for exactly that change (a GitLab Pages parallel deployment,
 # `Pages MR <n>` in the environment list; GitLab puts the `mr-<n>` prefix into CI_PAGES_URL itself, so the link is that variable alone). Each preview is a real run of the trace on the request's own commits, expires after a week and
 # is deleted when the request closes.
-map-preview:
-  stage: deploy
-  image: python:3.12
+# Trial, run by hand: the same check on python:3.12-alpine (21 MB compressed against the policy job's 43 MB slim image) with git
+# from apk, whose packages are fetched first so their size is measured (the slim job downloads git by apt on every run, about
+# 24 MB). The policy job could switch only if the extras come out the same (eval/image_trial.py compares).
+alpine-trial:
+  stage: test
+  image: python:3.12-alpine
   variables:
     GIT_DEPTH: "0"
   rules:
     - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+      when: manual
+      allow_failure: true
+  script:
+    - mkdir -p /tmp/apk && apk fetch -q -R -o /tmp/apk git ca-certificates && du -sb /tmp/apk | tee apk-bytes.txt
+    - apk add -q --no-network /tmp/apk/*.apk
+    - git config --global --add safe.directory "$CI_PROJECT_DIR"
+    - ITEMATOR_CHECKER=merge_request python -E -m itemator.ci --repo "$CI_PROJECT_DIR" --out itemator-alpine.json || true
+  artifacts:
+    paths:
+      - itemator-alpine.json
+      - apk-bytes.txt
+    when: always
+
+map-preview:
+  stage: deploy
+  image: python:3.12-alpine
+  variables:
+    GIT_DEPTH: "0"
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+  before_script:
+    - apk add -q --no-cache git ca-certificates
   script:
     - python -E -m itemator.trace --commits --base "$CI_MERGE_REQUEST_DIFF_BASE_SHA" --head "$CI_COMMIT_SHA" --out mr-trace.json
     - python -E -m itemator.mapview --out public --label "This merge request" mr-trace.json
@@ -262,10 +297,10 @@ map-preview:
 # GitLab Pages needs a little time after the job ends, so the check waits and tries again.
 pages-smoke-check:
   stage: .post
-  image: python:3.12
+  image: python:3.12-alpine
   needs: [shipped-page]
   rules:
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
   allow_failure: true
   script:
-    - python -E tools/smoke_check.py "$CI_PAGES_URL" "$CI_PAGES_URL/map/" "$CI_PAGES_URL/try/" "$CI_PAGES_URL/weigh/" "$CI_PAGES_URL/green/" "$CI_PAGES_URL/catches/" "$CI_PAGES_URL/answers/"
+    - python -E tools/smoke_check.py "$CI_PAGES_URL" "$CI_PAGES_URL/map/" "$CI_PAGES_URL/try/" "$CI_PAGES_URL/weigh/" "$CI_PAGES_URL/green/" "$CI_PAGES_URL/catches/" "$CI_PAGES_URL/sealed/" "$CI_PAGES_URL/answers/"

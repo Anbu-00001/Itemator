@@ -10,13 +10,18 @@
 # request's own copy run, and the card says so. The job definition itself comes from the policy, not from the merge request.
 itemator:
   stage: .pipeline-policy-post
-  image: python:3.12
+  # The Alpine image is 21 MB compressed (slim 43 MB, full 412 MB) and its git comes from apk (about 10 MB on every run, against
+  # 24 MB from apt on slim). Same extras as the slim job on a merge request with two (results/alpine_trial_v1.json).
+  image: python:3.12-alpine
   variables:
     GIT_DEPTH: "0"
     ITEMATOR_REACT_BOT: ai-itemator-react-gitlab-ai-hackathon
   rules:
     - if: $CI_PIPELINE_SOURCE == "merge_request_event"
       when: always
+  before_script:
+    - apk add -q --no-cache git ca-certificates
+    - git config --global --add safe.directory "$CI_PROJECT_DIR"
   script:
     - |
       set -eu
@@ -46,9 +51,17 @@ itemator:
           ;;
       esac
       cd "$dir"
-      ITEMATOR_CHECKER="$checker" ITEMATOR_CHECKER_SHA="$tip" python -E -m itemator.ci --repo "$CI_PROJECT_DIR" --out "$CI_PROJECT_DIR/itemator.json"
+      status=0
+      ITEMATOR_CHECKER="$checker" ITEMATOR_CHECKER_SHA="$tip" python -E -m itemator.ci --repo "$CI_PROJECT_DIR" --out "$CI_PROJECT_DIR/itemator.json" || status=$?
+      # The same record in GitLab's own report formats (Code Quality: one finding per extra; Metrics: counts and download).
+      # Information only: a failure here never changes the job's result, which stays the checker's.
+      python -E -m itemator.glreports "$CI_PROJECT_DIR/itemator.json" --codequality "$CI_PROJECT_DIR/gl-code-quality-report.json" --metrics "$CI_PROJECT_DIR/metrics.txt" || true
+      exit "$status"
   artifacts:
     paths:
       - itemator.json
+    reports:
+      codequality: gl-code-quality-report.json
+      metrics: metrics.txt
     expire_in: 30 days
     when: always

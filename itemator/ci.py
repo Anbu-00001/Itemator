@@ -462,7 +462,9 @@ WELCOME = "An extra can be welcome; it just needs one person's choice."
 CONSENT = "Itemator keeps, moves or removes nothing until a person replies."
 # How a thread asks: the exact name keeps the friction of a choice; the lines under it are the author's side of the
 # conversation, shown in the decision log (itemator/decisions.py), never acted on.
-KEEP = "To keep it, reply with its exact name; a line under the name can say why."
+KEEP = ("To keep it, reply with its exact name; put "
+        f"`@{os.environ.get('ITEMATOR_REACT_BOT') or 'ai-itemator-react-gitlab-ai-hackathon'}` on the same line to start the check, "
+        "and a line under the name can say why.")   # one reply both answers and starts the reaction flow, whose prompt drops that mention from the name
 
 
 def dangling_line(numbers: list[int]) -> str:

@@ -1,0 +1,7 @@
+{
+ "summary": {
+  "predictions": "eval/prospective_sentences.json",
+  "predictions_sha256": "d56312baa6c01316390bca630095e75bb6012353c8797023d4365e056f554cfb",
+  "frozen_on": "2026-10-21"
+ }
+}

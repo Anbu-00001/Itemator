@@ -23,6 +23,7 @@ from itemator import decisions as D
 LABEL = "itemator::named"   # set by the reaction flow once every extra of a merge request has an answer
 START = "0" * 64            # what the first entry chains to
 _CHAIN = ("prev", "hash")
+CHECK_JS = pathlib.Path(__file__).resolve().parent.parent / "web" / "answers_check.js"   # the same check, run by the page's button
 
 
 def entries_from(iid: int, notes: list, project_url: str) -> list:
@@ -119,7 +120,7 @@ def page(log: dict) -> str:
     rows = log["entries"]
     n_items = sum(len(x["items"]) for x in rows)
     out = ["<!doctype html><html lang=\"en\"><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\">",
-           "<meta http-equiv=\"Content-Security-Policy\" content=\"default-src 'none'; style-src 'unsafe-inline'; base-uri 'none'; form-action 'none'\">",
+           "<meta http-equiv=\"Content-Security-Policy\" content=\"default-src 'none'; style-src 'unsafe-inline'; script-src 'self'; connect-src 'self'; base-uri 'none'; form-action 'none'\">",
            "<title>Every recorded answer</title><style>body{font:16px/1.5 system-ui,sans-serif;max-width:60rem;margin:2rem auto;padding:0 1rem}"
            "table{border-collapse:collapse;width:100%;font-size:.92rem}td,th{border-bottom:1px solid #ddd;padding:.3rem .4rem;text-align:left;vertical-align:top}"
            ".m{color:#555}code{overflow-wrap:anywhere}.t{overflow-x:auto}</style></head><body>",
@@ -129,18 +130,42 @@ def page(log: dict) -> str:
            "one before it, and each build starts from the copy published last, so an entry cannot be changed or removed later without "
            "the chain showing it. Made by the Pages job from GitLab's own notes; nothing here is typed by hand.</p>",
            f"<p class=\"m\">This chain started {e(log['started'])}. Latest hash: <code>{e(log['head'])}</code>. Check a copy yourself: download <a href=\"answers.json\">answers.json</a> and run "
-           "<code>python -m itemator.answerlog --verify answers.json</code> from the repository. <a href=\"../\">What shipped</a></p>"]
+           "<code>python -m itemator.answerlog --verify answers.json</code> from the repository. <a href=\"../\">What shipped</a></p>",
+           f"<p><button id=\"check\" type=\"button\" data-head=\"{e(log['head'])}\">Check the chain in this browser</button> "
+           "<span id=\"checked\" role=\"status\"></span></p>",
+           "<p class=\"m\">The button recomputes every hash from answers.json with your browser's own SHA-256. It does not re-read the notes on "
+           "GitLab, because GitLab's API asks a visitor to sign in for them; each row links to its note so you can compare by eye.</p>"]
+    who: dict = {}
+    for x in rows:
+        for i in x["items"]:
+            who[i["who"]] = who.get(i["who"], 0) + 1
+    owners = set(log.get("owners") or [])
+
+    def by(names):
+        return ", ".join(f"@{e(w)} ({n})" for w, n in sorted(names.items(), key=lambda kv: (-kv[1], kv[0])))
+    if who and owners:
+        mine = {w: n for w, n in who.items() if w in owners}
+        others = {w: n for w, n in who.items() if w not in owners}
+        out.append("<p>" + " ".join(part for part in (
+            f"From the project owner's accounts: {by(mine)}." if mine else "",
+            f"<strong>From outside the project: {by(others)}.</strong>" if others else "") if part) + "</p>")
+    elif who:
+        out.append("<p>Answered by " + by(who) + ".</p>")
+    if log.get("note"):
+        out.append(f"<p class=\"m\">{e(log['note'])}</p>")
     if log["changed_after_recorded"]:
         out.append("<h2>Changed after they were recorded</h2><ul>" + "".join(
             f"<li>!{e(str(c['iid']))}, note {e(str(c['note']))}: {e(c['what'])}</li>" for c in log["changed_after_recorded"]) + "</ul>")
+    def outside(w):
+        return " <strong>(outside the project)</strong>" if owners and w not in owners else ""
     out.append("<div class=\"t\"><table><tr><th>#</th><th>When (UTC)</th><th>Merge request</th><th>Extra</th><th>Answer</th><th>By</th><th>Hash</th></tr>")
     for k, x in enumerate(rows, 1):
         for j, i in enumerate(x["items"]):
             head = (f"<td>{k}</td><td>{e(x['at'][:16].replace('T', ' '))}</td><td><a href=\"{e(x['url'])}\">!{e(str(x['iid']))}</a></td>"
                     if j == 0 else "<td></td><td></td><td></td>")
             tail = f"<td><code>{e(x['hash'][:12])}</code></td>" if j == 0 else "<td></td>"
-            out.append(f"<tr>{head}<td><code>{e(D.clean_name(i['name']))}</code></td><td>{e(i['decision'])}</td><td>@{e(i['who'])}</td>{tail}</tr>")
-    out.append("</table></div></body></html>")
+            out.append(f"<tr>{head}<td><code>{e(D.clean_name(i['name']))}</code></td><td>{e(i['decision'])}</td><td>@{e(i['who'])}{outside(i['who'])}</td>{tail}</tr>")
+    out.append("</table></div><script src=\"check.js\"></script></body></html>")
     return "\n".join(out) + "\n"
 
 
@@ -152,6 +177,8 @@ def main(argv=None) -> int:
     ap.add_argument("--project-url", default=os.environ.get("CI_PROJECT_URL", ""))
     ap.add_argument("--previous", default=(os.environ.get("CI_PAGES_URL", "").rstrip("/") + "/answers/answers.json") if os.environ.get("CI_PAGES_URL") else "")
     ap.add_argument("--out", default="public/answers")
+    ap.add_argument("--owners", default="", help="comma-separated accounts the project owner operates; any other answerer is marked outside")
+    ap.add_argument("--note", default="", help="one plain sentence shown under the counts, such as where these answers came from")
     a = ap.parse_args(argv)
     if a.verify:
         entries = json.loads(pathlib.Path(a.verify).read_text()).get("entries", [])
@@ -180,12 +207,13 @@ def main(argv=None) -> int:
     entries, changed = merge(previous, collect(api, a.project_url.rstrip("/")))
     now = datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
     log = {"label": LABEL, "generated_at": now, "started": str(started or now),
-              "head": entries[-1]["hash"] if entries else START, "entries": entries, "changed_after_recorded": changed,
+              "note": a.note, "owners": [w for w in a.owners.split(",") if w], "head": entries[-1]["hash"] if entries else START, "entries": entries, "changed_after_recorded": changed,
               "unreadable_requests": api.failures}
     out = pathlib.Path(a.out)
     out.mkdir(parents=True, exist_ok=True)
     (out / "answers.json").write_text(json.dumps(log, indent=1))
     (out / "index.html").write_text(page(log), encoding="utf-8")
+    (out / "check.js").write_text(CHECK_JS.read_text(encoding="utf-8"), encoding="utf-8")
     print(f"itemator answerlog: {len(previous)} kept, {len(entries) - len(previous)} added, {len(changed)} changed after recorded, "
           f"{api.failures} unreadable requests")
     return 0

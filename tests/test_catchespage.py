@@ -33,3 +33,38 @@ def test_a_row_with_the_wrong_number_of_cells_is_left_out():
 def test_the_page_builds(tmp_path):
     assert C.main(["--out", str(tmp_path)]) == 0
     assert (tmp_path / "index.html").read_text().startswith("<!doctype html>")
+
+
+TIMING_FILE = {"summary": {"read": 2, "median_hours": 4.5, "over_24h": 1},
+               "cases": [{"pr": "https://github.com/NVIDIA/cuda-python/pull/884", "path": "docs/logo-dark-mode.png", "hours": 4.5},
+                         {"pr": "https://github.com/go-vikunja/vikunja/pull/1358", "path": "example-force-availability.yml", "hours": 1.0},
+                         {"pr": "https://github.com/x/y/pull/1", "path": "z", "hours": None}]}
+
+
+def test_cards_with_a_known_wait_say_it_and_the_intro_gives_the_median(tmp_path):
+    f = tmp_path / "t.json"
+    f.write_text(__import__("json").dumps(TIMING_FILE))
+    t = C.load_timing(f)
+    out = C.page(STUDY, t)
+    assert out.count("Objection came") == 2
+    assert "Objection came 4.5 hours after the pull request opened." in out and "Objection came 1 hour after" in out
+    assert "The median wait from a pull request opening to the reviewer&#x27;s objection was 4.5 hours (1 of 2 waited" in out
+
+
+def test_a_missing_or_broken_timing_file_leaves_the_page_as_before(tmp_path):
+    assert C.load_timing(tmp_path / "none.json") == {}
+    bad = tmp_path / "bad.json"
+    bad.write_text("{not json")
+    assert C.load_timing(bad) == {}
+    out = C.page(STUDY, C.load_timing(bad))
+    assert "Objection came" not in out and "median wait" not in out and out.count("<article>") == 24
+
+
+def test_the_real_timing_file_reaches_every_card():
+    out = C.page(STUDY, C.load_timing())
+    assert out.count("Objection came") == 24 and "median wait" in out
+
+
+def test_the_built_file_carries_the_waits(tmp_path):
+    C.main(["--out", str(tmp_path)])
+    assert (tmp_path / "index.html").read_text().count("Objection came") == 24

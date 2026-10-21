@@ -1,0 +1,23 @@
+{
+ "what": "One live card answered by a person who is neither the project owner nor their second account, asked by the owner. Written and committed before the card exists.",
+ "owner_accounts": [
+  "anbuchelvanganesan.cse2024",
+  "anbuchelvannew"
+ ],
+ "setup": "A demo issue asks for one docstring sentence in itemator/shipped.py; the merge request also adds the dependency rich==13.7.1 to pyproject.toml, which the issue never names. The card flow opens a thread on it. The merge request is kept open as a record and not merged.",
+ "counts_as_an_outside_answer": "The first reply in the extra's thread, by an account that is a person (GitLab says bot false), is not in owner_accounts, and is either exactly the extra's name (keep) or exactly 'not an extra' (dismiss), as flows/itemator_react.yml step 5 reads it.",
+ "we_report_whatever_happens": [
+  "kept",
+  "dismissed",
+  "no outside answer by 2026-10-26 18:00 IST",
+  "an answer the flow did not accept (and why)"
+ ],
+ "we_never": [
+  "post or edit the outside person's reply",
+  "suggest which answer to give",
+  "show their username without their consent"
+ ],
+ "disclosure": "The owner asked this person to answer; they were not paid; they had not seen the project before (as they told the owner).",
+ "credits": "about 5: one card run and one reaction run, stopped by --credit-stop",
+ "amendment_1": "2026-10-21, before any reply on the card: the owner knows no independent GitLab user, so the person may create a free GitLab account for this answer. That is disclosed with the answer, and the account still must not be one of owner_accounts. Nothing else changes."
+}

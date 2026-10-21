@@ -156,6 +156,7 @@ def test_a_build_keeps_the_start_date_and_adds_the_new_notes(tmp_path, monkeypat
     assert got["started"] == "2026-10-21T00:00:00Z" and got["entries"][0] == first[0] and len(got["entries"]) == 2
     assert got["head"] == got["entries"][-1]["hash"] and L.verify(got["entries"]) is None
     assert (tmp_path / "index.html").exists()
+    assert (tmp_path / "check.js").read_text() == L.CHECK_JS.read_text()
 
 
 def test_the_first_build_starts_a_chain(tmp_path, monkeypatch):
@@ -183,3 +184,43 @@ def test_new_notes_go_in_the_order_they_were_written():
              note(9, summary("- `c`: kept, named by @alice"), at="2026-10-01T00:00:00Z")]
     entries, _ = L.merge([], L.entries_from(1, notes, URL))
     assert [e["note"] for e in entries] == [3, 9, 4]
+
+
+def test_the_page_counts_who_answered_and_shows_the_jobs_note():
+    entries, _ = L.merge([], fresh())
+    html = L.page({"entries": entries, "head": entries[-1]["hash"], "started": "s", "changed_after_recorded": [],
+                   "note": "From our own <test> runs."})
+    assert "Answered by @alice (1), @bob (1)." in html and "From our own &lt;test&gt; runs." in html
+    more, _ = L.merge([], fresh() + L.entries_from(9, [note(13, summary("- `z`: kept, named by @bob"))], URL))
+    assert "Answered by @bob (2), @alice (1)." in L.page({"entries": more, "head": "h", "started": "s", "changed_after_recorded": []})
+
+
+def test_the_note_is_kept_out_of_the_chain(tmp_path, monkeypatch):
+    for k, v in ENV.items():
+        monkeypatch.setenv(k, v)
+    monkeypatch.setattr(L, "published", lambda url: [])
+    monkeypatch.setattr(L, "collect", lambda api, url: fresh())
+    assert L.main(["--out", str(tmp_path), "--note", "ours"]) == 0
+    got = json.loads((tmp_path / "answers.json").read_text())
+    assert got["note"] == "ours" and L.verify(got["entries"]) is None and all("note" not in e or isinstance(e["note"], int) for e in got["entries"])
+    assert L.main(["--out", str(tmp_path), "--owners", "alice,bob"]) == 0
+    assert json.loads((tmp_path / "answers.json").read_text())["owners"] == ["alice", "bob"]
+    assert "From the project owner's accounts" in (tmp_path / "index.html").read_text()
+
+
+def test_the_page_splits_the_owners_answers_from_outside_ones():
+    entries, _ = L.merge([], fresh())
+    base = {"entries": entries, "head": entries[-1]["hash"], "started": "s", "changed_after_recorded": []}
+    html = L.page(dict(base, owners=["alice"]))
+    assert "From the project owner's accounts: @alice (1). <strong>From outside the project: @bob (1).</strong>" in html
+    assert "<td>@bob <strong>(outside the project)</strong></td>" in html and "<td>@alice</td>" in html
+    assert "From outside" not in L.page(dict(base, owners=["alice", "bob"])) and "outside the project" not in L.page(base)
+    assert "From the project owner" not in L.page(dict(base, owners=["zed"]))
+
+
+def test_the_pages_job_owner_list_is_the_committed_one():
+    import pathlib
+    import re
+    root = pathlib.Path(__file__).resolve().parent.parent
+    owners = re.search(r"--owners (\S+)", (root / ".gitlab-ci.yml").read_text()).group(1).split(",")
+    assert owners == json.loads((root / "eval" / "outside_answer_rubric.json").read_text())["owner_accounts"]

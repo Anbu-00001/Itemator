@@ -1,6 +1,7 @@
 """The deployment page: reads deployments and merge requests from a fake GitLab, never from the network."""
 import json
 import urllib.parse
+import pytest
 
 from itemator import decisions as D
 from itemator import shipped as L
@@ -87,7 +88,7 @@ def test_extras_merged_with_no_answer_are_named_and_counted_at_the_top():
             "the commit that was merged).</strong> Itemator keeps, moves or removes nothing until a person replies") in out
     assert "<strong>merged without a recorded answer</strong>: <code>&lt;b&gt;x&lt;/b&gt;</code>, <code>pandas</code>" in out and "<b>x" not in out
     none = L.page(L.build(api_for(dict(base, **{"jobs/55/artifacts/itemator.json": {"extras": []}})), "production", "main"))
-    assert "!3 Fix a typo: no extras" in none and "every extra: 0 merge requests (0 extras" in none
+    assert "!3 Fix a typo: no extras, so nothing to ask" in none and "every extra: 0 merge requests (0 extras" in none
 
 
 def test_only_the_reaction_account_is_believed():
@@ -180,4 +181,67 @@ def test_the_front_page_links_every_page_the_pages_job_builds():
     ci = (pathlib.Path(__file__).resolve().parent.parent / ".gitlab-ci.yml").read_text()
     built = set(re.findall(r"--out public/(\w+)", ci))
     linked = set(re.findall(r'href="(\w+)/"', L.NAV))
-    assert linked == built == {"try", "green", "weigh", "catches", "map", "answers"}
+    assert linked == built == {"try", "green", "weigh", "catches", "map", "answers", "sealed"}
+
+
+def test_the_front_page_opens_with_the_newest_answers():
+    log = {"entries": [
+        {"iid": 5, "url": "https://g/-/merge_requests/5#note_1", "at": "2026-10-12T00:00:00Z",
+         "items": [{"name": "old", "decision": "kept", "who": "alice"}]},
+        {"iid": 7, "url": "https://g/-/merge_requests/7#note_2", "at": "2026-10-13T00:00:00Z",
+         "items": [{"name": "<b>x</b>", "decision": "removed", "who": "bob"}] + [{"name": f"n{k}", "decision": "kept", "who": "bob"} for k in range(5)]}]}
+    out = L.page({"environment": "production", "deployments": []}, log)
+    box = out[out.index("<h2>Latest answers</h2>"):]
+    assert box.count("<li>") == L.LATEST and "old" not in box                    # newest first, at most LATEST
+    assert "<code>&lt;b&gt;x&lt;/b&gt;</code>: removed by @bob" in box and 'href="https://g/-/merge_requests/7#note_2"' in box
+    assert out.index("Latest answers") < out.index("No successful deployment yet")
+    assert 'href="answers/">Every recorded answer' in box
+
+
+@pytest.mark.parametrize("log", [None, {}, {"entries": "x"}, {"entries": []}, {"entries": [{"items": []}]}])
+def test_no_answers_means_no_box(log):
+    assert "Latest answers" not in L.page({"environment": "production", "deployments": []}, log)
+
+
+def test_a_stranger_reads_what_itemator_does_before_the_deployment_log():
+    page = L.page({"environment": "production", "deployments": []})
+    assert page.index("lists what a merge request changed beyond its issue") < page.index("<h1>What shipped")
+    assert page.count("asks a person to keep or remove each one") == 1
+
+
+def test_an_answer_from_outside_the_owners_accounts_is_marked():
+    log = {"owners": ["alice"], "entries": [
+        {"iid": 5, "url": "u", "at": "2026-10-12T00:00:00Z", "items": [{"name": "a", "decision": "kept", "who": "alice"},
+                                                                       {"name": "b", "decision": "kept", "who": "carol"}]}]}
+    box = L.latest_answers(log)
+    assert "kept by @carol <strong>(outside the project)</strong>" in box
+    assert "kept by @alice <span" in box                                           # the owner's answer is not marked
+    assert "outside the project" not in L.latest_answers(dict(log, owners=[]))      # no owner list, no claim either way
+
+
+def _deployment(iid, extras=(), unanswered=()):
+    m = {"iid": 100 + iid, "title": f"t{iid}", "extras": list(extras), "unanswered": list(unanswered), "merger": "alice", "summary": None}
+    return {"iid": iid, "deployment": iid, "created_at": "2026-10-21", "sha": "a" * 12, "source": "s", "merge_requests": [m],
+            "stats": {"merge_requests": 1, "extras": len(extras), "kept": 0, "dismissed": 0, "moved": 0, "removed": 0}}
+
+
+def test_quiet_deployments_after_the_first_three_fold_into_one_line_and_stay_on_the_page():
+    deps = [_deployment(k) for k in range(9, 3, -1)] + [_deployment(3, unanswered=["rich"])] + [_deployment(2), _deployment(1)]
+    out = L.page({"environment": "production", "deployments": deps})
+    assert out.count("<details>") == 2 and "<summary>3 more deployments, all with no extras, so nothing to ask</summary>" in out
+    assert "<summary>2 more deployments, all with no extras" in out
+    for k in range(1, 10):
+        assert f"<h2>Deployment {k} " in out                                         # nothing is dropped, only folded
+    first_fold = out.index("<details>")
+    assert all(out.index(f"<h2>Deployment {k} ") < first_fold for k in (9, 8, 7))     # the newest three stay open
+    assert out.index("<h2>Deployment 3 ") < out.index("<summary>2 more")               # order kept; a deployment with something to say is never folded
+    assert out.index("</details>") < out.index("<h2>Deployment 3 ")
+    one = L.page({"environment": "production", "deployments": [_deployment(k) for k in range(4, 0, -1)]})
+    assert "<summary>1 more deployment, all with" in one
+    assert "<details>" not in L.page({"environment": "production", "deployments": [_deployment(k) for k in range(3, 0, -1)]})
+
+
+def test_a_direct_push_deployment_is_never_folded():
+    push = dict(_deployment(5), merge_requests=[], stats=dict(_deployment(5)["stats"], merge_requests=0))
+    out = L.page({"environment": "production", "deployments": [_deployment(9), _deployment(8), _deployment(7), push]})
+    assert "<details>" not in out and "<h2>Deployment 5 " in out
