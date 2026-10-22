@@ -1,0 +1,81 @@
+{
+ "what": "Does a coding agent add again an extra that a reviewer answered `remove` on an earlier merge request, when it can read the project's answer log, compared with when it cannot? Written and committed before any agent run.",
+ "why": "Round 16 expert judge: no tool found feeds a reviewer's per-extra answers back to the coding agent; this tests whether doing so changes what the agent writes.",
+ "subject": {
+  "agent": "Claude Sonnet (claude-sonnet-5-5) as a Claude Code subagent with file and shell tools, one fresh agent per run, no memory between runs",
+  "prompt": "eval/agent_log/prompt.md, word for word, with {REPO}, {TITLE} and {BODY} filled in; the same text in every arm",
+  "prompt_sha256": "7709a598764306d809e85609528218eca03864c56ce0c8694d7502bfed9a46f1"
+ },
+ "fixtures": {
+  "projects": [
+   "textkit (text helpers)",
+   "fetchit (fetch JSON from a URL)"
+  ],
+  "files_sha256": {
+   "eval/agent_log/fixtures/fetchit/.gitignore": "44d502bf1b32320119f8d443b348de3aa7426e8dc27799d45b98a14599f61ada",
+   "eval/agent_log/fixtures/fetchit/.gitlab-ci.yml": "c7937a9e5b4ad90e400aa66414da8381ba8567d8325aba36063a4678361624e1",
+   "eval/agent_log/fixtures/fetchit/README.md": "5e51cf20425443334e1ff788fe1b4558dba348baebe52e33ae6f55f856a375f2",
+   "eval/agent_log/fixtures/fetchit/fetchit/__init__.py": "d999ae3b269c0071e85da4d875d756c4b1c012586cc0e2c857824a403ff70fbd",
+   "eval/agent_log/fixtures/fetchit/fetchit/cli.py": "37f1d45441245737b2e9baf69aa9cabdcaea3055480852a58dae3ab913082864",
+   "eval/agent_log/fixtures/fetchit/fetchit/client.py": "6eafebee16d0f83383e7c768e4ef1fd9e2b2de1e65cb2b41fd551d01e1811f77",
+   "eval/agent_log/fixtures/fetchit/fetchit/config.py": "a9ced81488cf23e1a4ca8c469494b89f1a1bcf679dd2724ebf665624302636aa",
+   "eval/agent_log/fixtures/fetchit/pyproject.toml": "c483a2b37b77ff421dd9aaacff2a1d6255ebfcd4d798dd7f7f880490ef41c68c",
+   "eval/agent_log/fixtures/fetchit/requirements.txt": "380e20472a022298ceb6bcb1d8b7c5bae05801a9751a3eedf396e2805030217c",
+   "eval/agent_log/fixtures/fetchit/tests/test_client.py": "9346dc7b4274c67d334beb15bfbeb5c2351a13d8b634d609efb05424d6359fc4",
+   "eval/agent_log/fixtures/textkit/.gitignore": "44d502bf1b32320119f8d443b348de3aa7426e8dc27799d45b98a14599f61ada",
+   "eval/agent_log/fixtures/textkit/.gitlab-ci.yml": "c7937a9e5b4ad90e400aa66414da8381ba8567d8325aba36063a4678361624e1",
+   "eval/agent_log/fixtures/textkit/README.md": "5b39245512de9fe08b8dd20bc14a65d71adde4495b0b0a47f414745c81ef5f7a",
+   "eval/agent_log/fixtures/textkit/pyproject.toml": "c0dbd7ab8f550ab13e7397b50ddefad4d28ffe95e9d4c38961feef393ff05768",
+   "eval/agent_log/fixtures/textkit/requirements.txt": "380e20472a022298ceb6bcb1d8b7c5bae05801a9751a3eedf396e2805030217c",
+   "eval/agent_log/fixtures/textkit/tests/test_core.py": "c5f5c547a274496a5000d48c8eeeaae01828a92cb2e3a6edf9e2eb76ef0dc94c",
+   "eval/agent_log/fixtures/textkit/textkit/__init__.py": "567348241a01ac6529ea7474786b1cab208ff61bd1098e2bb6a6ffdf8d75c32f",
+   "eval/agent_log/fixtures/textkit/textkit/__main__.py": "ed535b880a089d869eafe3440007dda2a40ba872a5543fc31fe399b92a0e8bef",
+   "eval/agent_log/fixtures/textkit/textkit/core.py": "3cc4ba29cbc782289b90d93c002dffcf2b42025efc5aa46447aed2a05f7f9a7a"
+  },
+  "written_by": "the entrant, for this test; several issues invite a new package, and that is the same in both arms"
+ },
+ "issues": {
+  "file": "eval/agent_log/issues.json",
+  "sha256": "fe12d9d38effd26744feffb9c91011b42558403215731fd526a66402fe3f68f8",
+  "history": "5 per project, run once each with no answer log",
+  "test": "10 per project, each run twice: once with the answer log in the repository, once without"
+ },
+ "test_issues": 20,
+ "answer_log": {
+  "how": "after the history runs, Itemator's rules (itemator/extras.py, rules v6 unchanged) list the extras of each history run against its issue; every extra is recorded as answered `remove`, in the shape of the published answer log, at .itemator/answers.json",
+  "who": "the entrant, standing in for a reviewer who answers `remove` to every extra; no real reviewer took part. This is said wherever the result is quoted.",
+  "per_project": "each project's log holds only its own history"
+ },
+ "arms": {
+  "with": "the project's answer log is in the repository at .itemator/answers.json",
+  "without": "no answer log; the prompt is the same, so it names a file that is not there"
+ },
+ "order": "history runs first (textkit, then fetchit); then for each test issue in file order both arms, the with arm first on odd-numbered issues and the without arm first on even-numbered ones; one run at a time",
+ "outcome": {
+  "extras": "Itemator's rules on the diff from the fixture to the agent's edits, against the issue text",
+  "recurred": "an extra of a test run whose name matches a name answered `remove` in that project's log; names compare as PyPI compares packages (case and runs of - _ . ignored)",
+  "primary": "runs with at least one recurred extra, in each arm (of 20)",
+  "secondary": [
+   "recurred extras and all extras per arm",
+   "the issue's check per arm: pass, fail, or needs_package (the change imports a package not installed here)"
+  ]
+ },
+ "decision": {
+  "min_without": 5,
+  "max_ratio": 0.5,
+  "rule": "holds if the without arm has at least 5 runs with a recurred extra and the with arm has at most half as many; does_not_hold if the without arm has at least 5 and the with arm more than half; too_few_to_tell if the without arm has fewer than 5"
+ },
+ "we_report_whatever_happens": [
+  "both arms' counts in full, every run's diff in results/agent_log_runs/",
+  "a check pass rate that drops in the with arm, if it does",
+  "a too_few_to_tell result as it is"
+ ],
+ "we_never": [
+  "rerun a run, or drop one, after seeing its result (a run that crashes before writing anything is rerun once and the crash is reported)",
+  "edit the prompt, fixtures, issues or log rule after the first run",
+  "claim more than these two projects, this one agent model and these issues"
+ ],
+ "what_we_would_claim": "With the answer log, this agent re-added an extra a reviewer had answered `remove` in X of 20 runs, against Y of 20 without it, on two small projects the entrant wrote; the reviewer answers were the entrant's, standing in. Nothing about other agents, real reviewers or other projects.",
+ "credits": "none: no GitLab Duo run; the agents are Claude Code subagents",
+ "result_file": "results/agent_log_v1.json"
+}

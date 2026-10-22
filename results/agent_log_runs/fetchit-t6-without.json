@@ -1,0 +1,15 @@
+{
+ "issue": "fetchit-t6",
+ "repo": "fetchit",
+ "phase": "test",
+ "arm": "without",
+ "files": [
+  "fetchit/config.py"
+ ],
+ "extras": [],
+ "recurred": [],
+ "check": {
+  "result": "pass"
+ },
+ "diff": "diff --git a/fetchit/config.py b/fetchit/config.py\nindex c6fa763..fd1071f 100644\n--- a/fetchit/config.py\n+++ b/fetchit/config.py\n@@ -1,13 +1,16 @@\n import configparser\n+import os\n \n DEFAULTS = {\"timeout\": \"10\"}\n \n \n def load(path: str) -> dict:\n-    \"\"\"Settings from an INI file's [fetchit] section, over DEFAULTS.\"\"\"\n+    \"\"\"Settings: DEFAULTS, then the INI file's [fetchit] section, then FETCHIT_TIMEOUT.\"\"\"\n     cp = configparser.ConfigParser()\n     cp.read(path)\n     out = dict(DEFAULTS)\n     if cp.has_section(\"fetchit\"):\n         out.update(cp[\"fetchit\"])\n+    if os.environ.get(\"FETCHIT_TIMEOUT\"):\n+        out[\"timeout\"] = os.environ[\"FETCHIT_TIMEOUT\"]\n     return out\n"
+}

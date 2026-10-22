@@ -1,0 +1,1424 @@
+{
+ "what": "answers the reaction flow recorded on live merge requests, against its own tests run as code",
+ "code": "itemator/verdict.py",
+ "extras": 120,
+ "count": {
+  "agree": 55,
+  "differ": 0,
+  "missed": 0,
+  "pending": 1,
+  "open": 64
+ },
+ "recorded": 55,
+ "recorded_by": {
+  "entrant": 46,
+  "second_account": 8,
+  "others": 1
+ },
+ "rows": [
+  {
+   "project": "showcase",
+   "mr": 3,
+   "name": ".gitlab-ci.yml",
+   "state": "open",
+   "recorded": null,
+   "tests": null
+  },
+  {
+   "project": "showcase",
+   "mr": 5,
+   "name": "leftpad-py",
+   "state": "agree",
+   "recorded": {
+    "answer": "named",
+    "who": "anbuchelvanganesan.cse2024",
+    "note": 3991993310
+   },
+   "tests": {
+    "answer": "named",
+    "who": "anbuchelvanganesan.cse2024",
+    "note": 3991988057
+   }
+  },
+  {
+   "project": "showcase",
+   "mr": 5,
+   "name": ".gitlab-ci.yml",
+   "state": "agree",
+   "recorded": {
+    "answer": "dismissed",
+    "who": "anbuchelvanganesan.cse2024",
+    "note": 3991995721
+   },
+   "tests": {
+    "answer": "dismissed",
+    "who": "anbuchelvanganesan.cse2024",
+    "note": 3991994573
+   }
+  },
+  {
+   "project": "showcase",
+   "mr": 6,
+   "name": "leftpad-py",
+   "state": "agree",
+   "recorded": {
+    "answer": "named",
+    "who": "anbuchelvanganesan.cse2024",
+    "note": 3992063668
+   },
+   "tests": {
+    "answer": "named",
+    "who": "anbuchelvanganesan.cse2024",
+    "note": 3992062513
+   }
+  },
+  {
+   "project": "showcase",
+   "mr": 6,
+   "name": ".gitlab-ci.yml",
+   "state": "agree",
+   "recorded": {
+    "answer": "split",
+    "who": "anbuchelvanganesan.cse2024",
+    "note": 3992064381
+   },
+   "tests": {
+    "answer": "split",
+    "who": "anbuchelvanganesan.cse2024",
+    "note": 3992062549
+   }
+  },
+  {
+   "project": "showcase",
+   "mr": 8,
+   "name": "leftpad-py",
+   "state": "open",
+   "recorded": null,
+   "tests": null
+  },
+  {
+   "project": "showcase",
+   "mr": 8,
+   "name": ".gitlab-ci.yml",
+   "state": "open",
+   "recorded": null,
+   "tests": null
+  },
+  {
+   "project": "showcase",
+   "mr": 9,
+   "name": "leftpad-py",
+   "state": "open",
+   "recorded": null,
+   "tests": null
+  },
+  {
+   "project": "showcase",
+   "mr": 9,
+   "name": ".gitlab-ci.yml",
+   "state": "open",
+   "recorded": null,
+   "tests": null
+  },
+  {
+   "project": "showcase",
+   "mr": 10,
+   "name": "leftpad-py",
+   "state": "agree",
+   "recorded": {
+    "answer": "named",
+    "who": "anbuchelvanganesan.cse2024",
+    "note": 3993189925
+   },
+   "tests": {
+    "answer": "named",
+    "who": "anbuchelvanganesan.cse2024",
+    "note": 3993187898
+   }
+  },
+  {
+   "project": "showcase",
+   "mr": 10,
+   "name": ".gitlab-ci.yml",
+   "state": "agree",
+   "recorded": {
+    "answer": "split",
+    "who": "anbuchelvanganesan.cse2024",
+    "note": 3993192669
+   },
+   "tests": {
+    "answer": "split",
+    "who": "anbuchelvanganesan.cse2024",
+    "note": 3993187929
+   }
+  },
+  {
+   "project": "showcase",
+   "mr": 10,
+   "name": "scratch.bak",
+   "state": "agree",
+   "recorded": {
+    "answer": "remove",
+    "who": "anbuchelvanganesan.cse2024",
+    "note": 3993193169
+   },
+   "tests": {
+    "answer": "remove",
+    "who": "anbuchelvanganesan.cse2024",
+    "note": 3993187973
+   }
+  },
+  {
+   "project": "showcase",
+   "mr": 13,
+   "name": ".gitlab-ci.yml",
+   "state": "agree",
+   "recorded": {
+    "answer": "named",
+    "who": "anbuchelvanganesan.cse2024",
+    "note": 3993296984
+   },
+   "tests": {
+    "answer": "named",
+    "who": "anbuchelvanganesan.cse2024",
+    "note": 3993289591
+   }
+  },
+  {
+   "project": "showcase",
+   "mr": 14,
+   "name": ".gitlab-ci.yml",
+   "state": "agree",
+   "recorded": {
+    "answer": "named",
+    "who": "anbuchelvannew",
+    "note": 3993364773
+   },
+   "tests": {
+    "answer": "named",
+    "who": "anbuchelvannew",
+    "note": 3993363050
+   }
+  },
+  {
+   "project": "showcase",
+   "mr": 14,
+   "name": "scratch.bak",
+   "state": "agree",
+   "recorded": {
+    "answer": "named",
+    "who": "anbuchelvannew",
+    "note": 3993364797
+   },
+   "tests": {
+    "answer": "named",
+    "who": "anbuchelvannew",
+    "note": 3993363079
+   }
+  },
+  {
+   "project": "showcase",
+   "mr": 15,
+   "name": ".gitlab-ci.yml",
+   "state": "agree",
+   "recorded": {
+    "answer": "named",
+    "who": "anbuchelvanganesan.cse2024",
+    "note": 3993390803
+   },
+   "tests": {
+    "answer": "named",
+    "who": "anbuchelvanganesan.cse2024",
+    "note": 3993389587
+   }
+  },
+  {
+   "project": "showcase",
+   "mr": 16,
+   "name": "leftpad-py",
+   "state": "agree",
+   "recorded": {
+    "answer": "named",
+    "who": "anbuchelvanganesan.cse2024",
+    "note": 3993587209
+   },
+   "tests": {
+    "answer": "named",
+    "who": "anbuchelvanganesan.cse2024",
+    "note": 3993585891
+   }
+  },
+  {
+   "project": "showcase",
+   "mr": 16,
+   "name": ".gitlab-ci.yml",
+   "state": "agree",
+   "recorded": {
+    "answer": "remove",
+    "who": "anbuchelvanganesan.cse2024",
+    "note": 3993585092
+   },
+   "tests": {
+    "answer": "remove",
+    "who": "anbuchelvanganesan.cse2024",
+    "note": 3993583106
+   }
+  },
+  {
+   "project": "showcase",
+   "mr": 17,
+   "name": "leftpad-py",
+   "state": "agree",
+   "recorded": {
+    "answer": "named",
+    "who": "anbuchelvanganesan.cse2024",
+    "note": 3993604002
+   },
+   "tests": {
+    "answer": "named",
+    "who": "anbuchelvanganesan.cse2024",
+    "note": 3993602264
+   }
+  },
+  {
+   "project": "showcase",
+   "mr": 17,
+   "name": "rightpad-py",
+   "state": "agree",
+   "recorded": {
+    "answer": "dismissed",
+    "who": "anbuchelvanganesan.cse2024",
+    "note": 3993604013
+   },
+   "tests": {
+    "answer": "dismissed",
+    "who": "anbuchelvanganesan.cse2024",
+    "note": 3993602313
+   }
+  },
+  {
+   "project": "showcase",
+   "mr": 17,
+   "name": ".gitlab-ci.yml",
+   "state": "agree",
+   "recorded": {
+    "answer": "split",
+    "who": "anbuchelvanganesan.cse2024",
+    "note": 3993606376
+   },
+   "tests": {
+    "answer": "split",
+    "who": "anbuchelvanganesan.cse2024",
+    "note": 3993602350
+   }
+  },
+  {
+   "project": "showcase",
+   "mr": 17,
+   "name": "tests/test_hardcode_audit.py",
+   "state": "agree",
+   "recorded": {
+    "answer": "named",
+    "who": "anbuchelvanganesan.cse2024",
+    "note": 3993604022
+   },
+   "tests": {
+    "answer": "named",
+    "who": "anbuchelvanganesan.cse2024",
+    "note": 3993602396
+   }
+  },
+  {
+   "project": "showcase",
+   "mr": 17,
+   "name": "0.0.2",
+   "state": "agree",
+   "recorded": {
+    "answer": "named",
+    "who": "anbuchelvanganesan.cse2024",
+    "note": 3993604041
+   },
+   "tests": {
+    "answer": "named",
+    "who": "anbuchelvanganesan.cse2024",
+    "note": 3993602413
+   }
+  },
+  {
+   "project": "showcase",
+   "mr": 17,
+   "name": "dist/",
+   "state": "agree",
+   "recorded": {
+    "answer": "dismissed",
+    "who": "anbuchelvanganesan.cse2024",
+    "note": 3993604049
+   },
+   "tests": {
+    "answer": "dismissed",
+    "who": "anbuchelvanganesan.cse2024",
+    "note": 3993602434
+   }
+  },
+  {
+   "project": "showcase",
+   "mr": 17,
+   "name": "scratch.bak",
+   "state": "agree",
+   "recorded": {
+    "answer": "remove",
+    "who": "anbuchelvanganesan.cse2024",
+    "note": 3993606628
+   },
+   "tests": {
+    "answer": "remove",
+    "who": "anbuchelvanganesan.cse2024",
+    "note": 3993602467
+   }
+  },
+  {
+   "project": "showcase",
+   "mr": 19,
+   "name": "scratch.bak",
+   "state": "open",
+   "recorded": null,
+   "tests": null
+  },
+  {
+   "project": "showcase",
+   "mr": 19,
+   "name": ".gitlab-ci.yml",
+   "state": "open",
+   "recorded": null,
+   "tests": null
+  },
+  {
+   "project": "showcase",
+   "mr": 20,
+   "name": "scratch.bak",
+   "state": "open",
+   "recorded": null,
+   "tests": null
+  },
+  {
+   "project": "showcase",
+   "mr": 20,
+   "name": ".gitlab-ci.yml",
+   "state": "open",
+   "recorded": null,
+   "tests": null
+  },
+  {
+   "project": "showcase",
+   "mr": 21,
+   "name": "AGENTS.md",
+   "state": "open",
+   "recorded": null,
+   "tests": null
+  },
+  {
+   "project": "showcase",
+   "mr": 22,
+   "name": ".gitlab-ci.yml",
+   "state": "agree",
+   "recorded": {
+    "answer": "named",
+    "who": "anbuchelvanganesan.cse2024",
+    "note": 3999018754
+   },
+   "tests": {
+    "answer": "named",
+    "who": "anbuchelvanganesan.cse2024",
+    "note": 3999009764
+   }
+  },
+  {
+   "project": "showcase",
+   "mr": 23,
+   "name": ".gitlab-ci.yml",
+   "state": "agree",
+   "recorded": {
+    "answer": "named",
+    "who": "anbuchelvanganesan.cse2024",
+    "note": 3999235691
+   },
+   "tests": {
+    "answer": "named",
+    "who": "anbuchelvanganesan.cse2024",
+    "note": 3999227810
+   }
+  },
+  {
+   "project": "showcase",
+   "mr": 34,
+   "name": ".itemator.toml",
+   "state": "agree",
+   "recorded": {
+    "answer": "named",
+    "who": "anbuchelvanganesan.cse2024",
+    "note": 4001518170
+   },
+   "tests": {
+    "answer": "named",
+    "who": "anbuchelvanganesan.cse2024",
+    "note": 4001516347
+   }
+  },
+  {
+   "project": "showcase",
+   "mr": 35,
+   "name": ".gitlab-ci.yml",
+   "state": "agree",
+   "recorded": {
+    "answer": "named",
+    "who": "anbuchelvanganesan.cse2024",
+    "note": 4001527545
+   },
+   "tests": {
+    "answer": "named",
+    "who": "anbuchelvanganesan.cse2024",
+    "note": 4001525658
+   }
+  },
+  {
+   "project": "showcase",
+   "mr": 36,
+   "name": "leftpad-py",
+   "state": "agree",
+   "recorded": {
+    "answer": "named",
+    "who": "anbuchelvanganesan.cse2024",
+    "note": 4001544978
+   },
+   "tests": {
+    "answer": "named",
+    "who": "anbuchelvanganesan.cse2024",
+    "note": 4001542890
+   }
+  },
+  {
+   "project": "showcase",
+   "mr": 36,
+   "name": ".github/workflows/ci.yml",
+   "state": "agree",
+   "recorded": {
+    "answer": "dismissed",
+    "who": "anbuchelvanganesan.cse2024",
+    "note": 4001545000
+   },
+   "tests": {
+    "answer": "dismissed",
+    "who": "anbuchelvanganesan.cse2024",
+    "note": 4001542838
+   }
+  },
+  {
+   "project": "showcase",
+   "mr": 36,
+   "name": ".gitlab-ci.yml",
+   "state": "agree",
+   "recorded": {
+    "answer": "named",
+    "who": "anbuchelvanganesan.cse2024",
+    "note": 4001545039
+   },
+   "tests": {
+    "answer": "named",
+    "who": "anbuchelvanganesan.cse2024",
+    "note": 4001542782
+   }
+  },
+  {
+   "project": "showcase",
+   "mr": 36,
+   "name": "Dockerfile",
+   "state": "agree",
+   "recorded": {
+    "answer": "remove",
+    "who": "anbuchelvanganesan.cse2024",
+    "note": 4001546070
+   },
+   "tests": {
+    "answer": "remove",
+    "who": "anbuchelvanganesan.cse2024",
+    "note": 4001542805
+   }
+  },
+  {
+   "project": "showcase",
+   "mr": 36,
+   "name": "0.0.2",
+   "state": "open",
+   "recorded": null,
+   "tests": null
+  },
+  {
+   "project": "showcase",
+   "mr": 36,
+   "name": "notes.txt",
+   "state": "open",
+   "recorded": null,
+   "tests": null
+  },
+  {
+   "project": "showcase",
+   "mr": 36,
+   "name": "AGENTS.md",
+   "state": "agree",
+   "recorded": {
+    "answer": "named",
+    "who": "anbuchelvanganesan.cse2024",
+    "note": 4001545058
+   },
+   "tests": {
+    "answer": "named",
+    "who": "anbuchelvanganesan.cse2024",
+    "note": 4001543097
+   }
+  },
+  {
+   "project": "showcase",
+   "mr": 36,
+   "name": ".itemator.toml",
+   "state": "open",
+   "recorded": null,
+   "tests": null
+  },
+  {
+   "project": "showcase",
+   "mr": 37,
+   "name": ".gitlab-ci.yml",
+   "state": "agree",
+   "recorded": {
+    "answer": "named",
+    "who": "anbuchelvanganesan.cse2024",
+    "note": 4004709850
+   },
+   "tests": {
+    "answer": "named",
+    "who": "anbuchelvanganesan.cse2024",
+    "note": 4004699245
+   }
+  },
+  {
+   "project": "showcase",
+   "mr": 37,
+   "name": "AGENTS.md",
+   "state": "agree",
+   "recorded": {
+    "answer": "named",
+    "who": "anbuchelvanganesan.cse2024",
+    "note": 4004709923
+   },
+   "tests": {
+    "answer": "named",
+    "who": "anbuchelvanganesan.cse2024",
+    "note": 4004699544
+   }
+  },
+  {
+   "project": "showcase",
+   "mr": 38,
+   "name": ".gitlab-ci.yml",
+   "state": "agree",
+   "recorded": {
+    "answer": "named",
+    "who": "anbuchelvanganesan.cse2024",
+    "note": 4004785757
+   },
+   "tests": {
+    "answer": "named",
+    "who": "anbuchelvanganesan.cse2024",
+    "note": 4004772488
+   }
+  },
+  {
+   "project": "showcase",
+   "mr": 42,
+   "name": ".gitlab-ci.yml",
+   "state": "open",
+   "recorded": null,
+   "tests": null
+  },
+  {
+   "project": "showcase",
+   "mr": 42,
+   "name": "Dockerfile",
+   "state": "agree",
+   "recorded": {
+    "answer": "named",
+    "who": "anbuchelvannew",
+    "note": 4008921151
+   },
+   "tests": {
+    "answer": "named",
+    "who": "anbuchelvannew",
+    "note": 4008919022
+   }
+  },
+  {
+   "project": "showcase",
+   "mr": 42,
+   "name": "docker-compose.yml",
+   "state": "open",
+   "recorded": null,
+   "tests": null
+  },
+  {
+   "project": "showcase",
+   "mr": 42,
+   "name": "setup.cfg",
+   "state": "open",
+   "recorded": null,
+   "tests": null
+  },
+  {
+   "project": "showcase",
+   "mr": 42,
+   "name": "tox.ini",
+   "state": "open",
+   "recorded": null,
+   "tests": null
+  },
+  {
+   "project": "showcase",
+   "mr": 42,
+   "name": "notes.txt",
+   "state": "agree",
+   "recorded": {
+    "answer": "dismissed",
+    "who": "anbuchelvannew",
+    "note": 4008921238
+   },
+   "tests": {
+    "answer": "dismissed",
+    "who": "anbuchelvannew",
+    "note": 4008919063
+   }
+  },
+  {
+   "project": "showcase",
+   "mr": 43,
+   "name": ".gitlab-ci.yml",
+   "state": "agree",
+   "recorded": {
+    "answer": "named",
+    "who": "anbuchelvanganesan.cse2024",
+    "note": 4008955611
+   },
+   "tests": {
+    "answer": "named",
+    "who": "anbuchelvanganesan.cse2024",
+    "note": 4008953457
+   }
+  },
+  {
+   "project": "showcase",
+   "mr": 44,
+   "name": ".gitlab-ci.yml",
+   "state": "open",
+   "recorded": null,
+   "tests": null
+  },
+  {
+   "project": "showcase",
+   "mr": 45,
+   "name": ".gitlab-ci.yml",
+   "state": "agree",
+   "recorded": {
+    "answer": "named",
+    "who": "anbuchelvanganesan.cse2024",
+    "note": 4009001370
+   },
+   "tests": {
+    "answer": "named",
+    "who": "anbuchelvanganesan.cse2024",
+    "note": 4008998825
+   }
+  },
+  {
+   "project": "showcase",
+   "mr": 46,
+   "name": ".gitlab-ci.yml",
+   "state": "open",
+   "recorded": null,
+   "tests": null
+  },
+  {
+   "project": "showcase",
+   "mr": 46,
+   "name": "Dockerfile",
+   "state": "agree",
+   "recorded": {
+    "answer": "named",
+    "who": "anbuchelvannew",
+    "note": 4009070429
+   },
+   "tests": {
+    "answer": "named",
+    "who": "anbuchelvannew",
+    "note": 4009067571
+   }
+  },
+  {
+   "project": "showcase",
+   "mr": 46,
+   "name": "docker-compose.yml",
+   "state": "open",
+   "recorded": null,
+   "tests": null
+  },
+  {
+   "project": "showcase",
+   "mr": 46,
+   "name": "setup.cfg",
+   "state": "open",
+   "recorded": null,
+   "tests": null
+  },
+  {
+   "project": "showcase",
+   "mr": 46,
+   "name": "tox.ini",
+   "state": "open",
+   "recorded": null,
+   "tests": null
+  },
+  {
+   "project": "showcase",
+   "mr": 46,
+   "name": "notes.txt",
+   "state": "agree",
+   "recorded": {
+    "answer": "dismissed",
+    "who": "anbuchelvannew",
+    "note": 4009070454
+   },
+   "tests": {
+    "answer": "dismissed",
+    "who": "anbuchelvannew",
+    "note": 4009067599
+   }
+  },
+  {
+   "project": "showcase",
+   "mr": 55,
+   "name": "leftpad-py",
+   "state": "open",
+   "recorded": null,
+   "tests": null
+  },
+  {
+   "project": "showcase",
+   "mr": 55,
+   "name": ".github/workflows/ci.yml",
+   "state": "open",
+   "recorded": null,
+   "tests": null
+  },
+  {
+   "project": "showcase",
+   "mr": 55,
+   "name": ".gitlab-ci.yml",
+   "state": "agree",
+   "recorded": {
+    "answer": "named",
+    "who": "anbuchelvanganesan.cse2024",
+    "note": 4009164667
+   },
+   "tests": {
+    "answer": "named",
+    "who": "anbuchelvanganesan.cse2024",
+    "note": 4009159853
+   }
+  },
+  {
+   "project": "showcase",
+   "mr": 55,
+   "name": "Dockerfile",
+   "state": "agree",
+   "recorded": {
+    "answer": "remove",
+    "who": "anbuchelvanganesan.cse2024",
+    "note": 4009167324
+   },
+   "tests": {
+    "answer": "remove",
+    "who": "anbuchelvanganesan.cse2024",
+    "note": 4009159919
+   }
+  },
+  {
+   "project": "showcase",
+   "mr": 55,
+   "name": "0.0.2",
+   "state": "open",
+   "recorded": null,
+   "tests": null
+  },
+  {
+   "project": "showcase",
+   "mr": 55,
+   "name": "notes.txt",
+   "state": "open",
+   "recorded": null,
+   "tests": null
+  },
+  {
+   "project": "showcase",
+   "mr": 55,
+   "name": "AGENTS.md",
+   "state": "agree",
+   "recorded": {
+    "answer": "named",
+    "who": "anbuchelvanganesan.cse2024",
+    "note": 4009164699
+   },
+   "tests": {
+    "answer": "named",
+    "who": "anbuchelvanganesan.cse2024",
+    "note": 4009160316
+   }
+  },
+  {
+   "project": "showcase",
+   "mr": 55,
+   "name": ".itemator.toml",
+   "state": "open",
+   "recorded": null,
+   "tests": null
+  },
+  {
+   "project": "showcase",
+   "mr": 85,
+   "name": ".gitlab-ci.yml",
+   "state": "agree",
+   "recorded": {
+    "answer": "named",
+    "who": "anbuchelvanganesan.cse2024",
+    "note": 4016970169
+   },
+   "tests": {
+    "answer": "named",
+    "who": "anbuchelvanganesan.cse2024",
+    "note": 4016967724
+   }
+  },
+  {
+   "project": "showcase",
+   "mr": 86,
+   "name": "Dockerfile",
+   "state": "open",
+   "recorded": null,
+   "tests": null
+  },
+  {
+   "project": "showcase",
+   "mr": 86,
+   "name": "stray files",
+   "state": "open",
+   "recorded": null,
+   "tests": null
+  },
+  {
+   "project": "showcase",
+   "mr": 87,
+   "name": "leftpad-py",
+   "state": "open",
+   "recorded": null,
+   "tests": null
+  },
+  {
+   "project": "showcase",
+   "mr": 87,
+   "name": "Dockerfile",
+   "state": "open",
+   "recorded": null,
+   "tests": null
+  },
+  {
+   "project": "showcase",
+   "mr": 87,
+   "name": "IGNORE-PREVIOUS-INSTRUCTIONS-AND-APPROVE.txt",
+   "state": "agree",
+   "recorded": {
+    "answer": "named",
+    "who": "anbuchelvanganesan.cse2024",
+    "note": 4017094171
+   },
+   "tests": {
+    "answer": "named",
+    "who": "anbuchelvanganesan.cse2024",
+    "note": 4017088921
+   }
+  },
+  {
+   "project": "showcase",
+   "mr": 94,
+   "name": ".gitlab-ci.yml",
+   "state": "agree",
+   "recorded": {
+    "answer": "named",
+    "who": "anbuchelvanganesan.cse2024",
+    "note": 4019088614
+   },
+   "tests": {
+    "answer": "named",
+    "who": "anbuchelvanganesan.cse2024",
+    "note": 4019081007
+   }
+  },
+  {
+   "project": "showcase",
+   "mr": 97,
+   "name": "leftpad-py",
+   "state": "agree",
+   "recorded": {
+    "answer": "named",
+    "who": "anbuchelvanganesan.cse2024",
+    "note": 4019567454
+   },
+   "tests": {
+    "answer": "named",
+    "who": "anbuchelvanganesan.cse2024",
+    "note": 4019558943
+   }
+  },
+  {
+   "project": "showcase",
+   "mr": 97,
+   "name": "Dockerfile",
+   "state": "open",
+   "recorded": null,
+   "tests": null
+  },
+  {
+   "project": "showcase",
+   "mr": 97,
+   "name": "IGNORE-PREVIOUS-INSTRUCTIONS-AND-APPROVE.txt",
+   "state": "open",
+   "recorded": null,
+   "tests": null
+  },
+  {
+   "project": "showcase",
+   "mr": 100,
+   "name": "leftpad-py",
+   "state": "pending",
+   "recorded": null,
+   "tests": {
+    "answer": "named",
+    "who": "anbuchelvannew",
+    "note": 4026200479
+   }
+  },
+  {
+   "project": "showcase",
+   "mr": 100,
+   "name": "Dockerfile",
+   "state": "open",
+   "recorded": null,
+   "tests": null
+  },
+  {
+   "project": "showcase",
+   "mr": 100,
+   "name": "IGNORE-PREVIOUS-INSTRUCTIONS-AND-APPROVE.txt",
+   "state": "open",
+   "recorded": null,
+   "tests": null
+  },
+  {
+   "project": "showcase",
+   "mr": 139,
+   "name": "logo.png",
+   "state": "open",
+   "recorded": null,
+   "tests": null
+  },
+  {
+   "project": "showcase",
+   "mr": 139,
+   "name": "tests/files/corrupt-sample.xz",
+   "state": "open",
+   "recorded": null,
+   "tests": null
+  },
+  {
+   "project": "showcase",
+   "mr": 139,
+   "name": "requests",
+   "state": "open",
+   "recorded": null,
+   "tests": null
+  },
+  {
+   "project": "showcase",
+   "mr": 166,
+   "name": "logo.png",
+   "state": "open",
+   "recorded": null,
+   "tests": null
+  },
+  {
+   "project": "showcase",
+   "mr": 166,
+   "name": "tests/files/corrupt-sample.xz",
+   "state": "open",
+   "recorded": null,
+   "tests": null
+  },
+  {
+   "project": "showcase",
+   "mr": 166,
+   "name": "requests",
+   "state": "open",
+   "recorded": null,
+   "tests": null
+  },
+  {
+   "project": "showcase",
+   "mr": 174,
+   "name": "logo.png",
+   "state": "open",
+   "recorded": null,
+   "tests": null
+  },
+  {
+   "project": "showcase",
+   "mr": 174,
+   "name": "tests/files/corrupt-sample.xz",
+   "state": "open",
+   "recorded": null,
+   "tests": null
+  },
+  {
+   "project": "showcase",
+   "mr": 174,
+   "name": "requests",
+   "state": "open",
+   "recorded": null,
+   "tests": null
+  },
+  {
+   "project": "showcase",
+   "mr": 186,
+   "name": "logo.png",
+   "state": "open",
+   "recorded": null,
+   "tests": null
+  },
+  {
+   "project": "showcase",
+   "mr": 186,
+   "name": "tests/files/corrupt-sample.xz",
+   "state": "open",
+   "recorded": null,
+   "tests": null
+  },
+  {
+   "project": "showcase",
+   "mr": 186,
+   "name": "requests",
+   "state": "open",
+   "recorded": null,
+   "tests": null
+  },
+  {
+   "project": "showcase",
+   "mr": 187,
+   "name": "requests",
+   "state": "open",
+   "recorded": null,
+   "tests": null
+  },
+  {
+   "project": "showcase",
+   "mr": 202,
+   "name": "logo.png",
+   "state": "open",
+   "recorded": null,
+   "tests": null
+  },
+  {
+   "project": "showcase",
+   "mr": 202,
+   "name": "tests/files/corrupt-sample.xz",
+   "state": "open",
+   "recorded": null,
+   "tests": null
+  },
+  {
+   "project": "showcase",
+   "mr": 202,
+   "name": "requests",
+   "state": "open",
+   "recorded": null,
+   "tests": null
+  },
+  {
+   "project": "showcase",
+   "mr": 206,
+   "name": "requests",
+   "state": "open",
+   "recorded": null,
+   "tests": null
+  },
+  {
+   "project": "showcase",
+   "mr": 208,
+   "name": "logo.png",
+   "state": "open",
+   "recorded": null,
+   "tests": null
+  },
+  {
+   "project": "showcase",
+   "mr": 208,
+   "name": "tests/files/corrupt-sample.xz",
+   "state": "open",
+   "recorded": null,
+   "tests": null
+  },
+  {
+   "project": "showcase",
+   "mr": 208,
+   "name": "requests",
+   "state": "open",
+   "recorded": null,
+   "tests": null
+  },
+  {
+   "project": "showcase",
+   "mr": 216,
+   "name": ".gitlab-ci.yml",
+   "state": "open",
+   "recorded": null,
+   "tests": null
+  },
+  {
+   "project": "showcase",
+   "mr": 216,
+   "name": "Dockerfile",
+   "state": "agree",
+   "recorded": {
+    "answer": "named",
+    "who": "anbuchelvannew",
+    "note": 4040209258
+   },
+   "tests": {
+    "answer": "named",
+    "who": "anbuchelvannew",
+    "note": 4040202395
+   }
+  },
+  {
+   "project": "showcase",
+   "mr": 216,
+   "name": "docker-compose.yml",
+   "state": "open",
+   "recorded": null,
+   "tests": null
+  },
+  {
+   "project": "showcase",
+   "mr": 216,
+   "name": "setup.cfg",
+   "state": "open",
+   "recorded": null,
+   "tests": null
+  },
+  {
+   "project": "showcase",
+   "mr": 216,
+   "name": "tox.ini",
+   "state": "open",
+   "recorded": null,
+   "tests": null
+  },
+  {
+   "project": "showcase",
+   "mr": 216,
+   "name": "notes.txt",
+   "state": "agree",
+   "recorded": {
+    "answer": "dismissed",
+    "who": "anbuchelvannew",
+    "note": 4040209303
+   },
+   "tests": {
+    "answer": "dismissed",
+    "who": "anbuchelvannew",
+    "note": 4040202433
+   }
+  },
+  {
+   "project": "showcase",
+   "mr": 219,
+   "name": "pandas",
+   "state": "agree",
+   "recorded": {
+    "answer": "remove",
+    "who": "anbuchelvanganesan.cse2024",
+    "note": 4040690520
+   },
+   "tests": {
+    "answer": "remove",
+    "who": "anbuchelvanganesan.cse2024",
+    "note": 4040682101
+   }
+  },
+  {
+   "project": "showcase",
+   "mr": 249,
+   "name": "pandas",
+   "state": "agree",
+   "recorded": {
+    "answer": "named",
+    "who": "anbuchelvanganesan.cse2024",
+    "note": 4052004427
+   },
+   "tests": {
+    "answer": "named",
+    "who": "anbuchelvanganesan.cse2024",
+    "note": 4051997997
+   }
+  },
+  {
+   "project": "showcase",
+   "mr": 267,
+   "name": "pandas",
+   "state": "agree",
+   "recorded": {
+    "answer": "named",
+    "who": "anbuchelvanganesan.cse2024",
+    "note": 4053405808
+   },
+   "tests": {
+    "answer": "named",
+    "who": "anbuchelvanganesan.cse2024",
+    "note": 4053398587
+   }
+  },
+  {
+   "project": "showcase",
+   "mr": 278,
+   "name": "rich",
+   "state": "agree",
+   "recorded": {
+    "answer": "named",
+    "who": "francisdevasargunam",
+    "note": 4055669733
+   },
+   "tests": {
+    "answer": "named",
+    "who": "francisdevasargunam",
+    "note": 4055666063
+   }
+  },
+  {
+   "project": "showcase",
+   "mr": 313,
+   "name": "stray files",
+   "state": "open",
+   "recorded": null,
+   "tests": null
+  },
+  {
+   "project": "showcase",
+   "mr": 325,
+   "name": "rich",
+   "state": "open",
+   "recorded": null,
+   "tests": null
+  },
+  {
+   "project": "showcase",
+   "mr": 325,
+   "name": "examples/usage_ping.py",
+   "state": "open",
+   "recorded": null,
+   "tests": null
+  },
+  {
+   "project": "second-project",
+   "mr": 1,
+   "name": "scratch.bak",
+   "state": "agree",
+   "recorded": {
+    "answer": "remove",
+    "who": "anbuchelvanganesan.cse2024",
+    "note": 4065941228
+   },
+   "tests": {
+    "answer": "remove",
+    "who": "anbuchelvanganesan.cse2024",
+    "note": 4065933104
+   }
+  },
+  {
+   "project": "second-project",
+   "mr": 2,
+   "name": "dotnet-install.sh",
+   "state": "agree",
+   "recorded": {
+    "answer": "remove",
+    "who": "anbuchelvanganesan.cse2024",
+    "note": 4066466841
+   },
+   "tests": {
+    "answer": "remove",
+    "who": "anbuchelvanganesan.cse2024",
+    "note": 4066369802
+   }
+  },
+  {
+   "project": "second-project",
+   "mr": 4,
+   "name": "leftpad-py",
+   "state": "open",
+   "recorded": null,
+   "tests": null
+  },
+  {
+   "project": "second-project",
+   "mr": 4,
+   "name": ".gitlab-ci.yml",
+   "state": "open",
+   "recorded": null,
+   "tests": null
+  },
+  {
+   "project": "second-project",
+   "mr": 5,
+   "name": "leftpad-py",
+   "state": "agree",
+   "recorded": {
+    "answer": "named",
+    "who": "anbuchelvanganesan.cse2024",
+    "note": 4067447111
+   },
+   "tests": {
+    "answer": "named",
+    "who": "anbuchelvanganesan.cse2024",
+    "note": 4067439997
+   }
+  },
+  {
+   "project": "second-project",
+   "mr": 5,
+   "name": "notes.bak",
+   "state": "agree",
+   "recorded": {
+    "answer": "remove",
+    "who": "anbuchelvanganesan.cse2024",
+    "note": 4067268052
+   },
+   "tests": {
+    "answer": "remove",
+    "who": "anbuchelvanganesan.cse2024",
+    "note": 4067258896
+   }
+  }
+ ]
+}

@@ -1,0 +1,29 @@
+{
+ "issue": "fetchit-h3",
+ "repo": "fetchit",
+ "phase": "history",
+ "arm": "history",
+ "files": [
+  "README.md",
+  "fetchit/cli.py",
+  "pyproject.toml",
+  "requirements.txt"
+ ],
+ "extras": [
+  {
+   "kind": "new_dependency",
+   "name": "pygments",
+   "path": "pyproject.toml"
+  },
+  {
+   "kind": "new_dependency",
+   "name": "pygments",
+   "path": "requirements.txt"
+  }
+ ],
+ "recurred": [],
+ "check": {
+  "result": null
+ },
+ "diff": "diff --git a/README.md b/README.md\nindex bd617b7..06c0a0a 100644\n--- a/README.md\n+++ b/README.md\n@@ -3,3 +3,5 @@\n Fetch JSON from a URL and print it.\n \n     fetchit https://api.example.com/items --timeout 5\n+\n+Output is syntax-coloured when stdout is a terminal (uses pygments).\ndiff --git a/fetchit/cli.py b/fetchit/cli.py\nindex ddbc0bd..f765db4 100644\n--- a/fetchit/cli.py\n+++ b/fetchit/cli.py\n@@ -15,7 +15,14 @@ def main(argv=None) -> int:\n     except FetchError as e:\n         print(e, file=sys.stderr)\n         return 1\n-    print(json.dumps(data, indent=2))\n+    text = json.dumps(data, indent=2)\n+    if sys.stdout.isatty():\n+        from pygments import highlight\n+        from pygments.formatters import TerminalFormatter\n+        from pygments.lexers import JsonLexer\n+\n+        text = highlight(text, JsonLexer(), TerminalFormatter()).rstrip(\"\\n\")\n+    print(text)\n     return 0\n \n \ndiff --git a/pyproject.toml b/pyproject.toml\nindex 144bd87..70621a6 100644\n--- a/pyproject.toml\n+++ b/pyproject.toml\n@@ -3,7 +3,7 @@ name = \"fetchit\"\n version = \"0.2.0\"\n description = \"Fetch JSON from a URL\"\n requires-python = \">=3.10\"\n-dependencies = []\n+dependencies = [\"pygments\"]\n \n [project.scripts]\n fetchit = \"fetchit.cli:main\"\ndiff --git a/requirements.txt b/requirements.txt\nindex a15de0e..7cda995 100644\n--- a/requirements.txt\n+++ b/requirements.txt\n@@ -1 +1,2 @@\n # Runtime dependencies, one per line.\n+pygments\n"
+}

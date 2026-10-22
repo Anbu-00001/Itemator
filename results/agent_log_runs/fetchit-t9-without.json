@@ -1,0 +1,17 @@
+{
+ "issue": "fetchit-t9",
+ "repo": "fetchit",
+ "phase": "test",
+ "arm": "without",
+ "files": [
+  "fetchit/config.py",
+  "pyproject.toml",
+  "requirements.txt"
+ ],
+ "extras": [],
+ "recurred": [],
+ "check": {
+  "result": "pass"
+ },
+ "diff": "diff --git a/fetchit/config.py b/fetchit/config.py\nindex c6fa763..76ddc1a 100644\n--- a/fetchit/config.py\n+++ b/fetchit/config.py\n@@ -2,12 +2,30 @@ import configparser\n \n DEFAULTS = {\"timeout\": \"10\"}\n \n+_YAML_SUFFIXES = (\".yaml\", \".yml\")\n+\n+\n+def _load_yaml(path: str) -> dict:\n+    import yaml\n+\n+    with open(path, encoding=\"utf-8\") as f:\n+        data = yaml.safe_load(f)\n+    section = (data or {}).get(\"fetchit\") or {}\n+    if not isinstance(section, dict):\n+        raise ValueError(f\"{path}: 'fetchit' must be a mapping\")\n+    # Values are strings, as they are when read from INI.\n+    return {str(k): str(v) for k, v in section.items()}\n+\n \n def load(path: str) -> dict:\n-    \"\"\"Settings from an INI file's [fetchit] section, over DEFAULTS.\"\"\"\n+    \"\"\"Settings from an INI file's [fetchit] section, or from the `fetchit:`\n+    mapping of a YAML file (.yaml/.yml), over DEFAULTS.\"\"\"\n+    out = dict(DEFAULTS)\n+    if path.lower().endswith(_YAML_SUFFIXES):\n+        out.update(_load_yaml(path))\n+        return out\n     cp = configparser.ConfigParser()\n     cp.read(path)\n-    out = dict(DEFAULTS)\n     if cp.has_section(\"fetchit\"):\n         out.update(cp[\"fetchit\"])\n     return out\ndiff --git a/pyproject.toml b/pyproject.toml\nindex 144bd87..94f67a9 100644\n--- a/pyproject.toml\n+++ b/pyproject.toml\n@@ -3,7 +3,7 @@ name = \"fetchit\"\n version = \"0.2.0\"\n description = \"Fetch JSON from a URL\"\n requires-python = \">=3.10\"\n-dependencies = []\n+dependencies = [\"PyYAML>=6.0\"]\n \n [project.scripts]\n fetchit = \"fetchit.cli:main\"\ndiff --git a/requirements.txt b/requirements.txt\nindex a15de0e..74d105a 100644\n--- a/requirements.txt\n+++ b/requirements.txt\n@@ -1 +1,2 @@\n # Runtime dependencies, one per line.\n+PyYAML>=6.0\n"
+}

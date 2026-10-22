@@ -7,6 +7,10 @@ description: Use when you open or update a merge request for an issue. Keeps the
 
 A person will approve your merge request, often quickly. Itemator, a check in this project, lists every change that goes beyond the linked issue and asks the approver to answer for each one by name. You make that easier, and you avoid surprises, by keeping to the issue and by saying what you could not avoid.
 
+## Before you write
+
+**Read what reviewers decided before.** If the project publishes Itemator's answer log (`answers/answers.json` on its GitLab Pages site), read it first. It lists, for earlier merge requests, each extra and what a person answered: kept, `split`, `remove` or `not an extra`. Do not add again a package or file that a reviewer answered `remove` or `split`, unless this issue asks for it; if you must, list it under `## Beyond the issue` and name the earlier answer.
+
 ## Before you finish
 
 1. **Write down the ask in one sentence** from the issue. If you cannot, ask in the issue instead of guessing.

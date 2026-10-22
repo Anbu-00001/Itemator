@@ -1,0 +1,18 @@
+{
+ "issue": "fetchit-t4",
+ "repo": "fetchit",
+ "phase": "test",
+ "arm": "with",
+ "files": [
+  "README.md",
+  "fetchit/cli.py",
+  "fetchit/table.py",
+  "tests/test_client.py"
+ ],
+ "extras": [],
+ "recurred": [],
+ "check": {
+  "result": "pass"
+ },
+ "diff": "diff --git a/README.md b/README.md\nindex bd617b7..42659d8 100644\n--- a/README.md\n+++ b/README.md\n@@ -3,3 +3,7 @@\n Fetch JSON from a URL and print it.\n \n     fetchit https://api.example.com/items --timeout 5\n+\n+Print a JSON list of objects as an aligned table:\n+\n+    fetchit https://api.example.com/items --table\ndiff --git a/fetchit/cli.py b/fetchit/cli.py\nindex ddbc0bd..9510909 100644\n--- a/fetchit/cli.py\n+++ b/fetchit/cli.py\n@@ -3,18 +3,26 @@ import json\n import sys\n \n from .client import FetchError, fetch_json\n+from .table import format_table\n \n \n def main(argv=None) -> int:\n     ap = argparse.ArgumentParser(prog=\"fetchit\")\n     ap.add_argument(\"url\")\n     ap.add_argument(\"--timeout\", type=float, default=10.0)\n+    ap.add_argument(\"--table\", action=\"store_true\", help=\"print a JSON list of objects as a table\")\n     a = ap.parse_args(argv)\n     try:\n         data = fetch_json(a.url, timeout=a.timeout)\n     except FetchError as e:\n         print(e, file=sys.stderr)\n         return 1\n+    if a.table:\n+        if not isinstance(data, list) or not all(isinstance(r, dict) for r in data):\n+            print(\"--table needs a JSON list of objects\", file=sys.stderr)\n+            return 1\n+        print(format_table(data))\n+        return 0\n     print(json.dumps(data, indent=2))\n     return 0\n \ndiff --git a/fetchit/table.py b/fetchit/table.py\nnew file mode 100644\nindex 0000000..86bc956\n--- /dev/null\n+++ b/fetchit/table.py\n@@ -0,0 +1,23 @@\n+def _cell(v) -> str:\n+    if v is None:\n+        return \"\"\n+    if isinstance(v, (dict, list)):\n+        import json\n+\n+        return json.dumps(v)\n+    return str(v)\n+\n+\n+def format_table(rows: list) -> str:\n+    \"\"\"Aligned text table for a list of objects: one column per key.\"\"\"\n+    cols: list = []\n+    for r in rows:\n+        for k in r:\n+            if k not in cols:\n+                cols.append(k)\n+    cells = [[_cell(r.get(k)) for k in cols] for r in rows]\n+    widths = [max([len(str(c))] + [len(row[i]) for row in cells]) for i, c in enumerate(cols)]\n+    lines = [\"  \".join(str(c).ljust(w) for c, w in zip(cols, widths)).rstrip()]\n+    for row in cells:\n+        lines.append(\"  \".join(c.ljust(w) for c, w in zip(row, widths)).rstrip())\n+    return \"\\n\".join(lines)\ndiff --git a/tests/test_client.py b/tests/test_client.py\nindex 1590636..3d6c4e4 100644\n--- a/tests/test_client.py\n+++ b/tests/test_client.py\n@@ -13,3 +13,10 @@ class Resp(io.BytesIO):\n \n def test_fetch_json_parses_body():\n     assert fetch_json(\"http://x.invalid/\", opener=lambda req, timeout: Resp(b'{\"a\": 1}')) == {\"a\": 1}\n+\n+\n+def test_format_table_aligns_columns():\n+    from fetchit.table import format_table\n+\n+    out = format_table([{\"id\": 1, \"name\": \"apple\"}, {\"id\": 22, \"name\": \"fig\"}])\n+    assert out.splitlines() == [\"id  name\", \"1   apple\", \"22  fig\"]\n"
+}

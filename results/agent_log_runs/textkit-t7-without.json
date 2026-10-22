@@ -1,0 +1,18 @@
+{
+ "issue": "textkit-t7",
+ "repo": "textkit",
+ "phase": "test",
+ "arm": "without",
+ "files": [
+  "README.md",
+  "tests/test_core.py",
+  "textkit/__init__.py",
+  "textkit/core.py"
+ ],
+ "extras": [],
+ "recurred": [],
+ "check": {
+  "result": "pass"
+ },
+ "diff": "diff --git a/README.md b/README.md\nindex 69c02f1..2db8237 100644\n--- a/README.md\n+++ b/README.md\n@@ -1,5 +1,5 @@\n # textkit\n \n-Small text helpers: `slug`, `wrap`, `truncate`, `title_case`, `count_words`.\n+Small text helpers: `slug`, `wrap`, `truncate`, `title_case`, `count_words`, `detect_encoding`.\n \n     python -m textkit slug \"Hello, World!\"\ndiff --git a/tests/test_core.py b/tests/test_core.py\nindex bdf9181..8627ad4 100644\n--- a/tests/test_core.py\n+++ b/tests/test_core.py\n@@ -1,4 +1,6 @@\n-from textkit import count_words, slug, title_case, truncate\n+import pytest\n+\n+from textkit import count_words, detect_encoding, slug, title_case, truncate\n \n \n def test_slug():\n@@ -16,3 +18,12 @@ def test_title_case():\n \n def test_count_words():\n     assert count_words(\"one two  three\") == 3\n+\n+\n+def test_detect_encoding():\n+    assert detect_encoding(\"héllo\".encode(\"utf-8\")) == \"utf-8\"\n+    assert detect_encoding(b\"\\xef\\xbb\\xbfhi\") == \"utf-8\"\n+    assert detect_encoding(\"hi\".encode(\"utf-16\")) == \"utf-16\"\n+    assert detect_encoding(\"hi\".encode(\"utf-16-be\").join([b\"\\xfe\\xff\", b\"\"])) == \"utf-16\"\n+    with pytest.raises(ValueError):\n+        detect_encoding(b\"\\x80\\x81\")\ndiff --git a/textkit/__init__.py b/textkit/__init__.py\nindex 6e547d8..598b1ae 100644\n--- a/textkit/__init__.py\n+++ b/textkit/__init__.py\n@@ -1,4 +1,4 @@\n \"\"\"Small text helpers.\"\"\"\n-from .core import count_words, slug, title_case, truncate, wrap\n+from .core import count_words, detect_encoding, slug, title_case, truncate, wrap\n \n-__all__ = [\"count_words\", \"slug\", \"title_case\", \"truncate\", \"wrap\"]\n+__all__ = [\"count_words\", \"detect_encoding\", \"slug\", \"title_case\", \"truncate\", \"wrap\"]\ndiff --git a/textkit/core.py b/textkit/core.py\nindex 766a06c..8ca9630 100644\n--- a/textkit/core.py\n+++ b/textkit/core.py\n@@ -25,3 +25,16 @@ def title_case(text: str) -> str:\n \n def count_words(text: str) -> int:\n     return len(text.split())\n+\n+\n+def detect_encoding(data: bytes) -> str:\n+    \"\"\"Return 'utf-16' for data starting with a UTF-16 byte order mark, and\n+    'utf-8' for UTF-8 text (with or without a BOM). Raises ValueError for\n+    anything else.\"\"\"\n+    if data.startswith((b\"\\xff\\xfe\", b\"\\xfe\\xff\")):\n+        return \"utf-16\"\n+    try:\n+        data.decode(\"utf-8\")\n+    except UnicodeDecodeError as exc:\n+        raise ValueError(\"data is neither UTF-8 nor UTF-16 with a BOM\") from exc\n+    return \"utf-8\"\n"
+}

@@ -1,0 +1,16 @@
+{
+ "issue": "textkit-t3",
+ "repo": "textkit",
+ "phase": "test",
+ "arm": "with",
+ "files": [
+  "tests/test_core.py",
+  "textkit/core.py"
+ ],
+ "extras": [],
+ "recurred": [],
+ "check": {
+  "result": "pass"
+ },
+ "diff": "diff --git a/tests/test_core.py b/tests/test_core.py\nindex bdf9181..493b7ce 100644\n--- a/tests/test_core.py\n+++ b/tests/test_core.py\n@@ -8,6 +8,8 @@ def test_slug():\n def test_truncate():\n     assert truncate(\"abcdef\", 4) == \"abc…\"\n     assert truncate(\"abc\", 4) == \"abc\"\n+    assert truncate(\"hello wonderful world\", 12) == \"hello…\"\n+    assert truncate(\"hello world foo\", 12) == \"hello world…\"\n \n \n def test_title_case():\ndiff --git a/textkit/core.py b/textkit/core.py\nindex 766a06c..982215a 100644\n--- a/textkit/core.py\n+++ b/textkit/core.py\n@@ -15,8 +15,18 @@ def wrap(text: str, width: int = 72) -> str:\n \n \n def truncate(text: str, n: int) -> str:\n-    \"\"\"Cut to at most n characters, ending with an ellipsis when cut.\"\"\"\n-    return text if len(text) <= n else text[: n - 1] + \"…\"\n+    \"\"\"Cut to at most n characters at a word boundary, ending with an ellipsis.\n+\n+    A single word longer than the limit is still cut mid-word.\n+    \"\"\"\n+    if len(text) <= n:\n+        return text\n+    head = text[: n - 1]\n+    if not text[n - 1].isspace():\n+        cut = head.rfind(\" \")\n+        if cut > 0:\n+            head = head[:cut]\n+    return head.rstrip() + \"…\"\n \n \n def title_case(text: str) -> str:\n"
+}

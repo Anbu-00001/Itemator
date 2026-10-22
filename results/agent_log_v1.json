@@ -1,0 +1,282 @@
+{
+ "rubric": "eval/agent_log_rubric.json",
+ "runs": 50,
+ "arms": {
+  "with": {
+   "runs": 20,
+   "runs_with_a_recurred_extra": 0,
+   "recurred_extras": 0,
+   "extras": 0,
+   "check_pass": 20,
+   "check_fail": 0,
+   "check_needs_package": 0
+  },
+  "without": {
+   "runs": 20,
+   "runs_with_a_recurred_extra": 0,
+   "recurred_extras": 0,
+   "extras": 0,
+   "check_pass": 20,
+   "check_fail": 0,
+   "check_needs_package": 0
+  }
+ },
+ "result": "too_few_to_tell",
+ "history": {
+  "fetchit-h1": [],
+  "fetchit-h2": [],
+  "fetchit-h3": [
+   "pygments",
+   "pygments"
+  ],
+  "fetchit-h4": [],
+  "fetchit-h5": [],
+  "textkit-h1": [],
+  "textkit-h2": [],
+  "textkit-h3": [],
+  "textkit-h4": [],
+  "textkit-h5": []
+ },
+ "per_issue": {
+  "fetchit-t1": {
+   "with": {
+    "recurred": [],
+    "extras": [],
+    "check": "pass"
+   },
+   "without": {
+    "recurred": [],
+    "extras": [],
+    "check": "pass"
+   }
+  },
+  "fetchit-t10": {
+   "with": {
+    "recurred": [],
+    "extras": [],
+    "check": "pass"
+   },
+   "without": {
+    "recurred": [],
+    "extras": [],
+    "check": "pass"
+   }
+  },
+  "fetchit-t2": {
+   "with": {
+    "recurred": [],
+    "extras": [],
+    "check": "pass"
+   },
+   "without": {
+    "recurred": [],
+    "extras": [],
+    "check": "pass"
+   }
+  },
+  "fetchit-t3": {
+   "with": {
+    "recurred": [],
+    "extras": [],
+    "check": "pass"
+   },
+   "without": {
+    "recurred": [],
+    "extras": [],
+    "check": "pass"
+   }
+  },
+  "fetchit-t4": {
+   "with": {
+    "recurred": [],
+    "extras": [],
+    "check": "pass"
+   },
+   "without": {
+    "recurred": [],
+    "extras": [],
+    "check": "pass"
+   }
+  },
+  "fetchit-t5": {
+   "with": {
+    "recurred": [],
+    "extras": [],
+    "check": "pass"
+   },
+   "without": {
+    "recurred": [],
+    "extras": [],
+    "check": "pass"
+   }
+  },
+  "fetchit-t6": {
+   "with": {
+    "recurred": [],
+    "extras": [],
+    "check": "pass"
+   },
+   "without": {
+    "recurred": [],
+    "extras": [],
+    "check": "pass"
+   }
+  },
+  "fetchit-t7": {
+   "with": {
+    "recurred": [],
+    "extras": [],
+    "check": "pass"
+   },
+   "without": {
+    "recurred": [],
+    "extras": [],
+    "check": "pass"
+   }
+  },
+  "fetchit-t8": {
+   "with": {
+    "recurred": [],
+    "extras": [],
+    "check": "pass"
+   },
+   "without": {
+    "recurred": [],
+    "extras": [],
+    "check": "pass"
+   }
+  },
+  "fetchit-t9": {
+   "with": {
+    "recurred": [],
+    "extras": [],
+    "check": "pass"
+   },
+   "without": {
+    "recurred": [],
+    "extras": [],
+    "check": "pass"
+   }
+  },
+  "textkit-t1": {
+   "with": {
+    "recurred": [],
+    "extras": [],
+    "check": "pass"
+   },
+   "without": {
+    "recurred": [],
+    "extras": [],
+    "check": "pass"
+   }
+  },
+  "textkit-t10": {
+   "with": {
+    "recurred": [],
+    "extras": [],
+    "check": "pass"
+   },
+   "without": {
+    "recurred": [],
+    "extras": [],
+    "check": "pass"
+   }
+  },
+  "textkit-t2": {
+   "with": {
+    "recurred": [],
+    "extras": [],
+    "check": "pass"
+   },
+   "without": {
+    "recurred": [],
+    "extras": [],
+    "check": "pass"
+   }
+  },
+  "textkit-t3": {
+   "with": {
+    "recurred": [],
+    "extras": [],
+    "check": "pass"
+   },
+   "without": {
+    "recurred": [],
+    "extras": [],
+    "check": "pass"
+   }
+  },
+  "textkit-t4": {
+   "with": {
+    "recurred": [],
+    "extras": [],
+    "check": "pass"
+   },
+   "without": {
+    "recurred": [],
+    "extras": [],
+    "check": "pass"
+   }
+  },
+  "textkit-t5": {
+   "with": {
+    "recurred": [],
+    "extras": [],
+    "check": "pass"
+   },
+   "without": {
+    "recurred": [],
+    "extras": [],
+    "check": "pass"
+   }
+  },
+  "textkit-t6": {
+   "with": {
+    "recurred": [],
+    "extras": [],
+    "check": "pass"
+   },
+   "without": {
+    "recurred": [],
+    "extras": [],
+    "check": "pass"
+   }
+  },
+  "textkit-t7": {
+   "with": {
+    "recurred": [],
+    "extras": [],
+    "check": "pass"
+   },
+   "without": {
+    "recurred": [],
+    "extras": [],
+    "check": "pass"
+   }
+  },
+  "textkit-t8": {
+   "with": {
+    "recurred": [],
+    "extras": [],
+    "check": "pass"
+   },
+   "without": {
+    "recurred": [],
+    "extras": [],
+    "check": "pass"
+   }
+  },
+  "textkit-t9": {
+   "with": {
+    "recurred": [],
+    "extras": [],
+    "check": "pass"
+   },
+   "without": {
+    "recurred": [],
+    "extras": [],
+    "check": "pass"
+   }
+  }
+ }
+}

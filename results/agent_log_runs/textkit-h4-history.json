@@ -1,0 +1,17 @@
+{
+ "issue": "textkit-h4",
+ "repo": "textkit",
+ "phase": "history",
+ "arm": "history",
+ "files": [
+  "README.md",
+  "tests/test_core.py",
+  "textkit/__main__.py"
+ ],
+ "extras": [],
+ "recurred": [],
+ "check": {
+  "result": null
+ },
+ "diff": "diff --git a/README.md b/README.md\nindex 69c02f1..82002d7 100644\n--- a/README.md\n+++ b/README.md\n@@ -3,3 +3,4 @@\n Small text helpers: `slug`, `wrap`, `truncate`, `title_case`, `count_words`.\n \n     python -m textkit slug \"Hello, World!\"\n+    python -m textkit wrap --width 40 \"some text\"\ndiff --git a/tests/test_core.py b/tests/test_core.py\nindex bdf9181..7d6b3b4 100644\n--- a/tests/test_core.py\n+++ b/tests/test_core.py\n@@ -16,3 +16,10 @@ def test_title_case():\n \n def test_count_words():\n     assert count_words(\"one two  three\") == 3\n+\n+\n+def test_cli_wrap(capsys):\n+    from textkit.__main__ import main\n+\n+    assert main([\"wrap\", \"--width\", \"10\", \"aaa bbb ccc ddd\"]) == 0\n+    assert capsys.readouterr().out == \"aaa bbb\\nccc ddd\\n\"\ndiff --git a/textkit/__main__.py b/textkit/__main__.py\nindex a9645b1..8888066 100644\n--- a/textkit/__main__.py\n+++ b/textkit/__main__.py\n@@ -1,6 +1,6 @@\n import argparse\n \n-from .core import slug\n+from .core import slug, wrap\n \n \n def main(argv=None) -> int:\n@@ -8,9 +8,14 @@ def main(argv=None) -> int:\n     sub = ap.add_subparsers(dest=\"cmd\", required=True)\n     s = sub.add_parser(\"slug\")\n     s.add_argument(\"text\")\n+    w = sub.add_parser(\"wrap\")\n+    w.add_argument(\"--width\", type=int, default=72)\n+    w.add_argument(\"text\")\n     a = ap.parse_args(argv)\n     if a.cmd == \"slug\":\n         print(slug(a.text))\n+    elif a.cmd == \"wrap\":\n+        print(wrap(a.text, a.width))\n     return 0\n \n \n"
+}

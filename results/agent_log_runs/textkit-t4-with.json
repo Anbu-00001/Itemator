@@ -1,0 +1,16 @@
+{
+ "issue": "textkit-t4",
+ "repo": "textkit",
+ "phase": "test",
+ "arm": "with",
+ "files": [
+  "README.md",
+  "textkit/__main__.py"
+ ],
+ "extras": [],
+ "recurred": [],
+ "check": {
+  "result": "pass"
+ },
+ "diff": "diff --git a/README.md b/README.md\nindex 69c02f1..4f465da 100644\n--- a/README.md\n+++ b/README.md\n@@ -3,3 +3,4 @@\n Small text helpers: `slug`, `wrap`, `truncate`, `title_case`, `count_words`.\n \n     python -m textkit slug \"Hello, World!\"\n+    python -m textkit title \"hello world\"\ndiff --git a/textkit/__main__.py b/textkit/__main__.py\nindex a9645b1..e857a2a 100644\n--- a/textkit/__main__.py\n+++ b/textkit/__main__.py\n@@ -1,6 +1,6 @@\n import argparse\n \n-from .core import slug\n+from .core import slug, title_case\n \n \n def main(argv=None) -> int:\n@@ -8,9 +8,13 @@ def main(argv=None) -> int:\n     sub = ap.add_subparsers(dest=\"cmd\", required=True)\n     s = sub.add_parser(\"slug\")\n     s.add_argument(\"text\")\n+    t = sub.add_parser(\"title\")\n+    t.add_argument(\"text\")\n     a = ap.parse_args(argv)\n     if a.cmd == \"slug\":\n         print(slug(a.text))\n+    elif a.cmd == \"title\":\n+        print(title_case(a.text))\n     return 0\n \n \n"
+}

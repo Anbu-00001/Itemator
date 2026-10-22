@@ -534,7 +534,8 @@ _LABEL = {"new_dependency": "new dependency", "ci_or_config": "config change", "
           "outside_scope": "outside the issue's scope", "tests_weakened": "tests weakened", "git_hook": "git hook",
           "whitespace_only": "whitespace only"}
 _LABEL[OTHER.KIND] = "named by another checker"
-_UNIT = {"new_dependency": "packages"}      # what a grouped extra's detail lists when it is not files
+_LABEL["too_wide"] = "too wide"
+_UNIT = {"new_dependency": "packages", "too_wide": "files"}      # what a grouped extra's detail lists when it is not files
 
 
 def _label(e) -> str:
@@ -586,6 +587,36 @@ def group_extras(extras: list) -> list:
     return out
 
 
+WIDE = 10           # listed files past which the card asks one question instead of one per file: the cut of the forward
+                    # test's amendment 2 (eval/prospective_rubric.json), where a listed file drew an objection 5.2 times as
+                    # often as an unlisted one, against 0.3 times over all pull requests (results/aidev_lift_v6.json)
+WIDE_SHOWN = 20     # file names written into the one thread; the rest are counted
+
+
+def listed_files(extras: list, files: list[dict]) -> list[str]:
+    """The diff's files that an extra names: by its path, by a directory (ending in /) that holds them, or in its
+    detail list. The same test as eval/aidev_recall.listed, which the forward test counts with."""
+    names = {n for e in extras for n in (e.path, *(d for d in (e.detail or ()) if isinstance(d, str))) if n}
+    dirs = tuple(n for n in names if n.endswith("/"))
+    return [f["filename"] for f in files if f["filename"] in names or f["filename"].startswith(dirs)]
+
+
+def wide(kept: list, files: list[dict]):
+    """((extra, items), None) standing for every kept extra when there are two or more and they name more than WIDE
+    files, or None. A single extra, a mass event too, is already one question. The rules and their extras are
+    unchanged; only the card asks once: keep all of them by name, or split the merge request."""
+    if len(kept) < 2:
+        return None
+    items = tuple(i for (e, its), _ in kept for i in (its or (e,)))
+    paths = listed_files(items, files)
+    if len(paths) <= WIDE:
+        return None
+    shown = ", ".join(paths[:WIDE_SHOWN]) + (f", and {len(paths) - WIDE_SHOWN} more" if len(paths) > WIDE_SHOWN else "")
+    why = (f"{len(paths)} files beyond the issue, more than {WIDE} to ask about one by one: {shown}. "
+           "In smaller merge requests each file gets its own thread")
+    return (X.Extra("too_wide", paths[0], f"all-{len(paths)}-files", why, tuple(paths)), items), None
+
+
 def card_lines(state: str, issues: list[dict], extras: list, unplaced: list, injection: list,
                author_wrote: bool = False, notes: tuple = ()) -> dict:
     """`notes` (T20): more visible sentences for the caveat line (where the checker came from, the team policy)."""
@@ -594,6 +625,10 @@ def card_lines(state: str, issues: list[dict], extras: list, unplaced: list, inj
         final, todo = "No one described this change.", "Link the issue it answers, or say why it needs none."
     elif state == "author_wrote_issue":
         final, todo = AUTHOR_CAVEAT, f"A second person reads {refs} before approving."
+    elif state == "extras" and len(extras) == 1 and extras[0].kind == "too_wide":
+        final = f"{len(extras[0].detail)} files beyond {refs}, too many to ask about one by one."
+        todo = (f"{WELCOME} Split this merge request into smaller ones, or type {_code(extras[0].name)} in its thread "
+                f"to keep every one. {CONSENT}")
     elif state == "extras":
         names = ", ".join(f"{_code(e.name)} ({_label(e)})" for e in extras)
         final = f"{len(extras)} {'thing' if len(extras) == 1 else 'things'} beyond {refs}: {names}."
@@ -999,6 +1034,9 @@ def facts(*, mr_iid: int, mr_title: str, mr_description: str, mr_author_id, issu
                      cut=description_cut)             # T35: the extras the description does not mention come first
     ranked = sorted(zip(said, kept), key=lambda p: p[0] != SAID.SILENT)
     said, kept = [s for s, _ in ranked], [k for _, k in ranked]
+    w = wide(kept, files)
+    if w:
+        kept, said = [w], [None]
     injection = scan_injection(mr_title, mr_description, issues, files)
     other = bool(policy and policy.other_person_required)
     always = always_allowed(policy.to_dict() if policy else None)       # T40

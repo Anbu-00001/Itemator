@@ -1,0 +1,18 @@
+{
+ "issue": "textkit-t9",
+ "repo": "textkit",
+ "phase": "test",
+ "arm": "with",
+ "files": [
+  "README.md",
+  "tests/test_core.py",
+  "textkit/__init__.py",
+  "textkit/core.py"
+ ],
+ "extras": [],
+ "recurred": [],
+ "check": {
+  "result": "pass"
+ },
+ "diff": "diff --git a/README.md b/README.md\nindex 69c02f1..d539e04 100644\n--- a/README.md\n+++ b/README.md\n@@ -1,5 +1,5 @@\n # textkit\n \n-Small text helpers: `slug`, `wrap`, `truncate`, `title_case`, `count_words`.\n+Small text helpers: `slug`, `wrap`, `truncate`, `title_case`, `count_words`, `strip_markdown`.\n \n     python -m textkit slug \"Hello, World!\"\ndiff --git a/tests/test_core.py b/tests/test_core.py\nindex bdf9181..f1b4fb2 100644\n--- a/tests/test_core.py\n+++ b/tests/test_core.py\n@@ -1,4 +1,4 @@\n-from textkit import count_words, slug, title_case, truncate\n+from textkit import count_words, slug, strip_markdown, title_case, truncate\n \n \n def test_slug():\n@@ -16,3 +16,8 @@ def test_title_case():\n \n def test_count_words():\n     assert count_words(\"one two  three\") == 3\n+\n+\n+def test_strip_markdown():\n+    assert strip_markdown(\"**bold** and _it_ and `code`\") == \"bold and it and code\"\n+    assert strip_markdown(\"*a* and __b__ and snake_case_name\") == \"a and b and snake_case_name\"\ndiff --git a/textkit/__init__.py b/textkit/__init__.py\nindex 6e547d8..84521ad 100644\n--- a/textkit/__init__.py\n+++ b/textkit/__init__.py\n@@ -1,4 +1,4 @@\n \"\"\"Small text helpers.\"\"\"\n-from .core import count_words, slug, title_case, truncate, wrap\n+from .core import count_words, slug, strip_markdown, title_case, truncate, wrap\n \n-__all__ = [\"count_words\", \"slug\", \"title_case\", \"truncate\", \"wrap\"]\n+__all__ = [\"count_words\", \"slug\", \"strip_markdown\", \"title_case\", \"truncate\", \"wrap\"]\ndiff --git a/textkit/core.py b/textkit/core.py\nindex 766a06c..cf40191 100644\n--- a/textkit/core.py\n+++ b/textkit/core.py\n@@ -2,6 +2,10 @@ import re\n import textwrap\n \n _NON_WORD = re.compile(r\"[^A-Za-z0-9]+\")\n+_MD_CODE = re.compile(r\"`([^`]*)`\")\n+_MD_STRONG = re.compile(r\"(\\*\\*|__)(?=\\S)(.+?)(?<=\\S)\\1\")\n+_MD_EM_STAR = re.compile(r\"\\*(?=\\S)([^*]+?)(?<=\\S)\\*\")\n+_MD_EM_UNDER = re.compile(r\"(?<!\\w)_(?=\\S)([^_]+?)(?<=\\S)_(?!\\w)\")\n \n \n def slug(text: str) -> str:\n@@ -25,3 +29,11 @@ def title_case(text: str) -> str:\n \n def count_words(text: str) -> int:\n     return len(text.split())\n+\n+\n+def strip_markdown(text: str) -> str:\n+    \"\"\"'**bold** and _it_ and `code`' -> 'bold and it and code'.\"\"\"\n+    text = _MD_CODE.sub(r\"\\1\", text)\n+    text = _MD_STRONG.sub(r\"\\2\", text)\n+    text = _MD_EM_STAR.sub(r\"\\1\", text)\n+    return _MD_EM_UNDER.sub(r\"\\1\", text)\n"
+}

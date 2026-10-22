@@ -1,0 +1,18 @@
+{
+ "issue": "textkit-t2",
+ "repo": "textkit",
+ "phase": "test",
+ "arm": "with",
+ "files": [
+  "README.md",
+  "tests/test_core.py",
+  "textkit/__init__.py",
+  "textkit/core.py"
+ ],
+ "extras": [],
+ "recurred": [],
+ "check": {
+  "result": "pass"
+ },
+ "diff": "diff --git a/README.md b/README.md\nindex 69c02f1..a29d0b3 100644\n--- a/README.md\n+++ b/README.md\n@@ -1,5 +1,5 @@\n # textkit\n \n-Small text helpers: `slug`, `wrap`, `truncate`, `title_case`, `count_words`.\n+Small text helpers: `slug`, `wrap`, `truncate`, `title_case`, `count_words`, `sanitize_html`.\n \n     python -m textkit slug \"Hello, World!\"\ndiff --git a/tests/test_core.py b/tests/test_core.py\nindex bdf9181..ecccb01 100644\n--- a/tests/test_core.py\n+++ b/tests/test_core.py\n@@ -1,4 +1,4 @@\n-from textkit import count_words, slug, title_case, truncate\n+from textkit import count_words, sanitize_html, slug, title_case, truncate\n \n \n def test_slug():\n@@ -16,3 +16,10 @@ def test_title_case():\n \n def test_count_words():\n     assert count_words(\"one two  three\") == 3\n+\n+\n+def test_sanitize_html():\n+    assert sanitize_html(\"<b>x</b><script>y</script>\") == \"<b>x</b>y\"\n+    assert sanitize_html(\"<i>a</i> <a href='u'>b</a><br/>\") == \"<i>a</i> b\"\n+    assert sanitize_html('<b onclick=\"x()\">t</b>') == \"t</b>\"\n+    assert sanitize_html(\"plain 1 < 2\") == \"plain 1 < 2\"\ndiff --git a/textkit/__init__.py b/textkit/__init__.py\nindex 6e547d8..a2d610c 100644\n--- a/textkit/__init__.py\n+++ b/textkit/__init__.py\n@@ -1,4 +1,4 @@\n \"\"\"Small text helpers.\"\"\"\n-from .core import count_words, slug, title_case, truncate, wrap\n+from .core import count_words, sanitize_html, slug, title_case, truncate, wrap\n \n-__all__ = [\"count_words\", \"slug\", \"title_case\", \"truncate\", \"wrap\"]\n+__all__ = [\"count_words\", \"sanitize_html\", \"slug\", \"title_case\", \"truncate\", \"wrap\"]\ndiff --git a/textkit/core.py b/textkit/core.py\nindex 766a06c..636cfd6 100644\n--- a/textkit/core.py\n+++ b/textkit/core.py\n@@ -2,6 +2,7 @@ import re\n import textwrap\n \n _NON_WORD = re.compile(r\"[^A-Za-z0-9]+\")\n+_TAG = re.compile(r\"<(/?)([A-Za-z][^<>]*)?>|<!--.*?-->\", re.DOTALL)\n \n \n def slug(text: str) -> str:\n@@ -25,3 +26,13 @@ def title_case(text: str) -> str:\n \n def count_words(text: str) -> int:\n     return len(text.split())\n+\n+\n+def sanitize_html(text: str) -> str:\n+    \"\"\"Keep bare <b> and <i> tags, drop every other tag but keep its text.\"\"\"\n+\n+    def keep(m: re.Match) -> str:\n+        name = (m.group(2) or \"\").strip().lower()\n+        return m.group(0).lower() if name in (\"b\", \"i\") else \"\"\n+\n+    return _TAG.sub(keep, text)\n"
+}

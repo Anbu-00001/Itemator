@@ -1,0 +1,16 @@
+{
+ "issue": "textkit-h3",
+ "repo": "textkit",
+ "phase": "history",
+ "arm": "history",
+ "files": [
+  "tests/test_core.py",
+  "textkit/core.py"
+ ],
+ "extras": [],
+ "recurred": [],
+ "check": {
+  "result": null
+ },
+ "diff": "diff --git a/tests/test_core.py b/tests/test_core.py\nindex bdf9181..7b18508 100644\n--- a/tests/test_core.py\n+++ b/tests/test_core.py\n@@ -1,4 +1,4 @@\n-from textkit import count_words, slug, title_case, truncate\n+from textkit import count_words, slug, title_case, truncate, wrap\n \n \n def test_slug():\n@@ -16,3 +16,10 @@ def test_title_case():\n \n def test_count_words():\n     assert count_words(\"one two  three\") == 3\n+\n+\n+def test_wrap_keeps_url_whole():\n+    url = \"https://example.com/a-long-path/with-hyphens/and/more?x=1\"\n+    lines = wrap(f\"see {url} for more\", 20).split(\"\\n\")\n+    assert url in lines\n+    assert wrap(\"hello world foo\", 8) == \"hello\\nworld\\nfoo\"\ndiff --git a/textkit/core.py b/textkit/core.py\nindex 766a06c..1a6afcb 100644\n--- a/textkit/core.py\n+++ b/textkit/core.py\n@@ -10,8 +10,32 @@ def slug(text: str) -> str:\n     return \"-\".join(words).lower()\n \n \n+_URL = re.compile(r\"(?:https?|ftp)://\\S+\")\n+\n+\n+class _UrlSafeWrapper(textwrap.TextWrapper):\n+    \"\"\"TextWrapper that never splits a URL, even one longer than the width.\"\"\"\n+\n+    def _split(self, text):\n+        chunks, pos = [], 0\n+        for m in _URL.finditer(text):\n+            chunks += super()._split(text[pos : m.start()])\n+            chunks.append(m.group())\n+            pos = m.end()\n+        return chunks + super()._split(text[pos:])\n+\n+    def _handle_long_word(self, reversed_chunks, cur_line, cur_len, width):\n+        if _URL.fullmatch(reversed_chunks[-1]):\n+            # Keep the URL whole: put it on its own line if the current one has text.\n+            if not cur_line:\n+                cur_line.append(reversed_chunks.pop())\n+            return\n+        super()._handle_long_word(reversed_chunks, cur_line, cur_len, width)\n+\n+\n def wrap(text: str, width: int = 72) -> str:\n-    return \"\\n\".join(textwrap.wrap(text, width))\n+    \"\"\"Wrap text to width; a URL is never split, even if longer than width.\"\"\"\n+    return \"\\n\".join(_UrlSafeWrapper(width).wrap(text))\n \n \n def truncate(text: str, n: int) -> str:\n"
+}

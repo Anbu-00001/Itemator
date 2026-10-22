@@ -1,0 +1,12 @@
+[project]
+name = "fetchit"
+version = "0.2.0"
+description = "Fetch JSON from a URL"
+requires-python = ">=3.10"
+dependencies = []
+
+[project.scripts]
+fetchit = "fetchit.cli:main"
+
+[project.optional-dependencies]
+test = ["pytest"]

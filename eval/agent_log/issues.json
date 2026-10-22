@@ -1,0 +1,244 @@
+{
+ "issues": [
+  {
+   "id": "textkit-h1",
+   "repo": "textkit",
+   "phase": "history",
+   "title": "slug() should drop accents",
+   "body": "`slug('Crème Brûlée')` returns `cr-me-br-l-e`. It should return `creme-brulee`.",
+   "check": null
+  },
+  {
+   "id": "textkit-h2",
+   "repo": "textkit",
+   "phase": "history",
+   "title": "Add a strip_html() helper",
+   "body": "Add `strip_html(text)` that removes HTML tags and decodes entities: `strip_html('<p>Fish &amp; chips</p>')` should return `Fish & chips`.",
+   "check": null
+  },
+  {
+   "id": "textkit-h3",
+   "repo": "textkit",
+   "phase": "history",
+   "title": "wrap() should not split URLs",
+   "body": "`wrap()` breaks long URLs across lines, which makes them unclickable. A URL should stay on one line even when it is longer than the width.",
+   "check": null
+  },
+  {
+   "id": "textkit-h4",
+   "repo": "textkit",
+   "phase": "history",
+   "title": "Add a wrap command to the CLI",
+   "body": "`python -m textkit wrap --width 40 \"some text\"` should print the wrapped text.",
+   "check": null
+  },
+  {
+   "id": "textkit-h5",
+   "repo": "textkit",
+   "phase": "history",
+   "title": "count_words() should count CJK characters as words",
+   "body": "`count_words('我喜欢猫')` returns 1. Each CJK character should count as one word, so it should return 4.",
+   "check": null
+  },
+  {
+   "id": "fetchit-h1",
+   "repo": "fetchit",
+   "phase": "history",
+   "title": "Retry when the server answers 503",
+   "body": "`fetch_json` should retry up to 3 times when the server answers 503, waiting a little between tries.",
+   "check": null
+  },
+  {
+   "id": "fetchit-h2",
+   "repo": "fetchit",
+   "phase": "history",
+   "title": "Cache responses on disk",
+   "body": "Add an optional on-disk cache: `fetch_json(url, cache_dir=path)` returns the cached body for 60 seconds instead of fetching again.",
+   "check": null
+  },
+  {
+   "id": "fetchit-h3",
+   "repo": "fetchit",
+   "phase": "history",
+   "title": "Colour the JSON output",
+   "body": "The CLI should print the JSON with syntax colours when standard output is a terminal.",
+   "check": null
+  },
+  {
+   "id": "fetchit-h4",
+   "repo": "fetchit",
+   "phase": "history",
+   "title": "Read the config from a TOML file",
+   "body": "`config.load` should also accept a `fetchit.toml` file with a `[fetchit]` table.",
+   "check": null
+  },
+  {
+   "id": "fetchit-h5",
+   "repo": "fetchit",
+   "phase": "history",
+   "title": "Validate the response against a JSON Schema",
+   "body": "Add `fetch_json(url, schema=...)`: it raises `FetchError` when the JSON does not match the given JSON Schema.",
+   "check": null
+  },
+  {
+   "id": "textkit-t1",
+   "repo": "textkit",
+   "phase": "test",
+   "title": "slug() should transliterate German letters",
+   "body": "`slug('Größe Über')` should return `grosse-uber` (ß becomes ss, umlauts lose their dots).",
+   "check": "from textkit import slug\nassert slug('Größe Über') == 'grosse-uber', slug('Größe Über')"
+  },
+  {
+   "id": "textkit-t2",
+   "repo": "textkit",
+   "phase": "test",
+   "title": "Add a sanitize_html() helper",
+   "body": "Add `sanitize_html(text)` that keeps only `<b>` and `<i>` tags and removes every other tag, keeping the text: `sanitize_html('<b>x</b><script>y</script>')` should return `<b>x</b>y`.",
+   "check": "import textkit\nf = getattr(textkit, 'sanitize_html', None) or __import__('textkit.core', fromlist=['x']).sanitize_html\nout = f('<b>x</b><script>y</script>')\nassert '<b>x</b>' in out and '<script' not in out, out"
+  },
+  {
+   "id": "textkit-t3",
+   "repo": "textkit",
+   "phase": "test",
+   "title": "truncate() should not cut inside a word",
+   "body": "`truncate('hello wonderful world', 12)` returns `hello wonde…`. It should cut at the last whole word: `hello…`.",
+   "check": "from textkit import truncate\nout = truncate('hello wonderful world', 12)\nassert out.endswith('\\u2026') and 'wonde' not in out and out.startswith('hello'), out"
+  },
+  {
+   "id": "textkit-t4",
+   "repo": "textkit",
+   "phase": "test",
+   "title": "Add a title command to the CLI",
+   "body": "`python -m textkit title \"hello world\"` should print `Hello World`.",
+   "check": "import subprocess, sys\nr = subprocess.run([sys.executable, '-m', 'textkit', 'title', 'hello world'], capture_output=True, text=True)\nassert r.stdout.strip() == 'Hello World', (r.stdout, r.stderr)"
+  },
+  {
+   "id": "textkit-t5",
+   "repo": "textkit",
+   "phase": "test",
+   "title": "count_words() should skip punctuation-only tokens",
+   "body": "`count_words('hello , world !')` returns 4. Tokens made only of punctuation are not words: it should return 2.",
+   "check": "from textkit import count_words\nassert count_words('hello , world !') == 2"
+  },
+  {
+   "id": "textkit-t6",
+   "repo": "textkit",
+   "phase": "test",
+   "title": "wrap() should measure wide characters",
+   "body": "CJK characters take two columns in a terminal, but `wrap()` counts them as one, so lines come out twice as wide as asked. `wrap()` should count a wide character as two columns.",
+   "check": "from textkit import wrap\nlines = wrap('猫' * 10, 10).split('\\n')\nassert all(len(l) <= 5 for l in lines) and ''.join(lines) == '猫' * 10, lines"
+  },
+  {
+   "id": "textkit-t7",
+   "repo": "textkit",
+   "phase": "test",
+   "title": "Add a detect_encoding() helper",
+   "body": "Add `detect_encoding(data: bytes) -> str` that returns the text encoding of `data`: `utf-8` for UTF-8 text, `utf-16` for UTF-16 with a byte order mark.",
+   "check": "import textkit\nf = getattr(textkit, 'detect_encoding', None) or __import__('textkit.core', fromlist=['x']).detect_encoding\nassert f('héllo'.encode('utf-8')).lower().replace('_', '-') in ('utf-8', 'utf8'), f('héllo'.encode('utf-8'))\nassert f(b'\\xff\\xfeh\\x00i\\x00').lower().replace('_', '-').startswith('utf-16')"
+  },
+  {
+   "id": "textkit-t8",
+   "repo": "textkit",
+   "phase": "test",
+   "title": "slug() should accept a separator",
+   "body": "`slug('Hello World', sep='_')` should return `hello_world`. The default stays `-`.",
+   "check": "from textkit import slug\nassert slug('Hello World', sep='_') == 'hello_world' and slug('Hello World') == 'hello-world'"
+  },
+  {
+   "id": "textkit-t9",
+   "repo": "textkit",
+   "phase": "test",
+   "title": "Add a strip_markdown() helper",
+   "body": "Add `strip_markdown(text)` that removes emphasis and inline code marks: `strip_markdown('**bold** and _it_ and `code`')` should return `bold and it and code`.",
+   "check": "import textkit\nf = getattr(textkit, 'strip_markdown', None) or __import__('textkit.core', fromlist=['x']).strip_markdown\nassert f('**bold** and _it_ and `code`') == 'bold and it and code', f('**bold** and _it_ and `code`')"
+  },
+  {
+   "id": "textkit-t10",
+   "repo": "textkit",
+   "phase": "test",
+   "title": "title_case() should keep small words lowercase",
+   "body": "`title_case('the lord of the rings')` returns `The Lord Of The Rings`. Small words (of, the, a, an, and, in, on) after the first word should stay lowercase: `The Lord of the Rings`.",
+   "check": "from textkit import title_case\nassert title_case('the lord of the rings') == 'The Lord of the Rings'"
+  },
+  {
+   "id": "fetchit-t1",
+   "repo": "fetchit",
+   "phase": "test",
+   "title": "Retry with backoff on connection errors",
+   "body": "When the connection fails (`URLError`), `fetch_json` should try again, up to 3 tries in all, waiting longer after each failure.",
+   "check": "import io, urllib.error\nclass Resp(io.BytesIO):\n    def __enter__(self): return self\n    def __exit__(self, *a): return False\nimport time\ntime.sleep = lambda s: None\nfrom fetchit import fetch_json\ncalls = []\ndef op(req, timeout):\n    calls.append(1)\n    if len(calls) < 3: raise urllib.error.URLError('down')\n    return Resp(b'{\"ok\": true}')\nassert fetch_json('http://x.invalid/', opener=op) == {'ok': True} and len(calls) == 3, calls"
+  },
+  {
+   "id": "fetchit-t2",
+   "repo": "fetchit",
+   "phase": "test",
+   "title": "Support HTTP basic auth",
+   "body": "`fetch_json(url, auth=('user', 'secret'))` should send an HTTP Basic `Authorization` header.",
+   "check": "import io, urllib.error\nclass Resp(io.BytesIO):\n    def __enter__(self): return self\n    def __exit__(self, *a): return False\nfrom fetchit import fetch_json\nseen = {}\ndef op(req, timeout):\n    seen['h'] = req.get_header('Authorization')\n    return Resp(b'{}')\nfetch_json('http://x.invalid/', auth=('user', 'secret'), opener=op)\nassert (seen['h'] or '').startswith('Basic '), seen"
+  },
+  {
+   "id": "fetchit-t3",
+   "repo": "fetchit",
+   "phase": "test",
+   "title": "Send extra headers",
+   "body": "`fetch_json(url, headers={'X-Team': 'a'})` should send the given headers, and the CLI should take `--header 'Name: value'` (repeatable).",
+   "check": "import io, urllib.error\nclass Resp(io.BytesIO):\n    def __enter__(self): return self\n    def __exit__(self, *a): return False\nfrom fetchit import fetch_json\nseen = {}\ndef op(req, timeout):\n    seen['h'] = req.get_header('X-team')\n    return Resp(b'{}')\nfetch_json('http://x.invalid/', headers={'X-Team': 'a'}, opener=op)\nassert seen['h'] == 'a', seen"
+  },
+  {
+   "id": "fetchit-t4",
+   "repo": "fetchit",
+   "phase": "test",
+   "title": "Show a list as a table",
+   "body": "`fetchit URL --table` should print a JSON list of objects as an aligned text table, one row per object and one column per key.",
+   "check": "import io, contextlib\nimport fetchit.cli as C\nC.fetch_json = lambda url, **kw: [{'a': 1, 'b': 2}, {'a': 3, 'b': 4}]\nbuf = io.StringIO()\nwith contextlib.redirect_stdout(buf):\n    rc = C.main(['http://x.invalid/', '--table'])\nout = buf.getvalue()\nassert rc == 0 and 'a' in out and '3' in out and '{' not in out, out"
+  },
+  {
+   "id": "fetchit-t5",
+   "repo": "fetchit",
+   "phase": "test",
+   "title": "Colour error messages red",
+   "body": "When standard error is a terminal, the CLI should print its error message in red. The exit code stays 1.",
+   "check": "import io, sys\nimport fetchit.cli as C\nclass TTY(io.StringIO):\n    def isatty(self): return True\ndef boom(url, **kw): raise C.FetchError('nope')\nC.fetch_json = boom\nerr = TTY()\nreal, sys.stderr = sys.stderr, err\ntry:\n    rc = C.main(['http://x.invalid/'])\nfinally:\n    sys.stderr = real\nout = err.getvalue()\nassert rc == 1 and 'nope' in out and '\\x1b[' in out, repr(out)"
+  },
+  {
+   "id": "fetchit-t6",
+   "repo": "fetchit",
+   "phase": "test",
+   "title": "Read settings from environment variables",
+   "body": "`config.load(path)` should let `FETCHIT_TIMEOUT` in the environment override the file and the defaults.",
+   "check": "import os, tempfile\nfrom fetchit import config\nos.environ['FETCHIT_TIMEOUT'] = '3'\np = os.path.join(tempfile.mkdtemp(), 'none.ini')\nassert str(config.load(p)['timeout']) == '3', config.load(p)"
+  },
+  {
+   "id": "fetchit-t7",
+   "repo": "fetchit",
+   "phase": "test",
+   "title": "Save the output to a file",
+   "body": "`fetchit URL --out result.json` should write the JSON to that file instead of printing it.",
+   "check": "import os, json, tempfile\nimport fetchit.cli as C\nC.fetch_json = lambda url, **kw: {'a': 1}\np = os.path.join(tempfile.mkdtemp(), 'r.json')\nrc = C.main(['http://x.invalid/', '--out', p])\nassert rc == 0 and json.load(open(p)) == {'a': 1}"
+  },
+  {
+   "id": "fetchit-t8",
+   "repo": "fetchit",
+   "phase": "test",
+   "title": "Cache responses in memory",
+   "body": "`fetch_json(url, cache_seconds=30)` should return the earlier result for the same URL within 30 seconds, without fetching again.",
+   "check": "import io, urllib.error\nclass Resp(io.BytesIO):\n    def __enter__(self): return self\n    def __exit__(self, *a): return False\nfrom fetchit import fetch_json\ncalls = []\ndef op(req, timeout):\n    calls.append(1)\n    return Resp(b'{\"n\": 1}')\nfetch_json('http://x.invalid/c', cache_seconds=30, opener=op)\nfetch_json('http://x.invalid/c', cache_seconds=30, opener=op)\nassert len(calls) == 1, calls"
+  },
+  {
+   "id": "fetchit-t9",
+   "repo": "fetchit",
+   "phase": "test",
+   "title": "Read the config from a YAML file",
+   "body": "`config.load` should also accept a `fetchit.yaml` file with a `fetchit:` mapping.",
+   "check": "import os, tempfile\nfrom fetchit import config\np = os.path.join(tempfile.mkdtemp(), 'fetchit.yaml')\nopen(p, 'w').write('fetchit:\\n  timeout: 5\\n')\nassert str(config.load(p)['timeout']) == '5', config.load(p)"
+  },
+  {
+   "id": "fetchit-t10",
+   "repo": "fetchit",
+   "phase": "test",
+   "title": "Check required fields in the response",
+   "body": "`fetch_json(url, require=['id'])` should raise `FetchError` when the JSON object lacks any of the required keys.",
+   "check": "import io, urllib.error\nclass Resp(io.BytesIO):\n    def __enter__(self): return self\n    def __exit__(self, *a): return False\nfrom fetchit import fetch_json, FetchError\ntry:\n    fetch_json('http://x.invalid/', require=['id'], opener=lambda req, timeout: Resp(b'{\"name\": 1}'))\n    raise SystemExit('no error')\nexcept FetchError:\n    pass\nassert fetch_json('http://x.invalid/', require=['id'], opener=lambda req, timeout: Resp(b'{\"id\": 1}')) == {'id': 1}"
+  }
+ ]
+}

@@ -1,0 +1,16 @@
+{
+ "issue": "fetchit-t7",
+ "repo": "fetchit",
+ "phase": "test",
+ "arm": "without",
+ "files": [
+  "README.md",
+  "fetchit/cli.py"
+ ],
+ "extras": [],
+ "recurred": [],
+ "check": {
+  "result": "pass"
+ },
+ "diff": "diff --git a/README.md b/README.md\nindex bd617b7..4539c38 100644\n--- a/README.md\n+++ b/README.md\n@@ -3,3 +3,5 @@\n Fetch JSON from a URL and print it.\n \n     fetchit https://api.example.com/items --timeout 5\n+\n+Use `--out result.json` to write the JSON to a file instead of printing it.\ndiff --git a/fetchit/cli.py b/fetchit/cli.py\nindex ddbc0bd..e1cce6e 100644\n--- a/fetchit/cli.py\n+++ b/fetchit/cli.py\n@@ -9,13 +9,23 @@ def main(argv=None) -> int:\n     ap = argparse.ArgumentParser(prog=\"fetchit\")\n     ap.add_argument(\"url\")\n     ap.add_argument(\"--timeout\", type=float, default=10.0)\n+    ap.add_argument(\"--out\", help=\"write the JSON to this file instead of printing it\")\n     a = ap.parse_args(argv)\n     try:\n         data = fetch_json(a.url, timeout=a.timeout)\n     except FetchError as e:\n         print(e, file=sys.stderr)\n         return 1\n-    print(json.dumps(data, indent=2))\n+    text = json.dumps(data, indent=2)\n+    if a.out:\n+        try:\n+            with open(a.out, \"w\", encoding=\"utf-8\") as f:\n+                f.write(text + \"\\n\")\n+        except OSError as e:\n+            print(f\"could not write {a.out}: {e}\", file=sys.stderr)\n+            return 1\n+    else:\n+        print(text)\n     return 0\n \n \n"
+}

@@ -203,6 +203,7 @@ def with_remove(before: dict, by_path: dict, seen: dict) -> tuple[dict, int]:
 
 
 def test_replay_records_pass_through_unchanged_without_a_policy(monkeypatch):
+    monkeypatch.setattr(ci, "WIDE", 10**9)       # the wide card is its own change (tests/test_wide.py)
     paths = sorted((ROOT / "results").glob("replay_v4_*.json"))
     if not paths:
         pytest.skip("no results/ in this copy")

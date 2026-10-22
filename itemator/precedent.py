@@ -94,7 +94,7 @@ def _listed(refs: list[str], most: int = 3) -> str:
 
 def apply(report: dict, env: dict, mr_iid: int, get=fetch) -> int:
     """Add the sentence to each matching extra's thread and the fact to its plain_facts; returns how many matched."""
-    extras = report.get("extras") or []
+    extras = [e for e in report.get("extras") or [] if e.get("kind") != "too_wide"]   # its name is a count, not a file
     names = [e["name"] for e in extras]
     url = url_of(env) if extras else None
     found = find(get(url), names, mr_iid) if url else {}

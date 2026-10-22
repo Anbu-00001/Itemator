@@ -1,0 +1,16 @@
+{
+ "issue": "textkit-t10",
+ "repo": "textkit",
+ "phase": "test",
+ "arm": "with",
+ "files": [
+  "tests/test_core.py",
+  "textkit/core.py"
+ ],
+ "extras": [],
+ "recurred": [],
+ "check": {
+  "result": "pass"
+ },
+ "diff": "diff --git a/tests/test_core.py b/tests/test_core.py\nindex bdf9181..32ed0a6 100644\n--- a/tests/test_core.py\n+++ b/tests/test_core.py\n@@ -12,6 +12,8 @@ def test_truncate():\n \n def test_title_case():\n     assert title_case(\"hello world\") == \"Hello World\"\n+    assert title_case(\"the lord of the rings\") == \"The Lord of the Rings\"\n+    assert title_case(\"of mice and men\") == \"Of Mice and Men\"\n \n \n def test_count_words():\ndiff --git a/textkit/core.py b/textkit/core.py\nindex 766a06c..3976cb1 100644\n--- a/textkit/core.py\n+++ b/textkit/core.py\n@@ -19,8 +19,15 @@ def truncate(text: str, n: int) -> str:\n     return text if len(text) <= n else text[: n - 1] + \"…\"\n \n \n+_SMALL_WORDS = frozenset({\"of\", \"the\", \"a\", \"an\", \"and\", \"in\", \"on\"})\n+\n+\n def title_case(text: str) -> str:\n-    return \" \".join(w.capitalize() for w in text.split())\n+    \"\"\"'the lord of the rings' -> 'The Lord of the Rings'.\"\"\"\n+    return \" \".join(\n+        w.lower() if i and w.lower() in _SMALL_WORDS else w.capitalize()\n+        for i, w in enumerate(text.split())\n+    )\n \n \n def count_words(text: str) -> int:\n"
+}

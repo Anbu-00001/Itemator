@@ -1,0 +1,191 @@
+"""The reaction flow's answer tests, in code: which reply answers each extra thread, and who gave it.
+
+flows/itemator_react.yml steps 3 and 4 tell a model which reply counts: string tests, written as prose. This module runs
+the same tests on a merge request's discussions, so every answer the flow recorded can be checked against them
+afterwards: `python -m itemator.replycheck --project 87291130 --mr 278` (reads through `glab api`, GET only).
+The flow is not changed by this module and does not call it. Standard library only.
+"""
+from __future__ import annotations
+
+import argparse
+import json
+import re
+import subprocess
+import sys
+
+from itemator.decisions import CARD_BOT, REACT_BOT
+
+OTHER_ONLY = "A reply from the merge request author does not count."
+ALWAYS_OK = "To keep it and stop asking about this file, reply `always`; that opens a merge request that changes the team policy."
+ASKER_START, ASKER_END = "Only the person who wrote the linked issue (", ") can keep this."
+RECORDS = {"Kept:": "named", "Dismissed:": "dismissed", "Split:": "split", "Removed:": "remove"}
+REFUSALS = ("Cannot split:", "Split failed:", "Split partly done:", "Cannot remove:", "Remove failed:", "Remove partly done:",
+            "Cannot remember:", "Remember failed:")
+USER = re.compile(r"@([A-Za-z0-9_.-]+)")
+BOT_MENTION = re.compile(r"@ai-itemator-[A-Za-z0-9_.-]*")
+
+
+def _trim(s: str, ends: str = ".") -> str:
+    s = s.strip()
+    return s[:-1] if s and s[-1] in ends else s
+
+
+def t1(body: str) -> str:
+    return _trim((body or "").split("\n", 1)[0].replace("`", ""))
+
+
+def t2(body: str) -> str:
+    return _trim(USER.sub("", t1(body))).strip().lower()
+
+
+def name_of(first: str) -> tuple[str, str] | None:
+    """(NAME, the text after the backtick that closes it) from a thread's first note, or None."""
+    lines = first.split("\n")
+    if lines and lines[0].startswith("(Not attached"):
+        lines = lines[1:]
+    m = re.search(r"`([^`]*)`", "\n".join(lines))
+    return (m.group(1), "\n".join(lines)[m.end():]) if m else None
+
+
+def askers(after: str) -> list | None:
+    """The usernames an ASKER_ONLY thread names, [] when the list cannot be read, None when the thread is not ASKER_ONLY."""
+    if ASKER_START not in after:
+        return None
+    part = after[after.rindex(ASKER_START) + len(ASKER_START):]
+    if ASKER_END not in part:
+        return []
+    names = part[:part.index(ASKER_END)].split(" or ")
+    if not all(re.fullmatch(r"@[A-Za-z0-9_.-]+", n) for n in names):
+        return []
+    return [n[1:] for n in names]
+
+
+def threads(discussions: list, card_bot: str = CARD_BOT) -> list[dict]:
+    """Step 3: the extra threads, with the flags their first note sets."""
+    out = []
+    for d in discussions:
+        notes = d.get("notes") or []
+        if not notes:
+            continue
+        f = notes[0]
+        if f["author"]["username"] != card_bot or "reply with its exact name" not in (f.get("body") or ""):
+            continue
+        got = name_of(f["body"])
+        if not got:
+            continue
+        name, after = got
+        out.append({"id": d["id"], "name": name, "notes": notes, "other_only": OTHER_ONLY in after,
+                    "always_ok": ALWAYS_OK in after, "askers": askers(after)})
+    return out
+
+
+def card_of(discussions: list, card_bot: str = CARD_BOT) -> list:
+    for d in discussions:
+        notes = d.get("notes") or []
+        if notes and notes[0]["author"]["username"] == card_bot and " beyond " in (notes[0].get("body") or "") \
+                and "reply with its exact name" not in notes[0]["body"]:
+            return notes
+    return []
+
+
+def _replies(notes: list, is_person, author: str, other_only: bool, before: str | None, bots: tuple) -> list:
+    return [n for n in notes[1:] if n["author"]["username"] not in bots and not n.get("system")
+            and is_person(n["author"]["id"]) and not (other_only and n["author"]["username"] == author)
+            and (before is None or n["created_at"] < before)]
+
+
+def record(th: dict, react_bot: str = REACT_BOT) -> dict | None:
+    """The first note the flow wrote that settles this thread: {"answer", "who", "note"}."""
+    for n in th["notes"][1:]:
+        if n["author"]["username"] != react_bot:
+            continue
+        for start, kind in RECORDS.items():
+            if (n.get("body") or "").startswith(start):
+                line = n["body"].split("\n", 1)[0]
+                cut = max(line.rfind("by @"), line.rfind("said @"))
+                m = USER.match(line[line.index("@", cut):]) if cut >= 0 else None
+                who = m.group(1).rstrip(".") if m else None
+                return {"answer": kind, "who": who, "note": n["id"], "at": n["created_at"]}
+    return None
+
+
+def answer(th: dict, card: list, author: str, crew: set, is_person, before: str | None = None,
+           bots: tuple = (CARD_BOT, REACT_BOT)) -> dict | None:
+    """Step 4: the reply that answers this thread, judged on the notes written before `before` (the flow's record)."""
+    name, asks = th["name"], th["askers"]
+    ok_asker = (lambda u: asks is None or u in asks)
+    refusals = [n["created_at"] for n in th["notes"][1:] if n["author"]["username"] == bots[1]
+                and (n.get("body") or "").startswith(REFUSALS) and (before is None or n["created_at"] < before)]
+    last_refusal = max(refusals) if refusals else ""
+    for n in _replies(th["notes"], is_person, author, th["other_only"], before, bots):
+        u, a, b = n["author"]["username"], t1(n["body"]), t2(n["body"])
+        later = n["created_at"] > last_refusal
+        if (a == name or BOT_MENTION.sub("", a).strip() == name) and ok_asker(u):
+            return {"answer": "named", "who": u, "note": n["id"]}
+        if b == "not an extra" and ok_asker(u):
+            return {"answer": "dismissed", "who": u, "note": n["id"]}
+        for word in ("split", "remove"):
+            if b == word and b != name.lower() and u in crew and later:
+                return {"answer": word, "who": u, "note": n["id"]}
+        if th["always_ok"] and b == "always" and b != name.lower() and u in crew and ok_asker(u) and later:
+            return {"answer": "named", "who": u, "note": n["id"], "always": True}
+    for n in _replies(card, is_person, author, th["other_only"], before, bots):
+        if not ok_asker(n["author"]["username"]):
+            continue
+        for line in (n.get("body") or "").split("\n"):
+            if _trim(BOT_MENTION.sub("", line.replace("`", "")), ".,").strip() == name:
+                return {"answer": "named", "who": n["author"]["username"], "note": n["id"], "from_card": True}
+    return None
+
+
+def audit(mr: dict, discussions: list, is_person, bots: tuple = (CARD_BOT, REACT_BOT)) -> list[dict]:
+    """For each extra (threads with one NAME are one extra): what the tests give, what the flow recorded, and whether
+    they agree. `agree` is None while neither has an answer."""
+    author = mr["author"]["username"]
+    crew = {author} | {p["username"] for p in (mr.get("assignees") or []) + (mr.get("reviewers") or [])}
+    card, rows, by_name = card_of(discussions, bots[0]), [], {}
+    for th in threads(discussions, bots[0]):
+        by_name.setdefault(th["name"], []).append(th)
+    for name, ths in by_name.items():
+        rec = next((r for r in (record(t, bots[1]) for t in ths) if r), None)
+        want = next((a for a in (answer(t, card, author, crew, is_person, rec["at"] if rec else None, bots) for t in ths) if a), None)
+        if rec and want:
+            agree = rec["answer"] == want["answer"] and rec["who"] == want["who"]
+        elif rec or want:
+            agree = False
+        else:
+            agree = None
+        rows.append({"name": name, "threads": len(ths), "recorded": rec, "tests": want, "agree": agree})
+    return rows
+
+
+def glab(path: str):
+    return json.loads(subprocess.run(["glab", "api", path], capture_output=True, text=True, check=True).stdout)
+
+
+def main(argv=None) -> int:
+    ap = argparse.ArgumentParser(prog="itemator.replycheck", description=(__doc__ or "").split("\n\n")[0])
+    ap.add_argument("--project", required=True)
+    ap.add_argument("--mr", type=int, action="append", required=True)
+    a = ap.parse_args(argv)
+    people: dict = {}
+
+    def is_person(uid):
+        if uid not in people:
+            try:
+                people[uid] = glab(f"users/{uid}").get("bot") is False
+            except Exception:
+                people[uid] = False
+        return people[uid]
+
+    out = []
+    for iid in a.mr:
+        mr = glab(f"projects/{a.project}/merge_requests/{iid}")
+        ds = glab(f"projects/{a.project}/merge_requests/{iid}/discussions?per_page=100")
+        out.append({"project": a.project, "mr": iid, "extras": audit(mr, ds, is_person)})
+    print(json.dumps(out, indent=1))
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

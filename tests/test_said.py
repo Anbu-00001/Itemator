@@ -374,6 +374,7 @@ def test_unmentioned_extras_come_first_on_the_card_and_in_the_threads(monkeypatc
 # ---- the committed replay records: the facts are what they were, the field and the sentence aside
 
 def test_replay_records_pass_through_unchanged_apart_from_the_sentence(monkeypatch):
+    monkeypatch.setattr(ci, "WIDE", 10**9)       # the wide card is its own change (tests/test_wide.py)
     from test_checker_job import cached_files
     paths = sorted((ROOT / "results").glob("replay_v4_*.json"))
     if not paths:

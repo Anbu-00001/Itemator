@@ -1,0 +1,16 @@
+{
+ "issue": "textkit-t5",
+ "repo": "textkit",
+ "phase": "test",
+ "arm": "without",
+ "files": [
+  "tests/test_core.py",
+  "textkit/core.py"
+ ],
+ "extras": [],
+ "recurred": [],
+ "check": {
+  "result": "pass"
+ },
+ "diff": "diff --git a/tests/test_core.py b/tests/test_core.py\nindex bdf9181..c58cee3 100644\n--- a/tests/test_core.py\n+++ b/tests/test_core.py\n@@ -16,3 +16,8 @@ def test_title_case():\n \n def test_count_words():\n     assert count_words(\"one two  three\") == 3\n+\n+\n+def test_count_words_skips_punctuation_only_tokens():\n+    assert count_words(\"hello , world !\") == 2\n+    assert count_words(\"well-known, yes\") == 2\ndiff --git a/textkit/core.py b/textkit/core.py\nindex 766a06c..8dc9bd8 100644\n--- a/textkit/core.py\n+++ b/textkit/core.py\n@@ -24,4 +24,5 @@ def title_case(text: str) -> str:\n \n \n def count_words(text: str) -> int:\n-    return len(text.split())\n+    \"\"\"Count whitespace-separated tokens, skipping punctuation-only ones.\"\"\"\n+    return sum(1 for t in text.split() if any(c.isalnum() for c in t))\n"
+}

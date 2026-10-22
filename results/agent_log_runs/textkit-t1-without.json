@@ -1,0 +1,16 @@
+{
+ "issue": "textkit-t1",
+ "repo": "textkit",
+ "phase": "test",
+ "arm": "without",
+ "files": [
+  "tests/test_core.py",
+  "textkit/core.py"
+ ],
+ "extras": [],
+ "recurred": [],
+ "check": {
+  "result": "pass"
+ },
+ "diff": "diff --git a/tests/test_core.py b/tests/test_core.py\nindex bdf9181..af5d060 100644\n--- a/tests/test_core.py\n+++ b/tests/test_core.py\n@@ -5,6 +5,10 @@ def test_slug():\n     assert slug(\"Hello, World!\") == \"hello-world\"\n \n \n+def test_slug_german():\n+    assert slug(\"Größe Über\") == \"grosse-uber\"\n+\n+\n def test_truncate():\n     assert truncate(\"abcdef\", 4) == \"abc…\"\n     assert truncate(\"abc\", 4) == \"abc\"\ndiff --git a/textkit/core.py b/textkit/core.py\nindex 766a06c..4238efe 100644\n--- a/textkit/core.py\n+++ b/textkit/core.py\n@@ -2,11 +2,14 @@ import re\n import textwrap\n \n _NON_WORD = re.compile(r\"[^A-Za-z0-9]+\")\n+_GERMAN = str.maketrans(\n+    {\"ß\": \"ss\", \"ẞ\": \"SS\", \"ä\": \"a\", \"ö\": \"o\", \"ü\": \"u\", \"Ä\": \"A\", \"Ö\": \"O\", \"Ü\": \"U\"}\n+)\n \n \n def slug(text: str) -> str:\n-    \"\"\"'Hello, World!' -> 'hello-world'.\"\"\"\n-    words = [w for w in _NON_WORD.split(text) if w]\n+    \"\"\"'Hello, World!' -> 'hello-world'; 'Größe Über' -> 'grosse-uber'.\"\"\"\n+    words = [w for w in _NON_WORD.split(text.translate(_GERMAN)) if w]\n     return \"-\".join(words).lower()\n \n \n"
+}

@@ -1,0 +1,18 @@
+{
+ "issue": "textkit-t7",
+ "repo": "textkit",
+ "phase": "test",
+ "arm": "with",
+ "files": [
+  "README.md",
+  "tests/test_core.py",
+  "textkit/__init__.py",
+  "textkit/core.py"
+ ],
+ "extras": [],
+ "recurred": [],
+ "check": {
+  "result": "pass"
+ },
+ "diff": "diff --git a/README.md b/README.md\nindex 69c02f1..2db8237 100644\n--- a/README.md\n+++ b/README.md\n@@ -1,5 +1,5 @@\n # textkit\n \n-Small text helpers: `slug`, `wrap`, `truncate`, `title_case`, `count_words`.\n+Small text helpers: `slug`, `wrap`, `truncate`, `title_case`, `count_words`, `detect_encoding`.\n \n     python -m textkit slug \"Hello, World!\"\ndiff --git a/tests/test_core.py b/tests/test_core.py\nindex bdf9181..4acb8b1 100644\n--- a/tests/test_core.py\n+++ b/tests/test_core.py\n@@ -1,4 +1,4 @@\n-from textkit import count_words, slug, title_case, truncate\n+from textkit import count_words, detect_encoding, slug, title_case, truncate\n \n \n def test_slug():\n@@ -16,3 +16,10 @@ def test_title_case():\n \n def test_count_words():\n     assert count_words(\"one two  three\") == 3\n+\n+\n+def test_detect_encoding():\n+    assert detect_encoding(\"héllo\".encode(\"utf-8\")) == \"utf-8\"\n+    assert detect_encoding(b\"\") == \"utf-8\"\n+    assert detect_encoding(\"hi\".encode(\"utf-16\")) == \"utf-16\"\n+    assert detect_encoding(b\"\\xfe\\xff\\x00h\") == \"utf-16\"\ndiff --git a/textkit/__init__.py b/textkit/__init__.py\nindex 6e547d8..598b1ae 100644\n--- a/textkit/__init__.py\n+++ b/textkit/__init__.py\n@@ -1,4 +1,4 @@\n \"\"\"Small text helpers.\"\"\"\n-from .core import count_words, slug, title_case, truncate, wrap\n+from .core import count_words, detect_encoding, slug, title_case, truncate, wrap\n \n-__all__ = [\"count_words\", \"slug\", \"title_case\", \"truncate\", \"wrap\"]\n+__all__ = [\"count_words\", \"detect_encoding\", \"slug\", \"title_case\", \"truncate\", \"wrap\"]\ndiff --git a/textkit/core.py b/textkit/core.py\nindex 766a06c..dc3226c 100644\n--- a/textkit/core.py\n+++ b/textkit/core.py\n@@ -1,4 +1,5 @@\n import re\n+import codecs\n import textwrap\n \n _NON_WORD = re.compile(r\"[^A-Za-z0-9]+\")\n@@ -25,3 +26,17 @@ def title_case(text: str) -> str:\n \n def count_words(text: str) -> int:\n     return len(text.split())\n+\n+\n+def detect_encoding(data: bytes) -> str:\n+    \"\"\"'utf-16' for UTF-16 with a byte order mark, 'utf-8' for UTF-8 text.\n+\n+    Raises ValueError if the data is neither.\n+    \"\"\"\n+    if data.startswith((codecs.BOM_UTF16_LE, codecs.BOM_UTF16_BE)):\n+        return \"utf-16\"\n+    try:\n+        data.decode(\"utf-8\")\n+    except UnicodeDecodeError:\n+        raise ValueError(\"not UTF-8 or BOM-marked UTF-16\") from None\n+    return \"utf-8\"\n"
+}

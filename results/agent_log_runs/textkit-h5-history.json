@@ -1,0 +1,16 @@
+{
+ "issue": "textkit-h5",
+ "repo": "textkit",
+ "phase": "history",
+ "arm": "history",
+ "files": [
+  "tests/test_core.py",
+  "textkit/core.py"
+ ],
+ "extras": [],
+ "recurred": [],
+ "check": {
+  "result": null
+ },
+ "diff": "diff --git a/tests/test_core.py b/tests/test_core.py\nindex bdf9181..5e71fd8 100644\n--- a/tests/test_core.py\n+++ b/tests/test_core.py\n@@ -16,3 +16,9 @@ def test_title_case():\n \n def test_count_words():\n     assert count_words(\"one two  three\") == 3\n+\n+\n+def test_count_words_cjk():\n+    assert count_words(\"我喜欢猫\") == 4\n+    assert count_words(\"I like 猫 cats\") == 4\n+    assert count_words(\"hello我喜欢\") == 4\ndiff --git a/textkit/core.py b/textkit/core.py\nindex 766a06c..4ab7989 100644\n--- a/textkit/core.py\n+++ b/textkit/core.py\n@@ -2,6 +2,11 @@ import re\n import textwrap\n \n _NON_WORD = re.compile(r\"[^A-Za-z0-9]+\")\n+# Han ideographs (incl. extensions and compatibility), kana, and hangul syllables.\n+_CJK = re.compile(\n+    \"[\\u3040-\\u30ff\\u3400-\\u4dbf\\u4e00-\\u9fff\\uf900-\\ufaff\\uac00-\\ud7af\"\n+    \"\\U00020000-\\U0002fa1f]\"\n+)\n \n \n def slug(text: str) -> str:\n@@ -24,4 +29,5 @@ def title_case(text: str) -> str:\n \n \n def count_words(text: str) -> int:\n-    return len(text.split())\n+    \"\"\"Count words; each CJK character counts as one word.\"\"\"\n+    return len(_CJK.findall(text)) + len(_CJK.sub(\" \", text).split())\n"
+}

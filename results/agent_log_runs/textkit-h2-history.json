@@ -1,0 +1,18 @@
+{
+ "issue": "textkit-h2",
+ "repo": "textkit",
+ "phase": "history",
+ "arm": "history",
+ "files": [
+  "README.md",
+  "tests/test_core.py",
+  "textkit/__init__.py",
+  "textkit/core.py"
+ ],
+ "extras": [],
+ "recurred": [],
+ "check": {
+  "result": null
+ },
+ "diff": "diff --git a/README.md b/README.md\nindex 69c02f1..e61b94a 100644\n--- a/README.md\n+++ b/README.md\n@@ -1,5 +1,5 @@\n # textkit\n \n-Small text helpers: `slug`, `wrap`, `truncate`, `title_case`, `count_words`.\n+Small text helpers: `slug`, `wrap`, `truncate`, `title_case`, `count_words`, `strip_html`.\n \n     python -m textkit slug \"Hello, World!\"\ndiff --git a/tests/test_core.py b/tests/test_core.py\nindex bdf9181..9212369 100644\n--- a/tests/test_core.py\n+++ b/tests/test_core.py\n@@ -1,4 +1,4 @@\n-from textkit import count_words, slug, title_case, truncate\n+from textkit import count_words, slug, strip_html, title_case, truncate\n \n \n def test_slug():\n@@ -16,3 +16,9 @@ def test_title_case():\n \n def test_count_words():\n     assert count_words(\"one two  three\") == 3\n+\n+\n+def test_strip_html():\n+    assert strip_html(\"<p>Fish &amp; chips</p>\") == \"Fish & chips\"\n+    assert strip_html(\"plain\") == \"plain\"\n+    assert strip_html(\"<a href='x'>&lt;b&gt;</a>\") == \"<b>\"\ndiff --git a/textkit/__init__.py b/textkit/__init__.py\nindex 6e547d8..3e85565 100644\n--- a/textkit/__init__.py\n+++ b/textkit/__init__.py\n@@ -1,4 +1,4 @@\n \"\"\"Small text helpers.\"\"\"\n-from .core import count_words, slug, title_case, truncate, wrap\n+from .core import count_words, slug, strip_html, title_case, truncate, wrap\n \n-__all__ = [\"count_words\", \"slug\", \"title_case\", \"truncate\", \"wrap\"]\n+__all__ = [\"count_words\", \"slug\", \"strip_html\", \"title_case\", \"truncate\", \"wrap\"]\ndiff --git a/textkit/core.py b/textkit/core.py\nindex 766a06c..69d19c3 100644\n--- a/textkit/core.py\n+++ b/textkit/core.py\n@@ -1,7 +1,9 @@\n+import html\n import re\n import textwrap\n \n _NON_WORD = re.compile(r\"[^A-Za-z0-9]+\")\n+_TAG = re.compile(r\"<[^>]*>\")\n \n \n def slug(text: str) -> str:\n@@ -25,3 +27,8 @@ def title_case(text: str) -> str:\n \n def count_words(text: str) -> int:\n     return len(text.split())\n+\n+\n+def strip_html(text: str) -> str:\n+    \"\"\"'<p>Fish &amp; chips</p>' -> 'Fish & chips'.\"\"\"\n+    return html.unescape(_TAG.sub(\"\", text))\n"
+}

@@ -1,0 +1,18 @@
+{
+ "issue": "textkit-t9",
+ "repo": "textkit",
+ "phase": "test",
+ "arm": "without",
+ "files": [
+  "README.md",
+  "tests/test_core.py",
+  "textkit/__init__.py",
+  "textkit/core.py"
+ ],
+ "extras": [],
+ "recurred": [],
+ "check": {
+  "result": "pass"
+ },
+ "diff": "diff --git a/README.md b/README.md\nindex 69c02f1..d539e04 100644\n--- a/README.md\n+++ b/README.md\n@@ -1,5 +1,5 @@\n # textkit\n \n-Small text helpers: `slug`, `wrap`, `truncate`, `title_case`, `count_words`.\n+Small text helpers: `slug`, `wrap`, `truncate`, `title_case`, `count_words`, `strip_markdown`.\n \n     python -m textkit slug \"Hello, World!\"\ndiff --git a/tests/test_core.py b/tests/test_core.py\nindex bdf9181..742afac 100644\n--- a/tests/test_core.py\n+++ b/tests/test_core.py\n@@ -1,4 +1,4 @@\n-from textkit import count_words, slug, title_case, truncate\n+from textkit import count_words, slug, strip_markdown, title_case, truncate\n \n \n def test_slug():\n@@ -16,3 +16,9 @@ def test_title_case():\n \n def test_count_words():\n     assert count_words(\"one two  three\") == 3\n+\n+\n+def test_strip_markdown():\n+    assert strip_markdown(\"**bold** and _it_ and `code`\") == \"bold and it and code\"\n+    assert strip_markdown(\"*a* __b__ snake_case_name\") == \"a b snake_case_name\"\n+    assert strip_markdown(\"plain\") == \"plain\"\ndiff --git a/textkit/__init__.py b/textkit/__init__.py\nindex 6e547d8..d60e10a 100644\n--- a/textkit/__init__.py\n+++ b/textkit/__init__.py\n@@ -1,4 +1,11 @@\n \"\"\"Small text helpers.\"\"\"\n-from .core import count_words, slug, title_case, truncate, wrap\n+from .core import count_words, slug, strip_markdown, title_case, truncate, wrap\n \n-__all__ = [\"count_words\", \"slug\", \"title_case\", \"truncate\", \"wrap\"]\n+__all__ = [\n+    \"count_words\",\n+    \"slug\",\n+    \"strip_markdown\",\n+    \"title_case\",\n+    \"truncate\",\n+    \"wrap\",\n+]\ndiff --git a/textkit/core.py b/textkit/core.py\nindex 766a06c..cecf6ef 100644\n--- a/textkit/core.py\n+++ b/textkit/core.py\n@@ -25,3 +25,17 @@ def title_case(text: str) -> str:\n \n def count_words(text: str) -> int:\n     return len(text.split())\n+\n+\n+_CODE = re.compile(r\"`([^`]*)`\")\n+_STRONG = re.compile(r\"(\\*\\*|__)(?=\\S)(.+?)(?<=\\S)\\1\")\n+_EM_STAR = re.compile(r\"\\*(?=\\S)([^*]+?)(?<=\\S)\\*\")\n+_EM_UNDER = re.compile(r\"(?<!\\w)_(?=\\S)([^_]+?)(?<=\\S)_(?!\\w)\")\n+\n+\n+def strip_markdown(text: str) -> str:\n+    \"\"\"'**bold** and _it_ and `code`' -> 'bold and it and code'.\"\"\"\n+    text = _CODE.sub(r\"\\1\", text)\n+    text = _STRONG.sub(r\"\\2\", text)\n+    text = _EM_STAR.sub(r\"\\1\", text)\n+    return _EM_UNDER.sub(r\"\\1\", text)\n"
+}

@@ -1,0 +1,16 @@
+{
+ "issue": "textkit-h1",
+ "repo": "textkit",
+ "phase": "history",
+ "arm": "history",
+ "files": [
+  "tests/test_core.py",
+  "textkit/core.py"
+ ],
+ "extras": [],
+ "recurred": [],
+ "check": {
+  "result": null
+ },
+ "diff": "diff --git a/tests/test_core.py b/tests/test_core.py\nindex bdf9181..e278ecc 100644\n--- a/tests/test_core.py\n+++ b/tests/test_core.py\n@@ -16,3 +16,8 @@ def test_title_case():\n \n def test_count_words():\n     assert count_words(\"one two  three\") == 3\n+\n+\n+def test_slug_drops_accents():\n+    from textkit import slug\n+    assert slug(\"Crème Brûlée\") == \"creme-brulee\"\ndiff --git a/textkit/core.py b/textkit/core.py\nindex 766a06c..12cb954 100644\n--- a/textkit/core.py\n+++ b/textkit/core.py\n@@ -1,11 +1,14 @@\n import re\n import textwrap\n+import unicodedata\n \n _NON_WORD = re.compile(r\"[^A-Za-z0-9]+\")\n \n \n def slug(text: str) -> str:\n     \"\"\"'Hello, World!' -> 'hello-world'.\"\"\"\n+    text = unicodedata.normalize(\"NFKD\", text)\n+    text = \"\".join(c for c in text if not unicodedata.combining(c))\n     words = [w for w in _NON_WORD.split(text) if w]\n     return \"-\".join(words).lower()\n \n"
+}

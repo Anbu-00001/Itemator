@@ -1,0 +1,18 @@
+{
+ "issue": "fetchit-t4",
+ "repo": "fetchit",
+ "phase": "test",
+ "arm": "without",
+ "files": [
+  "README.md",
+  "fetchit/cli.py",
+  "fetchit/table.py",
+  "tests/test_table.py"
+ ],
+ "extras": [],
+ "recurred": [],
+ "check": {
+  "result": "pass"
+ },
+ "diff": "diff --git a/README.md b/README.md\nindex bd617b7..e441959 100644\n--- a/README.md\n+++ b/README.md\n@@ -3,3 +3,7 @@\n Fetch JSON from a URL and print it.\n \n     fetchit https://api.example.com/items --timeout 5\n+\n+Print a list of objects as an aligned table (one row per object, one column per key):\n+\n+    fetchit https://api.example.com/items --table\ndiff --git a/fetchit/cli.py b/fetchit/cli.py\nindex ddbc0bd..4b76ff6 100644\n--- a/fetchit/cli.py\n+++ b/fetchit/cli.py\n@@ -3,18 +3,27 @@ import json\n import sys\n \n from .client import FetchError, fetch_json\n+from .table import render_table\n \n \n def main(argv=None) -> int:\n     ap = argparse.ArgumentParser(prog=\"fetchit\")\n     ap.add_argument(\"url\")\n     ap.add_argument(\"--timeout\", type=float, default=10.0)\n+    ap.add_argument(\"--table\", action=\"store_true\", help=\"print a JSON list of objects as a table\")\n     a = ap.parse_args(argv)\n     try:\n         data = fetch_json(a.url, timeout=a.timeout)\n     except FetchError as e:\n         print(e, file=sys.stderr)\n         return 1\n+    if a.table:\n+        try:\n+            print(render_table(data))\n+        except ValueError as e:\n+            print(e, file=sys.stderr)\n+            return 1\n+        return 0\n     print(json.dumps(data, indent=2))\n     return 0\n \ndiff --git a/fetchit/table.py b/fetchit/table.py\nnew file mode 100644\nindex 0000000..17633bf\n--- /dev/null\n+++ b/fetchit/table.py\n@@ -0,0 +1,28 @@\n+import json\n+\n+\n+def _cell(v) -> str:\n+    if isinstance(v, str):\n+        return v\n+    if v is None:\n+        return \"\"\n+    return json.dumps(v)\n+\n+\n+def render_table(rows) -> str:\n+    \"\"\"Aligned text table for a list of dicts: one column per key, in first-seen order.\"\"\"\n+    if not isinstance(rows, list) or not all(isinstance(r, dict) for r in rows):\n+        raise ValueError(\"--table needs a JSON list of objects\")\n+    cols = []\n+    for r in rows:\n+        for k in r:\n+            if k not in cols:\n+                cols.append(k)\n+    if not cols:\n+        return \"\"\n+    body = [[_cell(r.get(c)) for c in cols] for r in rows]\n+    widths = [max(len(c), *(len(b[i]) for b in body)) for i, c in enumerate(cols)]\n+    lines = [[str(c) for c in cols]] + body\n+    return \"\\n\".join(\n+        \"  \".join(cell.ljust(w) for cell, w in zip(line, widths)).rstrip() for line in lines\n+    )\ndiff --git a/tests/test_table.py b/tests/test_table.py\nnew file mode 100644\nindex 0000000..af99079\n--- /dev/null\n+++ b/tests/test_table.py\n@@ -0,0 +1,18 @@\n+import pytest\n+\n+from fetchit.table import render_table\n+\n+\n+def test_render_table_aligns_columns():\n+    out = render_table([{\"id\": 1, \"name\": \"apple\"}, {\"id\": 22, \"name\": \"fig\"}])\n+    assert out.splitlines() == [\"id  name\", \"1   apple\", \"22  fig\"]\n+\n+\n+def test_render_table_unions_keys():\n+    out = render_table([{\"a\": 1}, {\"b\": \"x\"}])\n+    assert out.splitlines() == [\"a  b\", \"1\", \"   x\"]\n+\n+\n+def test_render_table_rejects_non_list():\n+    with pytest.raises(ValueError):\n+        render_table({\"a\": 1})\n"
+}

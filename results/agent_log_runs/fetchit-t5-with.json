@@ -1,0 +1,15 @@
+{
+ "issue": "fetchit-t5",
+ "repo": "fetchit",
+ "phase": "test",
+ "arm": "with",
+ "files": [
+  "fetchit/cli.py"
+ ],
+ "extras": [],
+ "recurred": [],
+ "check": {
+  "result": "pass"
+ },
+ "diff": "diff --git a/fetchit/cli.py b/fetchit/cli.py\nindex ddbc0bd..8a13686 100644\n--- a/fetchit/cli.py\n+++ b/fetchit/cli.py\n@@ -13,7 +13,10 @@ def main(argv=None) -> int:\n     try:\n         data = fetch_json(a.url, timeout=a.timeout)\n     except FetchError as e:\n-        print(e, file=sys.stderr)\n+        msg = str(e)\n+        if sys.stderr.isatty():\n+            msg = f\"\\033[31m{msg}\\033[0m\"\n+        print(msg, file=sys.stderr)\n         return 1\n     print(json.dumps(data, indent=2))\n     return 0\n"
+}
