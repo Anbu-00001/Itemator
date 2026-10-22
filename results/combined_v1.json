@@ -1,0 +1,29 @@
+{
+ "what": "Files reviewers objected to that Itemator names alone, and with another checker's findings added (itemator/other.py), from the registered head-to-head rows; read after that study, nothing re-run.",
+ "cases": 587,
+ "named": {
+  "itemator": 27,
+  "itemator_with_overreach": 75,
+  "itemator_with_scope_creep_detector": 131,
+  "itemator_with_both": 167
+ },
+ "questions": {
+  "itemator": {
+   "at_least": 781,
+   "at_most": 781
+  },
+  "itemator_with_overreach": {
+   "at_least": 781,
+   "at_most": 2146
+  },
+  "itemator_with_scope_creep_detector": {
+   "at_least": 781,
+   "at_most": 4463
+  },
+  "itemator_with_both": {
+   "at_least": 781,
+   "at_most": 5828
+  }
+ },
+ "limits": "The exact number of questions needs the rivals re-run with their file lists kept; a rival file that an Itemator extra already covers asks nothing, so the true count lies between the bounds."
+}
