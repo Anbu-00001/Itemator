@@ -1,0 +1,10 @@
+{
+ "source": "results/real_catches.md",
+ "reader": "one model's reading of each comment, not a person's",
+ "summary": {
+  "asks_to_take_it_out": 18,
+  "does_not_ask": 3,
+  "unclear": 3,
+  "rows": 24
+ }
+}

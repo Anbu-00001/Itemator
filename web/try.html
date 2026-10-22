@@ -56,6 +56,7 @@ footer{margin-top:36px;font-size:.85rem;color:var(--muted);word-break:break-word
 
 <div id="summary" aria-live="polite"></div>
 <div id="results"></div>
+<div id="static">/*STATIC*/</div>
 
 <h2>How often does each one speak, and does it catch anything?</h2>
 <p class="muted">The numbers come from files in the repository (links below). A check that speaks rarely on ordinary changes is one a reviewer will still read when it does.</p>
@@ -75,6 +76,7 @@ footer{margin-top:36px;font-size:.85rem;color:var(--muted);word-break:break-word
   "use strict";
   var P = JSON.parse(document.getElementById("payload").textContent);
   var $ = function (id) { return document.getElementById(id); };
+  if ($("static")) $("static").remove();   // with scripts on, the live result below replaces the one written at build time
   function el(tag, text, cls) { var e = document.createElement(tag); if (text != null) e.textContent = text; if (cls) e.className = cls; return e; }
   var WHY = {
     "decode-and-run": "Hides what runs. Seen in the tj-actions/changed-files and reviewdog action payloads.",

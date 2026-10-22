@@ -36,6 +36,9 @@ def test_the_page_forbids_the_network_and_uses_none():
     assert "default-src 'none'" in html and "connect-src" not in html            # the policy: no request of any kind
     tag = '<script id="payload" type="application/json">'
     html = html[:html.index(tag)] + html[html.index("</script>", html.index(tag)):]      # the example diffs are text, not code
+    s = html.index('<div id="static">')
+    assert "<script" not in html[s:html.index("</div>", s)]
+    html = html[:s] + html[html.index("</div>", s):]                                  # so are their results written at build time
     for word in ("XMLHttpRequest", "WebSocket", "sendBeacon", "EventSource", "importScripts"):
         assert word not in html
     assert not re.search(r"\bfetch\(|\bimport\(|<script[^>]*\bsrc=|<link[^>]*href=|<img", html)
@@ -111,3 +114,21 @@ def test_the_javascript_names_a_download_run_by_a_shell_as_the_python_does(tmp_p
         assert got[u["id"]]["shapes"] == py, u["diff"]
         kinds.append([d["kind"] for d in py])
     assert kinds == [["download-and-run"]] * 4 + [[], []]
+
+
+def test_a_reader_without_scripts_sees_every_example_and_what_was_named_in_plain_words():
+    html = T.page()
+    block = html.split('<div id="static">', 1)[1].split("</div>", 1)[0]
+    assert "/*STATIC*/" not in html and block.count("<h3>") == len(EXAMPLES)
+    words = T.what((T.WEB / "try_checks.js").read_text())
+    assert words["download-over-source"] == "downloads a file and writes it over a source file" and len(words) >= 10
+    assert "<code>scripts/package.ts</code>, line 141: downloads a file and writes it over a source file" in block
+    assert "<code>Dockerfile</code>: a download piped into a shell" in block       # no line given: none shown
+    assert block.count("Nothing named.") == 1 and "&quot;https://example.invalid/update/lsp.ts&quot;" in block
+    assert 'if ($("static")) $("static").remove();' in html
+
+
+def test_a_kind_the_words_table_lacks_is_shown_by_its_name_and_text_is_escaped():
+    ex = [{"title": "<b>t</b>", "note": "n & m", "diff": next(e["diff"] for e in EXAMPLES if e["id"] == "decode-and-run")}]
+    out = T.static(ex, {})
+    assert "<h3>&lt;b&gt;t&lt;/b&gt;</h3>" in out and "n &amp; m" in out and ": decode-and-run<pre>" in out

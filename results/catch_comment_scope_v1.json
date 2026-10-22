@@ -1,0 +1,101 @@
+{
+ "source": "GitHub REST API, pull request review comments, GET only",
+ "comments": {
+  "https://github.com/NVIDIA/cuda-python/pull/884#discussion_r2291872303": {
+   "subject_type": "file",
+   "original_line": 1
+  },
+  "https://github.com/NVIDIA/cuda-python/pull/884#discussion_r2291872450": {
+   "subject_type": "file",
+   "original_line": 1
+  },
+  "https://github.com/NVIDIA/cuda-python/pull/884#discussion_r2291872588": {
+   "subject_type": "file",
+   "original_line": 1
+  },
+  "https://github.com/go-vikunja/vikunja/pull/1358#discussion_r2312025690": {
+   "subject_type": "line",
+   "original_line": 1
+  },
+  "https://github.com/kurotu/VRCQuestTools/pull/121#discussion_r2308974091": {
+   "subject_type": "file",
+   "original_line": 1
+  },
+  "https://github.com/kurotu/VRCQuestTools/pull/131#discussion_r2311769974": {
+   "subject_type": "file",
+   "original_line": 1
+  },
+  "https://github.com/modelcontextprotocol/csharp-sdk/pull/645#discussion_r2225905461": {
+   "subject_type": "line",
+   "original_line": 1
+  },
+  "https://github.com/tambo-ai/tambo/pull/1023#discussion_r2334427597": {
+   "subject_type": "line",
+   "original_line": 2
+  },
+  "https://github.com/vllm-project/semantic-router/pull/322#discussion_r2402051904": {
+   "subject_type": "line",
+   "original_line": 1
+  },
+  "https://github.com/CherryHQ/cherry-studio/pull/9992#discussion_r2327567162": {
+   "subject_type": "file",
+   "original_line": 1
+  },
+  "https://github.com/github/gh-aw/pull/2082#discussion_r2447957231": {
+   "subject_type": "line",
+   "original_line": 19
+  },
+  "https://github.com/microsoft/react-native-windows/pull/14796#discussion_r2153757091": {
+   "subject_type": "file",
+   "original_line": 1
+  },
+  "https://github.com/projectcalico/calico/pull/11086#discussion_r2383472478": {
+   "subject_type": "line",
+   "original_line": 11
+  },
+  "https://github.com/projectcalico/calico/pull/11086#discussion_r2383436330": {
+   "subject_type": "line",
+   "original_line": 10
+  },
+  "https://github.com/projectcalico/calico/pull/11086#discussion_r2383434651": {
+   "subject_type": "line",
+   "original_line": 570
+  },
+  "https://github.com/tomhrr/cosh/pull/181#discussion_r2156677671": {
+   "subject_type": "line",
+   "original_line": 2376
+  },
+  "https://github.com/Azure/azure-sdk-for-python/pull/42404#discussion_r2274796612": {
+   "subject_type": "line",
+   "original_line": 24
+  },
+  "https://github.com/Azure/azure-sdk-for-python/pull/42406#discussion_r2274587822": {
+   "subject_type": "line",
+   "original_line": 31
+  },
+  "https://github.com/documentdb/documentdb/pull/204#discussion_r2142117128": {
+   "subject_type": "file",
+   "original_line": 1
+  },
+  "https://github.com/liam-hq/liam/pull/2079#discussion_r2166041731": {
+   "subject_type": "line",
+   "original_line": 29
+  },
+  "https://github.com/pola-rs/r-polars/pull/1559#discussion_r2372448518": {
+   "subject_type": "line",
+   "original_line": 25
+  },
+  "https://github.com/tokens-studio/figma-plugin/pull/3374#discussion_r2105772360": {
+   "subject_type": "line",
+   "original_line": 356
+  },
+  "https://github.com/truenas/webui/pull/12147#discussion_r2154458189": {
+   "subject_type": "line",
+   "original_line": 14
+  },
+  "https://github.com/valkey-io/valkey-glide/pull/4287#discussion_r2182652011": {
+   "subject_type": "line",
+   "original_line": 68
+  }
+ }
+}

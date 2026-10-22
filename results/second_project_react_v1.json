@@ -1,0 +1,31 @@
+{
+ "what": "The Itemator reaction flow, created in the second project from flows/itemator_react.yml with CARD_BOT and REACT_BOT changed to that project's accounts (docs/setup.md step 2), enabled with a mention trigger, and run once on MR !1 after the owner answered `remove` in the scratch.bak thread, the thread that said showcase had removed the same file",
+ "flow_item": 1019153,
+ "consumer": 12957829,
+ "trigger": 3136615,
+ "account": "ai-itemator-react-two-gitlab-ai-hackathon",
+ "merge_request": "https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/39194174/second-project/-/merge_requests/1",
+ "answer_note": 4065933104,
+ "session": 9871937,
+ "started": "2026-10-22T08:13:18Z",
+ "completed": "2026-10-22T08:14:46Z",
+ "what_the_flow_did": [
+  "commit ce3cb4fb 'Remove `scratch.bak` from !1' (the file left the merge request)",
+  "note 4065941228: Removed: `scratch.bak` taken out of this merge request by the person who answered",
+  "resolved all threads",
+  "marked the merge request ready (Draft lifted)",
+  "summary note 4065942500: 0 kept, 0 dismissed, 0 moved, 1 removed",
+  "a note on issue #1"
+ ],
+ "summary_note_url": "https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/39194174/second-project/-/merge_requests/1#note_4065942500",
+ "pre_registered": "ana b34e3a, 0.5, resolved true",
+ "setup_findings": [
+  "a private flow made in one project cannot be enabled in another ('Item is private in another project'); each project creates its own copy",
+  "enabling a flow through the API with trigger types also created its trigger, already on",
+  "the service account is named after the flow (flow 'Itemator react two' -> ai-itemator-react-two-<group>)"
+ ],
+ "limits": [
+  "staged by the owner, who opened the merge request and typed the answer",
+  "one run"
+ ]
+}

@@ -8,8 +8,15 @@ from __future__ import annotations
 
 import argparse
 import hashlib
+import html as H
 import json
 import pathlib
+import re
+
+from itemator import diffreader as DR
+from itemator import moving as MV
+from itemator import shapes as SH
+from itemator import untrusted as UT
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 WEB = ROOT / "web"
@@ -56,6 +63,32 @@ def evidence(mesa: dict, agents: dict, incidents: dict, agreement: dict) -> dict
     return {"rows": rows, "notes": notes, "units": units}
 
 
+def what(checks_js: str) -> dict:
+    """The plain words for each finding, read from the page's own WHAT table so the two cannot drift apart."""
+    m = re.search(r"var WHAT = \{(.*?)\};", checks_js, re.S)
+    return dict(re.findall(r'"([a-z-]+)": "([^"]*)"', m.group(1))) if m else {}
+
+
+def static(examples: list[dict], words: dict) -> str:
+    """The examples' results as plain HTML, worked out here by the Python checks (the reference the page's JavaScript is
+    compared with), for a reader without scripts. The page removes this block when its script runs."""
+    e = H.escape
+    out = ["<h2>The examples, as the checks read them</h2>",
+           "<p class=\"muted\">Worked out by the Python version of the checks when this page was built. With scripts on, "
+           "the buttons above run them again in this tab.</p>"]
+    for ex in examples:
+        files = DR.files_of(ex["diff"])
+        found = [d for mod in (SH, UT, MV) for d in mod.find(files)]
+        out.append(f"<h3>{e(ex['title'])}</h3><p class=\"muted\">{e(ex['note'])}</p>")
+        if not found:
+            out.append("<p>Nothing named.</p>")
+            continue
+        out.append("<ul>" + "".join(
+            f"<li><code>{e(d['path'])}</code>{', line ' + str(d['line']) if d.get('line') else ''}: {e(words.get(d['kind'], d['kind']))}"
+            f"<pre>{e(d['text'])}</pre></li>" for d in found) + "</ul>")
+    return "\n".join(out)
+
+
 def page() -> str:
     mesa, agents = _load("mesa_noise_v1.json"), _load("agent_noise_v1.json")
     incidents, agreement = _load("incident_replay_v1.json"), _load("try_agreement_v2.json")
@@ -66,7 +99,8 @@ def page() -> str:
     payload = {"examples": json.loads((WEB / "try_examples.json").read_text(encoding="utf-8")), "evidence": ev,
                "footer": f"Checks version {hashlib.sha256(checks.encode()).hexdigest()[:12]} (web/try_checks.js). Standard HTML and JavaScript; no library, no network, no model."}
     html = (WEB / "try.html").read_text(encoding="utf-8")
-    for marker, text in (("/*PAYLOAD*/", safe_json(payload)), ("/*CHECKS*/", checks.replace("</script", "<\\/script"))):
+    for marker, text in (("/*PAYLOAD*/", safe_json(payload)), ("/*CHECKS*/", checks.replace("</script", "<\\/script")),
+                         ("/*STATIC*/", static(payload["examples"], what(checks)))):
         assert html.count(marker) == 1
         html = html.replace(marker, text, 1)
     return html
