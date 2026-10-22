@@ -1,0 +1,21 @@
+{
+ "what": "The model-rival study, written and committed before any model call: on the head-to-head's snapshots (eval/head_to_head_rubric.json), a general model is asked the ticket-compliance question that model-based review tools ask (which changed files does the ticket not need?). Scored exactly as the head-to-head scores its rivals: how many of the files reviewers objected to it names, and how many files it names in total. Itemator's frozen rules (v6) are scored on the same snapshots.",
+ "sample": "100 snapshots drawn with random.Random(20261023).sample from the head-to-head's ordered snapshot keys (eval/head_to_head.py snapshots()), all of them if fewer. Drawn once by eval/model_rival.py export; never redrawn.",
+ "model_input": "the snapshot's task text (the linked issue, or the pull request's own text when none is linked, as in the head-to-head) and its unified diff from head_to_head.unified_diff, each file's patch cut to 600 characters and the whole diff to 14,000; the reviewer comments are never shown",
+ "prompt": "You are a code-review assistant checking ticket compliance. Read the ticket and the pull request's diff below. List every changed file whose change the ticket does not need: out of scope, unrelated, or not asked for. Do not list files the ticket needs, including tests and docs for the requested change. Answer with JSON only: {\"out_of_scope\": [\"path\", ...]} (an empty list when every file belongs).",
+ "model": "the session's research tier from tools/cascade.py at P1 (Sonnet), run as read-only agents that each read one batch file and write one answer file; each snapshot is answered on its own, in order",
+ "primary_outcome": "for each tool (Itemator rules v6, the model): cases named of the objected files in the sample, with a Wilson 95% interval, and files named in total (each named file is one question a person answers)",
+ "secondary": [
+  "cases named by the model and not by Itemator, and the reverse",
+  "median files named per snapshot",
+  "snapshots the model answered with invalid JSON (counted as naming nothing)"
+ ],
+ "which_sentence": "the one sentence, filled in and used word for word in docs/measurements.md, whatever it says; the model's number goes on the front page beside Itemator's even if it names more",
+ "we_never": [
+  "redraw the sample, change the prompt or truncation, or rerun a batch after seeing answers (a batch whose agent fails before writing is rerun once, unchanged, and that is reported)",
+  "name a vendor's product as the rival: it is a general model asked the same question",
+  "show the model the reviewer comments"
+ ],
+ "runs_in": "eval/model_rival.py export (writes eval/cache/model_rival/batch_*.json), agents write answer_*.json beside them, eval/model_rival.py score writes results/model_rival_v1.json; no Duo credits",
+ "sentence": "On {snapshots} reviewed snapshots, a model asked the ticket-compliance question named {model_cases} of {cases} files reviewers objected to, by asking about {model_files} files; Itemator's rules named {itemator_cases} by asking about {itemator_files}."
+}

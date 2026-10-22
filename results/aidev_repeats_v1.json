@@ -1,0 +1,56 @@
+{
+ "rubric": "eval/aidev_repeats_rubric.json",
+ "rules_version": 6,
+ "table_rows": 361296,
+ "with_file_rows": 359735,
+ "unreadable": 10,
+ "shards": 4,
+ "summary": {
+  "pull_requests": 359725,
+  "questions": 597934,
+  "repeats": 297925,
+  "share": 0.4983,
+  "wilson95": [
+   0.497,
+   0.4995
+  ],
+  "repeats_by_kind": 493219,
+  "share_by_kind": 0.8249,
+  "pull_requests_with_questions": 69752,
+  "cards_not_posted": 25622,
+  "repositories_asked_twice_or_more": 5885,
+  "by_agent": {
+   "Claude_Code": {
+    "questions": 366962,
+    "repeats": 182410,
+    "share": 0.4971
+   },
+   "Copilot": {
+    "questions": 108532,
+    "repeats": 54054,
+    "share": 0.498
+   },
+   "Cursor": {
+    "questions": 25474,
+    "repeats": 10783,
+    "share": 0.4233
+   },
+   "Devin": {
+    "questions": 33010,
+    "repeats": 21440,
+    "share": 0.6495
+   },
+   "Google_Jules": {
+    "questions": 4194,
+    "repeats": 2397,
+    "share": 0.5715
+   },
+   "OpenAI_Codex": {
+    "questions": 59762,
+    "repeats": 26841,
+    "share": 0.4491
+   }
+  }
+ },
+ "sentence": "On public agent pull requests, 297,925 of 597,934 questions (50%) were about a file the same repository had already been asked about in an earlier agent pull request; an `always` answer the first time would have skipped them. That is an upper bound: it assumes the team kept the file the first time, and a skipped question could have been a real extra."
+}

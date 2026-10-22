@@ -1,0 +1,78 @@
+{
+ "what": "Does the card start by itself on a merge request a coding agent opened, when a person marks the agent's draft ready? Live run on second-project; times from the GitLab API (UTC).",
+ "setup": "card-two trigger 3136367: events assign reviewer and merge request ready (2026-10-22 18:37 UTC); card-two 1.1.0 (step 1 also reads the merge request from a Context part; this run's trigger text was the number alone, as for a review request)",
+ "issue": {
+  "url": "https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/39194174/second-project/-/issues/7",
+  "title": "Add tests for textutil.slug()",
+  "written_by": "the owner, created through the API"
+ },
+ "merge_request": {
+  "url": "https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/39194174/second-project/-/merge_requests/7",
+  "opened_by": "GitLab's Developer Flow (GitLab shows the owner as author)",
+  "files": [
+   "tests/__init__.py",
+   "tests/test_textutil.py",
+   ".gitlab-ci.yml"
+  ]
+ },
+ "marked_ready_by": "the owner's account, through the API call the Mark as ready button makes (mergeRequestSetDraft), by the entrant's coding assistant",
+ "timeline": [
+  [
+   "18:38:48",
+   "owner",
+   "assigns #7 to the Developer Flow"
+  ],
+  [
+   "18:39:53",
+   "Developer Flow",
+   "opens draft !7: tests, plus a CI job that runs them"
+  ],
+  [
+   "18:47:29",
+   "owner",
+   "marks !7 ready"
+  ],
+  [
+   "18:47:30",
+   "card flow",
+   "starts by itself (no review request)"
+  ],
+  [
+   "18:48:22",
+   "GitLab",
+   "drops the session: the model's turn ended with no output after about 8 s; nothing was posted"
+  ],
+  [
+   "18:49:36",
+   "owner",
+   "marks !7 draft again"
+  ],
+  [
+   "18:49:45",
+   "owner",
+   "marks !7 ready again"
+  ],
+  [
+   "18:49:46",
+   "card flow",
+   "starts by itself"
+  ],
+  [
+   "18:50:47",
+   "card flow",
+   "1 thing beyond #7: .gitlab-ci.yml (CI change); thread on the line; shows that the same kind of change was kept on showcase !94; sets Draft and itemator::needs-names"
+  ]
+ ],
+ "summary": {
+  "starts_on_ready": 2,
+  "tries": 2,
+  "dropped_by_gitlab": 1,
+  "seconds_ready_to_start": 1,
+  "seconds_ready_to_card": 62,
+  "extras": 1
+ },
+ "limits": [
+  "Marking ready was done through the API on the owner's account, not by a click; GitLab records it as the owner's action either way.",
+  "One of the two starts was dropped by GitLab before the flow did anything."
+ ]
+}

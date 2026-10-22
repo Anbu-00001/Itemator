@@ -167,6 +167,40 @@ weight-study:
     expire_in: 90 days
     when: always
 
+# The repeat-question study (eval/aidev_repeats.py, registered in eval/aidev_repeats_rubric.json before it ran): of the questions the
+# rules would ask on public AI-agent pull requests, how many repeat a file the same repository was already asked about. Manual; no Duo credits.
+repeats-study:
+  image: python:3.12
+  rules:
+    - if: $CI_COMMIT_BRANCH || $CI_MERGE_REQUEST_IID
+      when: manual
+      allow_failure: true
+  timeout: 3h
+  parallel: 4
+  script:
+    - pip install -q duckdb==1.1.3
+    - curl --fail --silent --show-error --location -o /tmp/pr_commit_details.parquet https://huggingface.co/datasets/hao-li/AIDev/resolve/main/pr_commit_details.parquet
+    - python -u eval/aidev_repeats.py --commit-details /tmp/pr_commit_details.parquet --shard $((CI_NODE_INDEX - 1))/$CI_NODE_TOTAL
+  artifacts:
+    paths:
+      - results/aidev_repeats_rows_*.json
+    expire_in: 90 days
+    when: always
+
+repeats-tally:
+  image: python:3.12
+  needs: [repeats-study]
+  rules:
+    - if: $CI_COMMIT_BRANCH || $CI_MERGE_REQUEST_IID
+      when: manual
+      allow_failure: true
+  script:
+    - python -u eval/aidev_repeats.py --tally results/aidev_repeats_rows_*.json
+  artifacts:
+    paths:
+      - results/aidev_repeats_v1.json
+    expire_in: 90 days
+
 # The install-time study (eval/install_time.py, registered in eval/install_time_rubric.json before it ran): seconds on this runner for a
 # fresh install of the dependencies the weight study weighed. Manual, on any branch or merge request; wheels only and no npm install scripts, so no
 # package code runs; no Duo credits.

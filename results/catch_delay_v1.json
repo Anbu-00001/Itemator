@@ -1,0 +1,203 @@
+{
+ "rubric": "eval/catch_delay_rubric.json",
+ "read_on": "2026-10-23",
+ "summary": {
+  "n": 24,
+  "unreadable": 0,
+  "median_hours": 3.24,
+  "median_whole_hours": 3,
+  "min_hours": 0.04,
+  "max_hours": 149.97,
+  "within_hour": 9,
+  "day_or_more": 4,
+  "by_outcome": {
+   "closed_unmerged": {
+    "n": 7,
+    "median_hours": 0.44,
+    "median_whole_hours": 0
+   },
+   "file_removed": {
+    "n": 9,
+    "median_hours": 1.16,
+    "median_whole_hours": 1
+   },
+   "landed_with_the_file": {
+    "n": 8,
+    "median_hours": 24.42,
+    "median_whole_hours": 24
+   }
+  },
+  "sentence": "On the 24 files reviewers objected to, the objection came a median of 3 hours after the file appeared in the pull request (9 within an hour, 4 a day or more later). Itemator's card asks when the pipeline finishes."
+ },
+ "rows": [
+  {
+   "key": "https://github.com/Azure/azure-sdk-for-python/pull/42404#sdk/identity/azure-identity/pyproject.toml",
+   "outcome": "landed_with_the_file",
+   "objected_at": "2025-08-13T22:43:21Z",
+   "start": "2025-08-07T16:44:50Z",
+   "hours": 149.975
+  },
+  {
+   "key": "https://github.com/Azure/azure-sdk-for-python/pull/42406#sdk/cosmos/azure-cosmos/pyproject.toml",
+   "outcome": "landed_with_the_file",
+   "objected_at": "2025-08-13T20:46:02Z",
+   "start": "2025-08-07T16:52:37Z",
+   "hours": 147.89
+  },
+  {
+   "key": "https://github.com/CherryHQ/cherry-studio/pull/9992#PR_TEMPLATE.md",
+   "outcome": "closed_unmerged",
+   "objected_at": "2025-09-06T14:37:03Z",
+   "start": "2025-09-06T14:09:40Z",
+   "hours": 0.456
+  },
+  {
+   "key": "https://github.com/NVIDIA/cuda-python/pull/884#cuda_pathfinder/docs/source/_static/images/Nsight-Compute-CLI-625x473.png",
+   "outcome": "file_removed",
+   "objected_at": "2025-08-21T18:47:50Z",
+   "start": "2025-08-21T18:39:55Z",
+   "hours": 0.132
+  },
+  {
+   "key": "https://github.com/NVIDIA/cuda-python/pull/884#cuda_pathfinder/docs/source/_static/logo-dark-mode.png",
+   "outcome": "file_removed",
+   "objected_at": "2025-08-21T18:47:54Z",
+   "start": "2025-08-21T18:39:55Z",
+   "hours": 0.133
+  },
+  {
+   "key": "https://github.com/NVIDIA/cuda-python/pull/884#cuda_pathfinder/docs/source/_static/logo-light-mode.png",
+   "outcome": "file_removed",
+   "objected_at": "2025-08-21T18:47:58Z",
+   "start": "2025-08-21T18:39:55Z",
+   "hours": 0.134
+  },
+  {
+   "key": "https://github.com/documentdb/documentdb/pull/204#.github/workflows/build_rpm_packages.yml",
+   "outcome": "landed_with_the_file",
+   "objected_at": "2025-06-12T09:03:18Z",
+   "start": "2025-06-06T10:00:40Z",
+   "hours": 143.044
+  },
+  {
+   "key": "https://github.com/githubnext/gh-aw/pull/2082#go.mod",
+   "outcome": "closed_unmerged",
+   "objected_at": "2025-10-21T12:16:12Z",
+   "start": "2025-10-21T11:55:22Z",
+   "hours": 0.347
+  },
+  {
+   "key": "https://github.com/go-vikunja/vikunja/pull/1358#example-force-availability.yml",
+   "outcome": "file_removed",
+   "objected_at": "2025-08-30T17:05:41Z",
+   "start": "2025-08-30T15:56:08Z",
+   "hours": 1.159
+  },
+  {
+   "key": "https://github.com/kurotu/VRCQuestTools/pull/121#TESTING_INSTRUCTIONS.md",
+   "outcome": "file_removed",
+   "objected_at": "2025-08-29T02:32:04Z",
+   "start": "2025-08-28T13:59:07Z",
+   "hours": 12.549
+  },
+  {
+   "key": "https://github.com/kurotu/VRCQuestTools/pull/131#PREVIEW_IMPLEMENTATION.md",
+   "outcome": "file_removed",
+   "objected_at": "2025-08-30T04:04:28Z",
+   "start": "2025-08-30T02:57:45Z",
+   "hours": 1.112
+  },
+  {
+   "key": "https://github.com/liam-hq/liam/pull/2079#frontend/internal-packages/agent/src/chat/workflow/workflow.test.ts",
+   "outcome": "landed_with_the_file",
+   "objected_at": "2025-06-25T07:49:09Z",
+   "start": "2025-06-24T09:12:19Z",
+   "hours": 22.614
+  },
+  {
+   "key": "https://github.com/microsoft/react-native-windows/pull/14796#vnext/codegen/rnwcoreJSI-generated.cpp",
+   "outcome": "closed_unmerged",
+   "objected_at": "2025-06-18T06:32:08Z",
+   "start": "2025-06-18T02:25:25Z",
+   "hours": 4.112
+  },
+  {
+   "key": "https://github.com/modelcontextprotocol/csharp-sdk/pull/645#dotnet-install.sh",
+   "outcome": "file_removed",
+   "objected_at": "2025-07-23T15:09:48Z",
+   "start": "2025-07-23T12:47:56Z",
+   "hours": 2.364
+  },
+  {
+   "key": "https://github.com/pola-rs/r-polars/pull/1559#.github/workflows/copilot-setup-steps.yml",
+   "outcome": "landed_with_the_file",
+   "objected_at": "2025-09-23T14:01:28Z",
+   "start": "2025-09-23T13:58:47Z",
+   "hours": 0.045
+  },
+  {
+   "key": "https://github.com/projectcalico/calico/pull/11086#goldmane/pkg/client/mocks/FlowsClient.go",
+   "outcome": "closed_unmerged",
+   "objected_at": "2025-09-26T20:50:22Z",
+   "start": "2025-09-26T20:23:50Z",
+   "hours": 0.442
+  },
+  {
+   "key": "https://github.com/projectcalico/calico/pull/11086#goldmane/proto/api.pb.go",
+   "outcome": "closed_unmerged",
+   "objected_at": "2025-09-26T20:31:34Z",
+   "start": "2025-09-26T20:23:50Z",
+   "hours": 0.129
+  },
+  {
+   "key": "https://github.com/projectcalico/calico/pull/11086#manifests/tigera-operator-ocp-upgrade.yaml",
+   "outcome": "closed_unmerged",
+   "objected_at": "2025-09-26T20:30:56Z",
+   "start": "2025-09-26T20:23:50Z",
+   "hours": 0.118
+  },
+  {
+   "key": "https://github.com/tambo-ai/tambo/pull/1023#showcase/tsconfig.json",
+   "outcome": "file_removed",
+   "objected_at": "2025-09-09T18:26:19Z",
+   "start": "2025-09-09T03:41:41Z",
+   "hours": 14.744
+  },
+  {
+   "key": "https://github.com/tokens-studio/figma-plugin/pull/3374#packages/tokens-studio-for-figma/src/types/AsyncMessages.ts",
+   "outcome": "landed_with_the_file",
+   "objected_at": "2025-05-24T09:39:36Z",
+   "start": "2025-05-23T20:39:13Z",
+   "hours": 13.006
+  },
+  {
+   "key": "https://github.com/tomhrr/cosh/pull/181#tests/tests.rs",
+   "outcome": "closed_unmerged",
+   "objected_at": "2025-06-19T10:28:36Z",
+   "start": "2025-06-19T03:04:54Z",
+   "hours": 7.395
+  },
+  {
+   "key": "https://github.com/truenas/webui/pull/12147#src/app/pages/credentials/new-users/all-users/user-list/user-access-cell/user-access-cell.component.html",
+   "outcome": "landed_with_the_file",
+   "objected_at": "2025-06-18T12:20:45Z",
+   "start": "2025-06-17T10:06:49Z",
+   "hours": 26.232
+  },
+  {
+   "key": "https://github.com/valkey-io/valkey-glide/pull/4287#.github/workflows/codeql.yml",
+   "outcome": "landed_with_the_file",
+   "objected_at": "2025-07-03T12:24:01Z",
+   "start": "2025-07-02T19:27:12Z",
+   "hours": 16.947
+  },
+  {
+   "key": "https://github.com/vllm-project/semantic-router/pull/322#TRACING_FEATURE.md",
+   "outcome": "file_removed",
+   "objected_at": "2025-10-03T14:02:46Z",
+   "start": "2025-10-02T23:14:51Z",
+   "hours": 14.799
+  }
+ ],
+ "note": "The first run read nothing (all 24 unreadable): the local gh had no --slurp flag. The flag was dropped and the study run again with start, end and cases unchanged; this file is that second run. The summary was then recomputed from the same rows to add whole-hour medians for the docs."
+}

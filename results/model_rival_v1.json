@@ -1,0 +1,2168 @@
+{
+ "rubric": "eval/model_rival_rubric.json",
+ "summary": {
+  "cases": 137,
+  "snapshots": 100,
+  "invalid_answers": 0,
+  "tools": {
+   "itemator": {
+    "cases_named": 9,
+    "wilson95": [
+     0.035,
+     0.12
+    ],
+    "files_named": 771,
+    "median_named_per_snapshot": 0.0
+   },
+   "model": {
+    "cases_named": 31,
+    "wilson95": [
+     0.164,
+     0.303
+    ],
+    "files_named": 313,
+    "median_named_per_snapshot": 0.0
+   }
+  },
+  "model_not_itemator": 25,
+  "itemator_not_model": 3,
+  "sentence": "On 100 reviewed snapshots, a model asked the ticket-compliance question named 31 of 137 files reviewers objected to, by asking about 313 files; Itemator's rules named 9 by asking about 771."
+ },
+ "snapshots": [
+  {
+   "pr": "https://github.com/justtrackio/gosoline/pull/1253",
+   "sha": "7f5b9b6a66b3f90618c57e3a7e7a74ace6651f13",
+   "invalid": false,
+   "named": {
+    "itemator": 0,
+    "model": 17
+   }
+  },
+  {
+   "pr": "https://github.com/AzureAD/microsoft-identity-web/pull/3413",
+   "sha": "40cb69d9f3287871de987e47c25d6b2313c41bbb",
+   "invalid": false,
+   "named": {
+    "itemator": 0,
+    "model": 1
+   }
+  },
+  {
+   "pr": "https://github.com/typedclojure/typedclojure/pull/188",
+   "sha": "505d42696ea782041602b80d174a68f5b454c8ec",
+   "invalid": false,
+   "named": {
+    "itemator": 0,
+    "model": 0
+   }
+  },
+  {
+   "pr": "https://github.com/liam-hq/liam/pull/2079",
+   "sha": "c2d1a9a6aab541cce0ec29e0cabcc9c01db8a587",
+   "invalid": false,
+   "named": {
+    "itemator": 514,
+    "model": 18
+   }
+  },
+  {
+   "pr": "https://github.com/dotnet/docs/pull/48191",
+   "sha": "4891e45ad811452086dcbc8e4c48f7c0e0b66a65",
+   "invalid": false,
+   "named": {
+    "itemator": 0,
+    "model": 0
+   }
+  },
+  {
+   "pr": "https://github.com/Azure/azure-cosmos-dotnet-v3/pull/5326",
+   "sha": "5dc92c8da4a1dc696c6b73f1c907f0c69b559b34",
+   "invalid": false,
+   "named": {
+    "itemator": 0,
+    "model": 0
+   }
+  },
+  {
+   "pr": "https://github.com/temporalio/temporal/pull/8003",
+   "sha": "706b3c36af31de42010a6631d983015dea5194e8",
+   "invalid": false,
+   "named": {
+    "itemator": 0,
+    "model": 0
+   }
+  },
+  {
+   "pr": "https://github.com/githubnext/gh-aw/pull/615",
+   "sha": "0d03665643c36a74d0f07da10019f0d0716e9083",
+   "invalid": false,
+   "named": {
+    "itemator": 0,
+    "model": 0
+   }
+  },
+  {
+   "pr": "https://github.com/vitejs/vite/pull/20522",
+   "sha": "05b379d7f6bc254ec5ee82cb08534b30ea8b918f",
+   "invalid": false,
+   "named": {
+    "itemator": 0,
+    "model": 0
+   }
+  },
+  {
+   "pr": "https://github.com/liam-hq/liam/pull/726",
+   "sha": "84e3c98aa1ffcd3581ec0672c2d04aa67ae7ccc1",
+   "invalid": false,
+   "named": {
+    "itemator": 0,
+    "model": 0
+   }
+  },
+  {
+   "pr": "https://github.com/machinewrapped/llm-subtrans/pull/250",
+   "sha": "8c31e8eb2faec4aab70f10a2feade58428022ad1",
+   "invalid": false,
+   "named": {
+    "itemator": 2,
+    "model": 2
+   }
+  },
+  {
+   "pr": "https://github.com/microsoft/git/pull/755",
+   "sha": "47687ca67bdb91291a9ac3271043cd562350723d",
+   "invalid": false,
+   "named": {
+    "itemator": 0,
+    "model": 0
+   }
+  },
+  {
+   "pr": "https://github.com/project-dalec/dalec/pull/727",
+   "sha": "6f2e709383cb03ca28ed21d3fb3c6d45dcc94e04",
+   "invalid": false,
+   "named": {
+    "itemator": 4,
+    "model": 1
+   }
+  },
+  {
+   "pr": "https://github.com/Shelf-nu/shelf.nu/pull/2100",
+   "sha": "7a562e6d0931b86b757138d2e472435dcef3898b",
+   "invalid": false,
+   "named": {
+    "itemator": 1,
+    "model": 6
+   }
+  },
+  {
+   "pr": "https://github.com/liam-hq/liam/pull/2200",
+   "sha": "63d2f5951d409d495e5ce49af10d52e25ac3a69a",
+   "invalid": false,
+   "named": {
+    "itemator": 0,
+    "model": 2
+   }
+  },
+  {
+   "pr": "https://github.com/cartography-cncf/cartography/pull/1697",
+   "sha": "94801c0a731a46ae4801f58ef1ed4ce9a6749c6d",
+   "invalid": false,
+   "named": {
+    "itemator": 1,
+    "model": 0
+   }
+  },
+  {
+   "pr": "https://github.com/liam-hq/liam/pull/2745",
+   "sha": "a8868d5602570dae6216de406cb9a500330277ca",
+   "invalid": false,
+   "named": {
+    "itemator": 0,
+    "model": 7
+   }
+  },
+  {
+   "pr": "https://github.com/Azure/azure-mcp/pull/639",
+   "sha": "a3c8985c913db7d210cdc6ea170876ec5452a9f3",
+   "invalid": false,
+   "named": {
+    "itemator": 0,
+    "model": 0
+   }
+  },
+  {
+   "pr": "https://github.com/ClickHouse/ClickHouse/pull/87093",
+   "sha": "9cb481cfc9f1f45d4038b5a98c3c6a5fb36f6c5d",
+   "invalid": false,
+   "named": {
+    "itemator": 0,
+    "model": 0
+   }
+  },
+  {
+   "pr": "https://github.com/microsoft/typescript-go/pull/1401",
+   "sha": "7d35c41bb0aa94493d03f2a3150975f7a34b950b",
+   "invalid": false,
+   "named": {
+    "itemator": 0,
+    "model": 0
+   }
+  },
+  {
+   "pr": "https://github.com/epicweb-dev/epicshop/pull/337",
+   "sha": "62ba79894c07665c3060e1b9f1849510d7bdb670",
+   "invalid": false,
+   "named": {
+    "itemator": 0,
+    "model": 1
+   }
+  },
+  {
+   "pr": "https://github.com/taiga-family/taiga-ui/pull/11485",
+   "sha": "34de39c40dbf60d35b27f4d04950ec52d9769844",
+   "invalid": false,
+   "named": {
+    "itemator": 0,
+    "model": 0
+   }
+  },
+  {
+   "pr": "https://github.com/liam-hq/liam/pull/1304",
+   "sha": "7ea3b86658307190d3378bcd7e8f60e57d5e42ad",
+   "invalid": false,
+   "named": {
+    "itemator": 10,
+    "model": 12
+   }
+  },
+  {
+   "pr": "https://github.com/CherryHQ/cherry-studio/pull/9992",
+   "sha": "c73dc2a6ed2809b1a467af11ccce2cf03294d887",
+   "invalid": false,
+   "named": {
+    "itemator": 1,
+    "model": 14
+   }
+  },
+  {
+   "pr": "https://github.com/dotnet/runtime/pull/118549",
+   "sha": "30ba5797415264d3673780abc0b233e06720f426",
+   "invalid": false,
+   "named": {
+    "itemator": 0,
+    "model": 14
+   }
+  },
+  {
+   "pr": "https://github.com/liam-hq/liam/pull/726",
+   "sha": "33cf91c0c895d2dc0069568d3fb520ded18f76dc",
+   "invalid": false,
+   "named": {
+    "itemator": 0,
+    "model": 0
+   }
+  },
+  {
+   "pr": "https://github.com/Azure-Samples/serverless-chat-langchainjs/pull/114",
+   "sha": "0e14fad86506466e8bd229287662909bee9dc7bf",
+   "invalid": false,
+   "named": {
+    "itemator": 0,
+    "model": 0
+   }
+  },
+  {
+   "pr": "https://github.com/microsoft/wassette/pull/162",
+   "sha": "461d042c114f6c85d54d163323e8456efb4b4066",
+   "invalid": false,
+   "named": {
+    "itemator": 0,
+    "model": 0
+   }
+  },
+  {
+   "pr": "https://github.com/dotnet/maui/pull/31618",
+   "sha": "893bb2b848a2e5adac79ad8eb2194cf6a85f6d21",
+   "invalid": false,
+   "named": {
+    "itemator": 0,
+    "model": 13
+   }
+  },
+  {
+   "pr": "https://github.com/liam-hq/liam/pull/3783",
+   "sha": "73a11193a55ee6d70d521adfe282094f772f8283",
+   "invalid": false,
+   "named": {
+    "itemator": 0,
+    "model": 0
+   }
+  },
+  {
+   "pr": "https://github.com/tphakala/birdnet-go/pull/1077",
+   "sha": "b3cd0acb61fd53333dd4bd9341b64ec3e0f13792",
+   "invalid": false,
+   "named": {
+    "itemator": 1,
+    "model": 15
+   }
+  },
+  {
+   "pr": "https://github.com/a16z/halmos/pull/541",
+   "sha": "00b767fad484ffe9c42e729fd80c6631fd99c581",
+   "invalid": false,
+   "named": {
+    "itemator": 0,
+    "model": 0
+   }
+  },
+  {
+   "pr": "https://github.com/docker/hello-genai/pull/8",
+   "sha": "70bde64db4a693f403eab902f8a4f5991e74bfef",
+   "invalid": false,
+   "named": {
+    "itemator": 2,
+    "model": 21
+   }
+  },
+  {
+   "pr": "https://github.com/vllm-project/semantic-router/pull/322",
+   "sha": "57b733bceb4be984ea2071b07aeacd8c79a05c98",
+   "invalid": false,
+   "named": {
+    "itemator": 2,
+    "model": 1
+   }
+  },
+  {
+   "pr": "https://github.com/airbytehq/airbyte/pull/60253",
+   "sha": "e7007052cad588db0d9f24861437471c0c66d135",
+   "invalid": false,
+   "named": {
+    "itemator": 0,
+    "model": 0
+   }
+  },
+  {
+   "pr": "https://github.com/Azure/azure-cosmos-dotnet-v3/pull/5295",
+   "sha": "b521198003a2e8e0535147f4402df6fb9f914005",
+   "invalid": false,
+   "named": {
+    "itemator": 0,
+    "model": 0
+   }
+  },
+  {
+   "pr": "https://github.com/pyth-network/pyth-crosschain/pull/2827",
+   "sha": "dbbda0b145950885c6d5ad8d832ee3782997057b",
+   "invalid": false,
+   "named": {
+    "itemator": 0,
+    "model": 0
+   }
+  },
+  {
+   "pr": "https://github.com/tambo-ai/tambo/pull/1023",
+   "sha": "52e436d44d67b6a9c9e3663c8186ebd19070ed6d",
+   "invalid": false,
+   "named": {
+    "itemator": 2,
+    "model": 3
+   }
+  },
+  {
+   "pr": "https://github.com/microsoft/mcp/pull/907",
+   "sha": "2252d99d5d2b8c386779ae17cad34469b7b57866",
+   "invalid": false,
+   "named": {
+    "itemator": 0,
+    "model": 12
+   }
+  },
+  {
+   "pr": "https://github.com/actions/toolkit/pull/2100",
+   "sha": "bd54a2413a1ccd761d7bb01674d65530aaba4b77",
+   "invalid": false,
+   "named": {
+    "itemator": 0,
+    "model": 1
+   }
+  },
+  {
+   "pr": "https://github.com/dotnet/roslyn/pull/80891",
+   "sha": "54487f2739a0f2759be9ae598601b57bec04ff2a",
+   "invalid": false,
+   "named": {
+    "itemator": 0,
+    "model": 0
+   }
+  },
+  {
+   "pr": "https://github.com/microsoft/genaiscript/pull/1818",
+   "sha": "c17760133429cfb637255ed881eb8bffaacb7329",
+   "invalid": false,
+   "named": {
+    "itemator": 0,
+    "model": 0
+   }
+  },
+  {
+   "pr": "https://github.com/dotnet/aspire/pull/10786",
+   "sha": "b1d1ee3c79519ca16c538742753c67c77b2dcb16",
+   "invalid": false,
+   "named": {
+    "itemator": 33,
+    "model": 8
+   }
+  },
+  {
+   "pr": "https://github.com/modelcontextprotocol/csharp-sdk/pull/645",
+   "sha": "32bafc2cc636e3ddcb769a12eea92eba6e292f92",
+   "invalid": false,
+   "named": {
+    "itemator": 1,
+    "model": 1
+   }
+  },
+  {
+   "pr": "https://github.com/liam-hq/liam/pull/1302",
+   "sha": "d652c687bdf36e292362a0f442f73d345445a328",
+   "invalid": false,
+   "named": {
+    "itemator": 0,
+    "model": 0
+   }
+  },
+  {
+   "pr": "https://github.com/dotnet/razor/pull/12368",
+   "sha": "a9f84e21fbaa8abcd501f16d8f5cf9c99c8e221f",
+   "invalid": false,
+   "named": {
+    "itemator": 0,
+    "model": 0
+   }
+  },
+  {
+   "pr": "https://github.com/ensdomains/governance-contracts/pull/34",
+   "sha": "2181bd933effa1073222bc991a5319f688717cfc",
+   "invalid": false,
+   "named": {
+    "itemator": 0,
+    "model": 0
+   }
+  },
+  {
+   "pr": "https://github.com/livepeer/go-livepeer/pull/3767",
+   "sha": "4970f7a3190ad6540a4fa16e7c8fc159793c8530",
+   "invalid": false,
+   "named": {
+    "itemator": 0,
+    "model": 0
+   }
+  },
+  {
+   "pr": "https://github.com/Azure/azure-cosmos-dotnet-v3/pull/5289",
+   "sha": "7d4c4cd8677b5c3a5e1ddc4800daccbc13a93e4d",
+   "invalid": false,
+   "named": {
+    "itemator": 0,
+    "model": 0
+   }
+  },
+  {
+   "pr": "https://github.com/dalathegreat/Battery-Emulator/pull/1290",
+   "sha": "9bf2d089299a9966921d2131412539a0a0d1a866",
+   "invalid": false,
+   "named": {
+    "itemator": 0,
+    "model": 0
+   }
+  },
+  {
+   "pr": "https://github.com/Azure/azure-sdk-for-python/pull/43269",
+   "sha": "58fa2d95fd53a4d0bc947e75b693ebfc77c29f08",
+   "invalid": false,
+   "named": {
+    "itemator": 0,
+    "model": 0
+   }
+  },
+  {
+   "pr": "https://github.com/MetaMask/metamask-mobile/pull/20483",
+   "sha": "69adb507126a8c1927bf14ff09a155094cb1ac36",
+   "invalid": false,
+   "named": {
+    "itemator": 0,
+    "model": 0
+   }
+  },
+  {
+   "pr": "https://github.com/Azure/azure-container-networking/pull/3688",
+   "sha": "1b650aac328c540016d87268871ab3569f63174d",
+   "invalid": false,
+   "named": {
+    "itemator": 0,
+    "model": 1
+   }
+  },
+  {
+   "pr": "https://github.com/dotnet/arcade/pull/16035",
+   "sha": "90fdde08431fb16316d78d5b8b3b04d1b08a6e32",
+   "invalid": false,
+   "named": {
+    "itemator": 4,
+    "model": 1
+   }
+  },
+  {
+   "pr": "https://github.com/MetaMask/metamask-extension/pull/34098",
+   "sha": "a047fec69991d54b327c0dbe2c23c45a501b7996",
+   "invalid": false,
+   "named": {
+    "itemator": 0,
+    "model": 0
+   }
+  },
+  {
+   "pr": "https://github.com/dotnet/fsharp/pull/18584",
+   "sha": "825cc436c86f6cb9b135c5e296a96c80b71385aa",
+   "invalid": false,
+   "named": {
+    "itemator": 12,
+    "model": 16
+   }
+  },
+  {
+   "pr": "https://github.com/vaadin/flow/pull/21824",
+   "sha": "c7933480a4f677b501527f35de69fa3ee386d22a",
+   "invalid": false,
+   "named": {
+    "itemator": 4,
+    "model": 17
+   }
+  },
+  {
+   "pr": "https://github.com/deepmodeling/deepmd-kit/pull/4904",
+   "sha": "e28bb867bbcd0dfb0835d7a00e4b661e73966cdb",
+   "invalid": false,
+   "named": {
+    "itemator": 1,
+    "model": 1
+   }
+  },
+  {
+   "pr": "https://github.com/dotnet/razor/pull/12234",
+   "sha": "128ead95b95358af77ebd93214cf150821a76200",
+   "invalid": false,
+   "named": {
+    "itemator": 0,
+    "model": 0
+   }
+  },
+  {
+   "pr": "https://github.com/dotnet/razor/pull/12324",
+   "sha": "b96489a6ee384be309a0924d32e6297e5da18a8d",
+   "invalid": false,
+   "named": {
+    "itemator": 0,
+    "model": 0
+   }
+  },
+  {
+   "pr": "https://github.com/elastic/terraform-provider-elasticstack/pull/1298",
+   "sha": "555dccbcbba9e9c2c04bec8a7d9e7b5967b77ccd",
+   "invalid": false,
+   "named": {
+    "itemator": 0,
+    "model": 0
+   }
+  },
+  {
+   "pr": "https://github.com/mlflow/mlflow/pull/17973",
+   "sha": "5d2122f208a412dba2539a905a407ee77a5e7767",
+   "invalid": false,
+   "named": {
+    "itemator": 1,
+    "model": 11
+   }
+  },
+  {
+   "pr": "https://github.com/valkey-io/valkey-glide/pull/4287",
+   "sha": "82bf2b4e232e1c78caae266f85fa3825ff0ecb8d",
+   "invalid": false,
+   "named": {
+    "itemator": 1,
+    "model": 2
+   }
+  },
+  {
+   "pr": "https://github.com/dotnet/core/pull/9991",
+   "sha": "cda05d4c9b209dcaed379b9107d247d3ae1d1d6e",
+   "invalid": false,
+   "named": {
+    "itemator": 0,
+    "model": 0
+   }
+  },
+  {
+   "pr": "https://github.com/kurotu/VRCQuestTools/pull/127",
+   "sha": "f051fc9daf92783ed713a8582754e3747def450b",
+   "invalid": false,
+   "named": {
+    "itemator": 0,
+    "model": 0
+   }
+  },
+  {
+   "pr": "https://github.com/eclipse-rdf4j/rdf4j/pull/5478",
+   "sha": "4f12471ccf31450d115e30991f52585db03427ac",
+   "invalid": false,
+   "named": {
+    "itemator": 0,
+    "model": 0
+   }
+  },
+  {
+   "pr": "https://github.com/prebid/Prebid.js/pull/13597",
+   "sha": "9aca05581818b6d535783d5928ad5691625946e2",
+   "invalid": false,
+   "named": {
+    "itemator": 126,
+    "model": 18
+   }
+  },
+  {
+   "pr": "https://github.com/Azure/azure-mcp/pull/647",
+   "sha": "22fd586c51f96f08eeab4630a31e8b6a7c540b6a",
+   "invalid": false,
+   "named": {
+    "itemator": 0,
+    "model": 2
+   }
+  },
+  {
+   "pr": "https://github.com/altair-graphql/altair/pull/2883",
+   "sha": "7d77cbc3406c16d1899b9244c6664be63384a268",
+   "invalid": false,
+   "named": {
+    "itemator": 0,
+    "model": 5
+   }
+  },
+  {
+   "pr": "https://github.com/thedotmack/claude-mem/pull/14",
+   "sha": "0f971c7dce4a6383eb5a1a24b561855926806624",
+   "invalid": false,
+   "named": {
+    "itemator": 0,
+    "model": 1
+   }
+  },
+  {
+   "pr": "https://github.com/liam-hq/liam/pull/3822",
+   "sha": "f14aa8f3303f26819b70cda91a5cca1caa5d8d6b",
+   "invalid": false,
+   "named": {
+    "itemator": 11,
+    "model": 0
+   }
+  },
+  {
+   "pr": "https://github.com/valkey-io/valkey-glide/pull/4353",
+   "sha": "954ae4b44403c187cc57bb1ab7100869920f6966",
+   "invalid": false,
+   "named": {
+    "itemator": 1,
+    "model": 0
+   }
+  },
+  {
+   "pr": "https://github.com/liam-hq/liam/pull/3610",
+   "sha": "0cc3afeecfff9c3c0eb0c6cb34878e769c988067",
+   "invalid": false,
+   "named": {
+    "itemator": 0,
+    "model": 0
+   }
+  },
+  {
+   "pr": "https://github.com/lostintangent/gistpad/pull/396",
+   "sha": "81142e42457eeb65497331216504108bae1c211f",
+   "invalid": false,
+   "named": {
+    "itemator": 0,
+    "model": 1
+   }
+  },
+  {
+   "pr": "https://github.com/cloudposse/atmos/pull/1607",
+   "sha": "34f9b873f491c457e3f0ef6083be1df58fd8084c",
+   "invalid": false,
+   "named": {
+    "itemator": 3,
+    "model": 0
+   }
+  },
+  {
+   "pr": "https://github.com/mlflow/mlflow/pull/16526",
+   "sha": "c3d23f17e4b47db38889a4ec81301d5a26d278e4",
+   "invalid": false,
+   "named": {
+    "itemator": 0,
+    "model": 0
+   }
+  },
+  {
+   "pr": "https://github.com/mlflow/mlflow/pull/16367",
+   "sha": "49cb824f5ed29f1d1e3731d17c22fd7071e747b1",
+   "invalid": false,
+   "named": {
+    "itemator": 0,
+    "model": 0
+   }
+  },
+  {
+   "pr": "https://github.com/pyth-network/pyth-crosschain/pull/2676",
+   "sha": "9052d1b598ff61f8f225df556d2861c4cb6bf9d6",
+   "invalid": false,
+   "named": {
+    "itemator": 0,
+    "model": 0
+   }
+  },
+  {
+   "pr": "https://github.com/near/nearcore/pull/13171",
+   "sha": "9e7820c1a4adcbb111b8b8111e753effaa681e7f",
+   "invalid": false,
+   "named": {
+    "itemator": 0,
+    "model": 0
+   }
+  },
+  {
+   "pr": "https://github.com/Azure/azure-functions-host/pull/11115",
+   "sha": "d21cfebdaa8432ee18b7b340b215a2e24a4fef8a",
+   "invalid": false,
+   "named": {
+    "itemator": 4,
+    "model": 27
+   }
+  },
+  {
+   "pr": "https://github.com/albertorestifo/node-dijkstra/pull/44",
+   "sha": "759f1e9de9bba426aeb96b6188f5ffd1627068b8",
+   "invalid": false,
+   "named": {
+    "itemator": 0,
+    "model": 1
+   }
+  },
+  {
+   "pr": "https://github.com/open-telemetry/opentelemetry-java-instrumentation/pull/14869",
+   "sha": "7b1173bf958b7dc248810a08b6bc2c52803b6ed7",
+   "invalid": false,
+   "named": {
+    "itemator": 0,
+    "model": 2
+   }
+  },
+  {
+   "pr": "https://github.com/microsoft/agent-lightning/pull/120",
+   "sha": "2d8f226d3bc15f6841605666a60fc593cb684fe7",
+   "invalid": false,
+   "named": {
+    "itemator": 0,
+    "model": 0
+   }
+  },
+  {
+   "pr": "https://github.com/microsoft/react-native-windows/pull/14767",
+   "sha": "6fc46e2b0092238309fef6bfa0bf121bc379613c",
+   "invalid": false,
+   "named": {
+    "itemator": 0,
+    "model": 0
+   }
+  },
+  {
+   "pr": "https://github.com/github/codeql-action/pull/3094",
+   "sha": "ee37081d031a4f59701d3eabb6677858b20cd575",
+   "invalid": false,
+   "named": {
+    "itemator": 0,
+    "model": 0
+   }
+  },
+  {
+   "pr": "https://github.com/a2aproject/a2a-dotnet/pull/184",
+   "sha": "b291c2b642e338a8a618d3d4fe92c577fe9a5034",
+   "invalid": false,
+   "named": {
+    "itemator": 0,
+    "model": 0
+   }
+  },
+  {
+   "pr": "https://github.com/ethereumclassic/ethereumclassic.github.io/pull/1645",
+   "sha": "e4e684567972ded40c1471ceb3fb38cb0452da52",
+   "invalid": false,
+   "named": {
+    "itemator": 1,
+    "model": 0
+   }
+  },
+  {
+   "pr": "https://github.com/dotnet/runtime/pull/119229",
+   "sha": "ceaad7e7738efbbfe361a7cca2f7e72a74f08c6e",
+   "invalid": false,
+   "named": {
+    "itemator": 0,
+    "model": 0
+   }
+  },
+  {
+   "pr": "https://github.com/microsoft/react-native-windows/pull/14796",
+   "sha": "a30cd9e8981f44b8ab954acdb5a7fa6de6a52f0d",
+   "invalid": false,
+   "named": {
+    "itemator": 3,
+    "model": 2
+   }
+  },
+  {
+   "pr": "https://github.com/modal-labs/modal-client/pull/2781",
+   "sha": "ab9e50def61f2e9a38e89c964a736db236597289",
+   "invalid": false,
+   "named": {
+    "itemator": 0,
+    "model": 0
+   }
+  },
+  {
+   "pr": "https://github.com/getsentry/sentry/pull/94573",
+   "sha": "92e774d0e3e499655b14e83a745333c1cece3eca",
+   "invalid": false,
+   "named": {
+    "itemator": 10,
+    "model": 20
+   }
+  },
+  {
+   "pr": "https://github.com/manusa/electronim/pull/563",
+   "sha": "b5d9364c5673641fd6f3bb6543c48599b4a0c2c2",
+   "invalid": false,
+   "named": {
+    "itemator": 0,
+    "model": 0
+   }
+  },
+  {
+   "pr": "https://github.com/projectcalico/calico/pull/11086",
+   "sha": "7bc938f41b7896ce5b65b14223cc0d79e2e04cec",
+   "invalid": false,
+   "named": {
+    "itemator": 11,
+    "model": 8
+   }
+  },
+  {
+   "pr": "https://github.com/openops-cloud/openops/pull/671",
+   "sha": "2a4b43b280193bfc07f22a1e440033ec3471d5e2",
+   "invalid": false,
+   "named": {
+    "itemator": 1,
+    "model": 2
+   }
+  },
+  {
+   "pr": "https://github.com/actualbudget/actual/pull/5782",
+   "sha": "8f86696d512c1fb705ca574a90150b69a6f531e4",
+   "invalid": false,
+   "named": {
+    "itemator": 0,
+    "model": 0
+   }
+  },
+  {
+   "pr": "https://github.com/roboflow/inference/pull/1350",
+   "sha": "2c678cf992c3ad01bf843683609854e7719f088a",
+   "invalid": false,
+   "named": {
+    "itemator": 0,
+    "model": 1
+   }
+  },
+  {
+   "pr": "https://github.com/web-infra-dev/rspack/pull/11142",
+   "sha": "49799c703f8f981443058bcd140452e34be5f752",
+   "invalid": false,
+   "named": {
+    "itemator": 3,
+    "model": 4
+   }
+  },
+  {
+   "pr": "https://github.com/Azure/azure-cosmos-dotnet-v3/pull/5287",
+   "sha": "c5b40ca3de0fe76a6e20de231bbcab2672b5c9ec",
+   "invalid": false,
+   "named": {
+    "itemator": 0,
+    "model": 0
+   }
+  },
+  {
+   "pr": "https://github.com/liam-hq/liam/pull/3696",
+   "sha": "b394f0bfa0b45ca8e5009cdac4226d98cc54f691",
+   "invalid": false,
+   "named": {
+    "itemator": 0,
+    "model": 0
+   }
+  },
+  {
+   "pr": "https://github.com/liam-hq/liam/pull/1302",
+   "sha": "a3a33d32aa8f9d33b341bf46ff9f168da1bbb916",
+   "invalid": false,
+   "named": {
+    "itemator": 0,
+    "model": 0
+   }
+  }
+ ],
+ "rows": [
+  {
+   "comment_id": 2192088044,
+   "pr": "https://github.com/justtrackio/gosoline/pull/1253",
+   "path": "pkg/stream/input_sqs.go",
+   "named": {
+    "itemator": false,
+    "model": false
+   }
+  },
+  {
+   "comment_id": 2205871019,
+   "pr": "https://github.com/AzureAD/microsoft-identity-web/pull/3413",
+   "path": "src/Microsoft.Identity.Web.DownstreamApi/DownstreamApi.cs",
+   "named": {
+    "itemator": false,
+    "model": false
+   }
+  },
+  {
+   "comment_id": 2422062254,
+   "pr": "https://github.com/typedclojure/typedclojure/pull/188",
+   "path": "example-projects/clj-kondo-hooks/clj-kondo-bug-reproduction/README.md",
+   "named": {
+    "itemator": false,
+    "model": false
+   }
+  },
+  {
+   "comment_id": 2166041731,
+   "pr": "https://github.com/liam-hq/liam/pull/2079",
+   "path": "frontend/internal-packages/agent/src/chat/workflow/workflow.test.ts",
+   "named": {
+    "itemator": true,
+    "model": false
+   }
+  },
+  {
+   "comment_id": 2311699392,
+   "pr": "https://github.com/dotnet/docs/pull/48191",
+   "path": "docs/core/tools/dotnet-new-sdk-templates.md",
+   "named": {
+    "itemator": false,
+    "model": false
+   }
+  },
+  {
+   "comment_id": 2328182616,
+   "pr": "https://github.com/dotnet/docs/pull/48191",
+   "path": "docs/core/tools/dotnet-new-sdk-templates.md",
+   "named": {
+    "itemator": false,
+    "model": false
+   }
+  },
+  {
+   "comment_id": 2243651473,
+   "pr": "https://github.com/Azure/azure-cosmos-dotnet-v3/pull/5326",
+   "path": "Microsoft.Azure.Cosmos/src/Resource/Settings/CosmosAccountServiceConfiguration.cs",
+   "named": {
+    "itemator": false,
+    "model": false
+   }
+  },
+  {
+   "comment_id": 2183476318,
+   "pr": "https://github.com/temporalio/temporal/pull/8003",
+   "path": "common/persistence/cassandra/metadata_store.go",
+   "named": {
+    "itemator": false,
+    "model": false
+   }
+  },
+  {
+   "comment_id": 2333923681,
+   "pr": "https://github.com/githubnext/gh-aw/pull/615",
+   "path": "pkg/workflow/js/sanitize_output.cjs",
+   "named": {
+    "itemator": false,
+    "model": false
+   }
+  },
+  {
+   "comment_id": 2333924222,
+   "pr": "https://github.com/githubnext/gh-aw/pull/615",
+   "path": "pkg/workflow/js/sanitize_output.cjs",
+   "named": {
+    "itemator": false,
+    "model": false
+   }
+  },
+  {
+   "comment_id": 2247148669,
+   "pr": "https://github.com/vitejs/vite/pull/20522",
+   "path": "packages/vite/src/node/__tests__/plugins/terser.spec.ts",
+   "named": {
+    "itemator": false,
+    "model": false
+   }
+  },
+  {
+   "comment_id": 1955655008,
+   "pr": "https://github.com/liam-hq/liam/pull/726",
+   "path": "frontend/packages/erd-core/src/features/reactflow/hooks/useCustomReactflow.ts",
+   "named": {
+    "itemator": false,
+    "model": false
+   }
+  },
+  {
+   "comment_id": 2265132970,
+   "pr": "https://github.com/machinewrapped/llm-subtrans/pull/250",
+   "path": "PySubtitle/Helpers/Localization.py",
+   "named": {
+    "itemator": false,
+    "model": false
+   }
+  },
+  {
+   "comment_id": 2265174527,
+   "pr": "https://github.com/machinewrapped/llm-subtrans/pull/250",
+   "path": "PySubtitle/Helpers/Localization.py",
+   "named": {
+    "itemator": false,
+    "model": false
+   }
+  },
+  {
+   "comment_id": 2102420663,
+   "pr": "https://github.com/microsoft/git/pull/755",
+   "path": "t/t8015-blame-rename-detection.sh",
+   "named": {
+    "itemator": false,
+    "model": false
+   }
+  },
+  {
+   "comment_id": 2261679391,
+   "pr": "https://github.com/project-dalec/dalec/pull/727",
+   "path": "frontend/debug/handle_resolve.go",
+   "named": {
+    "itemator": false,
+    "model": false
+   }
+  },
+  {
+   "comment_id": 2425735761,
+   "pr": "https://github.com/Shelf-nu/shelf.nu/pull/2100",
+   "path": "app/utils/env.ts",
+   "named": {
+    "itemator": false,
+    "model": false
+   }
+  },
+  {
+   "comment_id": 2425737032,
+   "pr": "https://github.com/Shelf-nu/shelf.nu/pull/2100",
+   "path": "app/modules/editor-v2/feature-flag.ts",
+   "named": {
+    "itemator": false,
+    "model": false
+   }
+  },
+  {
+   "comment_id": 2166596634,
+   "pr": "https://github.com/liam-hq/liam/pull/2200",
+   "path": "frontend/internal-packages/schema-bench/src/workspace/benchmark.ts",
+   "named": {
+    "itemator": false,
+    "model": false
+   }
+  },
+  {
+   "comment_id": 2166596905,
+   "pr": "https://github.com/liam-hq/liam/pull/2200",
+   "path": "frontend/internal-packages/schema-bench/src/workspace/setup.ts",
+   "named": {
+    "itemator": false,
+    "model": false
+   }
+  },
+  {
+   "comment_id": 2216921666,
+   "pr": "https://github.com/cartography-cncf/cartography/pull/1697",
+   "path": "cartography/models/aws/rds/subnet_group.py",
+   "named": {
+    "itemator": false,
+    "model": false
+   }
+  },
+  {
+   "comment_id": 2239177696,
+   "pr": "https://github.com/liam-hq/liam/pull/2745",
+   "path": "frontend/internal-packages/agent/src/chat/workflow/shared/langGraphUtils.ts",
+   "named": {
+    "itemator": false,
+    "model": true
+   }
+  },
+  {
+   "comment_id": 2239188325,
+   "pr": "https://github.com/liam-hq/liam/pull/2745",
+   "path": "frontend/internal-packages/agent/src/langchain/agents/dmlGenerationAgent/agent.ts",
+   "named": {
+    "itemator": false,
+    "model": true
+   }
+  },
+  {
+   "comment_id": 2244122682,
+   "pr": "https://github.com/liam-hq/liam/pull/2745",
+   "path": "frontend/internal-packages/agent/src/langchain/agents/dmlGenerationAgent/agent.ts",
+   "named": {
+    "itemator": false,
+    "model": true
+   }
+  },
+  {
+   "comment_id": 2214159901,
+   "pr": "https://github.com/Azure/azure-mcp/pull/639",
+   "path": "docs/azmcp-commands.md",
+   "named": {
+    "itemator": false,
+    "model": false
+   }
+  },
+  {
+   "comment_id": 2346371194,
+   "pr": "https://github.com/ClickHouse/ClickHouse/pull/87093",
+   "path": "tests/queries/0_stateless/03233_workload_config_loading.reference",
+   "named": {
+    "itemator": false,
+    "model": false
+   }
+  },
+  {
+   "comment_id": 2203809301,
+   "pr": "https://github.com/microsoft/typescript-go/pull/1401",
+   "path": "internal/format/api_test.go",
+   "named": {
+    "itemator": false,
+    "model": false
+   }
+  },
+  {
+   "comment_id": 2338058539,
+   "pr": "https://github.com/epicweb-dev/epicshop/pull/337",
+   "path": "packages/workshop-mcp/src/resources.ts",
+   "named": {
+    "itemator": false,
+    "model": false
+   }
+  },
+  {
+   "comment_id": 2244801563,
+   "pr": "https://github.com/taiga-family/taiga-ui/pull/11485",
+   "path": "projects/kit/components/combo-box/combo-box.directive.ts",
+   "named": {
+    "itemator": false,
+    "model": false
+   }
+  },
+  {
+   "comment_id": 2039315754,
+   "pr": "https://github.com/liam-hq/liam/pull/1304",
+   "path": "frontend/packages/db/supabase/migrations/20250410121418_add_project_table_rls.sql",
+   "named": {
+    "itemator": false,
+    "model": false
+   }
+  },
+  {
+   "comment_id": 2327567162,
+   "pr": "https://github.com/CherryHQ/cherry-studio/pull/9992",
+   "path": "PR_TEMPLATE.md",
+   "named": {
+    "itemator": true,
+    "model": true
+   }
+  },
+  {
+   "comment_id": 2264140835,
+   "pr": "https://github.com/dotnet/runtime/pull/118549",
+   "path": "src/libraries/System.Private.DataContractSerialization/src/System/Runtime/Serialization/Globals.cs",
+   "named": {
+    "itemator": false,
+    "model": true
+   }
+  },
+  {
+   "comment_id": 1955626898,
+   "pr": "https://github.com/liam-hq/liam/pull/726",
+   "path": "frontend/packages/erd-core/src/features/reactflow/hooks/useCustomReactflow.ts",
+   "named": {
+    "itemator": false,
+    "model": false
+   }
+  },
+  {
+   "comment_id": 2140561917,
+   "pr": "https://github.com/Azure-Samples/serverless-chat-langchainjs/pull/114",
+   "path": ".github/workflows/auto-issue-labeller.yaml",
+   "named": {
+    "itemator": false,
+    "model": false
+   }
+  },
+  {
+   "comment_id": 2280031902,
+   "pr": "https://github.com/microsoft/wassette/pull/162",
+   "path": "docs/development/python.md",
+   "named": {
+    "itemator": false,
+    "model": false
+   }
+  },
+  {
+   "comment_id": 2349178809,
+   "pr": "https://github.com/dotnet/maui/pull/31618",
+   "path": "src/Templates/src/cgmanifest.json",
+   "named": {
+    "itemator": false,
+    "model": true
+   }
+  },
+  {
+   "comment_id": 2349179307,
+   "pr": "https://github.com/dotnet/maui/pull/31618",
+   "path": "src/Templates/src/templates/maui-blazor-solution/.template.config/localize/templatestrings.json",
+   "named": {
+    "itemator": false,
+    "model": true
+   }
+  },
+  {
+   "comment_id": 2349180121,
+   "pr": "https://github.com/dotnet/maui/pull/31618",
+   "path": "src/Templates/src/templates/maui-blazor/.template.config/localize/templatestrings.json",
+   "named": {
+    "itemator": false,
+    "model": true
+   }
+  },
+  {
+   "comment_id": 2349180586,
+   "pr": "https://github.com/dotnet/maui/pull/31618",
+   "path": "src/Templates/src/templates/maui-contentpage-csharp/.template.config/localize/templatestrings.json",
+   "named": {
+    "itemator": false,
+    "model": true
+   }
+  },
+  {
+   "comment_id": 2349180940,
+   "pr": "https://github.com/dotnet/maui/pull/31618",
+   "path": "src/Templates/src/templates/maui-contentpage-xaml/.template.config/localize/templatestrings.json",
+   "named": {
+    "itemator": false,
+    "model": true
+   }
+  },
+  {
+   "comment_id": 2349181352,
+   "pr": "https://github.com/dotnet/maui/pull/31618",
+   "path": "src/Templates/src/templates/maui-contentview-csharp/.template.config/localize/templatestrings.json",
+   "named": {
+    "itemator": false,
+    "model": true
+   }
+  },
+  {
+   "comment_id": 2349181666,
+   "pr": "https://github.com/dotnet/maui/pull/31618",
+   "path": "src/Templates/src/templates/maui-contentview-xaml/.template.config/localize/templatestrings.json",
+   "named": {
+    "itemator": false,
+    "model": true
+   }
+  },
+  {
+   "comment_id": 2349181972,
+   "pr": "https://github.com/dotnet/maui/pull/31618",
+   "path": "src/Templates/src/templates/maui-lib/.template.config/localize/templatestrings.json",
+   "named": {
+    "itemator": false,
+    "model": true
+   }
+  },
+  {
+   "comment_id": 2349182338,
+   "pr": "https://github.com/dotnet/maui/pull/31618",
+   "path": "src/Templates/src/templates/maui-mobile/.template.config/localize/templatestrings.json",
+   "named": {
+    "itemator": false,
+    "model": true
+   }
+  },
+  {
+   "comment_id": 2349182724,
+   "pr": "https://github.com/dotnet/maui/pull/31618",
+   "path": "src/Templates/src/templates/maui-multiproject/.template.config/localize/templatestrings.json",
+   "named": {
+    "itemator": false,
+    "model": true
+   }
+  },
+  {
+   "comment_id": 2349183007,
+   "pr": "https://github.com/dotnet/maui/pull/31618",
+   "path": "src/Templates/src/templates/maui-resourcedictionary-xaml/.template.config/localize/templatestrings.json",
+   "named": {
+    "itemator": false,
+    "model": true
+   }
+  },
+  {
+   "comment_id": 2349183265,
+   "pr": "https://github.com/dotnet/maui/pull/31618",
+   "path": "src/Templates/src/templates/maui-window-csharp/.template.config/localize/templatestrings.json",
+   "named": {
+    "itemator": false,
+    "model": true
+   }
+  },
+  {
+   "comment_id": 2349183533,
+   "pr": "https://github.com/dotnet/maui/pull/31618",
+   "path": "src/Templates/src/templates/maui-window-xaml/.template.config/localize/templatestrings.json",
+   "named": {
+    "itemator": false,
+    "model": true
+   }
+  },
+  {
+   "comment_id": 2431736665,
+   "pr": "https://github.com/liam-hq/liam/pull/3783",
+   "path": "frontend/apps/app/components/OrganizationMembersPage/components/DeleteInvitationModal/DeleteInvitationModal.stories.tsx",
+   "named": {
+    "itemator": false,
+    "model": false
+   }
+  },
+  {
+   "comment_id": 2249737675,
+   "pr": "https://github.com/tphakala/birdnet-go/pull/1077",
+   "path": "frontend/src/lib/desktop/features/settings/pages/MainSettingsPage.svelte",
+   "named": {
+    "itemator": false,
+    "model": false
+   }
+  },
+  {
+   "comment_id": 2141303063,
+   "pr": "https://github.com/a16z/halmos/pull/541",
+   "path": "tests/test_solver_integration.py",
+   "named": {
+    "itemator": false,
+    "model": false
+   }
+  },
+  {
+   "comment_id": 2213141159,
+   "pr": "https://github.com/docker/hello-genai/pull/8",
+   "path": "py-genai/docker-compose.yml",
+   "named": {
+    "itemator": false,
+    "model": false
+   }
+  },
+  {
+   "comment_id": 2213141945,
+   "pr": "https://github.com/docker/hello-genai/pull/8",
+   "path": "rust-genai/docker-compose.yaml",
+   "named": {
+    "itemator": false,
+    "model": true
+   }
+  },
+  {
+   "comment_id": 2402051904,
+   "pr": "https://github.com/vllm-project/semantic-router/pull/322",
+   "path": "TRACING_FEATURE.md",
+   "named": {
+    "itemator": true,
+    "model": true
+   }
+  },
+  {
+   "comment_id": 2089462811,
+   "pr": "https://github.com/airbytehq/airbyte/pull/60253",
+   "path": "airbyte-integrations/connectors/source-mongodb-v2/build.gradle",
+   "named": {
+    "itemator": false,
+    "model": false
+   }
+  },
+  {
+   "comment_id": 2211925311,
+   "pr": "https://github.com/Azure/azure-cosmos-dotnet-v3/pull/5295",
+   "path": "Microsoft.Azure.Cosmos/src/Batch/BatchConfiguration.cs",
+   "named": {
+    "itemator": false,
+    "model": false
+   }
+  },
+  {
+   "comment_id": 2178669207,
+   "pr": "https://github.com/pyth-network/pyth-crosschain/pull/2827",
+   "path": "apps/fortuna/src/command/run.rs",
+   "named": {
+    "itemator": false,
+    "model": false
+   }
+  },
+  {
+   "comment_id": 2334427597,
+   "pr": "https://github.com/tambo-ai/tambo/pull/1023",
+   "path": "showcase/tsconfig.json",
+   "named": {
+    "itemator": true,
+    "model": true
+   }
+  },
+  {
+   "comment_id": 2452598459,
+   "pr": "https://github.com/microsoft/mcp/pull/907",
+   "path": "tools/Azure.Mcp.Tools.Kusto/tests/Azure.Mcp.Tools.Kusto.UnitTests/KustoClientTests.cs",
+   "named": {
+    "itemator": false,
+    "model": false
+   }
+  },
+  {
+   "comment_id": 2204992874,
+   "pr": "https://github.com/actions/toolkit/pull/2100",
+   "path": ".gitignore",
+   "named": {
+    "itemator": false,
+    "model": true
+   }
+  },
+  {
+   "comment_id": 2461728658,
+   "pr": "https://github.com/dotnet/roslyn/pull/80891",
+   "path": "src/LanguageServer/ProtocolUnitTests/Rename/RenameTests.cs",
+   "named": {
+    "itemator": false,
+    "model": false
+   }
+  },
+  {
+   "comment_id": 2249272428,
+   "pr": "https://github.com/microsoft/genaiscript/pull/1818",
+   "path": "packages/core/src/host.ts",
+   "named": {
+    "itemator": false,
+    "model": false
+   }
+  },
+  {
+   "comment_id": 2249272481,
+   "pr": "https://github.com/microsoft/genaiscript/pull/1818",
+   "path": "packages/runtime/src/nodehost.ts",
+   "named": {
+    "itemator": false,
+    "model": false
+   }
+  },
+  {
+   "comment_id": 2249272556,
+   "pr": "https://github.com/microsoft/genaiscript/pull/1818",
+   "path": "packages/vscode/src/vshost.ts",
+   "named": {
+    "itemator": false,
+    "model": false
+   }
+  },
+  {
+   "comment_id": 2392968708,
+   "pr": "https://github.com/dotnet/aspire/pull/10786",
+   "path": "src/Shared/Workload.targets",
+   "named": {
+    "itemator": false,
+    "model": false
+   }
+  },
+  {
+   "comment_id": 2225905461,
+   "pr": "https://github.com/modelcontextprotocol/csharp-sdk/pull/645",
+   "path": "dotnet-install.sh",
+   "named": {
+    "itemator": true,
+    "model": true
+   }
+  },
+  {
+   "comment_id": 2037087706,
+   "pr": "https://github.com/liam-hq/liam/pull/1302",
+   "path": "frontend/packages/jobs/src/trigger/jobs.ts",
+   "named": {
+    "itemator": false,
+    "model": false
+   }
+  },
+  {
+   "comment_id": 2444461255,
+   "pr": "https://github.com/dotnet/razor/pull/12368",
+   "path": "src/Razor/src/Microsoft.AspNetCore.Razor.ExternalAccess.LegacyEditor/RazorWrapperFactory.cs",
+   "named": {
+    "itemator": false,
+    "model": false
+   }
+  },
+  {
+   "comment_id": 1983218946,
+   "pr": "https://github.com/ensdomains/governance-contracts/pull/34",
+   "path": "deploy/test/00_deploy_test_dependencies.js",
+   "named": {
+    "itemator": false,
+    "model": false
+   }
+  },
+  {
+   "comment_id": 2395186323,
+   "pr": "https://github.com/livepeer/go-livepeer/pull/3767",
+   "path": "ai/worker/docker.go",
+   "named": {
+    "itemator": false,
+    "model": false
+   }
+  },
+  {
+   "comment_id": 2208830833,
+   "pr": "https://github.com/Azure/azure-cosmos-dotnet-v3/pull/5289",
+   "path": ".github/copilot-instructions.md",
+   "named": {
+    "itemator": false,
+    "model": false
+   }
+  },
+  {
+   "comment_id": 2186017767,
+   "pr": "https://github.com/dalathegreat/Battery-Emulator/pull/1290",
+   "path": "Software/USER_SETTINGS.h",
+   "named": {
+    "itemator": false,
+    "model": false
+   }
+  },
+  {
+   "comment_id": 2411965590,
+   "pr": "https://github.com/Azure/azure-sdk-for-python/pull/43269",
+   "path": "sdk/cosmos/azure-cosmos/azure/cosmos/cosmos_client.py",
+   "named": {
+    "itemator": false,
+    "model": false
+   }
+  },
+  {
+   "comment_id": 2383514568,
+   "pr": "https://github.com/MetaMask/metamask-mobile/pull/20483",
+   "path": "app/components/UI/Perps/Views/PerpsTabView/PerpsTabView.tsx",
+   "named": {
+    "itemator": false,
+    "model": false
+   }
+  },
+  {
+   "comment_id": 2143048651,
+   "pr": "https://github.com/Azure/azure-container-networking/pull/3688",
+   "path": "cns/service/main.go",
+   "named": {
+    "itemator": false,
+    "model": false
+   }
+  },
+  {
+   "comment_id": 2399349903,
+   "pr": "https://github.com/dotnet/arcade/pull/16035",
+   "path": "src/Microsoft.DotNet.SignTool/src/SignTool.cs",
+   "named": {
+    "itemator": false,
+    "model": false
+   }
+  },
+  {
+   "comment_id": 2301428982,
+   "pr": "https://github.com/MetaMask/metamask-extension/pull/34098",
+   "path": "ui/components/app/flask/experimental-area/experimental-area.js",
+   "named": {
+    "itemator": false,
+    "model": false
+   }
+  },
+  {
+   "comment_id": 2362197439,
+   "pr": "https://github.com/dotnet/fsharp/pull/18584",
+   "path": "tests/FSharp.Compiler.Service.Tests/Symbols.fs",
+   "named": {
+    "itemator": false,
+    "model": false
+   }
+  },
+  {
+   "comment_id": 2390469233,
+   "pr": "https://github.com/vaadin/flow/pull/21824",
+   "path": ".gitignore",
+   "named": {
+    "itemator": false,
+    "model": true
+   }
+  },
+  {
+   "comment_id": 2295063690,
+   "pr": "https://github.com/deepmodeling/deepmd-kit/pull/4904",
+   "path": "source/api_cc/CMakeLists.txt",
+   "named": {
+    "itemator": false,
+    "model": false
+   }
+  },
+  {
+   "comment_id": 2355204854,
+   "pr": "https://github.com/dotnet/razor/pull/12234",
+   "path": "src/Razor/src/Microsoft.VisualStudio.RazorExtension/SyntaxVisualizer/SyntaxVisualizerControl.xaml.cs",
+   "named": {
+    "itemator": false,
+    "model": false
+   }
+  },
+  {
+   "comment_id": 2425923067,
+   "pr": "https://github.com/dotnet/razor/pull/12324",
+   "path": "src/Razor/src/Microsoft.CodeAnalysis.Razor.Workspaces/Completion/BlazorDataAttributeCompletionItemProvider.cs",
+   "named": {
+    "itemator": false,
+    "model": false
+   }
+  },
+  {
+   "comment_id": 2339966470,
+   "pr": "https://github.com/elastic/terraform-provider-elasticstack/pull/1298",
+   "path": "internal/elasticsearch/cluster/script/schema.go",
+   "named": {
+    "itemator": false,
+    "model": false
+   }
+  },
+  {
+   "comment_id": 2382405133,
+   "pr": "https://github.com/mlflow/mlflow/pull/17973",
+   "path": "tests/server/job/test_endpoint.py",
+   "named": {
+    "itemator": false,
+    "model": false
+   }
+  },
+  {
+   "comment_id": 2182652011,
+   "pr": "https://github.com/valkey-io/valkey-glide/pull/4287",
+   "path": ".github/workflows/codeql.yml",
+   "named": {
+    "itemator": true,
+    "model": false
+   }
+  },
+  {
+   "comment_id": 2222841758,
+   "pr": "https://github.com/dotnet/core/pull/9991",
+   "path": "release-notes/RunApiDiff.ps1",
+   "named": {
+    "itemator": false,
+    "model": false
+   }
+  },
+  {
+   "comment_id": 2309551977,
+   "pr": "https://github.com/kurotu/VRCQuestTools/pull/127",
+   "path": "Packages/com.github.kurotu.vrc-quest-tools/Editor/Inspector/AvatarConverterSettingsEditor.cs",
+   "named": {
+    "itemator": false,
+    "model": false
+   }
+  },
+  {
+   "comment_id": 2405160121,
+   "pr": "https://github.com/eclipse-rdf4j/rdf4j/pull/5478",
+   "path": "core/rio/api/src/test/java/org/eclipse/rdf4j/rio/helpers/AbstractRDFParserTest.java",
+   "named": {
+    "itemator": false,
+    "model": false
+   }
+  },
+  {
+   "comment_id": 2208144390,
+   "pr": "https://github.com/prebid/Prebid.js/pull/13597",
+   "path": "modules/gptPreAuction.ts",
+   "named": {
+    "itemator": false,
+    "model": false
+   }
+  },
+  {
+   "comment_id": 2214615324,
+   "pr": "https://github.com/Azure/azure-mcp/pull/647",
+   "path": "src/Areas/Storage/Services/StorageService.cs",
+   "named": {
+    "itemator": false,
+    "model": false
+   }
+  },
+  {
+   "comment_id": 2392572867,
+   "pr": "https://github.com/altair-graphql/altair/pull/2883",
+   "path": "packages/altair-docs/docs/features/accessibility.md",
+   "named": {
+    "itemator": false,
+    "model": true
+   }
+  },
+  {
+   "comment_id": 2392609126,
+   "pr": "https://github.com/altair-graphql/altair/pull/2883",
+   "path": "packages/altair-docs/docs/integrations/index.md",
+   "named": {
+    "itemator": false,
+    "model": false
+   }
+  },
+  {
+   "comment_id": 2457903274,
+   "pr": "https://github.com/thedotmack/claude-mem/pull/14",
+   "path": "plugin/scripts/worker-service.cjs",
+   "named": {
+    "itemator": false,
+    "model": false
+   }
+  },
+  {
+   "comment_id": 2443836992,
+   "pr": "https://github.com/liam-hq/liam/pull/3822",
+   "path": "frontend/apps/app/components/SessionDetailPage/components/Chat/components/ChatInput/ChatInput.tsx",
+   "named": {
+    "itemator": false,
+    "model": false
+   }
+  },
+  {
+   "comment_id": 2211759869,
+   "pr": "https://github.com/valkey-io/valkey-glide/pull/4353",
+   "path": ".github/workflows/dependabot-management.yml",
+   "named": {
+    "itemator": false,
+    "model": false
+   }
+  },
+  {
+   "comment_id": 2390642459,
+   "pr": "https://github.com/liam-hq/liam/pull/3610",
+   "path": "frontend/internal-packages/agent/src/db-agent/dbAgentReplayStream.ts",
+   "named": {
+    "itemator": false,
+    "model": false
+   }
+  },
+  {
+   "comment_id": 2141550811,
+   "pr": "https://github.com/lostintangent/gistpad/pull/396",
+   "path": "src/autoSave.ts",
+   "named": {
+    "itemator": false,
+    "model": false
+   }
+  },
+  {
+   "comment_id": 2141552071,
+   "pr": "https://github.com/lostintangent/gistpad/pull/396",
+   "path": "src/autoSave.ts",
+   "named": {
+    "itemator": false,
+    "model": false
+   }
+  },
+  {
+   "comment_id": 2411121183,
+   "pr": "https://github.com/cloudposse/atmos/pull/1607",
+   "path": "cmd/describe_component_test.go",
+   "named": {
+    "itemator": false,
+    "model": false
+   }
+  },
+  {
+   "comment_id": 2179457111,
+   "pr": "https://github.com/mlflow/mlflow/pull/16526",
+   "path": "docs/api_reference/theme/mlflow/static/css/theme.css",
+   "named": {
+    "itemator": false,
+    "model": false
+   }
+  },
+  {
+   "comment_id": 2159990459,
+   "pr": "https://github.com/mlflow/mlflow/pull/16367",
+   "path": "dev/clint/src/clint/linter.py",
+   "named": {
+    "itemator": false,
+    "model": false
+   }
+  },
+  {
+   "comment_id": 2109040280,
+   "pr": "https://github.com/pyth-network/pyth-crosschain/pull/2676",
+   "path": "target_chains/ethereum/contracts/forge-test/PulseScheduler.t.sol",
+   "named": {
+    "itemator": false,
+    "model": false
+   }
+  },
+  {
+   "comment_id": 2005944297,
+   "pr": "https://github.com/near/nearcore/pull/13171",
+   "path": "core/primitives/src/utils.rs",
+   "named": {
+    "itemator": false,
+    "model": false
+   }
+  },
+  {
+   "comment_id": 2217143756,
+   "pr": "https://github.com/Azure/azure-functions-host/pull/11115",
+   "path": "src/WebJobs.Script.WebHost/WebJobs.Script.WebHost.csproj",
+   "named": {
+    "itemator": false,
+    "model": false
+   }
+  },
+  {
+   "comment_id": 2217143895,
+   "pr": "https://github.com/Azure/azure-functions-host/pull/11115",
+   "path": "src/WebJobs.Script/WebJobs.Script.csproj",
+   "named": {
+    "itemator": false,
+    "model": false
+   }
+  },
+  {
+   "comment_id": 2354652584,
+   "pr": "https://github.com/albertorestifo/node-dijkstra/pull/44",
+   "path": "RELEASE.md",
+   "named": {
+    "itemator": false,
+    "model": true
+   }
+  },
+  {
+   "comment_id": 2400664292,
+   "pr": "https://github.com/open-telemetry/opentelemetry-java-instrumentation/pull/14869",
+   "path": "conventions/src/main/kotlin/io.opentelemetry.instrumentation.base.gradle.kts",
+   "named": {
+    "itemator": false,
+    "model": true
+   }
+  },
+  {
+   "comment_id": 2393465431,
+   "pr": "https://github.com/microsoft/agent-lightning/pull/120",
+   "path": "agentlightning/store/client_server.py",
+   "named": {
+    "itemator": false,
+    "model": false
+   }
+  },
+  {
+   "comment_id": 2143600179,
+   "pr": "https://github.com/microsoft/react-native-windows/pull/14767",
+   "path": "packages/e2e-test-app-fabric/test/TextInputComponentTest.test.ts",
+   "named": {
+    "itemator": false,
+    "model": false
+   }
+  },
+  {
+   "comment_id": 2143601393,
+   "pr": "https://github.com/microsoft/react-native-windows/pull/14767",
+   "path": "packages/e2e-test-app-fabric/test/TextInputComponentTest.test.ts",
+   "named": {
+    "itemator": false,
+    "model": false
+   }
+  },
+  {
+   "comment_id": 2371723068,
+   "pr": "https://github.com/github/codeql-action/pull/3094",
+   "path": "pr-checks/readme.md",
+   "named": {
+    "itemator": false,
+    "model": false
+   }
+  },
+  {
+   "comment_id": 2353324084,
+   "pr": "https://github.com/a2aproject/a2a-dotnet/pull/184",
+   "path": "src/A2A/A2AJsonConverter.cs",
+   "named": {
+    "itemator": false,
+    "model": false
+   }
+  },
+  {
+   "comment_id": 2427648180,
+   "pr": "https://github.com/ethereumclassic/ethereumclassic.github.io/pull/1645",
+   "path": "DEAD_LINKS_ANALYSIS.md",
+   "named": {
+    "itemator": false,
+    "model": false
+   }
+  },
+  {
+   "comment_id": 2427648433,
+   "pr": "https://github.com/ethereumclassic/ethereumclassic.github.io/pull/1645",
+   "path": "FINAL_SUMMARY.md",
+   "named": {
+    "itemator": false,
+    "model": false
+   }
+  },
+  {
+   "comment_id": 2427648725,
+   "pr": "https://github.com/ethereumclassic/ethereumclassic.github.io/pull/1645",
+   "path": "LINK_CHECKING_STATUS.md",
+   "named": {
+    "itemator": false,
+    "model": false
+   }
+  },
+  {
+   "comment_id": 2427649378,
+   "pr": "https://github.com/ethereumclassic/ethereumclassic.github.io/pull/1645",
+   "path": "NEXT_STEPS.md",
+   "named": {
+    "itemator": false,
+    "model": false
+   }
+  },
+  {
+   "comment_id": 2427649759,
+   "pr": "https://github.com/ethereumclassic/ethereumclassic.github.io/pull/1645",
+   "path": "README_DEAD_LINKS.md",
+   "named": {
+    "itemator": false,
+    "model": false
+   }
+  },
+  {
+   "comment_id": 2427650331,
+   "pr": "https://github.com/ethereumclassic/ethereumclassic.github.io/pull/1645",
+   "path": "scripts/check-dead-links.js",
+   "named": {
+    "itemator": false,
+    "model": false
+   }
+  },
+  {
+   "comment_id": 2312425678,
+   "pr": "https://github.com/dotnet/runtime/pull/119229",
+   "path": "src/libraries/System.Numerics.Tensors/tests/TensorTests.cs",
+   "named": {
+    "itemator": false,
+    "model": false
+   }
+  },
+  {
+   "comment_id": 2153757091,
+   "pr": "https://github.com/microsoft/react-native-windows/pull/14796",
+   "path": "vnext/codegen/rnwcoreJSI-generated.cpp",
+   "named": {
+    "itemator": true,
+    "model": true
+   }
+  },
+  {
+   "comment_id": 2153757596,
+   "pr": "https://github.com/microsoft/react-native-windows/pull/14796",
+   "path": "vnext/codegen/rnwcoreJSI.h",
+   "named": {
+    "itemator": false,
+    "model": true
+   }
+  },
+  {
+   "comment_id": 1921146895,
+   "pr": "https://github.com/modal-labs/modal-client/pull/2781",
+   "path": "modal/runner.py",
+   "named": {
+    "itemator": false,
+    "model": false
+   }
+  },
+  {
+   "comment_id": 1921146898,
+   "pr": "https://github.com/modal-labs/modal-client/pull/2781",
+   "path": "modal/runner.py",
+   "named": {
+    "itemator": false,
+    "model": false
+   }
+  },
+  {
+   "comment_id": 2180601941,
+   "pr": "https://github.com/getsentry/sentry/pull/94573",
+   "path": "static/app/utils/replays/hooks/useActiveReplayTab.spec.tsx",
+   "named": {
+    "itemator": false,
+    "model": false
+   }
+  },
+  {
+   "comment_id": 2422446520,
+   "pr": "https://github.com/manusa/electronim/pull/563",
+   "path": "src/chrome-tabs/__tests__/check-for-updates.test.js",
+   "named": {
+    "itemator": false,
+    "model": false
+   }
+  },
+  {
+   "comment_id": 2383434651,
+   "pr": "https://github.com/projectcalico/calico/pull/11086",
+   "path": "manifests/tigera-operator-ocp-upgrade.yaml",
+   "named": {
+    "itemator": true,
+    "model": false
+   }
+  },
+  {
+   "comment_id": 2383436330,
+   "pr": "https://github.com/projectcalico/calico/pull/11086",
+   "path": "goldmane/proto/api.pb.go",
+   "named": {
+    "itemator": true,
+    "model": true
+   }
+  },
+  {
+   "comment_id": 2104122338,
+   "pr": "https://github.com/openops-cloud/openops/pull/671",
+   "path": "packages/server/api/src/app/flows/flow/flow.service.ts",
+   "named": {
+    "itemator": false,
+    "model": false
+   }
+  },
+  {
+   "comment_id": 2373378665,
+   "pr": "https://github.com/actualbudget/actual/pull/5782",
+   "path": "packages/sync-server/src/load-config.js",
+   "named": {
+    "itemator": false,
+    "model": false
+   }
+  },
+  {
+   "comment_id": 2373378865,
+   "pr": "https://github.com/actualbudget/actual/pull/5782",
+   "path": "packages/sync-server/src/load-config.js",
+   "named": {
+    "itemator": false,
+    "model": false
+   }
+  },
+  {
+   "comment_id": 2138400100,
+   "pr": "https://github.com/roboflow/inference/pull/1350",
+   "path": "inference/core/workflows/core_steps/models/foundation/perception_encoder/v1.py",
+   "named": {
+    "itemator": false,
+    "model": false
+   }
+  },
+  {
+   "comment_id": 2225057871,
+   "pr": "https://github.com/web-infra-dev/rspack/pull/11142",
+   "path": "crates/node_binding/scripts/build.js",
+   "named": {
+    "itemator": false,
+    "model": true
+   }
+  },
+  {
+   "comment_id": 2208846313,
+   "pr": "https://github.com/Azure/azure-cosmos-dotnet-v3/pull/5287",
+   "path": "Microsoft.Azure.Cosmos/tests/Microsoft.Azure.Cosmos.Tests/ConfigurationManagerTests.cs",
+   "named": {
+    "itemator": false,
+    "model": false
+   }
+  },
+  {
+   "comment_id": 2208846598,
+   "pr": "https://github.com/Azure/azure-cosmos-dotnet-v3/pull/5287",
+   "path": "Microsoft.Azure.Cosmos/tests/Microsoft.Azure.Cosmos.Tests/ConfigurationManagerTests.cs",
+   "named": {
+    "itemator": false,
+    "model": false
+   }
+  },
+  {
+   "comment_id": 2208847998,
+   "pr": "https://github.com/Azure/azure-cosmos-dotnet-v3/pull/5287",
+   "path": "Microsoft.Azure.Cosmos/tests/Microsoft.Azure.Cosmos.Tests/PartitionKeyRangeFailoverTests/GlobalPartitionEndpointManagerTests.cs",
+   "named": {
+    "itemator": false,
+    "model": false
+   }
+  },
+  {
+   "comment_id": 2405297376,
+   "pr": "https://github.com/liam-hq/liam/pull/3696",
+   "path": ".changeset/shorten-members-search-bar.md",
+   "named": {
+    "itemator": false,
+    "model": false
+   }
+  },
+  {
+   "comment_id": 2037090999,
+   "pr": "https://github.com/liam-hq/liam/pull/1302",
+   "path": "frontend/packages/jobs/src/trigger/jobs.ts",
+   "named": {
+    "itemator": false,
+    "model": false
+   }
+  }
+ ]
+}

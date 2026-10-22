@@ -1,0 +1,657 @@
+{
+ "https://github.com/justtrackio/gosoline/pull/1253@7f5b9b6a66b3f90618c57e3a7e7a74ace6651f13": {
+  "out_of_scope": [
+   "docs/docs/how-to/logging/implement-a-log-handler.mdx",
+   "docs/docs/how-to/logging/src/complex-logger/main.go",
+   "docs/docs/how-to/logging/src/config-logger/config.dist.yml",
+   "docs/docs/how-to/logging/src/log-handler/main.go",
+   "docs/docs/how-to/logging/src/minimal-logger/main.go",
+   "docs/docs/reference/src/log/custom_handler.go",
+   "docs/docs/reference/src/log/main.go",
+   "docs/docs/reference/src/log/usage.go",
+   "pkg/application/error.go",
+   "pkg/cli/logger.go",
+   "pkg/lambda/error.go",
+   "pkg/log/builtin.go",
+   "pkg/log/handler.go",
+   "pkg/log/handler_iowriter.go",
+   "pkg/log/handler_sentry.go",
+   "pkg/log/logger.go",
+   "pkg/log/logger_context_enforce_test.go"
+  ]
+ },
+ "https://github.com/AzureAD/microsoft-identity-web/pull/3413@40cb69d9f3287871de987e47c25d6b2313c41bbb": {
+  "out_of_scope": [
+   "global.json"
+  ]
+ },
+ "https://github.com/typedclojure/typedclojure/pull/188@505d42696ea782041602b80d174a68f5b454c8ec": {
+  "out_of_scope": []
+ },
+ "https://github.com/liam-hq/liam/pull/2079@c2d1a9a6aab541cce0ec29e0cabcc9c01db8a587": {
+  "out_of_scope": [
+   ".github/workflows/claude.yml",
+   ".github/workflows/trigger_dev_preview.yml",
+   ".github/workflows/trigger_dev_production.yml",
+   "CLAUDE.md",
+   "frontend/apps/app/app/(app)/app/(root)/invitations/tokens/[token]/page.tsx",
+   "frontend/apps/app/app/(app)/app/(root)/layout.tsx",
+   "frontend/apps/app/app/(app)/app/(root)/page.tsx",
+   "frontend/apps/app/app/(app)/app/(root)/projects/new/page.tsx",
+   "frontend/apps/app/app/(app)/app/(root)/settings/components/SettingsHeader/SettingsHeader.tsx",
+   "frontend/apps/app/app/(app)/app/(root)/settings/layout.tsx",
+   "frontend/apps/app/app/(app)/app/(with-project)/projects/[projectId]/layout.tsx",
+   "frontend/apps/app/app/(app)/app/(with-project)/projects/[projectId]/page.tsx",
+   "frontend/apps/app/app/(app)/app/(with-project-and-branch)/projects/[projectId]/ref/[branchOrCommit]/layout.tsx",
+   "frontend/apps/app/app/(app)/app/(with-project-and-branch)/projects/[projectId]/ref/[branchOrCommit]/page.tsx",
+   "frontend/apps/app/app/(app)/app/(with-project-and-branch)/projects/[projectId]/ref/[branchOrCommit]/schema/[...schemaFilePath]/page.tsx",
+   "frontend/apps/app/app/(app)/app/(with-project-and-branch)/projects/[projectId]/ref/[branchOrCommit]/sessions/page.tsx",
+   "frontend/apps/app/app/(app)/app/auth/callback/[provider]/route.ts",
+   "frontend/apps/app/app/(app)/app/confirm/route.ts"
+  ]
+ },
+ "https://github.com/dotnet/docs/pull/48191@4891e45ad811452086dcbc8e4c48f7c0e0b66a65": {
+  "out_of_scope": []
+ },
+ "https://github.com/Azure/azure-cosmos-dotnet-v3/pull/5326@5dc92c8da4a1dc696c6b73f1c907f0c69b559b34": {
+  "out_of_scope": []
+ },
+ "https://github.com/temporalio/temporal/pull/8003@706b3c36af31de42010a6631d983015dea5194e8": {
+  "out_of_scope": []
+ },
+ "https://github.com/githubnext/gh-aw/pull/615@0d03665643c36a74d0f07da10019f0d0716e9083": {
+  "out_of_scope": []
+ },
+ "https://github.com/vitejs/vite/pull/20522@05b379d7f6bc254ec5ee82cb08534b30ea8b918f": {
+  "out_of_scope": []
+ },
+ "https://github.com/liam-hq/liam/pull/726@84e3c98aa1ffcd3581ec0672c2d04aa67ae7ccc1": {
+  "out_of_scope": []
+ },
+ "https://github.com/machinewrapped/llm-subtrans/pull/250@8c31e8eb2faec4aab70f10a2feade58428022ad1": {
+  "out_of_scope": [
+   "untranslated_msgids_cs.txt",
+   "untranslated_msgids_es.txt"
+  ]
+ },
+ "https://github.com/microsoft/git/pull/755@47687ca67bdb91291a9ac3271043cd562350723d": {
+  "out_of_scope": []
+ },
+ "https://github.com/project-dalec/dalec/pull/727@6f2e709383cb03ca28ed21d3fb3c6d45dcc94e04": {
+  "out_of_scope": [
+   "deps.go"
+  ]
+ },
+ "https://github.com/Shelf-nu/shelf.nu/pull/2100@7a562e6d0931b86b757138d2e472435dcef3898b": {
+  "out_of_scope": [
+   "app/components/assets/asset-status-badge.tsx",
+   "app/components/assets/assets-index/advanced-asset-columns.tsx",
+   "app/components/booking/availability-label.tsx",
+   "app/modules/booking/service.server.test.ts",
+   "app/modules/booking/service.server.ts",
+   "test/components/booking/availability-label.test.tsx"
+  ]
+ },
+ "https://github.com/liam-hq/liam/pull/2200@63d2f5951d409d495e5ce49af10d52e25ac3a69a": {
+  "out_of_scope": [
+   "frontend/internal-packages/schema-bench/src/evaluate/evaluate.ts",
+   "frontend/internal-packages/schema-bench/.gitignore"
+  ]
+ },
+ "https://github.com/cartography-cncf/cartography/pull/1697@94801c0a731a46ae4801f58ef1ed4ce9a6749c6d": {
+  "out_of_scope": []
+ },
+ "https://github.com/liam-hq/liam/pull/2745@a8868d5602570dae6216de406cb9a500330277ca": {
+  "out_of_scope": [
+   "frontend/internal-packages/agent/src/chat/workflow/nodes/prepareDmlNode.test.ts",
+   "frontend/internal-packages/agent/src/chat/workflow/nodes/prepareDmlNode.ts",
+   "frontend/internal-packages/agent/src/chat/workflow/shared/langGraphUtils.ts",
+   "frontend/internal-packages/agent/src/chat/workflow/types.ts",
+   "frontend/internal-packages/agent/src/langchain/agents/dmlGenerationAgent/agent.test.ts",
+   "frontend/internal-packages/agent/src/langchain/agents/dmlGenerationAgent/agent.ts",
+   "frontend/internal-packages/agent/src/langchain/agents/dmlGenerationAgent/prompts.ts"
+  ]
+ },
+ "https://github.com/Azure/azure-mcp/pull/639@a3c8985c913db7d210cdc6ea170876ec5452a9f3": {
+  "out_of_scope": []
+ },
+ "https://github.com/ClickHouse/ClickHouse/pull/87093@9cb481cfc9f1f45d4038b5a98c3c6a5fb36f6c5d": {
+  "out_of_scope": []
+ },
+ "https://github.com/microsoft/typescript-go/pull/1401@7d35c41bb0aa94493d03f2a3150975f7a34b950b": {
+  "out_of_scope": []
+ },
+ "https://github.com/epicweb-dev/epicshop/pull/337@62ba79894c07665c3060e1b9f1849510d7bdb670": {
+  "out_of_scope": [
+   "packages/workshop-mcp/src/tools.ts"
+  ]
+ },
+ "https://github.com/taiga-family/taiga-ui/pull/11485@34de39c40dbf60d35b27f4d04950ec52d9769844": {
+  "out_of_scope": []
+ },
+ "https://github.com/liam-hq/liam/pull/1304@7ea3b86658307190d3378bcd7e8f60e57d5e42ad": {
+  "out_of_scope": [
+   "frontend/packages/db/supabase/database.types.ts",
+   ".ai-agents/memory-bank/activeContext.md",
+   ".ai-agents/memory-bank/progress.md",
+   ".ai-agents/memory-bank/systemPatterns.md",
+   ".ai-agents/memory-bank/techContext.md",
+   ".changeset/shaggy-grapes-join.md",
+   ".clineignore",
+   ".clinerules/general.md",
+   ".github/actions/pnpm-setup/action.yml",
+   ".github/workflows/prompt-test.yml",
+   "CONTRIBUTING.md",
+   "frontend/apps/app/app/(app)/app/projects/[projectId]/ref/[branchOrCommit]/knowledge-suggestions/[id]/page.tsx"
+  ]
+ },
+ "https://github.com/CherryHQ/cherry-studio/pull/9992@c73dc2a6ed2809b1a467af11ccce2cf03294d887": {
+  "out_of_scope": [
+   "PR_TEMPLATE.md",
+   "src/renderer/src/components/ShortcutsHelp/ShortcutsHelp.tsx",
+   "src/renderer/src/i18n/label.ts",
+   "src/renderer/src/i18n/locales/en-us.json",
+   "src/renderer/src/i18n/locales/zh-cn.json",
+   "src/renderer/src/i18n/locales/zh-tw.json",
+   "src/renderer/src/i18n/translate/el-gr.json",
+   "src/renderer/src/i18n/translate/es-es.json",
+   "src/renderer/src/i18n/translate/fr-fr.json",
+   "src/renderer/src/i18n/translate/ja-jp.json",
+   "src/renderer/src/i18n/translate/pt-pt.json",
+   "src/renderer/src/i18n/translate/ru-ru.json",
+   "src/renderer/src/pages/home/Navbar.tsx",
+   "src/renderer/src/store/shortcuts.ts"
+  ]
+ },
+ "https://github.com/dotnet/runtime/pull/118549@30ba5797415264d3673780abc0b233e06720f426": {
+  "out_of_scope": [
+   "src/libraries/System.Private.DataContractSerialization/src/System/Runtime/Serialization/DataContract.cs",
+   "src/libraries/System.Private.DataContractSerialization/src/System/Runtime/Serialization/DictionaryGlobals.cs",
+   "src/libraries/System.Private.DataContractSerialization/src/System/Runtime/Serialization/Globals.cs",
+   "src/libraries/System.Private.DataContractSerialization/src/System/Runtime/Serialization/PrimitiveDataContract.cs",
+   "src/libraries/System.Private.DataContractSerialization/src/System/Runtime/Serialization/XmlReaderDelegator.cs",
+   "src/libraries/System.Private.DataContractSerialization/src/System/Runtime/Serialization/XmlWriterDelegator.cs",
+   "src/libraries/System.Private.Xml/src/System/Xml/Serialization/PrimitiveXmlSerializers.cs",
+   "src/libraries/System.Private.Xml/src/System/Xml/XmlConvert.cs",
+   "src/libraries/System.Xml.ReaderWriter/ref/System.Xml.ReaderWriter.cs",
+   "src/libraries/System.Private.Xml/tests/XmlConvert/ToTypeTests.cs",
+   "src/libraries/System.Private.DataContractSerialization/src/System/Xml/XmlConverter.cs",
+   "src/libraries/System.Private.Xml/tests/XmlSerializer/XmlSerializerTests.cs",
+   "src/libraries/System.Runtime.Serialization.Xml/tests/DataContractSerializer.cs",
+   "src/libraries/System.Runtime.Serialization.Xml/tests/SerializationTypes.cs"
+  ]
+ },
+ "https://github.com/liam-hq/liam/pull/726@33cf91c0c895d2dc0069568d3fb520ded18f76dc": {
+  "out_of_scope": []
+ },
+ "https://github.com/Azure-Samples/serverless-chat-langchainjs/pull/114@0e14fad86506466e8bd229287662909bee9dc7bf": {
+  "out_of_scope": []
+ },
+ "https://github.com/microsoft/wassette/pull/162@461d042c114f6c85d54d163323e8456efb4b4066": {
+  "out_of_scope": []
+ },
+ "https://github.com/dotnet/maui/pull/31618@893bb2b848a2e5adac79ad8eb2194cf6a85f6d21": {
+  "out_of_scope": [
+   "src/Templates/src/cgmanifest.json",
+   "src/Templates/src/templates/maui-blazor-solution/.template.config/localize/templatestrings.json",
+   "src/Templates/src/templates/maui-blazor/.template.config/localize/templatestrings.json",
+   "src/Templates/src/templates/maui-contentpage-csharp/.template.config/localize/templatestrings.json",
+   "src/Templates/src/templates/maui-contentpage-xaml/.template.config/localize/templatestrings.json",
+   "src/Templates/src/templates/maui-contentview-csharp/.template.config/localize/templatestrings.json",
+   "src/Templates/src/templates/maui-contentview-xaml/.template.config/localize/templatestrings.json",
+   "src/Templates/src/templates/maui-lib/.template.config/localize/templatestrings.json",
+   "src/Templates/src/templates/maui-mobile/.template.config/localize/templatestrings.json",
+   "src/Templates/src/templates/maui-multiproject/.template.config/localize/templatestrings.json",
+   "src/Templates/src/templates/maui-resourcedictionary-xaml/.template.config/localize/templatestrings.json",
+   "src/Templates/src/templates/maui-window-csharp/.template.config/localize/templatestrings.json",
+   "src/Templates/src/templates/maui-window-xaml/.template.config/localize/templatestrings.json"
+  ]
+ },
+ "https://github.com/liam-hq/liam/pull/3783@73a11193a55ee6d70d521adfe282094f772f8283": {
+  "out_of_scope": []
+ },
+ "https://github.com/tphakala/birdnet-go/pull/1077@b3cd0acb61fd53333dd4bd9341b64ec3e0f13792": {
+  "out_of_scope": [
+   "frontend/src/lib/desktop/features/settings/pages/AudioSettingsPage.svelte",
+   "frontend/src/lib/desktop/features/settings/pages/FilterSettingsPage.svelte",
+   "frontend/src/lib/desktop/features/settings/pages/IntegrationSettingsPage.svelte",
+   "frontend/src/lib/desktop/features/settings/pages/SecuritySettingsPage.svelte",
+   "frontend/src/lib/desktop/features/settings/pages/SpeciesSettingsPage.svelte",
+   "frontend/src/lib/desktop/features/settings/pages/SupportSettingsPage.svelte",
+   "frontend/src/lib/desktop/features/settings/components/SettingsButton.svelte",
+   "frontend/src/lib/desktop/features/settings/components/SettingsCard.svelte",
+   "frontend/src/lib/desktop/features/settings/components/SettingsSection.svelte",
+   "frontend/src/lib/desktop/features/settings/pages/MainSettingsPage.test.ts",
+   "frontend/src/lib/utils/settingsChanges.ts",
+   "frontend/src/lib/desktop/features/settings/components/SettingsActions.svelte",
+   "frontend/src/lib/desktop/features/settings/components/SettingsActions.test.ts",
+   "frontend/src/lib/desktop/features/settings/components/SettingsButton.test.ts",
+   "frontend/src/lib/desktop/features/settings/components/SettingsCard.test.ts"
+  ]
+ },
+ "https://github.com/a16z/halmos/pull/541@00b767fad484ffe9c42e729fd80c6631fd99c581": {
+  "out_of_scope": []
+ },
+ "https://github.com/docker/hello-genai/pull/8@70bde64db4a693f403eab902f8a4f5991e74bfef": {
+  "out_of_scope": [
+   "rust-genai/.gitignore",
+   "rust-genai/Cargo.lock",
+   "rust-genai/Cargo.toml",
+   "rust-genai/Dockerfile",
+   "rust-genai/INSTRUCTIONS.md",
+   "rust-genai/README.md",
+   "rust-genai/docker-compose.yaml",
+   "rust-genai/src/cache.rs",
+   "rust-genai/src/config.rs",
+   "rust-genai/src/handlers.rs",
+   "rust-genai/src/main.rs",
+   "rust-genai/src/rate_limit.rs",
+   "rust-genai/static/css/style.css",
+   "rust-genai/static/examples/structured_response_example.md",
+   "rust-genai/static/images/rust.png",
+   "rust-genai/static/js/marked.min.js",
+   "rust-genai/static/swagger.json",
+   "docker-compose.yml",
+   "README.md",
+   ".gitignore",
+   "rust-genai/target/debug/.fingerprint/chrono-tz-build-17376eca0c64a324/dep-lib-chrono_tz_build"
+  ]
+ },
+ "https://github.com/vllm-project/semantic-router/pull/322@57b733bceb4be984ea2071b07aeacd8c79a05c98": {
+  "out_of_scope": [
+   "TRACING_FEATURE.md"
+  ]
+ },
+ "https://github.com/airbytehq/airbyte/pull/60253@e7007052cad588db0d9f24861437471c0c66d135": {
+  "out_of_scope": []
+ },
+ "https://github.com/Azure/azure-cosmos-dotnet-v3/pull/5295@b521198003a2e8e0535147f4402df6fb9f914005": {
+  "out_of_scope": []
+ },
+ "https://github.com/pyth-network/pyth-crosschain/pull/2827@dbbda0b145950885c6d5ad8d832ee3782997057b": {
+  "out_of_scope": []
+ },
+ "https://github.com/tambo-ai/tambo/pull/1023@52e436d44d67b6a9c9e3663c8186ebd19070ed6d": {
+  "out_of_scope": [
+   "showcase/tsconfig.json",
+   "showcase/src/app/layout.tsx",
+   "packages/typescript-config/nextjs.json"
+  ]
+ },
+ "https://github.com/microsoft/mcp/pull/907@2252d99d5d2b8c386779ae17cad34469b7b57866": {
+  "out_of_scope": [
+   "core/Azure.Mcp.Core/src/Areas/Server/Commands/Discovery/ConsolidatedToolDiscoveryStrategy.cs",
+   "core/Azure.Mcp.Core/src/Areas/Server/Commands/ServiceStartCommand.cs",
+   "core/Azure.Mcp.Core/src/Areas/Server/Resources/consolidated-tools.json",
+   "core/Azure.Mcp.Core/tests/Azure.Mcp.Core.UnitTests/Areas/Server/Commands/Discovery/RegistryServerProviderTests.cs",
+   "core/Azure.Mcp.Core/tests/Azure.Mcp.Core.UnitTests/Areas/Server/Commands/Runtime/McpRuntimeTests.cs",
+   "eng/pipelines/templates/jobs/build.yml",
+   "eng/pipelines/templates/jobs/verify-packages.yml",
+   "eng/vscode/CHANGELOG.md",
+   "servers/Azure.Mcp.Server/docs/azmcp-commands.md",
+   "servers/Azure.Mcp.Server/src/Azure.Mcp.Server.csproj",
+   "tools/Azure.Mcp.Tools.VirtualDesktop/tests/Azure.Mcp.Tools.VirtualDesktop.UnitTests/SessionHost/SessionHostUserSessionListCommandTests.cs",
+   "tools/Azure.Mcp.Tools.Kusto/tests/Azure.Mcp.Tools.Kusto.UnitTests/Azure.Mcp.Tools.Kusto.UnitTests.csproj"
+  ]
+ },
+ "https://github.com/actions/toolkit/pull/2100@bd54a2413a1ccd761d7bb01674d65530aaba4b77": {
+  "out_of_scope": [
+   ".gitignore"
+  ]
+ },
+ "https://github.com/dotnet/roslyn/pull/80891@54487f2739a0f2759be9ae598601b57bec04ff2a": {
+  "out_of_scope": []
+ },
+ "https://github.com/microsoft/genaiscript/pull/1818@c17760133429cfb637255ed881eb8bffaacb7329": {
+  "out_of_scope": []
+ },
+ "https://github.com/dotnet/aspire/pull/10786@b1d1ee3c79519ca16c538742753c67c77b2dcb16": {
+  "out_of_scope": [
+   ".config/CredScanSuppressions.json",
+   ".devcontainer/devcontainer.json",
+   ".gitattributes",
+   ".github/CODEOWNERS",
+   ".github/actions/check-changed-files/action.yml",
+   ".github/copilot-instructions.md",
+   ".github/instructions/quarantine.instructions.md",
+   ".github/policies/milestoneAssignment.prClosed.yml"
+  ]
+ },
+ "https://github.com/modelcontextprotocol/csharp-sdk/pull/645@32bafc2cc636e3ddcb769a12eea92eba6e292f92": {
+  "out_of_scope": [
+   "dotnet-install.sh"
+  ]
+ },
+ "https://github.com/liam-hq/liam/pull/1302@d652c687bdf36e292362a0f442f73d345445a328": {
+  "out_of_scope": []
+ },
+ "https://github.com/dotnet/razor/pull/12368@a9f84e21fbaa8abcd501f16d8f5cf9c99c8e221f": {
+  "out_of_scope": []
+ },
+ "https://github.com/ensdomains/governance-contracts/pull/34@2181bd933effa1073222bc991a5319f688717cfc": {
+  "out_of_scope": []
+ },
+ "https://github.com/livepeer/go-livepeer/pull/3767@4970f7a3190ad6540a4fa16e7c8fc159793c8530": {
+  "out_of_scope": []
+ },
+ "https://github.com/Azure/azure-cosmos-dotnet-v3/pull/5289@7d4c4cd8677b5c3a5e1ddc4800daccbc13a93e4d": {
+  "out_of_scope": []
+ },
+ "https://github.com/dalathegreat/Battery-Emulator/pull/1290@9bf2d089299a9966921d2131412539a0a0d1a866": {
+  "out_of_scope": []
+ },
+ "https://github.com/Azure/azure-sdk-for-python/pull/43269@58fa2d95fd53a4d0bc947e75b693ebfc77c29f08": {
+  "out_of_scope": []
+ },
+ "https://github.com/MetaMask/metamask-mobile/pull/20483@69adb507126a8c1927bf14ff09a155094cb1ac36": {
+  "out_of_scope": []
+ },
+ "https://github.com/Azure/azure-container-networking/pull/3688@1b650aac328c540016d87268871ab3569f63174d": {
+  "out_of_scope": [
+   ".gitignore"
+  ]
+ },
+ "https://github.com/dotnet/arcade/pull/16035@90fdde08431fb16316d78d5b8b3b04d1b08a6e32": {
+  "out_of_scope": [
+   "Arcade.slnx"
+  ]
+ },
+ "https://github.com/MetaMask/metamask-extension/pull/34098@a047fec69991d54b327c0dbe2c23c45a501b7996": {
+  "out_of_scope": []
+ },
+ "https://github.com/dotnet/fsharp/pull/18584@825cc436c86f6cb9b135c5e296a96c80b71385aa": {
+  "out_of_scope": [
+   ".github/workflows/commands.yml",
+   ".github/workflows/copilot-setup-steps.yml",
+   "README.md",
+   "azure-pipelines-PR.yml",
+   "docs/release-notes/.FSharp.Compiler.Service/10.0.100.md",
+   "docs/release-notes/.FSharp.Compiler.Service/9.0.300.md",
+   "docs/release-notes/.Language/preview.md",
+   "eng/Build.ps1",
+   "eng/Version.Details.xml",
+   "eng/build.sh",
+   "global.json",
+   "src/Compiler/Driver/CompilerDiagnostics.fs",
+   "src/Compiler/FSComp.txt",
+   "src/Compiler/FSStrings.resx",
+   "src/Compiler/Facilities/LanguageFeatures.fs",
+   "src/Compiler/Facilities/LanguageFeatures.fsi"
+  ]
+ },
+ "https://github.com/vaadin/flow/pull/21824@c7933480a4f677b501527f35de69fa3ee386d22a": {
+  "out_of_scope": [
+   ".github/ISSUE_TEMPLATE/feature_request.md",
+   ".gitignore",
+   "README.md",
+   "flow-bom/pom.xml",
+   "flow-client/package-lock.json",
+   "flow-client/pom.xml",
+   "flow-client/src/main/frontend/Flow.ts",
+   "flow-client/src/main/java/com/vaadin/client/BrowserInfo.java",
+   "flow-client/src/main/java/com/vaadin/client/Console.java",
+   "flow-client/src/main/java/com/vaadin/client/DependencyLoader.java",
+   "flow-client/src/main/java/com/vaadin/client/ResourceLoader.java",
+   "flow-client/src/main/java/com/vaadin/client/communication/MessageHandler.java",
+   "flow-client/src/main/java/com/vaadin/client/flow/binding/SimpleElementBindingStrategy.java",
+   "flow-client/src/test-gwt/java/com/vaadin/client/GwtDependencyLoaderTest.java",
+   "flow-client/src/test/java/com/vaadin/client/DependencyLoaderTest.java",
+   "flow-client/src/test/java/com/vaadin/client/DomApiAbstractionUsageTest.java",
+   "flow-data/src/main/java/com/vaadin/flow/data/binder/Binder.java"
+  ]
+ },
+ "https://github.com/deepmodeling/deepmd-kit/pull/4904@e28bb867bbcd0dfb0835d7a00e4b661e73966cdb": {
+  "out_of_scope": [
+   "PYTORCH_PROFILER_INTEGRATION.md"
+  ]
+ },
+ "https://github.com/dotnet/razor/pull/12234@128ead95b95358af77ebd93214cf150821a76200": {
+  "out_of_scope": []
+ },
+ "https://github.com/dotnet/razor/pull/12324@b96489a6ee384be309a0924d32e6297e5da18a8d": {
+  "out_of_scope": []
+ },
+ "https://github.com/elastic/terraform-provider-elasticstack/pull/1298@555dccbcbba9e9c2c04bec8a7d9e7b5967b77ccd": {
+  "out_of_scope": []
+ },
+ "https://github.com/mlflow/mlflow/pull/17973@5d2122f208a412dba2539a905a407ee77a5e7767": {
+  "out_of_scope": [
+   "uv.lock",
+   "docs/api_reference/api_inventory.txt",
+   "docs/api_reference/source/python_api/mlflow.types.rst",
+   "docs/docs/genai/flavors/responses-agent-intro.mdx",
+   "docs/docs/genai/serving/responses-agent.mdx",
+   "mlflow/pyfunc/model.py",
+   "mlflow/server/job_api.py",
+   "mlflow/types/responses.py",
+   "requirements/test-requirements.txt",
+   "tests/langchain/test_responses_agent_langchain.py",
+   "tests/pyfunc/test_responses_agent.py"
+  ]
+ },
+ "https://github.com/valkey-io/valkey-glide/pull/4287@82bf2b4e232e1c78caae266f85fa3825ff0ecb8d": {
+  "out_of_scope": [
+   "node/THIRD_PARTY_LICENSES_NODE",
+   "python/tests/test_scan.py"
+  ]
+ },
+ "https://github.com/dotnet/core/pull/9991@cda05d4c9b209dcaed379b9107d247d3ae1d1d6e": {
+  "out_of_scope": []
+ },
+ "https://github.com/kurotu/VRCQuestTools/pull/127@f051fc9daf92783ed713a8582754e3747def450b": {
+  "out_of_scope": []
+ },
+ "https://github.com/eclipse-rdf4j/rdf4j/pull/5478@4f12471ccf31450d115e30991f52585db03427ac": {
+  "out_of_scope": []
+ },
+ "https://github.com/prebid/Prebid.js/pull/13597@9aca05581818b6d535783d5928ad5691625946e2": {
+  "out_of_scope": [
+   "eslint.config.js",
+   "libraries/analyticsAdapter/AnalyticsAdapter.ts",
+   "libraries/appnexusUtils/anKeywords.js",
+   "libraries/consentManagement/cmUtils.ts",
+   "libraries/dspxUtils/bidderUtils.js",
+   "libraries/nexx360Utils/index.js",
+   "libraries/ortbConverter/converter.ts",
+   "libraries/video/constants/events.ts",
+   "modules/adWMGBidAdapter.js",
+   "modules/adspiritBidAdapter.js",
+   "modules/adtrgtmeBidAdapter.js",
+   "modules/amxBidAdapter.js",
+   "modules/chromeAiRtdProvider.js",
+   "modules/consentManagementGpp.ts",
+   "modules/consentManagementTcf.ts",
+   "modules/consentManagementUsp.ts",
+   "modules/currency.ts",
+   "modules/cwireBidAdapter.js"
+  ]
+ },
+ "https://github.com/Azure/azure-mcp/pull/647@22fd586c51f96f08eeab4630a31e8b6a7c540b6a": {
+  "out_of_scope": [
+   "Directory.Build.props",
+   "global.json"
+  ]
+ },
+ "https://github.com/altair-graphql/altair/pull/2883@7d77cbc3406c16d1899b9244c6664be63384a268": {
+  "out_of_scope": [
+   "packages/altair-docs/docs/features/query-pane.md",
+   "packages/altair-docs/docs/features/result-pane.md",
+   "packages/altair-docs/docs/features/accessibility.md",
+   "packages/altair-docs/docs/tips/developer-workflows.md",
+   "packages/altair-docs/docs/integrations/react-integration.md"
+  ]
+ },
+ "https://github.com/thedotmack/claude-mem/pull/14@0f971c7dce4a6383eb5a1a24b561855926806624": {
+  "out_of_scope": [
+   "package-lock.json"
+  ]
+ },
+ "https://github.com/liam-hq/liam/pull/3822@f14aa8f3303f26819b70cda91a5cca1caa5d8d6b": {
+  "out_of_scope": []
+ },
+ "https://github.com/valkey-io/valkey-glide/pull/4353@954ae4b44403c187cc57bb1ab7100869920f6966": {
+  "out_of_scope": []
+ },
+ "https://github.com/liam-hq/liam/pull/3610@0cc3afeecfff9c3c0eb0c6cb34878e769c988067": {
+  "out_of_scope": []
+ },
+ "https://github.com/lostintangent/gistpad/pull/396@81142e42457eeb65497331216504108bae1c211f": {
+  "out_of_scope": [
+   "package-lock.json"
+  ]
+ },
+ "https://github.com/cloudposse/atmos/pull/1607@34f9b873f491c457e3f0ef6083be1df58fd8084c": {
+  "out_of_scope": []
+ },
+ "https://github.com/mlflow/mlflow/pull/16526@c3d23f17e4b47db38889a4ec81301d5a26d278e4": {
+  "out_of_scope": []
+ },
+ "https://github.com/mlflow/mlflow/pull/16367@49cb824f5ed29f1d1e3731d17c22fd7071e747b1": {
+  "out_of_scope": []
+ },
+ "https://github.com/pyth-network/pyth-crosschain/pull/2676@9052d1b598ff61f8f225df556d2861c4cb6bf9d6": {
+  "out_of_scope": []
+ },
+ "https://github.com/near/nearcore/pull/13171@9e7820c1a4adcbb111b8b8111e753effaa681e7f": {
+  "out_of_scope": []
+ },
+ "https://github.com/Azure/azure-functions-host/pull/11115@d21cfebdaa8432ee18b7b340b215a2e24a4fef8a": {
+  "out_of_scope": [
+   "eng/build/Workers.Java.props",
+   "eng/ci/templates/official/jobs/run-coldstart.yml",
+   "eng/ci/templates/official/jobs/run-metrics-monitor.yml",
+   "eng/ci/templates/official/jobs/setup-benchmark-agents.yml",
+   "WebJobs.Script.sln",
+   "perf/Apps/HelloHttpNet9/Hello.cs",
+   "perf/Apps/HelloHttpNet9/HelloHttp.csproj",
+   "perf/Apps/HelloHttpNet9/Program.cs",
+   "perf/Apps/HelloHttpNet9/host.json",
+   "perf/Apps/HelloHttpNet9NoProxy/Hello.cs",
+   "perf/Apps/HelloHttpNet9NoProxy/HelloHttp.csproj",
+   "perf/Apps/HelloHttpNet9NoProxy/Program.cs",
+   "perf/Apps/HelloHttpNet9NoProxy/host.json",
+   "perf/Apps/HelloHttpNode/host.json",
+   "perf/Apps/HelloHttpNode/package-lock.json",
+   "perf/Apps/HelloHttpNode/package.json",
+   "perf/Apps/HelloHttpNode/src/functions/Hello.js",
+   "perf/Apps/HelloHttpNode/src/functions/HelloAuth.js",
+   "perf/Apps/HelloHttpNode/src/index.js",
+   "perf/Apps/TimerAppNet9/App.csproj",
+   "perf/Apps/TimerAppNet9/Program.cs",
+   "perf/Apps/TimerAppNet9/TimerFunctions.cs",
+   "perf/Apps/TimerAppNet9/host.json",
+   "perf/Apps/global.json",
+   "perf/WebJobs.Script.Benchmarks/AuthUtilityBenchmarks.cs",
+   "perf/WebJobs.Script.Benchmarks/CSharpCompilationBenchmarks.cs",
+   "perf/WebJobs.Script.Benchmarks/GrpcMessageConversionBenchmarks.cs"
+  ]
+ },
+ "https://github.com/albertorestifo/node-dijkstra/pull/44@759f1e9de9bba426aeb96b6188f5ffd1627068b8": {
+  "out_of_scope": [
+   "RELEASE.md"
+  ]
+ },
+ "https://github.com/open-telemetry/opentelemetry-java-instrumentation/pull/14869@7b1173bf958b7dc248810a08b6bc2c52803b6ed7": {
+  "out_of_scope": [
+   "conventions/src/main/kotlin/io.opentelemetry.instrumentation.base.gradle.kts",
+   "conventions/src/main/kotlin/otel.nullaway-conventions.gradle.kts"
+  ]
+ },
+ "https://github.com/microsoft/agent-lightning/pull/120@2d8f226d3bc15f6841605666a60fc593cb684fe7": {
+  "out_of_scope": []
+ },
+ "https://github.com/microsoft/react-native-windows/pull/14767@6fc46e2b0092238309fef6bfa0bf121bc379613c": {
+  "out_of_scope": []
+ },
+ "https://github.com/github/codeql-action/pull/3094@ee37081d031a4f59701d3eabb6677858b20cd575": {
+  "out_of_scope": []
+ },
+ "https://github.com/a2aproject/a2a-dotnet/pull/184@b291c2b642e338a8a618d3d4fe92c577fe9a5034": {
+  "out_of_scope": []
+ },
+ "https://github.com/ethereumclassic/ethereumclassic.github.io/pull/1645@e4e684567972ded40c1471ceb3fb38cb0452da52": {
+  "out_of_scope": []
+ },
+ "https://github.com/dotnet/runtime/pull/119229@ceaad7e7738efbbfe361a7cca2f7e72a74f08c6e": {
+  "out_of_scope": []
+ },
+ "https://github.com/microsoft/react-native-windows/pull/14796@a30cd9e8981f44b8ab954acdb5a7fa6de6a52f0d": {
+  "out_of_scope": [
+   "vnext/codegen/rnwcoreJSI-generated.cpp",
+   "vnext/codegen/rnwcoreJSI.h"
+  ]
+ },
+ "https://github.com/modal-labs/modal-client/pull/2781@ab9e50def61f2e9a38e89c964a736db236597289": {
+  "out_of_scope": []
+ },
+ "https://github.com/getsentry/sentry/pull/94573@92e774d0e3e499655b14e83a745333c1cece3eca": {
+  "out_of_scope": [
+   ".github/CODEOWNERS",
+   "CHANGES",
+   "api-docs/openapi.json",
+   "api-docs/package.json",
+   "api-docs/paths/teams/stats.json",
+   "api-docs/pnpm-workspace.yaml",
+   "fixtures/events/performance_problems/sql-injection/sql-injection-event-body.json",
+   "fixtures/events/performance_problems/sql-injection/sql-injection-event-query.json",
+   "migrations_lockfile.txt",
+   "package.json",
+   "pnpm-lock.yaml",
+   "pyproject.toml",
+   "src/sentry/api/base.py",
+   "src/sentry/api/endpoints/chunk.py",
+   "src/sentry/api/endpoints/group_tagkey_details.py",
+   "src/sentry/api/endpoints/project_create_sample.py",
+   "src/sentry/api/endpoints/project_rule_actions.py",
+   "src/sentry/api/urls.py",
+   "src/sentry/auth/services/auth/model.py",
+   "src/sentry/auth_v2/README.md"
+  ]
+ },
+ "https://github.com/manusa/electronim/pull/563@b5d9364c5673641fd6f3bb6543c48599b4a0c2c2": {
+  "out_of_scope": []
+ },
+ "https://github.com/projectcalico/calico/pull/11086@7bc938f41b7896ce5b65b14223cc0d79e2e04cec": {
+  "out_of_scope": [
+   "felix/proto/felixbackend.pb.go",
+   "felix/proto/felixbackend_grpc.pb.go",
+   "cni-plugin/pkg/dataplane/grpc/proto/cnibackend.pb.go",
+   "cni-plugin/pkg/dataplane/grpc/proto/cnibackend_grpc.pb.go",
+   "goldmane/pkg/client/mocks/FlowsClient.go",
+   "goldmane/proto/api.pb.go",
+   "goldmane/proto/api_grpc.pb.go",
+   "goldmane/proto/mocks/Flows_StreamClient.go"
+  ]
+ },
+ "https://github.com/openops-cloud/openops/pull/671@2a4b43b280193bfc07f22a1e440033ec3471d5e2": {
+  "out_of_scope": [
+   "package-lock.json",
+   "packages/shared/package-lock.json"
+  ]
+ },
+ "https://github.com/actualbudget/actual/pull/5782@8f86696d512c1fb705ca574a90150b69a6f531e4": {
+  "out_of_scope": []
+ },
+ "https://github.com/roboflow/inference/pull/1350@2c678cf992c3ad01bf843683609854e7719f088a": {
+  "out_of_scope": [
+   "inference_sdk/http/client.py"
+  ]
+ },
+ "https://github.com/web-infra-dev/rspack/pull/11142@49799c703f8f981443058bcd140452e34be5f752": {
+  "out_of_scope": [
+   "crates/node_binding/.cargo/config.toml",
+   "crates/node_binding/scripts/build.js",
+   ".github/actions/docker/linux-build/action.yml",
+   ".github/workflows/reusable-build-build.yml"
+  ]
+ },
+ "https://github.com/Azure/azure-cosmos-dotnet-v3/pull/5287@c5b40ca3de0fe76a6e20de231bbcab2672b5c9ec": {
+  "out_of_scope": []
+ },
+ "https://github.com/liam-hq/liam/pull/3696@b394f0bfa0b45ca8e5009cdac4226d98cc54f691": {
+  "out_of_scope": []
+ },
+ "https://github.com/liam-hq/liam/pull/1302@a3a33d32aa8f9d33b341bf46ff9f168da1bbb916": {
+  "out_of_scope": []
+ }
+}

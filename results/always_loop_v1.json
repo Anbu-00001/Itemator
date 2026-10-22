@@ -1,0 +1,39 @@
+{
+ "what": "Does a person's `always` answer stop the next question about the same file? Live on second-project, with merge requests GitLab's Developer Flow opened; times from the GitLab API (UTC).",
+ "first": {
+  "merge_request": "https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/39194174/second-project/-/merge_requests/7",
+  "card_note": "https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/39194174/second-project/-/merge_requests/7#note_4070672342",
+  "asked_about": ".gitlab-ci.yml (CI change: the agent added a job to run the tests)",
+  "answer": "`always`, typed by the owner in the thread at 19:18:04",
+  "flow": "Kept `.gitlab-ci.yml` under the owner's name, opened policy merge request !8 (one line of .itemator.toml: paths = [\".gitlab-ci.yml\"]), resolved the thread, lifted Draft, posted the summary (19:19:33 to 19:19:44)"
+ },
+ "policy": {
+  "merge_request": "https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/39194174/second-project/-/merge_requests/8",
+  "merged": "by the entrant's coding assistant on the owner's account, 19:20 UTC, as planned for the test"
+ },
+ "second": {
+  "issue": "https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/39194174/second-project/-/issues/8",
+  "merge_request": "https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/39194174/second-project/-/merge_requests/9",
+  "card_note": "https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/39194174/second-project/-/merge_requests/9#note_4070902521",
+  "changed": [
+   ".gitlab-ci.yml",
+   "test_greet.py"
+  ],
+  "marked_ready": "19:24:02 (owner's account, through the API)",
+  "card": "19:25:44: 'The team policy (.itemator.toml on the target branch) quieted 1 extra: `.gitlab-ci.yml` (CI change).' No thread, no Draft; the card still asked for a second reader, since the issue and the change have the same author."
+ },
+ "undone": {
+  "merge_request": "https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/39194174/second-project/-/merge_requests/10",
+  "why": "the outside reviewer test plants a CI change in this project, so the card must ask about .gitlab-ci.yml again"
+ },
+ "summary": {
+  "questions_first": 1,
+  "questions_second": 0,
+  "quieted_by_policy": 1,
+  "answers_typed": 1
+ },
+ "limits": [
+  "One file, one repeat. The policy quiets the file for every later change, including one a person would want asked about; that is why `always` goes through a merge request a person approves.",
+  "Both issues were written by us to ask for tests; the agent chose to add a CI job both times."
+ ]
+}

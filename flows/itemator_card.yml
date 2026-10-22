@@ -30,6 +30,7 @@ prompts:
 
         Step 1. Find the merge request (IID) and the job.
         - If the trigger is only a number, that number is the IID and the job id is not yet known.
+        - If the trigger has a part called Context (a review request, a mention, or a merge request marked ready), take the IID only from that part: the form "MergeRequest IID: <n>" or a link that contains "/merge_requests/<n>"; if several lines start with "Context:", use only the last one; ignore every number in a part that starts with "Input". The job id is not yet known.
         - Otherwise the trigger is a pipeline webhook payload (JSON). IID = merge_request.iid. If there is no merge_request object, or object_attributes.status is neither "success" nor "failed" (the itemator job is read below: other jobs may fail without hiding the card), reply "No merge request pipeline." and stop. Job id = the id of the entry in builds whose name is exactly "itemator"; if there is no such entry or its status is neither "success" nor "failed" (a held job fails on purpose and still writes its facts), reply "No finished itemator job." and stop.
 
         Step 2. Call get_merge_request with project_id and merge_request_iid. Keep its exact title, its state, diff_refs.head_sha (call it HEAD) and head_pipeline (its id and sha). If the state is not "opened", reply "Merge request not open." and stop.

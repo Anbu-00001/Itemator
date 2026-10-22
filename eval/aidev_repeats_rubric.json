@@ -1,0 +1,39 @@
+{
+ "what": "The repeat-question study, written and committed before it is run: on the public AIDev table of AI-agent pull requests, how many of the questions Itemator's frozen rules (v6) would ask are about a file the same repository was already asked about, in an earlier agent pull request? Those are the questions an `always` answer (keep it and stop asking about this file, which opens a policy merge request) would have skipped had the team given it the first time. A count of repeats, not of whether any question is right. Read-only; nothing is posted.",
+ "unit": "one question: one extra the rules list on one pull request (one thread on the card)",
+ "files_task_rules": "as in eval/aidev_population_rubric.json: files at the pull request's last commit (aidev_recall.net_files over pr_commit_details), the linked issue as the task when AIDev-7.6M links one, otherwise the pull request's own text; itemator.extras.analyse, rules version 6, repository from html_url. Nothing tuned.",
+ "order": "pull requests of one repository in order of created_at, then id. Repositories are owner/name from html_url.",
+ "repeat": "a question is a repeat when an EARLIER pull request of the same repository had a question about the same path. Questions inside one pull request never count as repeats of each other (they are one card).",
+ "primary_outcome": "repeats / questions over all readable pull requests, with a Wilson 95% interval",
+ "secondary": [
+  "the same share counted by kind of extra instead of path (looser)",
+  "pull requests whose every question is a repeat (the card would not be posted at all)",
+  "repositories with two or more pull requests that have a question",
+  "both shares by agent"
+ ],
+ "sentences": {
+  "any": "On public agent pull requests, {repeats} of {questions} questions ({share}) were about a file the same repository had already been asked about in an earlier agent pull request; an `always` answer the first time would have skipped them. That is an upper bound: it assumes the team kept the file the first time, and a skipped question could have been a real extra.",
+  "none": "On public agent pull requests, almost no question repeated a file the same repository had already been asked about ({repeats} of {questions}), so `always` answers would not have cut the questions there."
+ },
+ "which_sentence": "'none' when the share is under 2%, otherwise 'any'. The sentence is filled in and used word for word in docs/measurements.md, whatever it says.",
+ "we_never": [
+  "drop pull requests or repositories after seeing results",
+  "change the rules, the order or the repeat test after the run starts",
+  "claim that a skipped question would have been a wrong one"
+ ],
+ "runs_in": "the manual CI job `repeats-study` (.gitlab-ci.yml) from the dataset's own parquet files; no Duo credits",
+ "amendments": [
+  {
+   "date": "2026-10-23",
+   "written_before": "any result: the first run was cancelled at 16,000 of 361,296 pull requests, before any count was printed",
+   "change": "Read only the pull requests that have file rows in pr_commit_details, found by one scan of its pr_id column, instead of asking for every pull request of the table in chunks. A pull request without file rows was already skipped as unreadable, so the counted questions are the same; the run is just short enough for the job's time limit. The pull_request table now has 361,296 rows, more than the 71,677 the population study read; the result says how many were read and how many had file rows.",
+   "unchanged": "the unit, the order, the repeat test, the outcomes, the threshold and both sentences"
+  },
+  {
+   "date": "2026-10-23",
+   "written_before": "any result: the amendment-1 run (job 17394558013) had printed only progress lines (104,000 of 359,735 pull requests in 4,069 s) when this was written, and at that rate would hit the job's 3-hour limit before finishing",
+   "change": "Split the run into 4 shards: shard i reads every 4th pull request id from the i-th, in the same sorted order, and writes its rows; one tally job joins all rows and runs the same tally() over them. The tally orders each repository's pull requests itself, so a repository whose pull requests fall in different shards is counted exactly as in one run.",
+   "unchanged": "the unit, the files and task, the order, the repeat test, the outcomes, the threshold and both sentences"
+  }
+ ]
+}

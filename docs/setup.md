@@ -37,7 +37,7 @@ In the project, open **AI** > **Flows** > **New flow** (menu names vary by GitLa
 
 ## 3. The triggers
 In **AI** > **Triggers** > **New flow trigger**, create two triggers. Both are off until you switch them on, and every one needs a person's action to fire (a bot cannot start a trigger, which is also why the flows cannot start each other). We created ours with a custom "Developer + AI" role; on a normal install you need Maintainer.
-- Card flow (service account: the card account): event **Pipeline** (statuses Passed and Failed, source merge request) and event **Assign reviewer**. The project must sit under a top-level group, because service accounts are created per group.
+- Card flow (service account: the card account): event **Pipeline** (statuses Passed and Failed, source merge request), event **Assign reviewer**, and event **Merge request ready** (called **Marked ready** under **Merge request** in newer GitLab versions). The last one starts the card on a coding agent's draft when a person marks it ready, since GitLab starts no trigger from a bot's own pipeline. The project must sit under a top-level group, because service accounts are created per group.
 - Reaction flow (service account: the reaction account): events **Mention**, **Merge request ready** (called **Marked ready** under **Merge request** in newer GitLab versions), and **Merge request** with the **Approved** action (we never tested Approved).
 
 ## 4. Make the threads a lock (needs the Maintainer role; without it nothing blocks the merge)

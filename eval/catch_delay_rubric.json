@@ -1,0 +1,20 @@
+{
+ "what": "The catch-delay study, written and committed before it is run: on the 24 real catches (results/real_catches_v1.json), how long after the file appeared in the pull request did a maintainer object to it? Itemator asks when the pipeline finishes, so this is the wait a person's own catch took. A description of 24 public cases, not a rate and not a saving.",
+ "unit": "one case of results/real_catches_v1.json: one file on one public agent pull request that a human reviewer objected to",
+ "start": "the later of the pull request's created_at and the committer date of the first commit in the pull request whose file list contains the path (GitHub API, GET only). A reviewer cannot see a file before both.",
+ "end": "the case's comment_created_at (the reviewer's objection), as already recorded in results/real_catches_v1.json",
+ "primary_outcome": "the median of end minus start over readable cases, with the minimum and maximum",
+ "secondary": [
+  "cases where the objection came within one hour, and cases where it came one day or more after the start",
+  "the same median by outcome (file_removed, closed_unmerged, landed_with_the_file)"
+ ],
+ "unreadable": "a case is unreadable when the API does not return the pull request, its commits or a commit holding the path (for example a force-push removed it); it is counted and reported, never guessed",
+ "sentence": "On the {n} files reviewers objected to, the objection came a median of {median} after the file appeared in the pull request ({within_hour} within an hour, {day_or_more} a day or more later). Itemator's card asks when the pipeline finishes.",
+ "which_sentence": "the one sentence, filled in and used word for word in docs/measurements.md, whatever it says",
+ "we_never": [
+  "drop cases after seeing results",
+  "claim the reviewer would have caught it sooner with Itemator, or that the whole wait is time lost",
+  "change start or end after the run starts"
+ ],
+ "runs_in": "eval/catch_delay.py, locally, about 24 pull requests and their commits through `gh api` (GET only); no Duo credits"
+}

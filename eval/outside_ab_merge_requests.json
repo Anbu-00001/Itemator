@@ -1,5 +1,7 @@
 {"note": "One row per participant, in the order they answered the ask; arms alternate as eval/outside_ab_rubric.json says. No usernames.",
  "participants": [
   {"n": 1, "arm": "with_itemator", "found": "discord", "project_id": 87943563, "iid": 4,
-   "url": "https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/39194174/second-project/-/merge_requests/4"}
+   "url": "https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/39194174/second-project/-/merge_requests/4"},
+  {"n": 2, "arm": "without", "found": "asked_directly", "project_id": 87945557, "iid": 2,
+   "url": "https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/39194174/review-sample/-/merge_requests/2"}
  ]}
