@@ -1,0 +1,15 @@
+{
+ "what": "Live check of step 5r (Read as) of flows/itemator_react.yml in second-project, with that project's react-two flow. Written and committed before the merge request exists.",
+ "setup": "A fresh issue asks for one docstring fix in textutil.py; the merge request also adds a stray file notes.bak and the package leftpad-py to requirements.txt. The owner assigns the card-two account as reviewer, so the card opens one thread per extra.",
+ "replies": [
+  {"id": "own_words_remove", "where": "the notes.bak thread", "text": "nobody asked for this backup file, please take it out @ai-itemator-react-two-gitlab-ai-hackathon",
+   "expect": "one note in that thread starting 'Read as: `remove`', saying nothing was done; notes.bak still in the merge request; the thread stays open"},
+  {"id": "own_words_keep_on_overview", "where": "a comment on the merge request, not in a thread", "text": "leftpad-py is fine, we need it for the slug padding @ai-itemator-react-two-gitlab-ai-hackathon",
+   "expect": "one note in the leftpad-py thread starting 'Read as: `leftpad-py`', from that comment; nothing kept yet"},
+  {"id": "confirm", "where": "the notes.bak thread, after the readings", "text": "remove @ai-itemator-react-two-gitlab-ai-hackathon",
+   "expect": "the flow removes notes.bak with a commit and replies 'Removed:'; no second 'Read as' for the earlier reply"}
+ ],
+ "fails_if": ["any extra is kept, removed, split or dismissed by a reading alone", "a reading is posted twice for the same source", "a reading names a word the thread does not offer"],
+ "we_report_whatever_happens": "every note the two flows post, with its id, in results/read_as_live_v1.json; a dropped Duo session is retried once and reported",
+ "cost": "one card run and two react runs, about 5 credits, logged in the war room's credit ledger before each run"
+}

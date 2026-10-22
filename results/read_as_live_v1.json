@@ -1,0 +1,25 @@
+{
+ "rubric": "eval/read_as_live_rubric.json",
+ "flow": "react-two 1.1.0 in second-project (flows/itemator_react.yml at 749c3ac with that project's two account names)",
+ "merge_request": "https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/39194174/second-project/-/merge_requests/5",
+ "card": {"note": 4067235262, "extras": ["leftpad-py", "notes.bak"], "threads": {"leftpad-py": 4067235469, "notes.bak": 4067235545}, "draft": true},
+ "replies": [
+  {"id": "own_words_keep_on_overview", "note": 4067238201, "session": 9882479,
+   "flow_said": [{"note": 4067247289, "where": "leftpad-py thread", "body": "Read as: `leftpad-py`, from @anbuchelvanganesan.cse2024's comment (note 4067238201). Nothing was done. To do it, reply `leftpad-py` on its own line with @ai-itemator-react-two-gitlab-ai-hackathon."},
+                 {"note": 4067247403, "where": "merge request", "body_start": "Not yet named: `leftpad-py`, `notes.bak`."}],
+   "as_expected": true},
+  {"id": "own_words_remove", "note": 4067249148, "session": 9882549,
+   "flow_said": [{"note": 4067255459, "where": "notes.bak thread", "body": "Read as: `remove`, from @anbuchelvanganesan.cse2024's comment (note 4067249148). Nothing was done. To do it, reply `remove` on its own line with @ai-itemator-react-two-gitlab-ai-hackathon."}],
+   "files_after": ["notes.bak", "requirements.txt", "textutil.py"],
+   "as_expected": true},
+  {"id": "confirm", "note": 4067258896, "session": 9882631,
+   "flow_said": [{"note": 4067268052, "where": "notes.bak thread", "body_start": "Removed: `notes.bak` taken out of this merge request by @anbuchelvanganesan.cse2024."},
+                 {"note": 4067269577, "where": "merge request", "body_start": "Not yet named: `leftpad-py`."}],
+   "commit": "cb6820fe1dc3f11c5d180de27d06ff3e9deb35d8",
+   "files_after": ["requirements.txt", "textutil.py"],
+   "as_expected": true}
+ ],
+ "fails_if_checked": {"settled_by_a_reading": false, "reading_posted_twice": false, "word_not_offered": false},
+ "summary": {"readings": 2, "readings_right": 2, "changed_by_a_reading": 0, "dropped_sessions": 0},
+ "limits": "One staged merge request, every reply typed by the owner, two plain-words replies. It shows the step works as written on these words, not how often a model reads other people's words right."
+}

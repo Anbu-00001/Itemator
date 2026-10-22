@@ -161,6 +161,9 @@
   "prs_flagged": 36,
   "prs_with_real_strict": 18,
   "prs_with_real_lenient": 23,
+  "extras": 246,
+  "extras_real_strict": 27,
+  "extras_real_lenient": 138,
   "strict_interval_95": [
    0.3447,
    0.6553

@@ -32,5 +32,23 @@
  ],
  "disclosure_after_reply": "After a participant's last reply, the owner tells them what was planted and which arm they were in.",
  "credits": "about 2 per with_itemator merge request (one card run); stop at 20 credits",
- "closes": "2026-10-26 18:00 IST; the result is written in results/outside_ab_v1.json"
+ "closes": "2026-10-26 18:00 IST; the result is written in results/outside_ab_v1.json",
+ "amendments": [
+  {
+   "date": "2026-10-22",
+   "written_before": "any participant after participant 1 is asked or has a merge request",
+   "change": "Participants may also be people the owner asks directly, who have never used GitLab and do not work in software delivery. Each makes a free GitLab account, reviews one merge request with the same instruction, and gets no other help or briefing from the owner.",
+   "why": "The Discord ask brought one participant in a day; people outside software are easier to reach. They are also the reviewers an extra is easiest to miss for, so they test whether the card makes it visible to someone with no context.",
+   "reported_separately": "Each participant is marked with how they were found (discord or asked_directly). The result gives both arms for all participants and again for each group, so a reader can see if one group drives a difference.",
+   "unchanged": "the change, the two arms, the assignment by order of first answer (participant 1 was with_itemator, so the next one gets without), the instruction, the outcome rule, and what we claim and report"
+  },
+  {
+   "date": "2026-10-22",
+   "written_before": "any person asked directly is sent anything",
+   "change": "Everyone asked directly gets the message below, word for word, and nothing else before their reply. It says how to use GitLab, never what to look for. It points at the Changes tab in both arms, so a reviewer in the without arm can find the diff as easily as one in the with arm.",
+   "message": "Hi! I'm testing a project for a hackathon and need someone to look at one small code change. You don't need to know any coding tools.\n1. Make a free account at https://gitlab.com/users/sign_up and confirm your email. Send me your username.\n2. I'll send you a link. Open it while signed in. The Changes tab shows what was changed.\n3. Review this merge request as if you had to approve it. Reply in the merge request with what you would approve and what you would change. Five minutes is enough. To reply, write in the comment box at the bottom of the Overview tab and click Comment. Any answer is fine, including \"I don't know\".\nAfter your reply I'll tell you what the test was. Your username will appear in the results; tell me if you'd rather it didn't.",
+   "why": "People who have never used GitLab cannot find the diff or the comment box alone, and if only the card showed them the extras, the with arm would win for a reason that has nothing to do with Itemator.",
+   "unchanged": "the change, the two arms, the assignment by order of first answer, the instruction (step 3 repeats it word for word), the outcome rule, and what we claim and report"
+  }
+ ]
 }

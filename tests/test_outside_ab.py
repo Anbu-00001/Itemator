@@ -49,3 +49,21 @@ def test_the_summary_counts_only_people_who_replied_and_claims_a_difference_only
     assert s["without"] == {"participants": 1, "planted": 2, "caught": 0, "share": 0.0}
     assert s["difference_claimed"] is False
     assert AB.summarise([r("with_itemator", 1, 1)] * 5 + [r("without", 0, 0)] * 5)["difference_claimed"] is True
+
+
+def test_each_way_of_finding_people_is_reported_on_its_own():
+    r = lambda arm, found, p: {"arm": arm, "found": found, "replied": True, "caught": {"package": p, "ci": False}}
+    s = AB.summarise([r("with_itemator", "discord", True), r("without", "asked_directly", False), r("with_itemator", "asked_directly", True)])
+    assert set(s["by_group"]) == {"discord", "asked_directly"}
+    assert s["by_group"]["asked_directly"]["with_itemator"]["participants"] == 1 and s["by_group"]["asked_directly"]["without"]["caught"] == 0
+    assert s["by_group"]["discord"]["without"]["participants"] == 0 and "by_group" not in s["by_group"]["discord"]
+    assert s["with_itemator"]["participants"] == 2                                         # all participants, as before
+
+
+def test_the_message_for_people_asked_directly_says_how_to_use_gitlab_and_never_what_to_look_for():
+    import json
+    r = json.loads((pathlib.Path(__file__).parent.parent / "eval" / "outside_ab_rubric.json").read_text())
+    msg = r["amendments"][-1]["message"]
+    assert r["instruction_to_participants"] in msg and "Changes tab" in msg     # the same words and the same way to the diff in both arms
+    for hint in ("leftpad", "requirements", "curl", ".gitlab-ci", "package", "script", "extra", "Itemator", "card", "planted", "security"):
+        assert hint.lower() not in msg.lower(), hint

@@ -149,7 +149,7 @@ def test_new_dependency_beyond_the_ask(repo, tmp_path, monkeypatch):
     assert out["card"]["final_line"] == ("2 things beyond #12: `leftpad-py` (new dependency), "
                                          "`.gitlab-ci.yml` (CI change).")
     assert out["card"]["todo_line"] == (ci.WELCOME + ' Type each name in its thread to keep it, or reply "split" '
-                                        'to move it to its own MR, "remove" to drop it. ' + ci.CONSENT)
+                                        'to move it to its own MR, "remove" to drop it. ' + ci.SEVERAL + ' ' + ci.CONSENT)
     # the card promises this, so its wording is fixed here; the reaction flow acts only on a reply (flows/itemator_react.yml)
     assert ci.CONSENT == "Itemator keeps, moves or removes nothing until a person replies."
     assert ci.WELCOME == "An extra can be welcome; it just needs one person's choice."

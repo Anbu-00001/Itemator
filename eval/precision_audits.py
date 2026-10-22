@@ -68,6 +68,9 @@ def main() -> None:
         "held_out_pooled": {
             "samples": [s["sample"] for s in held], "rules_differ_between_samples": True,
             "prs_flagged": n, "prs_with_real_strict": k, "prs_with_real_lenient": kl,
+            # per extra as well as per pull request: one sample (B) holds most of the extras, so this share is far lower
+            "extras": sum(s["extras"] for s in held), "extras_real_strict": sum(s["extras_real_strict"] for s in held),
+            "extras_real_lenient": sum(s["extras_real_lenient"] for s in held),
             "strict_interval_95": wilson(k, n), "lenient_interval_95": wilson(kl, n),
             "prs_scored": sum(s["prs_scored"] for s in held),
             "prs_flagged_share": round(n / sum(s["prs_scored"] for s in held), 3),

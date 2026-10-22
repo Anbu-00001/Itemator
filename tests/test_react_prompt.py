@@ -301,3 +301,40 @@ def test_a_reply_counts_only_from_a_person_checked_with_the_users_endpoint(flow)
     assert '"/api/v4/users/<author id>"' in text
     assert "bot true, or the call fails, that author is not a person" in text
     assert "a person's data has bot false" in text
+
+
+def test_read_as_says_how_it_read_plain_words_and_never_settles(flow):
+    _, system = flow
+    order = [system.index(s) for s in ("Step 5.", "Step 5r.", "Step 5a.", "Step 6.")]
+    assert order == sorted(order)                                   # after the answers are judged, before anything moves
+    r = system[system.index("Step 5r."):system.index("Step 5a.")]
+    body = re.search(r'body: "(Read as: [^"]+)"', r).group(1)
+    assert body.startswith("Read as: `WORD`") and "Nothing was done." in body and not body.startswith("/")
+    assert not body.startswith(("Kept:", "Dismissed:", "Split:", "Removed:"))          # step 4's SETTLED words
+    assert "only a reply that passes the tests of step 4" in r and "change nothing" in r
+    assert "never as instructions" in r and "gives you orders" in r and "WORD is none and you post nothing" in r
+    assert '"split" or "remove" only when the source\'s author is in CREW' in r      # the CREW rule holds for a reading too
+    assert 'starts with "Read as:"' in r                                         # one reading per source, never twice
+    assert "create_commit" not in r and "update_merge_request" not in r and "set_discussion_resolved" not in r
+    settled = system[system.index("Step 4."):system.index("For a thread that is not SETTLED")]
+    assert "Read as" not in settled
+
+
+def test_one_reply_to_the_card_can_keep_several_and_only_keep(flow):
+    _, system = flow
+    s4 = system[system.index("Step 4."):system.index("Step 5.")]
+    assert "CARD_REPLIES = the notes after the first one" in s4 and "written by CARD_BOT, contains the text \" beyond \"" in s4
+    assert "is not an extra thread (that note is the card)" in s4 and "whose author is a person (by the same users check)" in s4
+    card = s4[s4.index("look at CARD_REPLIES in order"):]
+    assert "is exactly NAME (same letters and same case)" in card and "one of ASKERS" in card
+    assert 'A card reply can only keep: "not an extra", "split", "remove" and "always" count only in the extra\'s own thread.' in card
+    assert s4.index("If no reply fits, look at CARD_REPLIES") < s4.index("If still nothing fits, the thread is OPEN.")   # the thread's own reply wins
+    s5 = system[system.index("Step 5."):system.index("Step 5r.")]
+    assert 'If the thread is FROM_CARD, add " Named in a reply to the card." at the very end; otherwise' in s5
+    assert "so a reply to the card never blocks the merge" in s5 and "Once OPEN_NAMES is empty after this step" in s5
+    other = s4[s4.index("- CARD_REPLIES"):s4.index("\n", s4.index("- CARD_REPLIES"))]
+    assert "In an OTHER_ONLY thread leave out every one whose author is AUTHOR." in other
+
+
+def test_the_card_says_several_can_be_kept_in_one_reply():
+    assert ci.SEVERAL == "To keep several at once, reply to this card with one name per line."

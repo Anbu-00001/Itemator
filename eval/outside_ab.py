@@ -52,7 +52,7 @@ def score(discussions: list) -> dict:
     return {"caught": caught, "replies": replies, "unsettled": unsettled}
 
 
-def summarise(rows: list) -> dict:
+def summarise(rows: list, by_group: bool = True) -> dict:
     out = {}
     for arm in ("with_itemator", "without"):
         rs = [r for r in rows if r["arm"] == arm and r["replied"]]
@@ -61,6 +61,9 @@ def summarise(rows: list) -> dict:
                     "share": round(n_caught / (len(rs) * len(PLANTED)), 3) if rs else None}
     both = min(out["with_itemator"]["participants"], out["without"]["participants"])
     out["difference_claimed"] = both >= 5
+    if by_group:   # amendment of 2026-10-22: each way of finding people, reported on its own
+        out["by_group"] = {g: summarise([r for r in rows if r.get("found") == g], False)
+                           for g in sorted({r.get("found") for r in rows if r.get("found")})}
     return out
 
 
@@ -78,7 +81,7 @@ def main() -> int:
     rows = []
     for p in json.loads(LIST.read_text())["participants"]:
         s = score(fetch(p["project_id"], p["iid"]))
-        rows.append({"n": p["n"], "arm": p["arm"], "merge_request": p["url"], "replied": bool(s["replies"]), **s})
+        rows.append({"n": p["n"], "arm": p["arm"], "found": p.get("found"), "merge_request": p["url"], "replied": bool(s["replies"]), **s})
     OUT.write_text(json.dumps({"rubric": "eval/outside_ab_rubric.json", "participants": rows, "summary": summarise(rows)},
                               indent=1) + "\n")
     print(json.dumps(summarise(rows)))

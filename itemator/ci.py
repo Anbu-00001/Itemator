@@ -465,6 +465,8 @@ AUTHOR_CAVEAT = "The issue and this change have the same author, so no second pe
 WELCOME = "An extra can be welcome; it just needs one person's choice."
 # Said once on every card that lists extras: the flows act only on a person's reply, never on their own.
 CONSENT = "Itemator keeps, moves or removes nothing until a person replies."
+# Said once on every card that lists extras: one reply to the card can keep several, one exact name per line (react step 4).
+SEVERAL = "To keep several at once, reply to this card with one name per line."
 # How a thread asks: the exact name keeps the friction of a choice; the lines under it are the author's side of the
 # conversation, shown in the decision log (itemator/decisions.py), never acted on.
 KEEP = ("To keep it, reply with its exact name; put "
@@ -595,7 +597,7 @@ def card_lines(state: str, issues: list[dict], extras: list, unplaced: list, inj
     elif state == "extras":
         names = ", ".join(f"{_code(e.name)} ({_label(e)})" for e in extras)
         final = f"{len(extras)} {'thing' if len(extras) == 1 else 'things'} beyond {refs}: {names}."
-        todo = f'{WELCOME} Type each name in its thread to keep it, or reply "split" to move it to its own MR, "remove" to drop it. {CONSENT}'
+        todo = f'{WELCOME} Type each name in its thread to keep it, or reply "split" to move it to its own MR, "remove" to drop it. {SEVERAL} {CONSENT}'
     elif state == "unplaced_only":
         n = len(unplaced)
         final = f"{n} {'file' if n == 1 else 'files'} the rules could not place."

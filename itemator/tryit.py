@@ -37,7 +37,7 @@ def _load(name: str) -> dict:
 def _ratio(row: dict) -> str:
     if row.get("readable", row["read"]) == row["read"]:
         return f"{row['spoke']} of {row['read']}"
-    return f"{row['spoke']} of {row['read']} ({row['readable']} changed a file it reads)"
+    return f"{row['spoke']} of {row['read']} ({row['readable']} touched a file this check reads)"
 
 
 def evidence(mesa: dict, agents: dict, incidents: dict, agreement: dict) -> dict:
@@ -51,7 +51,7 @@ def evidence(mesa: dict, agents: dict, incidents: dict, agreement: dict) -> dict
     for c in ("shapes", "untrusted", "moving"):
         inc = by_check.get(c, [])
         rows.append({"check": c, "reads": reads[c], "ordinary": _ratio(mesa["ordinary"]["checks"][c]), "agents": _ratio(agents["checks"][c]),
-                     "incidents": f"{sum(1 for i in inc if i['fired'])} of {len(inc)}" if inc else "none in the set"})
+                     "incidents": f"{sum(1 for i in inc if i['fired'])} of {len(inc)}" if inc else "0 of 0 (no incident of this kind)"})
     units = sum(agreement[k]["units"] for k in ("agent_commits", "mesa_commits", "line_corpus", "page_examples"))
     notes = [
         {"text": f"Ordinary commits: {mesa['ordinary']['checks']['moving']['read']} commits of the Mesa project, 2024 to 2026, drawn at random. Agent-written commits: commits of AI agents' pull requests in the public AIDev data set, read from the pull requests that had human review comments, so riskier than average."},
@@ -75,8 +75,8 @@ def static(examples: list[dict], words: dict) -> str:
     compared with), for a reader without scripts. The page removes this block when its script runs."""
     e = H.escape
     out = ["<h2>The examples, as the checks read them</h2>",
-           "<p class=\"muted\">Worked out by the Python version of the checks when this page was built. With scripts on, "
-           "the buttons above run them again in this tab.</p>"]
+           "<p class=\"muted\">Your browser is not running this page's script, so these results were worked out "
+           "when the page was built, by the Python version of the checks.</p>"]
     for ex in examples:
         files = DR.files_of(ex["diff"])
         found = [d for mod in (SH, UT, MV) for d in mod.find(files)]
@@ -93,10 +93,16 @@ def static(examples: list[dict], words: dict) -> str:
     return "\n".join(out)
 
 
+# The row names a reader sees; the short names stay the keys the results files use.
+NAMES = {"shapes": "Attack shapes: decode and run, environment to the network, download over a source file",
+         "untrusted": "An outsider's text handed to something that runs it",
+         "moving": "A pipeline or image reference that can change under it"}
+
+
 def table(ev: dict) -> tuple[str, str]:
     """The evidence rows and notes as HTML, so the table reads the same without scripts."""
     e = H.escape
-    rows = "".join("<tr><td>" + e(r["check"]) + "</td><td>" + e(r["reads"]) + "</td>"
+    rows = "".join("<tr><td>" + e(NAMES.get(r["check"], r["check"])) + "</td><td>" + e(r["reads"]) + "</td>"
                    + "".join(f'<td class="n">{e(r[k])}</td>' for k in ("ordinary", "agents", "incidents")) + "</tr>" for r in ev["rows"])
     texts = "".join(e(n["text"]) + "<br>" for n in ev["notes"] if not n.get("href"))
     links = " \u00b7 ".join(f'<a href="{e(n["href"])}" rel="noopener">{e(n["text"])}</a>' for n in ev["notes"] if n.get("href"))

@@ -39,7 +39,8 @@ M = [
  ("api: no anonymous retry", "if status in (401, 403, 404) and self.token:", "if False:"),
  ("card: singular wrong", '"Skim this file." if n == 1 else', '"Skim this file." if n == 0 else'),
  ("card: injection line dropped", '"injection_line": INJECTION_LINE if injection else None}', '"injection_line": None}'),
- ("card: todo without remove (T23)", ', "remove" to drop it. {CONSENT}\'', ". {CONSENT}'"),
+ ("card: todo without remove (T23)", ', "remove" to drop it. {SEVERAL} {CONSENT}\'', ". {SEVERAL} {CONSENT}'"),
+ ("card: todo without the several-at-once line", ' {SEVERAL} {CONSENT}\'', " {CONSENT}'"),
  # ---- injection scan
  ("scan: removed lines scanned", '        elif line.startswith("+"):\n            yield', '        elif line.startswith(("+", "-")):\n            yield'),
  ("scan: context lines not counted", '        elif line.startswith(" "):\n            n += 1', '        elif line.startswith(" "):\n            pass'),

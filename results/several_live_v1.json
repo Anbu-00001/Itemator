@@ -1,0 +1,13 @@
+{
+ "rubric": "eval/several_live_rubric.json",
+ "flow": "react-two 1.2.0 in second-project (flows/itemator_react.yml of !369 with that project's two account names)",
+ "merge_request": "https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/39194174/second-project/-/merge_requests/5",
+ "reply": {"note": 4067439997, "in_discussion_of_card_note": 4067235262, "session": 9884222},
+ "flow_said": [
+  {"note": 4067447111, "body": "Kept: `leftpad-py`, named by @anbuchelvanganesan.cse2024. (@anbuchelvanganesan.cse2024 also wrote this merge request.) Named in a reply to the card."},
+  {"note": 4067447806, "body_start": "Every extra has an answer: 1 kept, 0 dismissed, 0 moved, 1 removed."}],
+ "card_discussion_resolved": true,
+ "draft_after": false,
+ "as_expected": true,
+ "limits": "One reply naming one extra, typed by the owner, on a card written before the card text said several can be kept in one reply."
+}

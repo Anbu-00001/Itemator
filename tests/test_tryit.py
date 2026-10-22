@@ -59,9 +59,9 @@ def test_the_table_is_the_results_files_and_nothing_more():
         c = row["check"]
         for got, x in ((row["ordinary"], mesa["ordinary"]["checks"][c]), (row["agents"], agents["checks"][c])):
             assert got.startswith(f"{x['spoke']} of {x['read']}")
-            assert (f"({x['readable']} changed a file it reads)" in got) == (x["readable"] != x["read"])
-    assert ev["rows"][2]["ordinary"] == "0 of 1499 (4 changed a file it reads)"         # the moving check reads few commits
-    assert {r["check"]: r["incidents"] for r in ev["rows"]} == {"shapes": "1 of 1", "untrusted": "1 of 1", "moving": "none in the set"}
+            assert (f"({x['readable']} touched a file this check reads)" in got) == (x["readable"] != x["read"])
+    assert ev["rows"][2]["ordinary"] == "0 of 1499 (4 touched a file this check reads)"         # the moving check reads few commits
+    assert {r["check"]: r["incidents"] for r in ev["rows"]} == {"shapes": "1 of 1", "untrusted": "1 of 1", "moving": "0 of 0 (no incident of this kind)"}
 
 
 def test_the_page_is_not_built_when_the_two_versions_disagree(monkeypatch):
@@ -176,7 +176,8 @@ def test_the_evidence_table_and_its_notes_are_in_the_page_without_scripts():
     body = html[html.index("<tbody>"):html.index("</tbody>")]
     ev = T.evidence(T._load("mesa_noise_v1.json"), T._load("agent_noise_v1.json"), T._load("incident_replay_v1.json"), T._load("try_agreement_v2.json"))
     assert body.count("<tr>") == len(ev["rows"]) == 3 and "/*ROWS*/" not in html and "/*EVNOTE*/" not in html
-    assert '<td class="n">0 of 1499 (4 changed a file it reads)</td>' in body
+    assert '<td class="n">0 of 1499 (4 touched a file this check reads)</td>' in body
+    assert body.count("<tr><td>") == 3 and all(f"<tr><td>{T.H.escape(T.NAMES[r['check']])}</td>" in body for r in ev["rows"])   # plain names, not the keys
     note = html[html.index('id="evnote">'):html.index("</p>", html.index('id="evnote">'))]
     assert all((f'href="{n["href"]}"' if n.get("href") else n["text"][:20]) in note for n in ev["notes"])
     assert 'querySelector("#evidence tbody")' not in html                          # filled once, at build time
@@ -187,3 +188,10 @@ def test_the_table_escapes_what_it_writes():
                            "notes": [{"text": "<n>"}, {"text": "l", "href": "a\"b"}]})
     assert rows == '<tr><td>&lt;x&gt;</td><td>a &amp; b</td><td class="n">1</td><td class="n">2</td><td class="n">3</td></tr>'
     assert notes == '&lt;n&gt;<br><span><a href="a&quot;b" rel="noopener">l</a></span>'
+
+
+def test_the_examples_say_they_are_buttons_and_the_no_script_note_says_why_it_is_there():
+    html = T.page()
+    assert html.index("Click an example to load it") < html.index('id="examples"')
+    block = html.split('<div id="static">', 1)[1].split("</div>", 1)[0]
+    assert "Your browser is not running this page's script" in T.H.unescape(block) and "With scripts on" not in html

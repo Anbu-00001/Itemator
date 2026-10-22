@@ -1,0 +1,9 @@
+{
+ "what": "Live check of keeping an extra by a reply to the card (flows/itemator_react.yml step 4 CARD_REPLIES, step 5 FROM_CARD) in second-project with react-two. Written and committed before the reply.",
+ "setup": "second-project !5 (from eval/read_as_live_rubric.json): notes.bak was removed; leftpad-py is still unanswered, with a Read-as note in its thread. The card there was written before the card text said several can be kept in one reply.",
+ "reply": {"where": "a reply to the card note 4067235262", "text": "leftpad-py\nthe padding helper needs it @ai-itemator-react-two-gitlab-ai-hackathon"},
+ "expect": ["the leftpad-py thread gets 'Kept: `leftpad-py`, named by @<owner>.' ending 'Named in a reply to the card.'", "the card's discussion is resolved", "the summary says every extra has an answer: 1 kept, 1 removed", "the merge request is no longer a draft"],
+ "fails_if": ["anything is kept from a line that is not exactly the name", "the card's discussion is left unresolved after every extra has an answer"],
+ "cost": "one react-two run, about 1.5 credits, logged first",
+ "we_report_whatever_happens": "results/several_live_v1.json"
+}

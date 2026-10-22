@@ -152,7 +152,7 @@ NEW_TAIL = ("To move it into its own MR, reply `split`. To drop it from this MR,
             "If this is not really an extra, reply `not an extra`.")
 OLD_TODO = 'Type each name in its thread to keep it, or reply "split" to move it to its own MR.'
 NEW_TODO = (ci.WELCOME + ' Type each name in its thread to keep it, or reply "split" to move it to its own MR, "remove" to drop it. '
-            + ci.CONSENT)    # + the consent line, and (T64) the welcome line before it
+            + ci.SEVERAL + ' ' + ci.CONSENT)    # + the consent line, and (T64) the welcome line before it
 OLD_CAVEAT = "No one but the author described this change."     # T64 rewords it
 
 
