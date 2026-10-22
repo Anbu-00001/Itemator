@@ -18,6 +18,7 @@ p{margin:.45em 0}
 .muted{color:var(--muted)}
 .lock{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:2px 12px;font-size:.88rem;color:var(--muted);background:var(--card)}
 textarea{width:100%;min-height:200px;font:13px/1.45 ui-monospace,Menlo,Consolas,monospace;color:var(--fg);background:var(--code);border:1px solid var(--line);border-radius:8px;padding:10px;resize:vertical}
+textarea.issue{min-height:70px;font:14px/1.45 system-ui,sans-serif}
 textarea:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible+label{outline:2px solid var(--accent);outline-offset:2px}
 .row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:10px 0}
 button,.file{font:inherit;font-size:.92rem;color:var(--fg);background:var(--card);border:1px solid var(--line);border-radius:6px;padding:5px 12px;cursor:pointer}
@@ -44,9 +45,11 @@ footer{margin-top:36px;font-size:.85rem;color:var(--muted);word-break:break-word
 <body>
 <main>
 <h1>Paste a diff. See what Itemator would name.</h1>
-<p>Three of Itemator's checks, on your own change, in this tab. <span class="lock" title="This page carries a Content-Security-Policy that forbids it to make any network request.">Nothing you paste can leave this page</span></p>
+<p>Itemator's new-dependency rule and three of its supply-chain checks, on your own change, in this tab. <span class="lock" title="This page carries a Content-Security-Policy that forbids it to make any network request.">Nothing you paste can leave this page</span></p>
 
 <div class="row" id="examples" aria-label="Examples"></div>
+<label for="issue" class="muted">The issue the change is for (optional). A package the change adds and the issue does not name is an extra.</label>
+<textarea id="issue" class="issue" spellcheck="false" placeholder="slug() should return lowercase"></textarea>
 <label for="diff" class="muted">A unified diff, for example the output of <code>git diff origin/main...HEAD</code>. A GitHub pull request URL with <code>.diff</code> added gives the same text.</label>
 <textarea id="diff" spellcheck="false" placeholder="diff --git a/scripts/package.ts b/scripts/package.ts&#10;…"></textarea>
 <div class="row">
@@ -71,6 +74,7 @@ footer{margin-top:36px;font-size:.85rem;color:var(--muted);word-break:break-word
 </main>
 <script id="payload" type="application/json">/*PAYLOAD*/</script>
 <script>/*CHECKS*/</script>
+<script>/*DEPS*/</script>
 <script>
 (function () {
   "use strict";
@@ -109,12 +113,23 @@ footer{margin-top:36px;font-size:.85rem;color:var(--muted);word-break:break-word
     if (!files.length) { sum.textContent = "That does not look like a git diff."; res.appendChild(el("p", "It should start with a line like \"diff --git a/file b/file\".", "muted")); return; }
     var lines = 0;
     files.forEach(function (f) { lines += Itemator.added(f.patch).length; });
-    var found = hits(files);
+    var found = hits(files), extras = DepsRule.extras($("issue").value, files);
     sum.textContent = files.length + (files.length === 1 ? " file" : " files") + ", " + lines + " added " + (lines === 1 ? "line" : "lines") + " read. " +
-      (found.length ? found.length + (found.length === 1 ? " thing named." : " things named.") : "Nothing named.");
+      (extras.length ? extras.length + (extras.length === 1 ? " extra" : " extras") + " beyond the issue. " : "") +
+      (found.length ? found.length + (found.length === 1 ? " thing named by the supply-chain checks." : " things named by the supply-chain checks.") : extras.length ? "" : "Nothing named.");
+    extras.forEach(function (x) {
+      var c = el("div", null, "hit"), t = el("div", null, "where");
+      t.appendChild(el("span", x.path, "path"));
+      t.appendChild(document.createTextNode(": an extra, " + x.why));
+      c.appendChild(t);
+      c.appendChild(el("p", "On a merge request this gets its own thread, and the merge request stays a draft until a person types " + x.name + " to keep it, or split or remove.", "why"));
+      c.appendChild(el("p", "rule 1 (new_dependency), the same rule as the CI job's", "why"));
+      res.appendChild(c);
+    });
+    if (!found.length && extras.length) return;
     if (!found.length) {
       var n = el("div", null, "none");
-      n.appendChild(el("p", "None of the three checks has anything to say about the lines this change adds."));
+      n.appendChild(el("p", "No new package beyond the issue, and none of the three checks has anything to say about the lines this change adds."));
       n.appendChild(el("p", "That is not a statement that the change is fine. Read it yourself.", "why"));
       res.appendChild(n); return;
     }
@@ -132,13 +147,14 @@ footer{margin-top:36px;font-size:.85rem;color:var(--muted);word-break:break-word
 
   P.examples.forEach(function (ex) {
     var b = el("button", ex.title); b.type = "button"; b.title = ex.note;
-    b.addEventListener("click", function () { $("diff").value = ex.diff; render(); $("summary").appendChild(el("p", ex.note, "why")); });
+    b.addEventListener("click", function () { $("issue").value = ex.issue || ""; $("diff").value = ex.diff; render(); $("summary").appendChild(el("p", ex.note, "why")); });
     $("examples").appendChild(b);
   });
   if (!$("diff").value && P.examples.length) $("examples").firstChild.click();   // a first visit shows a result, not an empty box
 
   $("diff").addEventListener("input", render);
-  $("clear").addEventListener("click", function () { $("diff").value = ""; render(); });
+  $("issue").addEventListener("input", render);
+  $("clear").addEventListener("click", function () { $("issue").value = ""; $("diff").value = ""; render(); });
   $("file").addEventListener("change", function () {
     var f = this.files && this.files[0]; if (!f) return;
     var r = new FileReader(); r.onload = function () { $("diff").value = String(r.result); render(); }; r.readAsText(f);

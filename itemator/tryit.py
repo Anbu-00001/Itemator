@@ -14,6 +14,7 @@ import pathlib
 import re
 
 from itemator import diffreader as DR
+from itemator import extras as X
 from itemator import moving as MV
 from itemator import shapes as SH
 from itemator import untrusted as UT
@@ -79,11 +80,14 @@ def static(examples: list[dict], words: dict) -> str:
     for ex in examples:
         files = DR.files_of(ex["diff"])
         found = [d for mod in (SH, UT, MV) for d in mod.find(files)]
+        extras = X._new_dependencies(ex.get("issue") or "", files)
         out.append(f"<h3>{e(ex['title'])}</h3><p class=\"muted\">{e(ex['note'])}</p>")
-        if not found:
+        if ex.get("issue"):
+            out.append(f"<p class=\"muted\">Issue: {e(ex['issue'].splitlines()[0])}</p>")
+        if not found and not extras:
             out.append("<p>Nothing named.</p>")
             continue
-        out.append("<ul>" + "".join(
+        out.append("<ul>" + "".join(f"<li><code>{e(x.path)}</code>: an extra, {e(x.why)}</li>" for x in extras) + "".join(
             f"<li><code>{e(d['path'])}</code>{', line ' + str(d['line']) if d.get('line') else ''}: {e(words.get(d['kind'], d['kind']))}"
             f"<pre>{e(d['text'])}</pre></li>" for d in found) + "</ul>")
     return "\n".join(out)
@@ -92,15 +96,17 @@ def static(examples: list[dict], words: dict) -> str:
 def page() -> str:
     mesa, agents = _load("mesa_noise_v1.json"), _load("agent_noise_v1.json")
     incidents, agreement = _load("incident_replay_v1.json"), _load("try_agreement_v2.json")
-    if not agreement["all_identical"]:
-        raise SystemExit("itemator.tryit: the browser checks and the Python checks disagree (results/try_agreement_v2.json); not building")
+    deps_agree = _load("green_agreement_v2.json")
+    if not (agreement["all_identical"] and deps_agree["all_identical"]):
+        raise SystemExit("itemator.tryit: the browser checks and the Python checks disagree (results/try_agreement_v2.json or results/green_agreement_v2.json); not building")
     checks = (WEB / "try_checks.js").read_text(encoding="utf-8")
     ev = evidence(mesa, agents, incidents, agreement)
     payload = {"examples": json.loads((WEB / "try_examples.json").read_text(encoding="utf-8")), "evidence": ev,
                "footer": f"Checks version {hashlib.sha256(checks.encode()).hexdigest()[:12]} (web/try_checks.js). Standard HTML and JavaScript; no library, no network, no model."}
     html = (WEB / "try.html").read_text(encoding="utf-8")
     for marker, text in (("/*PAYLOAD*/", safe_json(payload)), ("/*CHECKS*/", checks.replace("</script", "<\\/script")),
-                         ("/*STATIC*/", static(payload["examples"], what(checks)))):
+                         ("/*STATIC*/", static(payload["examples"], what(checks))),
+                         ("/*DEPS*/", (WEB / "deps_rule.js").read_text(encoding="utf-8").replace("</script", "<\\/script"))):
         assert html.count(marker) == 1
         html = html.replace(marker, text, 1)
     return html

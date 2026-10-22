@@ -16,7 +16,7 @@ sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent.parent / "eval"))
 import incident_replay as IR  # noqa: E402
 
 EXAMPLES = json.loads((T.WEB / "try_examples.json").read_text())
-WANT = {"download-over-source": "shapes", "pr-title-in-workflow": "untrusted", "decode-and-run": "shapes", "environment-to-server": "shapes", "moving-references": "moving", "ordinary": None}
+WANT = {"unasked-package": None, "download-over-source": "shapes", "pr-title-in-workflow": "untrusted", "decode-and-run": "shapes", "environment-to-server": "shapes", "moving-references": "moving", "ordinary": None}
 
 
 def python_names(diff):
@@ -49,7 +49,7 @@ def test_the_data_tag_holds_no_angle_bracket_or_ampersand_and_the_code_tag_is_no
     tag = '<script id="payload" type="application/json">'
     raw = html[html.index(tag) + len(tag):html.index("</script>", html.index(tag))]
     assert not set("<>&") & set(raw)
-    assert html.count("</script>") == 3                                            # data, checks, page code
+    assert html.count("</script>") == 4                                            # data, checks, rule 1, page code
 
 
 def test_the_table_is_the_results_files_and_nothing_more():
@@ -132,3 +132,40 @@ def test_a_kind_the_words_table_lacks_is_shown_by_its_name_and_text_is_escaped()
     ex = [{"title": "<b>t</b>", "note": "n & m", "diff": next(e["diff"] for e in EXAMPLES if e["id"] == "decode-and-run")}]
     out = T.static(ex, {})
     assert "<h3>&lt;b&gt;t&lt;/b&gt;</h3>" in out and "n &amp; m" in out and ": decode-and-run<pre>" in out
+
+
+def test_the_page_opens_on_an_extra_that_rule_1_lists_and_only_that_example_has_one():
+    from itemator import extras as X
+    assert EXAMPLES[0]["id"] == "unasked-package"
+    said = {e["id"]: [(x.path, x.name) for x in X._new_dependencies(e.get("issue") or "", IR.files_of(e["diff"]))] for e in EXAMPLES}
+    assert said.pop("unasked-package") == [("requirements.txt", "leftpad-py")] and not any(said.values())
+    html = T.page()
+    assert "<li><code>requirements.txt</code>: an extra, adds package leftpad-py; the issue does not name it</li>" in html
+    assert "<p class=\"muted\">Issue: slug() should return lowercase</p>" in html and "/*DEPS*/" not in html
+    assert html.index("var DepsRule") < html.index('$("issue").value') and 'DepsRule.extras($("issue").value, files)' in html
+
+
+@pytest.mark.skipif(shutil.which("node") is None, reason="node is not installed")
+def test_the_page_s_rule_1_lists_what_the_python_lists_on_every_example(tmp_path):
+    from itemator import diffreader as DR, extras as X
+    units = [{"issue": e.get("issue") or "", "files": DR.files_of(e["diff"])} for e in EXAMPLES]
+    (tmp_path / "u.json").write_text(json.dumps(units))
+    js = ("var D=require(process.argv[1]),u=JSON.parse(require('fs').readFileSync(process.argv[2]));"
+          "console.log(JSON.stringify(u.map(function(x){return D.extras(x.issue,x.files)})))")
+    got = json.loads(subprocess.run(["node", "-e", js, str(T.WEB / "deps_rule.js"), str(tmp_path / "u.json")],
+                                    capture_output=True, text=True, check=True).stdout)
+    want = [[{"kind": x.kind, "path": x.path, "name": x.name, "why": x.why} for x in X._new_dependencies(u["issue"], u["files"])] for u in units]
+    assert got == want and got[0]
+
+
+def test_the_page_is_not_built_when_rule_1_s_two_versions_disagree(monkeypatch):
+    real = T._load
+    monkeypatch.setattr(T, "_load", lambda n: {"all_identical": False} if n == "green_agreement_v2.json" else real(n))
+    with pytest.raises(SystemExit):
+        T.page()
+
+
+def test_a_package_the_issue_names_is_not_an_extra_on_the_page():
+    ex = dict(EXAMPLES[0], issue="Lowercase the slug and add leftpad-py")
+    assert "Nothing named." in T.static([ex], {}) and "an extra" not in T.static([ex], {})
+    assert "an extra, adds package leftpad-py" in T.static([dict(ex, issue="")], {})

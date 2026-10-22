@@ -1,5 +1,12 @@
 [
  {
+  "id": "unasked-package",
+  "title": "A one-line fix that also adds a package",
+  "note": "The issue asks for one fix; the change also adds a package the issue never names (leftpad-py, which does not exist on PyPI). Written for this page.",
+  "issue": "slug() should return lowercase\n\ntextutil.slug('Hello, World!') returns Hello-World; it should return hello-world, as its docstring says.",
+  "diff": "diff --git a/textutil.py b/textutil.py\nindex 1111111..2222222 100644\n--- a/textutil.py\n+++ b/textutil.py\n@@ -4,3 +4,3 @@ def slug(text):\n     words = re.findall(r\"[A-Za-z0-9]+\", text)\n-    return \"-\".join(words)\n+    return \"-\".join(words).lower()\n \ndiff --git a/requirements.txt b/requirements.txt\nindex 3333333..4444444 100644\n--- a/requirements.txt\n+++ b/requirements.txt\n@@ -1,1 +1,2 @@\n requests==2.32.3\n+leftpad-py==1.0.2\n"
+ },
+ {
   "id": "download-over-source",
   "title": "A build script writes a download over a source file",
   "note": "Shaped like the Amazon Q extension incident (version 1.84.0). Written for this page; the address is a reserved name that never resolves.",
