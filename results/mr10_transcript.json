@@ -1,0 +1,31 @@
+{
+ "what": "The four notes on !10 (staged, October 11) that the README quotes, read from the GitLab API on 2026-10-22; usernames are dropped from the README quote.",
+ "mr": "https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/39194174/showcase/-/merge_requests/10",
+ "extras_on_card": 3,
+ "notes": [
+  {
+   "id": 3993186796,
+   "at": "2026-10-11T13:39:41.086Z",
+   "author": "ai-itemator-card-gitlab-ai-hackathon",
+   "body": "3 things beyond #9: `leftpad-py` (new dependency), `.gitlab-ci.yml` (CI change), `scratch.bak` (stray file).\n\nType each name in its thread to keep it, or reply \"split\" to move it to its own MR, \"remove\" to drop it.\n\nNo one but the author described this change.\n\n<details><summary>In plain words</summary>\n\n- `leftpad-py` was added as a new package in pyproject.toml; the new-dependency rule noticed it, and the issue does not name it.\n- `.gitlab-ci.yml` had its CI config changed; the CI-config rule noticed it, and the issue does not mention it.\n- `scratch.bak` was added as a backup or editor copy; the stray-file rule noticed it, and the issue does not ask for it.\n\n</details>\n\nFacts computed by CI job #17093484320, rules v4.\n\n[//]: # (itemator:head=b642d0aed79547f7f37ddae82f5e151557232f12)"
+  },
+  {
+   "id": 3993187929,
+   "at": "2026-10-11T13:40:13.179Z",
+   "author": "anbuchelvanganesan.cse2024",
+   "body": "split"
+  },
+  {
+   "id": 3993192669,
+   "at": "2026-10-11T13:42:15.333Z",
+   "author": "ai-itemator-react-gitlab-ai-hackathon",
+   "body": "Split: `.gitlab-ci.yml` moved to !11 by @anbuchelvanganesan.cse2024. It is no longer in this merge request."
+  },
+  {
+   "id": 3993193169,
+   "at": "2026-10-11T13:42:32.179Z",
+   "author": "ai-itemator-react-gitlab-ai-hackathon",
+   "body": "Removed: `scratch.bak` taken out of this merge request by @anbuchelvanganesan.cse2024. Nothing was kept."
+  }
+ ]
+}

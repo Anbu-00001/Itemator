@@ -111,3 +111,52 @@ def test_many_merge_requests_are_cut_to_three_and_a_count():
     assert PRE._listed(["!1", "!2"]) == "!1 and !2"
     assert PRE._listed(["!1", "!2", "!3"]) == "!1, !2 and !3"
     assert PRE._listed(["!1", "!2", "!3", "!4", "!5"]) == "!1, !2, !3 and 2 more"
+
+
+OTHER = {"entries": A.chain([entry(5, [item("pandas", "removed", "kim")]), entry(99, [item("pandas", "kept", "lee")], at="2026-10-21T11:00:00Z")])}
+OTHER["entries"] = [{**e, "url": e["url"].replace("https://gitlab.example/mr/", "https://gitlab.com/team/two/-/merge_requests/")} for e in OTHER["entries"]]
+OTHER = {"entries": A.chain([{k: v for k, v in e.items() if k not in ("prev", "sha256")} for e in OTHER["entries"]])}
+
+
+def test_where_a_merge_request_link_comes_from():
+    assert PRE.project_of("https://gitlab.com/team/two/-/merge_requests/5#note_50") == "team/two"
+    assert PRE.project_of("https://gitlab.com/a/b/c/-/merge_requests/1") == "a/b/c"
+    assert PRE.project_of("https://gitlab.example/mr/5") is None and PRE.project_of(None) is None
+
+
+def test_shared_logs_skip_this_projects_own_and_repeats():
+    env = {"CI_PAGES_URL": "https://p", "ITEMATOR_SHARED_ANSWERS": "https://q/a.json, https://p/answers/answers.json https://q/a.json"}
+    assert PRE.shared_urls(env) == ["https://q/a.json"]
+    assert PRE.shared_urls({}) == []
+
+
+def test_another_projects_answer_is_named_with_its_project_and_its_own_numbers_all_count():
+    report = {"extras": [{"name": "pandas", "thread_stub": "`pandas` ...", "plain_facts": {}}]}
+    logs = {"https://p/answers/answers.json": LOG, "https://q/a.json": OTHER}
+    n = PRE.apply(report, {"CI_PAGES_URL": "https://p", "ITEMATOR_SHARED_ANSWERS": "https://q/a.json"}, 99, get=logs.get)
+    stub = report["extras"][0]["thread_stub"]
+    assert n == 2
+    assert "Decided before: removed on !11 by bo on 2026-10-21 (public answer log)." in stub
+    assert ("Decided in team/two: kept on team/two!99 by lee on 2026-10-21 (its public answer log). "
+            "Earlier answers differ: removed on team/two!5.") in stub      # !99 there is not this merge request
+    assert stub.index("Decided before") < stub.index("Decided in team/two")
+    assert report["extras"][0]["plain_facts"]["decided_elsewhere"][0]["project"] == "team/two"
+    assert report["decided_before"] == {"read": True, "matched": 1, "shared_logs": 1, "matched_elsewhere": 1}
+
+
+def test_a_project_in_the_same_group_is_named_short_as_gitlab_links_it():
+    assert PRE.short("team/two", "team/one") == "two"
+    assert PRE.short("team/two", "other/one") == "team/two" and PRE.short("team/two", None) == "team/two"
+    assert PRE.short("a/b/two", "a/b/one") == "two" and PRE.short("a/b/two", "a/c/one") == "a/b/two"
+    report = {"extras": [{"name": "pandas", "thread_stub": "`pandas` ...", "plain_facts": {}}]}
+    PRE.apply(report, {"CI_PROJECT_PATH": "team/one", "ITEMATOR_SHARED_ANSWERS": "https://q/a.json"}, 1,
+              get={"https://q/a.json": OTHER}.get)
+    assert "Decided in two: kept on two!99 by lee" in report["extras"][0]["thread_stub"]
+    assert report["extras"][0]["plain_facts"]["decided_elsewhere"][0]["project_path"] == "team/two"
+
+
+def test_a_shared_log_whose_chain_breaks_adds_nothing():
+    broken = {"entries": [dict(OTHER["entries"][0], items=[item("pandas", "kept", "eve")])] + OTHER["entries"][1:]}
+    report = {"extras": [{"name": "pandas", "thread_stub": "`pandas` ...", "plain_facts": {}}]}
+    PRE.apply(report, {"ITEMATOR_SHARED_ANSWERS": "https://q/a.json"}, 1, get={"https://q/a.json": broken}.get)
+    assert report["extras"][0]["thread_stub"] == "`pandas` ..." and report["decided_before"]["matched_elsewhere"] == 0

@@ -133,6 +133,7 @@ footer{margin-top:36px;font-size:.85rem;color:var(--muted);word-break:break-word
     b.addEventListener("click", function () { $("diff").value = ex.diff; render(); $("summary").appendChild(el("p", ex.note, "why")); });
     $("examples").appendChild(b);
   });
+  if (!$("diff").value && P.examples.length) $("examples").firstChild.click();   // a first visit shows a result, not an empty box
 
   $("diff").addEventListener("input", render);
   $("clear").addEventListener("click", function () { $("diff").value = ""; render(); });

@@ -1,0 +1,257 @@
+{
+ "rubric": "eval/repeat_objections_rubric.json",
+ "objections": 587,
+ "pairs_in_two_or_more": 6,
+ "repeat_objections": 10,
+ "share": 0.017,
+ "wilson95": [
+  0.009,
+  0.031
+ ],
+ "pairs": [
+  {
+   "repo": "Azure/azure-mcp",
+   "path": "src/Areas/Storage/Services/IStorageService.cs",
+   "pull_requests": [
+    {
+     "url": "https://github.com/Azure/azure-mcp/pull/639",
+     "comments": [
+      2214170753
+     ],
+     "named": [
+      {
+       "itemator": false,
+       "overreach": true,
+       "scope_creep_detector": false
+      }
+     ]
+    },
+    {
+     "url": "https://github.com/Azure/azure-mcp/pull/647",
+     "comments": [
+      2214627763
+     ],
+     "named": [
+      {
+       "itemator": false,
+       "overreach": false,
+       "scope_creep_detector": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "repo": "githubnext/gh-aw",
+   "path": ".github/workflows/dev.lock.yml",
+   "pull_requests": [
+    {
+     "url": "https://github.com/githubnext/gh-aw/pull/879",
+     "comments": [
+      2355726485
+     ],
+     "named": [
+      {
+       "itemator": false,
+       "overreach": true,
+       "scope_creep_detector": true
+      }
+     ]
+    },
+    {
+     "url": "https://github.com/githubnext/gh-aw/pull/983",
+     "comments": [
+      2375067166
+     ],
+     "named": [
+      {
+       "itemator": false,
+       "overreach": false,
+       "scope_creep_detector": true
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "repo": "microsoft/onnxscript",
+   "path": "onnxscript/rewriter/_rewrite_rule.py",
+   "pull_requests": [
+    {
+     "url": "https://github.com/microsoft/onnxscript/pull/2392",
+     "comments": [
+      2155387132
+     ],
+     "named": [
+      {
+       "itemator": false,
+       "overreach": false,
+       "scope_creep_detector": false
+      }
+     ]
+    },
+    {
+     "url": "https://github.com/microsoft/onnxscript/pull/2459",
+     "comments": [
+      2213762881
+     ],
+     "named": [
+      {
+       "itemator": false,
+       "overreach": false,
+       "scope_creep_detector": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "repo": "microsoft/react-native-windows",
+   "path": "vnext/codegen/rnwcoreJSI-generated.cpp",
+   "pull_requests": [
+    {
+     "url": "https://github.com/microsoft/react-native-windows/pull/14764",
+     "comments": [
+      2139776169
+     ],
+     "named": [
+      {
+       "itemator": false,
+       "overreach": false,
+       "scope_creep_detector": true
+      }
+     ]
+    },
+    {
+     "url": "https://github.com/microsoft/react-native-windows/pull/14793",
+     "comments": [
+      2153559498
+     ],
+     "named": [
+      {
+       "itemator": false,
+       "overreach": false,
+       "scope_creep_detector": true
+      }
+     ]
+    },
+    {
+     "url": "https://github.com/microsoft/react-native-windows/pull/14794",
+     "comments": [
+      2153559951
+     ],
+     "named": [
+      {
+       "itemator": false,
+       "overreach": false,
+       "scope_creep_detector": true
+      }
+     ]
+    },
+    {
+     "url": "https://github.com/microsoft/react-native-windows/pull/14796",
+     "comments": [
+      2153757091
+     ],
+     "named": [
+      {
+       "itemator": true,
+       "overreach": false,
+       "scope_creep_detector": true
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "repo": "microsoft/react-native-windows",
+   "path": "vnext/codegen/rnwcoreJSI.h",
+   "pull_requests": [
+    {
+     "url": "https://github.com/microsoft/react-native-windows/pull/14764",
+     "comments": [
+      2139776812
+     ],
+     "named": [
+      {
+       "itemator": false,
+       "overreach": false,
+       "scope_creep_detector": true
+      }
+     ]
+    },
+    {
+     "url": "https://github.com/microsoft/react-native-windows/pull/14793",
+     "comments": [
+      2153559648
+     ],
+     "named": [
+      {
+       "itemator": false,
+       "overreach": false,
+       "scope_creep_detector": true
+      }
+     ]
+    },
+    {
+     "url": "https://github.com/microsoft/react-native-windows/pull/14794",
+     "comments": [
+      2153559998
+     ],
+     "named": [
+      {
+       "itemator": false,
+       "overreach": false,
+       "scope_creep_detector": true
+      }
+     ]
+    },
+    {
+     "url": "https://github.com/microsoft/react-native-windows/pull/14796",
+     "comments": [
+      2153757596
+     ],
+     "named": [
+      {
+       "itemator": false,
+       "overreach": false,
+       "scope_creep_detector": true
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "repo": "mlflow/mlflow",
+   "path": "tests/server/job/test_endpoint.py",
+   "pull_requests": [
+    {
+     "url": "https://github.com/mlflow/mlflow/pull/17972",
+     "comments": [
+      2382147574
+     ],
+     "named": [
+      {
+       "itemator": false,
+       "overreach": false,
+       "scope_creep_detector": false
+      }
+     ]
+    },
+    {
+     "url": "https://github.com/mlflow/mlflow/pull/17973",
+     "comments": [
+      2382405133
+     ],
+     "named": [
+      {
+       "itemator": false,
+       "overreach": false,
+       "scope_creep_detector": false
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

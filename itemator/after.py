@@ -3,9 +3,9 @@ except the issue's own scope block, which goes last because it can also take ext
 from __future__ import annotations
 
 from itemator import extras as X
-from itemator import hollow, hooks, installs, packed, scope
+from itemator import hollow, hooks, installs, packed, scope, setupdeps
 
-ADDERS = (hollow, packed, installs, hooks)
+ADDERS = (hollow, packed, installs, setupdeps, hooks)
 
 
 def analyse(issue_text: str, files: list[dict], *, repo: str | None = None) -> tuple[X.Analysis, scope.Scope | None]:

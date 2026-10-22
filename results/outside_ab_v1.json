@@ -1,0 +1,36 @@
+{
+ "rubric": "eval/outside_ab_rubric.json",
+ "participants": [
+  {
+   "n": 1,
+   "arm": "with_itemator",
+   "merge_request": "https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/39194174/second-project/-/merge_requests/4",
+   "replied": true,
+   "caught": {
+    "package": true,
+    "ci": false
+   },
+   "replies": [
+    "Approved the slug fix; please remove the unrelated `leftpad-py` dependency and split or drop the CI changes."
+   ],
+   "unsettled": [
+    "Approved the slug fix; please remove the unrelated `leftpad-py` dependency and split or drop the CI changes."
+   ]
+  }
+ ],
+ "summary": {
+  "with_itemator": {
+   "participants": 1,
+   "planted": 2,
+   "caught": 1,
+   "share": 0.5
+  },
+  "without": {
+   "participants": 0,
+   "planted": 0,
+   "caught": 0,
+   "share": null
+  },
+  "difference_claimed": false
+ }
+}

@@ -155,6 +155,14 @@ def lint_policy(repo: str) -> tuple[int, str]:
     return (1, "\n".join(f"- {x}" for x in findings)) if findings else (0, f"{POL.FILE} is clean: every ignore entry has a reason and matches a file.")
 
 
+def also_checked_line(analysis, repo: str, base: str, head: str, files: list[dict]) -> str | None:
+    """The card's "Also checked" sentence for this diff (what new code runs, opens or reaches), with no network: the same
+    code the CI job runs (ci.also_checked), so a local run shows what the card would."""
+    report = {"extras": [{"path": e.path, "detail": []} for e in analysis.extras], "warnings": [], "card": {}}
+    ci.also_checked(report, repo, base, head, files)
+    return report["card"].get("checked_line")
+
+
 def main(argv=None, out=sys.stdout) -> int:
     ap = argparse.ArgumentParser(prog="itemator.local", description=(__doc__ or "").split("\n\n")[0])
     src = ap.add_mutually_exclusive_group()
@@ -189,6 +197,9 @@ def main(argv=None, out=sys.stdout) -> int:
         return 2
     analysis = AFTER.analyse(text, files)[0]
     print(render(analysis, len(files), bool(text.strip()), "commit messages" if a.commits else "issue text"), file=out)
+    line = also_checked_line(analysis, a.repo, base, a.head, files)
+    if line:
+        print(line, file=out)
     if a.map:
         print("\n" + file_map(analysis, files, file_facts(a.repo, base, a.head, files)), file=out)
     return 0

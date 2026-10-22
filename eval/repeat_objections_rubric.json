@@ -1,0 +1,7 @@
+{
+ "question": "In the AIDev reviewer-objection set (eval/aidev_recall_cases.json, readable rows of results/aidev_recall_v6.json), how often did a reviewer object to the same file path in two or more different agent pull requests of the same repository? That is the case the Decided before line is for.",
+ "registered": "2026-10-22, before counting; the counting script is written after this file is committed",
+ "unit": "a (repository, path) pair with objections in at least two different pull requests",
+ "report": ["pairs with objections in 2+ pull requests", "objections that were a repeat (every one after the first per pair)", "share of all readable objections that were a repeat, Wilson 95%", "the raw pairs with their comment links"],
+ "limits": "Only objections the phrase search found; a later pull request that brought the file back without an objection is not counted (the cache has no file lists for those), so this undercounts repeats. Path match only; a renamed file is a different path."
+}

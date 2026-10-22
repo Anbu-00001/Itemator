@@ -1,0 +1,46 @@
+{
+ "what": "Itemator installed in a second project by docs/setup.md step 1 (job pasted into .gitlab-ci.yml, no pipeline policy), reading the showcase project's public answer log through ITEMATOR_SHARED_ANSWERS",
+ "project": "gitlab-ai-hackathon/transcend-october-2026/39194174/second-project",
+ "project_id": 87943563,
+ "merge_request": "https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/39194174/second-project/-/merge_requests/1",
+ "issue": "https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/39194174/second-project/-/work_items/1",
+ "pipeline": 2975061431,
+ "job": 17371416220,
+ "job_status": "success",
+ "checker": {
+  "source": "base",
+  "sha": "721e39fdbddd5d5ed95abef6f1f18bab7052eefc"
+ },
+ "extras": [
+  "scratch.bak"
+ ],
+ "decided_before": {
+  "read": true,
+  "matched": 0,
+  "shared_logs": 1,
+  "matched_elsewhere": 1
+ },
+ "sentence": "Decided in gitlab-ai-hackathon/transcend-october-2026/39194174/showcase: removed on gitlab-ai-hackathon/transcend-october-2026/39194174/showcase!17 by anbuchelvanganesan.cse2024 on 2026-10-11 (its public answer log). Earlier answers differ: kept on gitlab-ai-hackathon/transcend-october-2026/39194174/showcase!14.",
+ "decided_elsewhere": [
+  {
+   "decision": "removed",
+   "iid": 17,
+   "who": "anbuchelvanganesan.cse2024",
+   "on": "2026-10-11",
+   "url": "https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/39194174/showcase/-/merge_requests/17#note_3993606885",
+   "differ": [
+    {
+     "decision": "kept",
+     "iid": 14
+    }
+   ],
+   "project": "gitlab-ai-hackathon/transcend-october-2026/39194174/showcase"
+  }
+ ],
+ "limits": [
+  "one run, staged by the owner: the owner opened the issue and the merge request and picked scratch.bak because the showcase log has an answer for it",
+  "this run printed the full project path; same-group projects are now named short (showcase!17)",
+  "no card: no Duo flow or trigger is set up in the second project, so the sentence is in the job record and the Code Quality finding only",
+  "without the policy a merge request can edit the job in .gitlab-ci.yml (docs/setup.md names this gap)"
+ ]
+}

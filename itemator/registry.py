@@ -22,6 +22,7 @@ import urllib.request
 from itemator import extras as X
 from itemator import installs as INSTALLS
 from itemator import sci as SCI
+from itemator import setupdeps as SETUP
 from itemator import weight as W
 
 # The only hosts the job may ask (brief T17 item 3): three public registries and OSV's advisory database.
@@ -153,6 +154,7 @@ def request_for(e, by_path: dict) -> dict:
     """What to look up for one new-dependency extra, or why nothing is looked up."""
     kind = X._manifest_kind(e.path)
     eco = _KIND_ECOSYSTEM.get(kind) or INSTALLS.ecosystem(e)       # a package a command line installs (installs.py)
+    eco = eco or SETUP.ecosystem(e)                                 # a package setup.cfg or setup.py lists (setupdeps.py)
     base = {"ecosystem": eco, "name": e.name}
     if eco not in SUPPORTED:
         return {**base, "lookup": "not_supported"}

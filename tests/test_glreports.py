@@ -43,6 +43,16 @@ def test_the_fingerprint_is_stable_across_runs_and_differs_by_name():
     assert a != G.codequality({"extras": [extra(name="other")]})[0]["fingerprint"]
 
 
+def test_a_decision_from_another_project_is_in_the_finding_so_the_widget_shows_it():
+    e = extra(name="scratch.bak", path="scratch.bak")
+    e["plain_facts"]["decided_before"] = {"decision": "removed", "iid": 17, "who": "lee", "on": "2026-10-11",
+                                          "project": "team/one", "differ": [{"decision": "kept", "iid": 14}]}
+    d = G.codequality({"extras": [e]})[0]["description"]
+    assert d.endswith("Decided in team/one: removed on team/one!17 by lee on 2026-10-11 (its public answer log)."
+                      " Earlier answers differ: kept on team/one!14.")
+    assert "Decided" not in G.codequality({"extras": [extra()]})[0]["description"]
+
+
 def test_no_extras_is_an_empty_report():
     assert G.codequality({"extras": []}) == G.codequality({}) == []
     assert G.metrics({}) == "itemator_extras 0\nitemator_new_dependencies 0\nitemator_unasked_dependencies_weighed 0\n"

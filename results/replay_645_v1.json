@@ -1,0 +1,23 @@
+{
+ "what": "A staged replay of modelcontextprotocol/csharp-sdk#645 in the second project: issue #2 restates its task, MR !2 makes a small fix and adds a stand-in dotnet-install.sh (our text, not the original script). One card-two run, started by assigning its account as reviewer.",
+ "original": "https://github.com/modelcontextprotocol/csharp-sdk/pull/645#discussion_r2225905461",
+ "merge_request": "https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/39194174/second-project/-/merge_requests/2",
+ "pipeline": 2975166093,
+ "job": 17372116281,
+ "extras": [
+  [
+   "stray_file",
+   "dotnet-install.sh"
+  ]
+ ],
+ "card_note": 4065417055,
+ "thread_note": 4065417184,
+ "thread_note_url": "https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/39194174/second-project/-/merge_requests/2#note_4065417184",
+ "started": "2026-10-22T06:50:02Z",
+ "card_seen_by": "2026-10-22T06:51:15Z",
+ "pre_registered": "ana 993283, 0.8, resolved true",
+ "limits": [
+  "staged by the owner; the diff is a stand-in, not the original pull request",
+  "no answer was typed; the reaction flow is not installed in the second project"
+ ]
+}

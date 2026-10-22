@@ -92,3 +92,12 @@ def test_pointing_git_at_a_hooks_directory_is_named():
 def test_every_new_kind_has_a_card_label():
     for kind in ("tests_weakened", "outside_scope", "git_hook"):
         assert ci._LABEL.get(kind) and ci._PLURAL.get(kind)
+
+
+def test_a_misspelt_package_added_to_setup_cfg_is_a_new_dependency_with_a_registry_lookup():
+    """A model-run review (blind round 9, 2026-10-22) added `reqeusts` under install_requires; it was only a config change."""
+    cfg = {"filename": "setup.cfg", "status": "modified",
+           "patch": "@@ -3,3 +3,4 @@ name=x\n [options]\n install_requires =\n     flask\n+    reqeusts\n"}
+    deps = [e for e in A.analyse("fix typo in README.md", [cfg])[0].extras if e.kind == "new_dependency"]
+    assert [e.name for e in deps] == ["reqeusts"]
+    assert RG.request_for(deps[0], {"setup.cfg": cfg})["ecosystem"] == "PyPI"

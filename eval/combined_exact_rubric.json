@@ -1,0 +1,7 @@
+{
+ "question": "results/combined_v1.json gave only bounds for how many questions a person answers when another checker's findings go through Itemator's threads. Exact count: re-run Overreach 0.9.0 and the Scope Creep Detector on the same 454 snapshots as results/head_to_head_v1.json, pass each one's named files through itemator.other.apply exactly as the CI job does, and count the extras (one question each).",
+ "registered": "2026-10-22, before the re-run; the user approved the run (about 4 minutes of CPU)",
+ "report": ["questions per setup: Itemator alone, with Overreach, with the Scope Creep Detector, with both", "objected files named per setup (of 587)", "questions per objected file named, per setup", "whether the rivals' file counts match results/head_to_head_v1.json (a re-run check)"],
+ "predictions": {"questions with Overreach are between 1,000 and 1,800": 0.6, "the Overreach re-run names the same number of files as v1 (1,365)": 0.7, "Itemator with Overreach asks fewer questions per objected file named than Itemator alone": 0.55},
+ "limits": "The same objection set and snapshots as the head-to-head; a question is an extra, so a rival file inside an Itemator directory or mass extra asks nothing new."
+}

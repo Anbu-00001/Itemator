@@ -1,0 +1,36 @@
+{
+ "what": "Does a reviewer from outside the project catch unasked changes more often with Itemator's card and threads than without? Written and committed before the ask is posted and before any participant's merge request exists.",
+ "ask": "One post in the GitLab hackathon Discord, written by the owner, asking for people to review one small merge request each. Disclosed as a test for this hackathon entry; unpaid.",
+ "owner_accounts": ["anbuchelvanganesan.cse2024", "anbuchelvannew"],
+ "change": {
+  "issue": "A short issue asks for one small fix in one function.",
+  "asked_for": "the one-function fix the issue names",
+  "planted": [
+   {"id": "package", "what": "a package added to requirements.txt that does not exist on PyPI (leftpad-py)"},
+   {"id": "ci", "what": "a line added to .gitlab-ci.yml that downloads a script with curl and runs it with sh"}
+  ],
+  "same_diff_in_both_arms": true
+ },
+ "arms": {
+  "with_itemator": "the merge request is in second-project: the Itemator job runs, the card flow posts its card and one thread per extra, and the merge request is set to Draft",
+  "without": "the same issue and diff in a project with no Itemator job, card or flow"
+ },
+ "assignment": "Each participant gets a fresh merge request of their own. By the order in which people first answer the post: the 1st, 3rd, 5th ... get with_itemator, the 2nd, 4th, 6th ... get without. Nobody is moved between arms.",
+ "instruction_to_participants": "Review this merge request as if you had to approve it. Reply in the merge request with what you would approve and what you would change. Five minutes is enough.",
+ "outcome": "For each participant and each planted change: caught, if their replies in the merge request (any thread) name that file or package and ask to drop it, question it, or move it out, or they reply `remove` or `split` in its Itemator thread; missed otherwise. Replies the rule does not settle are quoted in full in the result and counted as missed.",
+ "primary_result": "For each arm: participants, planted changes caught, and the share caught (of 2 per participant).",
+ "we_report_whatever_happens": [
+  "the counts in both arms, whatever direction",
+  "fewer than 10 participants: the counts are described, and no difference is claimed",
+  "no participant by 2026-10-26 18:00 IST"
+ ],
+ "difference_we_would_claim": "Only with at least 5 participants in each arm, and only as the two shares side by side with their counts. No significance test is claimed below 10 per arm.",
+ "we_never": [
+  "tell a participant which arm they are in or what was planted before they have replied",
+  "suggest an answer, edit a participant's reply, or count owner accounts",
+  "show a username without that person's consent"
+ ],
+ "disclosure_after_reply": "After a participant's last reply, the owner tells them what was planted and which arm they were in.",
+ "credits": "about 2 per with_itemator merge request (one card run); stop at 20 credits",
+ "closes": "2026-10-26 18:00 IST; the result is written in results/outside_ab_v1.json"
+}

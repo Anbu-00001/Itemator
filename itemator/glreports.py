@@ -25,6 +25,11 @@ def _weights(extra: dict) -> list[dict]:
     return [p["weight"] for p in reg.get("packages") or () if (p.get("weight") or {}).get("weight") == "ok"]
 
 
+def _sentence(before: dict) -> str:
+    from itemator import precedent        # only when there is a decision, so this module still runs on its own
+    return precedent.sentence(before)
+
+
 def codequality(record: dict) -> list[dict]:
     out = []
     for e in record.get("extras") or ():
@@ -32,7 +37,9 @@ def codequality(record: dict) -> list[dict]:
         path = anchor.get("new_path") or anchor.get("old_path") or e["path"]
         line = anchor.get("new_line") or anchor.get("old_line") or 1
         key = f"{e['kind']}\0{e['path']}\0{e['name']}"
-        out.append({"description": f"Extra beyond the issue: {e['name']} ({e['why']}). {ASK}",
+        before = (e.get("plain_facts") or {}).get("decided_before")
+        said = f" {_sentence(before)}" if before else ""       # what a person decided about the same name, here or in another project
+        out.append({"description": f"Extra beyond the issue: {e['name']} ({e['why']}). {ASK}{said}",
                     "check_name": f"itemator/{e['kind']}", "categories": ["Clarity"],
                     "fingerprint": hashlib.sha256(key.encode()).hexdigest(), "severity": "info",
                     "location": {"path": path, "lines": {"begin": int(line)}}})
