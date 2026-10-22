@@ -20,7 +20,7 @@ LOG = {"entries": A.chain([entry(10, [item("pandas", "kept", "ann")]),
 def test_the_newest_decision_on_another_merge_request_wins():
     got = PRE.find(LOG, ["pandas", ".gitlab-ci.yml", "requests"], mr_iid=99)
     assert got["pandas"] == {"decision": "removed", "iid": 11, "who": "bo", "on": "2026-10-21",
-                             "url": "https://gitlab.example/mr/11#note_110"}
+                             "url": "https://gitlab.example/mr/11#note_110", "differ": [{"decision": "kept", "iid": 10}]}
     assert got[".gitlab-ci.yml"]["decision"] == "moved" and "requests" not in got
 
 
@@ -58,7 +58,7 @@ def test_apply_adds_the_sentence_after_the_thread_text_and_keeps_the_name_first(
     assert n == 1 and seen == ["https://p/answers/answers.json"]
     pandas, requests = report["extras"]
     assert pandas["thread_stub"].startswith("`pandas`")
-    assert pandas["thread_stub"].endswith("\n\nDecided before: removed on !11 by bo on 2026-10-21 (public answer log).")
+    assert pandas["thread_stub"].endswith("\n\nDecided before: removed on !11 by bo on 2026-10-21 (public answer log). Earlier answers differ: kept on !10.")
     assert pandas["plain_facts"]["decided_before"]["iid"] == 11
     assert requests["thread_stub"] == "`requests` (new dependency): ..." and "decided_before" not in requests["plain_facts"]
     assert report["decided_before"] == {"read": True, "matched": 1}
@@ -84,3 +84,30 @@ def test_an_unreadable_log_never_stops_the_job(monkeypatch):
 def test_a_decision_word_it_does_not_know_is_left_out():
     log = {"entries": A.chain([entry(10, [item("pandas", "kept")]), entry(11, [item("pandas", "approved")])])}
     assert PRE.find(log, ["pandas"], 99)["pandas"]["iid"] == 10              # never a sentence with an unknown word
+
+
+def test_earlier_answers_that_differ_are_named_and_agreeing_ones_are_not():
+    log = {"entries": A.chain([entry(1, [item("ci", "kept")]), entry(2, [item("ci", "removed")]), entry(3, [item("ci", "kept")]),
+                               entry(4, [item("ci", "moved")]), entry(5, [item("ci", "kept")])])}
+    p = PRE.find(log, ["ci"], mr_iid=99)["ci"]
+    assert p["differ"] == [{"decision": "removed", "iid": 2}, {"decision": "moved", "iid": 4}]
+    assert PRE.sentence(p) == ("Decided before: kept on !5 by pat on 2026-10-20 (public answer log). "
+                               "Earlier answers differ: removed on !2; moved to its own merge request on !4.")
+
+
+def test_answers_that_all_agree_keep_the_short_line():
+    log = {"entries": A.chain([entry(1, [item("ci", "kept")]), entry(2, [item("ci", "kept")])])}
+    p = PRE.find(log, ["ci"], mr_iid=99)["ci"]
+    assert p["differ"] == [] and PRE.sentence(p).endswith("(public answer log).")
+
+
+def test_this_merge_requests_own_earlier_answer_is_not_an_earlier_answer():
+    log = {"entries": A.chain([entry(99, [item("ci", "removed")]), entry(2, [item("ci", "kept")])])}
+    assert PRE.find(log, ["ci"], mr_iid=99)["ci"]["differ"] == []
+
+
+def test_many_merge_requests_are_cut_to_three_and_a_count():
+    assert PRE._listed(["!1"]) == "!1"
+    assert PRE._listed(["!1", "!2"]) == "!1 and !2"
+    assert PRE._listed(["!1", "!2", "!3"]) == "!1, !2 and !3"
+    assert PRE._listed(["!1", "!2", "!3", "!4", "!5"]) == "!1, !2, !3 and 2 more"

@@ -39,14 +39,31 @@ def find(log: dict | None, names: list[str], mr_iid: int) -> dict:
             continue
         for i in e.get("items") or ():
             if isinstance(i, dict) and i.get("name") in wanted and i.get("decision") in WORDS:
+                earlier = out[i["name"]]["earlier"] + [(out[i["name"]]["decision"], out[i["name"]]["iid"])] if i["name"] in out else []
                 out[i["name"]] = {"decision": i["decision"], "iid": e["iid"], "who": i.get("who"),
-                                  "on": str(e.get("at", ""))[:10], "url": e.get("url")}
+                                  "on": str(e.get("at", ""))[:10], "url": e.get("url"), "earlier": earlier}
+    for p in out.values():                                # only the earlier answers that disagree with the newest are kept
+        p["differ"] = [{"decision": d, "iid": n} for d, n in p.pop("earlier") if d != p["decision"]]
     return out
 
 
 def sentence(p: dict) -> str:
     who = f" by {p['who']}" if p.get("who") else ""      # a plain username, never an @, so nobody is pinged
-    return f"Decided before: {WORDS[p['decision']]} on !{p['iid']}{who} on {p['on']} (public answer log)."
+    line = f"Decided before: {WORDS[p['decision']]} on !{p['iid']}{who} on {p['on']} (public answer log)."
+    by = {}
+    for d in p.get("differ") or ():
+        by.setdefault(d["decision"], []).append(f"!{d['iid']}")
+    if not by:
+        return line
+    parts = [f"{WORDS[d]} on {_listed(refs)}" for d, refs in by.items()]
+    return f"{line} Earlier answers differ: {'; '.join(parts)}."
+
+
+def _listed(refs: list[str], most: int = 3) -> str:
+    """'!1', '!1 and !2', '!1, !2 and !3', or '!1, !2, !3 and 4 more'."""
+    if len(refs) > most:
+        return f"{', '.join(refs[:most])} and {len(refs) - most} more"
+    return refs[0] if len(refs) == 1 else f"{', '.join(refs[:-1])} and {refs[-1]}"
 
 
 def apply(report: dict, env: dict, mr_iid: int, get=fetch) -> int:
