@@ -169,3 +169,21 @@ def test_a_package_the_issue_names_is_not_an_extra_on_the_page():
     ex = dict(EXAMPLES[0], issue="Lowercase the slug and add leftpad-py")
     assert "Nothing named." in T.static([ex], {}) and "an extra" not in T.static([ex], {})
     assert "an extra, adds package leftpad-py" in T.static([dict(ex, issue="")], {})
+
+
+def test_the_evidence_table_and_its_notes_are_in_the_page_without_scripts():
+    html = T.page()
+    body = html[html.index("<tbody>"):html.index("</tbody>")]
+    ev = T.evidence(T._load("mesa_noise_v1.json"), T._load("agent_noise_v1.json"), T._load("incident_replay_v1.json"), T._load("try_agreement_v2.json"))
+    assert body.count("<tr>") == len(ev["rows"]) == 3 and "/*ROWS*/" not in html and "/*EVNOTE*/" not in html
+    assert '<td class="n">0 of 1499 (4 changed a file it reads)</td>' in body
+    note = html[html.index('id="evnote">'):html.index("</p>", html.index('id="evnote">'))]
+    assert all((f'href="{n["href"]}"' if n.get("href") else n["text"][:20]) in note for n in ev["notes"])
+    assert 'querySelector("#evidence tbody")' not in html                          # filled once, at build time
+
+
+def test_the_table_escapes_what_it_writes():
+    rows, notes = T.table({"rows": [{"check": "<x>", "reads": "a & b", "ordinary": "1", "agents": "2", "incidents": "3"}],
+                           "notes": [{"text": "<n>"}, {"text": "l", "href": "a\"b"}]})
+    assert rows == '<tr><td>&lt;x&gt;</td><td>a &amp; b</td><td class="n">1</td><td class="n">2</td><td class="n">3</td></tr>'
+    assert notes == '&lt;n&gt;<br><span><a href="a&quot;b" rel="noopener">l</a></span>'

@@ -63,8 +63,8 @@ footer{margin-top:36px;font-size:.85rem;color:var(--muted);word-break:break-word
 
 <h2>How often does each one speak, and does it catch anything?</h2>
 <p class="muted">The numbers come from files in the repository (links below). A check that speaks rarely on ordinary changes is one a reviewer will still read when it does.</p>
-<div class="scroll"><table id="evidence"><thead><tr><th>Check</th><th>Reads</th><th>Ordinary commits</th><th>Agent-written commits</th><th>Public incident diffs</th></tr></thead><tbody></tbody></table></div>
-<p class="muted" id="evnote"></p>
+<div class="scroll"><table id="evidence"><thead><tr><th>Check</th><th>Reads</th><th>Ordinary commits</th><th>Agent-written commits</th><th>Public incident diffs</th></tr></thead><tbody>/*ROWS*/</tbody></table></div>
+<p class="muted" id="evnote">/*EVNOTE*/</p>
 
 <h2>What this page does not do</h2>
 <p>These three checks read only the lines a change adds, so they work from a diff alone. The others need the project's history and run in the merge request job, where their result goes on the card: files that never changed together, deleted lines a bug fix added, lines that put back what a revert removed, reverts and copies that do not match the commit they cite, a missing change record, the layout-only proof, and opened binary files. A result here is a fact about the added text, not a finding that the change is wrong, and an empty result is not a statement that the change is fine.</p>
@@ -160,20 +160,6 @@ footer{margin-top:36px;font-size:.85rem;color:var(--muted);word-break:break-word
     var r = new FileReader(); r.onload = function () { $("diff").value = String(r.result); render(); }; r.readAsText(f);
   });
 
-  var tb = document.querySelector("#evidence tbody");
-  P.evidence.rows.forEach(function (row) {
-    var tr = el("tr"); tr.appendChild(el("td", row.check)); tr.appendChild(el("td", row.reads));
-    ["ordinary", "agents", "incidents"].forEach(function (k) { tr.appendChild(el("td", row[k], "n")); });
-    tb.appendChild(tr);
-  });
-  var note = $("evnote"), links = el("span");
-  P.evidence.notes.forEach(function (n) {
-    if (n.href) {
-      if (links.childNodes.length) links.appendChild(document.createTextNode(" \u00b7 "));
-      var a = el("a", n.text); a.href = n.href; a.rel = "noopener"; links.appendChild(a);
-    } else { note.appendChild(document.createTextNode(n.text)); note.appendChild(document.createElement("br")); }
-  });
-  note.appendChild(links);
   $("foot").textContent = P.footer;
 })();
 </script>

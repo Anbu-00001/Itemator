@@ -93,6 +93,16 @@ def static(examples: list[dict], words: dict) -> str:
     return "\n".join(out)
 
 
+def table(ev: dict) -> tuple[str, str]:
+    """The evidence rows and notes as HTML, so the table reads the same without scripts."""
+    e = H.escape
+    rows = "".join("<tr><td>" + e(r["check"]) + "</td><td>" + e(r["reads"]) + "</td>"
+                   + "".join(f'<td class="n">{e(r[k])}</td>' for k in ("ordinary", "agents", "incidents")) + "</tr>" for r in ev["rows"])
+    texts = "".join(e(n["text"]) + "<br>" for n in ev["notes"] if not n.get("href"))
+    links = " \u00b7 ".join(f'<a href="{e(n["href"])}" rel="noopener">{e(n["text"])}</a>' for n in ev["notes"] if n.get("href"))
+    return rows, texts + f"<span>{links}</span>"
+
+
 def page() -> str:
     mesa, agents = _load("mesa_noise_v1.json"), _load("agent_noise_v1.json")
     incidents, agreement = _load("incident_replay_v1.json"), _load("try_agreement_v2.json")
@@ -103,8 +113,9 @@ def page() -> str:
     ev = evidence(mesa, agents, incidents, agreement)
     payload = {"examples": json.loads((WEB / "try_examples.json").read_text(encoding="utf-8")), "evidence": ev,
                "footer": f"Checks version {hashlib.sha256(checks.encode()).hexdigest()[:12]} (web/try_checks.js). Standard HTML and JavaScript; no library, no network, no model."}
+    rows, notes = table(ev)
     html = (WEB / "try.html").read_text(encoding="utf-8")
-    for marker, text in (("/*PAYLOAD*/", safe_json(payload)), ("/*CHECKS*/", checks.replace("</script", "<\\/script")),
+    for marker, text in (("/*ROWS*/", rows), ("/*EVNOTE*/", notes), ("/*PAYLOAD*/", safe_json(payload)), ("/*CHECKS*/", checks.replace("</script", "<\\/script")),
                          ("/*STATIC*/", static(payload["examples"], what(checks))),
                          ("/*DEPS*/", (WEB / "deps_rule.js").read_text(encoding="utf-8").replace("</script", "<\\/script"))):
         assert html.count(marker) == 1
