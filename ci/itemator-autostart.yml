@@ -3,7 +3,8 @@
 # It runs after the itemator job, calls the flows API with ITEMATOR_START_TOKEN (a person's access token, masked), restarts the
 # session once if GitLab drops it, and never fails the pipeline. It does nothing after the hackathon deadline, or when
 # ITEMATOR_AUTOSTART is "off", or when ITEMATOR_CARD_CONSUMER_ID or the token is missing (docs/setup.md, "Agent merge requests").
-# Like the itemator job, the code comes from the tip of the target branch, so a merge request cannot rewrite what holds the token.
+# Like the itemator job, the code comes from the tip of the target branch, so a merge request cannot change what this job does with the token.
+# The token itself is not protected (duo/ branches are not protected), so other jobs in the same pipeline can read it: see docs/setup.md, step 4.
 itemator-autostart:
   image: python:3.12-alpine
   needs:

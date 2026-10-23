@@ -47,10 +47,11 @@ GitLab will not let a trigger start a flow for a merge request a bot opened ("A 
 1. Add [ci/itemator-autostart.yml](../ci/itemator-autostart.yml) to the project's `.gitlab-ci.yml`, after the `itemator` job. It runs only on `duo/` branches, the ones GitLab's Developer Flow opens.
 2. Set two CI/CD variables: `ITEMATOR_CARD_CONSUMER_ID`, the card flow's AI Catalog item consumer id (GraphQL `project { aiFlowTriggers { nodes { aiCatalogItemConsumer { id } } } }`, the number at the end), and `ITEMATOR_START_TOKEN`, masked: an access token of a person who may run the card flow. A CI job token is refused (we got 401 <!-- from: results/autostart_probe_v1.json:job_token.http_status --> on 23 October).
 3. To stop it, set `ITEMATOR_AUTOSTART` to `off`, or delete the token. It also stops by itself at the hackathon deadline.
+4. **The risk.** The token cannot be a protected variable, because agents' `duo/` branches are not protected, so any job in the agent's own pipeline can read it, including a job the agent adds to `.gitlab-ci.yml`. Use a token from an account that can reach only this project, give it an expiry date, and turn this job on only if you accept that.
 
 Live once on second-project [!14](https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/39194174/second-project/-/merge_requests/14#note_4074293763): the job started the card and nobody marked the draft ready. The first job found no `autostart.py` on the target branch (our own sync had dropped it); we restored it and retried the job once ([record](../results/autostart_live_v1.json)).
 
-The job calls `POST /api/v4/ai/duo_workflows/workflows` ([flows API](https://docs.gitlab.com/api/duo_agent_platform_flows/)), reads the session's status, and restarts it once (`.../restart`) if GitLab fails it. The card's duplicate check makes a second start harmless: started by hand through the API on second-project !9, which already had its card, the session ended after 54 <!-- from: results/autostart_probe_v1.json:person_token.seconds --> seconds and posted nothing new ([record](../results/autostart_probe_v1.json)). Not yet run on an agent's merge request.
+The job calls `POST /api/v4/ai/duo_workflows/workflows` ([flows API](https://docs.gitlab.com/api/duo_agent_platform_flows/)), reads the session's status, and restarts it once (`.../restart`, marked an experiment in GitLab's docs) if GitLab fails it. The card's duplicate check makes a second start harmless: started by hand through the API on second-project !9, which already had its card, the session ended after 54 <!-- from: results/autostart_probe_v1.json:person_token.seconds --> seconds and posted nothing new ([record](../results/autostart_probe_v1.json)). Run once on an agent's merge request: !14 in the second project ([record](../results/autostart_live_v1.json)).
 
 ## 4. Make the threads a lock (needs the Maintainer role; without it nothing blocks the merge)
 In **Settings** > **Merge requests**, turn on **All threads must be resolved**. Until then an unnamed extra puts the merge request in Draft but does not stop the merge button.
@@ -72,7 +73,7 @@ paths = []   # file paths or shell-style patterns to quiet (`*` also crosses `/`
 ```
 The `always` answer edits this file for you, one line at a time, in a merge request your team reviews. It is offered only when the `[ignore]` table has exactly one line that starts with `paths = [` and ends the list on the same line (no `#` inside the list, no trailing comma); with `paths=[]`, a list over several lines, or no `[ignore]` table the policy still works but `always` is not offered.
 
-`hold_until_named = true` closes the gap in loops that arm auto-merge inside the pipeline: the `itemator` job exits with an error while any kept extra has no name, so GitLab cannot merge before the card exists. The job passes again when the reaction account has posted its "Every extra has an answer" summary for the current head commit; after the last name, retry the `itemator` job (the card says so). Only a note from the exact reaction account counts (`ai-itemator-react-gitlab-ai-hackathon` here; set the CI variable `ITEMATOR_REACT_BOT` to your own account's username), the check fails closed if the notes cannot be read, and it needs the project to require a successful pipeline before merging.
+`hold_until_named = true` closes the gap in loops that arm auto-merge inside the pipeline: the `itemator` job exits with an error while any kept extra has no name, so GitLab cannot merge before the card exists. The job passes again when the reaction account has posted its "Every extra has an answer" summary for the current head commit; after the last name, retry the `itemator` job (the card says so). The job then also runs the answer tests as code on the threads (`itemator/replycheck.py`) and stays failed while any extra has no answer they accept. Only a note from the exact reaction account counts (`ai-itemator-react-gitlab-ai-hackathon` here; set the CI variable `ITEMATOR_REACT_BOT` to your own account's username), the check fails closed if the notes cannot be read, and it needs the project to require a successful pipeline before merging.
 
 ### An issue can declare its own scope (optional)
 
@@ -89,20 +90,7 @@ An issue that needs to be exact can say what a change may touch, in a fenced blo
 
 If you already run a scope checker, or want one that names more files than Itemator's rules, run it in an earlier job and pass its JSON output as an artifact. Set `ITEMATOR_OTHER_CHECKER` to that file's path in the Itemator job. Each changed file it names, and the rules did not, becomes an extra labelled "named by another checker" with the checker's own reason, and gets the same thread, typed answer, hold and log entry. It reads Overreach's `--json` output, the Scope Creep Detector's `--json` output, and a plain `{"tool": "name", "files": [{"path": "...", "why": "..."}]}`. An issue with an `itemator-scope` block is left to that block. A file that cannot be read is said on the card, and only Itemator's own rules run. See [itemator/other.py](../itemator/other.py).
 
-```yaml
-scope-check:
-  stage: test
-  image: node:lts-alpine
-  variables: { OVERREACH_TELEMETRY: "off" }
-  script:
-    - git fetch origin "$CI_MERGE_REQUEST_TARGET_BRANCH_NAME"
-    - git diff "origin/$CI_MERGE_REQUEST_TARGET_BRANCH_NAME...HEAD" > change.diff
-    - npx -y overreach@0.9.0 -p "$CI_MERGE_REQUEST_TITLE" --diff change.diff --json > overreach.json || true
-  artifacts: { paths: [overreach.json] }
-  rules: [{ if: $CI_PIPELINE_SOURCE == "merge_request_event" }]
-```
-
-Then give the Itemator job `needs: [scope-check]` and `ITEMATOR_OTHER_CHECKER: overreach.json`. We have not run this job in a pipeline; the parsing is covered by tests/test_other.py.
+Copy the `other-checker` job from `.gitlab-ci.yml`. It is the job this project runs (copy `ci/other_checker_task.mjs` too: it writes the issue's text as the prompt). Run the Itemator job in a later stage (here it is injected by the policy, after `test`), or give it `needs: [other-checker]`, and set the CI/CD variable `ITEMATOR_OTHER_CHECKER` to `overreach.json`. The parsing is covered by tests/test_other.py.
 
 ## 6. The decision log (optional)
 **Read other projects' answers (optional).** Set `ITEMATOR_SHARED_ANSWERS` to the public answer logs of other projects (their `answers/answers.json` on Pages, separated by spaces). When an extra here has the same name as one a person answered there, the thread adds "Decided in group/project: ... on group/project!N". A log is used only when its hash chain holds; it is a fact beside the question, and a person here still types the answer.

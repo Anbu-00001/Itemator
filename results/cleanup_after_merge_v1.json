@@ -1,0 +1,2551 @@
+{
+ "rubric": "eval/cleanup_rubric.json",
+ "summary": {
+  "listed": {
+   "n": 98,
+   "deleted_by_person": 28,
+   "wilson95": [
+    0.2057,
+    0.3819
+   ],
+   "states": {
+    "deleted_by_person": 28,
+    "deleted_by_bot_or_agent": 6,
+    "still_there": 58,
+    "gone_no_commit_found": 6
+   }
+  },
+  "unlisted": {
+   "n": 150,
+   "deleted_by_person": 54,
+   "wilson95": [
+    0.2876,
+    0.4394
+   ],
+   "states": {
+    "deleted_by_person": 54,
+    "still_there": 84,
+    "deleted_by_bot_or_agent": 6,
+    "gone_no_commit_found": 6
+   }
+  },
+  "unreadable": 0,
+  "sentence": "Files the rules list were not deleted later more often: 28 of 98 listed against 54 of 150 unlisted."
+ },
+ "rows": [
+  {
+   "pr": "https://github.com/calcom/cal.com/pull/22311",
+   "repo": "calcom/cal.com",
+   "path": "apps/web/app/(use-page-wrapper)/settings/(admin-layout)/admin/playground/bookings-by-hour/page.tsx",
+   "merged_at": "2025-07-24T18:14:39Z",
+   "agent": "Devin",
+   "listed": false,
+   "state": "deleted_by_person",
+   "deleted_by": "hbjORbj",
+   "deleted_in": "ab21c7f805a089fa3a11ffd61c4a9aecc349c16c",
+   "deleted_at": "2026-04-15T12:52:36Z"
+  },
+  {
+   "pr": "https://github.com/LayerZero-Labs/devtools/pull/1539",
+   "repo": "LayerZero-Labs/devtools",
+   "path": "examples/oft/CUSTOM_WORKERS_GUIDE.md",
+   "merged_at": "2025-08-18T19:40:27Z",
+   "agent": "OpenAI_Codex",
+   "listed": false,
+   "state": "still_there"
+  },
+  {
+   "pr": "https://github.com/dotnet/aspire/pull/10786",
+   "repo": "dotnet/aspire",
+   "path": "playground/AzureAppConfiguration/AzureAppConfiguration.AppHost/AzureAppConfiguration.AppHost.csproj",
+   "merged_at": "2025-09-30T23:39:50Z",
+   "agent": "Copilot",
+   "listed": false,
+   "state": "still_there"
+  },
+  {
+   "pr": "https://github.com/Azure/azure-sdk-for-python/pull/42404",
+   "repo": "Azure/azure-sdk-for-python",
+   "path": "sdk/azurestackhci/azure-mgmt-azurestackhcivm/azure/mgmt/azurestackhcivm/operations/__init__.py",
+   "merged_at": "2025-08-13T23:32:41Z",
+   "agent": "Copilot",
+   "listed": false,
+   "state": "still_there"
+  },
+  {
+   "pr": "https://github.com/calcom/cal.com/pull/22311",
+   "repo": "calcom/cal.com",
+   "path": "packages/features/insights/components/BookingsByHourChart.tsx",
+   "merged_at": "2025-07-24T18:14:39Z",
+   "agent": "Devin",
+   "listed": false,
+   "state": "deleted_by_person",
+   "deleted_by": "eunjae-lee",
+   "deleted_in": "3e299f95115d868e9c091597d190d511a8116e7b",
+   "deleted_at": "2025-07-29T10:37:18Z"
+  },
+  {
+   "pr": "https://github.com/dsccommunity/SqlServerDsc/pull/2108",
+   "repo": "dsccommunity/SqlServerDsc",
+   "path": "tests/Integration/Commands/Disable-SqlDscAgentOperator.Integration.Tests.ps1",
+   "merged_at": "2025-09-13T09:45:39Z",
+   "agent": "Copilot",
+   "listed": false,
+   "state": "still_there"
+  },
+  {
+   "pr": "https://github.com/cartography-cncf/cartography/pull/1664",
+   "repo": "cartography-cncf/cartography",
+   "path": "cartography/models/kubernetes/__init__.py",
+   "merged_at": "2025-07-04T06:54:15Z",
+   "agent": "OpenAI_Codex",
+   "listed": false,
+   "state": "still_there"
+  },
+  {
+   "pr": "https://github.com/novuhq/novu/pull/8965",
+   "repo": "novuhq/novu",
+   "path": "apps/api/src/app/subscribers-v2/usecases/generate-chat-oath-url/generate-slack-oath-url/generate-slack-oauth-url.command.ts",
+   "merged_at": "2025-08-31T18:05:10Z",
+   "agent": "Cursor",
+   "listed": false,
+   "state": "deleted_by_person",
+   "deleted_by": "ChmaraX",
+   "deleted_in": "49ba4d5ae3c5ffe1410a323eb172e0e6c3f6bfa6",
+   "deleted_at": "2025-10-28T12:46:12Z"
+  },
+  {
+   "pr": "https://github.com/getsentry/sentry-docs/pull/14503",
+   "repo": "getsentry/sentry-docs",
+   "path": "docs/platforms/apple/guides/tvos/index.mdx",
+   "merged_at": "2025-10-01T06:50:21Z",
+   "agent": "Cursor",
+   "listed": false,
+   "state": "still_there"
+  },
+  {
+   "pr": "https://github.com/mouse07410/asn1c/pull/281",
+   "repo": "mouse07410/asn1c",
+   "path": "PARTIAL_DECODING.md",
+   "merged_at": "2025-10-01T07:09:52Z",
+   "agent": "Copilot",
+   "listed": false,
+   "state": "still_there"
+  },
+  {
+   "pr": "https://github.com/pyth-network/pyth-crosschain/pull/2676",
+   "repo": "pyth-network/pyth-crosschain",
+   "path": "apps/developer-hub/src/app/robots.ts",
+   "merged_at": "2025-05-27T22:10:50Z",
+   "agent": "Devin",
+   "listed": false,
+   "state": "deleted_by_person",
+   "deleted_by": "aditya520",
+   "deleted_in": "aa6ffd100e305686332679d7288271b98af8dc0b",
+   "deleted_at": "2026-09-07T21:24:41Z"
+  },
+  {
+   "pr": "https://github.com/vitejs/vite/pull/20468",
+   "repo": "vitejs/vite",
+   "path": "packages/vite/src/node/__tests__/fixtures/config/import-meta/vite.config.ts",
+   "merged_at": "2025-09-22T12:35:09Z",
+   "agent": "Copilot",
+   "listed": false,
+   "state": "still_there"
+  },
+  {
+   "pr": "https://github.com/liam-hq/liam/pull/3011",
+   "repo": "liam-hq/liam",
+   "path": "frontend/internal-packages/db/supabase/migrations/20250814082520_create_public_share_realtime.sql",
+   "merged_at": "2025-08-19T07:32:07Z",
+   "agent": "Devin",
+   "listed": false,
+   "state": "deleted_by_person",
+   "deleted_by": "sasamuku",
+   "deleted_in": "003ca266b4024fb0a0ca33194016584a98b97a39",
+   "deleted_at": "2026-10-22T08:55:13Z"
+  },
+  {
+   "pr": "https://github.com/NVIDIA/cuda-python/pull/890",
+   "repo": "NVIDIA/cuda-python",
+   "path": "cuda_bindings/docs/source/install.rst",
+   "merged_at": "2025-10-07T19:33:39Z",
+   "agent": "Copilot",
+   "listed": false,
+   "state": "deleted_by_person",
+   "deleted_by": "rwgk",
+   "deleted_in": "585038dfa23437c17bb60b210a3db25464e32171",
+   "deleted_at": "2026-10-20T22:52:23Z"
+  },
+  {
+   "pr": "https://github.com/stack-auth/stack-auth/pull/503",
+   "repo": "stack-auth/stack-auth",
+   "path": "apps/backend/src/app/api/latest/auth/cli/poll/route.tsx",
+   "merged_at": "2025-03-13T01:44:34Z",
+   "agent": "Devin",
+   "listed": false,
+   "state": "still_there"
+  },
+  {
+   "pr": "https://github.com/dsccommunity/SqlServerDsc/pull/2108",
+   "repo": "dsccommunity/SqlServerDsc",
+   "path": ".github/instructions/dsc-community-style-guidelines-markdown.instructions.md",
+   "merged_at": "2025-09-13T09:45:39Z",
+   "agent": "Copilot",
+   "listed": false,
+   "state": "still_there"
+  },
+  {
+   "pr": "https://github.com/vllm-project/vllm/pull/21146",
+   "repo": "vllm-project/vllm",
+   "path": "vllm/model_executor/models/exaone4.py",
+   "merged_at": "2025-07-24T00:20:14Z",
+   "agent": "OpenAI_Codex",
+   "listed": false,
+   "state": "still_there"
+  },
+  {
+   "pr": "https://github.com/LayerZero-Labs/devtools/pull/1539",
+   "repo": "LayerZero-Labs/devtools",
+   "path": "examples/ovault-evm/script/DebugExecutorCompose302.s.sol",
+   "merged_at": "2025-08-18T19:40:27Z",
+   "agent": "OpenAI_Codex",
+   "listed": false,
+   "state": "still_there"
+  },
+  {
+   "pr": "https://github.com/NVIDIA/cuda-python/pull/890",
+   "repo": "NVIDIA/cuda-python",
+   "path": "cuda_pathfinder/docs/source/release/1.3.0-notes.rst",
+   "merged_at": "2025-10-07T19:33:39Z",
+   "agent": "Copilot",
+   "listed": false,
+   "state": "still_there"
+  },
+  {
+   "pr": "https://github.com/documentdb/documentdb/pull/204",
+   "repo": "documentdb/documentdb",
+   "path": "internal/pg_documentdb_distributed/src/test/regress/expected/bson_query_operator_array_tests_index_composite.out",
+   "merged_at": "2025-06-18T07:49:04Z",
+   "agent": "Copilot",
+   "listed": false,
+   "state": "still_there"
+  },
+  {
+   "pr": "https://github.com/open-metadata/OpenMetadata/pull/23202",
+   "repo": "open-metadata/OpenMetadata",
+   "path": "bootstrap/sql/migrations/native/1.10.1/postgres/schemaChanges.sql",
+   "merged_at": "2025-10-12T17:44:16Z",
+   "agent": "Copilot",
+   "listed": false,
+   "state": "deleted_by_person",
+   "deleted_by": "harshach",
+   "deleted_in": "4c3f6dd1e3eaad758934427ab4a30f773a941fea",
+   "deleted_at": "2026-01-08T15:42:30Z"
+  },
+  {
+   "pr": "https://github.com/LayerZero-Labs/devtools/pull/1539",
+   "repo": "LayerZero-Labs/devtools",
+   "path": "packages/ovault-evm/artifacts/IVaultComposerSync.sol/IVaultComposerSync.json",
+   "merged_at": "2025-08-18T19:40:27Z",
+   "agent": "OpenAI_Codex",
+   "listed": false,
+   "state": "still_there"
+  },
+  {
+   "pr": "https://github.com/calcom/cal.com/pull/22311",
+   "repo": "calcom/cal.com",
+   "path": ".cursor/rules/review.mdc",
+   "merged_at": "2025-07-24T18:14:39Z",
+   "agent": "Devin",
+   "listed": true,
+   "state": "deleted_by_person",
+   "deleted_by": "eunjae-lee",
+   "deleted_in": "12abc316e6d5677280420ba750a1c164c8441ec6",
+   "deleted_at": "2026-02-03T13:14:41Z"
+  },
+  {
+   "pr": "https://github.com/NVIDIA/cuda-python/pull/884",
+   "repo": "NVIDIA/cuda-python",
+   "path": "cuda_pathfinder/docs/source/release/1.1.0-notes.rst",
+   "merged_at": "2025-08-27T06:36:52Z",
+   "agent": "Copilot",
+   "listed": false,
+   "state": "still_there"
+  },
+  {
+   "pr": "https://github.com/open-metadata/OpenMetadata/pull/23202",
+   "repo": "open-metadata/OpenMetadata",
+   "path": "ingestion/tests/unit/data_quality/validations/test_zero_threshold_edge_cases.py",
+   "merged_at": "2025-10-12T17:44:16Z",
+   "agent": "Copilot",
+   "listed": false,
+   "state": "deleted_by_person",
+   "deleted_by": "TeddyCr",
+   "deleted_in": "a456a194a91b96e45701ad6d2c4aac38f015888c",
+   "deleted_at": "2026-03-03T17:41:15Z"
+  },
+  {
+   "pr": "https://github.com/documentdb/documentdb/pull/204",
+   "repo": "documentdb/documentdb",
+   "path": "pg_documentdb/src/aggregation/bson_bucket_auto.c",
+   "merged_at": "2025-06-18T07:49:04Z",
+   "agent": "Copilot",
+   "listed": false,
+   "state": "still_there"
+  },
+  {
+   "pr": "https://github.com/liam-hq/liam/pull/2745",
+   "repo": "liam-hq/liam",
+   "path": "frontend/internal-packages/agent/src/types.ts",
+   "merged_at": "2025-07-31T02:42:40Z",
+   "agent": "Devin",
+   "listed": false,
+   "state": "deleted_by_person",
+   "deleted_by": "sasamuku",
+   "deleted_in": "003ca266b4024fb0a0ca33194016584a98b97a39",
+   "deleted_at": "2026-10-22T08:55:13Z"
+  },
+  {
+   "pr": "https://github.com/mui/mui-x/pull/19334",
+   "repo": "mui/mui-x",
+   "path": "docs/data/scheduler/event-calendar/Recurrence.tsx.preview",
+   "merged_at": "2025-09-17T18:29:07Z",
+   "agent": "Copilot",
+   "listed": false,
+   "state": "deleted_by_person",
+   "deleted_by": "flaviendelangle",
+   "deleted_in": "b0d81d6d32f91a7f8da6644d9dce36e0365ace06",
+   "deleted_at": "2025-10-09T16:25:39Z"
+  },
+  {
+   "pr": "https://github.com/mui/mui-x/pull/19334",
+   "repo": "mui/mui-x",
+   "path": "packages/x-charts-pro/src/SankeyChart/sankeySlots.types.ts",
+   "merged_at": "2025-09-17T18:29:07Z",
+   "agent": "Copilot",
+   "listed": false,
+   "state": "still_there"
+  },
+  {
+   "pr": "https://github.com/liam-hq/liam/pull/2079",
+   "repo": "liam-hq/liam",
+   "path": "frontend/apps/app/components/SessionDetailPage/components/Output/components/SchemaUpdates/index.ts",
+   "merged_at": "2025-06-25T08:21:13Z",
+   "agent": "Devin",
+   "listed": true,
+   "state": "deleted_by_bot_or_agent",
+   "deleted_by": "devin-ai-integration[bot]",
+   "deleted_in": "5f381e6d2caf50748213a799740d6165dd03953e",
+   "deleted_at": "2025-07-30T09:13:54Z"
+  },
+  {
+   "pr": "https://github.com/open-metadata/OpenMetadata/pull/23202",
+   "repo": "open-metadata/OpenMetadata",
+   "path": "ingestion/src/metadata/utils/streamable_logger.py",
+   "merged_at": "2025-10-12T17:44:16Z",
+   "agent": "Copilot",
+   "listed": false,
+   "state": "still_there"
+  },
+  {
+   "pr": "https://github.com/pyth-network/pyth-crosschain/pull/2676",
+   "repo": "pyth-network/pyth-crosschain",
+   "path": "contract_manager/store/contracts/StarknetPriceFeedContracts.json",
+   "merged_at": "2025-05-27T22:10:50Z",
+   "agent": "Devin",
+   "listed": false,
+   "state": "deleted_by_person",
+   "deleted_by": "benduran",
+   "deleted_in": "3da6a9c8a0761f30ad54397e2aed320d4fd3c213",
+   "deleted_at": "2025-10-29T13:59:57Z"
+  },
+  {
+   "pr": "https://github.com/FirelyTeam/firely-net-sdk/pull/3218",
+   "repo": "FirelyTeam/firely-net-sdk",
+   "path": "src/Hl7.Fhir.Specification.Shared.Tests/Source/CanonicalVersionMatchingTests.cs",
+   "merged_at": "2025-07-24T12:08:56Z",
+   "agent": "Copilot",
+   "listed": false,
+   "state": "still_there"
+  },
+  {
+   "pr": "https://github.com/calcom/cal.com/pull/21523",
+   "repo": "calcom/cal.com",
+   "path": "packages/trpc/server/routers/viewer/filterSegments/preference.handler.ts",
+   "merged_at": "2025-05-30T12:56:49Z",
+   "agent": "Devin",
+   "listed": false,
+   "state": "still_there"
+  },
+  {
+   "pr": "https://github.com/liam-hq/liam/pull/2079",
+   "repo": "liam-hq/liam",
+   "path": "frontend/internal-packages/schema-bench/src/nameSimilarity/nameSimilarity.test.ts",
+   "merged_at": "2025-06-25T08:21:13Z",
+   "agent": "Devin",
+   "listed": true,
+   "state": "deleted_by_person",
+   "deleted_by": "sasamuku",
+   "deleted_in": "003ca266b4024fb0a0ca33194016584a98b97a39",
+   "deleted_at": "2026-10-22T08:55:13Z"
+  },
+  {
+   "pr": "https://github.com/microsoft/typespec/pull/8169",
+   "repo": "microsoft/typespec",
+   "path": "packages/http-client-csharp/emitter/test/Unit/dynamic-model.test.ts",
+   "merged_at": "2025-08-29T19:26:28Z",
+   "agent": "Copilot",
+   "listed": false,
+   "state": "still_there"
+  },
+  {
+   "pr": "https://github.com/mui/mui-x/pull/19334",
+   "repo": "mui/mui-x",
+   "path": "docs/data/scheduler/event-calendar/Recurrence.js",
+   "merged_at": "2025-09-17T18:29:07Z",
+   "agent": "Copilot",
+   "listed": false,
+   "state": "deleted_by_person",
+   "deleted_by": "flaviendelangle",
+   "deleted_in": "b0d81d6d32f91a7f8da6644d9dce36e0365ace06",
+   "deleted_at": "2025-10-09T16:25:39Z"
+  },
+  {
+   "pr": "https://github.com/safedep/vet/pull/598",
+   "repo": "safedep/vet",
+   "path": "docs/osv-report.md",
+   "merged_at": "2025-09-17T10:39:32Z",
+   "agent": "Copilot",
+   "listed": false,
+   "state": "deleted_by_bot_or_agent",
+   "deleted_by": "claude",
+   "deleted_in": "166116c8c6ec218a846d6f9c58aacc09960f58e6",
+   "deleted_at": "2026-10-02T13:19:09Z"
+  },
+  {
+   "pr": "https://github.com/liam-hq/liam/pull/2745",
+   "repo": "liam-hq/liam",
+   "path": "frontend/packages/erd-core/src/features/erd/components/ERDRenderer/CommandPalette/hooks/useSubscribeCommands/useSubscribeSwitchShowMode.ts",
+   "merged_at": "2025-07-31T02:42:40Z",
+   "agent": "Devin",
+   "listed": false,
+   "state": "still_there"
+  },
+  {
+   "pr": "https://github.com/vitejs/vite/pull/20522",
+   "repo": "vitejs/vite",
+   "path": "docs/.vitepress/inlined-scripts/banner.d.ts",
+   "merged_at": "2025-10-22T08:02:25Z",
+   "agent": "Copilot",
+   "listed": false,
+   "state": "deleted_by_person",
+   "deleted_by": "btea",
+   "deleted_in": "493cc7d43269860fe499a30980d729b0adc93d2c",
+   "deleted_at": "2026-08-26T08:13:26Z"
+  },
+  {
+   "pr": "https://github.com/dotnet/aspire/pull/10786",
+   "repo": "dotnet/aspire",
+   "path": "playground/AspireWithJavaScript/AspireJavaScript.Vue/src/components/HelloWorld.vue",
+   "merged_at": "2025-09-30T23:39:50Z",
+   "agent": "Copilot",
+   "listed": false,
+   "state": "still_there"
+  },
+  {
+   "pr": "https://github.com/dotnet/aspire/pull/10786",
+   "repo": "dotnet/aspire",
+   "path": "playground/AspireWithJavaScript/AspireJavaScript.Vue/src/components/icons/IconCommunity.vue",
+   "merged_at": "2025-09-30T23:39:50Z",
+   "agent": "Copilot",
+   "listed": false,
+   "state": "still_there"
+  },
+  {
+   "pr": "https://github.com/dotnet/aspire/pull/11778",
+   "repo": "dotnet/aspire",
+   "path": "src/Aspire.Cli/Resources/xlf/InitCommandStrings.ja.xlf",
+   "merged_at": "2025-10-03T21:26:44Z",
+   "agent": "Copilot",
+   "listed": false,
+   "state": "still_there"
+  },
+  {
+   "pr": "https://github.com/radius-project/radius/pull/10239",
+   "repo": "radius-project/radius",
+   "path": "pkg/corerp/api/v20250801preview/zz_generated_time_rfc3339.go",
+   "merged_at": "2025-10-02T00:57:38Z",
+   "agent": "Copilot",
+   "listed": false,
+   "state": "deleted_by_person",
+   "deleted_by": "DariuszPorowski",
+   "deleted_in": "3115c6e1c3d3495029754a0771a0fbffbf6c837a",
+   "deleted_at": "2026-06-18T21:52:47Z"
+  },
+  {
+   "pr": "https://github.com/dotnet/android/pull/10194",
+   "repo": "dotnet/android",
+   "path": "src/Xamarin.Android.Build.Tasks/Tasks/LinkNativeRuntime.cs",
+   "merged_at": "2025-08-04T15:49:19Z",
+   "agent": "Copilot",
+   "listed": false,
+   "state": "deleted_by_person",
+   "deleted_by": "simonrozsival",
+   "deleted_in": "13e05fe1387cc5ad6e2959ddade8a9669916c16f",
+   "deleted_at": "2026-10-12T11:32:23Z"
+  },
+  {
+   "pr": "https://github.com/calcom/cal.com/pull/21523",
+   "repo": "calcom/cal.com",
+   "path": ".yarn/versions/9d6f8fc6.yml",
+   "merged_at": "2025-05-30T12:56:49Z",
+   "agent": "Devin",
+   "listed": false,
+   "state": "still_there"
+  },
+  {
+   "pr": "https://github.com/shakacode/react_on_rails/pull/1786",
+   "repo": "shakacode/react_on_rails",
+   "path": "lib/generators/react_on_rails/templates/redux/base/app/javascript/bundles/HelloWorld/store/helloWorldStore.ts",
+   "merged_at": "2025-09-18T09:06:10Z",
+   "agent": "Claude_Code",
+   "listed": false,
+   "state": "deleted_by_person",
+   "deleted_by": "justin808",
+   "deleted_in": "b50a74d9045015479d2eb515adee5060963ec72d",
+   "deleted_at": "2025-11-25T04:53:55Z"
+  },
+  {
+   "pr": "https://github.com/pyth-network/pyth-crosschain/pull/2676",
+   "repo": "pyth-network/pyth-crosschain",
+   "path": "contract_manager/store/contracts/EvmWormholeContracts.json",
+   "merged_at": "2025-05-27T22:10:50Z",
+   "agent": "Devin",
+   "listed": false,
+   "state": "deleted_by_person",
+   "deleted_by": "benduran",
+   "deleted_in": "3da6a9c8a0761f30ad54397e2aed320d4fd3c213",
+   "deleted_at": "2025-10-29T13:59:57Z"
+  },
+  {
+   "pr": "https://github.com/Azure/azure-sdk-for-python/pull/42404",
+   "repo": "Azure/azure-sdk-for-python",
+   "path": "sdk/azurestackhci/azure-mgmt-azurestackhcivm/generated_samples/network_interfaces_delete.py",
+   "merged_at": "2025-08-13T23:32:41Z",
+   "agent": "Copilot",
+   "listed": false,
+   "state": "still_there"
+  },
+  {
+   "pr": "https://github.com/microsoft/typespec/pull/8169",
+   "repo": "microsoft/typespec",
+   "path": ".chronus/changes/feat-tag-metadata-import-2025-7-14-16-45-2.md",
+   "merged_at": "2025-08-29T19:26:28Z",
+   "agent": "Copilot",
+   "listed": false,
+   "state": "deleted_by_person",
+   "deleted_by": "timotheeguerin",
+   "deleted_in": "2da91ca0eb784bcccc3bbe9370df8bce31092e6c",
+   "deleted_at": "2025-09-09T23:15:03Z"
+  },
+  {
+   "pr": "https://github.com/microsoft/react-native-windows/pull/15118",
+   "repo": "microsoft/react-native-windows",
+   "path": "packages/@react-native-windows/cli/src/commands/setupModuleWindows/TESTING.md",
+   "merged_at": "2025-09-05T17:34:48Z",
+   "agent": "Copilot",
+   "listed": false,
+   "state": "gone_no_commit_found"
+  },
+  {
+   "pr": "https://github.com/calcom/cal.com/pull/22311",
+   "repo": "calcom/cal.com",
+   "path": ".yarn/versions/74629f39.yml",
+   "merged_at": "2025-07-24T18:14:39Z",
+   "agent": "Devin",
+   "listed": false,
+   "state": "still_there"
+  },
+  {
+   "pr": "https://github.com/microsoft/typespec/pull/8169",
+   "repo": "microsoft/typespec",
+   "path": "packages/http-client-csharp/generator/Microsoft.TypeSpec.Generator.ClientModel/test/Providers/TestData/ScmMethodProviderCollectionTests/ScalarInputTypeMethods(Uri).cs",
+   "merged_at": "2025-08-29T19:26:28Z",
+   "agent": "Copilot",
+   "listed": false,
+   "state": "still_there"
+  },
+  {
+   "pr": "https://github.com/a2aproject/a2a-dotnet/pull/172",
+   "repo": "a2aproject/a2a-dotnet",
+   "path": "src/A2A/Models/FileContentKind.cs",
+   "merged_at": "2025-09-08T17:03:52Z",
+   "agent": "Copilot",
+   "listed": false,
+   "state": "deleted_by_bot_or_agent",
+   "deleted_by": "Copilot",
+   "deleted_in": "db1dfbda61d2469fee13a17adbed9ef41f288c52",
+   "deleted_at": "2025-09-23T15:27:45Z"
+  },
+  {
+   "pr": "https://github.com/calcom/cal.com/pull/21523",
+   "repo": "calcom/cal.com",
+   "path": "packages/prisma/migrations/20250523155738_add_cal_video_settings/migration.sql",
+   "merged_at": "2025-05-30T12:56:49Z",
+   "agent": "Devin",
+   "listed": false,
+   "state": "still_there"
+  },
+  {
+   "pr": "https://github.com/dotnet/aspire/pull/11778",
+   "repo": "dotnet/aspire",
+   "path": "src/Aspire.Dashboard/Resources/xlf/AIAssistant.pl.xlf",
+   "merged_at": "2025-10-03T21:26:44Z",
+   "agent": "Copilot",
+   "listed": false,
+   "state": "deleted_by_person",
+   "deleted_by": "JamesNK",
+   "deleted_in": "0a1a54a360e761f3287037ab22818517b2c52649",
+   "deleted_at": "2026-07-13T05:35:35Z"
+  },
+  {
+   "pr": "https://github.com/mui/mui-x/pull/19334",
+   "repo": "mui/mui-x",
+   "path": ".github/workflows/publish.yml",
+   "merged_at": "2025-09-17T18:29:07Z",
+   "agent": "Copilot",
+   "listed": true,
+   "state": "still_there"
+  },
+  {
+   "pr": "https://github.com/vllm-project/semantic-router/pull/322",
+   "repo": "vllm-project/semantic-router",
+   "path": "deploy/tracing/README.md",
+   "merged_at": "2025-10-03T15:48:30Z",
+   "agent": "Copilot",
+   "listed": false,
+   "state": "deleted_by_person",
+   "deleted_by": "JaredforReal",
+   "deleted_in": "264430495a7d8dbe5563e5b665c2610bfcc15442",
+   "deleted_at": "2025-10-09T14:08:49Z"
+  },
+  {
+   "pr": "https://github.com/LayerZero-Labs/devtools/pull/1539",
+   "repo": "LayerZero-Labs/devtools",
+   "path": "examples/oapp-solana/.prettierignore",
+   "merged_at": "2025-08-18T19:40:27Z",
+   "agent": "OpenAI_Codex",
+   "listed": true,
+   "state": "still_there"
+  },
+  {
+   "pr": "https://github.com/getsentry/sentry-docs/pull/14503",
+   "repo": "getsentry/sentry-docs",
+   "path": "develop-docs/backend/application-domains/tasks/terminology-and-concepts.mdx",
+   "merged_at": "2025-10-01T06:50:21Z",
+   "agent": "Cursor",
+   "listed": false,
+   "state": "still_there"
+  },
+  {
+   "pr": "https://github.com/Azure/azure-mcp/pull/647",
+   "repo": "Azure/azure-mcp",
+   "path": "src/Areas/Storage/Commands/DataLake/FileSystem/DirectoryCreateCommand.cs",
+   "merged_at": "2025-07-22T19:22:27Z",
+   "agent": "Copilot",
+   "listed": false,
+   "state": "gone_no_commit_found"
+  },
+  {
+   "pr": "https://github.com/microsoft/typespec/pull/7651",
+   "repo": "microsoft/typespec",
+   "path": "packages/emitter-framework/test/typescript/components/component-override.test.tsx",
+   "merged_at": "2025-08-14T22:58:47Z",
+   "agent": "Copilot",
+   "listed": false,
+   "state": "still_there"
+  },
+  {
+   "pr": "https://github.com/dotnet/fsharp/pull/18929",
+   "repo": "dotnet/fsharp",
+   "path": "tests/EndToEndBuildTests/DesignTimeProviderPackaging/Provider/Library.fs",
+   "merged_at": "2025-10-22T09:02:59Z",
+   "agent": "Copilot",
+   "listed": false,
+   "state": "still_there"
+  },
+  {
+   "pr": "https://github.com/masslight/ottehr/pull/4301",
+   "repo": "masslight/ottehr",
+   "path": "packages/zambdas/src/ehr/visit-details/update-visit-details/index.ts",
+   "merged_at": "2025-10-14T17:39:06Z",
+   "agent": "Copilot",
+   "listed": false,
+   "state": "still_there"
+  },
+  {
+   "pr": "https://github.com/liam-hq/liam/pull/2745",
+   "repo": "liam-hq/liam",
+   "path": "frontend/apps/app/features/sessions/components/SessionForm/actions/getSchemaFilePath/fetchSchemaFilePath.ts",
+   "merged_at": "2025-07-31T02:42:40Z",
+   "agent": "Devin",
+   "listed": false,
+   "state": "deleted_by_person",
+   "deleted_by": "MH4GF",
+   "deleted_in": "44414d50ddac85b1f97c94c1477d6993fc02bb96",
+   "deleted_at": "2025-07-30T10:32:56Z"
+  },
+  {
+   "pr": "https://github.com/vaadin/flow/pull/21824",
+   "repo": "vaadin/flow",
+   "path": "flow-plugins/flow-maven-plugin/src/it/commercial-banner-build/invoker.properties",
+   "merged_at": "2025-10-09T08:42:12Z",
+   "agent": "Copilot",
+   "listed": false,
+   "state": "still_there"
+  },
+  {
+   "pr": "https://github.com/liam-hq/liam/pull/2079",
+   "repo": "liam-hq/liam",
+   "path": "frontend/apps/app/components/SessionDetailPage/components/Output/components/Header/Header.tsx",
+   "merged_at": "2025-06-25T08:21:13Z",
+   "agent": "Devin",
+   "listed": true,
+   "state": "deleted_by_person",
+   "deleted_by": "sasamuku",
+   "deleted_in": "e05883fe813a6762d98c1aad1351c3048e360899",
+   "deleted_at": "2026-10-22T06:50:56Z"
+  },
+  {
+   "pr": "https://github.com/liam-hq/liam/pull/1304",
+   "repo": "liam-hq/liam",
+   "path": "frontend/apps/app/features/projects/pages/KnowledgeSuggestionDetailPage/ContentForSchema.tsx",
+   "merged_at": "2025-04-11T11:12:06Z",
+   "agent": "Devin",
+   "listed": false,
+   "state": "deleted_by_person",
+   "deleted_by": "junkisai",
+   "deleted_in": "944a59962d102f3f25110fb8d5ccb5f75571bfaa",
+   "deleted_at": "2025-05-12T06:58:03Z"
+  },
+  {
+   "pr": "https://github.com/microsoft/testfx/pull/6174",
+   "repo": "microsoft/testfx",
+   "path": "src/TestFramework/TestFramework/Internal/Class1.cs",
+   "merged_at": "2025-08-18T10:55:33Z",
+   "agent": "Copilot",
+   "listed": false,
+   "state": "gone_no_commit_found"
+  },
+  {
+   "pr": "https://github.com/dotnet/orleans/pull/9513",
+   "repo": "dotnet/orleans",
+   "path": "src/Azure/Orleans.Reminders.Cosmos/README.md",
+   "merged_at": "2025-05-22T20:58:33Z",
+   "agent": "Copilot",
+   "listed": false,
+   "state": "still_there"
+  },
+  {
+   "pr": "https://github.com/Azure/azure-sdk-for-python/pull/41352",
+   "repo": "Azure/azure-sdk-for-python",
+   "path": "sdk/compute/azure-mgmt-avs/azure/mgmt/avs/aio/operations/_provisioned_networks_operations.py",
+   "merged_at": "2025-06-12T19:44:18Z",
+   "agent": "Copilot",
+   "listed": false,
+   "state": "deleted_by_person",
+   "deleted_by": "azure-sdk",
+   "deleted_in": "76242dc1f011f38e87e66c867d2708cfccc29823",
+   "deleted_at": "2025-12-17T19:43:56Z"
+  },
+  {
+   "pr": "https://github.com/tokens-studio/figma-plugin/pull/3374",
+   "repo": "tokens-studio/figma-plugin",
+   "path": "packages/tokens-studio-for-figma/src/utils/getSelectedExportThemes.ts",
+   "merged_at": "2025-06-25T12:29:42Z",
+   "agent": "Copilot",
+   "listed": false,
+   "state": "still_there"
+  },
+  {
+   "pr": "https://github.com/elastic/terraform-provider-elasticstack/pull/1298",
+   "repo": "elastic/terraform-provider-elasticstack",
+   "path": "generated/slo/docs/BulkDeleteStatusResponse.md",
+   "merged_at": "2025-09-23T10:22:17Z",
+   "agent": "Copilot",
+   "listed": false,
+   "state": "deleted_by_person",
+   "deleted_by": "tobio",
+   "deleted_in": "803dd82e51b91b551ebad0055f7c7afab2335a39",
+   "deleted_at": "2026-04-19T02:40:32Z"
+  },
+  {
+   "pr": "https://github.com/githubnext/gh-aw/pull/629",
+   "repo": "githubnext/gh-aw",
+   "path": ".github/workflows/test-safe-output-create-issue.md",
+   "merged_at": "2025-09-12T20:11:49Z",
+   "agent": "Copilot",
+   "listed": false,
+   "state": "deleted_by_person",
+   "deleted_by": "pelikhan",
+   "deleted_in": "b124a9bdfac8b3daaf1d77d6c4fda74991db9485",
+   "deleted_at": "2025-09-14T15:54:32Z"
+  },
+  {
+   "pr": "https://github.com/microsoft/typescript-go/pull/1138",
+   "repo": "microsoft/typescript-go",
+   "path": "testdata/baselines/reference/submodule/conformance/cjsErrors(module=node18).errors.txt",
+   "merged_at": "2025-06-12T15:17:23Z",
+   "agent": "Copilot",
+   "listed": false,
+   "state": "still_there"
+  },
+  {
+   "pr": "https://github.com/tphakala/birdnet-go/pull/1201",
+   "repo": "tphakala/birdnet-go",
+   "path": "internal/api/v2/settings_species_test.go",
+   "merged_at": "2025-08-24T08:57:34Z",
+   "agent": "Claude_Code",
+   "listed": false,
+   "state": "still_there"
+  },
+  {
+   "pr": "https://github.com/novuhq/novu/pull/8965",
+   "repo": "novuhq/novu",
+   "path": "apps/dashboard/src/components/workflow-editor/use-canvas-nodes-edges.ts",
+   "merged_at": "2025-08-31T18:05:10Z",
+   "agent": "Cursor",
+   "listed": false,
+   "state": "still_there"
+  },
+  {
+   "pr": "https://github.com/Azure/azure-sdk-for-python/pull/42404",
+   "repo": "Azure/azure-sdk-for-python",
+   "path": "sdk/azurestackhci/azure-mgmt-azurestackhcivm/generated_samples/gallery_images_update.py",
+   "merged_at": "2025-08-13T23:32:41Z",
+   "agent": "Copilot",
+   "listed": false,
+   "state": "still_there"
+  },
+  {
+   "pr": "https://github.com/vllm-project/vllm/pull/21146",
+   "repo": "vllm-project/vllm",
+   "path": "examples/online_serving/elastic_ep/serve_deepseek_v2.sh",
+   "merged_at": "2025-07-24T00:20:14Z",
+   "agent": "OpenAI_Codex",
+   "listed": false,
+   "state": "deleted_by_person",
+   "deleted_by": "noooop",
+   "deleted_in": "51c1ee9b7c8acbba4899a8ebffd390685d171946",
+   "deleted_at": "2026-05-06T08:20:38Z"
+  },
+  {
+   "pr": "https://github.com/sveltejs/kit/pull/14131",
+   "repo": "sveltejs/kit",
+   "path": "documentation/docs/30-advanced/68-observability.md",
+   "merged_at": "2025-08-20T13:29:48Z",
+   "agent": "Copilot",
+   "listed": false,
+   "state": "still_there"
+  },
+  {
+   "pr": "https://github.com/valkey-io/valkey-glide/pull/4353",
+   "repo": "valkey-io/valkey-glide",
+   "path": "csharp/sources/Valkey.Glide/Abstract/EndPointCollection.cs",
+   "merged_at": "2025-07-17T11:04:32Z",
+   "agent": "Copilot",
+   "listed": false,
+   "state": "deleted_by_person",
+   "deleted_by": "Yury-Fridlyand",
+   "deleted_in": "2929c97a65a2de93204a50cbee09ebefce283d68",
+   "deleted_at": "2025-08-25T15:19:13Z"
+  },
+  {
+   "pr": "https://github.com/vitejs/vite/pull/20522",
+   "repo": "vitejs/vite",
+   "path": "docs/public/og-image-announcing-vite4-3.webp",
+   "merged_at": "2025-10-22T08:02:25Z",
+   "agent": "Copilot",
+   "listed": true,
+   "state": "still_there"
+  },
+  {
+   "pr": "https://github.com/neondatabase/neon/pull/11698",
+   "repo": "neondatabase/neon",
+   "path": "storage_controller/migrations/2025-03-18-103700_timeline_imports/up.sql",
+   "merged_at": "2025-04-28T15:40:06Z",
+   "agent": "Devin",
+   "listed": false,
+   "state": "still_there"
+  },
+  {
+   "pr": "https://github.com/githubnext/gh-aw/pull/629",
+   "repo": "githubnext/gh-aw",
+   "path": "pkg/cli/workflows/test-claude-add-issue-labels.lock.yml",
+   "merged_at": "2025-09-12T20:11:49Z",
+   "agent": "Copilot",
+   "listed": false,
+   "state": "deleted_by_person",
+   "deleted_by": "pelikhan",
+   "deleted_in": "6c00e9dea33c61e8feaff8a48f2d4e4841d63888",
+   "deleted_at": "2025-10-01T22:56:08Z"
+  },
+  {
+   "pr": "https://github.com/dotnet/orleans/pull/9513",
+   "repo": "dotnet/orleans",
+   "path": "src/AWS/Orleans.Persistence.DynamoDB/README.md",
+   "merged_at": "2025-05-22T20:58:33Z",
+   "agent": "Copilot",
+   "listed": false,
+   "state": "still_there"
+  },
+  {
+   "pr": "https://github.com/microsoft/typespec/pull/7651",
+   "repo": "microsoft/typespec",
+   "path": "packages/emitter-framework/src/typescript/components/union/expression.test.tsx",
+   "merged_at": "2025-08-14T22:58:47Z",
+   "agent": "Copilot",
+   "listed": false,
+   "state": "still_there"
+  },
+  {
+   "pr": "https://github.com/cartography-cncf/cartography/pull/1828",
+   "repo": "cartography-cncf/cartography",
+   "path": "docs/root/modules/keycloak/analysis.md",
+   "merged_at": "2025-08-29T23:00:27Z",
+   "agent": "OpenAI_Codex",
+   "listed": false,
+   "state": "still_there"
+  },
+  {
+   "pr": "https://github.com/vitejs/vite/pull/20468",
+   "repo": "vitejs/vite",
+   "path": "docs/tsconfig.json",
+   "merged_at": "2025-09-22T12:35:09Z",
+   "agent": "Copilot",
+   "listed": true,
+   "state": "still_there"
+  },
+  {
+   "pr": "https://github.com/microsoft/typespec/pull/7651",
+   "repo": "microsoft/typespec",
+   "path": "packages/emitter-framework/src/core/components/overrides/config.ts",
+   "merged_at": "2025-08-14T22:58:47Z",
+   "agent": "Copilot",
+   "listed": false,
+   "state": "still_there"
+  },
+  {
+   "pr": "https://github.com/githubnext/gh-aw/pull/1152",
+   "repo": "githubnext/gh-aw",
+   "path": "pkg/workflow/sh/checkout_pr.sh",
+   "merged_at": "2025-10-02T14:36:51Z",
+   "agent": "Copilot",
+   "listed": false,
+   "state": "still_there"
+  },
+  {
+   "pr": "https://github.com/cartography-cncf/cartography/pull/1697",
+   "repo": "cartography-cncf/cartography",
+   "path": "cartography/models/aws/rds/cluster.py",
+   "merged_at": "2025-07-28T21:47:25Z",
+   "agent": "OpenAI_Codex",
+   "listed": false,
+   "state": "still_there"
+  },
+  {
+   "pr": "https://github.com/liam-hq/liam/pull/3783",
+   "repo": "liam-hq/liam",
+   "path": "frontend/apps/app/components/OrganizationMembersPage/components/InviteMemberModal/InviteMemberModal.stories.tsx",
+   "merged_at": "2025-10-17T01:18:25Z",
+   "agent": "Devin",
+   "listed": false,
+   "state": "deleted_by_person",
+   "deleted_by": "sasamuku",
+   "deleted_in": "e05883fe813a6762d98c1aad1351c3048e360899",
+   "deleted_at": "2026-10-22T06:50:56Z"
+  },
+  {
+   "pr": "https://github.com/zeroc-ice/ice-demos/pull/490",
+   "repo": "zeroc-ice/ice-demos",
+   "path": "swift/Ice/context/Sources/Client/slice-plugin.json",
+   "merged_at": "2025-05-30T17:33:01Z",
+   "agent": "Copilot",
+   "listed": false,
+   "state": "deleted_by_person",
+   "deleted_by": "externl",
+   "deleted_in": "8dbb399218ab72c850d7de0a373ac860a869283e",
+   "deleted_at": "2025-10-01T18:15:45Z"
+  },
+  {
+   "pr": "https://github.com/dotnet/aspire/pull/11778",
+   "repo": "dotnet/aspire",
+   "path": "src/Aspire.Cli/Resources/xlf/InitCommandStrings.ru.xlf",
+   "merged_at": "2025-10-03T21:26:44Z",
+   "agent": "Copilot",
+   "listed": false,
+   "state": "still_there"
+  },
+  {
+   "pr": "https://github.com/dsccommunity/SqlServerDsc/pull/2108",
+   "repo": "dsccommunity/SqlServerDsc",
+   "path": "source/Public/Get-SqlDscRole.ps1",
+   "merged_at": "2025-09-13T09:45:39Z",
+   "agent": "Copilot",
+   "listed": false,
+   "state": "still_there"
+  },
+  {
+   "pr": "https://github.com/githubnext/gh-aw/pull/147",
+   "repo": "githubnext/gh-aw",
+   "path": "package-lock.json",
+   "merged_at": "2025-08-20T21:26:23Z",
+   "agent": "Copilot",
+   "listed": false,
+   "state": "deleted_by_bot_or_agent",
+   "deleted_by": "Copilot",
+   "deleted_in": "ce5dbc6dde84c01544654a9887ccbfe2a7d75d36",
+   "deleted_at": "2025-09-18T07:17:09Z"
+  },
+  {
+   "pr": "https://github.com/vitejs/vite/pull/20522",
+   "repo": "vitejs/vite",
+   "path": "docs/images/vite6-npm-weekly-downloads.webp",
+   "merged_at": "2025-10-22T08:02:25Z",
+   "agent": "Copilot",
+   "listed": true,
+   "state": "still_there"
+  },
+  {
+   "pr": "https://github.com/dotnet/sdk/pull/50083",
+   "repo": "dotnet/sdk",
+   "path": "src/RazorSdk/SourceGenerators/EmbeddedSources/EmbeddedAttribute.cs",
+   "merged_at": "2025-08-08T11:19:04Z",
+   "agent": "Copilot",
+   "listed": false,
+   "state": "gone_no_commit_found"
+  },
+  {
+   "pr": "https://github.com/dotnet/aspire/pull/9494",
+   "repo": "dotnet/aspire",
+   "path": ".vscode/mcp.json",
+   "merged_at": "2025-05-29T20:38:49Z",
+   "agent": "Copilot",
+   "listed": true,
+   "state": "deleted_by_person",
+   "deleted_by": "mitchdenny",
+   "deleted_in": "e190014910057334827e2bf754711d55f449ebe7",
+   "deleted_at": "2026-04-19T23:50:20Z"
+  },
+  {
+   "pr": "https://github.com/dotnet/orleans/pull/9513",
+   "repo": "dotnet/orleans",
+   "path": "src/AWS/Orleans.Clustering.DynamoDB/README.md",
+   "merged_at": "2025-05-22T20:58:33Z",
+   "agent": "Copilot",
+   "listed": false,
+   "state": "still_there"
+  },
+  {
+   "pr": "https://github.com/vllm-project/vllm/pull/21146",
+   "repo": "vllm-project/vllm",
+   "path": "vllm/model_executor/models/glm4_moe_mtp.py",
+   "merged_at": "2025-07-24T00:20:14Z",
+   "agent": "OpenAI_Codex",
+   "listed": false,
+   "state": "still_there"
+  },
+  {
+   "pr": "https://github.com/documentdb/documentdb/pull/204",
+   "repo": "documentdb/documentdb",
+   "path": "internal/pg_documentdb_distributed/src/test/regress/expected/bson_query_operator_array_tests_runtime.out",
+   "merged_at": "2025-06-18T07:49:04Z",
+   "agent": "Copilot",
+   "listed": false,
+   "state": "still_there"
+  },
+  {
+   "pr": "https://github.com/SwitchbackTech/compass/pull/1059",
+   "repo": "SwitchbackTech/compass",
+   "path": "packages/web/src/views/Forms/EventForm/DateControlsSection/RecurrenceSection/components/CaretInput.tsx",
+   "merged_at": "2025-10-05T06:53:02Z",
+   "agent": "Copilot",
+   "listed": false,
+   "state": "deleted_by_person",
+   "deleted_by": "tyler-dane",
+   "deleted_in": "d13371222d28cb955ecaff8e85cb0130000d7735",
+   "deleted_at": "2026-09-27T01:49:42Z"
+  },
+  {
+   "pr": "https://github.com/primer/react/pull/6360",
+   "repo": "primer/react",
+   "path": ".playwright/snapshots/components/SelectPanel.test.ts-snapshots/SelectPanel-With-Select-All-dark-colorblind-modern-action-list--true-linux.png",
+   "merged_at": "2025-08-04T11:55:00Z",
+   "agent": "Copilot",
+   "listed": true,
+   "state": "still_there"
+  },
+  {
+   "pr": "https://github.com/githubnext/gh-aw/pull/147",
+   "repo": "githubnext/gh-aw",
+   "path": "pkg/workflow/js.go",
+   "merged_at": "2025-08-20T21:26:23Z",
+   "agent": "Copilot",
+   "listed": false,
+   "state": "still_there"
+  },
+  {
+   "pr": "https://github.com/getsentry/sentry/pull/94573",
+   "repo": "getsentry/sentry",
+   "path": "src/sentry/auth_v2/migrations/__init__.py",
+   "merged_at": "2025-07-02T17:37:17Z",
+   "agent": "Cursor",
+   "listed": false,
+   "state": "still_there"
+  },
+  {
+   "pr": "https://github.com/github/codeql-action/pull/3094",
+   "repo": "github/codeql-action",
+   "path": "pr-checks/__init__.py",
+   "merged_at": "2025-09-23T12:31:56Z",
+   "agent": "Copilot",
+   "listed": false,
+   "state": "deleted_by_person",
+   "deleted_by": "mbg",
+   "deleted_in": "77fc89c78dc90433e4d9050503c82b635843b3cc",
+   "deleted_at": "2026-03-03T11:42:49Z"
+  },
+  {
+   "pr": "https://github.com/vitejs/vite/pull/20522",
+   "repo": "vitejs/vite",
+   "path": "docs/.vitepress/theme/components/landing/common/noise.webp",
+   "merged_at": "2025-10-22T08:02:25Z",
+   "agent": "Copilot",
+   "listed": true,
+   "state": "deleted_by_person",
+   "deleted_by": "yyx990803",
+   "deleted_in": "93d790d44a93ac6f4193a72e7d44f5a217d02f2b",
+   "deleted_at": "2026-01-13T09:19:18Z"
+  },
+  {
+   "pr": "https://github.com/calcom/cal.com/pull/21152",
+   "repo": "calcom/cal.com",
+   "path": "packages/embeds/LIFECYCLE.md",
+   "merged_at": "2025-05-16T08:19:17Z",
+   "agent": "Devin",
+   "listed": false,
+   "state": "still_there"
+  },
+  {
+   "pr": "https://github.com/mikro-orm/mikro-orm/pull/6887",
+   "repo": "mikro-orm/mikro-orm",
+   "path": "tests/features/lazy-scalar-properties/GH6885.test.ts",
+   "merged_at": "2025-10-04T09:33:52Z",
+   "agent": "Copilot",
+   "listed": false,
+   "state": "still_there"
+  },
+  {
+   "pr": "https://github.com/vitejs/vite/pull/20522",
+   "repo": "vitejs/vite",
+   "path": "playground/assets/multiline-import-meta-url.js",
+   "merged_at": "2025-10-22T08:02:25Z",
+   "agent": "Copilot",
+   "listed": false,
+   "state": "still_there"
+  },
+  {
+   "pr": "https://github.com/calcom/cal.com/pull/21152",
+   "repo": "calcom/cal.com",
+   "path": "apps/web/scripts/copy-app-store-static.js",
+   "merged_at": "2025-05-16T08:19:17Z",
+   "agent": "Devin",
+   "listed": false,
+   "state": "still_there"
+  },
+  {
+   "pr": "https://github.com/kurotu/VRCQuestTools/pull/121",
+   "repo": "kurotu/VRCQuestTools",
+   "path": ".serena/memories/task_completion_checklist.md",
+   "merged_at": "2025-08-30T04:32:21Z",
+   "agent": "Copilot",
+   "listed": false,
+   "state": "deleted_by_person",
+   "deleted_by": "kurotu",
+   "deleted_in": "82ba46531a5edabf7b6b6838c1bf566a9ea31dc0",
+   "deleted_at": "2026-03-13T17:22:59Z"
+  },
+  {
+   "pr": "https://github.com/a2aproject/a2a-dotnet/pull/184",
+   "repo": "a2aproject/a2a-dotnet",
+   "path": "tests/A2A.UnitTests/Models/FileContentSpecComplianceTests.cs",
+   "merged_at": "2025-09-23T15:33:17Z",
+   "agent": "Copilot",
+   "listed": false,
+   "state": "deleted_by_person",
+   "deleted_by": "rokonec",
+   "deleted_in": "464beb6fd6e919a6858dd2e43739fd0495293f83",
+   "deleted_at": "2026-03-16T11:57:20Z"
+  },
+  {
+   "pr": "https://github.com/liam-hq/liam/pull/1304",
+   "repo": "liam-hq/liam",
+   "path": ".changeset/shaggy-grapes-join.md",
+   "merged_at": "2025-04-11T11:12:06Z",
+   "agent": "Devin",
+   "listed": false,
+   "state": "deleted_by_bot_or_agent",
+   "deleted_by": "github-actions[bot]",
+   "deleted_in": "8fde36ee47ca4fd234dfae0fe7cd277c94720861",
+   "deleted_at": "2025-04-21T06:44:30Z"
+  },
+  {
+   "pr": "https://github.com/getsentry/sentry-docs/pull/14503",
+   "repo": "getsentry/sentry-docs",
+   "path": "docs/platforms/apple/common/configuration/img/app-hang-rate.png",
+   "merged_at": "2025-10-01T06:50:21Z",
+   "agent": "Cursor",
+   "listed": true,
+   "state": "still_there"
+  },
+  {
+   "pr": "https://github.com/getsentry/sentry-docs/pull/14503",
+   "repo": "getsentry/sentry-docs",
+   "path": "docs/platforms/python/integrations/huggingface_hub/index.mdx",
+   "merged_at": "2025-10-01T06:50:21Z",
+   "agent": "Cursor",
+   "listed": false,
+   "state": "deleted_by_person",
+   "deleted_by": "chargome",
+   "deleted_in": "503d1248e126e24b9a92eae4b4f3b6614e650253",
+   "deleted_at": "2026-08-31T12:23:19Z"
+  },
+  {
+   "pr": "https://github.com/reown-com/appkit/pull/4437",
+   "repo": "reown-com/appkit",
+   "path": "packages/controllers/src/utils/NetworkUtil.ts",
+   "merged_at": "2025-06-04T14:29:30Z",
+   "agent": "Devin",
+   "listed": false,
+   "state": "still_there"
+  },
+  {
+   "pr": "https://github.com/Azure/azure-sdk-for-python/pull/41352",
+   "repo": "Azure/azure-sdk-for-python",
+   "path": "sdk/compute/azure-mgmt-avs/azure/mgmt/avs/operations/_hosts_operations.py",
+   "merged_at": "2025-06-12T19:44:18Z",
+   "agent": "Copilot",
+   "listed": false,
+   "state": "deleted_by_person",
+   "deleted_by": "azure-sdk",
+   "deleted_in": "76242dc1f011f38e87e66c867d2708cfccc29823",
+   "deleted_at": "2025-12-17T19:43:56Z"
+  },
+  {
+   "pr": "https://github.com/NVIDIA/cuda-python/pull/884",
+   "repo": "NVIDIA/cuda-python",
+   "path": "cuda_bindings/docs/source/release/12.9.X-notes.rst",
+   "merged_at": "2025-08-27T06:36:52Z",
+   "agent": "Copilot",
+   "listed": false,
+   "state": "deleted_by_person",
+   "deleted_by": "cpcloud",
+   "deleted_in": "3bf736bfbf98c677d4a8f4b0c7c795bc57ce42a6",
+   "deleted_at": "2025-10-03T22:12:49Z"
+  },
+  {
+   "pr": "https://github.com/masslight/ottehr/pull/4301",
+   "repo": "masslight/ottehr",
+   "path": "apps/ehr/src/features/visits/shared/components/patient/EligibilityDetailsDialog.tsx",
+   "merged_at": "2025-10-14T17:39:06Z",
+   "agent": "Copilot",
+   "listed": false,
+   "state": "still_there"
+  },
+  {
+   "pr": "https://github.com/usesend/useSend/pull/259",
+   "repo": "usesend/useSend",
+   "path": "apps/docs/api-reference/domains/list-domains.mdx",
+   "merged_at": "2025-09-26T23:40:14Z",
+   "agent": "OpenAI_Codex",
+   "listed": false,
+   "state": "still_there"
+  },
+  {
+   "pr": "https://github.com/valkey-io/valkey-glide/pull/4353",
+   "repo": "valkey-io/valkey-glide",
+   "path": "csharp/sources/Valkey.Glide/BaseClient.GenericCommands.cs",
+   "merged_at": "2025-07-17T11:04:32Z",
+   "agent": "Copilot",
+   "listed": false,
+   "state": "deleted_by_person",
+   "deleted_by": "Yury-Fridlyand",
+   "deleted_in": "2929c97a65a2de93204a50cbee09ebefce283d68",
+   "deleted_at": "2025-08-25T15:19:13Z"
+  },
+  {
+   "pr": "https://github.com/tokens-studio/figma-plugin/pull/3374",
+   "repo": "tokens-studio/figma-plugin",
+   "path": "packages/tokens-studio-for-figma/src/figmaStorage/VariableExportSettingsProperty.ts",
+   "merged_at": "2025-06-25T12:29:42Z",
+   "agent": "Copilot",
+   "listed": false,
+   "state": "still_there"
+  },
+  {
+   "pr": "https://github.com/cartography-cncf/cartography/pull/1664",
+   "repo": "cartography-cncf/cartography",
+   "path": "cartography/models/kubernetes/namespaces.py",
+   "merged_at": "2025-07-04T06:54:15Z",
+   "agent": "OpenAI_Codex",
+   "listed": false,
+   "state": "still_there"
+  },
+  {
+   "pr": "https://github.com/tphakala/birdnet-go/pull/1201",
+   "repo": "tphakala/birdnet-go",
+   "path": "internal/conf/config_species_test.go",
+   "merged_at": "2025-08-24T08:57:34Z",
+   "agent": "Claude_Code",
+   "listed": false,
+   "state": "still_there"
+  },
+  {
+   "pr": "https://github.com/elastic/terraform-provider-elasticstack/pull/1298",
+   "repo": "elastic/terraform-provider-elasticstack",
+   "path": "generated/slo/model_bulk_purge_rollup_request_purge_policy_one_of_1.go",
+   "merged_at": "2025-09-23T10:22:17Z",
+   "agent": "Copilot",
+   "listed": false,
+   "state": "deleted_by_person",
+   "deleted_by": "tobio",
+   "deleted_in": "803dd82e51b91b551ebad0055f7c7afab2335a39",
+   "deleted_at": "2026-04-19T02:40:32Z"
+  },
+  {
+   "pr": "https://github.com/githubnext/gh-aw/pull/147",
+   "repo": "githubnext/gh-aw",
+   "path": "pkg/cli/commands_file_watching_test.go",
+   "merged_at": "2025-08-20T21:26:23Z",
+   "agent": "Copilot",
+   "listed": false,
+   "state": "still_there"
+  },
+  {
+   "pr": "https://github.com/safedep/vet/pull/574",
+   "repo": "safedep/vet",
+   "path": "docs/assets/vet-terminal.png",
+   "merged_at": "2025-08-23T12:08:59Z",
+   "agent": "Copilot",
+   "listed": true,
+   "state": "deleted_by_person",
+   "deleted_by": "abhisek",
+   "deleted_in": "9c0e647772cd64ea325457cfb3429dd495a1d27a",
+   "deleted_at": "2026-01-03T06:54:25Z"
+  },
+  {
+   "pr": "https://github.com/primer/react/pull/6360",
+   "repo": "primer/react",
+   "path": ".playwright/snapshots/components/SelectPanel.test.ts-snapshots/SelectPanel-With-Select-All-dark-tritanopia-modern-action-list--true-linux.png",
+   "merged_at": "2025-08-04T11:55:00Z",
+   "agent": "Copilot",
+   "listed": true,
+   "state": "still_there"
+  },
+  {
+   "pr": "https://github.com/primer/react/pull/6360",
+   "repo": "primer/react",
+   "path": ".playwright/snapshots/components/ActionList.test.ts-snapshots/ActionList-Large-Item-dark-linux.png",
+   "merged_at": "2025-08-04T11:55:00Z",
+   "agent": "Copilot",
+   "listed": true,
+   "state": "still_there"
+  },
+  {
+   "pr": "https://github.com/elastic/terraform-provider-elasticstack/pull/1298",
+   "repo": "elastic/terraform-provider-elasticstack",
+   "path": "generated/slo/model_bulk_delete_request.go",
+   "merged_at": "2025-09-23T10:22:17Z",
+   "agent": "Copilot",
+   "listed": false,
+   "state": "deleted_by_person",
+   "deleted_by": "tobio",
+   "deleted_in": "803dd82e51b91b551ebad0055f7c7afab2335a39",
+   "deleted_at": "2026-04-19T02:40:32Z"
+  },
+  {
+   "pr": "https://github.com/githubnext/gh-aw/pull/1818",
+   "repo": "githubnext/gh-aw",
+   "path": ".github/workflows/shared/mcp/test_drain3_server.py",
+   "merged_at": "2025-10-17T20:03:51Z",
+   "agent": "Copilot",
+   "listed": false,
+   "state": "deleted_by_bot_or_agent",
+   "deleted_by": "Copilot",
+   "deleted_in": "e76ef4e246daab0176ecd2c6116454b0b1301562",
+   "deleted_at": "2026-06-21T14:28:53Z"
+  },
+  {
+   "pr": "https://github.com/novuhq/novu/pull/8965",
+   "repo": "novuhq/novu",
+   "path": "apps/api/src/app/subscribers-v2/usecases/chat-oauth-callback/slack-oauth-callback/slack-oauth-callback.usecase.ts",
+   "merged_at": "2025-08-31T18:05:10Z",
+   "agent": "Cursor",
+   "listed": false,
+   "state": "deleted_by_person",
+   "deleted_by": "ChmaraX",
+   "deleted_in": "49ba4d5ae3c5ffe1410a323eb172e0e6c3f6bfa6",
+   "deleted_at": "2025-10-28T12:46:12Z"
+  },
+  {
+   "pr": "https://github.com/dotnet/aspire/pull/9494",
+   "repo": "dotnet/aspire",
+   "path": "tests/Aspire.Hosting.Azure.Tests/AzureOpenAIExtensionsTests.cs",
+   "merged_at": "2025-05-29T20:38:49Z",
+   "agent": "Copilot",
+   "listed": false,
+   "state": "still_there"
+  },
+  {
+   "pr": "https://github.com/getsentry/sentry/pull/94573",
+   "repo": "getsentry/sentry",
+   "path": "src/sentry/migrations/0938_rm_eventattachment_fileid_part1.py",
+   "merged_at": "2025-07-02T17:37:17Z",
+   "agent": "Cursor",
+   "listed": false,
+   "state": "deleted_by_person",
+   "deleted_by": "vgrozdanic",
+   "deleted_in": "13cc2827106a5c7c16c5c4e4360a4960fe9d996b",
+   "deleted_at": "2026-08-07T06:31:46Z"
+  },
+  {
+   "pr": "https://github.com/cartography-cncf/cartography/pull/1828",
+   "repo": "cartography-cncf/cartography",
+   "path": "cartography/data/jobs/analysis/keycloak_inheritance.json",
+   "merged_at": "2025-08-29T23:00:27Z",
+   "agent": "OpenAI_Codex",
+   "listed": false,
+   "state": "deleted_by_person",
+   "deleted_by": "jychp",
+   "deleted_in": "60b443c46e616b1d7aeabb75384ce52e613b933b",
+   "deleted_at": "2026-04-23T23:10:02Z"
+  },
+  {
+   "pr": "https://github.com/sveltejs/kit/pull/14131",
+   "repo": "sveltejs/kit",
+   "path": "packages/kit/src/core/sync/write_types/test/layout-advanced/tsconfig.json",
+   "merged_at": "2025-08-20T13:29:48Z",
+   "agent": "Copilot",
+   "listed": true,
+   "state": "still_there"
+  },
+  {
+   "pr": "https://github.com/Azure/azure-sdk-for-python/pull/43269",
+   "repo": "Azure/azure-sdk-for-python",
+   "path": "sdk/durabletask/azure-mgmt-durabletask/azure/mgmt/durabletask/_utils/__init__.py",
+   "merged_at": "2025-10-09T04:31:29Z",
+   "agent": "Copilot",
+   "listed": false,
+   "state": "still_there"
+  },
+  {
+   "pr": "https://github.com/camunda/camunda/pull/35632",
+   "repo": "camunda/camunda",
+   "path": "qa/acceptance-tests/src/test/java/io/camunda/it/nodb/BasicAuthNoSecondaryStorageTest.java",
+   "merged_at": "2025-08-07T03:31:01Z",
+   "agent": "Copilot",
+   "listed": false,
+   "state": "deleted_by_bot_or_agent",
+   "deleted_by": "Claude",
+   "deleted_in": "79cce230cd8c899713afaa2ec8ed7c065d63b71e",
+   "deleted_at": "2026-09-15T11:42:01Z"
+  },
+  {
+   "pr": "https://github.com/liam-hq/liam/pull/3744",
+   "repo": "liam-hq/liam",
+   "path": "frontend/internal-packages/agent/src/getAnalyzedRequirements.test.ts",
+   "merged_at": "2025-10-14T10:43:19Z",
+   "agent": "Claude_Code",
+   "listed": false,
+   "state": "deleted_by_person",
+   "deleted_by": "sasamuku",
+   "deleted_in": "003ca266b4024fb0a0ca33194016584a98b97a39",
+   "deleted_at": "2026-10-22T08:55:13Z"
+  },
+  {
+   "pr": "https://github.com/githubnext/gh-aw/pull/629",
+   "repo": "githubnext/gh-aw",
+   "path": ".github/workflows/test-safe-output-missing-tool.md",
+   "merged_at": "2025-09-12T20:11:49Z",
+   "agent": "Copilot",
+   "listed": false,
+   "state": "deleted_by_person",
+   "deleted_by": "pelikhan",
+   "deleted_in": "b124a9bdfac8b3daaf1d77d6c4fda74991db9485",
+   "deleted_at": "2025-09-14T15:54:32Z"
+  },
+  {
+   "pr": "https://github.com/sveltejs/kit/pull/14131",
+   "repo": "sveltejs/kit",
+   "path": "packages/kit/src/core/config/fixtures/custom-src/svelte.config.js",
+   "merged_at": "2025-08-20T13:29:48Z",
+   "agent": "Copilot",
+   "listed": false,
+   "state": "deleted_by_person",
+   "deleted_by": "Rich-Harris",
+   "deleted_in": "aae44bad1d0a5f08a7707e350c771a74b5e5b17d",
+   "deleted_at": "2026-06-04T02:28:07Z"
+  },
+  {
+   "pr": "https://github.com/Azure/azure-sdk-for-python/pull/41352",
+   "repo": "Azure/azure-sdk-for-python",
+   "path": "eng/pipelines/tsp-spec-sync.yml",
+   "merged_at": "2025-06-12T19:44:18Z",
+   "agent": "Copilot",
+   "listed": false,
+   "state": "still_there"
+  },
+  {
+   "pr": "https://github.com/calcom/cal.com/pull/21152",
+   "repo": "calcom/cal.com",
+   "path": "packages/features/ee/workflows/lib/reminders/messageDispatcher.ts",
+   "merged_at": "2025-05-16T08:19:17Z",
+   "agent": "Devin",
+   "listed": false,
+   "state": "deleted_by_person",
+   "deleted_by": "hbjORbj",
+   "deleted_in": "ab21c7f805a089fa3a11ffd61c4a9aecc349c16c",
+   "deleted_at": "2026-04-15T12:52:36Z"
+  },
+  {
+   "pr": "https://github.com/LayerZero-Labs/devtools/pull/1539",
+   "repo": "LayerZero-Labs/devtools",
+   "path": "examples/ovault-evm/.prettierrc.js",
+   "merged_at": "2025-08-18T19:40:27Z",
+   "agent": "OpenAI_Codex",
+   "listed": true,
+   "state": "still_there"
+  },
+  {
+   "pr": "https://github.com/NVIDIA/cuda-python/pull/890",
+   "repo": "NVIDIA/cuda-python",
+   "path": "cuda_pathfinder/tests/child_load_nvidia_dynamic_lib_helper.py",
+   "merged_at": "2025-10-07T19:33:39Z",
+   "agent": "Copilot",
+   "listed": false,
+   "state": "still_there"
+  },
+  {
+   "pr": "https://github.com/open-metadata/OpenMetadata/pull/23202",
+   "repo": "open-metadata/OpenMetadata",
+   "path": "THREAT_MODEL.md",
+   "merged_at": "2025-10-12T17:44:16Z",
+   "agent": "Copilot",
+   "listed": true,
+   "state": "still_there"
+  },
+  {
+   "pr": "https://github.com/dotnet/android/pull/10194",
+   "repo": "dotnet/android",
+   "path": "src/native/clr/pinvoke-override/dynamic.cc",
+   "merged_at": "2025-08-04T15:49:19Z",
+   "agent": "Copilot",
+   "listed": false,
+   "state": "deleted_by_person",
+   "deleted_by": "simonrozsival",
+   "deleted_in": "d6205766a3d2bd0dd03f83028a718bdf6b47880b",
+   "deleted_at": "2026-07-09T21:11:39Z"
+  },
+  {
+   "pr": "https://github.com/cartography-cncf/cartography/pull/1828",
+   "repo": "cartography-cncf/cartography",
+   "path": "cartography/models/keycloak/authenticationflow.py",
+   "merged_at": "2025-08-29T23:00:27Z",
+   "agent": "OpenAI_Codex",
+   "listed": false,
+   "state": "still_there"
+  },
+  {
+   "pr": "https://github.com/Verified-zkEVM/clean/pull/227",
+   "repo": "Verified-zkEVM/clean",
+   "path": "Clean/Utils/Test/TestDecomposeProvablePair.lean",
+   "merged_at": "2025-07-25T10:20:27Z",
+   "agent": "Claude_Code",
+   "listed": false,
+   "state": "gone_no_commit_found"
+  },
+  {
+   "pr": "https://github.com/vitejs/vite/pull/20468",
+   "repo": "vitejs/vite",
+   "path": "packages/vite/src/node/plugins/prepareOutDir.ts",
+   "merged_at": "2025-09-22T12:35:09Z",
+   "agent": "Copilot",
+   "listed": false,
+   "state": "still_there"
+  },
+  {
+   "pr": "https://github.com/shopware/shopware/pull/11395",
+   "repo": "shopware/shopware",
+   "path": "tests/devops/Core/DevOps/StaticAnalyse/PHPStan/Rules/data/PublicServiceDecoratorRule/NonExistDecorator.php",
+   "merged_at": "2025-07-23T09:38:02Z",
+   "agent": "Copilot",
+   "listed": false,
+   "state": "still_there"
+  },
+  {
+   "pr": "https://github.com/cartography-cncf/cartography/pull/1664",
+   "repo": "cartography-cncf/cartography",
+   "path": "tests/unit/cartography/graph/test_matchlink.py",
+   "merged_at": "2025-07-04T06:54:15Z",
+   "agent": "OpenAI_Codex",
+   "listed": false,
+   "state": "still_there"
+  },
+  {
+   "pr": "https://github.com/shakacode/react_on_rails/pull/1786",
+   "repo": "shakacode/react_on_rails",
+   "path": "lib/generators/react_on_rails/templates/base/base/app/javascript/src/HelloWorld/ror_components/HelloWorld.client.tsx",
+   "merged_at": "2025-09-18T09:06:10Z",
+   "agent": "Claude_Code",
+   "listed": false,
+   "state": "deleted_by_person",
+   "deleted_by": "justin808",
+   "deleted_in": "b50a74d9045015479d2eb515adee5060963ec72d",
+   "deleted_at": "2025-11-25T04:53:55Z"
+  },
+  {
+   "pr": "https://github.com/fancy-regex/fancy-regex/pull/181",
+   "repo": "fancy-regex/fancy-regex",
+   "path": "playground/build.sh",
+   "merged_at": "2025-09-12T20:21:05Z",
+   "agent": "Copilot",
+   "listed": false,
+   "state": "still_there"
+  },
+  {
+   "pr": "https://github.com/vitejs/vite/pull/20468",
+   "repo": "vitejs/vite",
+   "path": "docs/public/og-image-announcing-vite3.webp",
+   "merged_at": "2025-09-22T12:35:09Z",
+   "agent": "Copilot",
+   "listed": true,
+   "state": "still_there"
+  },
+  {
+   "pr": "https://github.com/neondatabase/neon/pull/11698",
+   "repo": "neondatabase/neon",
+   "path": "docker-compose/ext-src/pg_hint_plan-src/regular-test.sh",
+   "merged_at": "2025-04-28T15:40:06Z",
+   "agent": "Devin",
+   "listed": false,
+   "state": "still_there"
+  },
+  {
+   "pr": "https://github.com/liam-hq/liam/pull/1909",
+   "repo": "liam-hq/liam",
+   "path": "frontend/apps/app/components/ProjectSessionsPage/ProjectSessionsPage.tsx",
+   "merged_at": "2025-06-10T08:55:45Z",
+   "agent": "Devin",
+   "listed": false,
+   "state": "deleted_by_person",
+   "deleted_by": "sasamuku",
+   "deleted_in": "e05883fe813a6762d98c1aad1351c3048e360899",
+   "deleted_at": "2026-10-22T06:50:56Z"
+  },
+  {
+   "pr": "https://github.com/dotnet/android/pull/10194",
+   "repo": "dotnet/android",
+   "path": "src/Xamarin.Android.Build.Tasks/Utilities/LlvmIrGenerator/LlvmIrArraySection.cs",
+   "merged_at": "2025-08-04T15:49:19Z",
+   "agent": "Copilot",
+   "listed": false,
+   "state": "deleted_by_person",
+   "deleted_by": "simonrozsival",
+   "deleted_in": "13e05fe1387cc5ad6e2959ddade8a9669916c16f",
+   "deleted_at": "2026-10-12T11:32:23Z"
+  },
+  {
+   "pr": "https://github.com/dotnet/aspire/pull/9494",
+   "repo": "dotnet/aspire",
+   "path": "tools/AspireMcpTools/AspireMcpTools.csproj",
+   "merged_at": "2025-05-29T20:38:49Z",
+   "agent": "Copilot",
+   "listed": false,
+   "state": "still_there"
+  },
+  {
+   "pr": "https://github.com/vaadin/flow/pull/21824",
+   "repo": "vaadin/flow",
+   "path": "flow-data/src/test/java/com/vaadin/flow/data/provider/hierarchy/HierarchicalDataCommunicatorViewportTest.java",
+   "merged_at": "2025-10-09T08:42:12Z",
+   "agent": "Copilot",
+   "listed": false,
+   "state": "still_there"
+  },
+  {
+   "pr": "https://github.com/microsoft/genaiscript/pull/1798",
+   "repo": "microsoft/genaiscript",
+   "path": "genaisrc/llmstxt-optimizer.genai.mts",
+   "merged_at": "2025-07-29T10:50:54Z",
+   "agent": "Copilot",
+   "listed": false,
+   "state": "gone_no_commit_found"
+  },
+  {
+   "pr": "https://github.com/liam-hq/liam/pull/3011",
+   "repo": "liam-hq/liam",
+   "path": "frontend/packages/erd-core/src/features/erd/components/ERDRenderer/CommandPalette/CommandPaletteSearchInput/index.ts",
+   "merged_at": "2025-08-19T07:32:07Z",
+   "agent": "Devin",
+   "listed": false,
+   "state": "still_there"
+  },
+  {
+   "pr": "https://github.com/liam-hq/liam/pull/3011",
+   "repo": "liam-hq/liam",
+   "path": "frontend/internal-packages/agent/src/pm-agent/prompts/pmAnalysisPrompts.ts",
+   "merged_at": "2025-08-19T07:32:07Z",
+   "agent": "Devin",
+   "listed": false,
+   "state": "deleted_by_person",
+   "deleted_by": "sasamuku",
+   "deleted_in": "003ca266b4024fb0a0ca33194016584a98b97a39",
+   "deleted_at": "2026-10-22T08:55:13Z"
+  },
+  {
+   "pr": "https://github.com/liam-hq/liam/pull/2200",
+   "repo": "liam-hq/liam",
+   "path": "frontend/internal-packages/schema-bench/src/workspace/benchmark.ts",
+   "merged_at": "2025-06-26T05:46:18Z",
+   "agent": "Devin",
+   "listed": false,
+   "state": "deleted_by_person",
+   "deleted_by": "hoshinotsuyoshi",
+   "deleted_in": "97cf9f42a44d9bc3ea74d2f11b42b61fd21b79f2",
+   "deleted_at": "2025-06-27T03:42:56Z"
+  },
+  {
+   "pr": "https://github.com/LayerZero-Labs/devtools/pull/1539",
+   "repo": "LayerZero-Labs/devtools",
+   "path": "examples/ovault-evm/.eslintrc.js",
+   "merged_at": "2025-08-18T19:40:27Z",
+   "agent": "OpenAI_Codex",
+   "listed": true,
+   "state": "still_there"
+  },
+  {
+   "pr": "https://github.com/liam-hq/liam/pull/2745",
+   "repo": "liam-hq/liam",
+   "path": ".claude/commands/create-internal-issue.md",
+   "merged_at": "2025-07-31T02:42:40Z",
+   "agent": "Devin",
+   "listed": true,
+   "state": "still_there"
+  },
+  {
+   "pr": "https://github.com/tphakala/birdnet-go/pull/1201",
+   "repo": "tphakala/birdnet-go",
+   "path": "frontend/src/lib/stores/settings.species.test.ts",
+   "merged_at": "2025-08-24T08:57:34Z",
+   "agent": "Claude_Code",
+   "listed": false,
+   "state": "still_there"
+  },
+  {
+   "pr": "https://github.com/dotnet/sdk/pull/51039",
+   "repo": "dotnet/sdk",
+   "path": "test/TestAssets/TestProjects/WatchAspire/WatchAspire.MigrationService/Worker.cs",
+   "merged_at": "2025-10-02T00:16:29Z",
+   "agent": "Copilot",
+   "listed": false,
+   "state": "still_there"
+  },
+  {
+   "pr": "https://github.com/vitejs/vite/pull/20468",
+   "repo": "vitejs/vite",
+   "path": "docs/images/v3-docs.webp",
+   "merged_at": "2025-09-22T12:35:09Z",
+   "agent": "Copilot",
+   "listed": true,
+   "state": "still_there"
+  },
+  {
+   "pr": "https://github.com/MetaMask/metamask-mobile/pull/17579",
+   "repo": "MetaMask/metamask-mobile",
+   "path": "app/components/Views/confirmations/hooks/pay/useTransactionRequiredFiat.ts",
+   "merged_at": "2025-07-29T17:55:19Z",
+   "agent": "Cursor",
+   "listed": false,
+   "state": "deleted_by_person",
+   "deleted_by": "matthewwalsh0",
+   "deleted_in": "6f1c0f261087285efcafafa8a5d36e51db2e4692",
+   "deleted_at": "2025-11-10T10:19:08Z"
+  },
+  {
+   "pr": "https://github.com/dotnet/fsharp/pull/18929",
+   "repo": "dotnet/fsharp",
+   "path": "tests/EndToEndBuildTests/DesignTimeProviderPackaging/TestDesignTimeProviderPackaging.sh",
+   "merged_at": "2025-10-22T09:02:59Z",
+   "agent": "Copilot",
+   "listed": false,
+   "state": "still_there"
+  },
+  {
+   "pr": "https://github.com/neondatabase/neon/pull/11698",
+   "repo": "neondatabase/neon",
+   "path": ".github/workflows/cloud-extensions.yml",
+   "merged_at": "2025-04-28T15:40:06Z",
+   "agent": "Devin",
+   "listed": true,
+   "state": "still_there"
+  },
+  {
+   "pr": "https://github.com/sveltejs/kit/pull/14131",
+   "repo": "sveltejs/kit",
+   "path": "packages/kit/src/core/sync/write_types/test/slugs-layout-not-all-pages-have-load/package.json",
+   "merged_at": "2025-08-20T13:29:48Z",
+   "agent": "Copilot",
+   "listed": true,
+   "state": "still_there"
+  },
+  {
+   "pr": "https://github.com/dotnet/aspire/pull/10786",
+   "repo": "dotnet/aspire",
+   "path": "playground/AspireWithNode/NodeFrontend/Dockerfile",
+   "merged_at": "2025-09-30T23:39:50Z",
+   "agent": "Copilot",
+   "listed": true,
+   "state": "deleted_by_person",
+   "deleted_by": "davidfowl",
+   "deleted_in": "50885e975df749508a6834526f4610c600b32cad",
+   "deleted_at": "2026-05-20T03:49:28Z"
+  },
+  {
+   "pr": "https://github.com/sveltejs/kit/pull/14131",
+   "repo": "sveltejs/kit",
+   "path": "packages/kit/src/core/sync/write_types/test/param-type-inference/package.json",
+   "merged_at": "2025-08-20T13:29:48Z",
+   "agent": "Copilot",
+   "listed": true,
+   "state": "still_there"
+  },
+  {
+   "pr": "https://github.com/getsentry/sentry-docs/pull/14503",
+   "repo": "getsentry/sentry-docs",
+   "path": "docs/product/test-analytics/img/TA-dash.png",
+   "merged_at": "2025-10-01T06:50:21Z",
+   "agent": "Cursor",
+   "listed": true,
+   "state": "deleted_by_person",
+   "deleted_by": "sfanahata",
+   "deleted_in": "45af3a8801dfe5265b7fb8c519f64a5658fab425",
+   "deleted_at": "2026-01-26T21:52:00Z"
+  },
+  {
+   "pr": "https://github.com/pyth-network/pyth-crosschain/pull/2676",
+   "repo": "pyth-network/pyth-crosschain",
+   "path": "apps/developer-hub/public/favicon-16x16.png",
+   "merged_at": "2025-05-27T22:10:50Z",
+   "agent": "Devin",
+   "listed": true,
+   "state": "deleted_by_person",
+   "deleted_by": "aditya520",
+   "deleted_in": "aa6ffd100e305686332679d7288271b98af8dc0b",
+   "deleted_at": "2026-09-07T21:24:41Z"
+  },
+  {
+   "pr": "https://github.com/liam-hq/liam/pull/1909",
+   "repo": "liam-hq/liam",
+   "path": "CLAUDE.md",
+   "merged_at": "2025-06-10T08:55:45Z",
+   "agent": "Devin",
+   "listed": true,
+   "state": "still_there"
+  },
+  {
+   "pr": "https://github.com/calcom/cal.com/pull/21523",
+   "repo": "calcom/cal.com",
+   "path": "packages/app-store/intercom/static/1.webp",
+   "merged_at": "2025-05-30T12:56:49Z",
+   "agent": "Devin",
+   "listed": true,
+   "state": "still_there"
+  },
+  {
+   "pr": "https://github.com/getsentry/sentry-docs/pull/14503",
+   "repo": "getsentry/sentry-docs",
+   "path": "docs/product/explore/logs/img/LogQueries.png",
+   "merged_at": "2025-10-01T06:50:21Z",
+   "agent": "Cursor",
+   "listed": true,
+   "state": "deleted_by_person",
+   "deleted_by": "sfanahata",
+   "deleted_in": "469ca9b5052d1c750ac7eaf8e9cfb92c762c51a8",
+   "deleted_at": "2026-07-01T18:33:03Z"
+  },
+  {
+   "pr": "https://github.com/open-metadata/OpenMetadata/pull/23202",
+   "repo": "open-metadata/OpenMetadata",
+   "path": "INCIDENT_RESPONSE.md",
+   "merged_at": "2025-10-12T17:44:16Z",
+   "agent": "Copilot",
+   "listed": true,
+   "state": "still_there"
+  },
+  {
+   "pr": "https://github.com/liam-hq/liam/pull/1909",
+   "repo": "liam-hq/liam",
+   "path": "frontend/internal-packages/agent/eslint.config.mjs",
+   "merged_at": "2025-06-10T08:55:45Z",
+   "agent": "Devin",
+   "listed": true,
+   "state": "deleted_by_person",
+   "deleted_by": "sasamuku",
+   "deleted_in": "003ca266b4024fb0a0ca33194016584a98b97a39",
+   "deleted_at": "2026-10-22T08:55:13Z"
+  },
+  {
+   "pr": "https://github.com/pyth-network/pyth-crosschain/pull/2676",
+   "repo": "pyth-network/pyth-crosschain",
+   "path": "apps/developer-hub/public/favicon-light.ico",
+   "merged_at": "2025-05-27T22:10:50Z",
+   "agent": "Devin",
+   "listed": true,
+   "state": "deleted_by_person",
+   "deleted_by": "aditya520",
+   "deleted_in": "aa6ffd100e305686332679d7288271b98af8dc0b",
+   "deleted_at": "2026-09-07T21:24:41Z"
+  },
+  {
+   "pr": "https://github.com/dotnet/aspire/pull/9494",
+   "repo": "dotnet/aspire",
+   "path": ".github/workflows/refresh-manifests.yml",
+   "merged_at": "2025-05-29T20:38:49Z",
+   "agent": "Copilot",
+   "listed": true,
+   "state": "still_there"
+  },
+  {
+   "pr": "https://github.com/documentdb/documentdb/pull/204",
+   "repo": "documentdb/documentdb",
+   "path": "packaging/Dockerfile_build_rpm_packages",
+   "merged_at": "2025-06-18T07:49:04Z",
+   "agent": "Copilot",
+   "listed": true,
+   "state": "deleted_by_person",
+   "deleted_by": "shuaitian-git",
+   "deleted_in": "c66a3576ac8f18fa6539aa5ef9f8cd795e749a70",
+   "deleted_at": "2025-09-19T05:52:06Z"
+  },
+  {
+   "pr": "https://github.com/fancy-regex/fancy-regex/pull/181",
+   "repo": "fancy-regex/fancy-regex",
+   "path": ".github/workflows/deploy-playground.yml",
+   "merged_at": "2025-09-12T20:21:05Z",
+   "agent": "Copilot",
+   "listed": true,
+   "state": "gone_no_commit_found"
+  },
+  {
+   "pr": "https://github.com/calcom/cal.com/pull/21152",
+   "repo": "calcom/cal.com",
+   "path": ".github/workflows/cron-checkSmsPrices.yml",
+   "merged_at": "2025-05-16T08:19:17Z",
+   "agent": "Devin",
+   "listed": true,
+   "state": "still_there"
+  },
+  {
+   "pr": "https://github.com/vaadin/flow/pull/21824",
+   "repo": "vaadin/flow",
+   "path": ".github/workflows/formatter.yml",
+   "merged_at": "2025-10-09T08:42:12Z",
+   "agent": "Copilot",
+   "listed": true,
+   "state": "still_there"
+  },
+  {
+   "pr": "https://github.com/dotnet/aspire/pull/9494",
+   "repo": "dotnet/aspire",
+   "path": "tests/Aspire.Hosting.Azure.Tests/Snapshots/AzureContainerAppsTests.KeyVaultReferenceHandling.verified.json",
+   "merged_at": "2025-05-29T20:38:49Z",
+   "agent": "Copilot",
+   "listed": true,
+   "state": "still_there"
+  },
+  {
+   "pr": "https://github.com/dotnet/aspire/pull/10786",
+   "repo": "dotnet/aspire",
+   "path": "playground/AspireWithJavaScript/AspireJavaScript.React/Dockerfile",
+   "merged_at": "2025-09-30T23:39:50Z",
+   "agent": "Copilot",
+   "listed": true,
+   "state": "still_there"
+  },
+  {
+   "pr": "https://github.com/pyth-network/pyth-crosschain/pull/2676",
+   "repo": "pyth-network/pyth-crosschain",
+   "path": "apps/developer-hub/tsconfig.json",
+   "merged_at": "2025-05-27T22:10:50Z",
+   "agent": "Devin",
+   "listed": true,
+   "state": "deleted_by_person",
+   "deleted_by": "aditya520",
+   "deleted_in": "aa6ffd100e305686332679d7288271b98af8dc0b",
+   "deleted_at": "2026-09-07T21:24:41Z"
+  },
+  {
+   "pr": "https://github.com/dotnet/aspire/pull/10786",
+   "repo": "dotnet/aspire",
+   "path": "playground/AspireWithJavaScript/AspireJavaScript.Vite/.eslintrc.cjs",
+   "merged_at": "2025-09-30T23:39:50Z",
+   "agent": "Copilot",
+   "listed": true,
+   "state": "deleted_by_person",
+   "deleted_by": "IEvangelist",
+   "deleted_in": "e482d948f972009c621c823001a89ba315d7f1e8",
+   "deleted_at": "2026-08-10T17:34:37Z"
+  },
+  {
+   "pr": "https://github.com/vaadin/flow/pull/21824",
+   "repo": "vaadin/flow",
+   "path": "flow-plugins/flow-maven-plugin/src/it/commercial-banner-build/pom.xml",
+   "merged_at": "2025-10-09T08:42:12Z",
+   "agent": "Copilot",
+   "listed": true,
+   "state": "still_there"
+  },
+  {
+   "pr": "https://github.com/dotnet/arcade/pull/16035",
+   "repo": "dotnet/arcade",
+   "path": "src/Microsoft.DotNet.SignTool.Tests/Resources/InnerZipFile.zip",
+   "merged_at": "2025-10-07T22:52:27Z",
+   "agent": "Copilot",
+   "listed": true,
+   "state": "still_there"
+  },
+  {
+   "pr": "https://github.com/microsoft/testfx/pull/5792",
+   "repo": "microsoft/testfx",
+   "path": ".github/copilot-instructions.md",
+   "merged_at": "2025-07-03T10:13:15Z",
+   "agent": "Copilot",
+   "listed": true,
+   "state": "still_there"
+  },
+  {
+   "pr": "https://github.com/calcom/cal.com/pull/21523",
+   "repo": "calcom/cal.com",
+   "path": "packages/app-store/intercom/static/3.webp",
+   "merged_at": "2025-05-30T12:56:49Z",
+   "agent": "Devin",
+   "listed": true,
+   "state": "still_there"
+  },
+  {
+   "pr": "https://github.com/Kiln-AI/Kiln/pull/648",
+   "repo": "Kiln-AI/Kiln",
+   "path": "app/web_ui/static/images/compare.png",
+   "merged_at": "2025-10-07T14:31:11Z",
+   "agent": "OpenAI_Codex",
+   "listed": true,
+   "state": "still_there"
+  },
+  {
+   "pr": "https://github.com/stack-auth/stack-auth/pull/503",
+   "repo": "stack-auth/stack-auth",
+   "path": ".github/workflows/auto-update.yaml",
+   "merged_at": "2025-03-13T01:44:34Z",
+   "agent": "Devin",
+   "listed": true,
+   "state": "still_there"
+  },
+  {
+   "pr": "https://github.com/mlflow/mlflow/pull/17973",
+   "repo": "mlflow/mlflow",
+   "path": "docs/static/images/mlflow-3/eval-monitor/scorers/make-judge-scorer.png",
+   "merged_at": "2025-09-29T03:14:12Z",
+   "agent": "Copilot",
+   "listed": true,
+   "state": "deleted_by_person",
+   "deleted_by": "SomtochiUmeh",
+   "deleted_in": "fd4622566f78ce84c995a80859e830120ccbc3ac",
+   "deleted_at": "2026-02-01T02:29:35Z"
+  },
+  {
+   "pr": "https://github.com/githubnext/gh-aw/pull/1818",
+   "repo": "githubnext/gh-aw",
+   "path": "pkg/workflow/js/create_pr_review_comment.test.cjs.tmp",
+   "merged_at": "2025-10-17T20:03:51Z",
+   "agent": "Copilot",
+   "listed": true,
+   "state": "deleted_by_bot_or_agent",
+   "deleted_by": "Copilot",
+   "deleted_in": "f1d0c150c60cd9f499a58da81cce5c31416baef1",
+   "deleted_at": "2025-11-19T16:30:23Z"
+  },
+  {
+   "pr": "https://github.com/NVIDIA/cuda-python/pull/890",
+   "repo": "NVIDIA/cuda-python",
+   "path": "ruff.toml",
+   "merged_at": "2025-10-07T19:33:39Z",
+   "agent": "Copilot",
+   "listed": true,
+   "state": "still_there"
+  },
+  {
+   "pr": "https://github.com/liam-hq/liam/pull/1909",
+   "repo": "liam-hq/liam",
+   "path": "frontend/packages/pglite-server/eslint.config.js",
+   "merged_at": "2025-06-10T08:55:45Z",
+   "agent": "Devin",
+   "listed": true,
+   "state": "deleted_by_person",
+   "deleted_by": "junkisai",
+   "deleted_in": "7d1d1803002e613ab3758a12b89a8f4fb2db934b",
+   "deleted_at": "2025-06-24T02:00:02Z"
+  },
+  {
+   "pr": "https://github.com/calcom/cal.com/pull/22311",
+   "repo": "calcom/cal.com",
+   "path": "docs/self-hosting/guides/organization/images/settings-admin-features-organization.png",
+   "merged_at": "2025-07-24T18:14:39Z",
+   "agent": "Devin",
+   "listed": true,
+   "state": "deleted_by_person",
+   "deleted_by": "hbjORbj",
+   "deleted_in": "ab21c7f805a089fa3a11ffd61c4a9aecc349c16c",
+   "deleted_at": "2026-04-15T12:52:36Z"
+  },
+  {
+   "pr": "https://github.com/liam-hq/liam/pull/1890",
+   "repo": "liam-hq/liam",
+   "path": "CLAUDE.md",
+   "merged_at": "2025-06-11T02:46:55Z",
+   "agent": "Devin",
+   "listed": true,
+   "state": "still_there"
+  },
+  {
+   "pr": "https://github.com/liam-hq/liam/pull/3796",
+   "repo": "liam-hq/liam",
+   "path": "frontend/apps/app/components/SessionDetailPage/utils/isEmptySchema.ts",
+   "merged_at": "2025-10-21T00:36:59Z",
+   "agent": "Devin",
+   "listed": true,
+   "state": "deleted_by_person",
+   "deleted_by": "junkisai",
+   "deleted_in": "b4fcf06283cb261a00bb7b18dd371d5494d47648",
+   "deleted_at": "2025-10-23T07:55:49Z"
+  },
+  {
+   "pr": "https://github.com/liam-hq/liam/pull/1890",
+   "repo": "liam-hq/liam",
+   "path": "frontend/internal-packages/agent/biome.jsonc",
+   "merged_at": "2025-06-11T02:46:55Z",
+   "agent": "Devin",
+   "listed": true,
+   "state": "deleted_by_person",
+   "deleted_by": "sasamuku",
+   "deleted_in": "003ca266b4024fb0a0ca33194016584a98b97a39",
+   "deleted_at": "2026-10-22T08:55:13Z"
+  },
+  {
+   "pr": "https://github.com/reown-com/appkit/pull/4437",
+   "repo": "reown-com/appkit",
+   "path": ".github/dependabot.yml",
+   "merged_at": "2025-06-04T14:29:30Z",
+   "agent": "Devin",
+   "listed": true,
+   "state": "still_there"
+  },
+  {
+   "pr": "https://github.com/liam-hq/liam/pull/1296",
+   "repo": "liam-hq/liam",
+   "path": "frontend/apps/erd-web/prism.wasm",
+   "merged_at": "2025-04-11T05:35:09Z",
+   "agent": "Devin",
+   "listed": true,
+   "state": "gone_no_commit_found"
+  },
+  {
+   "pr": "https://github.com/vllm-project/semantic-router/pull/322",
+   "repo": "vllm-project/semantic-router",
+   "path": "deploy/docker-compose.tracing.yaml",
+   "merged_at": "2025-10-03T15:48:30Z",
+   "agent": "Copilot",
+   "listed": true,
+   "state": "deleted_by_person",
+   "deleted_by": "JaredforReal",
+   "deleted_in": "264430495a7d8dbe5563e5b665c2610bfcc15442",
+   "deleted_at": "2025-10-09T14:08:49Z"
+  },
+  {
+   "pr": "https://github.com/vaadin/flow/pull/21824",
+   "repo": "vaadin/flow",
+   "path": "flow-plugins/flow-gradle-plugin/src/functionalTest/resources/commercial-addon.jar",
+   "merged_at": "2025-10-09T08:42:12Z",
+   "agent": "Copilot",
+   "listed": true,
+   "state": "still_there"
+  },
+  {
+   "pr": "https://github.com/dotnet/runtime/pull/119229",
+   "repo": "dotnet/runtime",
+   "path": "es-metadata.yml",
+   "merged_at": "2025-09-17T01:17:40Z",
+   "agent": "Copilot",
+   "listed": true,
+   "state": "still_there"
+  },
+  {
+   "pr": "https://github.com/calcom/cal.com/pull/21523",
+   "repo": "calcom/cal.com",
+   "path": "packages/app-store/intercom/static/2.webp",
+   "merged_at": "2025-05-30T12:56:49Z",
+   "agent": "Devin",
+   "listed": true,
+   "state": "still_there"
+  },
+  {
+   "pr": "https://github.com/pola-rs/r-polars/pull/1559",
+   "repo": "pola-rs/r-polars",
+   "path": ".github/workflows/copilot-setup-steps.yml",
+   "merged_at": "2025-09-30T15:17:37Z",
+   "agent": "Copilot",
+   "listed": true,
+   "state": "still_there"
+  },
+  {
+   "pr": "https://github.com/spcl/dace/pull/2019",
+   "repo": "spcl/dace",
+   "path": ".github/workflows/copilot-setup-steps.yml",
+   "merged_at": "2025-06-09T16:07:13Z",
+   "agent": "Copilot",
+   "listed": true,
+   "state": "still_there"
+  },
+  {
+   "pr": "https://github.com/obophenotype/cell-ontology/pull/3204",
+   "repo": "obophenotype/cell-ontology",
+   "path": "CLAUDE.md",
+   "merged_at": "2025-08-11T12:11:51Z",
+   "agent": "Copilot",
+   "listed": true,
+   "state": "still_there"
+  },
+  {
+   "pr": "https://github.com/vitejs/vite-plugin-react/pull/933",
+   "repo": "vitejs/vite-plugin-react",
+   "path": "packages/plugin-rsc/examples/browser-mode2/tsconfig.json",
+   "merged_at": "2025-10-23T02:08:06Z",
+   "agent": "Copilot",
+   "listed": true,
+   "state": "gone_no_commit_found"
+  },
+  {
+   "pr": "https://github.com/liam-hq/liam/pull/1890",
+   "repo": "liam-hq/liam",
+   "path": "frontend/internal-packages/e2e/eslint.config.mjs",
+   "merged_at": "2025-06-11T02:46:55Z",
+   "agent": "Devin",
+   "listed": true,
+   "state": "still_there"
+  },
+  {
+   "pr": "https://github.com/open-metadata/OpenMetadata/pull/23202",
+   "repo": "open-metadata/OpenMetadata",
+   "path": "APPLICATION.md",
+   "merged_at": "2025-10-12T17:44:16Z",
+   "agent": "Copilot",
+   "listed": true,
+   "state": "still_there"
+  },
+  {
+   "pr": "https://github.com/githubnext/gh-aw/pull/1818",
+   "repo": "githubnext/gh-aw",
+   "path": "pkg/workflow/js/add_labels.test.cjs.tmp",
+   "merged_at": "2025-10-17T20:03:51Z",
+   "agent": "Copilot",
+   "listed": true,
+   "state": "deleted_by_bot_or_agent",
+   "deleted_by": "Copilot",
+   "deleted_in": "f1d0c150c60cd9f499a58da81cce5c31416baef1",
+   "deleted_at": "2025-11-19T16:30:23Z"
+  },
+  {
+   "pr": "https://github.com/valkey-io/valkey-glide/pull/4353",
+   "repo": "valkey-io/valkey-glide",
+   "path": ".github/workflows/package.json",
+   "merged_at": "2025-07-17T11:04:32Z",
+   "agent": "Copilot",
+   "listed": true,
+   "state": "gone_no_commit_found"
+  },
+  {
+   "pr": "https://github.com/mlflow/mlflow/pull/17973",
+   "repo": "mlflow/mlflow",
+   "path": "docs/static/images/mlflow-3/eval-monitor/scorers/llm-judge-vs-agent-judge.png",
+   "merged_at": "2025-09-29T03:14:12Z",
+   "agent": "Copilot",
+   "listed": true,
+   "state": "deleted_by_person",
+   "deleted_by": "SomtochiUmeh",
+   "deleted_in": "fd4622566f78ce84c995a80859e830120ccbc3ac",
+   "deleted_at": "2026-02-01T02:29:35Z"
+  },
+  {
+   "pr": "https://github.com/githubnext/gh-aw/pull/147",
+   "repo": "githubnext/gh-aw",
+   "path": "package.json",
+   "merged_at": "2025-08-20T21:26:23Z",
+   "agent": "Copilot",
+   "listed": true,
+   "state": "deleted_by_bot_or_agent",
+   "deleted_by": "Copilot",
+   "deleted_in": "ce5dbc6dde84c01544654a9887ccbfe2a7d75d36",
+   "deleted_at": "2025-09-18T07:17:09Z"
+  },
+  {
+   "pr": "https://github.com/neondatabase/neon/pull/11698",
+   "repo": "neondatabase/neon",
+   "path": ".github/workflows/build_and_run_selected_test.yml",
+   "merged_at": "2025-04-28T15:40:06Z",
+   "agent": "Devin",
+   "listed": true,
+   "state": "still_there"
+  },
+  {
+   "pr": "https://github.com/calcom/cal.com/pull/22311",
+   "repo": "calcom/cal.com",
+   "path": "docs/self-hosting/guides/organization/images/organization-creation.png",
+   "merged_at": "2025-07-24T18:14:39Z",
+   "agent": "Devin",
+   "listed": true,
+   "state": "deleted_by_person",
+   "deleted_by": "hbjORbj",
+   "deleted_in": "ab21c7f805a089fa3a11ffd61c4a9aecc349c16c",
+   "deleted_at": "2026-04-15T12:52:36Z"
+  },
+  {
+   "pr": "https://github.com/dotnet/fsharp/pull/18929",
+   "repo": "dotnet/fsharp",
+   "path": "es-metadata.yml",
+   "merged_at": "2025-10-22T09:02:59Z",
+   "agent": "Copilot",
+   "listed": true,
+   "state": "still_there"
+  },
+  {
+   "pr": "https://github.com/pyth-network/pyth-crosschain/pull/2827",
+   "repo": "pyth-network/pyth-crosschain",
+   "path": "clippy.toml",
+   "merged_at": "2025-07-07T23:21:11Z",
+   "agent": "Devin",
+   "listed": true,
+   "state": "still_there"
+  },
+  {
+   "pr": "https://github.com/githubnext/gh-aw/pull/147",
+   "repo": "githubnext/gh-aw",
+   "path": ".golangci.yml",
+   "merged_at": "2025-08-20T21:26:23Z",
+   "agent": "Copilot",
+   "listed": true,
+   "state": "still_there"
+  },
+  {
+   "pr": "https://github.com/kurotu/VRCQuestTools/pull/121",
+   "repo": "kurotu/VRCQuestTools",
+   "path": ".vscode/mcp.json",
+   "merged_at": "2025-08-30T04:32:21Z",
+   "agent": "Copilot",
+   "listed": true,
+   "state": "deleted_by_person",
+   "deleted_by": "kurotu",
+   "deleted_in": "82ba46531a5edabf7b6b6838c1bf566a9ea31dc0",
+   "deleted_at": "2026-03-13T17:22:59Z"
+  },
+  {
+   "pr": "https://github.com/a2aproject/a2a-dotnet/pull/172",
+   "repo": "a2aproject/a2a-dotnet",
+   "path": "global.json",
+   "merged_at": "2025-09-08T17:03:52Z",
+   "agent": "Copilot",
+   "listed": true,
+   "state": "still_there"
+  },
+  {
+   "pr": "https://github.com/NVIDIA/cuda-python/pull/884",
+   "repo": "NVIDIA/cuda-python",
+   "path": "cuda_pathfinder/docs/Makefile",
+   "merged_at": "2025-08-27T06:36:52Z",
+   "agent": "Copilot",
+   "listed": true,
+   "state": "still_there"
+  },
+  {
+   "pr": "https://github.com/vitejs/vite-plugin-react/pull/933",
+   "repo": "vitejs/vite-plugin-react",
+   "path": "packages/plugin-rsc/examples/browser-mode2/package.json",
+   "merged_at": "2025-10-23T02:08:06Z",
+   "agent": "Copilot",
+   "listed": true,
+   "state": "gone_no_commit_found"
+  },
+  {
+   "pr": "https://github.com/githubnext/gh-aw/pull/1818",
+   "repo": "githubnext/gh-aw",
+   "path": "pkg/workflow/js/add_comment.test.cjs.tmp",
+   "merged_at": "2025-10-17T20:03:51Z",
+   "agent": "Copilot",
+   "listed": true,
+   "state": "deleted_by_bot_or_agent",
+   "deleted_by": "Copilot",
+   "deleted_in": "f1d0c150c60cd9f499a58da81cce5c31416baef1",
+   "deleted_at": "2025-11-19T16:30:23Z"
+  },
+  {
+   "pr": "https://github.com/Kiln-AI/Kiln/pull/648",
+   "repo": "Kiln-AI/Kiln",
+   "path": "app/web_ui/static/images/docs.png",
+   "merged_at": "2025-10-07T14:31:11Z",
+   "agent": "OpenAI_Codex",
+   "listed": true,
+   "state": "still_there"
+  },
+  {
+   "pr": "https://github.com/documentdb/documentdb/pull/204",
+   "repo": "documentdb/documentdb",
+   "path": "packaging/test_packages/Dockerfile_test_install_rpm_packages",
+   "merged_at": "2025-06-18T07:49:04Z",
+   "agent": "Copilot",
+   "listed": true,
+   "state": "deleted_by_person",
+   "deleted_by": "shuaitian-git",
+   "deleted_in": "c66a3576ac8f18fa6539aa5ef9f8cd795e749a70",
+   "deleted_at": "2025-09-19T05:52:06Z"
+  },
+  {
+   "pr": "https://github.com/fancy-regex/fancy-regex/pull/181",
+   "repo": "fancy-regex/fancy-regex",
+   "path": "playground/Cargo.toml",
+   "merged_at": "2025-09-12T20:21:05Z",
+   "agent": "Copilot",
+   "listed": true,
+   "state": "still_there"
+  },
+  {
+   "pr": "https://github.com/microsoft/service-fabric-services-and-actors-dotnet/pull/480",
+   "repo": "microsoft/service-fabric-services-and-actors-dotnet",
+   "path": "Directory.Build.targets",
+   "merged_at": "2025-10-01T16:29:42Z",
+   "agent": "Copilot",
+   "listed": true,
+   "state": "still_there"
+  },
+  {
+   "pr": "https://github.com/dotnet/aspire/pull/11778",
+   "repo": "dotnet/aspire",
+   "path": "extension/package-lock.json",
+   "merged_at": "2025-10-03T21:26:44Z",
+   "agent": "Copilot",
+   "listed": true,
+   "state": "deleted_by_person",
+   "deleted_by": "davidfowl",
+   "deleted_in": "26951edcecebe6aefbe2d650458cb32987e5c7ed",
+   "deleted_at": "2026-05-25T23:48:12Z"
+  },
+  {
+   "pr": "https://github.com/githubnext/gh-aw/pull/629",
+   "repo": "githubnext/gh-aw",
+   "path": "docs/src/assets/houston.webp",
+   "merged_at": "2025-09-12T20:11:49Z",
+   "agent": "Copilot",
+   "listed": true,
+   "state": "still_there"
+  },
+  {
+   "pr": "https://github.com/microsoft/typespec/pull/7651",
+   "repo": "microsoft/typespec",
+   "path": "packages/http-client-csharp/eng/MTG.snk",
+   "merged_at": "2025-08-14T22:58:47Z",
+   "agent": "Copilot",
+   "listed": true,
+   "state": "still_there"
+  },
+  {
+   "pr": "https://github.com/NVIDIA/cuda-python/pull/890",
+   "repo": "NVIDIA/cuda-python",
+   "path": "cuda_pathfinder/docs/Makefile",
+   "merged_at": "2025-10-07T19:33:39Z",
+   "agent": "Copilot",
+   "listed": true,
+   "state": "still_there"
+  },
+  {
+   "pr": "https://github.com/mlflow/mlflow/pull/17973",
+   "repo": "mlflow/mlflow",
+   "path": "docs/static/images/mlflow-3/eval-monitor/scorers/agentic-judge-result.png",
+   "merged_at": "2025-09-29T03:14:12Z",
+   "agent": "Copilot",
+   "listed": true,
+   "state": "deleted_by_person",
+   "deleted_by": "SomtochiUmeh",
+   "deleted_in": "fd4622566f78ce84c995a80859e830120ccbc3ac",
+   "deleted_at": "2026-02-01T02:29:35Z"
+  },
+  {
+   "pr": "https://github.com/liam-hq/liam/pull/1304",
+   "repo": "liam-hq/liam",
+   "path": ".clineignore",
+   "merged_at": "2025-04-11T11:12:06Z",
+   "agent": "Devin",
+   "listed": true,
+   "state": "deleted_by_bot_or_agent",
+   "deleted_by": "devin-ai-integration[bot]",
+   "deleted_in": "aee53a3c691cb5929288239af93188ac8e40e7a7",
+   "deleted_at": "2025-08-29T04:55:26Z"
+  },
+  {
+   "pr": "https://github.com/camunda/camunda/pull/35632",
+   "repo": "camunda/camunda",
+   "path": "search/search-client-util/pom.xml",
+   "merged_at": "2025-08-07T03:31:01Z",
+   "agent": "Copilot",
+   "listed": true,
+   "state": "gone_no_commit_found"
+  },
+  {
+   "pr": "https://github.com/documentdb/documentdb/pull/204",
+   "repo": "documentdb/documentdb",
+   "path": ".github/workflows/build_rpm_packages.yml",
+   "merged_at": "2025-06-18T07:49:04Z",
+   "agent": "Copilot",
+   "listed": true,
+   "state": "still_there"
+  },
+  {
+   "pr": "https://github.com/k3nsei/ng-in-viewport/pull/1558",
+   "repo": "k3nsei/ng-in-viewport",
+   "path": "agents.md",
+   "merged_at": "2025-08-22T13:22:46Z",
+   "agent": "Copilot",
+   "listed": true,
+   "state": "deleted_by_person",
+   "deleted_by": "k3nsei",
+   "deleted_in": "07f29fecd4816c2b7993c3eb8859cd5ddc132de5",
+   "deleted_at": "2025-08-22T13:23:56Z"
+  },
+  {
+   "pr": "https://github.com/cartography-cncf/cartography/pull/1664",
+   "repo": "cartography-cncf/cartography",
+   "path": "docs/root/images/alice-bob-matchlinks.png",
+   "merged_at": "2025-07-04T06:54:15Z",
+   "agent": "OpenAI_Codex",
+   "listed": true,
+   "state": "still_there"
+  }
+ ]
+}

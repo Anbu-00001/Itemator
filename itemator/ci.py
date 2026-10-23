@@ -1314,7 +1314,49 @@ def hold(report: dict, api, pid, iid, head: str) -> dict:
                 break
     except JobError:
         named, why = False, "the notes could not be read"
-    return {"enabled": True, "blocked": not named, "reason": None if named else why}
+    checked = None
+    if named:
+        why = _tests_agree(api, pid, iid)
+        checked = why != UNREAD
+        named = why is None or why == UNREAD
+    out = {"enabled": True, "blocked": not named, "reason": None if named else why}
+    if checked is False:
+        out["checked"] = False      # the token could not read the threads: the summary alone lifted the hold, as before
+    return out
+
+
+UNREAD = "the threads could not be read"
+
+
+def _tests_agree(api, pid, iid) -> str | None:
+    """After the reaction account's summary: the answer tests, run as code on the threads, must give every extra an answer.
+    None when they do; UNREAD when the job's token cannot read the threads (the caller then keeps the summary rule and
+    says so); otherwise why not."""
+    from itemator import replycheck
+    try:
+        mr = api.get(f"/projects/{pid}/merge_requests/{iid}", missing_ok=True)
+        discussions = []
+        for page in (1, 2, 3):
+            got = api.get(f"/projects/{pid}/merge_requests/{iid}/discussions?per_page=100&page={page}", missing_ok=True)
+            if not isinstance(got, list) or not isinstance(mr, dict):
+                return UNREAD
+            discussions += got
+            if len(got) < 100:
+                break
+        people: dict = {}
+
+        def is_person(uid):
+            if uid not in people:
+                u = api.get(f"/users/{uid}", missing_ok=True)
+                people[uid] = isinstance(u, dict) and u.get("bot") is False
+            return people[uid]
+        rows = replycheck.audit(mr, discussions, is_person)
+    except (JobError, KeyError, TypeError):
+        return UNREAD
+    if not rows:
+        return "no extra thread found to check"
+    left = replycheck.unanswered(rows)
+    return f"no answer the tests accept for: {', '.join(left)}" if left else None
 
 
 def main(argv=None, env=None, registry_fetch=None) -> int:

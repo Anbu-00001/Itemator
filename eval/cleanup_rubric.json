@@ -1,0 +1,14 @@
+{
+  "name": "cleanup after merge",
+  "written": "2026-10-24, before any GitHub call for this study",
+  "question": "After an AI agent's pull request merged, were the files it added that the frozen rules (v6) list later deleted by a person more often than the files it added that they do not list?",
+  "population": "Merged pull requests in eval/cache/aidev/pull_request.json (the AIDev pull requests that drew a reviewer's scope comment; 333 merged). Files with status 'added' in the pull request's net change (eval/aidev_recall.net_files up to its last commit), task = linked issue else the pull request's text, rules = itemator.extras.analyse(version=6).",
+  "sample": "Seed 20261024. Up to 150 listed added files and up to 150 unlisted added files, at most 3 of each per pull request, drawn after shuffling.",
+  "measure": "GitHub API, GET only, at run time: repos/{repo}/contents/{path} on the default branch. 200 = still there. 404 = gone; then repos/{repo}/commits?path={path}&since={merged_at} finds the newest commit touching it, and the file counts as 'deleted by a person' when that commit's author login does not end in [bot] and is not one of the agents' accounts. A repository that answers 404 or 403 is 'unreadable' and left out of the shares.",
+  "outcome": "Share deleted by a person, listed against unlisted, each with a Wilson 95% interval, and both counts. No model and no keyword labels.",
+  "sentences": {
+    "listed_higher": "Of {listed_n} added files the rules list, {listed_k} were later deleted by a person, against {unlisted_k} of {unlisted_n} added files they do not list.",
+    "not_higher": "Files the rules list were not deleted later more often: {listed_k} of {listed_n} listed against {unlisted_k} of {unlisted_n} unlisted."
+  },
+  "limits": "A deletion can have many reasons (a rename, a refactor, a revert); it is a later change a person made, not proof the file was unwanted. The population is pull requests that drew a scope comment, not all agent pull requests."
+}

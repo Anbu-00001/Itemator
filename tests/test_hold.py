@@ -5,10 +5,24 @@ import json
 import pytest
 
 from itemator import ci
-from test_ci import FIXED, FakeHttp, isolated, issue, job, mr, repo, routes  # noqa: F401  (fixtures)
+from itemator import replycheck
+from test_ci import FIXED, MR, FakeHttp, isolated, issue, job, mr, repo, routes  # noqa: F401  (fixtures)
 
 NOTES = "/projects/7/merge_requests/5/notes?per_page=100&page={}&sort=desc"
 REACT = "ai-itemator-react-gitlab-ai-hackathon"
+DISC = "/projects/7/merge_requests/5/discussions?per_page=100&page=1"
+CARD_Q = "`.gitlab-ci.yml` is beyond the issue. To keep it, reply with its exact name."
+
+
+def thread(*replies):
+    first = {"id": 1, "author": {"id": 100, "username": replycheck.CARD_BOT}, "body": CARD_Q, "system": False,
+             "created_at": "2026-10-24T01:00:00Z"}
+    rs = [{"id": 2 + i, "author": {"id": 2, "username": "ann"}, "body": b, "system": False,
+           "created_at": f"2026-10-24T01:0{i + 1}:00Z"} for i, b in enumerate(replies)]
+    return {"id": "t1", "notes": [first, *rs]}
+
+
+ANSWERED = (200, [thread(".gitlab-ci.yml")])
 HOLD = "[names]\nhold_until_named = true\n"
 
 
@@ -23,8 +37,11 @@ def setup(repo, policy=HOLD):
     return repo.commit({"src/parser.py": FIXED, ".gitlab-ci.yml": "test:\n  script: [pytest, ruff]\n"})
 
 
-def run(repo, head, tmp_path, monkeypatch, notes=None, pages=None, **kw):
-    r = routes(mr(), [issue()])
+def run(repo, head, tmp_path, monkeypatch, notes=None, pages=None, discussions=ANSWERED, **kw):
+    r = routes(dict(mr(), author={"id": 2, "username": "ann"}), [issue()])
+    r["/users/2"] = (200, {"id": 2, "bot": False})
+    if discussions is not None:
+        r[DISC] = discussions
     if notes is not None:
         r[NOTES.format(1)] = notes
     for n, got in (pages or {}).items():
@@ -113,3 +130,29 @@ def test_the_setting_is_read_from_the_target_not_the_merge_request(repo, tmp_pat
     head = repo.commit({".itemator.toml": HOLD, ".gitlab-ci.yml": "test:\n  script: [pytest, ruff]\n"})
     code, out, _ = run(repo, head, tmp_path, monkeypatch)
     assert out["hold"]["enabled"] is False and code == 0
+
+
+@pytest.mark.parametrize("discussions, why", [
+    ((200, [thread()]), "no answer the tests accept for: .gitlab-ci.yml"),          # the thread was resolved by hand
+    ((200, [thread("keep it please")]), "no answer the tests accept for: .gitlab-ci.yml"),
+    ((200, []), "no extra thread found to check"),
+])
+def test_the_summary_alone_does_not_release_the_hold_code_rechecks_the_answers(repo, tmp_path, monkeypatch, discussions, why):
+    head = setup(repo)
+    code, out, _ = run(repo, head, tmp_path, monkeypatch, notes=(200, [summary(head)]), discussions=discussions)
+    assert code == 1 and out["hold"] == {"enabled": True, "blocked": True, "reason": why}
+
+
+def test_a_bot_reply_is_not_an_answer(repo, tmp_path, monkeypatch):
+    head = setup(repo)
+    d = thread(".gitlab-ci.yml")
+    d["notes"][1]["author"] = {"id": 9, "username": "helper-bot"}
+    code, out, _ = run(repo, head, tmp_path, monkeypatch, notes=(200, [summary(head)]), discussions=(200, [d]))
+    assert code == 1 and out["hold"]["blocked"] is True
+
+
+@pytest.mark.parametrize("discussions", [(500, {"message": "x"}), (403, {"message": "403 Forbidden"}), (200, {"not": "a list"}), None])
+def test_threads_the_token_cannot_read_leave_the_summary_rule_and_say_so(repo, tmp_path, monkeypatch, discussions):
+    head = setup(repo)
+    code, out, _ = run(repo, head, tmp_path, monkeypatch, notes=(200, [summary(head)]), discussions=discussions)
+    assert code == 0 and out["hold"] == {"enabled": True, "blocked": False, "reason": None, "checked": False}

@@ -3,7 +3,7 @@
 flows/itemator_react.yml steps 3 and 4 tell a model which reply counts: string tests, written as prose. This module runs
 the same tests on a merge request's discussions, so every answer the flow recorded can be checked against them
 afterwards: `python -m itemator.replycheck --project 87291130 --mr 278` (reads through `glab api`, GET only).
-The flow is not changed by this module and does not call it. Standard library only.
+The flow does not call this module; the CI job's merge hold does (`unanswered`), so code, not the model, has the last word. Standard library only.
 """
 from __future__ import annotations
 
@@ -157,6 +157,12 @@ def audit(mr: dict, discussions: list, is_person, bots: tuple = (CARD_BOT, REACT
             agree = None
         rows.append({"name": name, "threads": len(ths), "recorded": rec, "tests": want, "agree": agree})
     return rows
+
+
+def unanswered(rows: list) -> list:
+    """The extras the string tests give no answer for. The merge hold (itemator/ci.py `hold`) stays on while this is not
+    empty, so a thread resolved by hand, or an answer the model misread, cannot lift it."""
+    return [r["name"] for r in rows if not r["tests"]]
 
 
 def glab(path: str):

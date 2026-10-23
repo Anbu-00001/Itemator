@@ -101,8 +101,8 @@ def render(page: str, timing: dict, scope: dict, cases: dict | None = None) -> s
     told = pick(rs, hours_of(timing), scope)
     missing = [k for k, v in OUTCOMES.items() if v not in {t["outcome"] for t in told}]
     head = ("# Real pull requests, and what the card would have said\n\n"
-            f"In each of the {s['read']} real cases on [the cases page](real_catches.md), a reviewer objected by hand. "
-            f"The median wait from the pull request opening to that comment was {s['median_hours']} hours; "
+            f"In each of the {s['read']} real cases on [the cases page](real_catches.md), a reviewer commented on the file by hand. "
+            f"The median wait from the pull request opening (not from the commit that added the file, which the README counts from) to that comment was {s['median_hours']} hours; "
             f"{s['over_24h']} waited more than a day ([timing](catch_timing_v1.json)). Each story below is the longest wait "
             "in its outcome, among the comments that ask to take out the whole file (the rule and its history are in "
             "eval/stories_page.py). Nobody saw an Itemator card on these pull requests. One more case, an install script "
