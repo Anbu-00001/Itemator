@@ -574,3 +574,13 @@ def test_a_checker_that_names_nothing_is_not_a_warning(repo, tmp_path, monkeypat
     _, out = job(repo, head, FakeHttp(routes(mr(), [issue()])), tmp_path, monkeypatch, ITEMATOR_OTHER_CHECKER=str(found))
     assert not any("ITEMATOR_OTHER_CHECKER" in w for w in out["warnings"])
     assert out["other_checker"] == {"named": []}
+
+
+def test_the_card_gets_the_ask_for_its_second_look_cut_and_only_when_there_is_one(repo, tmp_path, monkeypatch):
+    head = repo.commit({"src/parser.py": FIXED})
+    long = issue()
+    long["description"] = long["description"] + "x" * 5000
+    out = job(repo, head, FakeHttp(routes(mr(), [long])), tmp_path, monkeypatch)[1]
+    assert out["ask_text"].startswith(long["title"] + "\n") and len(out["ask_text"]) == ci.ASK_TEXT_LIMIT
+    out = job(repo, head, FakeHttp(routes(mr("Small cleanup. Fixes the build."), [])), tmp_path, monkeypatch)[1]
+    assert out["state"] == "no_issue" and "ask_text" not in out

@@ -4,6 +4,10 @@ Each row is a file in a public agent pull request (the AIDev dataset) where a hu
 
 Of 24 files, 9 were taken out, 7 sat in pull requests closed without merging, and 8 landed with the file. This is not a catch rate: it says nothing about the files reviewers objected to that the rules do not list (most of them, see results/aidev_recall_v6.json), and the reviewers saw no card. "Reading" is one model's reading of the comment, not a person's.
 
+To check the freeze: rules v6 is commit 441e680 (12 October), the run that found these files is commit 364c148 (17 October), and `git log 441e680..364c148 -- itemator/extras.py` prints nothing. Later rule edits, such as b893b68 on 21 October, are not in it.
+
+Checked again on 23 October with the code as it is now, asking for rules v6 (`itemator.extras.analyse(..., version=6)` over the same cached snapshots): all 24 files are still listed. Later rule changes are versioned and do not alter v6.
+
 ## Taken out of the pull request (9)
 
 | Pull request | Agent | File | What the rules say | Reviewer's words | Reading |

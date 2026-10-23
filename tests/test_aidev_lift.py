@@ -28,6 +28,10 @@ def test_shares_ratio_and_whether_the_intervals_are_apart():
     assert (s["listed"]["files"], s["listed"]["objected"], s["unlisted"]["objected"]) == (10, 5, 10)
     assert s["ratio"] == 50.0 and s["intervals_apart"] is True
     close = [{"listed": True, "objected": i < 1} for i in range(10)] + [{"listed": False, "objected": i < 1} for i in range(20)]
+    assert s["listed_clearly_higher"] is True and s["listed_clearly_lower"] is False
     assert L.shares(close)["intervals_apart"] is False
+    under = [{"listed": True, "objected": False} for i in range(1000)] + [{"listed": False, "objected": i < 100} for i in range(1000)]
+    u = L.shares(under)
+    assert (u["intervals_apart"], u["listed_clearly_higher"], u["listed_clearly_lower"]) == (True, False, True)
     assert L.shares([{"listed": False, "objected": False}])["ratio"] is None
     assert L.shares([{"listed": True, "objected": True}, {"listed": False, "objected": False}])["ratio"] is None   # no base rate: no ratio

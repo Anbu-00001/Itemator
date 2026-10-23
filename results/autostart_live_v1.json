@@ -1,0 +1,15 @@
+{
+  "what": "Live test of the optional itemator-autostart CI job (docs/setup.md 3b): an agent's merge request gets its card with no person marking the draft ready.",
+  "project": "gitlab-ai-hackathon/transcend-october-2026/39194174/second-project",
+  "issue": 10,
+  "merge_request": 14,
+  "merge_request_url": "https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/39194174/second-project/-/merge_requests/14",
+  "agent_branch": "duo/fix/10-greet-empty-name",
+  "files_changed": ["greet.py", "test_greet.py"],
+  "first_job": {"id": 17408222053, "printed": "the target branch has no itemator/autostart.py yet; not starting", "why": "our own sync of itemator/ into second-project (!12) had dropped autostart.py; restored in second-project !15"},
+  "retried_job": {"id": 17408282080, "retried_by": "us, once, after !15 merged", "printed": ["starting the card: agent merge request", "session 9942218 started", "session 9942218 ended"]},
+  "session": {"id": 9942218, "status": "FINISHED", "created_at": "2026-10-23T08:01:49Z", "updated_at": "2026-10-23T08:03:25Z", "seconds": 96},
+  "card_note": {"id": 4074293763, "author": "ai-itemator-card-two-gitlab-ai-hackathon", "extras_listed": 0, "said": "The issue and this change have the same author, so no second person has described it yet."},
+  "person_marked_ready": false,
+  "not_shown": "a card that lists extras on an agent merge request started this way; the agent stayed inside the issue"
+}

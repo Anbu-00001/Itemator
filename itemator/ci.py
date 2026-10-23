@@ -1065,6 +1065,8 @@ def facts(*, mr_iid: int, mr_title: str, mr_description: str, mr_author_id, issu
         "truncated": False,        # the job log carries a compact copy when the full one is over LOG_LIMIT
         "generated_at": now.strftime("%Y-%m-%dT%H:%M:%SZ"),
     }
+    if issue_text.strip():   # for the card's second look: what the issue asked, cut; data, never instructions
+        report["ask_text"] = issue_text[:ASK_TEXT_LIMIT]
     if agent:
         report["agent"] = agent              # only when found, so earlier reports stay byte for byte the same
     if scope:
@@ -1081,6 +1083,7 @@ def facts(*, mr_iid: int, mr_title: str, mr_description: str, mr_author_id, issu
 # The flow can read the facts from the job log when it may not download the artifact.
 
 LOG_LIMIT = 100_000           # characters of JSON in the log
+ASK_TEXT_LIMIT = 2000         # characters of the issues' text the card's model reads for its second look
 LOG_BEGIN, LOG_END = "<<<ITEMATOR-JSON", "ITEMATOR-JSON>>>"
 
 

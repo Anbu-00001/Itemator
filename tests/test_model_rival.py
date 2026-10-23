@@ -42,4 +42,19 @@ def test_summary_counts_cases_and_questions_for_both():
     assert (s["tools"]["itemator"]["cases_named"], s["tools"]["model"]["cases_named"]) == (2, 3)
     assert (s["tools"]["itemator"]["files_named"], s["tools"]["model"]["files_named"]) == (1, 9)
     assert (s["model_not_itemator"], s["itemator_not_model"], s["invalid_answers"]) == (2, 1, 1)
+    assert s["either_named"] == 4
     assert "named 3 of 4 files reviewers objected to, by asking about 9 files; Itemator's rules named 2 by asking about 1" in s["sentence"]
+
+
+def test_the_second_look_is_the_cards_capped_list_in_diff_order():
+    files = [{"filename": n} for n in ("a", "b", "c", "d", "e", "f", "g", "h")]
+    assert M.second_look(files, {"b"}, {"h", "a", "b", "c", "d", "e", "f", "g"}) == ["a", "c", "d", "e", "f"]
+    assert M.second_look(files, set(), {"z"}) == []
+
+
+def test_the_card_count_is_kept_apart_from_the_whole_model_list():
+    rows = [{"named": {"itemator": False, "model": True, "card": False}}, {"named": {"itemator": True, "model": False, "card": True}},
+            {"named": {"itemator": True, "model": False, "card": True}}]
+    snaps = [{"invalid": False, "named": {"itemator": 1, "model": 9, "look": 5}}, {"invalid": False, "named": {"itemator": 0, "model": 2, "look": 2}}]
+    s = M.summarise(rows, snaps, RUBRIC, wilson)
+    assert (s["either_named"], s["card_named"], s["second_look_files"]) == (3, 2, 7)

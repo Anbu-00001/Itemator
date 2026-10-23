@@ -63,7 +63,7 @@ def render(study: dict, comments: dict, labels: dict, reasons: dict | None = Non
            f"Of {s['read']} files, {s['file_removed']} were taken out, {s['closed_unmerged']} sat in pull requests closed without "
            f"merging, and {s['landed_with_the_file']} landed with the file. This is not a catch rate: it says nothing about the "
            "files reviewers objected to that the rules do not list (most of them, see results/aidev_recall_v6.json), and the "
-           "reviewers saw no card. \"Reading\" is one model's reading of the comment, not a person's.", ""]
+           "reviewers saw no card. \"Reading\" is one model's reading of the comment, not a person's.", "", "To check the freeze: rules v6 is commit 441e680 (12 October), the run that found these files is commit 364c148 (17 October), and `git log 441e680..364c148 -- itemator/extras.py` prints nothing. Later rule edits, such as b893b68 on 21 October, are not in it.", ""]
     by = {o: [c for c in study["cases"] if c.get("outcome") == o] for o in ORDER}
     for o in ORDER:
         out += [f"## {HEADING[o]} ({len(by[o])})", "", "| Pull request | Agent | File | What the rules say | Reviewer's words | Reading |", "|---|---|---|---|---|---|"]

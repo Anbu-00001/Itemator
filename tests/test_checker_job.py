@@ -228,7 +228,8 @@ def test_replay_records_pass_through_unchanged_without_a_policy(monkeypatch):
             rewritten += changed
             after = ci.facts(**kw, policy=POL.Policy(sha="a" * 40), checker={"source": "base", "sha": "a" * 40})
             assert after["policy"]["ignored_extras"] == [] and after["policy"]["found"] is False
-            rest = {k: v for k, v in after.items() if k not in ("policy", "checker")}
+            assert after["ask_text"] == "t\nd"         # the card's second look reads the issue; added later, so left out below
+            rest = {k: v for k, v in after.items() if k not in ("policy", "checker", "ask_text")}
             assert json.dumps(rest, indent=2) == json.dumps(before, indent=2), rec["pr_url"]
             seen += 1
     assert seen == 240 and rewritten > 0 and offers.get(("split", "remove")) and offers.get(())

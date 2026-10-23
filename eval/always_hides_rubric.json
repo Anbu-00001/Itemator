@@ -1,0 +1,12 @@
+{
+ "what": "The always-hides study, written and committed before it is run: the repeat study (eval/aidev_repeats_rubric.json) says up to half of the questions repeat an earlier one in the same repository. Would those `always` answers have hidden a file a reviewer later objected to? For each of the 24 real catches (results/real_catches_v1.json: a reviewer objected and the rules list the file), was the same path already asked about in an earlier agent pull request of the same repository?",
+ "cases": "the 24 (pull request, path) pairs of results/real_catches_v1.json, all of them",
+ "data": "the repeat study's shard rows (results/aidev_repeats_rows_*.json, artifacts of repeats-study jobs 17396538626 to 17396538629), each row {id, repo, created_at, agent, questions: [[kind, path], ...]}; a case's pull request id from eval/cache/aidev/pull_request.json (html_url to id)",
+ "hidden": "a case is hidden when a row of the same repository that sorts earlier (created_at, then id, as in the repeat study) has a question about the same path. That is the worst case: it assumes every earlier question was answered `always`.",
+ "primary_outcome": "hidden cases of the readable ones",
+ "unreadable": "a case whose pull request id is not in the cache or not in the shard rows; counted and reported",
+ "sentence": "Of the {n} files reviewers objected to that the rules list, {hidden} had already been asked about in an earlier agent pull request of the same repository, so `always` answers given then could have hidden {hidden_word} from the later reviewer.",
+ "which_sentence": "the one sentence, filled in and used word for word in docs/measurements.md and beside the 50% line on the front page, whatever it says",
+ "we_never": ["drop cases after seeing results", "change the hidden test after the run starts"],
+ "runs_in": "eval/always_hides.py, locally, from the downloaded shard artifacts; no Duo credits"
+}

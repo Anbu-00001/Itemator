@@ -16,6 +16,7 @@ DIR = ROOT / "eval" / "cache" / "model_rival"
 OUT = ROOT / "results" / "model_rival_v1.json"
 RUBRIC = ROOT / "eval" / "model_rival_rubric.json"
 SEED, SAMPLE, PER_FILE, WHOLE = 20261023, 100, 600, 14000
+LOOK_MAX = 5      # flows/itemator_card.yml step e2: "At most 5 paths, in DIFFS order"
 
 
 # ---------------------------------------------------------------- pure parts (tests/test_model_rival.py)
@@ -41,6 +42,11 @@ def parse(answer) -> set | None:
     return {p for p in answer["out_of_scope"] if isinstance(p, str)}
 
 
+def second_look(files: list, item: set, model: set) -> list:
+    """What the card's second look shows: the model's files the rules did not list, in diff order, at most LOOK_MAX."""
+    return [f["filename"] for f in files if f["filename"] in model and f["filename"] not in item][:LOOK_MAX]
+
+
 def summarise(rows: list, snaps: list, rubric: dict, wilson) -> dict:
     n = len(rows)
     s = {"cases": n, "snapshots": len(snaps), "invalid_answers": sum(x["invalid"] for x in snaps), "tools": {}}
@@ -50,6 +56,9 @@ def summarise(rows: list, snaps: list, rubric: dict, wilson) -> dict:
                          "median_named_per_snapshot": statistics.median([x["named"][t] for x in snaps]) if snaps else 0}
     s["model_not_itemator"] = sum(r["named"]["model"] and not r["named"]["itemator"] for r in rows)
     s["itemator_not_model"] = sum(r["named"]["itemator"] and not r["named"]["model"] for r in rows)
+    s["either_named"] = sum(r["named"]["itemator"] or r["named"]["model"] for r in rows)     # rules or the model's whole list
+    s["card_named"] = sum(r["named"].get("card", False) for r in rows)                     # the card as shipped: rules + capped second look
+    s["second_look_files"] = sum(x["named"].get("look", 0) for x in snaps)
     m, i = s["tools"]["model"], s["tools"]["itemator"]
     s["sentence"] = rubric["sentence"].format(snapshots=s["snapshots"], cases=n, model_cases=m["cases_named"], model_files=m["files_named"],
                                               itemator_cases=i["cases_named"], itemator_files=i["files_named"])
@@ -86,11 +95,14 @@ def score() -> int:
         got = parse(answers.get(f"{url}@{sha}"))
         model = got or set()
         item = H.itemator_named(s["task"], s["files"], s["repo"])
-        out_snaps.append({"pr": url, "sha": sha, "invalid": got is None, "named": {"itemator": len(item), "model": len(model)}})
+        look = second_look(s["files"], item, model)
+        out_snaps.append({"pr": url, "sha": sha, "invalid": got is None, "named": {"itemator": len(item), "model": len(model), "look": len(look)}})
         for c in s["cases"]:
             rows.append({"comment_id": c["comment_id"], "pr": url, "path": c["path"],
-                         "named": {"itemator": c["path"] in item, "model": c["path"] in model}})
+                         "named": {"itemator": c["path"] in item, "model": c["path"] in model, "card": c["path"] in item or c["path"] in look}})
     summary = summarise(rows, out_snaps, json.loads(RUBRIC.read_text()), H.wilson)
+    old = json.loads(OUT.read_text())["summary"] if OUT.exists() else {}
+    summary.update({k: v for k, v in old.items() if k.startswith("note_")})                 # dated notes stay
     OUT.write_text(json.dumps({"rubric": "eval/model_rival_rubric.json", "summary": summary, "snapshots": out_snaps, "rows": rows}, indent=1) + "\n")
     print(json.dumps(summary, indent=1))
     return 0

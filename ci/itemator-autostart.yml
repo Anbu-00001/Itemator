@@ -1,0 +1,33 @@
+# Optional: start the card on merge requests a coding agent opens (GitLab's Developer Flow, duo/ branches). GitLab will not let
+# a trigger start a flow for a bot's merge request, so without this job a person has to mark the agent's draft ready.
+# It runs after the itemator job, calls the flows API with ITEMATOR_START_TOKEN (a person's access token, masked), restarts the
+# session once if GitLab drops it, and never fails the pipeline. It does nothing after the hackathon deadline, or when
+# ITEMATOR_AUTOSTART is "off", or when ITEMATOR_CARD_CONSUMER_ID or the token is missing (docs/setup.md, "Agent merge requests").
+# Like the itemator job, the code comes from the tip of the target branch, so a merge request cannot rewrite what holds the token.
+itemator-autostart:
+  image: python:3.12-alpine
+  needs:
+    - job: itemator
+      artifacts: false
+  variables:
+    GIT_DEPTH: "0"
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event" && $CI_MERGE_REQUEST_SOURCE_BRANCH_NAME =~ /^duo\//
+      when: always
+  before_script:
+    - apk add -q --no-cache git ca-certificates
+    - git config --global --add safe.directory "$CI_PROJECT_DIR"
+  script:
+    - |
+      set -eu
+      target="$CI_MERGE_REQUEST_TARGET_BRANCH_NAME"
+      git fetch -q --no-tags origin "+refs/heads/$target:refs/remotes/origin/$target"
+      tip="$(git rev-parse "refs/remotes/origin/$target^{commit}")"
+      if ! git cat-file -e "$tip:itemator/autostart.py" 2>/dev/null; then
+        echo "itemator-autostart: the target branch has no itemator/autostart.py yet; not starting"; exit 0
+      fi
+      dir="$(mktemp -d)"
+      git archive --format=tar -o "$dir.tar" "$tip" itemator
+      tar -x -f "$dir.tar" -C "$dir"
+      cd "$dir"
+      python -E -m itemator.autostart

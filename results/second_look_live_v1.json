@@ -1,0 +1,17 @@
+{
+ "what": "First live run of the card's second look (card-two 1.2.0, flows/itemator_card.yml part e2) on a merge request where the issue asks for one change and the merge request also makes an unasked one that the rules do not list.",
+ "project": "gitlab-ai-hackathon/transcend-october-2026/39194174/second-project",
+ "issue": 9,
+ "issue_asks": "greet() in greet.py should strip spaces around the name",
+ "merge_request": 13,
+ "changed_files": ["greet.py", "textutil.py"],
+ "unasked_change": "textutil.py: slug() joins words with _ instead of -",
+ "rules_extras": 0,
+ "second_look_named": ["textutil.py"],
+ "second_look_named_count": 1,
+ "predicted_before_the_run": "the second look names textutil.py and no other file (ana 76a521, 55%)",
+ "session": 9931556,
+ "card_note": 4072709312,
+ "started_by": "the flows API with the owner's token (the reviewer-assign trigger call returned HTTP 400 and started nothing)",
+ "holds_merge_request": false
+}

@@ -37,8 +37,11 @@ def shares(rows: list) -> dict:
         return {"files": n, "objected": k, "share": round(k / n, 4) if n else None, "wilson95": G.wilson(k, n)}
     lis, unl = one([r for r in rows if r["listed"]]), one([r for r in rows if not r["listed"]])
     ratio = round(lis["share"] / unl["share"], 2) if lis["share"] is not None and unl["share"] else None
-    clear = lis["wilson95"][0] > unl["wilson95"][1] if lis["files"] and unl["files"] else False
-    return {"listed": lis, "unlisted": unl, "ratio": ratio, "intervals_apart": clear}
+    both = bool(lis["files"] and unl["files"])
+    higher = both and lis["wilson95"][0] > unl["wilson95"][1]   # the rubric's headline_rule
+    lower = both and lis["wilson95"][1] < unl["wilson95"][0]
+    return {"listed": lis, "unlisted": unl, "ratio": ratio, "intervals_apart": higher or lower,
+            "listed_clearly_higher": higher, "listed_clearly_lower": lower}
 
 
 # ---------------------------------------------------------------- the run

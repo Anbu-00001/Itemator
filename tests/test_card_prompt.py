@@ -99,3 +99,11 @@ def test_a_merge_request_marked_ready_is_read_from_its_context():
     assert '"MergeRequest IID: <n>"' in step1
     assert 'ignore every number in a part that starts with "Input"' in step1
     assert step1.index("Context") < step1.index("pipeline webhook payload")
+
+
+def test_the_second_look_is_labelled_and_never_holds_the_merge_request():
+    t = text()
+    assert "Only if FACTS.ask_text is present and not empty, the second look." in t
+    assert '"A model\'s second look, which does not hold this merge request (check it): "' in t
+    assert "At most 5 paths" in t and "every path that is in some extra's FILES" in t
+    assert "update_merge_request" not in t.split("e2. ")[1].split("f. The line")[0]      # it adds no label, draft or thread

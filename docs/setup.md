@@ -40,6 +40,18 @@ In **AI** > **Triggers** > **New flow trigger**, create two triggers. Both are o
 - Card flow (service account: the card account): event **Pipeline** (statuses Passed and Failed, source merge request), event **Assign reviewer**, and event **Merge request ready** (called **Marked ready** under **Merge request** in newer GitLab versions). The last one starts the card on a coding agent's draft when a person marks it ready, since GitLab starts no trigger from a bot's own pipeline. The project must sit under a top-level group, because service accounts are created per group.
 - Reaction flow (service account: the reaction account): events **Mention**, **Merge request ready** (called **Marked ready** under **Merge request** in newer GitLab versions), and **Merge request** with the **Approved** action (we never tested Approved).
 
+## 3b. Agent merge requests (optional): start the card without a person
+
+GitLab will not let a trigger start a flow for a merge request a bot opened ("A non-human user such as a bot user, service account user, or another flow, cannot activate a trigger", [Triggers](https://docs.gitlab.com/user/duo_agent_platform/triggers/)), so on an agent's draft the card waits until a person marks it ready. To start it from CI instead:
+
+1. Add [ci/itemator-autostart.yml](../ci/itemator-autostart.yml) to the project's `.gitlab-ci.yml`, after the `itemator` job. It runs only on `duo/` branches, the ones GitLab's Developer Flow opens.
+2. Set two CI/CD variables: `ITEMATOR_CARD_CONSUMER_ID`, the card flow's AI Catalog item consumer id (GraphQL `project { aiFlowTriggers { nodes { aiCatalogItemConsumer { id } } } }`, the number at the end), and `ITEMATOR_START_TOKEN`, masked: an access token of a person who may run the card flow. A CI job token is refused (we got 401 <!-- from: results/autostart_probe_v1.json:job_token.http_status --> on 23 October).
+3. To stop it, set `ITEMATOR_AUTOSTART` to `off`, or delete the token. It also stops by itself at the hackathon deadline.
+
+Live once on second-project [!14](https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/39194174/second-project/-/merge_requests/14#note_4074293763): the job started the card and nobody marked the draft ready. The first job found no `autostart.py` on the target branch (our own sync had dropped it); we restored it and retried the job once ([record](../results/autostart_live_v1.json)).
+
+The job calls `POST /api/v4/ai/duo_workflows/workflows` ([flows API](https://docs.gitlab.com/api/duo_agent_platform_flows/)), reads the session's status, and restarts it once (`.../restart`) if GitLab fails it. The card's duplicate check makes a second start harmless: started by hand through the API on second-project !9, which already had its card, the session ended after 54 <!-- from: results/autostart_probe_v1.json:person_token.seconds --> seconds and posted nothing new ([record](../results/autostart_probe_v1.json)). Not yet run on an agent's merge request.
+
 ## 4. Make the threads a lock (needs the Maintainer role; without it nothing blocks the merge)
 In **Settings** > **Merge requests**, turn on **All threads must be resolved**. Until then an unnamed extra puts the merge request in Draft but does not stop the merge button.
 
