@@ -20,9 +20,9 @@ from test_ci import AUDIT, FIXED, FakeHttp, env, issue, mr, repo, routes  # noqa
 NOW = datetime.datetime(2026, 10, 11, 9, 0, tzinfo=datetime.timezone.utc)
 PYPI = "https://pypi.org/pypi/leftpad-py/json"
 OSV = "https://api.osv.dev/v1/query"
-KEEP = ("To keep it, reply with its exact name; put `@ai-itemator-react-gitlab-ai-hackathon` on the same line to start the check, and a line under the name can say why. To move it into its own MR, reply `split`. "
+KEEP = ("To keep it, reply with its exact name; put `@ai-itemator-react-gitlab-ai-hackathon` on the same line to start the check, and a line under the name can say why. To keep it only until an issue is fixed, reply `until #` followed by that issue's number. To move it into its own MR, reply `split`. "
         "To drop it from this MR, reply `remove`. "
-        "If this is not really an extra, reply `not an extra`.")
+        "If this is not really an extra, reply `not an extra`. Only a project member with the Developer role or higher can answer here.")
 ISSUE = {"iid": 12, "ref": "#12", "title": "Parser drops trailing comma",
          "description": "The parser in src/parser.py keeps an empty item after a trailing comma.", "author_id": 1}
 BRIEF_BANNED = re.compile(r"\b(?:trust|risk score|verdict|safe|unsafe|malicious|proof|evidence|guardian|gate)\b", re.I)
@@ -131,7 +131,8 @@ def test_not_found():
     assert "it. PyPI: no package named `leftpad-py` on pypi.org was found (checked 2026-10-11). To keep it" in e["thread_stub"]
     (p,) = e["plain_facts"]["registry"]["packages"]
     assert (p["lookup"], p["found"], p["source"]) == ("ok", False, PYPI) and "advisories" not in p
-    assert len(fake.calls) == 1                                     # OSV is not asked about a name that does not exist
+    assert [(c["method"], c["url"], c["body"]) for c in fake.calls][1:] == [      # OSV keeps reports of taken-down names
+        ("POST", OSV, {"package": {"name": "leftpad-py", "ecosystem": "PyPI"}})]
     check_stub(e["thread_stub"], "leftpad-py")
 
 

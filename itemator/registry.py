@@ -389,6 +389,23 @@ def _json(body: bytes) -> dict:
 _ADVISORY_ID = re.compile(r"[A-Za-z0-9._:-]{1,64}")      # GHSA-…, PYSEC-…, RUSTSEC-…, MAL-…
 
 
+MAX_MALWARE_IDS = 3
+
+
+def _malware(vulns: list) -> list[str]:
+    """The OpenSSF malicious-packages reports among OSV's records (MAL-...), by a record's own id or an alias."""
+    out = []
+    for v in vulns:
+        if not isinstance(v, dict):
+            continue
+        aliases = v.get("aliases") if isinstance(v.get("aliases"), list) else []
+        mal = next((i for i in [v.get("id"), *aliases] if isinstance(i, str) and i.startswith("MAL-")
+                    and _ADVISORY_ID.fullmatch(i)), None)
+        if mal and mal not in out:
+            out.append(mal)
+    return out[:MAX_MALWARE_IDS]
+
+
 def _distinct(vulns: list) -> int:
     """OSV lists one issue once per database (GHSA-…, PYSEC-…), each record naming the others as aliases: count it once."""
     seen, n = set(), 0
@@ -466,6 +483,20 @@ class Run:
             filled[i] = {**pages[i], **_json(body)}
         return {**index, "items": filled}
 
+    def _gone(self, rec: dict, name: str, eco: str) -> dict:
+        """A name the registry does not have: a registry takes malware down, and OSV keeps the report (OpenSSF's
+        malicious-packages list, ids MAL-...), so OSV is asked about the name, in any version. Only a malware report is
+        kept; a failed or odd answer says nothing more than "not found"."""
+        query = {"package": {"name": _pep503(name) if eco == "PyPI" else name, "ecosystem": eco}}
+        try:
+            status, body = self._ask("POST", OSV_URL, json.dumps(query).encode())
+            vulns = _json(body).get("vulns") if status == 200 else None
+        except Exception:                # noqa: BLE001 -- information only
+            vulns = None
+        if isinstance(vulns, list) and _malware(vulns):
+            rec["malware"] = _malware(vulns)
+        return rec
+
     def look(self, req: dict) -> dict:
         if "lookup" in req:
             return req
@@ -480,7 +511,7 @@ class Run:
         try:
             status, body = self._ask("GET", url)
             if status == 404:
-                return {**rec, "lookup": "ok", "found": False}
+                return self._gone({**rec, "lookup": "ok", "found": False}, name, eco)
             if status != 200:
                 raise LookupFailed(f"http_{status}")
             doc = (self._nuget_doc(_json(body)) if eco == "NuGet" else
@@ -502,6 +533,8 @@ class Run:
             if not isinstance(vulns, list):
                 raise LookupFailed("bad_response")
             rec["advisories"] = _distinct(vulns)
+            if _malware(vulns):
+                rec["malware"] = _malware(vulns)
             rec["advisory_ids"] = [v["id"] for v in vulns if isinstance(v, dict) and isinstance(v.get("id"), str)
                                    and _ADVISORY_ID.fullmatch(v["id"])][:20]
             if doc.get("next_page_token"):
@@ -585,10 +618,19 @@ def _fresh(p: dict):
     return "released " + ("the day of this check" if days == 0 else f"{days} day{'' if days == 1 else 's'} before this check")
 
 
+def _malware_part(p: dict) -> str | None:
+    ids = p.get("malware") or []
+    if not ids:
+        return None
+    return f"OSV has {'a malware report' if len(ids) == 1 else 'malware reports'} for this package ({', '.join(ids)})"
+
+
 def _facts(p: dict, declare: bool = True) -> str:
-    """`declare`: say once per sentence that a licence shown is the publisher's own statement."""
+    """`declare`: say once per sentence that a licence shown is the publisher's own statement. A malware report comes
+    first: it is the one fact a reader must not miss."""
+    mal = _malware_part(p)
     if not p["found"]:
-        return f"no package named `{p['name']}` on {_SITE[p['ecosystem']]} was found"
+        return f"no package named `{p['name']}` on {_SITE[p['ecosystem']]} was found" + (f"; {mal}" if mal else "")
     first = f"first released {p['first_release']}" if p.get("first_release") else "first release date not stated"
     fresh = _fresh(p)
     if fresh:
@@ -611,7 +653,7 @@ def _facts(p: dict, declare: bool = True) -> str:
     else:
         advisories = (f"{'at least ' if p.get('advisories_partial') else ''}{a} known advisor{'y' if a == 1 else 'ies'}"
                       + (f" for {p['version']}" if p.get("version") else " in any version"))
-    parts = [first, releases, licence, advisories]
+    parts = [*([mal] if mal else []), first, releases, licence, advisories]
     which = f"version {p['version']}" if p.get("version") else "its latest version"
     if p.get("deprecated"):
         parts.append(f"its publisher marked {which} deprecated")

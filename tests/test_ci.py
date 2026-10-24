@@ -1,6 +1,7 @@
 """The CI job (T11): real git repositories in tmp, a fake GitLab API, no network."""
 import importlib.util
 import json
+import urllib.parse
 import os
 import subprocess
 import sys
@@ -80,6 +81,13 @@ class FakeHttp:
         self.routes, self.calls = routes, []
 
     def __call__(self, url, headers):
+        if url.startswith(API.rsplit("/api/v4", 1)[0] + "/api/graphql?"):     # routes["GRAPHQL"](query, variables)
+            q = urllib.parse.parse_qs(url.split("?", 1)[1])
+            query, variables = q["query"][0], json.loads(q["variables"][0])
+            self.calls.append(("GRAPHQL", dict(headers)))
+            r = self.routes.get("GRAPHQL", (404, {"message": "404 Not found"}))
+            status, body = r(query, variables) if callable(r) else r
+            return status, json.dumps(body).encode()
         self.calls.append((url[len(API):], dict(headers)))
         r = self.routes.get(url[len(API):], (404, {"message": "404 Not found"}))
         status, body = r(headers) if callable(r) else r

@@ -10,7 +10,7 @@ from test_ci import FIXED, FakeHttp, isolated, issue, job, mr, repo, routes  # n
 KEEP = "To keep it, reply with its exact name; put `@ai-itemator-react-gitlab-ai-hackathon` on the same line to start the check, and a line under the name can say why."
 SPLIT = "To move it into its own MR, reply `split`."
 REMOVE = "To drop it from this MR, reply `remove`."
-TAIL = "If this is not really an extra, reply `not an extra`."
+TAIL = "If this is not really an extra, reply `not an extra`. Only a project member with the Developer role or higher can answer here."
 BOTH, REMOVE_ONLY, NEITHER = ("split", "remove"), ("remove",), ()
 
 

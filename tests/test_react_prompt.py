@@ -16,7 +16,7 @@ BEFORE_T40 = "772a677"
 TOOLS = ["get_merge_request", "gitlab_api_get", "reply_to_discussion", "set_discussion_resolved",
          "create_merge_request_note", "update_merge_request", "create_commit", "create_merge_request",
          "create_issue_note"]                                           # T46: the receipt on the issue
-GUARDS = '"Remove partly done:", "Cannot remember:" or "Remember failed:"'
+GUARDS = '"Remove partly done:", "Cannot remember:", "Remember failed:", "Cannot bump:", "Bump failed:", "Bump partly done:", "Cannot keep until" or "Cannot take out:"'
 # T51: the Step 8 line is back to its pre-T46 form (the approval field was removed with Step 7d)
 STEP8 = ("Checked <number of merge requests>: <KEPT> kept, <DISMISSED> dismissed, <SPLIT> moved, <REMOVED> removed, "
          "<number in OPEN_NAMES> open.")
@@ -128,12 +128,21 @@ def test_every_earlier_quoted_phrase_is_kept(flow):
     quoted = set(re.findall(r'"([^"\n]{3,})"', old))
     assert len(quoted) > 60
     assert STEP8 in quoted and STEP8 in system
-    assert sorted(q for q in quoted if q not in system) == sorted(REWORDED_T64)
-    assert all(new in system for new in REWORDED_T64.values())
+    assert sorted(q for q in quoted if q not in system) == sorted(REWORDED_T64 | SHORTENED)
+    assert all(new in system for new in (REWORDED_T64 | SHORTENED).values())
+    assert "ENC(X) is X with each / written as %2F." in system
 
 
 # T64: worded about the change, never the person, and a removal says how to bring the file back. Each old phrase is replaced
 # once, on purpose; every other quoted phrase stays.
+# The catalog refused a 40 KB definition (2026-10-24, "Maximum size allowed is 80 KiB"), so a path that GitLab needs written
+# with %2F is named once as ENC(X); the endpoint and its encoding are the same.
+SHORTENED = {
+    "/api/v4/projects/<project_id>/repository/branches/<SOURCE with each / written as %2F>":
+        "/api/v4/projects/<project_id>/repository/branches/<ENC(SOURCE)>",
+    "/api/v4/projects/<project_id>/repository/files/<PATH with each / written as %2F>":
+        "/api/v4/projects/<project_id>/repository/files/<ENC(PATH)>",
+}
 REWORDED_T64 = {
     " This person wrote the merge request.": " (@WHO also wrote this merge request.)",
     "Removed: `NAME` taken out of this merge request by @WHO. Nothing was kept.":
@@ -145,7 +154,7 @@ def test_t42_the_one_line_edit_is_checked_with_compare_not_with_a_character_coun
     """Audit pass 1, fixes 1 to 4: OLD occurs once (a comment counts), no # or trailing comma in the list, a leftover branch
     stops `always`, and the check reads the compare endpoint instead of counting characters."""
     _, system = flow
-    step = system[system.index("Step 5b."):system.index("Step 6.")]
+    step = system[system.index("Step 5b."):system.index("Step 5c.")]
     for s in ("does not appear exactly once in the whole decoded file (a comment counts)",
               "contains a [ or a ] character, or the list holds a # or ends with a comma",
               'must be OLD with only \', "PATH"\' or \'"PATH"\' inserted just before the ] that closes the list',
@@ -263,10 +272,11 @@ def test_t46_the_receipt_is_posted_once_after_the_summary_and_never_starts_a_lin
               "call create_issue_note once with project_id, issue_iid ISSUE_IID",
               '"Receipt from Itemator for !<IID>: this merge request went beyond this issue in <number of extras> '
               'place(s), and each has an answer."',
-              '"- `NAME`: <kept|dismissed|moved|removed>, decided by @WHO"', "then MARK(MARKER_R)",
+              '"- `NAME`: <kept|dismissed|moved|removed|bumped|taken out>, decided by @WHO"', "then MARK(MARKER_R)",
               'and when that note ends with "Their reason is in their reply." add ", with a reason in its thread" at the end of that line'):
         assert s in step, s
-    assert "create_issue_note" not in system.replace(step, "")          # the issue gets nothing from any other step
+    until = system[system.index("Step 5d."):system.index("Step 6.")]   # F2: the stopgap record on issue #N
+    assert "create_issue_note" not in system.replace(step, "").replace(until, "")     # the issue gets nothing from any other step
 
 
 def test_t46_quoted_strings_that_start_with_a_slash_are_endpoints(flow):
@@ -327,7 +337,7 @@ def test_one_reply_to_the_card_can_keep_several_and_only_keep(flow):
     assert "is not an extra thread (that note is the card)" in s4 and "whose author is a person (by the same users check)" in s4
     card = s4[s4.index("look at CARD_REPLIES in order"):]
     assert "is exactly NAME (same letters and same case)" in card and "one of ASKERS" in card
-    assert 'A card reply can only keep: "not an extra", "split", "remove" and "always" count only in the extra\'s own thread.' in card
+    assert 'A card reply can only keep: "not an extra", "split", "remove", "always", "bump", "until" and "taken out" count only in the extra\'s own thread.' in card
     assert s4.index("If no reply fits, look at CARD_REPLIES") < s4.index("If still nothing fits, the thread is OPEN.")   # the thread's own reply wins
     s5 = system[system.index("Step 5."):system.index("Step 5r.")]
     assert 'If the thread is FROM_CARD, add " Named in a reply to the card." at the very end; otherwise' in s5
@@ -338,3 +348,69 @@ def test_one_reply_to_the_card_can_keep_several_and_only_keep(flow):
 
 def test_the_card_says_several_can_be_kept_in_one_reply():
     assert ci.SEVERAL == "To keep several at once, reply to this card with one name per line."
+
+
+def test_members_only_threads_count_replies_from_members_only(flow):
+    """A flow's token cannot read the members API (lib/api/members.rb grants no ai_workflows scope; the lookup failed for
+    a member and a non-member alike on second-project !20, 2026-10-24), so the flow checks membership through the
+    project's users list and the hold checks the role (replycheck.member)."""
+    _, text = flow
+    assert f'If that part contains the sentence "{ci.MEMBERS_ONLY}" the thread is MEMBERS_ONLY.' in text
+    assert "/members/" not in text
+    assert 'GET "/api/v4/projects/<project_id>/users" and params {"search": the author\'s username, "per_page": "100"}' in text
+    assert 'lists a user whose id is the author id, whose username is exactly the author\'s username and whose state is "active"' in text
+    assert "(anything else: not a MEMBER)" in text
+    assert "in a MEMBERS_ONLY thread, the author is a MEMBER. The first card reply" in text
+    assert text.index("the thread is MEMBERS_ONLY") < text.index("In a MEMBERS_ONLY thread leave out every reply")
+
+
+def test_bump_changes_one_line_on_the_source_branch_and_checks_it(flow):
+    from itemator import replycheck
+    _, text = flow
+    assert f'If that part contains the text "{replycheck.BUMP_START}" the thread is BUMP_OK' in text
+    s4 = text[text.index("Step 4."):text.index("Step 5.")]
+    assert 'BUMP if the thread is BUMP_OK and T2 is exactly "bump" and T2 is not NAME in lower case and the author is in CREW and the reply was written after LAST_REFUSAL;' in s4
+    assert 'or a "bump" in one that is not BUMP_OK' in s4
+    step = text[text.index("Step 5c."):text.index("Step 5d.")]
+    assert "if its commit id is not HEAD" in step                                # never on a branch moved since the check
+    assert "If BUMP_OLD is not in its decoded content exactly once" in step
+    assert '[{"action": "update", "file_path": BUMP_PATH, "old_str": BUMP_OLD, "new_str": BUMP_NEW, "last_commit_id": LAST}]' in step
+    assert '"last_commit_id": LAST}], nothing else.' in step and "Never call create_merge_request here." in step
+    assert '"from": HEAD, "to": SOURCE, "straight": "true"' in step
+    assert 'exactly one line starting with "-" and exactly one starting with "+", whose rest, trimmed, is BUMP_OLD and BUMP_NEW' in step
+    assert step.index("create_commit") < step.index("/repository/compare") < step.index('"Bumped: in `BUMP_PATH`')
+    assert "resolve the thread, add 1 to BUMPED and WHO to PEOPLE." in step
+    assert '"Kept:", "Dismissed:", "Split:", "Removed:", "Bumped:" or "Taken out:"' in text
+    assert "you touch files only in steps 5a, 5b and 5c" in text
+    assert '"- `NAME`: moved to the new version, by @WHO"' in text
+
+
+def test_until_records_the_stopgap_on_its_issue_and_taken_out_is_checked_on_the_file(flow):
+    from itemator import replycheck, stopgaps
+    _, text = flow
+    assert f'If that part contains the sentence "{stopgaps.UNTIL_OFFER}" the thread is UNTIL_OK.' in text
+    assert f'If it contains the text "{replycheck.TAKE_START}" the thread is TAKE_OK' in text
+    s4 = text[text.index("Step 4."):text.index("Step 5.")]
+    assert 'UNTIL if the thread is UNTIL_OK and T2 is "until #" followed by 1 to 9 digits, the first not 0, and nothing else' in s4
+    assert 'TAKEN_OUT if the thread is TAKE_OK and T2 is exactly "taken out" and T2 is not NAME in lower case and the author is in CREW' in s4
+    step = text[text.index("Step 5d."):text.index("Step 6.")]
+    assert "no file changes" in step and "create_commit" not in step and "create_merge_request" not in step
+    assert step.index('"/api/v4/projects/<project_id>/issues/<N>"') < step.index("create_issue_note")     # only an open issue
+    assert 'If its state is not "opened" (or it is a 404), reply "Cannot keep until #<N>: it is not an open issue in this project."' in step
+    record = 'Stopgap from !<IID>: `PATH` was kept until this issue is fixed, by @WHO.'
+    assert record in step and stopgaps.RECORD.match(record.replace("<IID>", "3").replace("PATH", "a.sh").replace("@WHO", "@ann"))
+    assert '"Kept: `NAME`, until #<N>, by @WHO."' in step
+    assert step.index("does not contain TAKE_LINE") < step.index('"Taken out: `TAKE_PATH` no longer holds the stopgap')
+    assert '"Cannot keep until" or "Cannot take out:"' in text
+
+
+@pytest.mark.parametrize("name", ["itemator_react.yml", "itemator_card.yml"])
+def test_the_catalog_takes_the_definition(name):
+    """On 2026-10-24 the catalog refused a 40,191-byte react definition ("Maximum size allowed is 80 KiB") and had taken
+    34,038 bytes. A count that fits both: the YAML text and its parsed form, each as JSON with <, > and & escaped the
+    way Rails escapes them. An estimate from those two points, kept with a 1 KiB margin."""
+    text = (ROOT / "flows" / name).read_text()
+
+    def rails(s):
+        return s.replace("<", "\\u003c").replace(">", "\\u003e").replace("&", "\\u0026")
+    assert len(rails(json.dumps(text))) + len(rails(json.dumps(parse(text)))) <= 80 * 1024 - 1024

@@ -93,12 +93,12 @@ A = [
  ("anchors: mass event anchors on its last file", "by_path.get(e.detail[0] if", "by_path.get(e.detail[-1] if"),
  # ---- which paths, which files get none
  ("anchors: rename source ignored", '"old_path": f.get("previous_filename") or f["filename"]', '"old_path": f["filename"]'),
- ("anchors: rename target ignored", '"new_path": f["filename"],\n                    "old_line"', '"new_path": f.get("previous_filename") or f["filename"],\n                    "old_line"'),
+ ("anchors: rename target ignored", '"new_path": f["filename"], "old_line": old', '"new_path": f.get("previous_filename") or f["filename"], "old_line": old'),
  ("anchors: binary flag ignored", 'if f.get("binary") or not patch:', "if not patch:"),
  ("anchors: size limit off by one", "> MAX_PATCH_BYTES:", ">= MAX_PATCH_BYTES:"),
  ("anchors: size limit dropped", 'if len(patch.encode("utf-8", "replace")) > MAX_PATCH_BYTES:', "if False:"),
  ("anchors: missing file reason", 'return None, "file not in the diff"', 'return None, "no text patch"'),
- ("anchors: extras carry none", '"extras": [describe_extra(e, by_path, items, r, other, s, always, askers) for ((e, items), r), s in zip(kept, said)],', '"extras": [{**e.to_dict(), "detail": list(e.detail)} for ((e, _), _), s in zip(kept, said)],'),   # T35: anchor follows the new line
+ ("anchors: extras carry none", '"extras": [describe_extra(e, by_path, items, r, other, s, always, askers, reasked.get(id(e)),\n                                 behind.get(id(e), (None, None))[1], due.get(id(e), (None, None))[1])\n                   for ((e, items), r), s in zip(kept, said)],', '"extras": [{**e.to_dict(), "detail": list(e.detail)} for ((e, _), _), s in zip(kept, said)],'),   # T35: anchor follows the new line
  # ---- stub, plain facts
  ("stub: no closing full stop", '    if not why.endswith((".", "!", "?")):\n        why += "."\n', ""),
  ("stub: double full stop", 'if not why.endswith((".", "!", "?")):', "if True:"),
@@ -106,8 +106,9 @@ A = [
  ("stub: remove answer dropped (T23)", "To drop it from this MR, reply `remove`. ", ""),
  ("stub: remove not in backticks (T23)", "reply `remove`.", "reply remove."),
  ("stub: remove after the dismissal (T23)",
-  'f"{split}{remove}{always}If this is not really an extra, reply `not an extra`.")',       # T40: anchor follows the new line
-  'f"{split}{always}If this is not really an extra, reply `not an extra`. {remove}")'),
+  'f"{split}{remove}{always}If this is not really an extra, reply `not an extra`. {MEMBERS_ONLY}")',       # T40: anchor follows the new line
+  'f"{split}{always}If this is not really an extra, reply `not an extra`. {remove}{MEMBERS_ONLY}")'),
+ ("stub: members-only sentence dropped", "reply `not an extra`. {MEMBERS_ONLY}\")", "reply `not an extra`.\")"),
  ("plain facts: detail count wrong", '"detail_count": len(e.detail)', '"detail_count": 0'),
  # ---- job log
  ("log: markers not escaped", r'.replace("<", "\\u003c").replace(">", "\\u003e")', ""),
@@ -132,7 +133,8 @@ A = [
  ("label: grouped unit always files", '    unit = "files" if e.path.endswith("/") or e.kind == "version_bump" else _UNIT.get(e.kind, "names")', '    unit = "files"'),
  ("label: version bump unit", ' or e.kind == "version_bump" else', " else"),
  ("label: version bump unlabelled", '"version_bump": "version bump",', ""),
- ("label: whitespace only unlabelled", '\n          "whitespace_only": "whitespace only"}', "}"),
+ ("label: whitespace only unlabelled", '\n          "whitespace_only": "whitespace only", "left_behind"', '\n          "left_behind"'),
+ ("label: left behind unlabelled", ', "left_behind": "still on the old version", "stopgap_due"', ', "stopgap_due"'),
  ("label: agent instructions unlabelled (T37)", '\n          "agent_instructions": "agent instructions",', ""),
  ("anchors: version not matched", '        elif e.kind == "version_bump":\n            matches = lambda text: e.name in text\n', ""),
  ("log: block printed before the card", '    print(report["card"]["final_line"])\n    print(report["card"]["todo_line"])\n    print(log_block(report))\n', '    print(log_block(report))\n    print(report["card"]["final_line"])\n    print(report["card"]["todo_line"])\n'),
@@ -234,7 +236,7 @@ RG = [
 ]
 RC = [
  ("stub: registry sentence dropped", "thread_stub(e, RG.sentence(registry), other_person,", "thread_stub(e, None, other_person,"),
- ("stub: sentence after the replies", '{why}{facts} {KEEP} "', '{why} {KEEP}{facts} "'),
+ ("stub: sentence after the replies", '{why}{facts} {keep} "', '{why} {keep}{facts} "'),
  ("plain_facts: registry dropped", '        plain["registry"] = registry', "        pass"),
  ("job: registries not asked by default", "registry_fetch or RG.fetch", "registry_fetch"),
  ("facts: fetcher ignored", "registry = RG.look_up(grouped, by_path, registry_fetch, now, weigh=True) if registry_fetch else [None] * len(grouped)", "registry = [None] * len(grouped)"),
@@ -257,7 +259,9 @@ PC = [
  ("policy: an edit stays unplaced", "        unplaced = [u for u in unplaced if u != edit.path]\n", ""),
  ("policy: no edit on a no-issue MR (T41)", "edit = policy_edit(files, at)       # T41:", 'edit = policy_edit(files, at) if state != "no_issue" else None       # T41:'),
  ("policy: rename away not seen", 'if POL.FILE in (f["filename"], f.get("previous_filename")):', 'if POL.FILE == f["filename"]:'),
- ("policy: quieting ignored", "        if why:\n            quieted.append", "        if False:\n            quieted.append"),
+ ("policy: quieting ignored", "        if why and not hit:\n            quieted.append", "        if False:\n            quieted.append"),
+ ("policy: risky edit stays quiet", "        if why and not hit:\n            quieted.append", "        if why:\n            quieted.append"),
+ ("policy: risky check never run", "    risky = REASK.find(files) if policy else {}", "    risky = {}"),
  ("policy: state not recomputed", '    if state != "no_issue":\n        state = decide_state(', '    if False:\n        state = decide_state('),
  ("policy: read from the MR head", "policy = POL.read(repo_dir, target)", "policy = POL.read(repo_dir, head)"),
  ("names: other person ignored", "other = bool(policy and policy.other_person_required)", "other = False"),
@@ -280,7 +284,7 @@ PO = [
  ("schema: unknown key allowed", "            if want is None:\n", "            if False:\n"),
  ("schema: wrong type allowed", "            if type(v) is not want:", "            if False:"),
  ("schema: default asks for another person", 'names.get("other_person_required", False)', 'names.get("other_person_required", True)'),
- ("kinds: unknown kind allowed", "if type(k) is not str or k not in X.KINDS:", "if type(k) is not str:"),
+ ("kinds: unknown kind allowed", "if type(k) is not str or k not in (*X.KINDS, \"left_behind\", \"stopgap_due\"):", "if type(k) is not str:"),
  ("kinds: built-in exception listable", "        if k in NEVER_IGNORED:\n            return", "        if False:\n            return"),
  ("paths: no pattern cap", "    if len(paths) > MAX_PATTERNS:", "    if False:"),
  ("paths: cap off by one", "    if len(paths) > MAX_PATTERNS:", "    if len(paths) >= MAX_PATTERNS:"),
@@ -297,7 +301,7 @@ PO = [
  ("sha: search, not fullmatch", "not _SHA.fullmatch(sha)", "not _SHA.search(sha)"),
  ("git: no timeout", "check=False, timeout=TIMEOUT)", "check=False)"),
  ("git: timeout not caught", "    except subprocess.TimeoutExpired as e:\n        raise _Unreadable(f\"git {args[0]} timed out\") from e\n", ""),
- ("registry: not-found package quieted", 'all((p.get("lookup") == "ok" and p.get("found") is True)', 'all((p.get("lookup") == "ok")'),
+ ("registry: not-found package quieted", 'all((p.get("lookup") == "ok" and p.get("found") is True and not p.get("malware"))', 'all((p.get("lookup") == "ok" and not p.get("malware"))'),
  ("registry: unread package quieted", '               for p in registry["packages"])', '               or p.get("lookup") == "unavailable" for p in registry["packages"])'),
  ("registry: lookup cap not checked", ' or registry.get("count") != len(registry["packages"])', ""),
  ("registry: exception dropped", '    if e.kind == "new_dependency" and not _registry_knows_every_package(registry):\n        return None\n', ""),
@@ -338,7 +342,7 @@ T26 = [
  ("stub: split always offered", '" if "split" in offers else ""', '" if True else ""', "itemator/ci.py", "tests/test_answers.py"),
  ("stub: remove always offered", '" if "remove" in offers else ""', '" if True else ""', "itemator/ci.py", "tests/test_answers.py"),
  ("stub: flag fact dropped", "    flag = flag_cleanup(e, by_path)\n", "    flag = None\n", "itemator/ci.py", "tests/test_flag_cleanup.py"),
- ("stub: offers not passed", "other_person, answers(e, items, by_path, always), said, askers, flag),", "other_person, said=said, askers=askers, flag=flag),", "itemator/ci.py", "tests/test_answers.py"),
+ ("stub: offers not passed", "    offers = answers(e, items, by_path, always and not reask)", "    offers = ()", "itemator/ci.py", "tests/test_answers.py"),
  ("target: merge base used", "    target, resolved = target_tip(repo_dir, env, base)\n", "    target, resolved = base, True\n", "itemator/ci.py", "tests/test_policy.py"),
  ("target: not a full sha used", "        if _SHA40.fullmatch(sha):\n", "        if sha:\n", "itemator/ci.py", "tests/test_policy.py"),
  ("target: fallback caveat dropped", "             TARGET_CAVEAT if fallback else None,\n", "             None,\n", "itemator/ci.py", "tests/test_policy.py"),
@@ -459,11 +463,12 @@ T40 = [(label, old, new, path, test) for label, old, new, path, test in [
  ("always: the flag ignored", "if always and can_always(e, items) else offers", "if can_always(e, items) else offers", CI, TA),
  ("always: offered first", '(*offers, "always")', '("always", *offers)', CI, TA),
  ("always: facts offer it with any policy", "    always = always_allowed(policy.to_dict() if policy else None)       # T40\n", "    always = bool(policy)\n", CI, TA),
- ("always: not passed to the stub", "other_person, answers(e, items, by_path, always), said, askers, flag),", "other_person, answers(e, items, by_path), said, askers, flag),", CI, TA),
+ ("always: not passed to the stub", "    offers = answers(e, items, by_path, always and not reask)", "    offers = answers(e, items, by_path)", CI, TA),
  ("stub: always sentence dropped", 'always = f"{ALWAYS} " if "always" in offers else ""', 'always = ""', CI, TA),
  ("stub: always sentence first", 'f"{split}{remove}{always}If this', 'f"{always}{split}{remove}If this', CI, TA),
- ("prompt: refusal list misses remember", '"Remove partly done:", "Cannot remember:" or "Remember failed:" (there may be none).', '"Remove partly done:" or "Cannot remember:" (there may be none).', FL, TP),
- ("prompt: reminder misses remember", '"Remove partly done:", "Cannot remember:" or "Remember failed:"; otherwise', '"Remove partly done:"; otherwise', FL, TP),
+ ("prompt: refusal list misses remember", '"Remove partly done:", "Cannot remember:", "Remember failed:", "Cannot bump:", "Bump failed:", "Bump partly done:", "Cannot keep until" or "Cannot take out:" (there may be none).', '"Remove partly done:", "Cannot remember:", "Cannot bump:", "Bump failed:", "Bump partly done:", "Cannot keep until" or "Cannot take out:" (there may be none).', FL, TP),
+ ("prompt: reminder misses remember", '"Remove partly done:", "Cannot remember:", "Remember failed:", "Cannot bump:", "Bump failed:", "Bump partly done:", "Cannot keep until" or "Cannot take out:"; otherwise', '"Remove partly done:", "Cannot bump:", "Bump failed:", "Bump partly done:", "Cannot keep until" or "Cannot take out:"; otherwise', FL, TP),
+ ("prompt: reminder misses bump", '"Remember failed:", "Cannot bump:", "Bump failed:", "Bump partly done:", "Cannot keep until" or "Cannot take out:"; otherwise', '"Remember failed:"; otherwise', FL, TP),
  ("prompt: offer sentence differs", "reply `always`; that opens a merge request that changes the team policy.\" the thread is ALWAYS_OK", "reply `always`.\" the thread is ALWAYS_OK", FL, TP),
  ("prompt: no mention step", "        Step 7b. The mention thread.", "        The mention thread.", FL, TP),
  ("prompt: mention reopened", "discussion_id and resolved true. Never touch any other discussion", "discussion_id and resolved false. Never touch any other discussion", FL, TP),
@@ -477,7 +482,7 @@ T40 = [(label, old, new, path, test) for label, old, new, path, test in [
 T42 = [(label, old, new, path, test) for label, old, new, path, test in [
  ("t42: comment match allowed", " or OLD does not appear exactly once in the whole decoded file (a comment counts)", "", FL, TP),
  ("t42: trailing comma allowed", " or any entry in the list contains a [ or a ] character, or the list holds a # or ends with a comma", "", FL, TP),
- ("t42: leftover branch ignored", " Otherwise call gitlab_api_get with endpoint \"/api/v4/projects/<project_id>/repository/branches/<BRANCH with each / written as %2F>\"; if that branch exists, reply \"Cannot remember: the branch `BRANCH` is left from an earlier try; delete it, then reply always again.\" and stop (HTTP 404 means go on).", "", FL, TP),
+ ("t42: leftover branch ignored", " Otherwise GET \"/api/v4/projects/<project_id>/repository/branches/<ENC(BRANCH)>\"; if that branch exists, reply \"Cannot remember: the branch `BRANCH` is left from an earlier try; delete it, then reply always again.\" and stop (HTTP 404 means go on).", "", FL, TP),
  ("t42: compare endpoint dropped", '"/api/v4/projects/<project_id>/repository/compare" and params {"from": TIP, "to": BRANCH, "straight": "true"}', '"/api/v4/projects/<project_id>/repository/files/.itemator.toml" and params {"ref": BRANCH}', FL, TP),
  ("t42: compare not straight", '"to": BRANCH, "straight": "true"}', '"to": BRANCH}', FL, TP),
  ("t42: two plus lines allowed", 'and exactly one line starting with "+"', 'and a line starting with "+"', FL, TP),
@@ -548,7 +553,7 @@ T45 = [(label, old, new, path, test) for label, old, new, path, test in [
  ("t45: invalid username kept", "if isinstance(u, str) and _USERNAME.fullmatch(u) and u not in out:", "if isinstance(u, str) and u not in out:", CI, TA45),
  ("t45: a 4th name kept", "    return out[:MAX_ASKERS]", "    return out[:MAX_ASKERS + 1]", CI, TA45),
  ("t45: restriction claimed with no issue", "asks_asker=bool(askers) and bool(kept)", "asks_asker=bool(policy and policy.asker_required) and bool(kept)", CI, TA45),
- ("t45: author_id used instead of username", '"author_username": author.get("username")}', '"author_username": author.get("id")}', CI, TA45),
+ ("t45: author_id used instead of username", '"author_username": author.get("username"),', '"author_username": author.get("id"),', CI, TA45),
  ("t45: sentence before the other-person one", '    facts += f" {OTHER_PERSON}" if other_person else ""\n    facts += f" {asker_sentence(askers)}" if askers else ""\n', '    facts += f" {asker_sentence(askers)}" if askers else ""\n    facts += f" {OTHER_PERSON}" if other_person else ""\n', CI, TA45),
  ("t45: card line never shown", "asks_asker=bool(askers) and bool(kept)", "asks_asker=False", CI, TA45),
  ("t45: plain_facts without the names", '    if askers:\n        plain["asker_usernames"] = list(askers)\n', "", CI, TA45),
@@ -570,7 +575,7 @@ T46 = [(label, old, new, path, test) for label, old, new, path, test in [
  ("t46: reminder never names the asker", "\"Waiting for the person who wrote the issue (@x): \" if some thread of a name in OPEN_NAMES is ASKER_ONLY and its ASKERS is not empty (in place of @x write the first such thread's ASKERS, each with its @, joined with \" or \"), else ", "", FL, TP),
  ("t46: asker reminder ignores refusals", ", in both cases only when no thread of a name in OPEN_NAMES", " and no thread of a name in OPEN_NAMES", FL, TP),
  ("t46: summary never credits the asker", "if some extra thread is ASKER_ONLY, PEOPLE is not empty and every name in it is one of the ASKERS of an ASKER_ONLY thread, a blank line and the line \"All of it was typed by the person who wrote the issue.\"; otherwise, if", "if", FL, TP),
- ("t46: receipt without the idempotence search", " Call gitlab_api_get with endpoint \"/api/v4/projects/<project_id>/search\" and params {\"scope\": \"notes\", \"search\": \"<MARKER_R>\", \"per_page\": \"20\"}. If any entry in its data has noteable_type \"Issue\", noteable_iid equal to ISSUE_IID, and an author whose username is REACT_BOT, post nothing; if the search fails, post nothing.", "", FL, TP),
+ ("t46: receipt without the idempotence search", " GET \"/api/v4/projects/<project_id>/search\" and params {\"scope\": \"notes\", \"search\": \"<MARKER_R>\", \"per_page\": \"20\"}. If any entry in its data has noteable_type \"Issue\", noteable_iid equal to ISSUE_IID, and an author whose username is REACT_BOT, post nothing; if the search fails, post nothing.", "", FL, TP),
  ("t46: receipt posted when the search fails", "author whose username is REACT_BOT, post nothing; if the search fails, post nothing.", "author whose username is REACT_BOT, post nothing.", FL, TP),
  ("t46: receipt search looks at MR notes", "If any entry in its data has noteable_type \"Issue\", noteable_iid equal to ISSUE_IID", "If any entry in its data has noteable_type \"MergeRequest\", noteable_iid equal to ISSUE_IID", FL, TP),
  ("t46: receipt marker without the head", "MARKER_R = \"itemator:receipt=<IID>:<HEAD>\"", "MARKER_R = \"itemator:receipt=<IID>\"", FL, TP),
@@ -654,14 +659,93 @@ T55 = [(label, old, new, "itemator/scan.py", "tests/test_scan.py") for label, ol
  ("t55: a list error exits 0", '        print(f"itemator scan: {e}", file=sys.stderr)\n        return 2', '        print(f"itemator scan: {e}", file=sys.stderr)\n        return 0'),
  ("t55: the branch name is not quoted", "urllib.parse.quote(target, safe='')", "target"),
 ]]
+# F1: a copy moved along by one line follows the asked move (follows() in itemator/ci.py), judged by tests/test_leftbehind.py.
+F1 = [(label, old, new, "itemator/ci.py", "tests/test_leftbehind.py") for label, old, new in [
+ ("follow: any version followed", "    return {p for p, m in left.single.items() if p in other and (m.family, m.shown) in asked}", "    return {p for p, m in left.single.items() if p in other}"),
+ ("follow: an extra's move is an ask", "    asked = {(m.family, m.shown) for m in left.moved if m.path not in other}", "    asked = {(m.family, m.shown) for m in left.moved}"),
+ ("follow: followed extras kept", "    found = [e for e in found if e.path not in follow]\n", ""),
+]]
+# F1b: the react flow's `bump` (step 5c) and its code mirror (itemator/replycheck.py).
+RCK = "itemator/replycheck.py"
+F1B = [(label, old, new, path, test) for label, old, new, path, test in [
+ ("bump: no head check", "if its commit id is not HEAD, reply", "if its commit id is missing, reply", FL, TP),
+ ("bump: whole file sent", '"old_str": BUMP_OLD, "new_str": BUMP_NEW, "last_commit_id": LAST}]', '"content": BUMP_NEW, "last_commit_id": LAST}]', FL, TP),
+ ("bump: no compare", '"from": HEAD, "to": SOURCE, "straight": "true"', '"from": BASE, "to": SOURCE', FL, TP),
+ ("bump: anyone may bump", 'T2 is exactly "bump" and T2 is not NAME in lower case and the author is in CREW and', 'T2 is exactly "bump" and T2 is not NAME in lower case and', FL, TP),
+ ("bump: record not settled", '"Removed:", "Bumped:" or "Taken out:"; count it', '"Removed:" or "Taken out:"; count it', FL, TP),
+ ("bump code: offered nowhere checked", '        if th.get("bump") and b == "bump"', '        if b == "bump"', RCK, "tests/test_replycheck.py"),
+ ("bump code: anyone may bump", 'b == "bump" and b != name.lower() and u in crew and later', 'b == "bump" and b != name.lower() and later', RCK, "tests/test_replycheck.py"),
+ ("bump code: refusal not read", ' "Cannot bump:", "Bump failed:", "Bump partly done:", "Cannot keep', " \"Cannot keep", RCK, "tests/test_replycheck.py"),
+ ("bump code: record unread", ', "Bumped:": "bump",', ",", RCK, "tests/test_replycheck.py"),
+]]
+# F2: stopgaps kept `until #N` (itemator/ci.py stopgaps_due and stopgap_extras, judged by tests/test_stopgaps.py), the react
+# flow's step 5d and its code mirror.
+TS, TR = "tests/test_stopgaps.py", "tests/test_replycheck.py"
+F2 = [(label, old, new, path, test) for label, old, new, path, test in [
+ ("f2: another project's issue read", '        if i["ref"] != f"#{i[\'iid\']}" or not i.get("notes"):', '        if not i.get("notes"):', "itemator/ci.py", TS),
+ ("f2: notes read for every issue", '        if i["ref"] != f"#{i[\'iid\']}" or not i.get("notes"):', '        if i["ref"] != f"#{i[\'iid\']}":', "itemator/ci.py", TS),
+ ("f2: an unmerged stopgap asked", '                if src.get("state") != "merged":', '                if src.get("state") == "locked":', "itemator/ci.py", TS),
+ ("f2: an untouched file asked", "                if added is None:\n                    continue", "                added = added or []", "itemator/ci.py", TS),
+ ("f2: taken out still asked", '        if not g["line"]:\n            continue', "        pass", "itemator/ci.py", TS),
+ ("f2: until offered everywhere", '    keep = KEEP if e.kind in (LB.KIND, SG.KIND, "policy_changed") else f"{KEEP} {SG.UNTIL_OFFER}"', '    keep = f"{KEEP} {SG.UNTIL_OFFER}"', "itemator/ci.py", TS),
+ ("f2: path quieting a stopgap", '    if e.kind in ("left_behind", "stopgap_due"):', '    if e.kind == "left_behind":', "itemator/policy.py", TS),
+ ("f2 prompt: until from a closed issue", "If its state is not \"opened\" (or it is a 404), reply", "If it is a 404, reply", FL, TP),
+ ("f2 prompt: until offered nowhere checked", "If that part contains the sentence \"To keep it only until an issue is fixed", "If that part holds the sentence \"To keep it only until an issue is fixed", FL, TP),
+ ("f2 prompt: taken out unchecked", "or its decoded content does not contain TAKE_LINE, reply", "or always, reply", FL, TP),
+ ("f2 prompt: taken out from anyone", 'T2 is exactly "taken out" and T2 is not NAME in lower case and the author is in CREW and', 'T2 is exactly "taken out" and T2 is not NAME in lower case and', FL, TP),
+ ("f2 code: until without the offer", '        if th.get("until_ok") and until and ok_asker(u) and later:', "        if until and ok_asker(u) and later:", RCK, TR),
+ ("f2 code: until #0 counts", 'UNTIL = re.compile(r"until #([1-9][0-9]{0,8})")', 'UNTIL = re.compile(r"until #([0-9]{1,9})")', RCK, TR),
+ ("f2 code: taken out from anyone", 'b == "taken out" and b != name.lower() and u in crew and later', 'b == "taken out" and b != name.lower() and later', RCK, TR),
+ ("f2 code: taken out record unread", ',\n           "Taken out:": "taken_out"}', "}", RCK, TR),
+ ("f2 code: until refusal unread", ', "Cannot keep until", "Cannot take out:")', ")", RCK, TR),
+]]
+# F3B: the react flow's member lookup through the project's users list (a flow's token cannot read the members API).
+TRP, RF = "tests/test_react_prompt.py", "flows/itemator_react.yml"
+F3B = [(label, old, new, path, test) for label, old, new, path, test in [
+ ("f3b: members API again", 'GET "/api/v4/projects/<project_id>/users" and params {"search": the author\'s username, "per_page": "100"}', 'GET "/api/v4/projects/<project_id>/members/all/<author id>"', RF, TRP),
+ ("f3b: id not compared", "lists a user whose id is the author id, whose username", "lists a user whose username", RF, TRP),
+ ("f3b: fuzzy username", "whose username is exactly the author's username", "whose username looks like the author's username", RF, TRP),
+ ("f3b: blocked user counts", ' and whose state is "active" (anything else', ' (anything else', RF, TRP),
+ ("f3b: failure counts as member", "(anything else: not a MEMBER)", "(a failed call: a MEMBER)", RF, TRP),
+]]
+# F2G: the CI job's anonymous GraphQL reads (itemator/ci.py Api.graphql, gql_threads, gql_member), judged by
+# tests/test_graphql_reads.py.
+TG = "tests/test_graphql_reads.py"
+F2G = [(label, old, new, "itemator/ci.py", TG) for label, old, new in [
+ ("f2g: job token sent to graphql", "        status, body = self._once(url, {})\n        try:\n            got = json.loads(body) if status == 200", "        status, body = self._once(url, {\"JOB-TOKEN\": self.token or \"\"})\n        try:\n            got = json.loads(body) if status == 200"),
+ ("f2g: errors with data read", "if not isinstance(got, dict) or got.get(\"errors\") or not", "if not isinstance(got, dict) or not"),
+ ("f2g: no project path sent", 'json.dumps({"p": self.path, **variables})', 'json.dumps(dict(variables))'),
+ ("f2g: second notes page ignored", '    if (conn.get("pageInfo") or {}).get("hasNextPage"):\n        raise JobError("more than 100 notes in one place")\n', ''),
+ ("f2g: member id not compared", 'if _gid(n["user"]["id"]) == uid and n["user"].get("username") == username', 'if n["user"].get("username") == username'),
+ ("f2g: member name not compared", 'if _gid(n["user"]["id"]) == uid and n["user"].get("username") == username', 'if _gid(n["user"]["id"]) == uid'),
+ ("f2g: expiry read as a time", '"expires_at": (m.get("expiresAt") or None) and m["expiresAt"][:10]}', '"expires_at": m.get("expiresAt")}'),
+ ("f2g: member state ignored", '"state": m["user"].get("state"),', '"state": "active",'),
+ ("f2g: stopgap notes only through rest", '                notes = _gql_notes(api.graphql(GQL_ISSUE_NOTES, {"i": str(i["iid"])})["project"]["issue"]["notes"])', '                raise JobError("x")'),
+ ("f2g: threads only through rest", "            discussions = gql_threads(api, iid)\n", "            raise JobError(\"x\")\n"),
+ ("f2g: bots flag ignored", '                    people[uid] = bots.get(uid) is False', '                    people[uid] = True'),
+]]
+# FM: OSV malware reports on a new dependency (itemator/registry.py _gone, _malware, _facts; itemator/policy.py),
+# judged by tests/test_malware_reports.py.
+TM, RGP = "tests/test_malware_reports.py", "itemator/registry.py"
+FM = [(label, old, new, path, TM) for label, old, new, path in [
+ ("fm: osv not asked for a gone name", "                return self._gone({**rec, \"lookup\": \"ok\", \"found\": False}, name, eco)", "                return {**rec, \"lookup\": \"ok\", \"found\": False}", RGP),
+ ("fm: gone name not normalised", '        query = {"package": {"name": _pep503(name) if eco == "PyPI" else name, "ecosystem": eco}}\n        try:\n            status, body = self._ask("POST", OSV_URL, json.dumps(query).encode())\n            vulns', '        query = {"package": {"name": name, "ecosystem": eco}}\n        try:\n            status, body = self._ask("POST", OSV_URL, json.dumps(query).encode())\n            vulns', RGP),
+ ("fm: any advisory read as malware", 'if isinstance(i, str) and i.startswith("MAL-")', 'if isinstance(i, str)', RGP),
+ ("fm: aliases not read", "[v.get(\"id\"), *aliases]", "[v.get(\"id\")]", RGP),
+ ("fm: ids not capped", "    return out[:MAX_MALWARE_IDS]", "    return out", RGP),
+ ("fm: live package report dropped", "            if _malware(vulns):\n                rec[\"malware\"] = _malware(vulns)\n            rec[\"advisory_ids\"]", "            rec[\"advisory_ids\"]", RGP),
+ ("fm: report shown last", "    parts = [*([mal] if mal else []), first, releases, licence, advisories]", "    parts = [first, releases, licence, advisories, *([mal] if mal else [])]", RGP),
+ ("fm: gone report not shown", ' + (f"; {mal}" if mal else "")', "", RGP),
+ ("fm: policy quiets malware", 'and p.get("found") is True and not p.get("malware"))', 'and p.get("found") is True)', "itemator/policy.py"),
+]]
 SRC = {"itemator/ci.py": (REPO / "itemator/ci.py").read_text(), "itemator/registry.py": (REPO / "itemator/registry.py").read_text(),
        "itemator/policy.py": (REPO / "itemator/policy.py").read_text(), "itemator/said.py": (REPO / "itemator/said.py").read_text(), LG: (REPO / LG).read_text(),
        FL: (REPO / FL).read_text(), "itemator/shipped.py": (REPO / "itemator/shipped.py").read_text(),
-       "itemator/scan.py": (REPO / "itemator/scan.py").read_text()}
+       "itemator/scan.py": (REPO / "itemator/scan.py").read_text(), "itemator/replycheck.py": (REPO / "itemator/replycheck.py").read_text()}
 JOBS = ([(*m, "itemator/ci.py", "tests/test_ci.py") for m in M] + [(*m, "itemator/ci.py", "tests/test_ci_anchors.py") for m in A]
         + [(*m, "itemator/ci.py", "tests/test_registry.py") for m in RC] + [(*m, "itemator/registry.py", "tests/test_registry.py") for m in RG]
         + [(*m, "itemator/ci.py", "tests/test_policy.py") for m in PC] + [(*m, "itemator/policy.py", "tests/test_policy.py") for m in PO]
-        + T26 + T35 + T40 + T42 + T43 + T44 + T45 + T46 + T51 + T52 + T53 + T54 + T55)
+        + T26 + T35 + T40 + T42 + T43 + T44 + T45 + T46 + T51 + T52 + T53 + T54 + T55 + F1 + F1B + F2 + F3B + F2G + FM)
 for label, old, new, path, _ in JOBS:
     assert SRC[path].count(old) == 1, f"mutant {label!r}: anchor found {SRC[path].count(old)} times in {path}"
 if "--anchors-only" in sys.argv:            # tests/test_mutation_anchors.py: every anchor still names one place in the code
@@ -688,6 +772,18 @@ if sys.argv[3:] == ["T52"]:
     JOBS = [j for j in JOBS if j in T52]
 if sys.argv[3:] == ["T53"]:
     JOBS = [j for j in JOBS if j in T53]
+if sys.argv[3:] == ["FM"]:
+    JOBS = [j for j in JOBS if j in FM]
+if sys.argv[3:] == ["F2G"]:
+    JOBS = [j for j in JOBS if j in F2G]
+if sys.argv[3:] == ["F3B"]:
+    JOBS = [j for j in JOBS if j in F3B]
+if sys.argv[3:] == ["F2"]:
+    JOBS = [j for j in JOBS if j in F2]
+if sys.argv[3:] == ["F1B"]:
+    JOBS = [j for j in JOBS if j in F1B]
+if sys.argv[3:] == ["F1"]:
+    JOBS = [j for j in JOBS if j in F1]
 if sys.argv[3:] == ["T54"]:
     JOBS = [j for j in JOBS if j in T54]
 if sys.argv[3:] == ["T55"]:

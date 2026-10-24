@@ -12,7 +12,8 @@ Checks (each prints PASS or FAIL with file:line):
     at that path must equal the number shown (a % may show value or value*100;
     shown decimals round half up; a comment matching no number is also a FAIL).
     Exempt: years 1900-2099, versions (x.y.z, "Python 3.12", ">=3.12"), dates, times,
-    issue/PR numbers (#12, "PR 12"), list numbering, URLs and link targets, and a line
+    issue/PR numbers (#12, "PR 12"), advisory ids (CVE-2026-109618, MAL-2023-1681), list
+    numbering, URLs and link targets, and a line
     marked `<!-- example -->` (a made-up sample, such as a card line in a skill).
     `--also FILE` lists, for a person to review, each number in a file that cannot carry
     source comments (the Devpost draft) that is not a number the repository shows with a
@@ -242,6 +243,7 @@ def neutralise(line: str) -> str:
     s = re.sub(rf"\b\d{{1,2}}(?:st|nd|rd|th)?\s+(?:{MONTHS})\b(?:,?\s+\d{{4}})?", " ", s)
     s = re.sub(r"\bv?\d+\.\d+\.\d+\S*", " ", s)                                    # x.y.z versions
     s = re.sub(r"\b(?:sha|utf|md|rfc|iso|ipv|gpt)-?\d+\b", " ", s, flags=re.I)     # names with a number in them
+    s = re.sub(r"\b(?:CVE|MAL|PYSEC|RUSTSEC|GO)-\d{4}-\d+\b", " ", s)               # advisory ids: names, not counts
     s = re.sub(r"\b(?:CC[- ]BY(?:[- ](?:SA|NC|ND))*|Apache|L?GPL|AGPL|MPL|EPL)[- ]v?\d+(?:\.\d+)?\b", " ", s, flags=re.I)  # licence versions
     return s
 

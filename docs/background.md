@@ -40,3 +40,4 @@ Other tools already flag changes beyond the ask. As their own pages describe the
 
 Itemator's claim is narrower than detection, and the head-to-head says so: one thread per extra, a typed name, a hold on approval, a public log of the answer and a memory of it, in GitLab, against the linked issue, whichever tool named the file.
 
+An outside study of failed agent pull requests on GitHub found the same pattern: maintainer feedback "discourages agentic submissions that combine substantive modifications with unrelated edits" ([Ehsani et al., *Where Do AI Coding Agents Fail?*](https://arxiv.org/abs/2601.15195)).

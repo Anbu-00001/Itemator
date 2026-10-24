@@ -377,9 +377,9 @@ def test_no_policy_quiets_nothing():
 def test_stub_sentence_sits_before_the_replies():
     e = Extra("tests_removed", "t.py", "n", "x")
     assert ci.thread_stub(e, other_person=True) == (
-        f"`n` (tests removed): x. {OTHER} {KEEP} To move it into its own MR, reply `split`. "
+        f"`n` (tests removed): x. {OTHER} {KEEP} {ci.SG.UNTIL_OFFER} To move it into its own MR, reply `split`. "
         "To drop it from this MR, reply `remove`. "
-        "If this is not really an extra, reply `not an extra`.")
+        "If this is not really an extra, reply `not an extra`. Only a project member with the Developer role or higher can answer here.")
     assert ci.thread_stub(e, "PyPI: x.", other_person=True).startswith(f"`n` (tests removed): x. PyPI: x. {OTHER} {KEEP}")
     assert OTHER not in ci.thread_stub(e)
 

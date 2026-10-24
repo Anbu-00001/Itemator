@@ -155,7 +155,7 @@ def test_the_usernames_come_from_the_issue_never_from_the_merge_request(repo, tm
         assert ONE in e["thread_stub"] and "mallory" not in e["thread_stub"]
         assert e["plain_facts"]["asker_usernames"] == ["alice"]
     assert ci._issue({"iid": 3, "project_id": 7, "author": {"id": 9, "username": "carol"}}, "7") == {
-        "iid": 3, "ref": "#3", "title": "", "description": "", "author_id": 9, "author_username": "carol"}
+        "iid": 3, "ref": "#3", "title": "", "description": "", "author_id": 9, "author_username": "carol", "notes": 0}
 
 
 def test_issues_named_in_the_description_carry_their_author_too(repo, tmp_path, monkeypatch):
@@ -171,8 +171,8 @@ def test_issues_named_in_the_description_carry_their_author_too(repo, tmp_path, 
 def test_the_sentence_follows_the_other_person_one_and_precedes_the_replies():
     e = Extra("tests_removed", "t.py", "n", "x")
     assert ci.thread_stub(e, other_person=True, askers=("alice",)) == (
-        f"`n` (tests removed): x. {OTHER} {ONE} {KEEP} To move it into its own MR, reply `split`. "
-        "To drop it from this MR, reply `remove`. If this is not really an extra, reply `not an extra`.")
+        f"`n` (tests removed): x. {OTHER} {ONE} {KEEP} {ci.SG.UNTIL_OFFER} To move it into its own MR, reply `split`. "
+        "To drop it from this MR, reply `remove`. If this is not really an extra, reply `not an extra`. Only a project member with the Developer role or higher can answer here.")
     assert ci.thread_stub(e, askers=("alice",)).startswith(f"`n` (tests removed): x. {ONE} {KEEP}")
     full = ci.thread_stub(e, "PyPI: x.", True, ("split", "remove", "always"), said="silent", askers=("alice",))
     order = ["PyPI: x.", "The description does not mention this.", OTHER, ONE, KEEP, ci.ALWAYS]

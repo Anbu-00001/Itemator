@@ -149,7 +149,7 @@ def cached_files() -> dict:
 # T23: the stub and the card's todo line gained a fourth answer, `remove`; nothing else in the facts may differ.
 OLD_TAIL = "To move it into its own MR, reply `split`. If this is not really an extra, reply `not an extra`."
 NEW_TAIL = ("To move it into its own MR, reply `split`. To drop it from this MR, reply `remove`. "
-            "If this is not really an extra, reply `not an extra`.")
+            "If this is not really an extra, reply `not an extra`. Only a project member with the Developer role or higher can answer here.")
 OLD_TODO = 'Type each name in its thread to keep it, or reply "split" to move it to its own MR.'
 NEW_TODO = (ci.WELCOME + ' Type each name in its thread to keep it, or reply "split" to move it to its own MR, "remove" to drop it. '
             + ci.SEVERAL + ' ' + ci.CONSENT)    # + the consent line, and (T64) the welcome line before it
@@ -181,7 +181,7 @@ def offered(x: dict, by_path: dict) -> tuple:
 def new_tail(offers) -> str:
     return (("To move it into its own MR, reply `split`. " if "split" in offers else "")
             + ("To drop it from this MR, reply `remove`. " if "remove" in offers else "")
-            + "If this is not really an extra, reply `not an extra`.")
+            + "If this is not really an extra, reply `not an extra`. Only a project member with the Developer role or higher can answer here.")
 
 
 def with_remove(before: dict, by_path: dict, seen: dict) -> tuple[dict, int]:
@@ -194,6 +194,7 @@ def with_remove(before: dict, by_path: dict, seen: dict) -> tuple[dict, int]:
         seen[offers] = seen.get(offers, 0) + 1
         e["thread_stub"], n = e["thread_stub"][:-len(OLD_TAIL)] + new_tail(offers), n + 1
         e["thread_stub"] = e["thread_stub"].replace("To keep it, reply with its exact name. ", ci.KEEP + " ")     # T64
+        e["thread_stub"] = e["thread_stub"].replace(ci.KEEP + " ", f"{ci.KEEP} {ci.SG.UNTIL_OFFER} ", 1)     # F2: until #N
     if out["card"]["todo_line"] == OLD_TODO:
         out["card"]["todo_line"], n = NEW_TODO, n + 1
     for key in ("final_line", "caveat_line"):

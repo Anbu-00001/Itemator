@@ -259,9 +259,9 @@ def test_mass_event_of_generated_files_anchors_on_the_first_removed_line():
 
 # ------------------------------------------------- thread stub, plain facts
 
-KEEP = ("To keep it, reply with its exact name; put `@ai-itemator-react-gitlab-ai-hackathon` on the same line to start the check, and a line under the name can say why. To move it into its own MR, reply `split`. "
+KEEP = ("To keep it, reply with its exact name; put `@ai-itemator-react-gitlab-ai-hackathon` on the same line to start the check, and a line under the name can say why. To keep it only until an issue is fixed, reply `until #` followed by that issue's number. To move it into its own MR, reply `split`. "
         "To drop it from this MR, reply `remove`. "
-        "If this is not really an extra, reply `not an extra`.")
+        "If this is not really an extra, reply `not an extra`. Only a project member with the Developer role or higher can answer here.")
 
 
 def test_thread_stub_text():
@@ -283,7 +283,7 @@ def test_thread_stub_offers_four_answers_and_keeps_what_the_react_flow_reads():
             at = [stub.find(a) for a in answers]
             assert [stub.count(a) for a in answers] == [1, 1, 1, 1] and at == sorted(at) and at[0] > 0
             assert stub.split("`")[1] == ci.shown_name(e.name)
-            assert stub.endswith("To drop it from this MR, reply `remove`. If this is not really an extra, reply `not an extra`.")
+            assert stub.endswith("To drop it from this MR, reply `remove`. If this is not really an extra, reply `not an extra`. Only a project member with the Developer role or higher can answer here.")
 
 
 def test_thread_stub_survives_odd_names():
@@ -454,9 +454,9 @@ def test_six_extras_of_one_kind_from_one_manifest_are_one_line():
     assert [d["name"] for d in e["plain_facts"]["detail"]] == names and e["plain_facts"]["detail"][0]["kind"] == "new_dependency"
     assert e["anchor"] == at("Cargo.toml", "Cargo.toml", None, 2)
     assert e["thread_stub"].startswith("`Cargo.toml` (new dependency, 7 packages): 7 new dependencies in Cargo.toml: crate-a, ")
-    assert e["thread_stub"].endswith("To keep it, reply with its exact name; put `@ai-itemator-react-gitlab-ai-hackathon` on the same line to start the check, and a line under the name can say why. To move it into its own MR, reply `split`. "
+    assert e["thread_stub"].endswith("To keep it, reply with its exact name; put `@ai-itemator-react-gitlab-ai-hackathon` on the same line to start the check, and a line under the name can say why. To keep it only until an issue is fixed, reply `until #` followed by that issue's number. To move it into its own MR, reply `split`. "
                                      "To drop it from this MR, reply `remove`. "
-                                     "If this is not really an extra, reply `not an extra`.")
+                                     "If this is not really an extra, reply `not an extra`. Only a project member with the Developer role or higher can answer here.")
     assert rep["card"]["final_line"] == "1 thing beyond #12: `Cargo.toml` (new dependency, 7 packages)."
     assert rep["card"]["todo_line"] == ci.WELCOME + ' Type each name in its thread to keep it, or reply "split" to move it to its own MR, "remove" to drop it. ' + ci.SEVERAL + ' ' + ci.CONSENT
     five = facts_for([F("src/parser.rs", "@@ -1 +1 @@\n-a\n+b\n"), _cargo(names[:5])])

@@ -69,6 +69,11 @@ def test_numbers_product_versions_exempt_but_counts_not(tmp_path):
     assert [o[:11] for o in msgs(audit.check_numbers, tmp_path)] == ["README.md:2"]
 
 
+def test_numbers_advisory_ids_exempt_but_counts_not(tmp_path):
+    write(tmp_path, {"README.md": "PHP2Shell is CVE-2026-109618; OSV has MAL-2023-1681.\nCVE lists 7 flaws.\n"})
+    assert [o[:11] for o in msgs(audit.check_numbers, tmp_path)] == ["README.md:2"]
+
+
 def test_numbers_licence_versions_exempt_but_counts_not(tmp_path):
     write(tmp_path, {"README.md": "Data is CC BY 4.0; code is MIT, deps Apache-2.0 or GPL-3.0.\nCC BY flagged 4 PRs.\n"})
     assert [o[:11] for o in msgs(audit.check_numbers, tmp_path)] == ["README.md:2"]

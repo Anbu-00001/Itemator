@@ -1,0 +1,3109 @@
+{
+ "rubric": "eval/leftbehind_rubric.json",
+ "code": "eval/leftbehind_study.py",
+ "run_at": "2026-10-24T09:18:05Z",
+ "github_calls": 1498,
+ "summary": {
+  "frame_titles_matched": 353,
+  "sampled": 353,
+  "by_state": {
+   "unreadable": 3,
+   "no_move": 326,
+   "partly_read": 0,
+   "read": 24
+  },
+  "with_a_move_read": 24,
+  "left_behind": {
+   "prs": 9,
+   "share": 0.375,
+   "wilson95": [
+    0.2116,
+    0.5729
+   ],
+   "copies": 36,
+   "files": 33
+  },
+  "merged_copies": {
+   "n": 30,
+   "followed": 10,
+   "not_followed": 20,
+   "unknown": 0,
+   "still_old_today": 20,
+   "named_by_a_reviewer": 0
+  },
+  "kill_rule_narrow": false
+ },
+ "rows": [
+  {
+   "pr": "https://github.com/juicyllama/llana/pull/194",
+   "agent": "Devin",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/airbytehq/airbyte/pull/52663",
+   "agent": "Devin",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/airbytehq/airbyte/pull/52664",
+   "agent": "Devin",
+   "merged": true,
+   "state": "read",
+   "moved": [
+    {
+     "path": ".github/workflows/airbyte-ci-release.yml",
+     "family": "python",
+     "to": "3.11"
+    },
+    {
+     "path": ".github/workflows/auto_merge.yml",
+     "family": "python",
+     "to": "3.11"
+    },
+    {
+     "path": ".github/workflows/connector-performance-command.yml",
+     "family": "python",
+     "to": "3.11"
+    },
+    {
+     "path": ".github/workflows/format-fix-command.yml",
+     "family": "python",
+     "to": "3.11"
+    },
+    {
+     "path": ".github/workflows/format_check.yml",
+     "family": "python",
+     "to": "3.11"
+    },
+    {
+     "path": ".github/workflows/regression_tests.yml",
+     "family": "python",
+     "to": "3.11"
+    },
+    {
+     "path": ".github/workflows/release-airbyte-os.yml",
+     "family": "python",
+     "to": "3.11"
+    },
+    {
+     "path": ".github/workflows/release-airbyte-os.yml",
+     "family": "python",
+     "to": "3.11"
+    },
+    {
+     "path": ".github/workflows/test-performance-command.yml",
+     "family": "python",
+     "to": "3.11"
+    },
+    {
+     "path": ".github/workflows/upload-metadata-files.yml",
+     "family": "python",
+     "to": "3.11"
+    }
+   ],
+   "left": [
+    {
+     "path": ".python-version",
+     "line": 1,
+     "family": "python",
+     "version": "3.10",
+     "to": "3.11",
+     "where": "runtime-file",
+     "template": "{V}",
+     "followed": true,
+     "commits_after": 1,
+     "still_old": false,
+     "named": false
+    },
+    {
+     "path": "airbyte-ci/.python-version",
+     "line": 1,
+     "family": "python",
+     "version": "3.10",
+     "to": "3.11",
+     "where": "runtime-file",
+     "template": "{V}",
+     "followed": true,
+     "commits_after": 1,
+     "still_old": null,
+     "named": false
+    },
+    {
+     "path": "airbyte-integrations/bases/connector-acceptance-test/Dockerfile",
+     "line": 1,
+     "family": "python",
+     "version": "3.10.12",
+     "to": "3.11",
+     "where": "image",
+     "template": "FROM python:{V} as base",
+     "followed": true,
+     "commits_after": 1,
+     "still_old": null,
+     "named": false
+    }
+   ],
+   "floating": 0
+  },
+  {
+   "pr": "https://github.com/airbytehq/airbyte/pull/52674",
+   "agent": "Devin",
+   "merged": false,
+   "state": "read",
+   "moved": [
+    {
+     "path": ".github/workflows/airbyte-ci-release.yml",
+     "family": "python",
+     "to": "3.11"
+    },
+    {
+     "path": ".github/workflows/auto_merge.yml",
+     "family": "python",
+     "to": "3.11"
+    },
+    {
+     "path": ".github/workflows/connector-performance-command.yml",
+     "family": "python",
+     "to": "3.11"
+    },
+    {
+     "path": ".github/workflows/format-fix-command.yml",
+     "family": "python",
+     "to": "3.11"
+    },
+    {
+     "path": ".github/workflows/format_check.yml",
+     "family": "python",
+     "to": "3.11"
+    },
+    {
+     "path": ".github/workflows/regression_tests.yml",
+     "family": "python",
+     "to": "3.11"
+    },
+    {
+     "path": ".github/workflows/release-airbyte-os.yml",
+     "family": "python",
+     "to": "3.11"
+    },
+    {
+     "path": ".github/workflows/release-airbyte-os.yml",
+     "family": "python",
+     "to": "3.11"
+    },
+    {
+     "path": ".github/workflows/test-performance-command.yml",
+     "family": "python",
+     "to": "3.11"
+    },
+    {
+     "path": ".github/workflows/upload-metadata-files.yml",
+     "family": "python",
+     "to": "3.11"
+    }
+   ],
+   "left": [
+    {
+     "path": ".python-version",
+     "line": 1,
+     "family": "python",
+     "version": "3.10",
+     "to": "3.11",
+     "where": "runtime-file",
+     "template": "{V}",
+     "named": false
+    },
+    {
+     "path": "airbyte-ci/.python-version",
+     "line": 1,
+     "family": "python",
+     "version": "3.10",
+     "to": "3.11",
+     "where": "runtime-file",
+     "template": "{V}",
+     "named": false
+    },
+    {
+     "path": "airbyte-integrations/bases/connector-acceptance-test/Dockerfile",
+     "line": 1,
+     "family": "python",
+     "version": "3.10.12",
+     "to": "3.11",
+     "where": "image",
+     "template": "FROM python:{V} as base",
+     "named": false
+    }
+   ],
+   "floating": 0
+  },
+  {
+   "pr": "https://github.com/airbytehq/airbyte/pull/53235",
+   "agent": "Devin",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/airbytehq/airbyte/pull/53607",
+   "agent": "Devin",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/airbytehq/airbyte/pull/53624",
+   "agent": "Devin",
+   "merged": false,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/onlook-dev/onlook/pull/1376",
+   "agent": "Devin",
+   "merged": false,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/umputun/spot/pull/258",
+   "agent": "Claude_Code",
+   "merged": true,
+   "state": "read",
+   "moved": [
+    {
+     "path": ".github/workflows/ci.yml",
+     "family": "go",
+     "to": "1.24"
+    },
+    {
+     "path": ".github/workflows/release.yml",
+     "family": "go",
+     "to": "1.24"
+    }
+   ],
+   "left": [],
+   "floating": 0
+  },
+  {
+   "pr": "https://github.com/airbytehq/airbyte/pull/54897",
+   "agent": "Devin",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/airbytehq/airbyte/pull/54971",
+   "agent": "Devin",
+   "merged": false,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/airbytehq/airbyte/pull/55201",
+   "agent": "Devin",
+   "merged": false,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/airbytehq/airbyte/pull/55202",
+   "agent": "Devin",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/airbytehq/airbyte/pull/55234",
+   "agent": "Devin",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/airbytehq/airbyte/pull/55239",
+   "agent": "Devin",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/pdfme/pdfme/pull/867",
+   "agent": "Devin",
+   "merged": false,
+   "state": "read",
+   "moved": [
+    {
+     "path": ".github/workflows/publish-commit.yml",
+     "family": "node",
+     "to": "22"
+    },
+    {
+     "path": ".github/workflows/publish-commit.yml",
+     "family": "node",
+     "to": "22"
+    },
+    {
+     "path": ".github/workflows/publish-release.yml",
+     "family": "node",
+     "to": "22"
+    },
+    {
+     "path": ".github/workflows/publish-release.yml",
+     "family": "node",
+     "to": "22"
+    }
+   ],
+   "left": [],
+   "floating": 0
+  },
+  {
+   "pr": "https://github.com/coder/coder/pull/17035",
+   "agent": "Claude_Code",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/airbytehq/airbyte/pull/56355",
+   "agent": "Devin",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/airbytehq/airbyte/pull/56356",
+   "agent": "Devin",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/appdotbuild/agent/pull/72",
+   "agent": "Devin",
+   "merged": true,
+   "state": "unreadable",
+   "why": "pull request: HTTP 404"
+  },
+  {
+   "pr": "https://github.com/PRQL/prql/pull/5235",
+   "agent": "Claude_Code",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/antiwork/flexile/pull/198",
+   "agent": "Devin",
+   "merged": true,
+   "state": "unreadable",
+   "why": "pull request: HTTP 404"
+  },
+  {
+   "pr": "https://github.com/antiwork/gumroad/pull/168",
+   "agent": "Devin",
+   "merged": true,
+   "state": "read",
+   "moved": [
+    {
+     "path": ".ruby-version",
+     "family": "ruby",
+     "to": "3.4.3"
+    }
+   ],
+   "left": [],
+   "floating": 0
+  },
+  {
+   "pr": "https://github.com/erpc/erpc/pull/244",
+   "agent": "Devin",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/lingodotdev/lingo.dev/pull/683",
+   "agent": "Devin",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/lingodotdev/lingo.dev/pull/689",
+   "agent": "Devin",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/lingodotdev/lingo.dev/pull/690",
+   "agent": "Devin",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/lingodotdev/lingo.dev/pull/704",
+   "agent": "Devin",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/lingodotdev/lingo.dev/pull/732",
+   "agent": "Devin",
+   "merged": true,
+   "state": "read",
+   "moved": [
+    {
+     "path": ".github/workflows/publish-php-sdk.yml",
+     "family": "php",
+     "to": "8.1"
+    },
+    {
+     "path": ".github/workflows/publish-php-sdk.yml",
+     "family": "php",
+     "to": "8.1"
+    }
+   ],
+   "left": [],
+   "floating": 0
+  },
+  {
+   "pr": "https://github.com/lingodotdev/lingo.dev/pull/733",
+   "agent": "Devin",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/yamadashy/tech-blog-rss-feed/pull/228",
+   "agent": "Devin",
+   "merged": true,
+   "state": "read",
+   "moved": [
+    {
+     "path": ".tool-versions",
+     "family": "node",
+     "to": "24.0.1"
+    }
+   ],
+   "left": [
+    {
+     "path": ".node-version",
+     "line": 1,
+     "family": "node",
+     "version": "23.6.0",
+     "to": "24.0.1",
+     "where": "runtime-file",
+     "template": "{V}",
+     "followed": false,
+     "commits_after": 0,
+     "still_old": true,
+     "named": false
+    }
+   ],
+   "floating": 0
+  },
+  {
+   "pr": "https://github.com/reflex-dev/reflex-web/pull/1370",
+   "agent": "Devin",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/PRQL/prql/pull/5286",
+   "agent": "Claude_Code",
+   "merged": true,
+   "state": "read",
+   "moved": [
+    {
+     "path": ".github/workflows/tests.yaml",
+     "family": "python",
+     "to": "3.11"
+    },
+    {
+     "path": ".github/workflows/tests.yaml",
+     "family": "python",
+     "to": "3.11"
+    },
+    {
+     "path": ".github/workflows/tests.yaml",
+     "family": "python",
+     "to": "3.11"
+    }
+   ],
+   "left": [
+    {
+     "path": ".github/workflows/test-python.yaml",
+     "line": 44,
+     "family": "python",
+     "version": "3.10",
+     "to": "3.11",
+     "where": "setup-input",
+     "template": "python-version: \"{V}\"",
+     "followed": false,
+     "commits_after": 1,
+     "still_old": true,
+     "named": false
+    }
+   ],
+   "floating": 0
+  },
+  {
+   "pr": "https://github.com/timakin/bodyclose/pull/72",
+   "agent": "OpenAI_Codex",
+   "merged": false,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/timakin/bodyclose/pull/73",
+   "agent": "OpenAI_Codex",
+   "merged": false,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/yamadashy/repomix/pull/565",
+   "agent": "Devin",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/evandempsey/fp-growth/pull/30",
+   "agent": "OpenAI_Codex",
+   "merged": false,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/commaai/panda/pull/2205",
+   "agent": "OpenAI_Codex",
+   "merged": false,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/vegasbrianc/docker-traefik-prometheus/pull/26",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/novuhq/novu/pull/8363",
+   "agent": "Devin",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/openops-cloud/openops/pull/666",
+   "agent": "Copilot",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/dotnet/aspnetcore/pull/62075",
+   "agent": "Copilot",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/huggingface/blog/pull/2871",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/dotnet/msbuild/pull/11891",
+   "agent": "Copilot",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/MontrealAI/AGI-Alpha-Agent-v0/pull/631",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/CitizensFoundation/your-priorities-app/pull/212",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/MontrealAI/AGI-Alpha-Agent-v0/pull/636",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/openai/codex/pull/1110",
+   "agent": "OpenAI_Codex",
+   "merged": false,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mlflow/mlflow/pull/15879",
+   "agent": "Copilot",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/jdereg/java-util/pull/132",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/microsoft/Generative-AI-for-beginners-dotnet/pull/151",
+   "agent": "Copilot",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/antiwork/helper/pull/453",
+   "agent": "Devin",
+   "merged": true,
+   "state": "unreadable",
+   "why": "pull request: HTTP 404"
+  },
+  {
+   "pr": "https://github.com/yamadashy/repomix/pull/613",
+   "agent": "Devin",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/warting/android-signaturepad/pull/352",
+   "agent": "Copilot",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/microsoft/go-mssqldb/pull/266",
+   "agent": "Copilot",
+   "merged": false,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/microsoft/go-sqlcmd/pull/586",
+   "agent": "Copilot",
+   "merged": false,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/microsoft/Windows-Containers/pull/599",
+   "agent": "Copilot",
+   "merged": false,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/softmaple/softmaple/pull/238",
+   "agent": "Devin",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/airbytehq/airbyte/pull/61342",
+   "agent": "Devin",
+   "merged": false,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/airbytehq/airbyte/pull/61343",
+   "agent": "Devin",
+   "merged": false,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/n3d1117/chatgpt-telegram-bot/pull/692",
+   "agent": "OpenAI_Codex",
+   "merged": false,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/dotnet/sdk/pull/49238",
+   "agent": "Copilot",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/EasyCorp/EasyAdminBundle/pull/6965",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mihneadb/node-directory-tree/pull/131",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/shinnku-nikaidou/shinnku-com/pull/163",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/celestiaorg/docs/pull/2093",
+   "agent": "Copilot",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/HumeAI/hume-api-examples/pull/177",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/kubetail-org/kubetail/pull/382",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "read",
+   "moved": [
+    {
+     "path": "build/package/Dockerfile.cluster-agent",
+     "family": "rust",
+     "to": "1.87.0"
+    },
+    {
+     "path": "hack/tilt/Dockerfile.kubetail-cluster-agent",
+     "family": "rust",
+     "to": "1.87.0"
+    }
+   ],
+   "left": [],
+   "floating": 0
+  },
+  {
+   "pr": "https://github.com/celestiaorg/docs/pull/2100",
+   "agent": "Copilot",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/akashpandey/Reddit-Fetch/pull/5",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/rsyslog/rsyslog-docker/pull/69",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/datopian/portaljs/pull/1392",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/actnwit/RhodoniteTS/pull/1590",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "read",
+   "moved": [
+    {
+     "path": ".github/workflows/gen-api-docs.yml",
+     "family": "node",
+     "to": "22"
+    }
+   ],
+   "left": [],
+   "floating": 0
+  },
+  {
+   "pr": "https://github.com/johnpaulett/python-hl7/pull/66",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/dotnet/wcf/pull/5795",
+   "agent": "Copilot",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/celestiaorg/celestia-core/pull/1938",
+   "agent": "Copilot",
+   "merged": true,
+   "state": "read",
+   "moved": [
+    {
+     "path": "test/e2e/docker/Dockerfile",
+     "family": "golang",
+     "to": "1.24.0"
+    }
+   ],
+   "left": [],
+   "floating": 0
+  },
+  {
+   "pr": "https://github.com/Azure/azure-container-networking/pull/3721",
+   "agent": "Copilot",
+   "merged": false,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/Azure/azure-container-networking/pull/3723",
+   "agent": "Copilot",
+   "merged": false,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/theepicsaxguy/homelab/pull/832",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/MontrealAI/AGI-Alpha-Agent-v0/pull/1717",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/golang-design/clipboard/pull/77",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "read",
+   "moved": [
+    {
+     "path": "Dockerfile",
+     "family": "golang",
+     "to": "1.24"
+    }
+   ],
+   "left": [],
+   "floating": 0
+  },
+  {
+   "pr": "https://github.com/golang-design/clipboard/pull/80",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/MontrealAI/AGI-Alpha-Agent-v0/pull/1865",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/MontrealAI/AGI-Alpha-Agent-v0/pull/1885",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/204",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/timburgan/timburgan/pull/38841",
+   "agent": "Copilot",
+   "merged": true,
+   "state": "read",
+   "moved": [
+    {
+     "path": ".github/workflows/chess.yml",
+     "family": "ruby",
+     "to": "3.3"
+    }
+   ],
+   "left": [],
+   "floating": 0
+  },
+  {
+   "pr": "https://github.com/Azure/azure-sdk-for-net/pull/50505",
+   "agent": "Copilot",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/celestiaorg/celestia-core/pull/1954",
+   "agent": "Copilot",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/KomodoPlatform/komodo-wallet/pull/2759",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/dotnet/diagnostics/pull/5498",
+   "agent": "Copilot",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/microsoft/typespec/pull/7611",
+   "agent": "Copilot",
+   "merged": false,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/microsoft/typespec/pull/7612",
+   "agent": "Copilot",
+   "merged": false,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/oam-dev/cluster-gateway/pull/161",
+   "agent": "OpenAI_Codex",
+   "merged": false,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/celestiaorg/celestia-core/pull/1995",
+   "agent": "Copilot",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/Azure/azure-sdk-for-python/pull/41548",
+   "agent": "Copilot",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/MontrealAI/AGI-Alpha-Agent-v0/pull/2026",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/MontrealAI/AGI-Alpha-Agent-v0/pull/2038",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/sinedied/dmx-hue/pull/59",
+   "agent": "Copilot",
+   "merged": false,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/azure-ai-foundry/foundry-samples/pull/176",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/910",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/944",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/1031",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/1090",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/Azure/autorest.typescript/pull/3295",
+   "agent": "Copilot",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/airbytehq/airbyte/pull/61644",
+   "agent": "Devin",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/SaveTheRbtz/zstd-seekable-format-go/pull/197",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/microsoft/typespec/pull/7662",
+   "agent": "Copilot",
+   "merged": false,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/microsoft/typespec/pull/7664",
+   "agent": "Copilot",
+   "merged": false,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/microsoft/typespec/pull/7666",
+   "agent": "Copilot",
+   "merged": false,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/microsoft/typespec/pull/7667",
+   "agent": "Copilot",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/1413",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/1465",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/1702",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/1720",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/1933",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/ozantunca/elb-log-analyzer/pull/501",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mono/SkiaSharp/pull/3295",
+   "agent": "Copilot",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/Azure/azure-sdk-for-python/pull/41681",
+   "agent": "Copilot",
+   "merged": false,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/2208",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/ateliee/jquery.schedule/pull/60",
+   "agent": "Devin",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/sshaw/itunes_store_transporter/pull/23",
+   "agent": "Copilot",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/MontrealAI/AGI-Alpha-Agent-v0/pull/2513",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/celestiaorg/celestia-app/pull/5039",
+   "agent": "Copilot",
+   "merged": true,
+   "state": "read",
+   "moved": [
+    {
+     "path": "docker/multiplexer.Dockerfile",
+     "family": "golang",
+     "to": "1.24.4"
+    },
+    {
+     "path": "docker/standalone.Dockerfile",
+     "family": "golang",
+     "to": "1.24.4"
+    },
+    {
+     "path": "docker/txsim/Dockerfile",
+     "family": "golang",
+     "to": "1.24.4"
+    }
+   ],
+   "left": [],
+   "floating": 0
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/2919",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/3044",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/microsoft/typespec/pull/7735",
+   "agent": "Copilot",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/vexxhost/atmosphere/pull/2788",
+   "agent": "Claude_Code",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/vexxhost/atmosphere/pull/2789",
+   "agent": "Claude_Code",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/vexxhost/atmosphere/pull/2790",
+   "agent": "Claude_Code",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/getsentry/sentry-javascript/pull/16744",
+   "agent": "Cursor",
+   "merged": false,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/teaxyz/chai/pull/133",
+   "agent": "Cursor",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/3823",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/johnsusek/praeco/pull/713",
+   "agent": "Copilot",
+   "merged": false,
+   "state": "read",
+   "moved": [
+    {
+     "path": ".nvmrc",
+     "family": "node",
+     "to": "22.17.0"
+    }
+   ],
+   "left": [],
+   "floating": 0
+  },
+  {
+   "pr": "https://github.com/dotnet/aspire/pull/10115",
+   "agent": "Copilot",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/3983",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/3984",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/4416",
+   "agent": "OpenAI_Codex",
+   "merged": false,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/4446",
+   "agent": "OpenAI_Codex",
+   "merged": false,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/toshimaru/nyan/pull/188",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "read",
+   "moved": [
+    {
+     "path": ".github/workflows/ci.yml",
+     "family": "go",
+     "to": "1.24"
+    },
+    {
+     "path": ".github/workflows/coverage.yml",
+     "family": "go",
+     "to": "1.24"
+    },
+    {
+     "path": ".github/workflows/release.yml",
+     "family": "go",
+     "to": "1.24"
+    },
+    {
+     "path": ".github/workflows/reviewdog.yml",
+     "family": "go",
+     "to": "1.24"
+    }
+   ],
+   "left": [],
+   "floating": 0
+  },
+  {
+   "pr": "https://github.com/microsoft/typespec/pull/7801",
+   "agent": "Copilot",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/4559",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/MontrealAI/AGI-Alpha-Agent-v0/pull/2877",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/microsoft/ApplicationInsights-Java/pull/4262",
+   "agent": "Copilot",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/jabrena/cursor-rules-java/pull/126",
+   "agent": "Cursor",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/azure-ai-foundry/foundry-samples/pull/232",
+   "agent": "OpenAI_Codex",
+   "merged": false,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/novuhq/novu/pull/8639",
+   "agent": "Cursor",
+   "merged": false,
+   "state": "read",
+   "moved": [
+    {
+     "path": ".github/workflows/community-label.yml",
+     "family": "node",
+     "to": "23.11.1"
+    },
+    {
+     "path": ".github/workflows/deploy.yml",
+     "family": "node",
+     "to": "23.11.1"
+    },
+    {
+     "path": ".github/workflows/issue-label.yml",
+     "family": "node",
+     "to": "23.11.1"
+    },
+    {
+     "path": ".github/workflows/milestone-assign.yml",
+     "family": "node",
+     "to": "23.11.1"
+    },
+    {
+     "path": ".github/workflows/prepare-self-hosted-release.yml",
+     "family": "node",
+     "to": "23.11.1"
+    },
+    {
+     "path": ".github/workflows/preview-packages.yml",
+     "family": "node",
+     "to": "23.11.1"
+    },
+    {
+     "path": ".github/workflows/release-packages.yml",
+     "family": "node",
+     "to": "23.11.1"
+    },
+    {
+     "path": ".github/workflows/reusable-dashboard-e2e.yml",
+     "family": "node",
+     "to": "23.11.1"
+    },
+    {
+     "path": ".github/workflows/reusable-web-e2e.yml",
+     "family": "node",
+     "to": "23.11.1"
+    },
+    {
+     "path": ".github/workflows/tag-images.yml",
+     "family": "node",
+     "to": "23.11.1"
+    },
+    {
+     "path": ".nvmrc",
+     "family": "node",
+     "to": "23.11.1"
+    },
+    {
+     "path": "apps/api/Dockerfile",
+     "family": "node",
+     "to": "23"
+    },
+    {
+     "path": "apps/inbound-mail/Dockerfile",
+     "family": "node",
+     "to": "23"
+    },
+    {
+     "path": "apps/web/Dockerfile",
+     "family": "node",
+     "to": "23"
+    },
+    {
+     "path": "apps/web/Dockerfile",
+     "family": "node",
+     "to": "23"
+    },
+    {
+     "path": "apps/webhook/Dockerfile",
+     "family": "node",
+     "to": "23"
+    },
+    {
+     "path": "apps/worker/Dockerfile",
+     "family": "node",
+     "to": "23"
+    },
+    {
+     "path": "apps/ws/Dockerfile",
+     "family": "node",
+     "to": "23"
+    }
+   ],
+   "left": [
+    {
+     "path": "apps/dashboard/dockerfile",
+     "line": 1,
+     "family": "node",
+     "version": "20",
+     "to": "23",
+     "where": "image",
+     "template": "FROM node:{V}-alpine3.19 AS builder",
+     "named": false
+    },
+    {
+     "path": "apps/dashboard/dockerfile",
+     "line": 29,
+     "family": "node",
+     "version": "20",
+     "to": "23",
+     "where": "image",
+     "template": "FROM node:{V}-alpine",
+     "named": false
+    }
+   ],
+   "floating": 7
+  },
+  {
+   "pr": "https://github.com/Azure/azure-rest-api-specs/pull/35695",
+   "agent": "Copilot",
+   "merged": false,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/5015",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/celestiaorg/celestia-core/pull/2145",
+   "agent": "Copilot",
+   "merged": false,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/5183",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/5196",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/5212",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/5659",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/5681",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/5776",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/5780",
+   "agent": "OpenAI_Codex",
+   "merged": false,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/5796",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/AgentOps-AI/agentops/pull/1131",
+   "agent": "Devin",
+   "merged": false,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/microsoft/presidio/pull/1650",
+   "agent": "Copilot",
+   "merged": false,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/trueai-org/midjourney-proxy/pull/87",
+   "agent": "Copilot",
+   "merged": false,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/6026",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/MontrealAI/AGI-Alpha-Agent-v0/pull/3082",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/filecoin-project/lotus/pull/13202",
+   "agent": "Copilot",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/airbytehq/airbyte/pull/62864",
+   "agent": "Devin",
+   "merged": false,
+   "state": "read",
+   "moved": [
+    {
+     "path": "docker-images/Dockerfile.python-connector-base",
+     "family": "python",
+     "to": "3.11.13"
+    }
+   ],
+   "left": [
+    {
+     "path": "airbyte-integrations/bases/connector-acceptance-test/Dockerfile",
+     "line": 1,
+     "family": "python",
+     "version": "3.11.9",
+     "to": "3.11.13",
+     "where": "image",
+     "template": "FROM python:{V} as base",
+     "named": false
+    }
+   ],
+   "floating": 15
+  },
+  {
+   "pr": "https://github.com/exa-labs/exa-py/pull/110",
+   "agent": "Cursor",
+   "merged": false,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/6523",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/6825",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/6840",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/7045",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/7108",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/docker/hello-genai/pull/8",
+   "agent": "Copilot",
+   "merged": false,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/7866",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/7912",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/8226",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/8244",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/8371",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/8396",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/8397",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/8468",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/MontrealAI/AGI-Alpha-Agent-v0/pull/3297",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/MontrealAI/AGI-Alpha-Agent-v0/pull/3300",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/MontrealAI/AGI-Alpha-Agent-v0/pull/3302",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/8615",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/8618",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/8644",
+   "agent": "OpenAI_Codex",
+   "merged": false,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/8658",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/8678",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/microsoft/react-native-windows/pull/14913",
+   "agent": "Copilot",
+   "merged": false,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/microsoft/react-native-windows/pull/14915",
+   "agent": "Copilot",
+   "merged": false,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/callstack/react-native-testing-library/pull/1791",
+   "agent": "Cursor",
+   "merged": true,
+   "state": "read",
+   "moved": [
+    {
+     "path": ".github/workflows/example-apps.yml",
+     "family": "node",
+     "to": "24"
+    }
+   ],
+   "left": [],
+   "floating": 0
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/8697",
+   "agent": "OpenAI_Codex",
+   "merged": false,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/MontrealAI/AGI-Alpha-Agent-v0/pull/3369",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/8787",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/MontrealAI/AGI-Alpha-Agent-v0/pull/3404",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/microsoft/typespec/pull/7920",
+   "agent": "Copilot",
+   "merged": false,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/microsoft/typespec/pull/7927",
+   "agent": "Copilot",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/Azure/azure-rest-api-specs/pull/35939",
+   "agent": "Copilot",
+   "merged": false,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/8898",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/MontrealAI/AGI-Alpha-Agent-v0/pull/3435",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/9085",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/9098",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/9148",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/9222",
+   "agent": "OpenAI_Codex",
+   "merged": false,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/9379",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/9383",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/9394",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/9400",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/MontrealAI/AGI-Alpha-Agent-v0/pull/3486",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/9417",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/9453",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/9506",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/Azure/azure-rest-api-specs/pull/36031",
+   "agent": "Copilot",
+   "merged": false,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/9559",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/9578",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/9587",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/9653",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/9946",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/MontrealAI/AGI-Alpha-Agent-v0/pull/3541",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/MontrealAI/AGI-Alpha-Agent-v0/pull/3543",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/10045",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/10116",
+   "agent": "OpenAI_Codex",
+   "merged": false,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/10150",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/10169",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/10177",
+   "agent": "OpenAI_Codex",
+   "merged": false,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/10180",
+   "agent": "OpenAI_Codex",
+   "merged": false,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/10193",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/10304",
+   "agent": "OpenAI_Codex",
+   "merged": false,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/MontrealAI/AGI-Alpha-Agent-v0/pull/3565",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/10322",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/10352",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/10358",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/10360",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/10375",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/10377",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/10419",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/10464",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/10477",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/10482",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/10512",
+   "agent": "OpenAI_Codex",
+   "merged": false,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/10550",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/10583",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/10664",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/10721",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/numbagg/numbagg/pull/387",
+   "agent": "Claude_Code",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/MontrealAI/AGI-Alpha-Agent-v0/pull/3618",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "read",
+   "moved": [
+    {
+     "path": "infrastructure/Dockerfile",
+     "family": "python",
+     "to": "3.12"
+    }
+   ],
+   "left": [
+    {
+     "path": ".github/workflows/bench.yml",
+     "line": 27,
+     "family": "python",
+     "version": "3.11",
+     "to": "3.12",
+     "where": "setup-input",
+     "template": "python-version: '{V}'",
+     "followed": false,
+     "commits_after": 2,
+     "still_old": true,
+     "named": false
+    },
+    {
+     "path": ".github/workflows/ci.yml",
+     "line": 269,
+     "family": "python",
+     "version": "3.11",
+     "to": "3.12",
+     "where": "setup-input",
+     "template": "python-version: '{V}'",
+     "followed": true,
+     "commits_after": 100,
+     "still_old": true,
+     "named": false
+    },
+    {
+     "path": ".github/workflows/ci.yml",
+     "line": 327,
+     "family": "python",
+     "version": "3.11",
+     "to": "3.12",
+     "where": "setup-input",
+     "template": "python-version: '{V}'",
+     "followed": true,
+     "commits_after": 100,
+     "still_old": true,
+     "named": false
+    },
+    {
+     "path": ".github/workflows/deploy-kind.yml",
+     "line": 30,
+     "family": "python",
+     "version": "3.11",
+     "to": "3.12",
+     "where": "setup-input",
+     "template": "python-version: '{V}'",
+     "followed": false,
+     "commits_after": 2,
+     "still_old": true,
+     "named": false
+    },
+    {
+     "path": ".github/workflows/loadtest.yml",
+     "line": 27,
+     "family": "python",
+     "version": "3.11",
+     "to": "3.12",
+     "where": "setup-input",
+     "template": "python-version: '{V}'",
+     "followed": false,
+     "commits_after": 2,
+     "still_old": true,
+     "named": false
+    },
+    {
+     "path": ".github/workflows/nightly-transfer.yml",
+     "line": 27,
+     "family": "python",
+     "version": "3.11",
+     "to": "3.12",
+     "where": "setup-input",
+     "template": "python-version: '{V}'",
+     "followed": false,
+     "commits_after": 2,
+     "still_old": true,
+     "named": false
+    },
+    {
+     "path": ".github/workflows/security.yml",
+     "line": 34,
+     "family": "python",
+     "version": "3.11",
+     "to": "3.12",
+     "where": "setup-input",
+     "template": "python-version: '{V}'",
+     "followed": false,
+     "commits_after": 3,
+     "still_old": true,
+     "named": false
+    },
+    {
+     "path": "alpha_factory_v1/Dockerfile",
+     "line": 22,
+     "family": "python",
+     "version": "3.11",
+     "to": "3.12",
+     "where": "arg",
+     "template": "ARG BASE_IMAGE=python:{V}-slim-bookworm",
+     "followed": false,
+     "commits_after": 8,
+     "still_old": null,
+     "named": false
+    },
+    {
+     "path": "alpha_factory_v1/demos/alpha_agi_business_3_v1/Dockerfile",
+     "line": 1,
+     "family": "python",
+     "version": "3.11",
+     "to": "3.12",
+     "where": "image",
+     "template": "FROM python:{V}-slim",
+     "followed": false,
+     "commits_after": 1,
+     "still_old": null,
+     "named": false
+    },
+    {
+     "path": "alpha_factory_v1/demos/alpha_agi_insight_v1/infrastructure/Dockerfile",
+     "line": 2,
+     "family": "python",
+     "version": "3.11.8",
+     "to": "3.12",
+     "where": "image",
+     "template": "FROM python:{V}-slim@sha256:90f8795536170fd08236d2ceb74fe7065dbf74f738d8b84bfbf263656654dc9b",
+     "followed": false,
+     "commits_after": 5,
+     "still_old": null,
+     "named": false
+    },
+    {
+     "path": "alpha_factory_v1/demos/alpha_asi_world_model/Dockerfile",
+     "line": 25,
+     "family": "python",
+     "version": "3.11",
+     "to": "3.12",
+     "where": "arg",
+     "template": "ARG BASE=python:{V}-slim-bullseye",
+     "followed": false,
+     "commits_after": 1,
+     "still_old": true,
+     "named": false
+    },
+    {
+     "path": "alpha_factory_v1/demos/macro_sentinel/docker-compose.macro.yml",
+     "line": 161,
+     "family": "python",
+     "version": "3.11",
+     "to": "3.12",
+     "where": "image",
+     "template": "image: python:{V}-slim",
+     "followed": false,
+     "commits_after": 0,
+     "still_old": true,
+     "named": false
+    },
+    {
+     "path": "alpha_factory_v1/demos/omni_factory_demo/Dockerfile",
+     "line": 20,
+     "family": "python",
+     "version": "3.11",
+     "to": "3.12",
+     "where": "image",
+     "template": "FROM python:{V}-slim as base",
+     "followed": false,
+     "commits_after": 1,
+     "still_old": true,
+     "named": false
+    },
+    {
+     "path": "docker/quickstart/Dockerfile",
+     "line": 3,
+     "family": "python",
+     "version": "3.11",
+     "to": "3.12",
+     "where": "image",
+     "template": "FROM python:{V}-slim",
+     "followed": true,
+     "commits_after": 5,
+     "still_old": false,
+     "named": false
+    },
+    {
+     "path": "infrastructure/evolution_worker.Dockerfile",
+     "line": 1,
+     "family": "python",
+     "version": "3.11",
+     "to": "3.12",
+     "where": "image",
+     "template": "FROM python:{V}-slim",
+     "followed": false,
+     "commits_after": 1,
+     "still_old": true,
+     "named": false
+    },
+    {
+     "path": "sandbox.Dockerfile",
+     "line": 2,
+     "family": "python",
+     "version": "3.11",
+     "to": "3.12",
+     "where": "image",
+     "template": "FROM python:{V}-slim",
+     "followed": true,
+     "commits_after": 4,
+     "still_old": false,
+     "named": false
+    }
+   ],
+   "floating": 0
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/11357",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/celestiaorg/docs/pull/2159",
+   "agent": "Copilot",
+   "merged": false,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/11473",
+   "agent": "OpenAI_Codex",
+   "merged": false,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/MontrealAI/AGI-Alpha-Agent-v0/pull/3629",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/11590",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/11593",
+   "agent": "OpenAI_Codex",
+   "merged": false,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/11629",
+   "agent": "OpenAI_Codex",
+   "merged": false,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/11672",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/11680",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/11694",
+   "agent": "OpenAI_Codex",
+   "merged": false,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/11722",
+   "agent": "OpenAI_Codex",
+   "merged": false,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/MontrealAI/AGI-Alpha-Agent-v0/pull/3649",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/11885",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/11898",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/11904",
+   "agent": "OpenAI_Codex",
+   "merged": false,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/12113",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/12127",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/12136",
+   "agent": "OpenAI_Codex",
+   "merged": false,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/MontrealAI/AGI-Alpha-Agent-v0/pull/3672",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "read",
+   "moved": [
+    {
+     "path": "Dockerfile",
+     "family": "python",
+     "to": "3.13.5"
+    },
+    {
+     "path": "docker/quickstart/Dockerfile",
+     "family": "python",
+     "to": "3.13.5"
+    },
+    {
+     "path": "sandbox.Dockerfile",
+     "family": "python",
+     "to": "3.13.5"
+    }
+   ],
+   "left": [
+    {
+     "path": "alpha_factory_v1/Dockerfile",
+     "line": 22,
+     "family": "python",
+     "version": "3.11.13",
+     "to": "3.13.5",
+     "where": "arg",
+     "template": "ARG BASE_IMAGE=python:{V}-slim-bookworm",
+     "followed": false,
+     "commits_after": 6,
+     "still_old": null,
+     "named": false
+    },
+    {
+     "path": "alpha_factory_v1/demos/alpha_agi_business_3_v1/Dockerfile",
+     "line": 1,
+     "family": "python",
+     "version": "3.11.13",
+     "to": "3.13.5",
+     "where": "image",
+     "template": "FROM python:{V}-slim",
+     "followed": false,
+     "commits_after": 0,
+     "still_old": null,
+     "named": false
+    },
+    {
+     "path": "alpha_factory_v1/demos/alpha_agi_insight_v1/infrastructure/Dockerfile",
+     "line": 2,
+     "family": "python",
+     "version": "3.11.13",
+     "to": "3.13.5",
+     "where": "image",
+     "template": "FROM python:{V}-slim",
+     "followed": false,
+     "commits_after": 3,
+     "still_old": true,
+     "named": false
+    },
+    {
+     "path": "alpha_factory_v1/demos/alpha_asi_world_model/Dockerfile",
+     "line": 25,
+     "family": "python",
+     "version": "3.11.13",
+     "to": "3.13.5",
+     "where": "arg",
+     "template": "ARG BASE=python:{V}-slim-bullseye",
+     "followed": false,
+     "commits_after": 0,
+     "still_old": true,
+     "named": false
+    },
+    {
+     "path": "alpha_factory_v1/demos/omni_factory_demo/Dockerfile",
+     "line": 20,
+     "family": "python",
+     "version": "3.11.13",
+     "to": "3.13.5",
+     "where": "image",
+     "template": "FROM python:{V}-slim as base",
+     "followed": false,
+     "commits_after": 0,
+     "still_old": true,
+     "named": false
+    },
+    {
+     "path": "infrastructure/Dockerfile",
+     "line": 1,
+     "family": "python",
+     "version": "3.12.11",
+     "to": "3.13.5",
+     "where": "image",
+     "template": "FROM python:{V}-slim",
+     "followed": true,
+     "commits_after": 8,
+     "still_old": true,
+     "named": false
+    },
+    {
+     "path": "infrastructure/evolution_worker.Dockerfile",
+     "line": 1,
+     "family": "python",
+     "version": "3.11.13",
+     "to": "3.13.5",
+     "where": "image",
+     "template": "FROM python:{V}-slim",
+     "followed": false,
+     "commits_after": 0,
+     "still_old": true,
+     "named": false
+    }
+   ],
+   "floating": 0
+  },
+  {
+   "pr": "https://github.com/MontrealAI/AGI-Alpha-Agent-v0/pull/3679",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "read",
+   "moved": [
+    {
+     "path": "infrastructure/Dockerfile",
+     "family": "python",
+     "to": "3.12.12"
+    }
+   ],
+   "left": [],
+   "floating": 2
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/12194",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/12199",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/12206",
+   "agent": "OpenAI_Codex",
+   "merged": false,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/12210",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/12284",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/roeniss/dhlottery-api/pull/141",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/12323",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/12325",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/12346",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/12352",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/MontrealAI/AGI-Alpha-Agent-v0/pull/3686",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "read",
+   "moved": [
+    {
+     "path": ".github/workflows/ci.yml",
+     "family": "python",
+     "to": "3.13.0"
+    },
+    {
+     "path": ".github/workflows/ci.yml",
+     "family": "python",
+     "to": "3.13.0"
+    },
+    {
+     "path": ".github/workflows/docs.yml",
+     "family": "python",
+     "to": "3.13"
+    },
+    {
+     "path": ".github/workflows/size-check.yml",
+     "family": "python",
+     "to": "3.13"
+    },
+    {
+     "path": "infrastructure/Dockerfile",
+     "family": "python",
+     "to": "3.13.5"
+    }
+   ],
+   "left": [
+    {
+     "path": ".github/workflows/ci.yml",
+     "line": 398,
+     "family": "python",
+     "version": "3.13.0",
+     "to": "3.13.5",
+     "where": "setup-input",
+     "template": "python-version: '{V}'",
+     "followed": true,
+     "commits_after": 100,
+     "still_old": true,
+     "named": false
+    },
+    {
+     "path": ".github/workflows/ci.yml",
+     "line": 464,
+     "family": "python",
+     "version": "3.13.0",
+     "to": "3.13.5",
+     "where": "setup-input",
+     "template": "python-version: '{V}'",
+     "followed": true,
+     "commits_after": 100,
+     "still_old": true,
+     "named": false
+    }
+   ],
+   "floating": 2
+  },
+  {
+   "pr": "https://github.com/MontrealAI/AGI-Alpha-Agent-v0/pull/3689",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/MontrealAI/AGI-Alpha-Agent-v0/pull/3692",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/12417",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/12440",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/MontrealAI/AGI-Alpha-Agent-v0/pull/3696",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/MontrealAI/AGI-Alpha-Agent-v0/pull/3701",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/MontrealAI/AGI-Alpha-Agent-v0/pull/3703",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/MontrealAI/AGI-Alpha-Agent-v0/pull/3708",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/12455",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/12474",
+   "agent": "OpenAI_Codex",
+   "merged": false,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/12491",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/12503",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/MontrealAI/AGI-Alpha-Agent-v0/pull/3714",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/12573",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/12629",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/12636",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/12648",
+   "agent": "OpenAI_Codex",
+   "merged": false,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/12676",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/MontrealAI/AGI-Alpha-Agent-v0/pull/3721",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/12728",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/MontrealAI/AGI-Alpha-Agent-v0/pull/3725",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/12810",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/MontrealAI/AGI-Alpha-Agent-v0/pull/3742",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/12896",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/12900",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/12907",
+   "agent": "OpenAI_Codex",
+   "merged": false,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/12942",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/Datawalke/Coordino/pull/120",
+   "agent": "Copilot",
+   "merged": false,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/13067",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/13086",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/13090",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/MontrealAI/AGI-Alpha-Agent-v0/pull/3754",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/13160",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/13181",
+   "agent": "OpenAI_Codex",
+   "merged": false,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/MontrealAI/AGI-Alpha-Agent-v0/pull/3758",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/13345",
+   "agent": "OpenAI_Codex",
+   "merged": false,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/MontrealAI/AGI-Alpha-Agent-v0/pull/3783",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/MontrealAI/AGI-Alpha-Agent-v0/pull/3793",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/MontrealAI/AGI-Alpha-Agent-v0/pull/3794",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "read",
+   "moved": [
+    {
+     "path": ".nvmrc",
+     "family": "node",
+     "to": "22.17.1"
+    },
+    {
+     "path": "alpha_factory_v1/Dockerfile",
+     "family": "node",
+     "to": "22.17.1"
+    }
+   ],
+   "left": [],
+   "floating": 1
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/13612",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/13720",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/13918",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/13959",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/13960",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/14005",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/14077",
+   "agent": "OpenAI_Codex",
+   "merged": false,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mlflow/mlflow/pull/16913",
+   "agent": "Copilot",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/14102",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/14131",
+   "agent": "OpenAI_Codex",
+   "merged": false,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/14185",
+   "agent": "OpenAI_Codex",
+   "merged": false,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/14264",
+   "agent": "OpenAI_Codex",
+   "merged": false,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/14277",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/14306",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/14361",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/14407",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/14450",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/14465",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/14537",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/14587",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/rxaviers/async-pool/pull/49",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/14599",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/14610",
+   "agent": "OpenAI_Codex",
+   "merged": false,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/14611",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/14613",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/14659",
+   "agent": "OpenAI_Codex",
+   "merged": false,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/14664",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/14731",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/14784",
+   "agent": "OpenAI_Codex",
+   "merged": false,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/14831",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/14866",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/14890",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/14901",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/14904",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/14972",
+   "agent": "OpenAI_Codex",
+   "merged": false,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/14974",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/MontrealAI/AGI-Alpha-Agent-v0/pull/3917",
+   "agent": "OpenAI_Codex",
+   "merged": true,
+   "state": "no_move"
+  },
+  {
+   "pr": "https://github.com/mochilang/mochi/pull/15089",
+   "agent": "OpenAI_Codex",
+   "merged": false,
+   "state": "no_move"
+  }
+ ]
+}

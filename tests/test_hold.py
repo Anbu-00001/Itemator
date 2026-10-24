@@ -156,3 +156,31 @@ def test_threads_the_token_cannot_read_leave_the_summary_rule_and_say_so(repo, t
     head = setup(repo)
     code, out, _ = run(repo, head, tmp_path, monkeypatch, notes=(200, [summary(head)]), discussions=discussions)
     assert code == 0 and out["hold"] == {"enabled": True, "blocked": False, "reason": None, "checked": False}
+
+
+def members_thread(name=".gitlab-ci.yml"):
+    d = thread(name)
+    d["notes"][0]["body"] += " " + replycheck.MEMBERS_ONLY
+    return d
+
+
+@pytest.mark.parametrize("member, blocked", [
+    ((200, {"id": 2, "access_level": 30, "state": "active", "expires_at": None}), False),
+    ((200, {"id": 2, "access_level": 20, "state": "active", "expires_at": None}), True),
+    ((404, {"message": "404 Not found"}), True),
+])
+def test_in_a_members_only_thread_the_hold_counts_only_a_developer_or_higher(repo, tmp_path, monkeypatch, member, blocked):
+    head = setup(repo)
+    code, out, http = run_members(repo, head, tmp_path, monkeypatch, member)
+    assert out["hold"]["blocked"] is blocked and code == (1 if blocked else 0)
+
+
+def run_members(repo, head, tmp_path, monkeypatch, member):
+    r = routes(dict(mr(), author={"id": 2, "username": "ann"}), [issue()])
+    r["/users/2"] = (200, {"id": 2, "bot": False})
+    r[DISC] = (200, [members_thread()])
+    r[NOTES.format(1)] = (200, [summary(head)])
+    r["/projects/7/members/all/2"] = member
+    http = FakeHttp(r)
+    code, out = job(repo, head, http, tmp_path, monkeypatch)
+    return code, out, http

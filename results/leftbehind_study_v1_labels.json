@@ -1,0 +1,61 @@
+{
+ "study": "results/leftbehind_study_v1.json",
+ "labelled_by": "the model (Claude Opus 5.5), reading each pull request's files, on 2026-10-24; not a person, and not part of the pre-registered outcomes",
+ "labels": {
+  "real": "another file still pins the old version the change moved away from",
+  "not_a_copy": "the old version is there on purpose",
+  "unclear": "cannot tell from the files"
+ },
+ "rows": [
+  {
+   "pr": "https://github.com/airbytehq/airbyte/pull/52664",
+   "label": "real",
+   "why": "Moves Python to 3.11 in the workflows; .python-version files and the acceptance-test Dockerfile stay on 3.10."
+  },
+  {
+   "pr": "https://github.com/airbytehq/airbyte/pull/52674",
+   "label": "real",
+   "why": "The same change as 52664, opened again (not merged); the same copies."
+  },
+  {
+   "pr": "https://github.com/yamadashy/tech-blog-rss-feed/pull/228",
+   "label": "real",
+   "why": "Moves .tool-versions to Node 24.0.1; .node-version stays on 23.6.0 (checked on GitHub)."
+  },
+  {
+   "pr": "https://github.com/PRQL/prql/pull/5286",
+   "label": "not_a_copy",
+   "why": "test-python.yaml tests 3.10 and 3.12 side by side on purpose (checked on GitHub); the pull request adds 3.11 setup steps elsewhere."
+  },
+  {
+   "pr": "https://github.com/novuhq/novu/pull/8639",
+   "label": "unclear",
+   "why": "Moves workflow Node to 23.11.1; the dashboard app's Dockerfile stays on Node 20, which may be that app's own choice."
+  },
+  {
+   "pr": "https://github.com/airbytehq/airbyte/pull/62864",
+   "label": "real",
+   "why": "Moves the connector base image to Python 3.11.13; the acceptance-test Dockerfile stays on 3.11.9."
+  },
+  {
+   "pr": "https://github.com/MontrealAI/AGI-Alpha-Agent-v0/pull/3618",
+   "label": "unclear",
+   "why": "Moves the infrastructure image to Python 3.12; CI workflows keep 3.11, which may be on purpose."
+  },
+  {
+   "pr": "https://github.com/MontrealAI/AGI-Alpha-Agent-v0/pull/3672",
+   "label": "real",
+   "why": "Moves three Dockerfiles to Python 3.13.5; five other Dockerfiles stay on 3.11.13."
+  },
+  {
+   "pr": "https://github.com/MontrealAI/AGI-Alpha-Agent-v0/pull/3686",
+   "label": "unclear",
+   "why": "The pull request itself sets CI to 3.13.0 and the image to 3.13.5; the copies named are its own CI lines."
+  }
+ ],
+ "counts": {
+  "real": 5,
+  "not_a_copy": 1,
+  "unclear": 3
+ }
+}

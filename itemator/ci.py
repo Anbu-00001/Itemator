@@ -45,6 +45,10 @@ from itemator import other as OTHER
 from itemator import packed as PACKED
 from itemator import scope as SCOPE
 from itemator import patchday as PATCHDAY
+from itemator import reask as REASK
+from itemator import leftbehind as LB
+from itemator import replycheck as RC
+from itemator import stopgaps as SG
 from itemator import precedent as PRE
 
 STATES = ("inside_ask", "extras", "no_issue", "author_wrote_issue", "unplaced_only")
@@ -229,8 +233,9 @@ API_BUSY = (429, 500, 502, 503, 504)
 
 
 class Api:
-    def __init__(self, base_url: str, token: str | None, http):
+    def __init__(self, base_url: str, token: str | None, http, project_path: str | None = None):
         self.base, self.token, self.http = base_url.rstrip("/"), token, http
+        self.path = project_path          # CI_PROJECT_PATH, for the GraphQL reads
         self.reads = 0                    # GitLab reads asked for (a retry of one read is not counted again)
 
     def _once(self, url: str, headers: dict) -> tuple[int, bytes]:
@@ -263,6 +268,66 @@ class Api:
             return json.loads(body)
         except ValueError as e:
             raise JobError(f"GET {path} did not return JSON") from e
+
+    def graphql(self, query: str, variables: dict) -> dict:
+        """One GraphQL read, made anonymously: on gitlab.com the job token cannot read issue notes, merge request
+        discussions or members (HTTP 401) and GraphQL refuses it, while an anonymous query reads them on a public project
+        (probed from a CI job on 2026-10-24)."""
+        if not self.path:
+            raise JobError("no project path for GraphQL")
+        url = self.base.rsplit("/api/v4", 1)[0] + "/api/graphql?" + urllib.parse.urlencode(
+            {"query": query, "variables": json.dumps({"p": self.path, **variables})})
+        self.reads += 1
+        status, body = self._once(url, {})
+        try:
+            got = json.loads(body) if status == 200 else None
+        except ValueError:
+            got = None
+        if not isinstance(got, dict) or got.get("errors") or not isinstance(got.get("data"), dict):
+            raise JobError(f"GraphQL read returned HTTP {status}")
+        return got["data"]
+
+
+_GQL_NOTES = "pageInfo { hasNextPage } nodes { id body system createdAt author { id username bot } }"
+GQL_THREADS = ("query($p: ID!, $i: String!, $a: String) { project(fullPath: $p) { mergeRequest(iid: $i) { "
+               "discussions(first: 100, after: $a) { pageInfo { hasNextPage endCursor } nodes { id notes(first: 100) { "
+               + _GQL_NOTES + " } } } } } }")
+GQL_ISSUE_NOTES = "query($p: ID!, $i: String!) { project(fullPath: $p) { issue(iid: $i) { notes(first: 100) { " + _GQL_NOTES + " } } } }"
+GQL_MEMBER = ("query($p: ID!, $u: String!) { project(fullPath: $p) { projectMembers(search: $u, relations: [DIRECT, "
+              "INHERITED, INVITED_GROUPS, SHARED_INTO_ANCESTORS]) { nodes { accessLevel { integerValue } expiresAt "
+              "user { id username state } } } } }")
+
+
+def _gid(g) -> int:
+    return int(str(g).rsplit("/", 1)[-1])
+
+
+def _gql_notes(conn: dict) -> list[dict]:
+    """GraphQL notes in the REST shape the answer tests read; more than one page is not read as complete."""
+    if (conn.get("pageInfo") or {}).get("hasNextPage"):
+        raise JobError("more than 100 notes in one place")
+    return [{"id": _gid(n["id"]), "body": n.get("body"), "system": n.get("system"), "created_at": n.get("createdAt"),
+             "author": {"id": _gid(n["author"]["id"]), "username": n["author"].get("username"), "bot": n["author"].get("bot")}}
+            for n in conn.get("nodes") or []]
+
+
+def gql_threads(api, iid) -> list[dict]:
+    out, after = [], None
+    for _ in range(3):
+        got = api.graphql(GQL_THREADS, {"i": str(iid), "a": after})["project"]["mergeRequest"]["discussions"]
+        out += [{"id": d["id"].rsplit("/", 1)[-1], "notes": _gql_notes(d["notes"])} for d in got["nodes"]]
+        if not got["pageInfo"]["hasNextPage"]:
+            return out
+        after = got["pageInfo"]["endCursor"]
+    raise JobError("more than 300 threads")
+
+
+def gql_member(api, uid: int, username: str):
+    """The member record replycheck.member reads, or None: membership found by username, matched on the user id."""
+    nodes = api.graphql(GQL_MEMBER, {"u": username})["project"]["projectMembers"]["nodes"]
+    m = next((n for n in nodes if _gid(n["user"]["id"]) == uid and n["user"].get("username") == username), None)
+    return m and {"access_level": (m.get("accessLevel") or {}).get("integerValue"), "state": m["user"].get("state"),
+                  "expires_at": (m.get("expiresAt") or None) and m["expiresAt"][:10]}
 
 
 PIPELINE_DAYS = 30
@@ -312,7 +377,8 @@ def _issue(raw: dict, project_id: str) -> dict:
     author = raw.get("author") or {}
     return {"iid": iid, "ref": ref, "title": raw.get("title") or "",
             "description": raw.get("description") or "", "author_id": author.get("id"),
-            "author_username": author.get("username")}       # T45: checked by asker_usernames before it is shown
+            "author_username": author.get("username"),       # T45: checked by asker_usernames before it is shown
+            "notes": raw.get("user_notes_count") or 0}       # stopgaps_due reads the notes only of an issue that has some
 
 
 _FLOW_BRANCH = re.compile(r"^duo/[^/]+/(\d+)-")      # GitLab's Developer Flow names its branch after the issue it was given
@@ -533,7 +599,7 @@ _LABEL = {"new_dependency": "new dependency", "ci_or_config": "config change", "
           "build_output_added": "build output", "stray_file": "stray file", "policy_changed": "team policy change",
           "agent_instructions": "agent instructions",
           "outside_scope": "outside the issue's scope", "tests_weakened": "tests weakened", "git_hook": "git hook",
-          "whitespace_only": "whitespace only"}
+          "whitespace_only": "whitespace only", "left_behind": "still on the old version", "stopgap_due": "stopgap due"}
 _LABEL[OTHER.KIND] = "named by another checker"
 _LABEL["too_wide"] = "too wide"
 _UNIT = {"new_dependency": "packages", "too_wide": "files"}      # what a grouped extra's detail lists when it is not files
@@ -559,7 +625,7 @@ _PLURAL = {"new_dependency": "new dependencies", "ci_or_config": "config changes
            "build_output_added": "build output directories", "stray_file": "stray file entries",
            "policy_changed": "team policy changes", "whitespace_only": "whitespace-only groups",
            "agent_instructions": "agent instruction extras", "outside_scope": "files outside the issue's scope",
-           "tests_weakened": "test files weakened", "git_hook": "git hooks"}
+           "tests_weakened": "test files weakened", "git_hook": "git hooks", "left_behind": "files still on the old version", "stopgap_due": "stopgaps due"}
 _PLURAL[OTHER.KIND] = "files another checker named"
 
 
@@ -631,9 +697,25 @@ def card_lines(state: str, issues: list[dict], extras: list, unplaced: list, inj
         todo = (f"{WELCOME} Split this merge request into smaller ones, or type {_code(extras[0].name)} in its thread "
                 f"to keep every one. {CONSENT}")
     elif state == "extras":
-        names = ", ".join(f"{_code(e.name)} ({_label(e)})" for e in extras)
-        final = f"{len(extras)} {'thing' if len(extras) == 1 else 'things'} beyond {refs}: {names}."
+        beyond = [e for e in extras if e.kind not in (LB.KIND, SG.KIND)]
+        behind = [e for e in extras if e.kind == LB.KIND]
+        due = [e for e in extras if e.kind == SG.KIND]
+        parts = []
+        if beyond:
+            names = ", ".join(f"{_code(e.name)} ({_label(e)})" for e in beyond)
+            parts.append(f"{len(beyond)} {'thing' if len(beyond) == 1 else 'things'} beyond {refs}: {names}")
+        if behind:      # every part says " beyond ": the react flow and replycheck find the card by it
+            names = ", ".join(_code(e.name) for e in behind)
+            parts.append(f"{len(behind)} {'file' if len(behind) == 1 else 'files'} beyond {refs} still on the version this change moves away from: {names}")
+        if due:
+            names = ", ".join(_code(e.name) for e in due)
+            parts.append(f"{len(due)} {'stopgap' if len(due) == 1 else 'stopgaps'} beyond {refs} kept until this fix: {names}")
+        final = "; ".join(parts) + "."
         todo = f'{WELCOME} Type each name in its thread to keep it, or reply "split" to move it to its own MR, "remove" to drop it. {SEVERAL} {CONSENT}'
+        if behind:
+            todo = todo.replace(f" {SEVERAL}", f' Where a thread offers "bump", that moves an old copy to the new version. {SEVERAL}', 1)
+        if due:
+            todo = todo.replace(f" {SEVERAL}", f' A stopgap is answered "taken out" once this merge request removes it. {SEVERAL}', 1)
     elif state == "unplaced_only":
         n = len(unplaced)
         final = f"{n} {'file' if n == 1 else 'files'} the rules could not place."
@@ -691,9 +773,12 @@ def _first_line(f: dict, signs: str, matches=None):
     """The first added ('+') or removed ('-') line of f's patch that `matches`, as an anchor, else None."""
     for sign, old, new, text in diff_lines(f.get("patch")):
         if sign in signs and (matches is None or matches(text)):
-            return {"old_path": f.get("previous_filename") or f["filename"], "new_path": f["filename"],
-                    "old_line": old, "new_line": new}
+            return _anchor(f, old, new)
     return None
+
+
+def _anchor(f: dict, old, new) -> dict:
+    return {"old_path": f.get("previous_filename") or f["filename"], "new_path": f["filename"], "old_line": old, "new_line": new}
 
 
 def _names(name: str):
@@ -755,6 +840,7 @@ def _code(text: str) -> str:
 
 
 OTHER_PERSON = "A reply from the merge request author does not count."
+MEMBERS_ONLY = "Only a project member with the Developer role or higher can answer here."     # read by the react flow (MEMBER)
 ASKER_ONLY_PREFIX = "Only the person who wrote the linked issue ("
 ASKER_ONLY_SUFFIX = ") can keep this."
 MAX_ASKERS = 3          # names in the sentence; past it, the first three issues' authors
@@ -870,33 +956,170 @@ def flag_sentence(flag: str) -> str:
 
 
 def thread_stub(e, registry_line: str | None = None, other_person: bool = False,
-                offers: tuple = ("split", "remove"), said: str | None = None, askers: tuple = (), flag: str | None = None) -> str:
+                offers: tuple = ("split", "remove"), said: str | None = None, askers: tuple = (), flag: str | None = None,
+                reask: str | None = None, bump: tuple | None = None, take_out: tuple | None = None) -> str:
     """The opening text of the extra's thread; the flow may post it as it is. `registry_line` (T17): the sentence of
     registry facts for a new dependency, placed before the replies. `other_person` (T20, names.other_person_required):
     OTHER_PERSON before the replies, as visible text, because the react flow cannot read markdown comments.
     `offers` (T26 F4, from answers()): which of `split`, `remove` and `always` (T40) it names; the default names split and remove. `said` (T35,
     said.said): one of three fixed sentences on whether the MR's own text names the extra, never the author's words.
-    `askers` (T45, asker_usernames): the issue authors who alone may keep it, named right after OTHER_PERSON."""
+    `askers` (T45, asker_usernames): the issue authors who alone may keep it, named right after OTHER_PERSON.
+    `reask` (itemator.reask.sentence): the policy quiets this extra, and why it is asked again; it comes first.
+    `bump` (bump_offer): (PATH, OLD, NEW) for a copy still on the old version; the thread then offers `bump`.
+    Every thread but a copy left behind, a stopgap due and a policy edit offers `until #N` (itemator.stopgaps);
+    `take_out` (PATH, LINE): a stopgap due, answered `taken out`."""
     why = shown_name(e.why).strip()
     if not why.endswith((".", "!", "?")):
         why += "."
-    facts = f" {registry_line}" if registry_line else ""
+    facts = f" {reask}" if reask else ""
+    facts += f" {registry_line}" if registry_line else ""
     facts += f" {flag_sentence(flag)}" if flag else ""
     facts += f" {SAID.SENTENCE[said]}" if said else ""
     facts += f" {OTHER_PERSON}" if other_person else ""
     facts += f" {asker_sentence(askers)}" if askers else ""
     split = "To move it into its own MR, reply `split`. " if "split" in offers else ""
     remove = "To drop it from this MR, reply `remove`. " if "remove" in offers else ""
+    keep = KEEP if e.kind in (LB.KIND, SG.KIND, "policy_changed") else f"{KEEP} {SG.UNTIL_OFFER}"
     always = f"{ALWAYS} " if "always" in offers else ""
-    return (f"{_code(e.name)} ({_label(e)}): {why}{facts} {KEEP} "
-            f"{split}{remove}{always}If this is not really an extra, reply `not an extra`.")
+    always += f"{RC.BUMP_START}{bump[0]}`, `{bump[1]}` becomes `{bump[2]}`. " if bump else ""
+    always += SG.TAKE_OUT.format(path=take_out[0], line=take_out[1]) + " " if take_out else ""
+    return (f"{_code(e.name)} ({_label(e)}): {why}{facts} {keep} "
+            f"{split}{remove}{always}If this is not really an extra, reply `not an extra`. {MEMBERS_ONLY}")
+
+
+# ---------------------------------------------------------------- copies left on the old version (itemator/leftbehind.py)
+
+def left_behind(repo_dir: str, base: str, head: str, files: list[dict], issues: list[dict], warnings: list):
+    """itemator.leftbehind.find on the checkout, or None when it cannot run (a warning says why). With a CVE in the
+    linked issues, the versions they list are the fixes for their own release lines (patch day)."""
+    def read(ref):
+        def get(path):
+            try:
+                return _git(repo_dir, "show", f"{ref}:{path}").decode("utf-8", "replace")
+            except JobError:
+                return None
+        return get
+    text = "\n".join(f"{i['title']}\n{i['description']}" for i in issues)
+    listed = PATCHDAY.listed_versions(text) if PATCHDAY.cves(text) else set()
+    try:
+        tracked = _git(repo_dir, "ls-tree", "-r", "--name-only", "-z", head).decode("utf-8", "replace").split("\0")
+        return LB.find(files, [t for t in tracked if t], read(base), read(head), listed)
+    except Exception as e:                # noqa: BLE001 -- a check that cannot read the tree names nothing
+        warnings.append(f"no left-behind check: {type(e).__name__}")
+        return None
+
+
+def left_extras(left, found: list) -> dict:
+    """{id(extra): (extra, copies)}: one extra per file with a copy still on the old version. Its name is the file's path,
+    or the path with "(old <runtime>)" when another extra already has that name."""
+    if not left or not left.left:
+        return {}
+    taken = {e.name for e in found} | {e.path for e in found}
+    by_file: dict = {}
+    for c in left.left:
+        by_file.setdefault(c[0].path, []).append(c)
+    out = {}
+    for path, copies in by_file.items():
+        p0, t0, m0 = copies[0]
+        name = path if path not in taken else f"{path} (old {p0.family})"
+        pins = ", ".join(f"{p.shown} ({LB.where(p)}, line {p.line})" for p, _, _ in copies)
+        moved = f"this change moves {p0.family} to {m0.shown} in {m0.path}"
+        why = (f"still pins {p0.family} {pins}, while {moved}" if t0 == m0.shown else
+               f"still pins {p0.family} {pins}, below {t0}, the fixed version the issue lists for that line ({moved})")
+        e = X.Extra(LB.KIND, path, name, why)
+        out[id(e)] = (e, copies)
+    return out
+
+
+def follows(left, found: list, unplaced: list) -> set:
+    """Extras and unplaced files whose whole change moves one copy to the version a file the issue asked for moves to:
+    the same fix brought along (a `bump` answer writes exactly that). A move made only by those is no ask to follow."""
+    if not left or not left.single:
+        return set()
+    other = {e.path for e in found} | set(unplaced)
+    asked = {(m.family, m.shown) for m in left.moved if m.path not in other}
+    return {p for p, m in left.single.items() if p in other and (m.family, m.shown) in asked}
+
+
+# ---------------------------------------------------------------- stopgaps kept until an issue this change closes
+
+def stopgaps_due(api, pid, issues: list[dict], repo_dir: str, head: str, warnings: list) -> list[dict]:
+    """itemator.stopgaps on the issues this merge request closes: per stopgap note from the reaction account, whether the
+    stopgap its merged merge request added is still in the file at the head (`line`: the line that shows it, or None)."""
+    out = []
+    for i in issues:
+        if i["ref"] != f"#{i['iid']}" or not i.get("notes"):     # another project's issue, or one nobody commented on
+            continue
+        try:
+            try:
+                notes = _gql_notes(api.graphql(GQL_ISSUE_NOTES, {"i": str(i["iid"])})["project"]["issue"]["notes"])
+            except (JobError, KeyError, TypeError):
+                notes = api.get(f"/projects/{pid}/issues/{i['iid']}/notes?per_page=100&sort=asc", missing_ok=True) or []
+            for rec in SG.records(notes, REACT_BOT):
+                src = api.get(f"/projects/{pid}/merge_requests/{rec['from']}", missing_ok=True) or {}
+                if src.get("state") != "merged":
+                    continue
+                added = SG.added_lines(api.get(f"/projects/{pid}/merge_requests/{rec['from']}/diffs?per_page=100",
+                                               missing_ok=True), rec["path"])
+                if added is None:
+                    continue
+                try:
+                    text = _git(repo_dir, "show", f"{head}:{rec['path']}").decode("utf-8", "replace")
+                except JobError:
+                    text = None
+                out.append({**rec, "issue": i["iid"], "ref": i["ref"], "line": SG.still_there(added, text)})
+        except JobError as e:
+            warnings.append(f"no stopgap check for {i['ref']}: {e}"[:200])
+    return out
+
+
+def stopgap_extras(stopgaps, found: list) -> dict:
+    """{id(extra): (extra, stopgap)}: one extra per stopgap still in the code. Its name is the file's path, or the path
+    with "(stopgap from !N)" when another extra already has that name."""
+    out, taken = {}, {e.name for e in found}
+    for g in stopgaps or ():
+        if not g["line"]:
+            continue
+        name = g["path"] if g["path"] not in taken else f"{g['path']} (stopgap from !{g['from']})"
+        taken.add(name)
+        e = X.Extra(SG.KIND, g["path"], name, SG.why(g, g["ref"]))
+        out[id(e)] = (e, g)
+    return out
+
+
+def left_anchor(copies: list, by_path: dict):
+    """The thread sits on the line the change moved, the one place in the diff that a copy elsewhere is measured against."""
+    m = copies[0][2]
+    f = by_path.get(m.path) or {}
+    a = next((_anchor(f, None, new) for sign, _, new, _ in diff_lines(f.get("patch")) if sign == "+" and new == m.line), None)
+    return (a, None) if a else (None, "the moved line is not in the diff")
+
+
+def bump_offer(copies: list):
+    """(PATH, OLD, NEW) when the file holds exactly one copy and the reaction flow's one-line edit is safe: OLD occurs once
+    in the file (leftbehind.find counts it), the version can be swapped in place, and no digest would stay old."""
+    if len(copies) != 1:
+        return None
+    p, target, _ = copies[0]
+    edit = LB.bump_line(p, target)
+    if not edit or "`" in p.path:
+        return None
+    return (p.path, *edit)
+
+
+def left_report(left) -> dict:
+    return {"moved": [{"path": m.path, "line": m.line, "family": m.family, "to": m.shown} for m in left.moved],
+            "left": [{"path": p.path, "line": p.line, "version": p.shown, "to": t} for p, t, _ in left.left],
+            "floating": [{"path": p.path, "line": p.line, "tag": p.shown} for p, _ in left.floating],
+            "capped": left.capped}
 
 
 def describe_extra(e, by_path: dict, items: tuple = (), registry: dict | None = None, other_person: bool = False,
-                   said: str | None = None, always: bool = False, askers: tuple = ()) -> dict:
+                   said: str | None = None, always: bool = False, askers: tuple = (), reask: str | None = None,
+                   copies: list | None = None, stopgap: dict | None = None) -> dict:
     """A grouped extra (`items`, from group_extras) anchors where its first item does, and keeps every item in
     plain_facts.detail. `registry` (T17, from registry.look_up) goes to plain_facts and its sentence to the stub."""
-    anchor, reason = anchor_for(items[0] if items else e, by_path)
+    anchor, reason = left_anchor(copies, by_path) if copies else anchor_for(items[0] if items else e, by_path)
     flag = flag_cleanup(e, by_path)
     plain = {"kind": e.kind, "name": shown_name(e.name), "why": e.why, "detail_count": len(e.detail), "path": e.path}
     if items:
@@ -909,8 +1132,18 @@ def describe_extra(e, by_path: dict, items: tuple = (), registry: dict | None = 
         plain["asker_usernames"] = list(askers)
     if flag:
         plain["flag_cleanup"] = flag
+    if reask:
+        plain["reasked"] = reask
+    if copies:
+        plain["copies"] = [{"line": p.line, "text": p.text.strip()[:200], "version": p.shown, "to": t, "moved_in": m.path}
+                           for p, t, m in copies]
+    if stopgap:
+        plain["stopgap"] = {k: stopgap[k] for k in ("from", "issue", "who", "line")}
+    bump = bump_offer(copies) if copies else None
+    offers = answers(e, items, by_path, always and not reask)
+    take_out = (e.path, stopgap["line"]) if stopgap and "`" not in e.path else None
     rec = {**e.to_dict(), "detail": list(e.detail), "anchor": anchor, "anchorless_reason": reason,
-           "thread_stub": thread_stub(e, RG.sentence(registry), other_person, answers(e, items, by_path, always), said, askers, flag),
+           "thread_stub": thread_stub(e, RG.sentence(registry), other_person, offers, said, askers, flag, reask, bump, take_out),
            "plain_facts": plain}
     if rec["name"] != plain["name"]:          # T22: `name` is what the approver sees and types; `raw_name` is the manifest's
         rec["name"], rec["raw_name"] = plain["name"], e.name
@@ -997,11 +1230,13 @@ def facts(*, mr_iid: int, mr_title: str, mr_description: str, mr_author_id, issu
           issues_from: str, files: list[dict], repo: str | None, base_sha: str, head_sha: str,
           warnings: list, now: datetime.datetime, registry_fetch=None, policy=None, checker=None,
           fallback: bool = False, description_cut: bool = False, pipelines=None, agent: str | None = None,
-          other=None) -> dict:
+          other=None, left=None, stopgaps=None) -> dict:
     """`policy` (T20, policy.read; None when not read) quiets extras and sets who may name one; `checker`
     (checker_of) says where this code came from; `fallback` (T26 F1): the target branch could not be read, so
     both came from the merge base, and the card says so. `description_cut` (T35): the description may be truncated,
-    so no thread says it does not mention an extra. `agent` (agent_wrote): a bot account wrote the change for its author."""
+    so no thread says it does not mention an extra. `agent` (agent_wrote): a bot account wrote the change for its author.
+    `left` (left_behind): an itemator.leftbehind.Found; each file with a copy still on the old version is one more extra.
+    `stopgaps` (stopgaps_due): the stopgaps kept until an issue this merge request closes; each one still there is an extra."""
     at = AT_FORK if fallback else AT_TARGET
     issue_text = "\n\n".join(f"{i['title']}\n{i['description']}" for i in issues)
     analysis, scope = AFTER.analyse(issue_text, files, repo=repo)
@@ -1009,6 +1244,13 @@ def facts(*, mr_iid: int, mr_title: str, mr_description: str, mr_author_id, issu
     state = decide_state(issues, mr_author_id, analysis, agent)
     found = [] if state == "no_issue" else analysis.extras      # no ask, so nothing is "beyond" it
     unplaced = [] if state == "no_issue" else analysis.unplaced
+    follow = follows(left, found, unplaced)
+    found = [e for e in found if e.path not in follow]
+    unplaced = [u for u in unplaced if u not in follow]
+    behind = {} if state == "no_issue" else left_extras(left, found)
+    found = found + [e for e, _ in behind.values()]
+    due = {} if state == "no_issue" else stopgap_extras(stopgaps, found)
+    found = found + [e for e, _ in due.values()]
     edit = policy_edit(files, at)       # T41: a change to the team policy always asks for a typed name, also when no
     if edit:                            # issue describes it (the policy merge request `always` opens has none)
         # it replaces an extra the rules found on that one file (an added policy is a stray_file); with no issue there
@@ -1022,13 +1264,17 @@ def facts(*, mr_iid: int, mr_title: str, mr_description: str, mr_author_id, issu
     runs = pipelines() if weighed and pipelines else None     # `pipelines` (pipelines_run): read only when something was weighed
     for w in weighed if runs else ():
         w["pipelines"] = runs
-    kept, quieted = [], []
+    kept, quieted, reasked = [], [], {}
+    risky = REASK.find(files) if policy else {}
     for (e, items), r in zip(grouped, registry):
         why = POL.why_ignored(policy, e, items, r, by_path) if policy else None
-        if why:
+        hit = REASK.hits(risky, sorted(POL._files(e, items, by_path))) if why else []
+        if why and not hit:
             quieted.append((e, why))
         else:
             kept.append(((e, items), r))
+            if hit:                              # quieted by the policy, asked again for what the change adds to it
+                reasked[id(e)] = REASK.sentence(hit)
     if state != "no_issue":
         state = decide_state(issues, mr_author_id, X.Analysis([e for (e, _), _ in kept], unplaced=unplaced), agent)
     said = SAID.said(mr_title, mr_description, [SAID.names(e.name, e.path, e.detail) for (e, _), _ in kept],
@@ -1057,7 +1303,9 @@ def facts(*, mr_iid: int, mr_title: str, mr_description: str, mr_author_id, issu
         "issue_iids": [i["iid"] for i in issues],
         "issues_from": issues_from,
         "state": state,
-        "extras": [describe_extra(e, by_path, items, r, other, s, always, askers) for ((e, items), r), s in zip(kept, said)],
+        "extras": [describe_extra(e, by_path, items, r, other, s, always, askers, reasked.get(id(e)),
+                                 behind.get(id(e), (None, None))[1], due.get(id(e), (None, None))[1])
+                   for ((e, items), r), s in zip(kept, said)],
         "unplaced": list(unplaced),
         "injection": injection,
         "card": card_lines(state, issues, [e for (e, _), _ in kept], unplaced, injection,
@@ -1072,9 +1320,15 @@ def facts(*, mr_iid: int, mr_title: str, mr_description: str, mr_author_id, issu
         report["agent"] = agent              # only when found, so earlier reports stay byte for byte the same
     if scope:
         report["scope"] = scope.to_dict()    # the same, for an issue's itemator-scope block
+    if left is not None and (left.moved or left.left):
+        report["left_behind"] = left_report(left) | {"followed": sorted(follow)}
+    if stopgaps:
+        report["stopgaps"] = [{k: g[k] for k in ("issue", "from", "path", "who", "line")} for g in stopgaps]
     if policy is not None:
         report["policy"] = {**policy.to_dict(), "ignored_extras": [
             {"name": shown_name(e.name), "kind": e.kind, "why": why} for e, why in quieted]}
+        if reasked:                          # only when some extra was asked again, so earlier reports stay the same
+            report["policy"]["reasked_extras"] = [shown_name(e.name) for (e, _), _ in kept if id(e) in reasked]
     if checker is not None:
         report["checker"] = checker
     return report
@@ -1148,7 +1402,7 @@ def run(env, repo_dir: str, http, registry_fetch=None, clock=time.monotonic, pre
         except JobError:
             raise JobError(f"{e}; the base commit is not in this clone (a shallow clone? set GIT_DEPTH to 0)") from e
         raise
-    api = Api(env["CI_API_V4_URL"], env.get("CI_JOB_TOKEN") or None, http)
+    api = Api(env["CI_API_V4_URL"], env.get("CI_JOB_TOKEN") or None, http, env.get("CI_PROJECT_PATH"))
     mr = api.get(f"/projects/{pid}/merge_requests/{iid}")
     description = mr.get("description") or env.get("CI_MERGE_REQUEST_DESCRIPTION") or ""
     # T35: the API gives the whole description. CI_MERGE_REQUEST_DESCRIPTION, the fallback, is cut by GitLab (to 2700
@@ -1158,6 +1412,7 @@ def run(env, repo_dir: str, http, registry_fetch=None, clock=time.monotonic, pre
     dangling: list[int] = []
     issues, issues_from = linked_issues(api, pid, iid, description, warnings, env.get("CI_MERGE_REQUEST_SOURCE_BRANCH_NAME"),
                                         env.get("CI_PROJECT_PATH"), dangling)
+    left = left_behind(repo_dir, base, head, files, issues, warnings)
     target, resolved = target_tip(repo_dir, env, base)
     policy = POL.read(repo_dir, target)       # T20, T26 F1: from the target branch tip, never from the merge request
     if not resolved:
@@ -1175,13 +1430,14 @@ def run(env, repo_dir: str, http, registry_fetch=None, clock=time.monotonic, pre
                  policy=policy, checker=checker_of(env, target, head), fallback=not resolved, description_cut=cut,
                  pipelines=lambda: pipelines_run(api, pid, now),
                  agent=agent_wrote(api, pid, int(iid), issues, (mr.get("author") or {}).get("id")),
-                 other=other)
+                 other=other, left=left, stopgaps=stopgaps_due(api, pid, issues, repo_dir, head, warnings))
     if other is not None:
         report["other_checker"] = {"named": [p for p, _, _ in other]}       # what it named, also when the rules already had it
     if dangling:
         card = report["card"]
         card["caveat_line"] = " ".join(c for c in (card["caveat_line"], dangling_line(dangling)) if c)
-    also_checked(report, repo_dir, base, head, files, api, pid, f"{mr.get('title') or ''}\n{description}", registry_fetch)
+    also_checked(report, repo_dir, base, head, files, api, pid, f"{mr.get('title') or ''}\n{description}", registry_fetch,
+                 env.get("CI_SERVER_VERSION"))
     PRE.apply(report, env, int(iid), precedent_fetch or PRE.fetch)
     report["hold"] = hold(report, api, pid, iid, head)
     if report["hold"]["blocked"]:
@@ -1218,7 +1474,7 @@ MAX_CHECKED_FILES = 300       # files the two no-request checks read per job; a 
 
 
 def also_checked(report: dict, repo_dir: str, base: str, head: str, files: list[dict], api=None, pid=None, mr_text: str = "",
-                 registry_fetch=None) -> None:
+                 registry_fetch=None, server_version: str | None = None) -> None:
     """Add what the layout check and the opener found to report["checked"] and, as one sentence, to the card
     (`checked_line`). Information only: the state, the extras and the exit code never depend on it, and a file either check cannot
     read, or that breaks it, is left out."""
@@ -1251,7 +1507,7 @@ def also_checked(report: dict, repo_dir: str, base: str, head: str, files: list[
     modified = [f["filename"] for f in files if f.get("status") == "modified"]
     labels, fence = C.history_checks(repo_dir, base, files[:MAX_CHECKED_FILES], listed, report["warnings"])
     strangers = [p for p in modified if labels.get(p) == CC.STRANGER and p not in listed]
-    pipeline = PL.find(api, pid, base, head, files, report["warnings"]) if api is not None else None
+    pipeline = PL.find(api, pid, base, head, files, report["warnings"], server_version) if api is not None else None
     try:
         moving = MV.find(files)
         shapes = SP.find(files)
@@ -1329,6 +1585,19 @@ def hold(report: dict, api, pid, iid, head: str) -> dict:
 UNREAD = "the threads could not be read"
 
 
+def _rest_threads(api, pid, iid) -> list | None:
+    """The threads through REST, where the token can read them (a self-managed instance, a project token)."""
+    discussions = []
+    for page in (1, 2, 3):
+        got = api.get(f"/projects/{pid}/merge_requests/{iid}/discussions?per_page=100&page={page}", missing_ok=True)
+        if not isinstance(got, list):
+            return None
+        discussions += got
+        if len(got) < 100:
+            break
+    return discussions
+
+
 def _tests_agree(api, pid, iid) -> str | None:
     """After the reaction account's summary: the answer tests, run as code on the threads, must give every extra an answer.
     None when they do; UNREAD when the job's token cannot read the threads (the caller then keeps the summary rule and
@@ -1336,22 +1605,34 @@ def _tests_agree(api, pid, iid) -> str | None:
     from itemator import replycheck
     try:
         mr = api.get(f"/projects/{pid}/merge_requests/{iid}", missing_ok=True)
-        discussions = []
-        for page in (1, 2, 3):
-            got = api.get(f"/projects/{pid}/merge_requests/{iid}/discussions?per_page=100&page={page}", missing_ok=True)
-            if not isinstance(got, list) or not isinstance(mr, dict):
+        if not isinstance(mr, dict):
+            return UNREAD
+        try:
+            discussions = gql_threads(api, iid)
+            bots = {n["author"]["id"]: n["author"]["bot"] for d in discussions for n in d["notes"]}
+            names = {n["author"]["id"]: n["author"]["username"] for d in discussions for n in d["notes"]}
+        except (JobError, KeyError, TypeError):
+            discussions, bots, names = _rest_threads(api, pid, iid), None, None
+            if discussions is None:
                 return UNREAD
-            discussions += got
-            if len(got) < 100:
-                break
         people: dict = {}
 
         def is_person(uid):
             if uid not in people:
-                u = api.get(f"/users/{uid}", missing_ok=True)
-                people[uid] = isinstance(u, dict) and u.get("bot") is False
+                if bots is not None:
+                    people[uid] = bots.get(uid) is False
+                else:
+                    u = api.get(f"/users/{uid}", missing_ok=True)
+                    people[uid] = isinstance(u, dict) and u.get("bot") is False
             return people[uid]
-        rows = replycheck.audit(mr, discussions, is_person)
+        members: dict = {}
+
+        def is_member(uid, at):
+            if uid not in members:
+                members[uid] = gql_member(api, uid, names[uid]) if names is not None else \
+                    api.get(f"/projects/{pid}/members/all/{uid}", missing_ok=True)
+            return replycheck.member(members[uid], at)
+        rows = replycheck.audit(mr, discussions, is_person, is_member=is_member)
     except (JobError, KeyError, TypeError):
         return UNREAD
     if not rows:

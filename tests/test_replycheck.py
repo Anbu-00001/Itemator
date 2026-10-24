@@ -96,3 +96,120 @@ def test_the_live_audit_found_no_answer_the_tests_would_not_give():
     d = json.loads((pathlib.Path(__file__).resolve().parent.parent / "results/react_audit_v1.json").read_text())
     assert d["count"]["differ"] == 0 and d["count"]["missed"] == 0 and d["recorded"] == d["count"]["agree"] > 0
     assert d["extras"] == len(d["rows"]) == sum(d["count"].values())
+
+
+# ---- members only (the card's ci.MEMBERS_ONLY sentence)
+
+MEMBERS = "\n" + V.MEMBERS_ONLY
+ROLES = {1: {"access_level": 40, "state": "active", "expires_at": None}, 2: {"access_level": 30, "state": "active", "expires_at": "2026-12-31"},
+         3: {"access_level": 20, "state": "active", "expires_at": None}}
+
+
+def members_run(replies, card_replies=(), roles=ROLES):
+    ds = [{"id": "t", "notes": [card_note("rich", MEMBERS), *replies]}]
+    if card_replies:
+        ds.append({"id": "c", "notes": [{"id": 60, "author": {"id": 100, "username": CARD}, "created_at": "2026-10-22T10:00:00Z",
+                                         "system": False, "body": "2 files beyond #1."}, *card_replies]})
+    return V.audit(mr(), ds, is_person, is_member=lambda uid, at: V.member(roles.get(uid), at))[0]["tests"]
+
+
+def test_the_card_sentence_is_the_one_the_tests_read():
+    from itemator import ci
+    assert V.MEMBERS_ONLY == ci.MEMBERS_ONLY and ci.MEMBERS_ONLY in ci.thread_stub(V_extra())
+
+
+def V_extra():
+    from itemator.extras import Extra
+    return Extra("ci_or_config", ".gitlab-ci.yml", ".gitlab-ci.yml", "x")
+
+
+def test_a_reporter_or_a_stranger_cannot_keep_or_dismiss_but_a_developer_can():
+    assert members_run([note(3, "rich", 5)]) is None                                  # Reporter
+    assert members_run([note(3, "not an extra", 5)]) is None
+    assert members_run([note(3, "rich", 5), note(2, "rich", 6, nid=6)])["who"] == "bob"   # Developer, later
+    assert members_run([note(1, "not an extra", 5)])["answer"] == "dismissed"           # Maintainer
+    assert members_run([note(3, "rich", 5)], roles={}) is None                         # no member record at all
+
+
+def test_a_card_reply_from_a_non_member_does_not_keep_either():
+    assert members_run([], card_replies=[note(3, "rich", 5)]) is None
+    assert members_run([], card_replies=[note(2, "rich", 5)])["from_card"] is True
+
+
+def test_without_a_member_check_nobody_counts_in_a_members_only_thread():
+    ds = [{"id": "t", "notes": [card_note("rich", MEMBERS), note(1, "rich", 5)]}]
+    assert V.audit(mr(), ds, is_person)[0]["tests"] is None
+    assert V.audit(mr(), [{"id": "t", "notes": [card_note("rich"), note(3, "rich", 5)]}], is_person)[0]["tests"]["who"] == "cy"   # an older card: as before
+
+
+@pytest.mark.parametrize("m, at, ok", [
+    ({"access_level": 30, "state": "active", "expires_at": None}, "2026-10-22T10:00:00Z", True),
+    ({"access_level": 29, "state": "active", "expires_at": None}, "2026-10-22T10:00:00Z", False),
+    ({"access_level": 50, "state": "blocked", "expires_at": None}, "2026-10-22T10:00:00Z", False),
+    ({"access_level": 30, "state": "active", "expires_at": "2026-10-22"}, "2026-10-22T10:00:00Z", False),   # expires that day
+    ({"access_level": 30, "state": "active", "expires_at": "2026-10-23"}, "2026-10-22T23:59:00Z", True),
+    ({"access_level": "30", "state": "active", "expires_at": None}, "2026-10-22T10:00:00Z", False),
+    ({"state": "active"}, "2026-10-22T10:00:00Z", False), (None, "2026-10-22T10:00:00Z", False), ([], "x", False),
+])
+def test_who_counts_as_a_member(m, at, ok):
+    assert V.member(m, at) is ok
+
+
+BUMP = f" {V.BUMP_START}ci/.gitlab-ci.yml`, `image: php:8.3.30-cli` becomes `image: php:8.3.36-cli`."
+
+
+def test_bump_counts_only_where_offered_from_the_crew_and_after_the_last_refusal():
+    assert V.threads([{"id": "t", "notes": [card_note("ci", BUMP)]}])[0]["bump"] == (
+        "ci/.gitlab-ci.yml", "image: php:8.3.30-cli", "image: php:8.3.36-cli")
+    assert run("ci", [note(2, "bump", 5, nid=5)], BUMP)["tests"] == {"answer": "bump", "who": "bob", "note": 5}
+    assert run("ci", [note(2, "Bump.", 5)], BUMP)["tests"]["answer"] == "bump"
+    assert run("ci", [note(2, "bump", 5)])["tests"] is None                         # not offered in this thread
+    assert run("ci", [note(3, "bump", 5)], BUMP)["tests"] is None                   # cy is not in the crew
+    assert run("ci", [note(2, "bump it", 5)], BUMP)["tests"] is None
+    refused = [note(2, "bump", 5), note(0, "Cannot bump: `ci` changed.", 6, user=REACT)]
+    assert run("ci", refused, BUMP)["tests"] is None
+    assert run("ci", [*refused, note(1, "bump", 7, nid=7)], BUMP)["tests"]["who"] == "ann"
+
+
+def test_a_bump_record_is_read_and_agrees():
+    rec = note(0, "Bumped: in `ci/.gitlab-ci.yml`, `image: php:8.3.30-cli` became `image: php:8.3.36-cli`, asked by @bob.", 6, user=REACT)
+    row = run("ci", [note(2, "bump", 5), rec], BUMP)
+    assert row["recorded"]["answer"] == "bump" and row["recorded"]["who"] == "bob" and row["agree"] is True
+    assert V.unanswered([row]) == []
+
+
+def test_a_bump_offer_with_too_few_backticks_offers_nothing():
+    assert V.bump_of(f"{V.BUMP_START}a`, `b`.") is None and V.bump_of("no offer") is None
+
+
+UNTIL = f" {V.UNTIL_OFFER}"
+TAKE = " To take it out, change `ci/x.sh` in this merge request so that `sed -i s/a/b/ in.csv` is gone, then reply `taken out`."
+
+
+@pytest.mark.parametrize("reply, until", [("until #12", 12), ("Until #7.", 7), ("@ai-itemator-react-gitlab-ai-hackathon until #3", 3),
+                                          ("until #0", None), ("until #012", None), ("until 12", None), ("until #12 please", None),
+                                          ("until #1234567890", None)])
+def test_until_keeps_only_with_an_issue_number_where_offered(reply, until):
+    got = run("rich", [note(3, reply, 5)], UNTIL)["tests"]       # anyone may keep: cy is outside the crew
+    assert (got and got.get("until")) == until
+    assert run("rich", [note(3, "until #12", 5)])["tests"] is None
+    refused = [note(2, "until #12", 5), note(0, "Cannot keep until #12: it is not an open issue in this project.", 6, user=REACT)]
+    assert run("rich", refused, UNTIL)["tests"] is None
+
+
+def test_an_until_record_counts_as_kept():
+    rec = note(0, "Kept: `rich`, until #12, by @cy.", 6, user=REACT)
+    row = run("rich", [note(3, "until #12", 5), rec], UNTIL)
+    assert row["recorded"]["answer"] == row["tests"]["answer"] == "named" and row["agree"] is True
+
+
+def test_taken_out_counts_only_from_the_crew_where_offered_and_after_a_refusal():
+    assert V.threads([{"id": "t", "notes": [card_note("ci/x.sh", TAKE)]}])[0]["take_out"] == ("ci/x.sh", "sed -i s/a/b/ in.csv")
+    assert run("ci/x.sh", [note(2, "taken out", 5)], TAKE)["tests"]["answer"] == "taken_out"
+    assert run("ci/x.sh", [note(3, "taken out", 5)], TAKE)["tests"] is None
+    assert run("ci/x.sh", [note(2, "taken out", 5)])["tests"] is None
+    refused = [note(2, "taken out", 5), note(0, "Cannot take out: `sed` is still in `ci/x.sh`.", 6, user=REACT)]
+    assert run("ci/x.sh", refused, TAKE)["tests"] is None
+    rec = note(0, "Taken out: `ci/x.sh` no longer holds the stopgap, said @bob.", 8, user=REACT)
+    row = run("ci/x.sh", [*refused, note(2, "taken out", 7), rec], TAKE)
+    assert row["recorded"] == {**row["recorded"], "answer": "taken_out", "who": "bob"} and row["agree"] is True

@@ -142,3 +142,57 @@ def test_also_checked_puts_the_pipeline_in_the_report_and_never_changes_the_stat
     report2 = {"extras": [], "warnings": [], "card": {}}
     ci.also_checked(report2, str(tmp_path), "b" * 40, "h" * 40, files(".gitlab-ci.yml"), None, None)
     assert report2["checked"]["pipeline"] is None and "checked_line" not in report2["card"]
+
+
+@pytest.mark.parametrize("version,cves", [
+    ("19.4.1", ["CVE-2026-97229", "CVE-2026-110264"]), ("19.4.2", ["CVE-2026-110264"]), ("19.4.3", []),
+    ("19.3.5", ["CVE-2026-110264"]), ("19.3.6-ee", []), ("19.2.7", ["CVE-2026-97229", "CVE-2026-110264"]), ("19.2.9", []),
+    ("19.5.0", ["CVE-2026-110264"]), ("19.5.1", []), ("19.6.0-pre", []), ("18.11.12", ["CVE-2026-110264"]), ("18.11.13", []),
+    ("19.0.9", ["CVE-2026-110264"]), ("19.1.9", []), ("6.9.0", []), ("7.0.0", ["CVE-2026-110264"]), ("19.10.0", []),
+    ("19.3.5-internal0", ["CVE-2026-110264"]), ("v19.4.1", ["CVE-2026-97229", "CVE-2026-110264"]),
+])
+def test_the_lint_guard_follows_gitlabs_patch_notes_at_each_edge(version, cves):
+    got = PL.unsafe_server(version)
+    assert (got["cves"] if got else []) == cves
+
+
+@pytest.mark.parametrize("version", ["19.4", "nineteen", "19.4.1.2", "1x.4.1"])
+def test_a_version_the_guard_cannot_read_is_not_asked(version):
+    assert PL.unsafe_server(version) == {"version": version, "cves": []}
+
+
+def test_no_version_means_no_guard():
+    assert PL.unsafe_server(None) is None and PL.unsafe_server("  ") is None
+
+
+def test_an_unsafe_gitlab_is_never_sent_the_ci_file_and_the_card_says_why():
+    api, warn = Lint(), []
+    d = PL.find(api, 7, "b" * 40, "h" * 40, files(".gitlab-ci.yml"), warn, "19.4.1")
+    assert api.paths == [] and d == {"skipped": {"version": "19.4.1", "cves": ["CVE-2026-97229", "CVE-2026-110264"]}}
+    assert warn == ["no pipeline check: GitLab 19.4.1 is in the range of CVE-2026-97229, CVE-2026-110264"]
+    s = PL.sentence(d)
+    assert s.startswith("The job did not ask GitLab to merge the pipeline configuration: GitLab's patch notes list 19.4.1")
+    assert "CVE-2026-97229 and CVE-2026-110264" in s and s.endswith("Upgrade GitLab to read it.")
+    unread = PL.sentence(PL.find(Lint(), 7, "b", "h", files(".gitlab-ci.yml"), [], "19.4"))
+    assert "cannot read this GitLab's version (19.4)" in unread
+
+
+def test_a_patched_gitlab_is_asked_as_before():
+    api = Lint({"valid": True, "merged_yaml": BASE}, {"valid": True, "merged_yaml": HEAD})
+    assert PL.find(api, 7, "b", "h", files(".gitlab-ci.yml"), [], "19.6.0-pre")["changed"] and len(api.paths) == 2
+
+
+def test_no_ci_file_changed_needs_no_guard_either():
+    warn = []
+    assert PL.find(Lint(), 7, "b", "h", files("src/a.py"), warn, "19.4.1") is None and warn == []
+
+
+def test_also_checked_passes_the_server_version_and_run_reads_it_from_the_job(tmp_path):
+    import subprocess
+    subprocess.run(["git", "init", "-q", str(tmp_path)], check=True)
+    report = {"extras": [], "warnings": [], "card": {}}
+    api = Lint()
+    ci.also_checked(report, str(tmp_path), "b" * 40, "h" * 40, files(".gitlab-ci.yml"), api, 7, server_version="19.4.1")
+    assert api.paths == [] and report["checked"]["pipeline"]["skipped"]["version"] == "19.4.1"
+    assert "did not ask GitLab" in report["card"]["checked_line"] and report["extras"] == []
+    assert 'env.get("CI_SERVER_VERSION")' in open(ci.__file__).read()

@@ -152,7 +152,7 @@ def _parse(data: bytes):
     for k in kinds:
         if k in NEVER_IGNORED:
             return f"ignore.kinds lists {k}, which is never ignored"
-        if type(k) is not str or k not in X.KINDS:
+        if type(k) is not str or k not in (*X.KINDS, "left_behind", "stopgap_due"):
             return f"ignore.kinds lists an unknown kind `{_clean(k)}`"
     if len(paths) > MAX_PATTERNS:
         return f"ignore.paths has {len(paths)} patterns; at most {MAX_PATTERNS}"
@@ -222,7 +222,7 @@ def read(repo: str, sha) -> Policy:
 def _registry_knows_every_package(registry) -> bool:
     if not registry or not registry.get("packages") or registry.get("count") != len(registry["packages"]):
         return False
-    return all((p.get("lookup") == "ok" and p.get("found") is True)
+    return all((p.get("lookup") == "ok" and p.get("found") is True and not p.get("malware"))
                or (p.get("lookup") == "not_from_registry" and p.get("reason") == "own_package")
                for p in registry["packages"])
 
@@ -247,6 +247,8 @@ def why_ignored(policy: Policy, e, items, registry, by_path: dict) -> str | None
     """Why the policy quiets this extra (one of ci.group_extras, with its registry facts), or None."""
     if e.kind in NEVER_IGNORED:
         return None
+    if e.kind in ("left_behind", "stopgap_due"):   # a file the change did not touch: only a kind entry quiets it, never a path
+        return f"ignore.kinds lists {e.kind}" if e.kind in policy.kinds else None
     if e.kind == "new_dependency" and not _registry_knows_every_package(registry):
         return None
     if e.kind in policy.kinds:
