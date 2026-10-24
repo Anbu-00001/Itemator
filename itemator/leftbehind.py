@@ -1,7 +1,8 @@
 """Left behind: the change moves a runtime or an image to a new version in one place, and other files still pin the old one.
 
-PHP2Shell (21 October 2026) was fixed by moving PHP to 8.3.36, 8.4.27, 8.5.12 or 8.2.35, and a container that still runs the
-old PHP stays open however many other files were moved. A security fix is often written in one file: the production
+PHP's 21 October 2026 advisory (CVE-2026-109618, CVE-2026-109619) was fixed by moving PHP to 8.3.36, 8.4.27, 8.5.12 or
+8.2.35, and a container that still runs the old PHP stays open however many other files were moved. A security fix is
+often written in one file: the production
 Dockerfile moves, the CI test image, the staging compose file and `.php-version` do not. Renovate and Dependabot propose
 an update file by file, and a diff-only reviewer never sees a file the change did not touch. This reads the change's
 moved pins (a line the change adds whose pin is newer than the same image's or runtime's pin in that file before), then
