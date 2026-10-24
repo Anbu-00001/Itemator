@@ -2,7 +2,10 @@
 
 **Itemator keeps a merge request as a draft until a person answers for each change its issue never asked for, such as a new dependency or a stray install script. We call those changes extras.**
 
-Coding agents slip in files nobody asked for, and when reviewers of public agent pull requests commented on one, they did so a median of 3 <!-- from: results/catch_delay_v1.json:summary.median_whole_hours --> hours after it appeared ([timing](docs/measurements.md#how-long-a-person-took-to-spot-it)). Itemator asks when the pipeline finishes.
+![The !7 thread: the card asks about .gitlab-ci.yml (CI change) and shows that showcase kept the same file before; the author replies always; the flow answers 'Kept: .gitlab-ci.yml. Policy change proposed in !8 (merged): merging it stops the questions about .gitlab-ci.yml', then 'Every extra has an answer'](docs/images/live-7-always.png)
+*A real agent merge request (!7): the card asks, the author types `always`, and the next one (!9) asks nothing.*
+
+Coding agents slip in files nobody asked for. Asked to fix one bug in the Model Context Protocol's C# SDK, GitHub Copilot also committed `dotnet-install.sh`, an install script, and a maintainer had to spot it and write "this file looks unnecessary, please delete it" ([the comment](https://github.com/modelcontextprotocol/csharp-sdk/pull/645#discussion_r2225905461)). Itemator asks about a file like that when the pipeline finishes, before anyone has to spot it.
 
 *Life After Code, Path A, Assisted: a person answers each extra and approves every merge; the flows only ask and act on the answers. [MIT licence](LICENSE).* For teams that let coding agents open merge requests:
 
@@ -12,13 +15,11 @@ Coding agents slip in files nobody asked for, and when reviewers of public agent
 
 The list can come from anywhere: these rules, a model's second look, or another checker you plug in. What Itemator adds is the decision: each file gets a named person's typed answer, kept on the merge request and reused as policy.
 
-It asks less as your team answers: type `always` in a thread and the flow opens a one-line policy merge request; once a person merges it, Itemator stops asking about that file. On !9, the next agent merge request after a person answered `always` once, the card asked nothing (the policy was undone afterwards in [!10](https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/39194174/second-project/-/merge_requests/10) for another test; how often that would save a question on public agent pull requests is in [measurements](docs/measurements.md#how-often-the-same-question-comes-back)).
+It asks less as your team answers: type `always` in a thread and the flow opens a one-line policy merge request; once a person merges it, Itemator stops asking about that file. On !9, the next agent merge request after a person answered `always` once, the card asked nothing ([how often that would save a question](docs/measurements.md#how-often-the-same-question-comes-back)).
 
 **A real run, not staged.** Watch it logged out on the public pages:
 
 On [!7](https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/39194174/second-project/-/merge_requests/7#note_4070852403), a merge request GitLab's Developer Flow opened, the card asks about a CI file the agent added and the author answers `always`. A person merges the policy change that answer opened (!8), and the next agent merge request, [!9](https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/39194174/second-project/-/merge_requests/9#note_4070902521), asks nothing. The threads are on each page's Overview tab; the screenshots below show them.
-
-![The !7 thread: the card asks about .gitlab-ci.yml (CI change) and shows that showcase kept the same file before; the author replies always; the flow answers 'Kept: .gitlab-ci.yml. Policy change proposed in !8 (merged): merging it stops the questions about .gitlab-ci.yml', then 'Every extra has an answer'](docs/images/live-7-always.png)
 
 ![The card on !9, the next agent merge request after !8 merged: 'The team policy (.itemator.toml on the target branch) quieted one extra: .gitlab-ci.yml (CI change)', and no thread](docs/images/live-9-quiet.png)
 
@@ -27,11 +28,11 @@ On [!7](https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/39194174/s
 ![The Itemator card on a replay of the install-script example: one extra, dotnet-install.sh, a thread on the diff, and the merge request blocked as a draft](docs/images/replay-645-card.png)
 *Staged, labelled as such: the card on a replay of the example below.*
 
-**A real example.** In July 2025 GitHub Copilot, asked to fix one bug in the Model Context Protocol's C# SDK, also committed `dotnet-install.sh`, an install script nobody asked for, and a maintainer had to spot it and write "this file looks unnecessary, please delete it" ([the comment](https://github.com/modelcontextprotocol/csharp-sdk/pull/645#discussion_r2225905461)). Itemator's rules, frozen on 12 October ([commit](https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/39194174/showcase/-/commit/441e680)) before we read any such comment, list that file on their own; the picture above is that change replayed.
+**That example, replayed.** Itemator's rules, frozen on 12 October ([commit](https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/39194174/showcase/-/commit/441e680)) before we read any reviewer comment, list `dotnet-install.sh` on their own; the picture above is that change replayed. When reviewers of public agent pull requests commented on such a file, they did so a median of 3 <!-- from: results/catch_delay_v1.json:summary.median_whole_hours --> hours after it appeared ([timing](docs/measurements.md#how-long-a-person-took-to-spot-it)).
 
 Why: in public agent pull requests, reviewers commented on 24 <!-- from: results/real_catches_v1.json:summary.pairs --> files these rules list, and 18 <!-- from: results/real_catches_v1.json:summary.my_reading.counts.yes --> of those comments ask to take the file out (our reading), with the rules frozen before we read the comments ([all 24, with the reviewers' words](results/real_catches.md)). An outside study of failed agent pull requests on GitHub found the same pattern: maintainer feedback "discourages agentic submissions that combine substantive modifications with unrelated edits" ([Ehsani et al., *Where Do AI Coding Agents Fail?*](https://arxiv.org/abs/2601.15195)).
 
-What a wrong question costs: one reply in its thread, `not an extra`. It asks on about one in seven public pull requests that coding agents opened ([population](results/aidev_population_v6.json)), and about half the flags we checked pointed at a real extra (one model did the labelling, [samples](docs/measurements.md#what-we-measured)).
+What a wrong question costs: one reply in its thread, `not an extra`, and the draft lifts. It asks on about one in seven public pull requests that coding agents opened ([population](results/aidev_population_v6.json)); how often a flag was a real extra, per pull request and per file, is on [the measurements page](docs/measurements.md#what-we-measured).
 
 **Try it in three clicks, no login.**
 1. [Paste a diff and its issue](https://showcase-3cd72e.gitlab.io/try/), or click an example: the page lists each package the issue does not name, as the CI job would, and runs three supply-chain checks too. Nothing you paste leaves it.
@@ -42,6 +43,7 @@ The card also lists a model's second look, files the issue may not need that the
 
 **What it needs.**
 - GitLab Premium or Ultimate with the Duo Agent Platform, for the two flows.
+- A public project, for now: GitLab's job token cannot read issues, so in a private project the rules would have no issue to compare with. We have not run it in a private project ([limits](docs/limits.md)).
 - The project setting "All threads must be resolved". Without it an unanswered extra still marks the merge request as draft, but the merge button stays on.
 - Optional, Ultimate only: a policy that runs the check from outside the project, so a merge request cannot edit it. Linking the policy takes an Owner once.
 - Nothing extra for coding agents' merge requests. On an agent's draft, the card starts when a person marks it ready, a step GitLab already requires before a draft can merge ([timed on !7](docs/measurements.md#the-card-starts-when-a-person-marks-the-agents-draft-ready)).
@@ -65,7 +67,7 @@ It runs on this public project, and on [a second one](https://gitlab.com/gitlab-
 
 Every other number, with what it does not show, the real runs and each check the card can add: [docs/measurements.md](docs/measurements.md#the-front-pages-numbers-in-full).
 
-**What it names.** A new dependency, a CI or config file, deleted or weakened tests, a removed public function, a binary file, a git hook, and a file that instructs coding agents. An issue can list what a change may touch (an `itemator-scope` block); then anything outside it is an extra. The card also states facts that ask nothing, such as shapes seen in supply-chain attacks ([every check](docs/measurements.md#at-a-glance-every-check-in-one-table)).
+**What it names.** A new dependency, a CI or config file, deleted or weakened tests, a removed public function, a binary file, a git hook, and a file that instructs coding agents. An issue can list what a change may touch (an `itemator-scope` block); then anything outside it is an extra. When the linked issue names a CVE and the change moves a version, as on a security patch day, Itemator takes the version change as the fix and asks about every other file, such as an install script added beside the bump; it does not judge whether the new version is safe, which dependency and container scanning already do. Staged, labelled as such: on [!17](https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/39194174/second-project/-/merge_requests/17#note_4080637136) the issue names PHP's 21 October CVE, the card asked only about an added install script, and `remove` took it out. The card also states facts that ask nothing, such as shapes seen in supply-chain attacks ([every check](docs/measurements.md#at-a-glance-every-check-in-one-table)).
 
 <details><summary>Compared with a check that fails the pipeline, and the policy job</summary>
 

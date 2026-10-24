@@ -44,6 +44,7 @@ from itemator import after as AFTER
 from itemator import other as OTHER
 from itemator import packed as PACKED
 from itemator import scope as SCOPE
+from itemator import patchday as PATCHDAY
 from itemator import precedent as PRE
 
 STATES = ("inside_ask", "extras", "no_issue", "author_wrote_issue", "unplaced_only")
@@ -1044,7 +1045,7 @@ def facts(*, mr_iid: int, mr_title: str, mr_description: str, mr_author_id, issu
     notes = (agent_line(agent) if agent and state != "no_issue" else None,
              CHECKER_CAVEAT if checker and checker["source"] != "base" else None,
              TARGET_CAVEAT if fallback else None,
-             SCOPE.NOTE if scope and state != "no_issue" else None,
+             (PATCHDAY.NOTE.format(cves=", ".join(scope.cves)) if scope.cves else SCOPE.NOTE) if scope and state != "no_issue" else None,
              policy_note(policy, [e for e, _ in quieted], at, asks_other=other and bool(kept),
                          asks_asker=bool(askers) and bool(kept),
                          nobody_can=other and bool(askers) and bool(kept) and _author_wrote(issues, mr_author_id)))

@@ -1,0 +1,14 @@
+{
+ "registered": "2026-10-24, before any pull request below is read",
+ "question": "On public agent pull requests that name a CVE, does patch-day mode switch on, and which files would it ask about?",
+ "population": "AIDev pull_request rows (data/pull_request.parquet) whose title or body matches CVE-\\d{4}-\\d{4,} (case-insensitive), every one, no sampling",
+ "task_text": "the linked issue's title and body when the pull request links one (related_issue), else the pull request's title and body (aidev_recall.task_text)",
+ "files": "the net files of the pull request's last commit (aidev_recall.net_files), from the dataset's pr_commit_details rows; a pull request with no rows is reported unreadable",
+ "per_pull_request": ["url", "agent", "merged", "cves", "switched_on", "fix_files", "asked_files", "why_not"],
+ "why_not": ["no_cve_in_task_text", "own_scope_block", "no_version_only_file", "unreadable"],
+ "claims_allowed": "counts of pull requests per why_not and switched_on, and the listed files themselves; no recall, precision or 'would have caught' claim, because nobody labelled which files were wanted",
+ "sentences": {
+  "some": "Patch-day mode switched on for {on} of {n} public agent pull requests that name a CVE, and on those asked about {asked} files beside the version change.",
+  "none": "Patch-day mode switched on for none of {n} public agent pull requests that name a CVE: {top_reason} was the most common reason."
+ }
+}

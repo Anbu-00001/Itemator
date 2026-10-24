@@ -12,6 +12,18 @@ REPO = pathlib.Path(sys.argv[1]); WORK = pathlib.Path(sys.argv[2]); ONLY = set(s
 PY = str(REPO / ".venv/bin/python")
 
 MODULES = {
+ "patchday": (["tests/test_patchday.py"], [
+  ("no cve still derives", "    if not found or SCOPE.read(issue_text) is not None:\n", "    if SCOPE.read(issue_text) is not None:\n"),
+  ("fix widened to everything", "return SCOPE.Scope(paths=tuple(sorted(set(fix + locks))), cves=found)", 'return SCOPE.Scope(paths=("**",), cves=found)'),
+  ("extra line ignored", "if not old or len(old) != len(new):", "if not old:"),
+  ("listed versions ignored", "if not moved or (listed and not moved <= listed):", "if not moved:"),
+  ("no fix file still derives", "    if not fix:\n        return None\n", ""),
+  ("lockfile anywhere", "\n             and posixpath.dirname(f[\"filename\"]) in dirs]", "]"),
+  ("digest not blanked", "X._DOTTED_VERSION.sub(\"V\", _DIGEST.sub(\"D\", line))", "X._DOTTED_VERSION.sub(\"V\", line)"),
+  ("added file is the fix", 'if f.get("status") not in (None, "modified"):', "if False:"),
+  ("reason not reworded", "if scope is None or not scope.cves:", "if True:"),
+  ("whole-line change counted", "if a == b or _blank(a) != _blank(b):", "if a == b:"),
+ ]),
  "weight": (["tests/test_weight.py", "tests/test_weighpage.py"], [
   ("yanked file picked", 'hit = [f for f in files if test(f["filename"]) and not f.get("yanked")]', 'hit = [f for f in files if test(f["filename"])]'),
   ("largest file of a tier picked", 'return min(hit, key=lambda f: f["size"])', 'return max(hit, key=lambda f: f["size"])'),

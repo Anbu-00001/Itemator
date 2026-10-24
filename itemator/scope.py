@@ -41,10 +41,14 @@ NOTE = "The issue declares its scope (an `itemator-scope` block), and the check 
 class Scope:
     paths: tuple | None = None          # None: not declared
     dependencies: tuple | None = None   # () is `none`
+    cves: tuple = ()                    # set only by patchday.derive: the scope came from the CVE the issue names
 
     def to_dict(self) -> dict:
-        return {"paths": list(self.paths) if self.paths is not None else None,
-                "dependencies": list(self.dependencies) if self.dependencies is not None else None}
+        d = {"paths": list(self.paths) if self.paths is not None else None,
+             "dependencies": list(self.dependencies) if self.dependencies is not None else None}
+        if self.cves:
+            d["cves"] = list(self.cves)
+        return d
 
 
 def read(issue_text: str) -> Scope | None:
