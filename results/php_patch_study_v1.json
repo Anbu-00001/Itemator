@@ -1,0 +1,1824 @@
+{
+ "rubric": "eval/php_patch_rubric.json",
+ "code": "eval/php_patch_study.py",
+ "run_at": "2026-10-24T11:23:56Z",
+ "github_calls": 1366,
+ "summary": {
+  "frame_titles_matched": 1472,
+  "sampled": 200,
+  "by_state": {
+   "unreadable": 0,
+   "no_move": 168,
+   "partly_read": 0,
+   "read": 32
+  },
+  "with_a_move_read": 32,
+  "left_behind": {
+   "prs": 2,
+   "share": 0.0625,
+   "wilson95": [
+    0.0173,
+    0.2015
+   ],
+   "copies": 2,
+   "files": 2,
+   "by_author_type": {
+    "User": 2
+   }
+  },
+  "merged_copies": {
+   "n": 1,
+   "followed": 0,
+   "not_followed": 1,
+   "unknown": 0,
+   "still_old_today": 1,
+   "named_by_a_reviewer": 0
+  },
+  "list_instead_of_share": false
+ },
+ "rows": [
+  {
+   "pr": "https://github.com/1kz-ma1/Canovia-web/pull/832",
+   "agent": "1kz-ma1",
+   "merged": true,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/90armor/stampy/pull/9",
+   "agent": "90armor",
+   "merged": true,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/AISC-Madrid/aisc-madrid-website/pull/296",
+   "agent": "abarroso08",
+   "merged": true,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/AmpersandTarski/prototype/pull/507",
+   "agent": "stefjoosten",
+   "merged": true,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/AmroKSaleh/whity-core/pull/1371",
+   "agent": "AmroKSaleh",
+   "merged": true,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/ArthurLehdermann/docker-alpine-nginx-php8.3/pull/1",
+   "agent": "ArthurLehdermann",
+   "merged": true,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/ArthurLehdermann/docker-alpine-nginx-php8.4/pull/1",
+   "agent": "ArthurLehdermann",
+   "merged": true,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/Bigpixelrocket/php-bin/pull/208",
+   "agent": "loadinglucian",
+   "merged": true,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/COG-GTM/InvoicePlane/pull/1",
+   "agent": "devin-ai-integration[bot]",
+   "merged": false,
+   "state": "read",
+   "moved": [
+    {
+     "path": ".github/workflows/docker-compose-yml-test.yml",
+     "family": "php",
+     "to": "8.4"
+    },
+    {
+     "path": ".github/workflows/release-tag.yml",
+     "family": "php",
+     "to": "8.4"
+    }
+   ],
+   "left": [],
+   "floating": 3,
+   "author_type": "Bot"
+  },
+  {
+   "pr": "https://github.com/CachyOS/CachyOS-PKGBUILDS/pull/2029",
+   "agent": "ventureoo",
+   "merged": true,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/Code4SierraLeone/MWash/pull/2",
+   "agent": "nkasozi",
+   "merged": false,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/CodeForAfrica/MSDDrugs.API/pull/39",
+   "agent": "nkasozi",
+   "merged": false,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/Comune-di-Montesilvano/GovPay-Interaction-Layer/pull/101",
+   "agent": "mirkochipdotcom",
+   "merged": true,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/DataDog/dd-trace-php/pull/4359",
+   "agent": "Leiyks",
+   "merged": false,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/David-Crty/databasement/pull/716",
+   "agent": "David-Crty",
+   "merged": true,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/Davidrpp/lingerious-shop-docker/pull/2",
+   "agent": "Davidrpp",
+   "merged": true,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/DevSkyLex/fireguard-api/pull/573",
+   "agent": "DevSkyLex",
+   "merged": true,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/Don-Wombat/ts-viewer/pull/10",
+   "agent": "dependabot[bot]",
+   "merged": false,
+   "state": "read",
+   "moved": [
+    {
+     "path": "Dockerfile",
+     "family": "php",
+     "to": "8.5.0"
+    }
+   ],
+   "left": [],
+   "floating": 0,
+   "author_type": "Bot"
+  },
+  {
+   "pr": "https://github.com/EasyEngine/dockerfiles/pull/365",
+   "agent": "mrrobot47",
+   "merged": true,
+   "state": "read",
+   "moved": [
+    {
+     "path": "php/8.2/Dockerfile",
+     "family": "php",
+     "to": "8.2.35"
+    }
+   ],
+   "left": [],
+   "floating": 0,
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/EloyKarinR/Sistema-De-Gestion-De-Info-Academic/pull/1",
+   "agent": "EloyKarinR",
+   "merged": true,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/EugenOrosan/stripe-mirakl-connector/pull/3",
+   "agent": "travisfraser",
+   "merged": true,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/FWinklerOfficial/opentelemetry-demo/pull/4",
+   "agent": "resolve-ai[bot]",
+   "merged": false,
+   "state": "read",
+   "moved": [
+    {
+     "path": "src/quote/Dockerfile",
+     "family": "php",
+     "to": "8.5.12"
+    }
+   ],
+   "left": [],
+   "floating": 0,
+   "author_type": "Bot"
+  },
+  {
+   "pr": "https://github.com/FreeSense-org/freesense-os-base/pull/335",
+   "agent": "clausdk",
+   "merged": true,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/GAHK-org/gahk_intern/pull/336",
+   "agent": "osquera",
+   "merged": true,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/GCTC-NTGC/gc-digital-talent/pull/18417",
+   "agent": "Gabriel-Dalton",
+   "merged": false,
+   "state": "read",
+   "moved": [
+    {
+     "path": "api/Dockerfile",
+     "family": "php",
+     "to": "8.5.12"
+    }
+   ],
+   "left": [],
+   "floating": 5,
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/GigaionLLC/RD-API-Server/pull/46",
+   "agent": "TheJakeBraun",
+   "merged": true,
+   "state": "read",
+   "moved": [
+    {
+     "path": "docker/Dockerfile.runtime",
+     "family": "php",
+     "to": "8.5.12"
+    }
+   ],
+   "left": [
+    {
+     "path": "docker/Dockerfile.toolchain",
+     "line": 14,
+     "family": "php",
+     "version": "8.5.11",
+     "to": "8.5.12",
+     "where": "image",
+     "template": "FROM php:{V}-cli-bookworm@sha256:d551e79d694fd91c4fdf34c4adcc52dd2042a064b881e25c319b2533ead0682c AS toolchain",
+     "followed": false,
+     "commits_after": 0,
+     "still_old": true,
+     "named": false
+    }
+   ],
+   "floating": 2,
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/HDRUK/safepeopleregistry-api/pull/837",
+   "agent": "Bryant7136",
+   "merged": false,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/HNygard/offpost/pull/171",
+   "agent": "Copilot",
+   "merged": true,
+   "state": "no_move",
+   "author_type": "Bot"
+  },
+  {
+   "pr": "https://github.com/Homebrew/homebrew-core/pull/320074",
+   "agent": "SMillerDev",
+   "merged": true,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/InvoiceShelf/InvoiceShelf/pull/923",
+   "agent": "gdarko",
+   "merged": true,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/Inzerty/Multisite-Wordpress/pull/2",
+   "agent": "Inzerty",
+   "merged": true,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/Itqan-community/itqan-community-public/pull/203",
+   "agent": "Amr-Bendary",
+   "merged": true,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/Joalregra/gedocs-demo/pull/6",
+   "agent": "Joalregra",
+   "merged": true,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/Jopei/casamento_modelo/pull/1",
+   "agent": "Jopei",
+   "merged": false,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/LaravelBangladesh/laravelbd/pull/77",
+   "agent": "SumonMSelim",
+   "merged": true,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/Local-Data-Exchange/docker-webserver/pull/7",
+   "agent": "ChandanTeekinavar",
+   "merged": true,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/Mes-Open/OpenMes/pull/377",
+   "agent": "NidalShaterM",
+   "merged": false,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/NajibCoding/gcm-book/pull/1",
+   "agent": "NajibCoding",
+   "merged": false,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/Naltpom/heritage/pull/207",
+   "agent": "Naltpom",
+   "merged": true,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/Nitschi/firefly-pico/pull/10",
+   "agent": "Nitschi",
+   "merged": true,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/Nkosie199/Empyrian/pull/10",
+   "agent": "Nkosie199",
+   "merged": true,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/OneOffTech/video-service/pull/16",
+   "agent": "avvertix",
+   "merged": true,
+   "state": "read",
+   "moved": [
+    {
+     "path": "Dockerfile",
+     "family": "php",
+     "to": "8.4.27"
+    }
+   ],
+   "left": [],
+   "floating": 0,
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/OpenCompanyApp/bowerbird-ruby-engine/pull/1",
+   "agent": "ruttydm",
+   "merged": true,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/OskarStark/php-cs-fixer-ga/pull/120",
+   "agent": "gillesperrin",
+   "merged": false,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/Platypuschan/ns8-organizr-reworked/pull/17",
+   "agent": "Platypuschan",
+   "merged": true,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/QualityUnit/resqu-server/pull/49",
+   "agent": "jbartak",
+   "merged": true,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/Roman-PRV/SmartSprouts-backend/pull/211",
+   "agent": "Roman-PRV",
+   "merged": true,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/Scalingo/documentation/pull/4053",
+   "agent": "EtienneM",
+   "merged": true,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/ShaneMcC/web-process-runner/pull/33",
+   "agent": "dependabot[bot]",
+   "merged": true,
+   "state": "no_move",
+   "author_type": "Bot"
+  },
+  {
+   "pr": "https://github.com/Shannon-x/Xboard-sh/pull/71",
+   "agent": "Shannon-x",
+   "merged": true,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/SimpleMachines/SMF/pull/9788",
+   "agent": "Sesquipedalian",
+   "merged": true,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/Smals-Webtech/base-php/pull/143",
+   "agent": "Davidmattei",
+   "merged": true,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/THM-Health/PILOS/pull/3562",
+   "agent": "mklampfer",
+   "merged": false,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/TSGames/MiniKassenbuch/pull/59",
+   "agent": "TSGames",
+   "merged": true,
+   "state": "read",
+   "moved": [
+    {
+     "path": "Dockerfile",
+     "family": "php",
+     "to": "8.5"
+    },
+    {
+     "path": "Dockerfile",
+     "family": "php",
+     "to": "8.5"
+    }
+   ],
+   "left": [],
+   "floating": 0,
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/ThomasdevLC/ferme_de_la_rougeraie_v2-symfony-backend/pull/61",
+   "agent": "ThomasdevLC",
+   "merged": true,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/Tomo-53/fishing-circle-web/pull/62",
+   "agent": "Tomo-53",
+   "merged": true,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/USEPA/webcms/pull/2052",
+   "agent": "jmcerda-epa",
+   "merged": true,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/Vateron-Media/XC_VM_Binaries/pull/6",
+   "agent": "Divarion-D",
+   "merged": true,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/ai-ecoverse/homescoop/pull/1685",
+   "agent": "trieloff",
+   "merged": true,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/amtgard/amtgard-bastion-idp/pull/91",
+   "agent": "esdraelon",
+   "merged": true,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/arclast988/Terminal-Queue-Monitoring/pull/3",
+   "agent": "arclast988",
+   "merged": true,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/ashrafbeshtawi/NullSpace/pull/47",
+   "agent": "ashrafbeshtawi",
+   "merged": true,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/availproject/availcoolify/pull/16",
+   "agent": "anuj-3398",
+   "merged": true,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/azerothcore/acore-cms/pull/217",
+   "agent": "Helias",
+   "merged": true,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/azine/AzineMailgunWebhooksBundle/pull/81",
+   "agent": "azine",
+   "merged": false,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/azine/email-bundle/pull/79",
+   "agent": "azine",
+   "merged": false,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/azine/geoblocking-bundle/pull/4",
+   "agent": "azine",
+   "merged": false,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/azine/js-crypto-store-bundle/pull/1",
+   "agent": "azine",
+   "merged": false,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/bandsintown/docker-php/pull/21",
+   "agent": "aarrey",
+   "merged": true,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/bcgov/klamm/pull/487",
+   "agent": "bzimonjaSDPR",
+   "merged": true,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/beclab/apps/pull/3807",
+   "agent": "TShentu",
+   "merged": true,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/beclab/apps/pull/3816",
+   "agent": "TShentu",
+   "merged": true,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/beneliath/DNR/pull/265",
+   "agent": "beneliath",
+   "merged": true,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/bitnami/containers/pull/99240",
+   "agent": "bitnami-bot",
+   "merged": true,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/blumilksoftware/laravel-poland-meetup/pull/82",
+   "agent": "Copilot",
+   "merged": true,
+   "state": "no_move",
+   "author_type": "Bot"
+  },
+  {
+   "pr": "https://github.com/boschtech/boschifai/pull/33",
+   "agent": "boschtech",
+   "merged": true,
+   "state": "read",
+   "moved": [
+    {
+     "path": ".github/workflows/quality-gate.yml",
+     "family": "php",
+     "to": "8.5"
+    },
+    {
+     "path": ".github/workflows/quality-gate.yml",
+     "family": "php",
+     "to": "8.5"
+    }
+   ],
+   "left": [],
+   "floating": 0,
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/byjg/longhorn-2026-code-support/pull/1",
+   "agent": "byjg",
+   "merged": true,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/caseproof/email-countdown-timer/pull/3",
+   "agent": "cartpauj",
+   "merged": true,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/cash-track/infra/pull/90",
+   "agent": "vokomarov",
+   "merged": true,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/castellersestocolm/website/pull/238",
+   "agent": "oriolclosa",
+   "merged": true,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/chinayin-docker/php-deploy/pull/3",
+   "agent": "chinayin",
+   "merged": true,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/ciandt-apac-dev/docker-images/pull/85",
+   "agent": "galenhucit",
+   "merged": true,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/creator-signal/fork-shlinkio-shlink/pull/14",
+   "agent": "wildone",
+   "merged": true,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/danog/MadelineProto/pull/1869",
+   "agent": "madelineproto-autobuild[bot]",
+   "merged": true,
+   "state": "no_move",
+   "author_type": "Bot"
+  },
+  {
+   "pr": "https://github.com/dantebarbieri/homeserver/pull/127",
+   "agent": "dantebarbieri",
+   "merged": true,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/datakind/edvise-ui/pull/369",
+   "agent": "chapmanhk",
+   "merged": true,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/dauxio/daux.io/pull/616",
+   "agent": "bercedev",
+   "merged": true,
+   "state": "read",
+   "moved": [
+    {
+     "path": "Dockerfile",
+     "family": "php",
+     "to": "8.5.12"
+    }
+   ],
+   "left": [],
+   "floating": 2,
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/dev-community-de/code-formatter/pull/42",
+   "agent": "jr-cologne",
+   "merged": true,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/don30362-stack/home-fitness-laravel-store/pull/1",
+   "agent": "don30362-stack",
+   "merged": true,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/dtk79/mixpost/pull/7",
+   "agent": "dtk79",
+   "merged": false,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/elmtamez8-hash/elmotamayez/pull/433",
+   "agent": "KhaledAbdulBasit",
+   "merged": true,
+   "state": "read",
+   "moved": [
+    {
+     "path": "docker/backend.Dockerfile",
+     "family": "php",
+     "to": "8.5.12"
+    }
+   ],
+   "left": [],
+   "floating": 3,
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/ephpm/ephpm/pull/619",
+   "agent": "luthermonson",
+   "merged": true,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/epr-chef-projet/epreuve-corpus-pret-materiel/pull/11",
+   "agent": "epr-chef-projet",
+   "merged": true,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/fabiocicerchia/badge-poser/pull/190",
+   "agent": "fabiocicerchia",
+   "merged": true,
+   "state": "read",
+   "moved": [
+    {
+     "path": "sys/docker/alpine-phpfpm/Dockerfile",
+     "family": "php",
+     "to": "8.4.27"
+    }
+   ],
+   "left": [],
+   "floating": 1,
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/fantasycalendar/Fantasy-Calendar/pull/389",
+   "agent": "V13Axel",
+   "merged": true,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/femiwiki/docker-mediawiki/pull/1653",
+   "agent": "lens0021",
+   "merged": true,
+   "state": "read",
+   "moved": [
+    {
+     "path": "dockers/php-fpm/Dockerfile",
+     "family": "php",
+     "to": "8.3.36"
+    }
+   ],
+   "left": [],
+   "floating": 0,
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/fmidev/smartalert-web/pull/30",
+   "agent": "mrauhala",
+   "merged": true,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/gcotcheza/orbit/pull/126",
+   "agent": "gcotcheza",
+   "merged": true,
+   "state": "read",
+   "moved": [
+    {
+     "path": "docker/app/Dockerfile",
+     "family": "php",
+     "to": "8.5.12"
+    }
+   ],
+   "left": [],
+   "floating": 0,
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/geniusdynamics/ns8-matomo/pull/19",
+   "agent": "tebbiworld",
+   "merged": true,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/gg-vara/SoundVitrine/pull/20",
+   "agent": "gg-vara",
+   "merged": true,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/giocomai/omeka-s-docker/pull/21",
+   "agent": "erseco",
+   "merged": true,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/glimmer-labs/wolfi/pull/830",
+   "agent": "github-actions[bot]",
+   "merged": true,
+   "state": "no_move",
+   "author_type": "Bot"
+  },
+  {
+   "pr": "https://github.com/gmedia/sakala-api/pull/104",
+   "agent": "HasanH47",
+   "merged": true,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/grupotarifabaja-dev/exploramexicotours/pull/29",
+   "agent": "grupotarifabaja-dev",
+   "merged": true,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/heyJordanParker/php-sharp/pull/197",
+   "agent": "heyJordanParker",
+   "merged": true,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/hmilyfyj/Dockerfile-For-PHP/pull/1",
+   "agent": "hmilyfyj",
+   "merged": true,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/jbryn/downriver/pull/40",
+   "agent": "jbryn",
+   "merged": true,
+   "state": "read",
+   "moved": [
+    {
+     "path": ".github/workflows/ci.yml",
+     "family": "php",
+     "to": "8.5"
+    }
+   ],
+   "left": [],
+   "floating": 0,
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/jdsgame/p8/pull/21",
+   "agent": "dependabot[bot]",
+   "merged": true,
+   "state": "no_move",
+   "author_type": "Bot"
+  },
+  {
+   "pr": "https://github.com/jerrypra0906/greenresource/pull/16",
+   "agent": "stevanus-kurniawan",
+   "merged": true,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/jimmycleuren/loxone-weather-service/pull/376",
+   "agent": "jimmycleuren",
+   "merged": true,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/jimmycleuren/loxone-weather-service/pull/384",
+   "agent": "dependabot[bot]",
+   "merged": false,
+   "state": "read",
+   "moved": [
+    {
+     "path": "Dockerfile",
+     "family": "php",
+     "to": "8.5.0"
+    }
+   ],
+   "left": [],
+   "floating": 0,
+   "author_type": "Bot"
+  },
+  {
+   "pr": "https://github.com/jsuto/piler/pull/519",
+   "agent": "ManfredWisniewski",
+   "merged": false,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/jvhaarst/zeildashboard/pull/9",
+   "agent": "jvhaarst",
+   "merged": true,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/kamaho-source/shokusuu1/pull/845",
+   "agent": "oohasikazuyuki",
+   "merged": true,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/kamaho-source/shokusuu1/pull/849",
+   "agent": "oohasikazuyuki",
+   "merged": true,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/kamilgaraev/proexpert/pull/1574",
+   "agent": "kamilgaraev",
+   "merged": true,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/keller-IO/kubernetes-gitops/pull/358",
+   "agent": "ltsavar",
+   "merged": true,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/kinetis-dev/kinetis/pull/108",
+   "agent": "aln-1",
+   "merged": true,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/lanedirt/OGameX/pull/1676",
+   "agent": "Geda173",
+   "merged": true,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/leepeuker/movary/pull/972",
+   "agent": "dependabot[bot]",
+   "merged": false,
+   "state": "no_move",
+   "author_type": "Bot"
+  },
+  {
+   "pr": "https://github.com/llupa/docker-php/pull/1",
+   "agent": "rmetzler",
+   "merged": true,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/luolongfei/freenom/pull/261",
+   "agent": "bercedev",
+   "merged": true,
+   "state": "read",
+   "moved": [
+    {
+     "path": "Dockerfile",
+     "family": "php",
+     "to": "8.5.12"
+    },
+    {
+     "path": "Dockerfile.heroku",
+     "family": "php",
+     "to": "8.5.12"
+    },
+    {
+     "path": "Dockerfile.koyeb",
+     "family": "php",
+     "to": "8.5.12"
+    }
+   ],
+   "left": [],
+   "floating": 0,
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/lychen-lab/lychen/pull/238",
+   "agent": "nathan-de-pachtere",
+   "merged": true,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/maduonline/php-fpm-laravel-base/pull/59",
+   "agent": "maduonline",
+   "merged": true,
+   "state": "read",
+   "moved": [
+    {
+     "path": "Dockerfile",
+     "family": "php",
+     "to": "8.5.12"
+    }
+   ],
+   "left": [],
+   "floating": 0,
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/manticoresoftware/executor/pull/87",
+   "agent": "sanikolaev",
+   "merged": true,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/manticoresoftware/manticore-github-issue-search/pull/42",
+   "agent": "sanikolaev",
+   "merged": false,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/marcwoge/mantisBT-reveille/pull/6",
+   "agent": "dependabot[bot]",
+   "merged": false,
+   "state": "read",
+   "moved": [
+    {
+     "path": "docker/Dockerfile",
+     "family": "php",
+     "to": "8.5.0"
+    }
+   ],
+   "left": [],
+   "floating": 0,
+   "author_type": "Bot"
+  },
+  {
+   "pr": "https://github.com/matomo-org/docker/pull/415",
+   "agent": "gabauer",
+   "merged": false,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/measuringu/Container-Registry-Backup/pull/1",
+   "agent": "MU-Dean",
+   "merged": true,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/mia-cx/yggdrasil-spec/pull/77",
+   "agent": "mia-riezebos",
+   "merged": true,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/michal-cecko/cecko-dashboard/pull/14",
+   "agent": "michal-cecko",
+   "merged": true,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/microsoft/azurelinux/pull/19657",
+   "agent": "azurelinux-ci-jwt-app[bot]",
+   "merged": false,
+   "state": "no_move",
+   "author_type": "Bot"
+  },
+  {
+   "pr": "https://github.com/multi-api/arco-monorepo/pull/6",
+   "agent": "JGamboa",
+   "merged": true,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/nayleen/docker-php/pull/43",
+   "agent": "nayleen-renovate[bot]",
+   "merged": true,
+   "state": "no_move",
+   "author_type": "Bot"
+  },
+  {
+   "pr": "https://github.com/netcccyun/dnsmgr/pull/570",
+   "agent": "YIYI-16",
+   "merged": false,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/netresearch/typo3-demo/pull/328",
+   "agent": "CybotTM",
+   "merged": true,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/netwerk-digitaal-erfgoed/registry-demo/pull/63",
+   "agent": "ddeboer",
+   "merged": true,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/nexia-cloud-os/cli/pull/135",
+   "agent": "taekwanpark",
+   "merged": true,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/nextcloud/integration_reddit/pull/229",
+   "agent": "oleksandr-nc",
+   "merged": true,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/nextcloud/memegen/pull/143",
+   "agent": "oleksandr-nc",
+   "merged": true,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/ocastastudios/docker-nginx-wordpress/pull/21",
+   "agent": "ocasta",
+   "merged": false,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/omarcoscardoso/cifraly-com-br/pull/34",
+   "agent": "omarcoscardoso",
+   "merged": true,
+   "state": "read",
+   "moved": [
+    {
+     "path": "Dockerfile",
+     "family": "php",
+     "to": "8.5"
+    }
+   ],
+   "left": [],
+   "floating": 0,
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/openaction/docker-php/pull/8",
+   "agent": "openaction-agent",
+   "merged": true,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/openspout/openspout/pull/424",
+   "agent": "bercedev",
+   "merged": true,
+   "state": "read",
+   "moved": [
+    {
+     "path": "Dockerfile",
+     "family": "php",
+     "to": "8.4.27"
+    }
+   ],
+   "left": [],
+   "floating": 0,
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/osm-seed/osm-seed/pull/428",
+   "agent": "Rub21",
+   "merged": true,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/oxphp/oxphp/pull/503",
+   "agent": "diolektor",
+   "merged": true,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/paijishult/dnsmgr/pull/3",
+   "agent": "paijishult",
+   "merged": false,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/pelican/panel/pull/2670",
+   "agent": "QuintenQVD0",
+   "merged": false,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/phpbbmodders/autodbbackup/pull/5",
+   "agent": "bonelifer",
+   "merged": true,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/phpbbmodders/documentation/pull/20",
+   "agent": "bonelifer",
+   "merged": true,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/phpbbmodders/forumpostsperpage/pull/1",
+   "agent": "bonelifer",
+   "merged": true,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/phpbbmodders/menu/pull/15",
+   "agent": "bonelifer",
+   "merged": true,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/phpbbmodders/nqlp/pull/3",
+   "agent": "bonelifer",
+   "merged": true,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/phpbbmodders/phpBB-3.1-no-quote-in-topic/pull/1",
+   "agent": "bonelifer",
+   "merged": true,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/phpbbmodders/phpbb-3.1-ext-editedpostsunread/pull/12",
+   "agent": "bonelifer",
+   "merged": true,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/phpbbmodders/removeextension/pull/2",
+   "agent": "bonelifer",
+   "merged": true,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/phpbbmodders/sfpo/pull/5",
+   "agent": "bonelifer",
+   "merged": true,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/phpbbmodders/sfscompanion/pull/17",
+   "agent": "bonelifer",
+   "merged": true,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/phpbbmodders/tlink/pull/1",
+   "agent": "bonelifer",
+   "merged": true,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/phpbbmodders/topicicononindex/pull/2",
+   "agent": "bonelifer",
+   "merged": true,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/phpbbmodders/upcomingbirthdays/pull/8",
+   "agent": "bonelifer",
+   "merged": true,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/phpbbmodders/useridviewtopic/pull/8",
+   "agent": "bonelifer",
+   "merged": true,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/realsmt99/sentinel/pull/1",
+   "agent": "realsmt99",
+   "merged": false,
+   "state": "read",
+   "moved": [
+    {
+     "path": "target-system/admin-panel/Dockerfile",
+     "family": "php",
+     "to": "8.4.27"
+    }
+   ],
+   "left": [],
+   "floating": 0,
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/realsmt99/sentinel/pull/19",
+   "agent": "realsmt99",
+   "merged": false,
+   "state": "read",
+   "moved": [
+    {
+     "path": "target-system/admin-panel/Dockerfile",
+     "family": "php",
+     "to": "8.4.27"
+    }
+   ],
+   "left": [
+    {
+     "path": "target-system/shop/Dockerfile",
+     "line": 1,
+     "family": "php",
+     "version": "8.3.30",
+     "to": "8.3.36",
+     "where": "arg",
+     "template": "ARG PHP_VERSION={V}",
+     "named": false
+    }
+   ],
+   "floating": 0,
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/realsmt99/sentinel/pull/7",
+   "agent": "realsmt99",
+   "merged": true,
+   "state": "read",
+   "moved": [
+    {
+     "path": "target-system/shop/Dockerfile",
+     "family": "php",
+     "to": "8.3.36"
+    }
+   ],
+   "left": [],
+   "floating": 0,
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/rexenv/runtimes/pull/26",
+   "agent": "rudlinkon",
+   "merged": true,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/shinkawakami/develop-moviechat/pull/53",
+   "agent": "shinkawakami",
+   "merged": true,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/smallPush/civicrm_drupal/pull/24",
+   "agent": "dokploy-2026-03-31-xhrnwq[bot]",
+   "merged": true,
+   "state": "no_move",
+   "author_type": "Bot"
+  },
+  {
+   "pr": "https://github.com/smrealms/smr/pull/2600",
+   "agent": "hemberger",
+   "merged": true,
+   "state": "read",
+   "moved": [
+    {
+     "path": ".github/actions/api-docs/Dockerfile",
+     "family": "php",
+     "to": "8.5.12"
+    },
+    {
+     "path": "Dockerfile",
+     "family": "php",
+     "to": "8.5.12"
+    },
+    {
+     "path": "api-docs/Dockerfile",
+     "family": "php",
+     "to": "8.5.12"
+    }
+   ],
+   "left": [],
+   "floating": 0,
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/spora-ai/spora-docs/pull/108",
+   "agent": "fabeat",
+   "merged": true,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/stacker-builders/stacker-gateway/pull/230",
+   "agent": "Jamilabrao",
+   "merged": true,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/syncloud/invoiceninja/pull/1",
+   "agent": "cyberb",
+   "merged": true,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/syncloud/moodle/pull/7",
+   "agent": "cyberb",
+   "merged": true,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/tebbiworld/ns8-elabftw/pull/6",
+   "agent": "tebbiworld",
+   "merged": true,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/theohbrothers/docker-php/pull/174",
+   "agent": "theohbrothersbot",
+   "merged": true,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/tina4stack/tina4-php/pull/325",
+   "agent": "tina4stack",
+   "merged": true,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/tmakinen/docker-php4dvd/pull/44",
+   "agent": "dependabot[bot]",
+   "merged": false,
+   "state": "no_move",
+   "author_type": "Bot"
+  },
+  {
+   "pr": "https://github.com/tmwclaxton/autoapplycv/pull/22",
+   "agent": "tmwclaxton",
+   "merged": true,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/trick77/docker-moodle/pull/11",
+   "agent": "trick77",
+   "merged": true,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/usagov/usagov-2021/pull/2918",
+   "agent": "arpage",
+   "merged": true,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/utopia-php/docker-base/pull/16",
+   "agent": "loks0n",
+   "merged": true,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/valkyrjaio/ci-phpcsfixer-php/pull/339",
+   "agent": "MelechMizrachi",
+   "merged": true,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/valkyrjaio/ci-phpstan-php/pull/349",
+   "agent": "MelechMizrachi",
+   "merged": true,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/valkyrjaio/valkyrja-starter-app-php/pull/415",
+   "agent": "MelechMizrachi",
+   "merged": true,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/victorbuild/my-item-manager/pull/13",
+   "agent": "victorbuild",
+   "merged": true,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/vintagesucks/docker-noble-node20-chrome-php8.3/pull/52",
+   "agent": "vintagesucks",
+   "merged": true,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/vladlenas/sspks/pull/5",
+   "agent": "vladlenas",
+   "merged": true,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/waja/docker-php85-fpm/pull/129",
+   "agent": "renovate[bot]",
+   "merged": true,
+   "state": "no_move",
+   "author_type": "Bot"
+  },
+  {
+   "pr": "https://github.com/walhijabarhub/WalhiJBRWeb/pull/162",
+   "agent": "dependabot[bot]",
+   "merged": false,
+   "state": "read",
+   "moved": [
+    {
+     "path": "Dockerfile",
+     "family": "php",
+     "to": "8.5.11"
+    }
+   ],
+   "left": [],
+   "floating": 0,
+   "author_type": "Bot"
+  },
+  {
+   "pr": "https://github.com/wavelog/wavelog/pull/3982",
+   "agent": "TheJimmyNowak",
+   "merged": false,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/webinertia/webware-core/pull/60",
+   "agent": "tyrsson",
+   "merged": true,
+   "state": "read",
+   "moved": [
+    {
+     "path": "Dockerfile",
+     "family": "php",
+     "to": "8.5.12"
+    }
+   ],
+   "left": [],
+   "floating": 0,
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/webinertia/webware-htmx/pull/33",
+   "agent": "tyrsson",
+   "merged": true,
+   "state": "read",
+   "moved": [
+    {
+     "path": "Dockerfile",
+     "family": "php",
+     "to": "8.5.12"
+    }
+   ],
+   "left": [],
+   "floating": 0,
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/webmappsrl/osmfeatures/pull/154",
+   "agent": "peco11",
+   "merged": true,
+   "state": "read",
+   "moved": [
+    {
+     "path": "docker/configs/phpfpm/Dockerfile",
+     "family": "php",
+     "to": "8.2.35"
+    }
+   ],
+   "left": [],
+   "floating": 1,
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/webmappsrl/portapporta/pull/61",
+   "agent": "peppedeka",
+   "merged": true,
+   "state": "read",
+   "moved": [
+    {
+     "path": "docker/configs/phpfpm/Dockerfile",
+     "family": "php",
+     "to": "8.2.35"
+    }
+   ],
+   "left": [],
+   "floating": 0,
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/whisper-money/whisper-money/pull/1135",
+   "agent": "victor-falcon",
+   "merged": true,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/wordlift/bitnami-docker-wordpress-nginx/pull/3",
+   "agent": "mauanga",
+   "merged": true,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/xip-online-applications/php-docker-containers/pull/226",
+   "agent": "pepijnxip",
+   "merged": false,
+   "state": "read",
+   "moved": [
+    {
+     "path": "src/base/build/8.2/Dockerfile",
+     "family": "php",
+     "to": "8.2.35"
+    },
+    {
+     "path": "src/base/build/8.3/Dockerfile",
+     "family": "php",
+     "to": "8.3.36"
+    },
+    {
+     "path": "src/base/build/8.4/Dockerfile",
+     "family": "php",
+     "to": "8.4.27"
+    },
+    {
+     "path": "src/base/build/8.5/Dockerfile",
+     "family": "php",
+     "to": "8.5.12"
+    },
+    {
+     "path": "src/base/fpm/8.2/Dockerfile",
+     "family": "php",
+     "to": "8.2.35"
+    },
+    {
+     "path": "src/base/fpm/8.3/Dockerfile",
+     "family": "php",
+     "to": "8.3.36"
+    },
+    {
+     "path": "src/base/fpm/8.4/Dockerfile",
+     "family": "php",
+     "to": "8.4.27"
+    },
+    {
+     "path": "src/base/fpm/8.5/Dockerfile",
+     "family": "php",
+     "to": "8.5.12"
+    }
+   ],
+   "left": [],
+   "floating": 0,
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/yanchi/ShipInfoV2/pull/78",
+   "agent": "yanchi",
+   "merged": true,
+   "state": "no_move",
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/yurtkuran/damwidi/pull/18",
+   "agent": "yurtkuran",
+   "merged": true,
+   "state": "read",
+   "moved": [
+    {
+     "path": "docker/Dockerfile",
+     "family": "php",
+     "to": "8.2.35"
+    }
+   ],
+   "left": [],
+   "floating": 1,
+   "author_type": "User"
+  },
+  {
+   "pr": "https://github.com/zopencommunity/phpport/pull/42",
+   "agent": "zosopentoolsmain",
+   "merged": true,
+   "state": "no_move",
+   "author_type": "User"
+  }
+ ]
+}

@@ -1,0 +1,19 @@
+{
+ "what": "Patch-week study, written before any pull request is read for it: when a public GitHub pull request opened in the week of PHP's 21 October 2026 security advisory (CVE-2026-109618, CVE-2026-109619) moves PHP to a fixed release in a file, how often does the repository still pin an older PHP in another file at that pull request's head (a copy left behind, by itemator/leftbehind.py as on main at registration, frozen), and was such a copy moved by a later commit or named by anyone on the pull request? Read-only; GET only; nothing is posted anywhere.",
+ "frame": "GitHub issue search, GET only, through the user's read-only gh login: for each fixed release V in 8.5.12, 8.4.27, 8.3.36, 8.2.35, the query '\"V\" php in:title is:pr is:public created:2026-10-21..2026-10-24', every page the API returns (at most 1000 per query). The union, without duplicates, ordered by pull request URL; if it holds more than 200, a sample of 200 drawn with random.Random(20261024).",
+ "move": "As in eval/leftbehind_study.py: GET the pull request (base and head sha) and its files (all pages); itemator.leftbehind.moved reads each modified file at base and head. Only moves whose family is 'php' count; a pull request whose PHP moves cannot be read is 'unreadable', counted apart, never dropped.",
+ "scan": "For each pull request with a PHP move: GET the head tree (recursive), and itemator.leftbehind.find with the listed versions taken from the title and body when they name a CVE (as the CI job does). Only copies whose family is 'php' count. A truncated tree or a capped scan makes it 'partly read', counted apart.",
+ "unit": "one pull request with a PHP move",
+ "primary_outcome": "The share of read pull requests with a PHP move for which find names at least one PHP copy left behind, with counts and a Wilson 95% interval; also the number of copies and of files.",
+ "secondary_outcomes": [
+  "followed: for each merged pull request with a copy left behind, whether a commit on the base branch after merged_at (up to the run) left that copy's file with a pin of the same line shape at or above its target (eval/leftbehind_study.later).",
+  "still old: whether the copy's file at the base branch's tip at the run still holds that pin below the target.",
+  "named: whether any review comment or conversation comment on the same pull request (GET .../pulls/N/comments and .../issues/N/comments) contains the left file's path or its file name."
+ ],
+ "reading_rule": "Report the primary share first, in plain words, with counts. If fewer than 30 pull requests have a PHP move that was read, list them instead of a share. A copy left behind is a fact about the files, not proof that a server is exposed: a test of an old PHP, or a second image kept on purpose, is named the same way. 'Followed' says someone moved the copy later; it says nothing about harm. The pull requests come from any author, people and bots alike, and the author type is reported.",
+ "limits": "The frame is found from titles in four days of search, so a fix with another title is missed; GitHub search can return fewer than total_count. Pins are read by fixed rules from files; a build argument or CI variable that overrides a version is not seen. The head tree is read as it stood at the pull request's head. One run of frozen rules; nothing is tuned on these pull requests. A follow-up within three days is a short window.",
+ "seen_before_registration": "Only the search totals for the title queries on 2026-10-24 (382, 452, 548 and 201 for 8.3.36, 8.4.27, 8.5.12 and 8.2.35); no pull request, file or comment was read.",
+ "predictions_before_scoring": "logged in ana before the run (see the commit that adds the results)",
+ "code": "eval/php_patch_study.py, committed after this file and before it is run",
+ "output": "results/php_patch_study_v1.json"
+}

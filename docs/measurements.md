@@ -154,6 +154,21 @@ Registered first ([rubric](../eval/leftbehind_rubric.json), commit 2cedf8b), the
 
 Afterwards, for the 30 <!-- from: results/leftbehind_study_v1.json:summary.merged_copies.n --> copies in merged pull requests: a later commit moved 10 <!-- from: results/leftbehind_study_v1.json:summary.merged_copies.followed --> of them to the new version within ninety days, and 20 <!-- from: results/leftbehind_study_v1.json:summary.merged_copies.still_old_today --> are on the old version at the branch tip today (some copies count in both: the file went back, or gained another old line). No review comment in the dataset names any of these files: 0 <!-- from: results/leftbehind_study_v1.json:summary.merged_copies.named_by_a_reviewer -->. A copy left behind is a fact about the files and does not by itself mean a bug ([every row](../results/leftbehind_study_v1.json)).
 
+## In the week of PHP's advisory, did fixes leave a copy behind?
+
+Registered first ([rubric](../eval/php_patch_rubric.json), commit 8c9c95f), the code committed next (a489f6b), then run once on 24 October: public GitHub pull requests opened from 21 October to 24 October whose title names a fixed PHP release (8.5.12, 8.4.27, 8.3.36 or 8.2.35). People and bots alike; GET only, nothing posted.
+
+Search found 1472 <!-- from: results/php_patch_study_v1.json:summary.frame_titles_matched --> such pull requests; 200 <!-- from: results/php_patch_study_v1.json:summary.sampled --> were drawn at random.
+
+Most of them pinned a floating tag (a tag that named only the minor version becoming a full release), which the frozen rules do not count as a move, because a floating tag already takes the fix on its next build.
+
+32 <!-- from: results/php_patch_study_v1.json:summary.with_a_move_read --> moved a PHP pin in a file; 2 <!-- from: results/php_patch_study_v1.json:summary.left_behind.prs --> of those left another file on an older PHP, and nobody on either pull request named the file. Both read by the entrant's coding assistant, not by a person:
+
+- [GigaionLLC/RD-API-Server#46](https://github.com/GigaionLLC/RD-API-Server/pull/46), merged on 21 October as "PHP 8.5.12 (critical PHP RCE fixes)", moved `docker/Dockerfile.runtime` and left `docker/Dockerfile.toolchain` on `php:8.5.11`; three days later main still builds from it. It is a command-line build image rather than one that serves web requests, which the advisory names as most at risk, so the exposure is smaller than in the runtime image.
+- The other, closed without merging, moved one service to 8.4.27 and left another on 8.3.30; the project looks like a test target, so the old version may be on purpose (its link is in the [results file](../results/php_patch_study_v1.json)).
+
+What this shows: in a real patch week, a hurried fix sometimes moves one file and not its sibling, and nobody says so. Itemator's card names that file and offers `bump`. Two cases in 32 <!-- from: results/php_patch_study_v1.json:summary.with_a_move_read --> is a small sample.
+
 ## Does the thread name known malware?
 
 Registered first ([rubric](../eval/malware_replay_rubric.json), commit 387d086), the code committed next (508ba04), then run once on 200 <!-- from: results/malware_replay_v1.json:summary.sampled --> names drawn from the 11,922 <!-- from: results/malware_replay_v1.json:summary.frame --> PyPI packages that OpenSSF's malicious-packages list reports, with PyPI and OSV read live on 24 October. Every one of the 200 <!-- from: results/malware_replay_v1.json:summary.named_report --> threads now names the OSV malware report. PyPI no longer has 198 <!-- from: results/malware_replay_v1.json:summary.gone_from_pypi --> of them; before this change their threads said only that no such package was found. 2 <!-- from: results/malware_replay_v1.json:summary.still_on_pypi --> can still be installed from PyPI today (`amino-fix` and `ryry-cli`); before, their threads gave only the usual count of known advisories, and now they lead with the report. Before this change no thread said malware at all: 0 <!-- from: results/malware_replay_v1.json:summary.before_said_malware -->.
