@@ -270,7 +270,10 @@ def test_the_read_replaces_only_the_not_read_line():
     for bad in ("a\nb\n", f"{P.NOT_READ} x\n{P.NOT_READ} y\n"):
         with pytest.raises(ValueError):
             P.with_read(bad, "- new")
-    assert P.with_read((ROOT / "README.md").read_text(), "- new").count("- new") == 1
+    now = (ROOT / "README.md").read_text()
+    assert P.NOT_READ not in now and now.count("- **The forward test, read on 2026-10-25.**") == 1   # read once, on the day
+    with pytest.raises(ValueError):
+        P.with_read(now, "- new")
 
 
 def test_a_changed_sentence_file_cannot_be_read_out(tmp_path, monkeypatch):
