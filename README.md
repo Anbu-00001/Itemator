@@ -4,6 +4,8 @@
 
 It is a CI job and two GitLab Duo flows. We call those files extras.
 
+**Judges, start here:** [the demo video](https://www.youtube.com/watch?v=gx0TO0hAEpY), then [try the check in your browser, no login](https://showcase-3cd72e.gitlab.io/try/).
+
 ![The !7 thread: the card asks about .gitlab-ci.yml (CI change) and shows that showcase kept the same file before; the author replies always; the flow answers 'Kept: .gitlab-ci.yml. Policy change proposed in !8 (merged): merging it stops the questions about .gitlab-ci.yml', then 'Every extra has an answer'](docs/images/live-7-always.png)
 *A real agent merge request (!7): the card asks, the author types `always`, and the next one (!9) asks nothing.*
 
