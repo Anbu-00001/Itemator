@@ -8,5 +8,7 @@
  "react_run_tool_calls": {"min": 3, "max": 34},
  "developer_flow_run_tool_calls": {"min": 20, "max": 27},
  "monthly_cap_per_user": 500,
+ "meter_to_list_price": {"low": 0.4, "high": 0.8, "basis": "What our account meter charged for card runs, as a share of the list-price estimate (our credit ledger, 2026-10-11 to 2026-10-12); one account"},
+ "cards_per_monthly_cap_at_list_price": {"value": 266, "how": "monthly_cap_per_user divided by (card_run_model_calls.typical times credits_per_model_call_list_price), rounded down; at the metered share above, more"},
  "limits": "One account, one model setting, small runs. A run with more threads makes more calls."
 }

@@ -21,6 +21,38 @@ It asks less as your team answers: type `always` in a thread and the flow opens 
 
 **Live, not staged:** [!7](https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/39194174/second-project/-/merge_requests/7#note_4070852403) asked once → the author typed `always` → the policy change [!8](https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/39194174/second-project/-/merge_requests/8) was merged on the owner's account, by their coding assistant through the API as the test planned → the next agent merge request, [!9](https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/39194174/second-project/-/merge_requests/9#note_4070902521), asked nothing.
 
+```mermaid
+sequenceDiagram
+  autonumber
+  actor P as A person (the owner)
+  participant A as GitLab Duo Developer Flow
+  participant J as CI job itemator (no model)
+  participant K as Duo card flow
+  participant R as Duo reaction flow
+  participant T as Team policy (.itemator.toml)
+  rect rgb(255, 236, 200)
+  Note over P,T: !7, the first agent merge request
+  P->>A: assigns an issue
+  A->>J: opens !7, its pipeline runs
+  P->>K: marks the agent's draft ready
+  J-->>K: facts: .gitlab-ci.yml is beyond the issue
+  K->>P: one thread on that file, !7 set to Draft
+  end
+  rect rgb(214, 232, 255)
+  Note over P,T: one answer becomes policy
+  P->>R: types always
+  R->>T: opens policy merge request !8
+  P->>T: !8 merged on the owner's account
+  end
+  rect rgb(208, 242, 214)
+  Note over P,T: !9, the next agent merge request
+  A->>J: opens !9 with the same kind of change
+  T-->>J: .gitlab-ci.yml is quieted
+  J-->>K: nothing left to ask
+  K->>P: the card asks nothing
+  end
+```
+
 GitLab's Developer Flow opened !7 and !9; we undid the policy afterwards (!10) to test again. GitLab loads threads with JavaScript; without it, read [!7's threads](https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/39194174/second-project/-/merge_requests/7/discussions.json) or [!9's](https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/39194174/second-project/-/merge_requests/9/discussions.json) as plain data, or see the screenshots.
 
 ![The card on !9, the next agent merge request after !8 merged: 'The team policy (.itemator.toml on the target branch) quieted one extra: .gitlab-ci.yml (CI change)', and no thread](docs/images/live-9-quiet.png)
@@ -67,6 +99,24 @@ It runs on this public project, and on [a second one](https://gitlab.com/gitlab-
 
 Every other number, with what it does not show, the real runs and each check the card can add: [docs/measurements.md](docs/measurements.md#the-front-pages-numbers-in-full).
 
+### What it spends of GitLab Duo
+
+Fixed rules decide what is an extra, so the step that reads the whole diff makes no model call. Duo does the parts that need writing: the card, its threads and acting on the answers.
+
+| On one merge request | Done by | Model work | GitLab Credits |
+|---|---|---|---|
+| Decide what is an extra; look up each new package, its advisories and any malware report; check a CVE fix's scope and copies left on the old version | The CI job, fixed rules | none | none |
+| Post the card and one thread per extra, set Draft | The Duo card flow | 6 <!-- from: results/cost_per_run.json:card_run_model_calls.typical --> model calls and 9 <!-- from: results/card_model_calls.json:after[0].tool_calls --> tool calls with three extras; 5 <!-- from: results/card_model_calls.json:after[2].model_calls --> and 6 <!-- from: results/card_model_calls.json:after[2].tool_calls --> with none (9 <!-- from: results/cost_per_run.json:card_run_model_calls.before_v1_1 --> model calls before we cut its prompt) | up to 1.9 <!-- from: results/cost_per_run.json:card_run_credits.list_price --> at list price; our meter charged 0.4 <!-- from: results/cost_per_run.json:meter_to_list_price.low --> to 0.8 <!-- from: results/cost_per_run.json:meter_to_list_price.high --> of that |
+| Read the answers and act on them | The Duo reaction flow | 3 <!-- from: results/cost_per_run.json:react_run_tool_calls.min --> to 34 <!-- from: results/cost_per_run.json:react_run_tool_calls.max --> tool calls | 0.13 <!-- from: results/cost_per_run.json:credits_per_tool_call.low --> to 0.25 <!-- from: results/cost_per_run.json:credits_per_tool_call.high --> per tool call on our meter |
+| A question an `always` answer already settled | Nobody | none: no thread, no reply to read | none. On public agent pull requests, up to half of all questions repeat an earlier one (297,925 <!-- from: results/aidev_repeats_v1.json:summary.repeats --> of 597,934 <!-- from: results/aidev_repeats_v1.json:summary.questions -->, an upper bound) |
+| For scale: GitLab's Developer Flow writing a change | Duo | 20 <!-- from: results/cost_per_run.json:developer_flow_run_tool_calls.min --> to 27 <!-- from: results/cost_per_run.json:developer_flow_run_tool_calls.max --> tool calls | the same rate per tool call |
+
+- **The check costs Duo less than the change it checks:** 9 <!-- from: results/card_model_calls.json:after[0].tool_calls --> tool calls for a card with three extras, against 20 <!-- from: results/cost_per_run.json:developer_flow_run_tool_calls.min --> to 27 <!-- from: results/cost_per_run.json:developer_flow_run_tool_calls.max --> for the Developer Flow run that wrote a change.
+- **A month's allowance:** the hackathon's cap of 500 <!-- from: results/cost_per_run.json:monthly_cap_per_user --> GitLab Credits per user pays for at least 266 <!-- from: results/cost_per_run.json:cards_per_monthly_cap_at_list_price.value --> cards at list price.
+- **What we cut:** editing the card's prompt took 2.67 <!-- from: results/energy_modelled_v1.json:summary.model_calls_avoided_per_run --> model calls off a card with three extras, from 9 <!-- from: results/cost_per_run.json:card_run_model_calls.before_v1_1 --> to 6 <!-- from: results/cost_per_run.json:card_run_model_calls.typical --> ([the runs](results/card_model_calls.json)).
+- **What did not help:** handing Duo our prepared facts did not cut its work: 16 <!-- from: results/fact_file_ablation_v1.json:summary.total_A --> model calls with them and 14 <!-- from: results/fact_file_ablation_v1.json:summary.total_B --> without, on three staged tasks ([record](results/fact_file_ablation_v1.json)). We kept the facts for checks a model cannot do, such as a package's age or what is inside an archive.
+- **Limits:** one account, one model setting and small runs; the meter lags by hours, so these are estimates, not a bill ([results/cost_per_run.json](results/cost_per_run.json)).
+
 **What it names.** A new dependency, a CI or config file, deleted or weakened tests, a removed public function, a binary file, a git hook, and a file that instructs coding agents. An issue can list what a change may touch (an `itemator-scope` block); then anything outside it is an extra. When the issue names a CVE, the version change is the fix and every other file is asked about ([how](docs/how-it-works.md#patch-day); staged run on [!17](https://gitlab.com/gitlab-ai-hackathon/transcend-october-2026/39194174/second-project/-/merge_requests/17#note_4080637136)). When a change moves PHP, or any runtime or image, to a new version in one file, each other file that still runs the old version gets a thread too, such as the CI test image or a staging compose file, and `bump` moves it ([how](docs/how-it-works.md#left-behind)). On public agent pull requests that moved a version, 9 <!-- from: results/leftbehind_study_v1.json:summary.left_behind.prs --> of 24 <!-- from: results/leftbehind_study_v1.json:summary.with_a_move_read --> left another file on the old one; we read 5 <!-- from: results/leftbehind_study_v1_labels.json:counts.real --> of those as real, and no reviewer named any ([study](docs/measurements.md#do-agents-leave-copies-on-the-old-version)). An extra kept as a stopgap can be answered `until #N`: the merge request that later closes #N asks whether to take the stopgap out, as long as it is still in the code ([how](docs/how-it-works.md#stopgaps)). The card also states facts that ask nothing, such as shapes seen in supply-chain attacks ([every check](docs/measurements.md#at-a-glance-every-check-in-one-table)).
 
 <details><summary>Compared with a check that fails the pipeline, and the policy job</summary>
@@ -94,21 +144,56 @@ A week like that is when merge requests are written in a hurry, often by an agen
 - **Not feeding the flaw.** The CI job asks GitLab's CI lint for the pipeline a change produces. On a GitLab version these advisories list, the job does not send the change's CI file to that endpoint, and the card says why ([limits](docs/limits.md)).
 - **Known malware by name.** A hurried fix that adds a package gets a thread with registry facts; when OSV has a malware report for the package, the thread says so first, even after the registry has taken the package down. On 200 <!-- from: results/malware_replay_v1.json:summary.sampled --> real reported PyPI names it named the report every time, 200 <!-- from: results/malware_replay_v1.json:summary.named_report -->; before, it said only "not found" ([replay](docs/measurements.md#does-the-thread-name-known-malware)).
 
+
+```mermaid
+flowchart TB
+  X["Patch week: PHP 8.3.36 for CVE-2026-109618 and CVE-2026-109619;<br/>GitLab 19.4.2 and 19.5.1 for CVE-2026-97229 and CVE-2026-110264"]:::alarm
+  X --> M["A hurried fix merge request, often written by an agent"]:::mr
+  M --> G1["CVE named in the issue:<br/>the version change is the fix,<br/>every other file gets a thread (!17)"]:::guard
+  M --> G2["Old copies left behind:<br/>a thread per file, bump moves them (!20)"]:::guard
+  M --> G3["A stopgap answered until #N:<br/>asked again when #N closes (!21, !22)"]:::guard
+  M --> G4["Only Developer members and up can answer;<br/>a quieted CI file that pipes a download<br/>into a shell is asked about again (!25)"]:::guard
+  M --> G5["On a listed GitLab version the change's CI file<br/>is not sent to CI lint (CVE-2026-97229)"]:::guard
+  M --> G6["A new package with an OSV malware report:<br/>the thread says so first"]:::guard
+  G1 & G2 & G3 & G4 & G5 & G6 --> H["A person answers for every file around the fix<br/>before it merges"]:::person
+  classDef alarm fill:#ffd6d6,stroke:#c0392b,color:#111,stroke-width:2px
+  classDef mr fill:#fff1c2,stroke:#b7950b,color:#111
+  classDef guard fill:#dbeafe,stroke:#2563eb,color:#111
+  classDef person fill:#d1fadf,stroke:#15803d,color:#111,stroke-width:2px
+```
+
 The code itself has a second home that week. Every update to this repo is also copied, as one commit, to [GitHub](https://github.com/Anbu-00001/Itemator), naming the GitLab commit it copies, so it stays readable while a self-managed GitLab is offline for its patch; `python3 tools/check_mirror.py` compares the two copies file for file and would show a copy changed on either host.
 
 Every staged merge request above was made by hand on the owner's accounts for the demo, and is labelled as such.
 
 ## How it works
 ```mermaid
-flowchart LR
-  A["Merge request opened (person or agent)"] --> B["CI job itemator: fixed rules compare the diff with the linked issue"]
-  B -->|"nothing beyond the issue"| C["Approve as usual"]
-  B -->|"extras found"| D["Card flow: one thread per extra, merge request set to Draft"]
-  D --> E["Approver types the extra's name in its thread"]
-  E --> F["Reaction flow: records who decided, resolves the thread, lifts Draft"]
-  F --> G["Merge"]
-  B -. "optional hold: the job fails until every extra is named" .-> E
+flowchart TB
+  A["A merge request opens<br/>(a person or a coding agent)"]:::mr --> B["CI job itemator<br/>fixed rules, no model:<br/>diff against the linked issue"]:::rules
+  B --> D["Duo card flow"]:::duo
+  D -->|"nothing beyond the issue"| C["Card: Approve as usual"]:::ok
+  D -->|"extras found"| E["One thread per extra,<br/>merge request set to Draft"]:::duo
+  E --> Q{"A person answers<br/>each thread"}:::person
+  Q -->|"the extra's name"| K["Kept, with who and why"]:::ok
+  Q -->|"split or remove"| S["File moved out in one commit"]:::fix
+  Q -->|"bump"| U["Old copies moved to the new version"]:::fix
+  Q -->|"until #N"| N["Asked again when #N closes"]:::fix
+  Q -->|"always"| P["Policy merge request,<br/>merged by a person"]:::policy
+  K & S & U & N --> F["Duo reaction flow:<br/>records who decided,<br/>lifts Draft"]:::duo
+  F --> G["A person approves and merges"]:::person
+  G --> L["Answer log, What-shipped page,<br/>note on the issue"]:::log
+  P -. "the next merge request is not asked about that file" .-> B
+  L -. "earlier answers shown in the next thread" .-> E
+  classDef mr fill:#fff1c2,stroke:#b7950b,color:#111
+  classDef rules fill:#e5e7eb,stroke:#374151,color:#111,stroke-width:2px
+  classDef duo fill:#ede9fe,stroke:#7c3aed,color:#111
+  classDef person fill:#d1fadf,stroke:#15803d,color:#111,stroke-width:2px
+  classDef ok fill:#dcfce7,stroke:#16a34a,color:#111
+  classDef fix fill:#dbeafe,stroke:#2563eb,color:#111
+  classDef policy fill:#fde68a,stroke:#b45309,color:#111
+  classDef log fill:#fce7f3,stroke:#be185d,color:#111
 ```
+Grey is the CI job with no model, purple is GitLab Duo, green is a person.
 
 1. **A CI job lists the extras.** The `itemator` job reads the merge request's diff and its linked issue and applies fixed rules (`itemator/extras.py`): a new dependency, a CI or config change, removed tests, a removed public function, deleted generated code, a committed binary, large file or build output, a version bump, a stray file. No model decides whether an extra exists. It writes `itemator.json`.
 2. **A GitLab Duo flow posts the card** (`flows/itemator_card.yml`): two lines, what is beyond the issue and what the approver does next, then one resolvable thread per extra on the line it changed. It sets the merge request to Draft.

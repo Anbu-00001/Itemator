@@ -74,6 +74,10 @@ def test_numbers_advisory_ids_exempt_but_counts_not(tmp_path):
     assert [o[:11] for o in msgs(audit.check_numbers, tmp_path)] == ["README.md:2"]
 
 
+def test_numbers_diagram_colours_exempt_but_counts_not(tmp_path):
+    write(tmp_path, {"README.md": "  rect rgb(255, 236, 200)\n  classDef a fill:#fff,stroke-width:2px\n  rgb flagged 3 files\n"})
+    assert [o[:11] for o in msgs(audit.check_numbers, tmp_path)] == ["README.md:3"]
+
 def test_numbers_licence_versions_exempt_but_counts_not(tmp_path):
     write(tmp_path, {"README.md": "Data is CC BY 4.0; code is MIT, deps Apache-2.0 or GPL-3.0.\nCC BY flagged 4 PRs.\n"})
     assert [o[:11] for o in msgs(audit.check_numbers, tmp_path)] == ["README.md:2"]

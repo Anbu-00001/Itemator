@@ -56,3 +56,11 @@ def test_the_estimate_shipped_with_the_job_equals_the_results_file_the_readme_ci
     r = json.loads((root / "results" / "cost_per_run.json").read_text())
     assert ci.flow_cost() == {"calls": r["card_run_model_calls"]["typical"], "credits": r["card_run_credits"]["list_price"]}
     assert r["card_run_credits"]["list_price"] == round(r["card_run_model_calls"]["typical"] * r["credits_per_model_call_list_price"] + 1e-9, 1)
+
+
+def test_cards_per_monthly_cap_follows_from_the_cap_and_the_list_price():
+    import json, math, pathlib
+    r = json.loads((pathlib.Path(__file__).resolve().parent.parent / "results" / "cost_per_run.json").read_text())
+    per_card = r["card_run_model_calls"]["typical"] * r["credits_per_model_call_list_price"]
+    assert r["cards_per_monthly_cap_at_list_price"]["value"] == math.floor(r["monthly_cap_per_user"] / per_card)
+    assert 0 < r["meter_to_list_price"]["low"] < r["meter_to_list_price"]["high"] <= 1
